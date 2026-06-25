@@ -34,6 +34,20 @@ const PLUGINS = [
   { slug: 'dlottery',      name: 'dLottery',      src: '../dLottery/docs' },
 ];
 
+// Emoji prefixes for the sidebar — one per plugin, per section header, and the intro item.
+const PLUGIN_EMOJI = {
+  dzusillcore: '🛠️', dstattrack: '📊', warpgui: '🧭', dhomegui: '🏠',
+  dbloodmoney: '💰', toolsnotifier: '🔔', ddeathpenalty: '💀', dlottery: '🎰',
+};
+const SECTION_EMOJI = {
+  'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',
+  'core concepts': '🧠', 'messages & colors': '💬', 'commands': '⌨️', 'guis': '🖼️',
+  'events': '📡', 'integrations': '🔌', 'nms & multi-version': '🧬', 'storage': '🗃️',
+  'database': '🗄️', 'utilities': '🧰', 'testing': '🧪', 'credits': '❤️',
+};
+const sectionEmoji = (label) => SECTION_EMOJI[label.toLowerCase()] ?? '📂';
+const introEmoji = (label) => (/^(introduction|overview)$/i.test(label) ? '📘 ' : '');
+
 const walk = (dir) => readdirSync(dir).flatMap((e) => {
   const p = join(dir, e);
   return statSync(p).isDirectory() ? walk(p) : [p];
@@ -134,9 +148,10 @@ function migrateFiles(plugin, srcDir) {
 // Parse SUMMARY.md -> Starlight sidebar group for this plugin.
 function buildSidebarGroup(plugin, srcDir) {
   const summaryPath = join(srcDir, 'SUMMARY.md');
-  const group = { label: plugin.name, collapsed: true, items: [] };
+  const emoji = PLUGIN_EMOJI[plugin.slug] ?? '📦';
+  const group = { label: `${emoji} ${plugin.name}`, collapsed: true, items: [] };
   if (!existsSync(summaryPath)) {
-    group.items.push({ label: 'Overview', slug: `plugins/${plugin.slug}` });
+    group.items.push({ label: '📘 Overview', slug: `plugins/${plugin.slug}` });
     return group;
   }
   const lines = readFileSync(summaryPath, 'utf8').split('\n');
@@ -145,7 +160,8 @@ function buildSidebarGroup(plugin, srcDir) {
     const line = raw.replace(/\s+$/, '');
     const h2 = line.match(/^##\s+(.+?)\s*$/);
     if (h2) {
-      current = { label: h2[1].trim(), items: [] };
+      const name = h2[1].trim();
+      current = { label: `${sectionEmoji(name)} ${name}`, items: [] };
       group.items.push(current);
       continue;
     }
@@ -153,7 +169,9 @@ function buildSidebarGroup(plugin, srcDir) {
     if (item) {
       const label = item[1].trim();
       const slug = (`plugins/${plugin.slug}/` + slugForRel(item[2])).replace(/\/$/, '');
-      (current ? current.items : group.items).push({ label, slug });
+      // Plugin groups get an emoji; the intro item too; leaf pages stay clean.
+      const displayLabel = current ? label : `${introEmoji(label)}${label}`;
+      (current ? current.items : group.items).push({ label: displayLabel, slug });
     }
   }
   // drop empty sub-groups
@@ -161,7 +179,7 @@ function buildSidebarGroup(plugin, srcDir) {
   return group;
 }
 
-const sidebar = [{ label: 'Welcome', link: '/' }];
+const sidebar = [{ label: '👋 Welcome', link: '/' }];
 let total = 0;
 for (const p of PLUGINS) {
   const srcDir = join(ROOT, p.src);

@@ -1,18 +1,18 @@
 [
   {
-    "label": "Welcome",
+    "label": "👋 Welcome",
     "link": "/"
   },
   {
-    "label": "DzusillCore",
+    "label": "🛠️ DzusillCore",
     "collapsed": true,
     "items": [
       {
-        "label": "Introduction",
+        "label": "📘 Introduction",
         "slug": "plugins/dzusillcore"
       },
       {
-        "label": "Getting Started",
+        "label": "🚀 Getting Started",
         "items": [
           {
             "label": "Requirements",
@@ -37,7 +37,7 @@
         ]
       },
       {
-        "label": "Core Concepts",
+        "label": "🧠 Core Concepts",
         "items": [
           {
             "label": "Plugin Lifecycle",
@@ -54,7 +54,7 @@
         ]
       },
       {
-        "label": "Configuration",
+        "label": "⚙️ Configuration",
         "items": [
           {
             "label": "Config Files",
@@ -71,7 +71,7 @@
         ]
       },
       {
-        "label": "Messages & Colors",
+        "label": "💬 Messages & Colors",
         "items": [
           {
             "label": "Message Service",
@@ -84,7 +84,7 @@
         ]
       },
       {
-        "label": "Commands",
+        "label": "⌨️ Commands",
         "items": [
           {
             "label": "Overview",
@@ -101,7 +101,7 @@
         ]
       },
       {
-        "label": "GUIs",
+        "label": "🖼️ GUIs",
         "items": [
           {
             "label": "Overview",
@@ -126,7 +126,7 @@
         ]
       },
       {
-        "label": "Events",
+        "label": "📡 Events",
         "items": [
           {
             "label": "Listeners",
@@ -135,7 +135,7 @@
         ]
       },
       {
-        "label": "Integrations",
+        "label": "🔌 Integrations",
         "items": [
           {
             "label": "Hooks",
@@ -144,7 +144,7 @@
         ]
       },
       {
-        "label": "NMS & Multi-Version",
+        "label": "🧬 NMS & Multi-Version",
         "items": [
           {
             "label": "Overview",
@@ -165,7 +165,7 @@
         ]
       },
       {
-        "label": "Storage",
+        "label": "🗃️ Storage",
         "items": [
           {
             "label": "File Storage",
@@ -178,7 +178,7 @@
         ]
       },
       {
-        "label": "Database",
+        "label": "🗄️ Database",
         "items": [
           {
             "label": "Overview",
@@ -207,7 +207,7 @@
         ]
       },
       {
-        "label": "Utilities",
+        "label": "🧰 Utilities",
         "items": [
           {
             "label": "Helpers",
@@ -228,7 +228,7 @@
         ]
       },
       {
-        "label": "Testing",
+        "label": "🧪 Testing",
         "items": [
           {
             "label": "Testing",
@@ -237,7 +237,7 @@
         ]
       },
       {
-        "label": "Credits",
+        "label": "❤️ Credits",
         "items": [
           {
             "label": "Credits",
@@ -248,15 +248,15 @@
     ]
   },
   {
-    "label": "dStattrack",
+    "label": "📊 dStattrack",
     "collapsed": true,
     "items": [
       {
-        "label": "Introduction",
+        "label": "📘 Introduction",
         "slug": "plugins/dstattrack"
       },
       {
-        "label": "Getting Started",
+        "label": "🚀 Getting Started",
         "items": [
           {
             "label": "Requirements",
@@ -273,7 +273,7 @@
         ]
       },
       {
-        "label": "Features",
+        "label": "✨ Features",
         "items": [
           {
             "label": "Tracked Stats",
@@ -298,7 +298,7 @@
         ]
       },
       {
-        "label": "Configuration",
+        "label": "⚙️ Configuration",
         "items": [
           {
             "label": "config.yml",
@@ -315,7 +315,7 @@
         ]
       },
       {
-        "label": "Reference",
+        "label": "📖 Reference",
         "items": [
           {
             "label": "Commands & Permissions",
@@ -334,15 +334,15 @@
     ]
   },
   {
-    "label": "WarpGUI",
+    "label": "🧭 WarpGUI",
     "collapsed": true,
     "items": [
       {
-        "label": "Introduction",
+        "label": "📘 Introduction",
         "slug": "plugins/warpgui"
       },
       {
-        "label": "Getting Started",
+        "label": "🚀 Getting Started",
         "items": [
           {
             "label": "Requirements",
@@ -359,7 +359,7 @@
         ]
       },
       {
-        "label": "Features",
+        "label": "✨ Features",
         "items": [
           {
             "label": "The Warp Menu",
@@ -408,7 +408,7 @@
         ]
       },
       {
-        "label": "Configuration",
+        "label": "⚙️ Configuration",
         "items": [
           {
             "label": "config.yml",
@@ -429,7 +429,7 @@
         ]
       },
       {
-        "label": "Reference",
+        "label": "📖 Reference",
         "items": [
           {
             "label": "Commands & Permissions",
@@ -452,15 +452,15 @@
     ]
   },
   {
-    "label": "dHomeGUI",
+    "label": "🏠 dHomeGUI",
     "collapsed": true,
     "items": [
       {
-        "label": "Introduction",
+        "label": "📘 Introduction",
         "slug": "plugins/dhomegui"
       },
       {
-        "label": "Getting Started",
+        "label": "🚀 Getting Started",
         "items": [
           {
             "label": "Requirements",
@@ -477,7 +477,7 @@
         ]
       },
       {
-        "label": "Features",
+        "label": "✨ Features",
         "items": [
           {
             "label": "The Homes Menu",
@@ -522,7 +522,7 @@
         ]
       },
       {
-        "label": "Configuration",
+        "label": "⚙️ Configuration",
         "items": [
           {
             "label": "config.yml",
@@ -543,7 +543,7 @@
         ]
       },
       {
-        "label": "Reference",
+        "label": "📖 Reference",
         "items": [
           {
             "label": "Commands & Permissions",
@@ -566,15 +566,15 @@
     ]
   },
   {
-    "label": "dBloodMoney",
+    "label": "💰 dBloodMoney",
     "collapsed": true,
     "items": [
       {
-        "label": "Introduction",
+        "label": "📘 Introduction",
         "slug": "plugins/dbloodmoney"
       },
       {
-        "label": "Getting Started",
+        "label": "🚀 Getting Started",
         "items": [
           {
             "label": "Requirements",
@@ -595,7 +595,7 @@
         ]
       },
       {
-        "label": "Configuration",
+        "label": "⚙️ Configuration",
         "items": [
           {
             "label": "config.yml",
@@ -616,7 +616,7 @@
         ]
       },
       {
-        "label": "Features",
+        "label": "✨ Features",
         "items": [
           {
             "label": "Kill Rewards",
@@ -649,7 +649,7 @@
         ]
       },
       {
-        "label": "Reference",
+        "label": "📖 Reference",
         "items": [
           {
             "label": "Commands & Permissions",
@@ -672,15 +672,15 @@
     ]
   },
   {
-    "label": "ToolsNotifier",
+    "label": "🔔 ToolsNotifier",
     "collapsed": true,
     "items": [
       {
-        "label": "Introduction",
+        "label": "📘 Introduction",
         "slug": "plugins/toolsnotifier"
       },
       {
-        "label": "Getting Started",
+        "label": "🚀 Getting Started",
         "items": [
           {
             "label": "Requirements",
@@ -701,7 +701,7 @@
         ]
       },
       {
-        "label": "Features",
+        "label": "✨ Features",
         "items": [
           {
             "label": "How Notifications Work",
@@ -734,7 +734,7 @@
         ]
       },
       {
-        "label": "Configuration",
+        "label": "⚙️ Configuration",
         "items": [
           {
             "label": "config.yml",
@@ -751,7 +751,7 @@
         ]
       },
       {
-        "label": "Reference",
+        "label": "📖 Reference",
         "items": [
           {
             "label": "Commands & Permissions",
@@ -778,15 +778,15 @@
     ]
   },
   {
-    "label": "dDeathPenalty",
+    "label": "💀 dDeathPenalty",
     "collapsed": true,
     "items": [
       {
-        "label": "Introduction",
+        "label": "📘 Introduction",
         "slug": "plugins/ddeathpenalty"
       },
       {
-        "label": "Getting Started",
+        "label": "🚀 Getting Started",
         "items": [
           {
             "label": "Requirements",
@@ -803,7 +803,7 @@
         ]
       },
       {
-        "label": "Features",
+        "label": "✨ Features",
         "items": [
           {
             "label": "Penalty Profiles",
@@ -844,7 +844,7 @@
         ]
       },
       {
-        "label": "Configuration",
+        "label": "⚙️ Configuration",
         "items": [
           {
             "label": "config.yml",
@@ -861,7 +861,7 @@
         ]
       },
       {
-        "label": "Reference",
+        "label": "📖 Reference",
         "items": [
           {
             "label": "Commands & Permissions",
@@ -884,15 +884,15 @@
     ]
   },
   {
-    "label": "dLottery",
+    "label": "🎰 dLottery",
     "collapsed": true,
     "items": [
       {
-        "label": "Introduction",
+        "label": "📘 Introduction",
         "slug": "plugins/dlottery"
       },
       {
-        "label": "Getting Started",
+        "label": "🚀 Getting Started",
         "items": [
           {
             "label": "Requirements",
@@ -909,7 +909,7 @@
         ]
       },
       {
-        "label": "Features",
+        "label": "✨ Features",
         "items": [
           {
             "label": "How a Round Works",
@@ -946,7 +946,7 @@
         ]
       },
       {
-        "label": "Configuration",
+        "label": "⚙️ Configuration",
         "items": [
           {
             "label": "settings.yml",
@@ -967,7 +967,7 @@
         ]
       },
       {
-        "label": "Reference",
+        "label": "📖 Reference",
         "items": [
           {
             "label": "Commands & Permissions",
