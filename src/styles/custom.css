@@ -1,0 +1,11 @@
+/* dzusill brand accent (purple). See https://starlight.astro.build/guides/css-and-tailwind/ */
+:root {
+  --sl-color-accent-low: #2a1a4a;
+  --sl-color-accent: #8b5cf6;
+  --sl-color-accent-high: #d6c7ff;
+}
+:root[data-theme='light'] {
+  --sl-color-accent-low: #ece0ff;
+  --sl-color-accent: #7c3aed;
+  --sl-color-accent-high: #2c1a4d;
+}
