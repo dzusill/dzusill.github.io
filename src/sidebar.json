@@ -984,5 +984,103 @@
         ]
       }
     ]
+  },
+  {
+    "label": "🛒 DRotatingShop",
+    "collapsed": true,
+    "items": [
+      {
+        "label": "📘 Introduction",
+        "slug": "plugins/drotatingshop"
+      },
+      {
+        "label": "🚀 Getting Started",
+        "items": [
+          {
+            "label": "Requirements",
+            "slug": "plugins/drotatingshop/getting-started/requirements"
+          },
+          {
+            "label": "Installation",
+            "slug": "plugins/drotatingshop/getting-started/installation"
+          },
+          {
+            "label": "Quick Start",
+            "slug": "plugins/drotatingshop/getting-started/quick-start"
+          }
+        ]
+      },
+      {
+        "label": "✨ Features",
+        "items": [
+          {
+            "label": "The Shop Menu",
+            "slug": "plugins/drotatingshop/features/the-shop-menu"
+          },
+          {
+            "label": "Rotations",
+            "slug": "plugins/drotatingshop/features/rotations"
+          },
+          {
+            "label": "Stock & Purchase Limits",
+            "slug": "plugins/drotatingshop/features/stock-and-limits"
+          },
+          {
+            "label": "Buying Items",
+            "slug": "plugins/drotatingshop/features/buying"
+          },
+          {
+            "label": "Custom Items",
+            "slug": "plugins/drotatingshop/features/custom-items"
+          }
+        ]
+      },
+      {
+        "label": "⚙️ Configuration",
+        "items": [
+          {
+            "label": "config.yml",
+            "slug": "plugins/drotatingshop/configuration/config"
+          },
+          {
+            "label": "items.yml",
+            "slug": "plugins/drotatingshop/configuration/items"
+          },
+          {
+            "label": "messages.yml",
+            "slug": "plugins/drotatingshop/configuration/messages"
+          },
+          {
+            "label": "data.yml",
+            "slug": "plugins/drotatingshop/configuration/data"
+          },
+          {
+            "label": "Reloading",
+            "slug": "plugins/drotatingshop/configuration/reloading"
+          }
+        ]
+      },
+      {
+        "label": "📖 Reference",
+        "items": [
+          {
+            "label": "Commands & Permissions",
+            "slug": "plugins/drotatingshop/commands-and-permissions"
+          },
+          {
+            "label": "Placeholders",
+            "slug": "plugins/drotatingshop/placeholders"
+          },
+          {
+            "label": "FAQ & Troubleshooting",
+            "slug": "plugins/drotatingshop/faq"
+          },
+          {
+            "label": "Credits",
+            "slug": "plugins/drotatingshop/credits"
+          }
+        ]
+      }
+    ]
   }
 ]

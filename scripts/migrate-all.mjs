@@ -32,12 +32,14 @@ const PLUGINS = [
   { slug: 'toolsnotifier', name: 'ToolsNotifier', src: '../ToolNotifier/docs' },
   { slug: 'ddeathpenalty', name: 'dDeathPenalty', src: '../DeathPenalty/docs' },
   { slug: 'dlottery',      name: 'dLottery',      src: '../dLottery/docs' },
+  { slug: 'drotatingshop', name: 'DRotatingShop', src: '../DRotatingShop/docs' },
 ];
 
 // Emoji prefixes for the sidebar — one per plugin, per section header, and the intro item.
 const PLUGIN_EMOJI = {
   dzusillcore: '🛠️', dstattrack: '📊', warpgui: '🧭', dhomegui: '🏠',
   dbloodmoney: '💰', toolsnotifier: '🔔', ddeathpenalty: '💀', dlottery: '🎰',
+  drotatingshop: '🛒',
 };
 const SECTION_EMOJI = {
   'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',
