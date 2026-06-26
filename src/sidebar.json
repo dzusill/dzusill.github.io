@@ -1018,8 +1018,16 @@
             "slug": "plugins/drotatingshop/features/the-shop-menu"
           },
           {
+            "label": "The Buy Menu",
+            "slug": "plugins/drotatingshop/features/the-buy-menu"
+          },
+          {
             "label": "Rotations",
             "slug": "plugins/drotatingshop/features/rotations"
+          },
+          {
+            "label": "Opening Hours",
+            "slug": "plugins/drotatingshop/features/opening-hours"
           },
           {
             "label": "Stock & Purchase Limits",
@@ -1045,6 +1053,18 @@
           {
             "label": "items.yml",
             "slug": "plugins/drotatingshop/configuration/items"
+          },
+          {
+            "label": "Default Prices (1.21)",
+            "slug": "plugins/drotatingshop/configuration/default-prices"
+          },
+          {
+            "label": "quantity-menu.yml",
+            "slug": "plugins/drotatingshop/configuration/quantity-menu"
+          },
+          {
+            "label": "Sounds",
+            "slug": "plugins/drotatingshop/configuration/sounds"
           },
           {
             "label": "messages.yml",

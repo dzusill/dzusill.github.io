@@ -1,9 +1,9 @@
 ---
 title: "items.yml"
-description: "plugins/DRotatingShop/items.yml is the single source of truth for the item pool. It ships empty — you grow it with /dshop additem or by hand. After any…"
+description: "plugins/dRotatingShop/items.yml is the single source of truth for the item pool. On the first start it is auto-seeded from the bundled 1.21 price list;…"
 ---
 
-`plugins/DRotatingShop/items.yml` is the **single source of truth** for the item pool. It ships **empty** — you grow it with `/dshop additem` or by hand. After any manual edit, run `/dshop reload`.
+`plugins/dRotatingShop/items.yml` is the **single source of truth** for the item pool. On the **first start** it is auto-seeded from the bundled [1.21 price list](/plugins/drotatingshop/configuration/default-prices/); after that it's yours — grow it with `/dshop additem` or by hand. After any manual edit, run `/dshop reload`.
 
 Every item is a block under `items:`, keyed by a unique **id**:
 
@@ -24,7 +24,7 @@ items:
 | Field | Required | Description |
 |---|---|---|
 | `display-name` | yes | MiniMessage name shown on the GUI icon. |
-| `price` | yes | Cost per purchase (Vault currency). |
+| `price` | yes | Cost per **single** item (Vault currency); the buy menu multiplies by the quantity. |
 | `stock` | yes | Global stock for the rotation; `-1` = unlimited. See [Stock & Limits](/plugins/drotatingshop/features/stock-and-limits/). |
 | `per-player-limit` | yes | Buys per player per rotation; `-1` = unlimited. |
 
@@ -74,6 +74,7 @@ If a block has both, `nbt-base64` wins. An unreadable `nbt-base64` (wrong server
 
 | Action | How |
 |---|---|
+| Load the default 1.21 catalogue | `/dshop seed` (or it happens automatically on a fresh first start). |
 | Add a vanilla item | Write a `material` block, then `/dshop reload`. |
 | Add a custom item | Hold it, `/dshop additem <price> <stock> [limit]`. |
 | Change price / stock / limit | Edit the field, `/dshop reload` — applies next rotation. |

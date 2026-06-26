@@ -1,45 +1,49 @@
 ---
 title: "Installation"
-description: "DRotatingShop depends on DzusillCore. Drop DzusillCore-x.y.z.jar into plugins/ first."
+description: "dRotatingShop depends on DzusillCore. Drop DzusillCore-x.y.z.jar into plugins/ first."
 ---
 
 ## 1. Install DzusillCore
 
-DRotatingShop **depends** on [DzusillCore](https://github.com/dzusill/DzusillCore). Drop `DzusillCore-x.y.z.jar` into `plugins/` first.
+dRotatingShop **depends** on [DzusillCore](https://github.com/dzusill/DzusillCore). Drop `DzusillCore-x.y.z.jar` into `plugins/` first.
 
 ## 2. Install Vault + an economy
 
-DRotatingShop charges purchases through [Vault](https://www.spigotmc.org/resources/vault.34315/). Install Vault **and** an economy provider (EssentialsX, CMI, …). Without one the plugin disables itself.
+dRotatingShop charges purchases through [Vault](https://www.spigotmc.org/resources/vault.34315/). Install Vault **and** an economy provider (EssentialsX, CMI, …). Without one the plugin disables itself.
 
-## 3. Drop in DRotatingShop
+## 3. Drop in dRotatingShop
 
-Place `DRotatingShop.jar` into `plugins/` and restart the server. On first start it creates:
+Place `dRotatingShop.jar` into `plugins/` and restart the server. On first start it creates:
 
 ```
-plugins/DRotatingShop/
-├── config.yml      # command alias, rotation interval, GUI title & filler
-├── items.yml       # the item pool — ships EMPTY
-├── messages.yml    # all player-facing text (MiniMessage)
-└── data.yml        # runtime state (rotation, stock, purchases) — do not edit
+plugins/dRotatingShop/
+├── config.yml          # command alias, rotation interval, opening hours, GUI, seed defaults, sounds
+├── items.yml           # the item pool (seeded on first start — see below)
+├── prices_1_21.yml     # bundled default 1.21 price list used to seed items.yml
+├── quantity-menu.yml   # layout & icons of the buy / quantity picker
+├── messages.yml        # all player-facing text (MiniMessage)
+└── data.yml            # runtime state (rotation, stock, purchases) — do not edit
 ```
 
-## 4. Add some items
+## 4. The pool is seeded for you
 
-The pool starts **empty**, so the first rotation has nothing to show. Fill it either way:
+On the **very first start** — while `items.yml` has no items — dRotatingShop migrates the bundled [prices_1_21.yml](/plugins/drotatingshop/configuration/default-prices/) into `items.yml`: ~1,200 vanilla items, priced, with default stock and per-player limits. So the shop works out of the box.
 
-- **Hold an item** and run `/dshop additem <price> <stock> [limit]` — it's serialised straight into `items.yml`.
-- **Edit `items.yml`** by hand to add vanilla items, then `/dshop reload`.
+Want to load (or re-load) the catalogue later? Run:
 
-See [Custom Items](/plugins/drotatingshop/features/custom-items/) and [items.yml](/plugins/drotatingshop/configuration/items/).
+```
+/dshop seed
+```
+
+See [Default Prices](/plugins/drotatingshop/configuration/default-prices/).
 
 ## 5. Verify
 
 ```
-/dshop additem 250 -1     # hold e.g. a Diamond
-/dshop rotate             # force a rotation so the item shows now
-/market                   # open the shop
+/dshop rotate     # force a rotation so items show now
+/market           # open the shop
 ```
 
-The shop GUI should open with your item and a countdown clock. Tune the command name, interval and GUI in [config.yml](/plugins/drotatingshop/configuration/config/).
+The shop GUI opens with the seeded items and a countdown clock. Click an item to open the [buy menu](/plugins/drotatingshop/features/the-buy-menu/).
 
 Next: the [Quick Start](/plugins/drotatingshop/getting-started/quick-start/).

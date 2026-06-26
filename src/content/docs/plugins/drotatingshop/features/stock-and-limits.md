@@ -9,19 +9,29 @@ Every item carries two independent caps: a **global stock** and a **per-player l
 
 `stock` is how many copies are available **across the whole server** for the current rotation.
 
-- Each purchase decrements it by one.
+- Each purchase decrements it by the amount bought.
 - At `0` the item is **sold out** — it stays in the GUI, greyed-out and unclickable, until the next rotation.
 - `stock: -1` = unlimited; it never decrements and never sells out.
 - On every [rotation](/plugins/drotatingshop/features/rotations/) the shown items' stock is reset to its configured starting value.
 
 ## Per-player limit
 
-`per-player-limit` is how many times **one player** may buy that item **per rotation**.
+`per-player-limit` is how many of that item **one player** may buy **per rotation**.
 
-- Counts up per purchase, per player.
+- Counts up by the amount bought, per player.
 - At the limit, that player gets the *"reached your purchase limit"* message; others are unaffected.
 - `per-player-limit: -1` = no cap.
 - **Resets every rotation** — a new rotation gives everyone a clean slate.
+
+## One-stack purchase cap
+
+A single trip through the [buy menu](/plugins/drotatingshop/features/the-buy-menu/) can buy at most:
+
+```
+min( the item's max stack size, stock remaining, your remaining per-rotation limit )
+```
+
+So even with unlimited stock, one purchase never exceeds a stack (e.g. 64). Players can simply open the item again to buy more, until the stock or their limit runs out.
 
 ## Example
 
