@@ -14,6 +14,7 @@ It is built on the [DzusillCore](https://github.com/dzusill/DzusillCore) framewo
 - 🛒 **Rotating shop** — `/market` opens a 54-slot GUI of up to 7 items that swap out every rotation, with a live countdown clock.
 - 🧮 **Quantity buy menu** — click an item to open a picker: `+/-` stepper buttons (1 / half-stack / full-stack), a live preview that updates the amount and total price, then click to buy. Fully styled in [quantity-menu.yml](/plugins/drotatingshop/configuration/quantity-menu/).
 - 📦 **Stock & limits** — per-item global stock plus a per-player limit that **resets every rotation**. A single purchase is capped at one stack. Sold-out items stay visible, greyed-out.
+- 💸 **Pricing & perks** — a temporary global price adjustment (markup or sale), plus per-group (VIP/donor) **percentage or fixed** pricing and limit overrides, by permission. See [Pricing & Perks](/plugins/drotatingshop/features/pricing-and-perks/).
 - 🗂️ **Ships with a catalogue** — on first start the pool is **seeded from a bundled 1.21 price list** ([prices_1_21.yml](/plugins/drotatingshop/configuration/default-prices/)); ~1,200 vanilla items priced and ready. Add your own any time.
 - ✨ **Any item** — vanilla, enchanted, or custom/NBT from other plugins via `/dshop additem`.
 - ⏱️ **Opening hours** — keep the market always open, or open it for a window (e.g. 2 minutes) after each rotation and close it in between.

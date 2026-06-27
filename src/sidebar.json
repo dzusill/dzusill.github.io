@@ -1034,6 +1034,10 @@
             "slug": "plugins/drotatingshop/features/stock-and-limits"
           },
           {
+            "label": "Pricing & Perks",
+            "slug": "plugins/drotatingshop/features/pricing-and-perks"
+          },
+          {
             "label": "Buying Items",
             "slug": "plugins/drotatingshop/features/buying"
           },
@@ -1061,6 +1065,10 @@
           {
             "label": "quantity-menu.yml",
             "slug": "plugins/drotatingshop/configuration/quantity-menu"
+          },
+          {
+            "label": "groups.yml",
+            "slug": "plugins/drotatingshop/configuration/groups"
           },
           {
             "label": "Sounds",

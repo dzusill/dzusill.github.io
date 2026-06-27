@@ -11,7 +11,8 @@ description: "Commands are registered at runtime by DzusillCore — there are no
 | `/dshop seed` | `drotatingshop.admin` | Load the bundled [1.21 price list](/plugins/drotatingshop/configuration/default-prices/) into the pool (skips ids that already exist). |
 | `/dshop additem <price> <stock> [limit]` | `drotatingshop.admin` | Add the item in your hand to the pool. `stock`/`limit` use `-1` for unlimited; `limit` defaults to `-1`. |
 | `/dshop removeitem <id>` | `drotatingshop.admin` | Remove an item from the pool (tab-completes ids). |
-| `/dshop list` | `drotatingshop.admin` | List the whole pool with prices, stock and limits. |
+| `/dshop list [page]` | `drotatingshop.admin` | List the pool (prices, stock, limits), **paginated** with clickable `[◀ Prev] [Next ▶]`. Page size = `shop.list-page-size` (default 20). |
+| `/dshop search <keyword> [page]` | `drotatingshop.admin` | Paginated list of items whose **id or display name** contains the keyword. |
 | `/dshop rotate` | `drotatingshop.admin` | Force a rotation now (also opens a fresh window if you use opening hours). |
 | `/dshop reload` | `drotatingshop.admin` | Reload `config.yml` / `items.yml` / `quantity-menu.yml` / `messages.yml`. |
 
@@ -22,7 +23,8 @@ Commands are registered at runtime by DzusillCore — there are **no entries in 
 | Node | Default | Grants |
 |---|---|---|
 | `drotatingshop.use` | **everyone** | Open the shop and buy. |
-| `drotatingshop.admin` | op | Every `/dshop` subcommand (seed, additem, removeitem, list, rotate, reload). |
+| `drotatingshop.admin` | op | Every `/dshop` subcommand (seed, additem, removeitem, list, search, rotate, reload). |
+| `drotatingshop.group.<name>` | — | Marks a player as part of a perk [group](/plugins/drotatingshop/features/pricing-and-perks/) (e.g. `drotatingshop.group.vip`). Grant it to give better pricing / limits. |
 
 ### Suggested setup
 

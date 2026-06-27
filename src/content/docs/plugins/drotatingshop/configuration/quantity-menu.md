@@ -13,9 +13,9 @@ size: 27                                          # inventory size (multiple of 
 fill-material: GRAY_STAINED_GLASS_PANE            # empty-slot filler
 ```
 
-## Preview
+## Preview (the item — info only)
 
-The preview is the **buy button** — it shows the item with the selected amount.
+The centre item is an **information display** of what's being bought; it does **not** buy (the [Buy button](#buttons) does).
 
 ```yaml
 preview:
@@ -26,14 +26,13 @@ preview:
     - "<gray>Unit price: <gold>{unit_price}"
     - "<gray>Total: <gold>{total_price}"
     - "<gray>Stock: <white>{stock} <dark_gray>|</dark_gray> <gray>Limit: <white>{limit}"
-    - "<green>▶ Click to buy"
 ```
 
-**Preview tokens:** `{quantity}`, `{max}`, `{unit_price}`, `{total_price}`, `{stock}`, `{limit}`. The title/name token `<item>` is the item's display name.
+**Preview tokens:** `{quantity}`, `{max}`, `{unit_price}`, `{total_price}`, `{stock}`, `{limit}`. The title/name token `<item>` is the item's display name. (Price/limit are the viewer's own — see [Pricing & Perks](/plugins/drotatingshop/features/pricing-and-perks/).)
 
 ## Buttons
 
-Six steppers plus a back button, each fully styleable:
+Six steppers, the **Buy** button, and a back button — each fully styleable:
 
 ```yaml
 buttons:
@@ -43,23 +42,27 @@ buttons:
   remove-1:   { slot: 12, material: RED_STAINED_GLASS_PANE,  name: "<red><bold>-1",         lore: [ "<gray>Remove <white>1" ] }
   remove-half:{ slot: 11, material: RED_STAINED_GLASS_PANE,  name: "<red><bold>-{amount}",  lore: [ "<gray>Remove half a stack" ] }
   remove-max: { slot: 10, material: RED_STAINED_GLASS_PANE,  name: "<red><bold>-{amount}",  lore: [ "<gray>Remove a full stack" ] }
+  buy:        { slot: 26, material: PAPER, name: "<green><bold>✔ BUY", lore: [ "<gray>Buying <yellow>{quantity}</yellow> for <gold>{total_price}", "<green>▶ Click to confirm" ] }
   back:       { slot: 18, material: ARROW, name: "<yellow>← Back to shop", lore: [ "<gray>Return without buying" ] }
 ```
+
+- The **`buy`** button is the only thing that completes the purchase; its lore can use the same tokens as the preview (e.g. `{quantity}`, `{total_price}`).
+- Stepper names use `{amount}` (the step size, e.g. `32` / `64`).
 
 | Field | Description |
 |---|---|
 | `slot` | Where the button sits. |
 | `material` | Vanilla material for the icon **— or** use `head:` instead (below). |
 | `head` | A custom-head texture (Base64 value). Use this **instead of** `material` to put player heads on the buttons. |
-| `name` / `lore` | MiniMessage. The stepper token `{amount}` is the step size (e.g. `32` / `64`). |
+| `name` / `lore` | MiniMessage. |
 
 ### Using custom heads
 
 ```yaml
-back:
-  slot: 18
+buy:
+  slot: 26
   head: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvLi4uIn19fQ=="
-  name: "<yellow>← Back"
+  name: "<green><bold>BUY"
 ```
 
 ## Notes
