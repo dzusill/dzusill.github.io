@@ -28,6 +28,7 @@ const PLUGINS = [
   { slug: 'dstattrack',    name: 'dStattrack',    src: '../bStattrack/docs' },
   { slug: 'warpgui',       name: 'WarpGUI',       src: '../warpgui/docs' },
   { slug: 'dhomegui',      name: 'dHomeGUI',      src: '../dHomeGUI/docs' },
+  { slug: 'dnicks',        name: 'dNicks',        src: '../dNicks/docs' },
   { slug: 'dbloodmoney',   name: 'dBloodMoney',   src: '../dbloodmoney/docs' },
   { slug: 'toolsnotifier', name: 'ToolsNotifier', src: '../ToolNotifier/docs' },
   { slug: 'ddeathpenalty', name: 'dDeathPenalty', src: '../DeathPenalty/docs' },
@@ -38,8 +39,8 @@ const PLUGINS = [
 // Emoji prefixes for the sidebar — one per plugin, per section header, and the intro item.
 const PLUGIN_EMOJI = {
   dzusillcore: '🛠️', dstattrack: '📊', warpgui: '🧭', dhomegui: '🏠',
-  dbloodmoney: '💰', toolsnotifier: '🔔', ddeathpenalty: '💀', dlottery: '🎰',
-  drotatingshop: '🛒',
+  dnicks: '🎨', dbloodmoney: '💰', toolsnotifier: '🔔', ddeathpenalty: '💀',
+  dlottery: '🎰', drotatingshop: '🛒',
 };
 const SECTION_EMOJI = {
   'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',

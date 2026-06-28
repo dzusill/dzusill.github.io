@@ -566,6 +566,108 @@
     ]
   },
   {
+    "label": "🎨 dNicks",
+    "collapsed": true,
+    "items": [
+      {
+        "label": "📘 Introduction",
+        "slug": "plugins/dnicks"
+      },
+      {
+        "label": "🚀 Getting Started",
+        "items": [
+          {
+            "label": "Requirements",
+            "slug": "plugins/dnicks/getting-started/requirements"
+          },
+          {
+            "label": "Installation",
+            "slug": "plugins/dnicks/getting-started/installation"
+          },
+          {
+            "label": "Quick Start",
+            "slug": "plugins/dnicks/getting-started/quick-start"
+          }
+        ]
+      },
+      {
+        "label": "✨ Features",
+        "items": [
+          {
+            "label": "Gradient & Color Nicks",
+            "slug": "plugins/dnicks/features/gradient-nicks"
+          },
+          {
+            "label": "Chat",
+            "slug": "plugins/dnicks/features/chat"
+          },
+          {
+            "label": "The Tab List",
+            "slug": "plugins/dnicks/features/tablist"
+          },
+          {
+            "label": "The Floating Nametag",
+            "slug": "plugins/dnicks/features/nametag"
+          },
+          {
+            "label": "Join, Quit & Death Messages",
+            "slug": "plugins/dnicks/features/messages"
+          },
+          {
+            "label": "The Picker GUI",
+            "slug": "plugins/dnicks/features/picker-gui"
+          },
+          {
+            "label": "Reverse Lookup (/realname)",
+            "slug": "plugins/dnicks/features/realname"
+          }
+        ]
+      },
+      {
+        "label": "⚙️ Configuration",
+        "items": [
+          {
+            "label": "config.yml",
+            "slug": "plugins/dnicks/configuration/config"
+          },
+          {
+            "label": "Messages & Language",
+            "slug": "plugins/dnicks/configuration/messages"
+          },
+          {
+            "label": "Reloading",
+            "slug": "plugins/dnicks/configuration/reloading"
+          }
+        ]
+      },
+      {
+        "label": "📖 Reference",
+        "items": [
+          {
+            "label": "Commands & Permissions",
+            "slug": "plugins/dnicks/commands-and-permissions"
+          },
+          {
+            "label": "Placeholders",
+            "slug": "plugins/dnicks/placeholders"
+          },
+          {
+            "label": "Integrations",
+            "slug": "plugins/dnicks/integrations"
+          },
+          {
+            "label": "FAQ & Troubleshooting",
+            "slug": "plugins/dnicks/faq"
+          },
+          {
+            "label": "Credits",
+            "slug": "plugins/dnicks/credits"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "label": "💰 dBloodMoney",
     "collapsed": true,
     "items": [
