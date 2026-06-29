@@ -43,6 +43,34 @@ The text is set as a native Adventure `Component` directly — which means **ful
 
 One shared display per player — the nick looks the same to every viewer — so there are no per-viewer tracking or packet-management concerns.
 
+## Rendering the whole tag — keep the rank prefix & suffix
+
+A gradient **cannot** be injected into another plugin's nametag name slot — that slot is the plain 16-character profile name (see above), so LuckPerms's `[OWNER]` prefix and a TAB nametag can never carry a per-character gradient on the name. Trying to "override just the name" inside someone else's tag is physically impossible for a gradient.
+
+So dNicks does the opposite: it renders the **entire** floating tag itself, and pulls the prefix / suffix / extra lines from the other plugins via **PlaceholderAPI**. You get the rank prefix and a balance line *and* a gradient name, in one tag, with no duplicate.
+
+The `formats.nametag` key accepts a single line **or a list of lines**, and any token may be:
+
+- `%name%` — the gradient nick (spliced in as a real component, so the hex is never downsampled)
+- `%player%` — the real username
+- **any PlaceholderAPI placeholder** — e.g. `%luckperms_prefix%`, `%luckperms_suffix%`, `%vault_eco_balance_formatted%`
+
+```yml
+formats:
+  nametag:
+    - "%luckperms_prefix%%name%%luckperms_suffix%"
+    - "<green>$%vault_eco_balance_formatted%</green>"
+```
+
+renders as:
+
+```
+[OWNER] DZUSILL          ← prefix from LuckPerms, DZUSILL is a real gradient
+$231k                    ← balance from Vault
+```
+
+PlaceholderAPI output (legacy `§`/`&`, including LuckPerms's `§x` hex) is parsed back into colors automatically. If PlaceholderAPI isn't installed, those tokens simply render empty and you're left with just the gradient `%name%` — nothing breaks.
+
 ## Why not fake entity packets instead?
 
 Sending a fake `TextDisplay` entity via raw packets (e.g. with PacketEvents) achieves the same visual result but with extra complexity:
@@ -87,8 +115,19 @@ nametag-display:
   spawn-only-when-nicked: true
     # true  → players without a nick keep their vanilla white name (recommended)
     # false → every player gets a TextDisplay (and loses the vanilla name)
+  hide-vanilla: true
+    # true  → dNicks hides the vanilla username via its OWN scoreboard team
+    # false → another plugin already hides it (e.g. TAB invisible-nametags) — let it,
+    #         so dNicks doesn't fight that plugin over team membership
 ```
 
 ## One owner per surface
 
-If the **TAB plugin** is installed, disable TAB's own nametag feature. Both plugins cannot own the scoreboard team at the same time — one will silently override the other. dNicks logs this reminder at startup. See [Integrations](/plugins/dnicks/integrations/).
+The vanilla username is hidden by a scoreboard `Team`, and **a player can only be on one team at a time**. If TAB is installed it uses teams for sorting, so dNicks must not run its own hiding team — they would fight and break TAB's sorting.
+
+When running **with TAB**:
+
+- **TAB** `config.yml`: set `scoreboard-teams.invisible-nametags: true` — this hides the vanilla name *and* keeps team sorting — and **disable TAB's own nametag / unlimited-nametag feature** so dNicks' `TextDisplay` is the only floating tag.
+- **dNicks** `config.yml`: set `nametag-display.hide-vanilla: false` (TAB is doing the hiding now).
+
+When running **without TAB**, leave `hide-vanilla: true` and dNicks owns everything. dNicks logs this guidance at startup when TAB is detected. See [Integrations](/plugins/dnicks/integrations/).
