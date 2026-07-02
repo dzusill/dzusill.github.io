@@ -12,11 +12,24 @@ With [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) i
 | `%dnicks_raw%` / `%dnicks_plain%` | The stripped, plain visible text. |
 | `%dnicks_hasnick%` | `true` / `false`. |
 
+### Example — TAB nametag above the head (keep the role prefix)
+
+```yml
+# TAB groups.yml / users.yml
+_DEFAULT_:
+  tagprefix: "%luckperms_prefix%"
+  customtagname: "%dnicks_name%"     # gradient name; keep unlimited nametags on
+  tagsuffix: "%luckperms_suffix%"
+```
+
 ### Example — TAB tab list
 
 ```yml
 # TAB groups.yml / users.yml
-customtabname: "%dnicks_name%"
+_DEFAULT_:
+  tabprefix: "%luckperms_prefix%"
+  customtabname: "%dnicks_name%"
+  tabsuffix: "%luckperms_suffix%"
 ```
 
 ### Example — a scoreboard line
@@ -25,4 +38,4 @@ customtabname: "%dnicks_name%"
 %dnicks_name%   ·   online
 ```
 
-Use `%dnicks_name%` anywhere a placeholder is supported and you want the gradient. For dNicks' own built-in surfaces (chat, tab, nametag) you don't need PlaceholderAPI at all. See [Integrations](/plugins/dnicks/integrations/).
+Use `%dnicks_name%` anywhere a placeholder is supported and you want the gradient — wrap it with your role placeholders (`%luckperms_prefix%` …) to keep ranks. For dNicks' own built-in surfaces (chat, tab list) you don't need PlaceholderAPI at all; you **do** need it for the nametag-plugin setup. See [Integrations](/plugins/dnicks/integrations/) and [The Nametag Above the Head](/plugins/dnicks/features/nametag/).

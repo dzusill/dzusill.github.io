@@ -1,133 +1,89 @@
 ---
-title: "The Floating Nametag"
-description: "The hardest surface. Vanilla Minecraft cannot put a per-character gradient on the name floating above a player's head — and neither can the TAB plugin.…"
+title: "The Nametag Above the Head"
+description: "The name that floats above a player's head is the one surface dNicks does not render itself. Instead, dNicks publishes the nick as the %dnicksname%…"
 ---
 
-The hardest surface. Vanilla Minecraft **cannot** put a per-character gradient on the name floating above a player's head — and neither can the TAB plugin. dNicks solves it without a packet library.
+The name that floats above a player's head is the one surface dNicks does **not** render itself. Instead, dNicks publishes the nick as the `%dnicks_name%` placeholder and lets your dedicated nametag plugin (TAB, and any other that accepts a placeholder) draw the tag. That keeps a **single owner** for the nametag, so your rank prefix and the gradient name live in one tag with no duplicate and no fighting over the scoreboard.
 
-## Why vanilla can't do gradients on the nameplate
+> **TL;DR** — keep your role plugin's prefix/suffix placeholders, swap only the **name** for `%dnicks_name%`. One line of config in TAB does it.
 
-The nameplate rendered above a player's head is controlled by the client, not the server. The client reads three fields from the scoreboard team packet:
+## Why dNicks doesn't draw it
+
+The nameplate above a head is rendered by the **client**, from the scoreboard team packet:
 
 ```
 team_prefix | teamColor(profileName) | team_suffix
 ```
 
-`profileName` is the **Minecraft username** — max 16 characters, `[A-Za-z0-9_]` only, **one single team color**, no `§` codes, no hex, no gradient. The client renders it all in that one color. This is a client rendering constraint, not a server or plugin limit. ProtocolLib, TAB, and any other packet library face the same wall — you cannot send per-character hex to the vanilla nameplate field.
+`profileName` is the raw Minecraft username — max 16 chars, `[A-Za-z0-9_]`, **one single team color**, no `§`, no hex, no gradient. That is a client rendering limit; ProtocolLib, TAB, and every packet library hit the same wall. The only way to get a per-character gradient above a head is to render the name as **custom text** (an entity / an "unlimited nametag" line) instead of the vanilla name slot.
 
-The only way to show a gradient above a player's head is to place a **separate text entity** there.
+Your nametag plugin already does exactly that — TAB's *unlimited nametags* replace the name line with custom, RGB-capable text. So rather than dNicks spawning a second competing text entity, it hands the styled nick to the plugin that already owns that line. dNicks feeds; TAB renders.
 
-## How dNicks does it — TextDisplay
+## Setup with TAB (keep the role, swap the name)
 
-When a player has a nick and `surfaces.nametag` is enabled, dNicks does two things:
+This is the recipe you want: **LuckPerms (or any role plugin) keeps the prefix/suffix, `%dnicks_name%` becomes the name.**
 
-**Step 1 — hide the vanilla name**
+**Requirements:** [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) installed (so TAB can read `%dnicks_name%`), and TAB's unlimited-nametag feature enabled so the name line can carry hex.
 
-Add the player to a scoreboard `Team` whose `NameTagVisibility` is set to `NEVER`. The client stops rendering the white username above their head entirely.
-
-**Step 2 — spawn a TextDisplay entity**
-
-A vanilla [`TextDisplay`](https://papermc.io/javadocs/paper/1.21.1/org/bukkit/entity/TextDisplay.html) entity (added in MC 1.19.4) is spawned above the player and **mounted as a passenger** (`player.addPassenger(display)`). As a passenger it:
-
-- follows the player through all movement, teleports, and vehicles automatically — no per-tick teleport loop needed
-- is repositioned with a Y-axis `Transformation` offset to float above the skull
-- uses `Billboard.CENTER` so it always faces every viewer
-
-The text is set as a native Adventure `Component` directly — which means **full hex colors and per-character gradients** render correctly on every 1.21 client with no mods or resource packs.
-
-```
-        [TextDisplay component: "<gradient:#ff5fa2:#a18fff>DZUSILL</gradient>"]
-               passenger ↑  (Y-offset 0.30)
-                [Player entity]
-```
-
-One shared display per player — the nick looks the same to every viewer — so there are no per-viewer tracking or packet-management concerns.
-
-## Rendering the whole tag — keep the rank prefix & suffix
-
-A gradient **cannot** be injected into another plugin's nametag name slot — that slot is the plain 16-character profile name (see above), so LuckPerms's `[OWNER]` prefix and a TAB nametag can never carry a per-character gradient on the name. Trying to "override just the name" inside someone else's tag is physically impossible for a gradient.
-
-So dNicks does the opposite: it renders the **entire** floating tag itself, and pulls the prefix / suffix / extra lines from the other plugins via **PlaceholderAPI**. You get the rank prefix and a balance line *and* a gradient name, in one tag, with no duplicate.
-
-The `formats.nametag` key accepts a single line **or a list of lines**, and any token may be:
-
-- `%name%` — the gradient nick (spliced in as a real component, so the hex is never downsampled)
-- `%player%` — the real username
-- **any PlaceholderAPI placeholder** — e.g. `%luckperms_prefix%`, `%luckperms_suffix%`, `%vault_eco_balance_formatted%`
+**1. Enable unlimited nametags in TAB** (`TAB/config.yml`) — this lets the name line render full RGB instead of the single-color vanilla slot:
 
 ```yml
-formats:
-  nametag:
-    - "%luckperms_prefix%%name%%luckperms_suffix%"
-    - "<green>$%vault_eco_balance_formatted%</green>"
+scoreboard-teams:
+  enabled: true
+  unlimited-nametag-mode:
+    enabled: true
 ```
 
-renders as:
-
-```
-[OWNER] DZUSILL          ← prefix from LuckPerms, DZUSILL is a real gradient
-$231k                    ← balance from Vault
-```
-
-PlaceholderAPI output (legacy `§`/`&`, including LuckPerms's `§x` hex) is parsed back into colors automatically. If PlaceholderAPI isn't installed, those tokens simply render empty and you're left with just the gradient `%name%` — nothing breaks.
-
-## Why not fake entity packets instead?
-
-Sending a fake `TextDisplay` entity via raw packets (e.g. with PacketEvents) achieves the same visual result but with extra complexity:
-
-| | TextDisplay entity | Packet-based fake entity |
-|---|---|---|
-| Dependency | none (vanilla Bukkit API) | PacketEvents or ProtocolLib |
-| Per-viewer nicks | no (same for all) | yes — each viewer gets their own packet stream |
-| Entity cap / `/kill @e` | counts, leaks on hard crash | invisible to server, no leak |
-| Lifecycle code | Bukkit events handle it | must manually replay spawn on every viewer join/teleport/chunk-load |
-| Gradient support | yes | yes |
-
-Packet-based is strictly more powerful but significantly more complex. For a single-server setup where every player sees the same nick, the entity approach is the right trade-off. Packet rewrite makes sense only if you need per-viewer nicks (e.g. staff see the real username; vanished players need a different display).
-
-## Lifecycle management
-
-TextDisplay entities are not persistent across server restarts. dNicks manages their entire lifecycle:
-
-| Event | Action |
-|---|---|
-| Player join | Spawn display if player has a nick |
-| Player quit / kick | Remove display immediately |
-| Player death + respawn | Remove on death, re-spawn on `PlayerRespawnEvent` |
-| World change / cross-dim teleport | Remove old, re-spawn in new world |
-| `/nick set` / `/nick reset` | Refresh text or remove display |
-| Plugin disable | `removeAll()` — sweep every active display |
-| Hard crash recovery | PDC marker stored on the display entity; swept by `sweepOrphans()` on next startup |
-
-## Settings
+**2. Point TAB's nametag at the placeholders** (`TAB/groups.yml`, or per-group / `users.yml`):
 
 ```yml
-nametag-display:
-  y-offset: 0.30          # blocks above the player's head
-  billboard: CENTER       # CENTER | VERTICAL | HORIZONTAL | FIXED
-                          # CENTER always faces the viewer
-  see-through: false      # render through blocks
-  shadowed: true          # text shadow
-  view-range: 1.0         # vanilla view-range multiplier (keep <= 1.0)
-  hide-on-sneak: true     # dim the display while the player is sneaking
-  sneak-opacity: 64       # text opacity (0–255) while sneaking
-  background: false       # show the dark text-display background plate
-  spawn-only-when-nicked: true
-    # true  → players without a nick keep their vanilla white name (recommended)
-    # false → every player gets a TextDisplay (and loses the vanilla name)
-  hide-vanilla: true
-    # true  → dNicks hides the vanilla username via its OWN scoreboard team
-    # false → another plugin already hides it (e.g. TAB invisible-nametags) — let it,
-    #         so dNicks doesn't fight that plugin over team membership
+_DEFAULT_:
+  tagprefix: "%luckperms_prefix%"    # role prefix — unchanged
+  customtagname: "%dnicks_name%"     # the NAME above the head — the gradient nick
+  tagsuffix: "%luckperms_suffix%"    # role suffix — unchanged
 ```
 
-## One owner per surface
+Result above the head:
 
-The vanilla username is hidden by a scoreboard `Team`, and **a player can only be on one team at a time**. If TAB is installed it uses teams for sorting, so dNicks must not run its own hiding team — they would fight and break TAB's sorting.
+```
+[OWNER] DZUSILL          ← [OWNER] from LuckPerms, DZUSILL is a real gradient
+```
 
-When running **with TAB**:
+`tagprefix` / `tagsuffix` keep whatever your permissions plugin already produced. Only `customtagname` changed — from the vanilla username to the dNicks nick.
 
-- **TAB** `config.yml`: set `scoreboard-teams.invisible-nametags: true` — this hides the vanilla name *and* keeps team sorting — and **disable TAB's own nametag / unlimited-nametag feature** so dNicks' `TextDisplay` is the only floating tag.
-- **dNicks** `config.yml`: set `nametag-display.hide-vanilla: false` (TAB is doing the hiding now).
+## The tab list, same idea
 
-When running **without TAB**, leave `hide-vanilla: true` and dNicks owns everything. dNicks logs this guidance at startup when TAB is detected. See [Integrations](/plugins/dnicks/integrations/).
+The tab list (hold **Tab**) uses the parallel keys. Either let dNicks own it directly (`surfaces.tablist: true`, the default) **or** let TAB render it from the placeholder — not both:
+
+```yml
+_DEFAULT_:
+  tabprefix: "%luckperms_prefix%"
+  customtabname: "%dnicks_name%"     # needs surfaces.tablist: false in dNicks
+  tabsuffix: "%luckperms_suffix%"
+```
+
+If TAB owns the tab list this way, set `surfaces.tablist: false` in dNicks so the two don't fight. See [The Tab List](/plugins/dnicks/features/tablist/).
+
+## Other nametag plugins
+
+Any nametag plugin that accepts a placeholder for its name/tag line works the same way: put your role placeholder in the prefix slot and `%dnicks_name%` in the name slot. If the plugin only exposes a single combined line, use:
+
+```
+%luckperms_prefix%%dnicks_name%%luckperms_suffix%
+```
+
+`%dnicks_name%` is emitted as legacy `§`-hex, so per-character gradient survives for any string-based consumer. See [Placeholders](/plugins/dnicks/placeholders/).
+
+## Live updates
+
+When a player runs `/nick`, dNicks updates its stored nick immediately. The nametag refreshes on your nametag plugin's own cycle — TAB re-resolves placeholders on its refresh interval (typically sub-second), so the new name appears without a relog. No dNicks-side entity is spawned, moved, or cleaned up.
+
+## Migrating from older dNicks
+
+Earlier builds spawned a `TextDisplay` entity above the head and hid the vanilla name via a scoreboard team. That is gone — there is **no** `surfaces.nametag`, `formats.nametag`, or `nametag-display` section anymore. If you upgraded:
+
+- Those keys in an old `config.yml` are simply ignored (harmless). Delete them for a clean file.
+- Any leftover text entities from the old version: `/kill @e[type=text_display]` once, then restart.
+- Move your old `formats.nametag` content into TAB's `tagprefix` + `customtagname` as shown above.
+
+See [Integrations](/plugins/dnicks/integrations/) for the full TAB + LuckPerms + EssentialsX picture.

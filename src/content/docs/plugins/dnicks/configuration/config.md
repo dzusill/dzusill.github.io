@@ -14,11 +14,12 @@ surfaces:
   display-name: true   # Player#displayName (chat fallback, /msg in many plugins)
   tablist: true        # the tab list (set false only if the TAB plugin owns it)
   chat: true           # the chat line (rendered at HIGHEST to beat EssentialsX)
-  nametag: true        # the floating nametag above the head
   join-message: true
   quit-message: true
   death-message: true
 ```
+
+> There is no `nametag` surface. The name above the head is owned by your nametag plugin (TAB, etc.), fed by `%dnicks_name%`. See [The Nametag Above the Head](/plugins/dnicks/features/nametag/).
 
 ## Nick rules
 
@@ -41,28 +42,10 @@ nick:
 ```yml
 formats:
   chat: "%name%<dark_gray>:</dark_gray> %message%"
-  nametag: "%name%"
   join: "<dark_gray>[<green>+</green>]</dark_gray> %name%"
   quit: "<dark_gray>[<red>-</red>]</dark_gray> %name%"
   death: "<gray>%player% died.</gray>"
 ```
-
-## Floating nametag
-
-```yml
-nametag-display:
-  y-offset: 0.30
-  billboard: CENTER      # CENTER | VERTICAL | HORIZONTAL | FIXED
-  see-through: false
-  shadowed: true
-  view-range: 1.0
-  hide-on-sneak: true
-  sneak-opacity: 64
-  background: false
-  spawn-only-when-nicked: true
-```
-
-See [The Floating Nametag](/plugins/dnicks/features/nametag/).
 
 ## Re-apply ticker
 

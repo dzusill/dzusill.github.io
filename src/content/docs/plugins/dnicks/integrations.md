@@ -1,9 +1,9 @@
 ---
 title: "Integrations"
-description: "dNicks wants to be the single source of truth for a player's name. Here's how it coexists with the plugins that also touch names."
+description: "dNicks wants to be the single source of truth for a player's name, while cooperating with the plugins that own other surfaces (the tab list, the floating…"
 ---
 
-dNicks wants to be the **single source of truth** for a player's name. Here's how it coexists with the plugins that also touch names.
+dNicks wants to be the **single source of truth** for a player's *name*, while cooperating with the plugins that own other surfaces (the tab list, the floating nametag, chat). It exposes the nick as `%dnicks_name%` and gets out of the way everywhere else.
 
 ## EssentialsX
 
@@ -19,11 +19,28 @@ EssentialsX formats chat and changes the display name. dNicks already handles th
 
 dNicks logs this reminder at startup when EssentialsX is detected (toggle with `integrations.essentials-warn`).
 
-## The TAB plugin
+## The TAB plugin — keep the role, swap the name
 
-TAB drives the tab list and nametags and will fight a second owner on the same surface. Run **one owner per surface**: dNicks owns the floating nametag (it's the only way to get a gradient name — see [The Floating Nametag](/plugins/dnicks/features/nametag/)); TAB keeps the tab list and team sorting.
+TAB owns the tab list and the floating nametag. dNicks does **not** render either of those itself — it feeds TAB the nick via `%dnicks_name%`, and your role plugin (LuckPerms, etc.) keeps supplying the prefix/suffix. Needs [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/).
 
-**1. Tab list** — let TAB render it, fed by dNicks:
+**1. Nametag above the head.** Enable TAB's unlimited nametags (so the name line can carry hex), then set:
+
+```yml
+# TAB config.yml
+scoreboard-teams:
+  enabled: true
+  unlimited-nametag-mode:
+    enabled: true
+```
+```yml
+# TAB groups.yml / users.yml
+_DEFAULT_:
+  tagprefix: "%luckperms_prefix%"
+  customtagname: "%dnicks_name%"     # the gradient nick as the name
+  tagsuffix: "%luckperms_suffix%"
+```
+
+**2. Tab list.** Let TAB render it from the same placeholder, and tell dNicks to stand down:
 
 ```yml
 # dNicks config.yml
@@ -32,45 +49,28 @@ surfaces:
 ```
 ```yml
 # TAB groups.yml / users.yml
-customtabname: "%dnicks_name%"   # needs PlaceholderAPI
+_DEFAULT_:
+  tabprefix: "%luckperms_prefix%"
+  customtabname: "%dnicks_name%"
+  tabsuffix: "%luckperms_suffix%"
 ```
 
-**2. Hide the vanilla name without a team fight.** A player can only be on one scoreboard team, and TAB uses teams for sorting — so let TAB hide the name and tell dNicks to stand down:
+Result: `[OWNER] <gradient>DZUSILL</gradient>` above the head **and** in the tab list — role prefix from LuckPerms, gradient name from dNicks, one owner per surface, no duplicates.
 
-```yml
-# TAB config.yml
-scoreboard-teams:
-  invisible-nametags: true   # hides the vanilla name AND keeps sorting
-# also DISABLE TAB's own nametag / unlimited-nametag feature
-```
-```yml
-# dNicks config.yml
-nametag-display:
-  hide-vanilla: false        # TAB is hiding it now; don't run dNicks' own team
-```
+dNicks logs this guidance at startup when TAB is detected (toggle with `integrations.tab-warn`). If you don't run TAB, leave `surfaces.tablist: true` and dNicks renders the tab list itself; the nametag above the head then stays the vanilla single-color name (see [The Nametag Above the Head](/plugins/dnicks/features/nametag/) for why).
 
-**3. Put the rank prefix / suffix into dNicks' tag.** Since dNicks renders the whole floating tag, pull LuckPerms (and anything else) in via PlaceholderAPI:
+## LuckPerms (or any role plugin)
 
-```yml
-# dNicks config.yml
-formats:
-  nametag:
-    - "%luckperms_prefix%%name%%luckperms_suffix%"
-    - "<green>$%vault_eco_balance_formatted%</green>"
-```
-
-Result: one floating tag — `[OWNER] <gradient>name</gradient>` over `$231k` — no duplicate, gradient intact.
-
-dNicks logs this guidance at startup when TAB is detected (toggle with `integrations.tab-warn`). If you don't run TAB, ignore all of this — `tablist: true`, `hide-vanilla: true`, and dNicks owns everything.
+dNicks never touches prefixes or suffixes — it only owns the **name**. Whatever your permissions plugin exposes as a placeholder (`%luckperms_prefix%`, `%luckperms_suffix%`, `%vault_prefix%`, …) keeps working; you place it around `%dnicks_name%` in whichever plugin renders the surface. That is the whole design: **roles stay yours, the name becomes the nick.**
 
 ## PlaceholderAPI
 
-Optional but recommended on a bigger network. Installing it lets dNicks expose `%dnicks_name%` and friends so any placeholder-aware plugin renders the nick. See [Placeholders](/plugins/dnicks/placeholders/). Not needed for dNicks' own chat / tab / nametag.
+Required for the TAB/nametag setup above and recommended on any bigger network. Installing it lets dNicks expose `%dnicks_name%` and friends so any placeholder-aware plugin (scoreboards, TAB, chat plugins) renders the nick. See [Placeholders](/plugins/dnicks/placeholders/). It is **not** needed for dNicks' own built-in chat and tab-list surfaces.
 
 ## Summary
 
 | You run… | Do this |
 |---|---|
-| Just dNicks (+ Essentials) | Nothing for chat/tab/nametag. Optional: Essentials `change-displayname: false`. |
-| dNicks + TAB (+ LuckPerms) | `tablist: false` + `hide-vanilla: false`; TAB `customtabname: "%dnicks_name%"`, `invisible-nametags: true`, disable TAB nametags; put `%luckperms_prefix%%name%%luckperms_suffix%` in `formats.nametag`. |
-| dNicks + other scoreboard/chat plugins | Install PlaceholderAPI and point them at `%dnicks_name%`. |
+| Just dNicks (+ Essentials) | Nothing for chat/tab. Optional: Essentials `change-displayname: false`. Nametag above the head stays vanilla single-color. |
+| dNicks + TAB (+ LuckPerms) | Install PlaceholderAPI. TAB nametag: `tagprefix: %luckperms_prefix%`, `customtagname: %dnicks_name%`, `tagsuffix: %luckperms_suffix%` (+ unlimited nametags on). TAB tab list: same with `tabprefix`/`customtabname`/`tabsuffix`, and `surfaces.tablist: false` in dNicks. |
+| dNicks + other scoreboard/chat plugins | Install PlaceholderAPI and point them at `%dnicks_name%` (wrap with your role placeholders as needed). |
