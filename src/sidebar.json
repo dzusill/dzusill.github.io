@@ -1212,5 +1212,58 @@
         ]
       }
     ]
+  },
+  {
+    "label": "🔗 dWebLink",
+    "collapsed": true,
+    "items": [
+      {
+        "label": "📘 Introduction",
+        "slug": "plugins/dweblink"
+      },
+      {
+        "label": "🚀 Getting Started",
+        "items": [
+          {
+            "label": "Requirements",
+            "slug": "plugins/dweblink/getting-started/requirements"
+          },
+          {
+            "label": "Installation & setup",
+            "slug": "plugins/dweblink/getting-started/installation"
+          }
+        ]
+      },
+      {
+        "label": "🔄 How it works",
+        "items": [
+          {
+            "label": "How linking works",
+            "slug": "plugins/dweblink/how-it-works/account-linking"
+          },
+          {
+            "label": "Rank & author sync",
+            "slug": "plugins/dweblink/how-it-works/profile-sync"
+          }
+        ]
+      },
+      {
+        "label": "⚙️ Configuration",
+        "items": [
+          {
+            "label": "config.yml",
+            "slug": "plugins/dweblink/configuration/config"
+          }
+        ]
+      },
+      {
+        "label": "Commands & Permissions",
+        "slug": "plugins/dweblink/commands-and-permissions"
+      },
+      {
+        "label": "FAQ & Troubleshooting",
+        "slug": "plugins/dweblink/faq"
+      }
+    ]
   }
 ]
