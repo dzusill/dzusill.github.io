@@ -26,7 +26,7 @@ settings:
 default:
   enabled: true
   money:   { enabled: true, mode: PERCENT, amount: 10.0, min: 0.0, max: -1.0, pvp-multiplier: 1.0 }
-  exp:     { enabled: true, keep: false, lose-levels: -1 }
+  exp:     { enabled: true, keep: false, lose-levels: -1, only-if-no-money: false }
   items:   { mode: VANILLA, random-count: 1 }
   respawn: { set-health: -1.0, set-food: -1, potion-effects: [] }
   monster: { enabled: false, mobs: [ ... ] }

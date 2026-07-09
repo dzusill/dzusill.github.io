@@ -7,13 +7,21 @@ description: "Money penalties need Vault + an economy plugin. Without them, the 
 
 Money penalties need [Vault](https://www.spigotmc.org/resources/vault.34315/) + an economy plugin. Without them, the money penalty is skipped (other penalties still apply). Also check `money.enabled` and that the player's balance is above `money.min`.
 
+### XP isn't being reset
+
+Only the **reset** modes clear XP — `lose-levels: 0` (wipe) or `N` (drop N levels); `lose-levels: -1` just drops vanilla orbs. If you use [`only-if-no-money: true`](/plugins/ddeathpenalty/features/xp-penalty/#money-first-fallback), XP is reset **only when the player had no money to take** — a player with a balance keeps their XP by design (money is the penalty instead). To always reset XP regardless of balance, set `only-if-no-money: false`.
+
 ### OPs aren't being penalised
 
 By default OPs **are** penalised. If they're not, check you haven't set `settings.ignore-ops: true`, or granted them `deathpenalty.exempt`/`deathpenalty.ignore` (e.g. via a `*` permission).
 
-### A VIP gets the wrong penalty
+### A VIP group's penalty is wrong, or a discount won't apply
 
-Group matching uses `deathpenalty.group.<name>` and the **first** group in file order wins. Make sure the player has the right `deathpenalty.group.*` node and that more-specific groups are listed first in `config.yml`. See [Penalty Profiles](/plugins/ddeathpenalty/features/penalty-profiles/).
+- **No effect at all:** the player must have the `deathpenalty.group.<name>` node. Being in a LuckPerms group of the same name is **not** enough — grant the node to that group (`/lp group vip permission set deathpenalty.group.vip true`). Don't test as an OP; OPs match the first group automatically.
+- **Discount ignored (FIXED or low amount):** `min`/`max` are inherited per-key, so a group that only lowers `amount` is still floored by the `default` `min`. Set `min: 0` (and `max: -1` if capped) in the discount group too.
+- **Wrong group applied:** if the player matches several groups, the **first** in file order wins.
+
+See [Penalty Profiles](/plugins/ddeathpenalty/features/penalty-profiles/).
 
 ### How do I make a safe zone?
 

@@ -19,6 +19,7 @@ prefix: "<gray>[<red>dDeathPenalty</red>]</gray> "
 | Key | Placeholders | Shown when |
 |---|---|---|
 | `penalty-money` | `%money_lost%`, `%world%`, `%killer%` | A player dies and loses money. |
+| `penalty-exp` | `%world%` | Whenever a player's XP is reset by the [XP penalty](/plugins/ddeathpenalty/features/xp-penalty/) (a wipe or level loss). |
 | `penalty-exempt` | `%world%` | An [exempt](/plugins/ddeathpenalty/features/exemptions/) player dies. |
 | `check-header` | — | First line of `/dp check`. |
 | `check-line` | `%player%`, `%deaths%`, `%money_lost%` | The `/dp check` stat line. |
@@ -26,6 +27,7 @@ prefix: "<gray>[<red>dDeathPenalty</red>]</gray> "
 
 ```yaml
 penalty-money: "<prefix><red>You died and lost <yellow>%money_lost%</yellow>."
+penalty-exp: "<prefix><red>You died and your XP was reset."
 penalty-exempt: "<prefix><green>You kept everything — you're exempt in <yellow>%world%</yellow>."
 check-line: "<gray>%player%<dark_gray>: <white>%deaths%</white> deaths, lost <yellow>%money_lost%</yellow>"
 ```

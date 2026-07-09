@@ -35,6 +35,8 @@ money:
 
 `mode: PERCENT, amount: 10, pvp-multiplier: 2.0` — a player with $1,000 killed by a mob loses **$100**; killed by another player, they lose **$200**.
 
+> **Group discounts & `min`:** `min`/`max` are inherited per-key like everything else. If your `default` sets `min: 80`, a group that lowers the loss — e.g. a FIXED VIP discount of `amount: 5` — is still **floored back up to 80** unless the group also sets `min: 0`. Always override `min` (and `max` if capped) in a discount group, or the discount won't stick.
+
 ## The lost money
 
 By default the money simply vanishes (a sink). You can instead make it **drop as a physical item** at the death spot — see the money-item option in [Extra Penalties](/plugins/ddeathpenalty/features/extra-penalties/). The amount lost is also tracked for [stats & leaderboards](/plugins/ddeathpenalty/features/stats/) and the `%money_lost%` placeholder.

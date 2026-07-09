@@ -42,6 +42,10 @@ A player belongs to a group if they have the permission `deathpenalty.group.<nam
 /lp group vip permission set deathpenalty.group.vip true
 ```
 
+> **It's a permission node, not a LuckPerms group name.** Being in LuckPerms group `vip` does nothing by itself — you must grant the `deathpenalty.group.vip` node to that group (the command above). Works with any permission plugin.
+>
+> **Don't test as an OP:** operators pass every permission check, so an OP always matches the **first** group in the file regardless of nodes. Test group profiles with a real, non-OP player.
+
 ## Toggling a whole profile
 
 Every layer supports `enabled`. Set `enabled: false` at the `default`, world or group level to switch the penalty off entirely for that scope:
