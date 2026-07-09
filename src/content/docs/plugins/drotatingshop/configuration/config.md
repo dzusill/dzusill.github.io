@@ -10,12 +10,18 @@ shop:
   command: "market"               # players open the shop with this command
   rotation-interval: 3600          # seconds between rotations (default: 1 hour)
   open-duration: 0                 # seconds the market is open after each rotation (0 = always open)
-  items-per-rotation: 7            # items shown per rotation (max 7)
+  items-per-rotation: 7            # items shown per rotation (max 21)
+  rotation-reveal-seconds: 3       # hold before new items appear after a rotation (0 = instant)
   list-page-size: 20               # results per page in /dshop list and /dshop search
 
 gui:
   title: "<dark_gray><bold>ROTATING MARKET</bold></dark_gray>"
   fill-material: BLACK_STAINED_GLASS_PANE
+  clock:
+    next-rotation: "<gray>Next rotation in <yellow>{time}"
+    market-closes: "<gray>Market closes in <red>{time}"
+    rotating-name: "<yellow><bold>Market is rotating…"
+    rotating-countdown: "<gray>Revealing new items in <green>{seconds}s"
 
 seed:
   default-stock: 64                # stock given to each item seeded from prices_1_21.yml
@@ -33,7 +39,8 @@ sounds:
 | `command` | `market` | The command that opens the shop GUI. Registered at runtime, so changing it just works after a restart (it is **not** in `plugin.yml`). |
 | `rotation-interval` | `3600` | Seconds between [rotations](/plugins/drotatingshop/features/rotations/). |
 | `open-duration` | `0` | Seconds the market stays **open** after each rotation; `0` = always open. See [Opening Hours](/plugins/drotatingshop/features/opening-hours/). |
-| `items-per-rotation` | `7` | How many items a rotation shows. The GUI has **7** item slots, so larger values are capped at 7. |
+| `items-per-rotation` | `7` | How many items a rotation shows. The GUI grows and centres them to fit — 1–7 items is 4 rows, 8–14 is 5 rows, 15–21 is 6 rows; higher values are capped at 21. |
+| `rotation-reveal-seconds` | `3` | Seconds the shop "holds" after a rotation — items hidden, clock counting down, buying blocked — before the new items are revealed. `0` = instant swap, no hold. See [Rotations](/plugins/drotatingshop/features/rotations/#the-reveal-hold). |
 | `list-page-size` | `20` | Results per page in `/dshop list` and `/dshop search`. |
 
 > Changing `command` needs a **restart** to re-register the command. The other keys take effect on [reload](/plugins/drotatingshop/configuration/reloading/) (the new interval / open window apply at the next rotation).
@@ -44,6 +51,10 @@ sounds:
 |---|---|---|
 | `title` | `ROTATING MARKET` | MiniMessage title of the shop inventory. |
 | `fill-material` | `BLACK_STAINED_GLASS_PANE` | Material used to fill the empty slots around the items and clock. |
+| `clock.next-rotation` | *"Next rotation in {time}"* | Clock text when the shop is idle. `{time}` = formatted countdown. |
+| `clock.market-closes` | *"Market closes in {time}"* | Extra clock lore shown only when [opening hours](/plugins/drotatingshop/features/opening-hours/) are on. |
+| `clock.rotating-name` | *"Market is rotating…"* | Clock item name during the [reveal hold](/plugins/drotatingshop/features/rotations/#the-reveal-hold). |
+| `clock.rotating-countdown` | *"Revealing new items in {seconds}s"* | Clock lore during the reveal hold. `{seconds}` = whole seconds left. |
 
 See [The Shop Menu](/plugins/drotatingshop/features/the-shop-menu/) for the slot layout. The **buy menu** is styled separately in [quantity-menu.yml](/plugins/drotatingshop/configuration/quantity-menu/).
 

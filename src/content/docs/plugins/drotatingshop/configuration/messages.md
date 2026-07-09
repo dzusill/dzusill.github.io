@@ -19,6 +19,7 @@ purchase-success: "<prefix><green>You purchased <white>{quantity}x {item}</white
 | `purchase-fail-money` | `{price}` (= total) | Not enough currency. |
 | `purchase-fail-stock` | — | Item sold out. |
 | `purchase-fail-limit` | — | Per-player limit reached. |
+| `purchase-fail-rotating` | — | Tried to buy during the [rotation reveal hold](/plugins/drotatingshop/features/rotations/#the-reveal-hold). |
 | `purchase-inventory-full` | `{item}` | Bought, but dropped at feet (inventory full). |
 | `economy-unavailable` | — | Vault economy missing. |
 | `market-closed` | `{time}` | `/market` while the market is [closed](/plugins/drotatingshop/features/opening-hours/); `{time}` = countdown to opening. |

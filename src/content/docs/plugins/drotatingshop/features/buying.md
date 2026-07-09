@@ -10,6 +10,7 @@ dRotatingShop is **buy-only** — there's no selling. Players spend Vault curren
 1. **Click an item** in the [shop menu](/plugins/drotatingshop/features/the-shop-menu/). If it's sold out or you're at its per-player limit, the click is refused with a message; otherwise the [buy menu](/plugins/drotatingshop/features/the-buy-menu/) opens.
 2. **Pick an amount** with the `+/-` buttons. The preview shows the running **total price** (`price × quantity`).
 3. **Click the preview** to buy. The plugin checks, in order:
+   - **Is the market mid-[rotation](/plugins/drotatingshop/features/rotations/)?** (*"The market is rotating — wait for the new items to appear."*)
    - **In stock?** (*"This item is sold out."*)
    - **Under your limit?** (*"reached your purchase limit"*)
    - **Can you afford the total?** — Vault balance ≥ `price × quantity` (*"Not enough money."*)
@@ -38,6 +39,7 @@ Every line is configurable in [messages.yml](/plugins/drotatingshop/configuratio
 | `purchase-success` | Bought successfully (`{quantity}`, `{item}`, `{price}` = total). |
 | `purchase-fail-stock` | Item is sold out. |
 | `purchase-fail-limit` | Per-player limit reached this rotation. |
+| `purchase-fail-rotating` | The market is mid-rotation (reveal hold) — buying is blocked. |
 | `purchase-fail-money` | Not enough Vault currency for the total. |
 | `purchase-inventory-full` | Bought, but the overflow was dropped (inventory full). |
 | `economy-unavailable` | Vault economy missing. |
