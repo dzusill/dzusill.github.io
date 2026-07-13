@@ -34,13 +34,15 @@ const PLUGINS = [
   { slug: 'ddeathpenalty', name: 'dDeathPenalty', src: '../DeathPenalty/docs' },
   { slug: 'dlottery',      name: 'dLottery',      src: '../dLottery/docs' },
   { slug: 'drotatingshop', name: 'DRotatingShop', src: '../DRotatingShop/docs' },
+  // dFactions source lives in docs-site/ (the plugin repo's docs/ holds a separate Jekyll site).
+  { slug: 'dfactions',     name: 'dFactions',     src: '../pvpindex-factions/docs-site' },
 ];
 
 // Emoji prefixes for the sidebar — one per plugin, per section header, and the intro item.
 const PLUGIN_EMOJI = {
   dzusillcore: '🛠️', dstattrack: '📊', warpgui: '🧭', dhomegui: '🏠',
   dnicks: '🎨', dbloodmoney: '💰', toolsnotifier: '🔔', ddeathpenalty: '💀',
-  dlottery: '🎰', drotatingshop: '🛒',
+  dlottery: '🎰', drotatingshop: '🛒', dfactions: '⚔️',
 };
 const SECTION_EMOJI = {
   'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',

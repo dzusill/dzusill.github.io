@@ -1214,36 +1214,68 @@
     ]
   },
   {
-    "label": "🔗 dWebLink",
+    "label": "⚔️ dFactions",
     "collapsed": true,
     "items": [
       {
         "label": "📘 Introduction",
-        "slug": "plugins/dweblink"
+        "slug": "plugins/dfactions"
       },
       {
         "label": "🚀 Getting Started",
         "items": [
           {
             "label": "Requirements",
-            "slug": "plugins/dweblink/getting-started/requirements"
+            "slug": "plugins/dfactions/getting-started/requirements"
           },
           {
-            "label": "Installation & setup",
-            "slug": "plugins/dweblink/getting-started/installation"
+            "label": "Installation",
+            "slug": "plugins/dfactions/getting-started/installation"
+          },
+          {
+            "label": "Quick Start",
+            "slug": "plugins/dfactions/getting-started/quick-start"
           }
         ]
       },
       {
-        "label": "🔄 How it works",
+        "label": "✨ Features",
         "items": [
           {
-            "label": "How linking works",
-            "slug": "plugins/dweblink/how-it-works/account-linking"
+            "label": "Territory & Claims",
+            "slug": "plugins/dfactions/features/territory"
           },
           {
-            "label": "Rank & author sync",
-            "slug": "plugins/dweblink/how-it-works/profile-sync"
+            "label": "Power & Raiding",
+            "slug": "plugins/dfactions/features/power"
+          },
+          {
+            "label": "Leveling & Prestige",
+            "slug": "plugins/dfactions/features/progression"
+          },
+          {
+            "label": "Beacon HQ",
+            "slug": "plugins/dfactions/features/beacon"
+          },
+          {
+            "label": "Wars, Shields & Stats",
+            "slug": "plugins/dfactions/features/wars-and-shields"
+          },
+          {
+            "label": "Economy & Bank",
+            "slug": "plugins/dfactions/features/economy"
+          },
+          {
+            "label": "Supply Drops",
+            "slug": "plugins/dfactions/features/supply-drops"
+          },
+          {
+            "label": "Roles & Relations",
+            "slug": "plugins/dfactions/features/roles-and-relations"
+          },
+          {
+            "label": "The GUI",
+            "slug": "plugins/dfactions/features/gui"
           }
         ]
       },
@@ -1252,17 +1284,42 @@
         "items": [
           {
             "label": "config.yml",
-            "slug": "plugins/dweblink/configuration/config"
+            "slug": "plugins/dfactions/configuration/config"
+          },
+          {
+            "label": "database.yml",
+            "slug": "plugins/dfactions/configuration/database"
+          },
+          {
+            "label": "Messages & Languages",
+            "slug": "plugins/dfactions/configuration/messages"
           }
         ]
       },
       {
-        "label": "Commands & Permissions",
-        "slug": "plugins/dweblink/commands-and-permissions"
-      },
-      {
-        "label": "FAQ & Troubleshooting",
-        "slug": "plugins/dweblink/faq"
+        "label": "📖 Reference",
+        "items": [
+          {
+            "label": "Commands & Permissions",
+            "slug": "plugins/dfactions/commands-and-permissions"
+          },
+          {
+            "label": "Placeholders",
+            "slug": "plugins/dfactions/placeholders"
+          },
+          {
+            "label": "Integrations",
+            "slug": "plugins/dfactions/integrations"
+          },
+          {
+            "label": "FAQ & Troubleshooting",
+            "slug": "plugins/dfactions/faq"
+          },
+          {
+            "label": "Credits",
+            "slug": "plugins/dfactions/credits"
+          }
+        ]
       }
     ]
   }
