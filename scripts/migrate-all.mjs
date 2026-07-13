@@ -35,7 +35,7 @@ const PLUGINS = [
   { slug: 'dlottery',      name: 'dLottery',      src: '../dLottery/docs' },
   { slug: 'drotatingshop', name: 'DRotatingShop', src: '../DRotatingShop/docs' },
   // dFactions source lives in docs-site/ (the plugin repo's docs/ holds a separate Jekyll site).
-  { slug: 'dfactions',     name: 'dFactions',     src: '../pvpindex-factions/docs-site' },
+  { slug: 'dfactions',     name: 'dFactions',     src: '../dFactions/docs-site' },
 ];
 
 // Emoji prefixes for the sidebar — one per plugin, per section header, and the intro item.

@@ -4,7 +4,7 @@ description: "dFactions persists everything through the Jaloquent ORM, configure
 ---
 
 dFactions persists everything through the Jaloquent ORM, configured in
-`plugins/PvPIndexFactions/database.yml`. **Changes require a full server restart.**
+`plugins/dFactions/database.yml`. **Changes require a full server restart.**
 
 ## Default: embedded H2 (no setup)
 
@@ -15,11 +15,11 @@ server needed.
 type: h2
 
 h2:
-  # Path relative to plugins/PvPIndexFactions/
+  # Path relative to plugins/dFactions/
   file: data/factions
 ```
 
-This creates `plugins/PvPIndexFactions/data/factions.mv.db`. For most servers this is all you need.
+This creates `plugins/dFactions/data/factions.mv.db`. For most servers this is all you need.
 
 ## Optional: MySQL / MariaDB
 
@@ -64,5 +64,5 @@ debug:
 
 ## Backups
 
-- **H2:** copy `plugins/PvPIndexFactions/data/` while stopped.
+- **H2:** copy `plugins/dFactions/data/` while stopped.
 - **MySQL:** `mysqldump factions > factions-backup.sql`.

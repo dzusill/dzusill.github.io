@@ -27,7 +27,6 @@ dynmap, DiscordSRV and LWC — every integration fully optional.
 - 💰 **Economy** — faction bank, create/claim costs, tax and interest through Vault.
 - 👥 **Roles & relations** — custom roles, promote/demote, ally / truce / enemy / neutral, merges.
 - 🖥️ **GUI** — a full in-game menu: overview, members, statistics, storage, bank, activity log.
-- 🌍 **8 languages** — per-player locale override, MiniMessage formatting.
 
 ## Requirements
 

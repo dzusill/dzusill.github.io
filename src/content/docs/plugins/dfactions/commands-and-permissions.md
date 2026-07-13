@@ -83,7 +83,7 @@ Player commands use **`/f`** (aliases `/faction`, `/factions`). Admin commands u
 | `/f flag [set <flag> <value>]` | `factions.cmd.flag[.set]` |
 | `/f audit` | `factions.cmd.audit` |
 | `/f fly` | `factions.cmd.fly` |
-| `/f language [code]` / `/f notify` | `factions.cmd.language` / `.notify` |
+| `/f notify` | `factions.cmd.notify` |
 | `/f help` | — |
 
 ## Admin (`/fa`)

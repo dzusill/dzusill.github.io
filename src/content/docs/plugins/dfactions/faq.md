@@ -16,10 +16,6 @@ No. The embedded **H2** database works out of the box. MySQL/MariaDB is optional
 Yes. dFactions never calls the Bukkit scheduler directly; it uses a Folia-aware abstraction.
 `folia-supported: true` is declared.
 
-**The plugin folder is `PvPIndexFactions` but the docs say dFactions?**
-"dFactions" is the documentation brand. The jar and data folder are `PvPIndexFactions` — use the
-literal names for file paths and commands.
-
 ## Setup
 
 **Money commands (create cost, bank) do nothing.**
@@ -60,16 +56,16 @@ member and blocks re-joining (open or invited) until `/f unban <player>`.
 ## Data & maintenance
 
 **How do I back up?**
-Stop the server and copy `plugins/PvPIndexFactions/data/` (H2), or `mysqldump` your database
+Stop the server and copy `plugins/dFactions/data/` (H2), or `mysqldump` your database
 (MySQL). Keep a copy of `config.yml` too.
 
 **How do I reset a season?**
-Stop the server, delete `plugins/PvPIndexFactions/data/` (H2) or drop/recreate the MySQL database,
+Stop the server, delete `plugins/dFactions/data/` (H2) or drop/recreate the MySQL database,
 then start again. Config is preserved.
 
 **Where do I change the language?**
-Server default: `factions.language.default`. Players: `/f language <code>`. Bundled locales:
-`en, es, de, fr, pt-BR, ja, zh, ru`. Edit text in `messages/messages_<locale>.yml`.
+The plugin runs **English-only** for now — edit `messages/messages_en.yml`. Player-side language
+switching (`/f language`) is disabled.
 
 ## Still stuck?
 

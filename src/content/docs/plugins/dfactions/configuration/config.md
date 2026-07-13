@@ -1,9 +1,9 @@
 ---
 title: "config.yml"
-description: "The main settings file, plugins/PvPIndexFactions/config.yml. Apply changes with /fa reload"
+description: "The main settings file, plugins/dFactions/config.yml. Apply changes with /fa reload"
 ---
 
-The main settings file, `plugins/PvPIndexFactions/config.yml`. Apply changes with `/fa reload`
+The main settings file, `plugins/dFactions/config.yml`. Apply changes with `/fa reload`
 (settings that need a full restart are noted in the file). Database settings live separately in
 [database.yml](/plugins/dfactions/configuration/database/).
 
@@ -43,10 +43,10 @@ factions:
 ```yaml
 factions:
   language:
-    default: en                   # server default locale
-    allow-player-override: true   # players may run /f language <code>
+    default: en                    # server default locale
+    allow-player-override: false   # English-only for now — player overrides disabled
     command-opens-gui: true
-    visible-locales: []           # empty = all loaded locales
+    visible-locales: ["en"]
 ```
 
 See [Messages & Languages](/plugins/dfactions/configuration/messages/).

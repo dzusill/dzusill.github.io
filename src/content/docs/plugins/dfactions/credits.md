@@ -1,9 +1,9 @@
 ---
 title: "Credits"
-description: "dFactions (distributed as PvPIndexFactions) is a modern factions plugin for Paper, Folia and"
+description: "dFactions is a modern factions plugin for Paper, Folia and"
 ---
 
-**dFactions** (distributed as **PvPIndexFactions**) is a modern factions plugin for Paper, Folia and
+**dFactions** is a modern factions plugin for Paper, Folia and
 Spigot 1.21.x, refactored from the classic MassiveCraft Factions codebase onto a fresh
 service/engine architecture with Jaloquent persistence.
 
