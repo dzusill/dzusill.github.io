@@ -1,6 +1,6 @@
 ---
 title: "Rank & author sync"
-description: "How dWebLink pushes each player's LuckPerms rank to the website on join and after /webtoken, so it shows as their public author identity — and why the admin panel requires a link."
+description: "How dWebLink pushes each player's LuckPerms rank to the website on join and after /verify, so it shows as their public author identity — and why the admin panel requires a link."
 ---
 
 Once a player is linked, dWebLink keeps their **rank** in sync with the website so it shows up next to their name — as the **author byline** on content they publish and in the admin sidebar for staff.
@@ -29,9 +29,9 @@ The API stores these on the player's account only if the account exists — an u
 | Trigger | Behaviour |
 |---|---|
 | **Player join** | After a short delay (`join-delay-ticks`, default ~2s) so LuckPerms has loaded the user, throttled to at most once per `min-interval-seconds` (default 5 min) per player. |
-| **`/webtoken`** | Pushed immediately after a successful code, bypassing the throttle — so a player who just changed rank refreshes it on demand. |
+| **`/verify`** | Pushed immediately after a successful code, bypassing the throttle — so a player who just changed rank refreshes it on demand. |
 
-Because a link is completed on the *website* (invisible to the server), the **first join after linking** is what first populates a rank. Have players relog, or run `/webtoken`, if a freshly linked account shows no rank yet.
+Because a link is completed on the *website* (invisible to the server), the **first join after linking** is what first populates a rank. Have players relog, or run `/verify`, if a freshly linked account shows no rank yet.
 
 ## Where it shows up
 
@@ -50,7 +50,7 @@ All in `plugins/dWebLink/config.yml`:
 
 ```yml
 profile-sync:
-  enabled: true             # master switch for join + /webtoken pushes
+  enabled: true             # master switch for join + /verify pushes
   join-delay-ticks: 40      # raise if your LuckPerms loads slowly on join
   min-interval-seconds: 300 # lower for fresher ranks, higher to reduce calls
 ```

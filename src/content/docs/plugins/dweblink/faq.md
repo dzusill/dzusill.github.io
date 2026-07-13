@@ -1,13 +1,13 @@
 ---
 title: "FAQ & Troubleshooting"
-description: "Common dWebLink problems — /webtoken errors, key mismatches, missing ranks, admins locked out of the panel — and how to fix them."
+description: "Common dWebLink problems — /verify errors, key mismatches, lockouts, missing ranks, admins locked out of the panel — and how to fix them."
 ---
 
-## `/webtoken` says "not configured"
+## `/verify` says "not configured"
 
 `api-key` is empty in `plugins/dWebLink/config.yml`. Paste the shared key (the same value as the API's `MC_PLUGIN_API_KEY`) and restart.
 
-## `/webtoken` returns an error / "HTTP 401"
+## `/verify` returns an error / "HTTP 401"
 
 The plugin's `api-key` does not match the API's `MC_PLUGIN_API_KEY`, or the API is unreachable. Check:
 
@@ -15,17 +15,15 @@ The plugin's `api-key` does not match the API's `MC_PLUGIN_API_KEY`, or the API 
 - `api-base-url` is correct, has **no trailing slash**, and **no `/api/v1`**,
 - the API is up: `curl https://api.yourserver.gg/api/v1/health`.
 
-## The website says my password is wrong
+## `/verify` says the code is wrong or I'm locked out
 
-Website login checks the **AuthMe** password. Confirm:
-
-- AuthMe uses a **MySQL** backend (not SQLite),
-- the API's `AUTHME_DB_*` variables point at that database,
-- the password hash is one the API supports (SHA256 or BCRYPT). If AuthMe uses another algorithm, the API needs to be taught it.
+- The code you type must match the one shown on the website **for your nickname** — get it by entering your nickname on the login page.
+- Codes last **~5 minutes** and are single-use; if it expired, request a new one on the site.
+- After **3 wrong tries** (or too many code requests) a nickname is locked for **~15 minutes** — wait it out.
 
 ## A player linked but has no rank on the site
 
-Rank is pushed on the **first join after linking** (or on `/webtoken`). Ask them to relog or run `/webtoken`. Then check:
+Rank is pushed on the **first join after linking** (or on `/verify`). Ask them to relog or run `/verify`. Then check:
 
 - **LuckPerms** is installed (without it, only the name is pushed),
 - `profile-sync.enabled: true`,
@@ -39,8 +37,8 @@ The prefix contained color codes the stripper did not catch. dWebLink removes `&
 
 The admin panel **requires a verified Minecraft link**. The admin must:
 
-1. `/webtoken` in game,
-2. log into the public website with their Minecraft username + password + the code,
+1. on the website, enter their nickname to get a code,
+2. run `/verify <code>` in game to log in,
 3. **Link Discord** on their profile via the bot,
 4. then sign into the panel with Discord.
 

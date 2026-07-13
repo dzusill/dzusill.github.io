@@ -15,7 +15,7 @@ api-key: ""
 # Which website tenant this server maps to (sent as the X-Tenant-Slug header).
 tenant-slug: "default"
 
-# Seconds a player must wait between /webtoken requests.
+# Seconds a player must wait between /linkdiscord requests.
 cooldown-seconds: 30
 
 # Push each player's LuckPerms rank to the website so it shows as their author identity.
@@ -30,12 +30,12 @@ profile-sync:
 | Key | Default | Description |
 |---|---|---|
 | `api-base-url` | `http://localhost:3000` | Host of the Phalanx API. **No trailing slash and no `/api/v1`** — the plugin appends the path itself. |
-| `api-key` | `""` | Shared service key. Must equal the API's `MC_PLUGIN_API_KEY`. Empty ⇒ `/webtoken` and sync are disabled. |
+| `api-key` | `""` | Shared service key. Must equal the API's `MC_PLUGIN_API_KEY`. Empty ⇒ `/verify`, `/linkdiscord` and sync are disabled. |
 | `tenant-slug` | `default` | Sent as the `X-Tenant-Slug` header; selects which website tenant this server maps to. |
-| `cooldown-seconds` | `30` | Minimum seconds between `/webtoken` uses per player. A failed request clears the cooldown so they can retry. |
-| `profile-sync.enabled` | `true` | Master switch for pushing LuckPerms rank on join and after `/webtoken`. |
+| `cooldown-seconds` | `30` | Minimum seconds between `/linkdiscord` uses per player. (`/verify` is throttled server-side instead.) |
+| `profile-sync.enabled` | `true` | Master switch for pushing LuckPerms rank on join and after `/verify`. |
 | `profile-sync.join-delay-ticks` | `40` | Ticks to wait after join before reading LuckPerms (20 ticks = 1s). Raise if LuckPerms loads slowly. |
-| `profile-sync.min-interval-seconds` | `300` | Minimum seconds between **automatic** (join) pushes per player. `/webtoken` pushes ignore this. |
+| `profile-sync.min-interval-seconds` | `300` | Minimum seconds between **automatic** (join) pushes per player. `/verify` pushes ignore this. |
 
 ## Notes
 

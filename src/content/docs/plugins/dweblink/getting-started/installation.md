@@ -8,7 +8,7 @@ This walks you end to end: from dropping the jar in to a player (and an admin) f
 ## Before you start
 
 - The **Phalanx API** is deployed and reachable (e.g. `https://api.yourserver.gg`).
-- **AuthMe** is running on a **MySQL** backend, and the API's `AUTHME_DB_*` variables point at it (read-only user).
+- Your server is **online-mode (premium)** — login is passwordless and relies on Mojang authentication.
 - You have generated the shared key: `openssl rand -base64 32`.
 
 ---
@@ -36,7 +36,7 @@ api-key: "PASTE-THE-GENERATED-KEY-HERE"
 # Which website tenant this server maps to (sent as the X-Tenant-Slug header).
 tenant-slug: "default"
 
-# Seconds a player must wait between /webtoken requests.
+# Seconds a player must wait between /linkdiscord requests.
 cooldown-seconds: 30
 
 # Push each player's LuckPerms rank to the website so it shows as their author identity.
@@ -53,7 +53,7 @@ profile-sync:
 
 ## 3. Match the key on the API
 
-On the API host, the environment variable **`MC_PLUGIN_API_KEY`** must equal the plugin's `api-key`. If they differ, every call is rejected with `401` and `/webtoken` reports an error.
+On the API host, the environment variable **`MC_PLUGIN_API_KEY`** must equal the plugin's `api-key`. If they differ, every call is rejected with `401` and `/verify` reports an error.
 
 ```bash
 # on the API (e.g. Railway / your server env)
@@ -67,23 +67,17 @@ Redeploy / restart the API after setting it.
 ## 4. Start and smoke-test
 
 1. Start the Minecraft server. The console banner shows dWebLink enabling after DzusillCore.
-2. Join the server and run:
-
-   ```
-   /webtoken
-   ```
-
-   You should get a one-time code and an expiry (default 5 minutes). If instead you see *"not configured"* or an error, jump to the [FAQ](/plugins/dweblink/faq/).
+2. Join the server and run `/verify TESTCODE` (any code). You should see *"Wrong code"* — which proves the plugin reached the API. If instead you see *"not configured"* or an error, jump to the [FAQ](/plugins/dweblink/faq/).
 
 ---
 
-## 5. Link a player (the full flow)
+## 5. Log a player in (the full flow)
 
-A player links once. After that they log in with just their Minecraft username + password.
+Login is passwordless and **web-initiated** — the site mints a code, the player confirms it in game.
 
-1. **In game:** run `/webtoken` to get a code.
-2. **On the website** (`yourserver.gg`): open the login page, enter the **Minecraft username + AuthMe password**, and when prompted enter the `/webtoken` code. This creates their verified website account.
-3. **Link Discord (optional but needed for admins):** on their profile, click **Link Discord**, then send the shown code to the **Discord bot**. The bot confirms and grants the verified role.
+1. **On the website** (`yourserver.gg`): open the login page, type the Minecraft **nickname**, and get a **6-char code**. Leave the page open — it's polling.
+2. **In game:** run `/verify <code>`. The chat confirms "you're logged in", and the website page **auto-redirects** to the profile. First login creates their account; the session lasts ~30 days.
+3. **Link Discord (optional but needed for admins):** either click **Link Discord** on their profile, **or** run `/linkdiscord` in game — both give a code they redeem with the **Discord bot** (`/link <code>`). The bot confirms and grants the verified role. `/linkdiscord` needs no website visit.
 
 See [How linking works](/plugins/dweblink/how-it-works/account-linking/) for what happens under the hood.
 
@@ -100,7 +94,7 @@ The website **admin panel requires a verified Minecraft link** — an admin cann
 ## 7. Verify rank sync
 
 1. Give a player a LuckPerms rank with a prefix.
-2. Have them rejoin (or run `/webtoken`).
+2. Have them rejoin (or run `/verify` to log in again).
 3. Their **group + prefix** now appears next to their name on the website — as the author byline on content they publish, and in the admin sidebar for staff.
 
 If ranks do not appear, confirm LuckPerms is installed and `profile-sync.enabled: true`, then see [Rank & author sync](/plugins/dweblink/how-it-works/profile-sync/).
@@ -109,4 +103,4 @@ If ranks do not appear, confirm LuckPerms is installed and `profile-sync.enabled
 
 ## Done
 
-You now have: a shared key on both sides, players able to link with `/webtoken`, admins gated behind a verified link, and LuckPerms ranks flowing to the site. Reference: [config.yml](/plugins/dweblink/configuration/config/) · [Commands & Permissions](/plugins/dweblink/commands-and-permissions/).
+You now have: a shared key on both sides, players able to log in with nickname + `/verify`, admins gated behind a verified link, and LuckPerms ranks flowing to the site. Reference: [config.yml](/plugins/dweblink/configuration/config/) · [Commands & Permissions](/plugins/dweblink/commands-and-permissions/).
