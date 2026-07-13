@@ -39,6 +39,19 @@ Player commands use **`/f`** (aliases `/faction`, `/factions`). Admin commands u
 | `/f relation <ally\|truce\|enemy\|neutral> <faction>` | `factions.cmd.relation` |
 | `/f merge send <faction>` / `merge accept <faction>` | `factions.cmd.merge` |
 
+## Chat channels
+
+| Command | Aliases | Permission |
+|---|---|---|
+| `/f chat [public\|faction\|ally]` | | — |
+
+Switches which audience your normal chat messages go to. `/f chat` with no argument shows your
+current channel. Faction and ally chat are only offered while you're in a faction.
+
+Every line the plugin sends or relays in chat carries the configurable **global prefix**, and
+faction/ally chat also get a distinct `[Faction]` / `[Ally]` tag so it's always obvious which
+channel a message is in — see [Messages & Languages](/plugins/dfactions/configuration/messages/#chat-prefix--channel-formats).
+
 ## Territory
 
 | Command | Aliases | Permission |

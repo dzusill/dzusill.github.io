@@ -24,7 +24,9 @@ factions:
   beacon:
     enabled: false
     material: BEACON
-    protection-radius: 1        # no-build radius (1 = 3×3 footprint)
+    protection-radius: 1        # horizontal no-build radius (1 = 3×3 footprint)
+    protection-height-below: 1  # protected blocks below the beacon
+    protection-height-above: 3  # protected blocks above the beacon
     max-health: 100
     new-beacon-shield-hours: 24
 ```
@@ -32,7 +34,11 @@ factions:
 ## Protection rules
 
 - The beacon **cannot be broken** by non-members under normal conditions.
-- Building is blocked within `protection-radius` of the beacon.
+- Building is blocked inside a **no-build box** around the beacon so it can't be walled in
+  (e.g. boxed with obsidian). The box is `protection-radius` wide horizontally and spans
+  `protection-height-below`/`protection-height-above` blocks vertically. With the defaults
+  it covers the beacon, its 3×3 ring, one block below and three above — outside that box
+  building is allowed, so players can still terraform nearby.
 - The beacon is **vulnerable only during an active war** against the owning faction.
 - **Right-clicking the beacon opens the faction GUI** — a physical entry point to
   [the menu](/plugins/dfactions/features/gui/).
