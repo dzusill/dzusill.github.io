@@ -27,40 +27,37 @@ factions:
     protection-radius: 1        # horizontal no-build radius (1 = 3×3 footprint)
     protection-height-below: 1  # protected blocks below the beacon
     protection-height-above: 3  # protected blocks above the beacon
-    max-health: 100             # beacon HP; enemy war hits drain it
-    damage-per-hit: 10          # HP lost per enemy hit during an active war
-    regen-percent: 10           # HP healed per regen tick while not under attack
-    destroy-disbands-faction: true
+    max-health: 100
     new-beacon-shield-hours: 24
-    move: { enabled: true, allow-during-war: false }
 ```
 
 ## Protection rules
 
-- The beacon **cannot be broken** by non-members under normal conditions.
+- The beacon block is **fully locked — nobody can break it.** Not members, not neutral players, not
+  OP or anyone with `factions.bypass`. Breaking it is always cancelled; the only ways it leaves the
+  world are losing a war (below) or the faction disbanding.
+- The beacon is **damageable only during an active war** against the owning faction, and only by the
+  enemy belligerent. It behaves like a mob: **hitting it (left-click) or trying to mine it removes a
+  chunk of health per hit** (subject to a short per-hit cooldown), and the block itself never breaks —
+  destruction is modelled purely through health reaching 0.
+- Every hit **refreshes the hologram** so defenders see health drop live; the hologram also refreshes
+  on a schedule.
 - Building is blocked inside a **no-build box** around the beacon so it can't be walled in
   (e.g. boxed with obsidian). The box is `protection-radius` wide horizontally and spans
   `protection-height-below`/`protection-height-above` blocks vertically. With the defaults
   it covers the beacon, its 3×3 ring, one block below and three above — outside that box
   building is allowed, so players can still terraform nearby.
-- The beacon is **vulnerable only during an active war** against the owning faction.
 - **Right-clicking the beacon opens the faction GUI** — a physical entry point to
   [the menu](/plugins/dfactions/features/gui/).
 
 ## Beacon & war victory
 
-During a [declared war](/plugins/dfactions/features/wars-and-shields/), the defender's beacon becomes
-attackable **by the opposing faction only**. It isn't a one-hit destroy — the beacon has **HP**
-(`max-health`): each enemy hit drains `damage-per-hit`, and left alone the HP slowly regenerates. When
-the HP hits zero:
+During a [declared war](/plugins/dfactions/features/wars-and-shields/), the defender's beacon becomes attackable. Destroying
+it wins the war instantly:
 
 - The war ends with the attacker as victor.
 - The loser's **bank balance and XP** transfer to the winner.
-- The loser's team-chest contents **drop** at the beacon.
-- The **losing faction is disbanded** — members removed, claims freed — so it can't keep playing on a
-  destroyed HQ (`destroy-disbands-faction`, on by default). Set it to `false` to let the loser survive
-  beacon-less and rebuild with `/f beacon move`.
-- A **`WAR OVERVIEW`** summary (kills, deaths, duration, money stolen) is broadcast.
+- **All** of the loser's team-chest contents **drop** at the beacon (nothing is kept).
 
 This makes the beacon the central risk/reward object of the war system.
 

@@ -74,6 +74,7 @@ factions:
     min-members: 2
     cooldown-hours: 48      # cooldown before re-declaring on the same faction
     steal-per-kill: 0.005   # fraction of defender's bank stolen per kill (0.5%)
+    xp-steal-per-kill: 0.02 # fraction of the victim faction's XP transferred per kill (2%)
 ```
 
 ### Declaring
@@ -93,26 +94,42 @@ defender is shielded, or you're within `cooldown-hours` of a prior war.
 ```
 
 After declaration the war enters a **prep phase** (`prep-hours`); either side may cancel. When prep
-ends, the war becomes **active** automatically. A **boss bar** shows the war state (prep, active, or
-post-war cooldown) to both factions immediately — it updates the moment a war is declared, starts, or
-ends, not on a delay.
+ends, the war becomes **active** automatically.
 
 ### Fighting & victory
 
-Once a war is **active**:
-
-- **Open borders** — the two belligerent factions can **build, break and use TNT inside each other's
-  claimed territory** for the duration of the active war. Normal claim protection resumes when the war
-  ends; during prep and cooldown, claims stay fully protected.
 - **Per-kill bank steal** — each enemy kill transfers `steal-per-kill` of the defender's bank to the
   attacker.
-- **Beacon objective** — with the [Beacon HQ](/plugins/dfactions/features/beacon/) system on, draining
-  the enemy beacon's HP to zero wins the war. The winner takes the loser's bank + XP and the loser's
-  chests drop, **and the losing faction is disbanded** — its members are removed and its land freed for
-  anyone to claim (`factions.beacon.destroy-disbands-faction`, on by default).
-- **War overview** — when a war ends, a **`WAR OVERVIEW`** summary is broadcast in chat: kills, deaths,
-  duration, and money stolen.
-- `wars_won` / `wars_lost` update for each side.
+- **Per-kill XP steal** — each enemy kill also transfers `xp-steal-per-kill` of the **victim
+  faction's** XP into the killer's faction (set to `0` to disable). Only applies while both factions
+  are in an active war.
+- **Beacon objective** — with the [Beacon HQ](/plugins/dfactions/features/beacon/) system on, destroying the enemy beacon ends
+  the war instantly; the winner takes the loser's bank + XP and all of the loser's chest contents drop.
+- On war end, `wars_won` / `wars_lost` update for each side.
 
 > For the fairest experience, enable **both** `war` and `beacon` so wars have a concrete objective
 > rather than only attrition.
+
+### War boss bar
+
+While a war is declared, everyone involved — **both** the attackers and the defenders — sees a boss
+bar tracking it:
+
+- **Preparation:** `War: A vs B — starts in 2m 5s`, counting down every second as the bar depletes.
+- **Active:** `At war: A vs B`.
+- **Cooldown:** after the war ends, a bar counts down the re-declare cooldown.
+
+Colours and bar style are configurable in `notifications.yml`:
+
+```yaml
+bossbar:
+  enabled: true
+  war:
+    prep-color: YELLOW       # preparation countdown
+    active-color: RED        # active war
+    cooldown-color: WHITE    # post-war cooldown
+    style: SOLID             # SOLID | SEGMENTED_6 | SEGMENTED_10 | SEGMENTED_12 | SEGMENTED_20
+```
+
+The bar is removed immediately when a war ends **or when a belligerent disbands mid-war**, so it never
+lingers on "At war".

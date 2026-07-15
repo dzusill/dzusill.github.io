@@ -21,18 +21,42 @@ Area claims (fill / square / circle modes) are capped per command by
 
 ## Claim capacity is prestige-gated
 
-The number of chunks a faction may hold comes from its **prestige rank and level**, not its power:
+The number of chunks a faction may hold comes from its **prestige rank**, not its power:
 
 ```yaml
 factions:
   claims:
-    per-prestige: [1, 10, 20, 30, 40, 50]   # milestone at each prestige rank
+    per-prestige: [1, 2, 4, 6, 8, 10]   # index = prestige rank
 ```
 
-Each entry is the milestone for a prestige rank, and the cap **grows with level** toward the next
-milestone. So prestige 0 goes from **1** claim at level 1 up to **10** by max level, prestige 1 runs
-**10 → 20**, and so on to **50** at prestige 5. Level up and prestige to expand — see
-[Leveling & Prestige](/plugins/dfactions/features/progression/).
+Prestige 0 → 1 claim, prestige 1 → 2, … up to the table's end (which then repeats). Level up and
+prestige to expand — see [Leveling & Prestige](/plugins/dfactions/features/progression/).
+
+## What claimed land protects against outsiders
+
+Inside a faction's claim, players who are **not members** are blocked from interfering — **unless
+their faction is in an active [war](/plugins/dfactions/features/wars-and-shields/) with the owner**, which lifts every one of
+these protections between the two belligerents (siege). Members always have full access to their own
+land, and admins with `factions.bypass` are exempt.
+
+- **Blocks** — no breaking or placing.
+- **Containers & openables** — chests, barrels, furnaces, hoppers, shulkers, doors, trapdoors,
+  gates, buttons, levers, pressure plates, anvils, and enchanting tables can't be used by outsiders.
+- **Entity placement** — end crystals (e.g. on obsidian), armor stands, boats, minecarts, item
+  frames and paintings can't be placed.
+- **Animals & entities** — outsiders can't harm the faction's animals, pets, villagers, golems,
+  water mobs, item frames, armor stands or vehicles (including via bows/tridents — projectiles are
+  traced back to their shooter).
+- **Potions** — harmful splash and lingering potions thrown by outsiders don't affect protected
+  players or animals in the claim.
+- **Home PvP protection** — a player standing in **their own** faction's claim is safe from
+  outsiders who aren't at war with them, even a wilderness attacker firing arrows.
+
+> **Faction team chests are never locked**, even during a war — members can always retrieve their
+> gear. A losing faction only loses its chest contents if its [beacon](/plugins/dfactions/features/beacon/) is destroyed.
+>
+> An active [supply drop](/plugins/dfactions/features/supply-drops/) that lands inside a claim stays contested — its crate is
+> exempt from container protection so anyone can loot it.
 
 ## Overclaiming
 

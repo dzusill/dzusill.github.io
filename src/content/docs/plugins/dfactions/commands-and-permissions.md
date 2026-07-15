@@ -24,7 +24,6 @@ Player commands use **`/f`** (aliases `/faction`, `/factions`). Admin commands u
 |---|---|---|
 | `/f invite <player>` / `invite list` / `invite revoke <player>` | | `factions.cmd.invite[.list/.revoke]` |
 | `/f join <faction>` | | `factions.cmd.join` |
-| `/f open` / `/f close` | | `factions.cmd.open` / `.close` |
 | `/f leave` | | `factions.cmd.leave` |
 | `/f kick <player>` | | `factions.cmd.kick` |
 | `/f promote <player>` / `/f demote <player>` | | `factions.cmd.promote` / `.demote` |

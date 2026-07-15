@@ -28,6 +28,21 @@ factions:
 
 The bank funds shield purchases, war stakes (steal-per-kill), tax and interest.
 
+### Bank GUI
+
+The bank menu (Gold Ingot in the [GUI](/plugins/dfactions/features/gui/)) offers quick **green** deposit and **red** withdraw
+buttons for each configured amount:
+
+```yaml
+factions:
+  bank:
+    # Deposit/withdraw amount buttons shown in the /f bank GUI (up to 7 values).
+    gui-amounts: [1, 10, 100, 1000, 10000, 100000, 1000000]
+```
+
+Bank transactions also appear in the **Activity log** GUI, formatted with the acting player's name,
+a friendly action label ("Bank Withdraw"), and a grouped amount (`$10,000.00`).
+
 ## Tax
 
 **Disabled by default.** Periodically deducts a fraction of each faction's bank — a money sink.
