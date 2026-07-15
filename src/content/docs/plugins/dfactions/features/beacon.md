@@ -63,6 +63,15 @@ This makes the beacon the central risk/reward object of the war system.
 
 ## Hologram
 
-Rendered with an ArmorStand-based holder (no external hologram plugin required) and refreshed on a
-schedule via the Folia-safe scheduler. It shows live faction stats and is removed when the beacon or
-faction is gone.
+Rendered with an ArmorStand-based holder (no external hologram plugin required). It shows the
+faction's **name, health, level, prestige, XP and bank**, and refreshes on a short interval so the
+lines track live faction data — including damage during a war and XP / bank changes from any source.
+The cadence is configurable:
+
+```yaml
+factions:
+  beacon:
+    hologram-refresh-ticks: 20   # 20 = 1s; lower is more responsive, higher is cheaper
+```
+
+The hologram is removed when the beacon or faction is gone.
