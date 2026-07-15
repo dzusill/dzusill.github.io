@@ -10,7 +10,7 @@ chest-style interface that surfaces most of the plugin without typing commands.
 
 | Icon | Section | What it does |
 |---|---|---|
-| 🌟 Nether Star | **Overview** | Name, level, prestige, XP, power, land, bank at a glance |
+| 🌟 Nether Star | **Overview** | Name, level, prestige, XP (current / next), claims (used / max), members, land, bank |
 | 👤 Player heads | **Members** | Live member list — left-click **promote**, right-click **demote** |
 | ⏰ Clock | **Statistics** | Kills, deaths, K/D, wars won/lost |
 | 📦 Ender Chest | **Storage** | Open the faction team chest |
@@ -22,6 +22,17 @@ chest-style interface that surfaces most of the plugin without typing commands.
 The **Members** panel renders real player heads and routes clicks through the existing
 promote/demote services, so role rules are respected. The **Activity log** reads the faction audit
 trail.
+
+Beyond the main menu, the plugin builds several **dynamic menus**:
+
+- **Top factions** (`/f top`) — a leaderboard of faction **leader heads** showing faction name, total
+  money, kills and deaths.
+- **Territory map** (`/f map`) — a live chunk grid centered on you; **edge arrows** (north at the top,
+  south at the bottom, west/east on the sides) pan the view, and clicking a chunk claims or unclaims it.
+- **Bank** and **Invites** menus handle deposits/withdrawals and pending invites.
+
+Opening the team chest from the **Storage** button no longer prints a chat line — the inventory
+opening is feedback enough.
 
 ## Customizing the GUI
 

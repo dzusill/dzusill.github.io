@@ -24,27 +24,35 @@ factions:
     enabled: true
     max-level: 100
     resource-chest: { title: "Faction Resources", rows: 3 }
+    item-xp-default: 0.5     # fallback XP for any item not listed below
     item-xp:
-      STONE: 1
-      OAK_LOG: 1
+      DIRT: 0.1
+      STONE: 0.5
       IRON_INGOT: 5
       GOLD_INGOT: 10
       DIAMOND: 25
       NETHERITE_INGOT: 100
+      DRAGON_EGG: 500
 ```
 
-Add any Bukkit `Material` to `item-xp` to make it depositable. Unlisted items grant no XP.
+**Every item is worth something.** Rarer, harder-to-obtain materials grant more XP, and anything not
+listed under `item-xp` falls back to `item-xp-default` — so a deposit *always* grants XP. The bundled
+config ships a full tiered catalog (100+ materials, from `0.1` filler to `500` for a dragon egg) that
+you can retune freely. Set `item-xp-default: 0` if you'd rather reward only the explicitly listed
+materials.
 
 ## The level curve
 
 ```yaml
 curve:
   base-xp: 1000      # XP for level 1 → 2
-  multiplier: 1.15   # each level costs 15% more than the last
+  multiplier: 1.06   # each level costs 6% more than the last
 ```
 
 Level *n → n+1* costs `base-xp × multiplier^(n-1)`. Leveling continues to `max-level` (50 or 100),
-then a **prestige** is required to keep going. Each level-up notifies members.
+then a **prestige** is required to keep going. Each level-up notifies members. With the default curve,
+reaching prestige 1 (level 100) is a long but reachable grind (~5.3M total XP) — raise `multiplier`
+for a steeper climb.
 
 ## Prestige
 
@@ -75,10 +83,13 @@ prestige 2, and so on.
 ```yaml
 factions:
   claims:
-    per-prestige: [1, 2, 4, 6, 8, 10]   # index = prestige rank
+    per-prestige: [1, 10, 20, 30, 40, 50]   # milestone at each prestige rank
 ```
 
-Higher prestige = more simultaneous claims. `bonuses.extra-claims-per-prestige` adds on top. See
+The list is a set of **milestones** — one per prestige rank. Within a prestige the cap **grows with
+level** toward the next milestone, so a brand-new faction isn't stuck at the floor: at prestige 0 it
+starts at **1** claim and climbs to **10** by max level; prestige 1 then unlocks **10 → 20**, and so
+on up to **50** at prestige 5. `bonuses.extra-claims-per-prestige` adds on top. See
 [Territory & Claims](/plugins/dfactions/features/territory/).
 
 ## Placeholders

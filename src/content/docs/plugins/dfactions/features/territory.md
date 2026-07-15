@@ -21,16 +21,18 @@ Area claims (fill / square / circle modes) are capped per command by
 
 ## Claim capacity is prestige-gated
 
-The number of chunks a faction may hold comes from its **prestige rank**, not its power:
+The number of chunks a faction may hold comes from its **prestige rank and level**, not its power:
 
 ```yaml
 factions:
   claims:
-    per-prestige: [1, 2, 4, 6, 8, 10]   # index = prestige rank
+    per-prestige: [1, 10, 20, 30, 40, 50]   # milestone at each prestige rank
 ```
 
-Prestige 0 → 1 claim, prestige 1 → 2, … up to the table's end (which then repeats). Level up and
-prestige to expand — see [Leveling & Prestige](/plugins/dfactions/features/progression/).
+Each entry is the milestone for a prestige rank, and the cap **grows with level** toward the next
+milestone. So prestige 0 goes from **1** claim at level 1 up to **10** by max level, prestige 1 runs
+**10 → 20**, and so on to **50** at prestige 5. Level up and prestige to expand — see
+[Leveling & Prestige](/plugins/dfactions/features/progression/).
 
 ## Overclaiming
 

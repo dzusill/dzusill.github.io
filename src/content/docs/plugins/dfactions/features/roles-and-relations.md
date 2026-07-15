@@ -9,6 +9,8 @@ Factions have a rank hierarchy. Leaders and officers manage members:
 
 ```
 /f invite <player>      # invite (or /f join <faction> for open factions)
+/f open                 # make the faction public — anyone can /f join, no invite needed
+/f close                # make the faction private — invite only (default)
 /f kick <player>
 /f promote <player>     # raise one rank
 /f demote <player>      # lower one rank
@@ -17,7 +19,9 @@ Factions have a rank hierarchy. Leaders and officers manage members:
 /f unban <player>
 ```
 
-Member cap is `factions.max-members` (default 50).
+`/f open` and `/f close` toggle the faction's **public/private** state (the `open` flag): open factions
+can be joined by anyone with `/f join`, closed factions require an invite. Member cap is
+`factions.max-members` (default 50).
 
 ### Faction bans
 

@@ -27,8 +27,12 @@ factions:
     protection-radius: 1        # horizontal no-build radius (1 = 3×3 footprint)
     protection-height-below: 1  # protected blocks below the beacon
     protection-height-above: 3  # protected blocks above the beacon
-    max-health: 100
+    max-health: 100             # beacon HP; enemy war hits drain it
+    damage-per-hit: 10          # HP lost per enemy hit during an active war
+    regen-percent: 10           # HP healed per regen tick while not under attack
+    destroy-disbands-faction: true
     new-beacon-shield-hours: 24
+    move: { enabled: true, allow-during-war: false }
 ```
 
 ## Protection rules
@@ -45,12 +49,18 @@ factions:
 
 ## Beacon & war victory
 
-During a [declared war](/plugins/dfactions/features/wars-and-shields/), the defender's beacon becomes attackable. Destroying
-it wins the war instantly:
+During a [declared war](/plugins/dfactions/features/wars-and-shields/), the defender's beacon becomes
+attackable **by the opposing faction only**. It isn't a one-hit destroy — the beacon has **HP**
+(`max-health`): each enemy hit drains `damage-per-hit`, and left alone the HP slowly regenerates. When
+the HP hits zero:
 
 - The war ends with the attacker as victor.
 - The loser's **bank balance and XP** transfer to the winner.
 - The loser's team-chest contents **drop** at the beacon.
+- The **losing faction is disbanded** — members removed, claims freed — so it can't keep playing on a
+  destroyed HQ (`destroy-disbands-faction`, on by default). Set it to `false` to let the loser survive
+  beacon-less and rebuild with `/f beacon move`.
+- A **`WAR OVERVIEW`** summary (kills, deaths, duration, money stolen) is broadcast.
 
 This makes the beacon the central risk/reward object of the war system.
 

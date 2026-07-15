@@ -42,7 +42,8 @@ prestige to raise the cap. Power governs raidability instead. See
 
 **How do we earn XP?**
 Deposit items into the Resource Chest via `/f resources`. XP per item is set in
-`factions.leveling.item-xp`.
+`factions.leveling.item-xp`, and any material not listed falls back to `item-xp-default` — so every
+deposited item grants at least some XP (rarer items are worth more).
 
 **A war declaration was rejected. Why?**
 Common causes: wars disabled, either side already at war, too few members, factions outside

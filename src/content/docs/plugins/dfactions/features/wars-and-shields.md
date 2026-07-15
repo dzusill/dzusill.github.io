@@ -93,15 +93,26 @@ defender is shielded, or you're within `cooldown-hours` of a prior war.
 ```
 
 After declaration the war enters a **prep phase** (`prep-hours`); either side may cancel. When prep
-ends, the war becomes **active** automatically.
+ends, the war becomes **active** automatically. A **boss bar** shows the war state (prep, active, or
+post-war cooldown) to both factions immediately — it updates the moment a war is declared, starts, or
+ends, not on a delay.
 
 ### Fighting & victory
 
+Once a war is **active**:
+
+- **Open borders** — the two belligerent factions can **build, break and use TNT inside each other's
+  claimed territory** for the duration of the active war. Normal claim protection resumes when the war
+  ends; during prep and cooldown, claims stay fully protected.
 - **Per-kill bank steal** — each enemy kill transfers `steal-per-kill` of the defender's bank to the
   attacker.
-- **Beacon objective** — with the [Beacon HQ](/plugins/dfactions/features/beacon/) system on, destroying the enemy beacon ends
-  the war instantly; the winner takes the loser's bank + XP and the loser's chest drops.
-- On war end, `wars_won` / `wars_lost` update for each side.
+- **Beacon objective** — with the [Beacon HQ](/plugins/dfactions/features/beacon/) system on, draining
+  the enemy beacon's HP to zero wins the war. The winner takes the loser's bank + XP and the loser's
+  chests drop, **and the losing faction is disbanded** — its members are removed and its land freed for
+  anyone to claim (`factions.beacon.destroy-disbands-faction`, on by default).
+- **War overview** — when a war ends, a **`WAR OVERVIEW`** summary is broadcast in chat: kills, deaths,
+  duration, and money stolen.
+- `wars_won` / `wars_lost` update for each side.
 
 > For the fairest experience, enable **both** `war` and `beacon` so wars have a concrete objective
 > rather than only attrition.
