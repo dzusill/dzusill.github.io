@@ -1322,5 +1322,45 @@
         ]
       }
     ]
+  },
+  {
+    "label": "📦 dPhalanx",
+    "collapsed": true,
+    "items": [
+      {
+        "label": "📘 Introduction",
+        "slug": "plugins/dphalanx"
+      },
+      {
+        "label": "🚀 Getting Started",
+        "items": [
+          {
+            "label": "Requirements",
+            "slug": "plugins/dphalanx/getting-started/requirements"
+          },
+          {
+            "label": "Installation & Setup",
+            "slug": "plugins/dphalanx/getting-started/installation"
+          }
+        ]
+      },
+      {
+        "label": "📖 Reference",
+        "items": [
+          {
+            "label": "Features",
+            "slug": "plugins/dphalanx/features"
+          },
+          {
+            "label": "Configuration",
+            "slug": "plugins/dphalanx/configuration"
+          },
+          {
+            "label": "Commands & Permissions",
+            "slug": "plugins/dphalanx/commands-and-permissions"
+          }
+        ]
+      }
+    ]
   }
 ]
