@@ -63,7 +63,8 @@ This makes the beacon the central risk/reward object of the war system.
 
 ## Hologram
 
-Rendered with an ArmorStand-based holder (no external hologram plugin required). It shows the
+Rendered with a single billboarding `TextDisplay` per faction (no external hologram plugin
+required), reused in place — never re-spawned — so it can't duplicate or stack. It shows the
 faction's **name, health, level, prestige, XP and bank**, and refreshes on a short interval so the
 lines track live faction data — including damage during a war and XP / bank changes from any source.
 The cadence is configurable:
