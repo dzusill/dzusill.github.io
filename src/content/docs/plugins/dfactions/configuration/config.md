@@ -54,7 +54,7 @@ See [Messages & Languages](/plugins/dfactions/configuration/messages/).
 
 Each system has its own section; the full detail is on the feature pages:
 
-- `factions.land`, `factions.claims`, `factions.zones` —
+- `factions.land`, `factions.claims`, `factions.zones`, `factions.territory`, `factions.visualizer` —
   [Territory & Claims](/plugins/dfactions/features/territory/)
 - `factions.leveling`, `factions.prestige` — [Leveling & Prestige](/plugins/dfactions/features/progression/)
 - `factions.beacon` — [Beacon HQ](/plugins/dfactions/features/beacon/)
@@ -85,6 +85,27 @@ Officers toggle flags with `/f flag set <flag>` unless `player-editable: false`.
 factions:
   fly: { enabled: true, disable-on-threat: true, require-own-territory: true }
 ```
+
+## Territory indicators & border visualizer
+
+```yaml
+factions:
+  territory:
+    message-max-length: 64       # max length of a custom /f entermsg /f leavemsg subtitle
+  visualizer:
+    enabled: true
+    particle: HAPPY_VILLAGER     # any Bukkit Particle; use DUST to colour it
+    dust-color: "#3BE55A"        # only used when particle: DUST
+    radius-chunks: 3
+    interval-ticks: 10
+    duration-seconds: 30
+    height: 3
+    points-per-edge: 8
+```
+
+`/f entermsg` / `/f leavemsg` set a faction's custom territory title+subtitle (officer+), and
+`/f border` toggles the particle claim-border visualizer for the player who ran it. See
+[Territory & Claims](/plugins/dfactions/features/territory/).
 
 ## Metrics & updates
 

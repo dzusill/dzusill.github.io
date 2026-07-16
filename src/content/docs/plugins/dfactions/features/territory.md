@@ -81,3 +81,53 @@ factions:
     safe-zone: { enabled: true }
     war-zone:  { enabled: true }
 ```
+
+## Land indicators & border visualizer
+
+### Territory enter/leave messages
+
+Each faction can set a custom subtitle shown as a title + subtitle to any player who crosses into or
+out of its land:
+
+```
+/f entermsg [clear|<text...>]
+/f leavemsg [clear|<text...>]
+```
+
+Officers and above may view, set, or clear these. On **enter**, the title is the faction name and
+the subtitle is the faction's custom enter message (or a default if unset), followed by a chat info
+line (Leader / Members / Land). On **leave** into unclaimed land, the title reads
+"Leaving `<faction>`" with the custom leave subtitle. Moving directly from one faction's land into
+another's shows only the new faction's enter title — both respect each player's territory-title
+notification toggle.
+
+Custom text uses **restricted MiniMessage** — colours, gradients, and decorations are allowed, but
+`click`, `hover`, `insertion`, and `font` tags are rejected. Max length is
+`factions.territory.message-max-length` (default `64`). Placeholders `{faction}` and `{player}` are
+supported.
+
+### Particle border visualizer
+
+```
+/f border
+```
+
+Toggles a client-side particle outline of **your own** faction's claim borders around you — only
+real borders are drawn (edges where the neighboring chunk isn't yours), and only you see the
+particles. It auto-disables after `factions.visualizer.duration-seconds` (default `30`) to protect
+performance; run it again to turn it off early.
+
+```yaml
+factions:
+  territory:
+    message-max-length: 64
+  visualizer:
+    enabled: true
+    particle: HAPPY_VILLAGER
+    dust-color: "#3BE55A"
+    radius-chunks: 3
+    interval-ticks: 10
+    duration-seconds: 30
+    height: 3
+    points-per-edge: 8
+```

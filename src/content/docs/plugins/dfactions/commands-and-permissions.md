@@ -60,6 +60,9 @@ channel a message is in — see [Messages & Languages](/plugins/dfactions/config
 | `/f unclaim` | | `factions.cmd.unclaim` |
 | `/f unclaimall` | | leader-only (in-command) |
 | `/f map` | | `factions.cmd.map` |
+| `/f entermsg [clear\|text]` | | `factions.cmd.entermsg` |
+| `/f leavemsg [clear\|text]` | | `factions.cmd.leavemsg` |
+| `/f border` | | `factions.cmd.border` |
 | `/f coords` | `/f coord` | — |
 | `/f near` | | — |
 
