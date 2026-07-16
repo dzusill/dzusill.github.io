@@ -1,14 +1,13 @@
 ---
 title: "Leveling & Prestige"
-description: "dFactions adds a progression axis on top of power. Factions earn XP by depositing resources,"
+description: "dFactions adds a progression axis. Factions earn XP by depositing resources,"
 ---
 
-dFactions adds a **progression axis** on top of power. Factions earn **XP** by depositing resources,
-climb **levels**, and eventually **prestige** for permanent perks and a recolored tag. Progression —
-not power — controls how much land a faction can hold.
+dFactions adds a **progression axis**. Factions earn **XP** by depositing resources,
+climb **levels**, and eventually **prestige** for permanent perks and a recolored tag. Progression
+controls how much land a faction can hold.
 
-> **Two independent axes:** power → raid vulnerability; level/prestige → progression + claim
-> capacity. Both matter.
+> **Level/prestige** drives progression and claim capacity.
 
 ## Earning XP — the Resource Chest
 

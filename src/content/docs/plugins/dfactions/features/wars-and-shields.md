@@ -21,7 +21,7 @@ Every faction tracks **kills**, **deaths**, **wars won** and **wars lost**. Stat
 
 ## Shields
 
-**Disabled by default.** A shield grants **timed protection** from overclaiming/raiding, bought from
+**Disabled by default.** A shield grants **timed protection** from war declaration, bought from
 the faction bank.
 
 ```yaml
@@ -43,7 +43,7 @@ factions:
 
 - Cost is paid from the **faction bank** (needs [economy](/plugins/dfactions/features/economy/)).
 - Prestige can discount the price.
-- A shielded faction **cannot be overclaimed** while active, **does not stack**, and generally
+- A shielded faction **cannot be war-declared** while active, **does not stack**, and generally
   cannot itself declare war while protected.
 
 ### Admin daily war-shield

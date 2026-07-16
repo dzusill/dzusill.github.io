@@ -19,7 +19,6 @@ These systems ship **disabled by default** — flip them on when ready:
 | Supply drops | `factions.supply-drops.enabled` | `false` |
 | Bank tax | `factions.economy.tax.enabled` | `false` |
 | Bank interest | `factions.economy.interest.enabled` | `false` |
-| Overclaiming | `factions.overclaiming.enabled` | `false` |
 | Faction merges | `factions.merge.enabled` | `false` |
 | Admin war-shield | `factions.war.shield.enabled` | `false` |
 | Phalanx Discord | `integrations.phalanx.enabled` | `false` |
@@ -55,8 +54,7 @@ See [Messages & Languages](/plugins/dfactions/configuration/messages/).
 
 Each system has its own section; the full detail is on the feature pages:
 
-- `factions.power` — [Power & Raiding](/plugins/dfactions/features/power/)
-- `factions.land`, `factions.claims`, `factions.overclaiming`, `factions.zones` —
+- `factions.land`, `factions.claims`, `factions.zones` —
   [Territory & Claims](/plugins/dfactions/features/territory/)
 - `factions.leveling`, `factions.prestige` — [Leveling & Prestige](/plugins/dfactions/features/progression/)
 - `factions.beacon` — [Beacon HQ](/plugins/dfactions/features/beacon/)

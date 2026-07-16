@@ -36,8 +36,8 @@ require a full restart (noted in their comments).
 ## Gameplay
 
 **Why can't my faction claim more land?**
-Claim capacity is **prestige-gated** (`factions.claims.per-prestige`), not power-based. Level up and
-prestige to raise the cap. Power governs raidability instead. See
+Claim capacity is **prestige-gated** (`factions.claims.per-prestige`). Level up and
+prestige to raise the cap. See
 [Leveling & Prestige](/plugins/dfactions/features/progression/).
 
 **How do we earn XP?**

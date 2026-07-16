@@ -21,7 +21,7 @@ Area claims (fill / square / circle modes) are capped per command by
 
 ## Claim capacity is prestige-gated
 
-The number of chunks a faction may hold comes from its **prestige rank**, not its power:
+The number of chunks a faction may hold comes from its **prestige rank**:
 
 ```yaml
 factions:
@@ -57,21 +57,6 @@ land, and admins with `factions.bypass` are exempt.
 >
 > An active [supply drop](/plugins/dfactions/features/supply-drops/) that lands inside a claim stays contested — its crate is
 > exempt from container protection so anyone can loot it.
-
-## Overclaiming
-
-When enabled, a faction whose **power** has dropped below its claim count becomes raidable — enemies
-can take its land chunk by chunk.
-
-```yaml
-factions:
-  overclaiming:
-    enabled: false
-    require-enemy-relation: true          # must be ENEMY to overclaim
-    offline-protection: { enabled: false } # block pure offline raiding
-```
-
-Power (not prestige) governs this vulnerability — see [Power & Raiding](/plugins/dfactions/features/power/).
 
 ## Buffer zones
 

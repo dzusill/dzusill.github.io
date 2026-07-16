@@ -10,7 +10,7 @@ chest-style interface that surfaces most of the plugin without typing commands.
 
 | Icon | Section | What it does |
 |---|---|---|
-| 🌟 Nether Star | **Overview** | Name, level, prestige, XP, power, land, bank at a glance |
+| 🌟 Nether Star | **Overview** | Name, level, prestige, XP, land, bank at a glance |
 | 👤 Player heads | **Members** | Live member list — left-click **promote**, right-click **demote** |
 | ⏰ Clock | **Statistics** | Kills, deaths, K/D, wars won/lost |
 | 📦 Ender Chest | **Storage** | Open the faction team chest |
@@ -24,7 +24,7 @@ promote/demote services, so role rules are respected. The **Activity log** reads
 trail — bank entries show **who** performed the action and a formatted amount (e.g. `$10,000.00`).
 
 The player head at the bottom-centre of the main menu shows **your faction's combat statistics**
-(kills, deaths, K/D) rather than personal power.
+(kills, deaths, K/D).
 
 ## Customizing the GUI
 

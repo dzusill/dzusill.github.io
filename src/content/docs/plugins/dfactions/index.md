@@ -15,10 +15,9 @@ dynmap, DiscordSRV and LWC — every integration fully optional.
 
 ## What it does
 
-- 🧱 **Territory** — chunk claiming, overclaiming, safe & war zones, optional WorldGuard region sync.
-- ⚡ **Power** — per-player power drives raidability; regen, death loss, kill gain, freeze.
+- 🧱 **Territory** — chunk claiming, safe & war zones, optional WorldGuard region sync.
 - 📈 **Leveling & prestige** — deposit resources into a Resource Chest for XP, prestige for permanent
-  perks and a recolored tag. Prestige (not power) sets your claim capacity.
+  perks and a recolored tag. Prestige sets your claim capacity.
 - 🛰️ **Beacon HQ** — a physical, protected beacon block is your faction's heart and, during wars, the
   objective enemies must destroy.
 - ⚔️ **Declared wars** — prep window, level-range gating, per-kill bank steal, beacon-destroy victory.

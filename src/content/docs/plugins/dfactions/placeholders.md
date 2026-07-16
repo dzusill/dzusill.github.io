@@ -13,7 +13,6 @@ registers the **`pvpindex`** expansion. Use these in scoreboards, tab lists, hol
 | Placeholder | Shows |
 |---|---|
 | `%pvpindex_faction_name%` | Faction name |
-| `%pvpindex_faction_power%` | Faction power |
 | `%pvpindex_faction_members%` | Member count |
 | `%pvpindex_faction_land%` | Claimed chunks |
 | `%pvpindex_faction_bank%` | Bank balance |
@@ -42,7 +41,6 @@ registers the **`pvpindex`** expansion. Use these in scoreboards, tab lists, hol
 
 | Placeholder | Shows |
 |---|---|
-| `%pvpindex_player_power%` | The player's personal power |
 | `%pvpindex_player_role%` | The player's role name |
 | `%pvpindex_player_role_prefix%` | The player's role prefix |
 
@@ -50,7 +48,7 @@ registers the **`pvpindex`** expansion. Use these in scoreboards, tab lists, hol
 
 ```
 &aFaction: &f%pvpindex_faction_name% &7(L%pvpindex_faction_level%)
-&aPower: &f%pvpindex_faction_power%  &aLand: &f%pvpindex_faction_land%
+&aLand: &f%pvpindex_faction_land%
 &aK/D: &f%pvpindex_faction_kd%
 ```
 

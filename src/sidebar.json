@@ -1246,10 +1246,6 @@
             "slug": "plugins/dfactions/features/territory"
           },
           {
-            "label": "Power & Raiding",
-            "slug": "plugins/dfactions/features/power"
-          },
-          {
             "label": "Leveling & Prestige",
             "slug": "plugins/dfactions/features/progression"
           },

@@ -76,7 +76,6 @@ channel a message is in — see [Messages & Languages](/plugins/dfactions/config
 | Command | Aliases | Permission |
 |---|---|---|
 | `/f bank [deposit\|withdraw <amt>\|history]` | `/f money`, `/f balance` | `factions.cmd.bank[.history]` |
-| `/f power [player]` / `power history` | | `factions.cmd.power.history` |
 
 ## Progression, wars & shields
 
@@ -91,7 +90,7 @@ channel a message is in — see [Messages & Languages](/plugins/dfactions/config
 | Command | Permission |
 |---|---|
 | `/f list` | `factions.cmd.list` |
-| `/f top [power\|bank\|land\|kills\|wars\|level]` | `factions.cmd.top` |
+| `/f top [bank\|land\|kills\|wars\|level]` | `factions.cmd.top` |
 | `/f gui` | `factions.cmd.gui` |
 | `/f flag [set <flag> <value>]` | `factions.cmd.flag[.set]` |
 | `/f audit` | `factions.cmd.audit` |
@@ -114,13 +113,12 @@ All require `factions.admin` (or the specific child node).
 | `/fa shield <faction> <startHour> <hours>` | `factions.cmd.shield` |
 | `/fa flag <faction> <flag> <value>` | `factions.cmd.flag.set` |
 | `/fa audit [faction]` | `factions.cmd.audit` |
-| `/fa power <view\|set\|add\|remove\|reset\|freeze\|history> <player> [amount]` | `factions.cmd.admin.power.*` |
 
 ## Permission defaults
 
 - `default: true` — normal player commands (create, claim, bank, invite, join, leave, …).
 - `default: op` — admin nodes (`factions.admin`, `factions.bypass`, `factions.cmd.*.other`,
-  `factions.cmd.role.*`, `factions.cmd.predefined.*`, `factions.cmd.safezone/warzone`, admin power).
+  `factions.cmd.role.*`, `factions.cmd.predefined.*`, `factions.cmd.safezone/warzone`).
 
 Newer commands (`/f level`, `/f prestige`, `/f resources`, `/f shield`, `/f war`, `/f coords`,
 `/f near`, `/f player`, `/f ban`, `/f unban`, `/f unclaimall`) are available to all players and gated

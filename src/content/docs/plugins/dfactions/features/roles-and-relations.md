@@ -49,7 +49,7 @@ Factions set a stance toward one another:
 
 - **Ally** / **truce** are mutual — both sides must agree — and capped by `factions.max-allies` /
   `factions.max-truces`.
-- **Enemy** enables hostile mechanics (e.g. overclaiming when `require-enemy-relation` is on).
+- **Enemy** enables hostile mechanics (e.g. declaring war).
 - **Neutral** is the default.
 
 Which relations show in `/f info` is configurable:
