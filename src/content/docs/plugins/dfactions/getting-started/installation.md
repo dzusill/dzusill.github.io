@@ -9,7 +9,7 @@ A step-by-step guide from an empty server to a running, configured dFactions ins
 
 **Option A — download a release (recommended).** Grab the latest
 `dFactions.jar` from the distribution page (e.g.
-[Modrinth](https://modrinth.com/plugin/pvpindex-factions)).
+[Modrinth](https://modrinth.com/plugin/dfactions)). <!-- TODO: verify this external URL/repo actually exists under the new name before publishing -->
 
 **Option B — build from source.** With JDK 21+ and Maven:
 
@@ -93,7 +93,7 @@ Read the linked feature pages before enabling. Then `/fa reload` or restart.
 ## Step 6 — (Optional) PlaceholderAPI
 
 Install [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) to use the
-`pvpindex` expansion in scoreboards, tab and holograms. See [Placeholders](/plugins/dfactions/placeholders/).
+`dfactions` expansion in scoreboards, tab and holograms. See [Placeholders](/plugins/dfactions/placeholders/).
 
 ## Upgrading
 

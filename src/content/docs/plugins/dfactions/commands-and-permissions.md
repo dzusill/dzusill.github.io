@@ -71,7 +71,7 @@ channel a message is in — see [Messages & Languages](/plugins/dfactions/config
 | Command | Permission |
 |---|---|
 | `/f home` / `/f sethome` / `/f unsethome` | `factions.cmd.home` / `.sethome` |
-| `/f warp <name>` / `warp set <name> [pass]` / `warp list` / `warp delete <name>` | `factions.cmd.warp` / `.setwarp` |
+| `/f warp` (GUI) / `warp <name> [pass]` / `warp set` / `warp delete` / `warp list` / `warp password` / `warp icon` / `warp desc` | `factions.cmd.warp` / `.setwarp` / `.warp.password` |
 | `/f chest` | `factions.cmd.chest` |
 
 ## Economy

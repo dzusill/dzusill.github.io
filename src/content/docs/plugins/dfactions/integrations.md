@@ -23,7 +23,7 @@ Economy). Without it, money features no-op.
 integrations: { placeholderapi: true }
 ```
 
-Registers the `pvpindex` expansion — see [Placeholders](/plugins/dfactions/placeholders/).
+Registers the `dfactions` expansion — see [Placeholders](/plugins/dfactions/placeholders/).
 
 ## WorldGuard & WorldEdit
 
@@ -65,27 +65,11 @@ integrations:
 
 Coordinates chest/door protections with faction build rights.
 
-## DiscordSRV
-
-```yaml
-integrations:
-  discordsrv:
-    enabled: false
-    channel-id: ""
-    events:
-      faction-created:   { enabled: true, message: "**{faction}** was founded!" }
-      faction-disbanded: { enabled: true, message: "**{faction}** was disbanded." }
-      relation-ally:     { enabled: true, message: ":handshake: **{source}** and **{target}** are now allies!" }
-      relation-enemy:    { enabled: true, message: ":crossed_swords: **{source}** declared war on **{target}**!" }
-```
-
-Broadcasts faction events to Discord via DiscordSRV. `{faction}`, `{source}`, `{target}` substitute
-at send time.
-
 ## Phalanx Discord bridge
 
-An alternative that POSTs faction events to the Phalanx web API, which delivers them to Discord via
-the Phalanx bot.
+Posts faction events to the phalanx-mono web API as structured JSON, which builds the Discord
+message and delivers it via the Phalanx bot — message formatting lives server-side, not in this
+config.
 
 ```yaml
 integrations:
@@ -95,11 +79,19 @@ integrations:
     api-key: "your-bot-api-key"
     tenant-slug: "default"
     event-path: "/api/v1/factions/event"
+    events:
+      faction-lifecycle: true   # create, disband, level-up, prestige
+      relations: true           # mutual ally/truce established, enemy declared
+      wars: true                # declared, started, ended
+      bank: true                # deposits/withdrawals at or above the threshold below
+    bank-milestone-threshold: 50000.0
 ```
 
-On events (create/disband, level-up, prestige) the plugin sends an async `POST` with
-`Authorization: Bearer <api-key>` and `X-Tenant-Slug`. The receiving endpoint must exist on your
-Phalanx server.
+The `events.*` toggles are purely a client-side courtesy to skip pointless HTTP calls for
+categories you don't want announced — whether an event actually posts to Discord (and to which
+channel) is controlled server-side in phalanx-mono. On each enabled event, the plugin sends an
+async `POST` to `{api-url}{event-path}` with `Authorization: Bearer <api-key>` and
+`X-Tenant-Slug: <tenant-slug>`. The receiving endpoint must exist on your phalanx-mono deployment.
 
 ## TeamsAPI
 

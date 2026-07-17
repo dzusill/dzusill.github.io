@@ -26,7 +26,7 @@ None of these are required; each integration disables itself gracefully when abs
   costs, bank, tax, interest and shield purchases.
 - **[PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)** — exposes faction
   placeholders for scoreboards, tab lists and holograms.
-- **WorldGuard / WorldEdit**, **EssentialsX**, **dynmap**, **DiscordSRV**, **LWC/LWCX**, **TeamsAPI**
+- **WorldGuard / WorldEdit**, **EssentialsX**, **dynmap**, **LWC/LWCX**, **TeamsAPI**
   — see [Integrations](/plugins/dfactions/integrations/).
 
 Next: **[Installation](/plugins/dfactions/getting-started/installation/)**

@@ -79,12 +79,14 @@ see [Leveling & Prestige](/plugins/dfactions/features/progression/).
 
 > Tax and interest run on independent Folia-safe schedulers. Run either, both, or neither.
 
-## Warp costs
+## Warps
 
-Warps can carry a per-use cost and/or password, managed by officers:
+Faction warps are free to use and shared by every member. Officers manage them and can protect
+individual warps with a password:
 
 ```
-/f warp set <name> [password]
+/f warp                      # open the warp GUI (click to teleport)
+/f warp password <name> ...  # protect a warp (officer+)
 ```
 
-Costs are charged through Vault on warp use.
+See [Homes & Warps](/plugins/dfactions/features/homes-and-warps/) for the full command set (icons, descriptions, GUI).

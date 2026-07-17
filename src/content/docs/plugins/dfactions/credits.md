@@ -19,7 +19,7 @@ Licensed under **LGPL-3.0**.
 
 ## Links
 
-- Plugin page: [Modrinth](https://modrinth.com/plugin/pvpindex-factions)
+- Plugin page: [Modrinth](https://modrinth.com/plugin/dfactions) <!-- TODO: verify this external URL/repo actually exists under the new name before publishing -->
 - Built with the **Adventure** text library (MiniMessage), **Jaloquent** ORM, **H2** / **HikariCP**,
   and **bStats** — all bundled.
 

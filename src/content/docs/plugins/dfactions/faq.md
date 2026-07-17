@@ -22,8 +22,8 @@ Yes. dFactions never calls the Bukkit scheduler directly; it uses a Folia-aware 
 Install [Vault](https://www.spigotmc.org/resources/vault.34315/) **and** an economy plugin, then
 restart. Without a provider, money features no-op.
 
-**Placeholders show as raw `%pvpindex_...%` text.**
-Install PlaceholderAPI — the `pvpindex` expansion registers automatically once PAPI is present.
+**Placeholders show as raw `%dfactions_...%` text.**
+Install PlaceholderAPI — the `dfactions` expansion registers automatically once PAPI is present.
 
 **I enabled beacons / wars / shields / supply drops but nothing happens.**
 These systems are **off by default**. After setting `enabled: true`, run `/fa reload` or restart, and

@@ -82,6 +82,6 @@ Higher prestige = more simultaneous claims. `bonuses.extra-claims-per-prestige` 
 
 ## Placeholders
 
-`%pvpindex_faction_level%`, `%pvpindex_faction_prestige%`, `%pvpindex_faction_xp%`,
-`%pvpindex_faction_xp_required%`, `%pvpindex_faction_prestige_color%` — see
+`%dfactions_faction_level%`, `%dfactions_faction_prestige%`, `%dfactions_faction_xp%`,
+`%dfactions_faction_xp_required%`, `%dfactions_faction_prestige_color%` — see
 [Placeholders](/plugins/dfactions/placeholders/).

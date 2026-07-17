@@ -9,7 +9,7 @@ supply drops, backed by an embedded database that needs zero setup.
 
 Built for competitive PvP servers, it stores everything through an embedded **H2** database out of
 the box (MySQL/MariaDB optional) and plugs into Vault, PlaceholderAPI, WorldGuard, EssentialsX,
-dynmap, DiscordSRV and LWC — every integration fully optional.
+dynmap, Phalanx (Discord) and LWC — every integration fully optional.
 
 ---
 

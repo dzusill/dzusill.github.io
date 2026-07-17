@@ -17,7 +17,7 @@ factions:
 
 Every faction tracks **kills**, **deaths**, **wars won** and **wars lost**. Stats surface in
 `/f info`, the [Statistics GUI](/plugins/dfactions/features/gui/), `/f top kills|wars|level`, and placeholders
-(`%pvpindex_faction_kills%`, `%pvpindex_faction_kd%`, …).
+(`%dfactions_faction_kills%`, `%dfactions_faction_kd%`, …).
 
 ## Shields
 
