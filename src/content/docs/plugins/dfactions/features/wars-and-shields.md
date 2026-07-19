@@ -104,7 +104,8 @@ ends, the war becomes **active** automatically.
   faction's** XP into the killer's faction (set to `0` to disable). Only applies while both factions
   are in an active war.
 - **Beacon objective** — with the [Beacon HQ](/plugins/dfactions/features/beacon/) system on, destroying the enemy beacon ends
-  the war instantly; the winner takes the loser's bank + XP and all of the loser's chest contents drop.
+  the war instantly; the winner takes the loser's bank + XP and all of the loser's chest contents drop,
+  and the winner's own beacon is healed to full health immediately.
 - On war end, `wars_won` / `wars_lost` update for each side.
 
 > For the fairest experience, enable **both** `war` and `beacon` so wars have a concrete objective

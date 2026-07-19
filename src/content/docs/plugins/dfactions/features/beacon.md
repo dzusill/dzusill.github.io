@@ -58,6 +58,9 @@ it wins the war instantly:
 - The war ends with the attacker as victor.
 - The loser's **bank balance and XP** transfer to the winner.
 - **All** of the loser's team-chest contents **drop** at the beacon (nothing is kept).
+- The winner's own beacon **instantly heals to full health** the moment the war ends — no waiting
+  on the normal regen timer. This applies to every path that ends a war with a winner, including a
+  forfeit when the enemy faction disbands mid-war.
 
 This makes the beacon the central risk/reward object of the war system.
 
