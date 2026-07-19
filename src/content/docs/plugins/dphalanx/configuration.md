@@ -32,6 +32,17 @@ tickets:
   enabled: true
   max-open-per-player: 3
   wizard-timeout-seconds: 60          # /ticket create question prompts
+  categories:                         # /ticket create's category list — local to this server
+    - id: "bug"
+      name: "Bug Report"
+      questions:
+        - question: "What happened? Be as specific as possible."
+        - question: "Steps to reproduce, if known"
+          required: false
+    - id: "player-report"
+      name: "Report a Player"
+      questions:
+        - question: "Which player, and what did they do?"
 
 reports:
   enabled: true
@@ -68,6 +79,7 @@ Notes:
 
 - `api.key` / `api.tenant-slug` must line up with the API (`MC_PLUGIN_API_KEY`) and the bot (`TENANT_SLUG`) and the seeded database tenant. `/dphalanx status` prints the slug + host so you can confirm.
 - `remote-console.enabled` and `ban-role-sync.enabled` are **off** by default. Remote console also requires the API flag; ban-role also requires `bannedRoleId` in the database.
+- `tickets.categories` defines the **in-game** `/ticket create` category list and wizard questions entirely locally — no website/database round-trip, no restart needed beyond `/dphalanx reload`. This is independent of the Discord-side `TicketCategory` panel categories described below; the two lists don't need to match, only align the `id`s if you want them to correspond.
 - `faction.placeholder` works with **any** faction plugin — set it to whatever placeholder that plugin exposes (requires PlaceholderAPI).
 
 ---
@@ -110,4 +122,4 @@ One row per `(tenant, kind)`. `CHAT` may carry a `webhookUrl` (nicer per-line na
 | `CONSOLE` | remote-console audit + results |
 | `SERVER_STATUS` | join/leave + start/stop (optional; falls back to `CHAT`) |
 
-Ticket **categories** and **panels** are their own tables (`TicketCategory`, `TicketPanel`) — the seed creates a starter Support category + panel when you pass `DPH_TICKET_PARENT_ID`.
+Discord-panel ticket **categories** and **panels** are their own tables (`TicketCategory`, `TicketPanel`) — the seed creates a starter Support category + panel when you pass `DPH_TICKET_PARENT_ID`. These drive the Discord embed/button/modal side only; the in-game `/ticket create` category list is separate and lives in the plugin's `config.yml` (`tickets.categories`, above).

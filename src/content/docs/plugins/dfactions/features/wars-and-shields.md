@@ -21,7 +21,7 @@ Every faction tracks **kills**, **deaths**, **wars won** and **wars lost**. Stat
 
 ## Shields
 
-**Disabled by default.** A shield grants **timed protection** from war declaration, bought from
+**Enabled by default.** A shield grants **timed protection** from war declaration, bought from
 the faction bank.
 
 ```yaml
@@ -38,13 +38,15 @@ factions:
 
 ```
 /f shield          # show tiers and your status
-/f shield 24       # buy the 24-hour shield
+/f shield buy 24   # buy the 24-hour shield
 ```
 
 - Cost is paid from the **faction bank** (needs [economy](/plugins/dfactions/features/economy/)).
 - Prestige can discount the price.
 - A shielded faction **cannot be war-declared** while active, **does not stack**, and generally
   cannot itself declare war while protected.
+- `cooldown-hours` (default `0`, disabled) makes a faction wait after a shield expires before
+  buying another.
 
 ### Admin daily war-shield
 
@@ -62,7 +64,7 @@ factions:
 
 ## Wars
 
-**Disabled by default.** Structured, fair-fight wars with a prep window and a clear victory
+**Enabled by default.** Structured, fair-fight wars with a prep window and a clear victory
 condition.
 
 ```yaml

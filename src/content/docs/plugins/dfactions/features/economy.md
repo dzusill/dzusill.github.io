@@ -45,13 +45,13 @@ a friendly action label ("Bank Withdraw"), and a grouped amount (`$10,000.00`).
 
 ## Tax
 
-**Disabled by default.** Periodically deducts a fraction of each faction's bank — a money sink.
+**Enabled by default.** Periodically deducts a fraction of each faction's bank — a money sink.
 
 ```yaml
 factions:
   economy:
     tax:
-      enabled: false
+      enabled: true
       rate: 0.05             # 5% of the bank each interval
       interval-hours: 24
       min-bank-balance: 0.0  # don't tax below this
@@ -60,14 +60,14 @@ factions:
 
 ## Interest
 
-**Disabled by default.** The mirror of tax — periodically **pays** factions a fraction of their
+**Enabled by default.** The mirror of tax — periodically **pays** factions a fraction of their
 eligible bank.
 
 ```yaml
 factions:
   economy:
     interest:
-      enabled: false
+      enabled: true
       rate: 0.02                       # 2% payout each interval
       interval-hours: 24
       max-eligible-balance: 1000000.0  # balance above this earns nothing

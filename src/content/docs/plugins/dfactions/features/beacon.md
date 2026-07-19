@@ -6,7 +6,7 @@ description: "The Beacon HQ turns a faction's headquarters into a physical, prot
 The **Beacon HQ** turns a faction's headquarters into a physical, protected block in the world — its
 heart, and during wars the objective enemies must destroy to win.
 
-> **Disabled by default.** Enable with `factions.beacon.enabled: true`, then restart or `/fa reload`.
+> **Enabled by default.** Disable with `factions.beacon.enabled: false`, then restart or `/fa reload`.
 
 ## What the beacon is
 

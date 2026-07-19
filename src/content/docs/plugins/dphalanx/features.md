@@ -22,8 +22,8 @@ Minecraft chat is mirrored to a Discord channel and vice-versa.
 A ticket system modeled on PlexTickets, usable from **both** sides:
 
 - **Panels** — a Discord embed with buttons or a dropdown, posted with `/panel publish`. Each button/option is a **category**.
-- **Categories** (in the database) — name, emoji, button color, the Discord category ticket channels spawn under, support roles, required roles, a channel-name template, a welcome message, and up to **5 modal questions** asked when opening.
-- **Opening** — in Discord, click a panel button → fill the modal → a **private channel** opens (only you + support roles can see it). In Minecraft, `/ticket create <category>` runs a short chat wizard that asks the same questions.
+- **Categories** (Discord side, in the database) — name, emoji, button color, the Discord category ticket channels spawn under, support roles, required roles, a channel-name template, a welcome message, and up to **5 modal questions** asked when opening.
+- **Opening** — in Discord, click a panel button → fill the modal → a **private channel** opens (only you + support roles can see it). In Minecraft, `/ticket create <category>` runs a short chat wizard against its own category list, configured locally in the plugin's `config.yml` (`tickets.categories`) — independent of the Discord-side categories above.
 - **In the ticket** — Claim 🙋, Close 🔒, and Close-Request ⏳ buttons; `/priority`, `/ticket-user add|remove`. Replies flow both ways: staff replies in Discord show privately to the player in game; the player replies with `/ticket reply` or from the channel.
 - **Lifecycle** — optional auto-close on inactivity (with a warning first), staff close-requests the player confirms, and configurable working hours.
 - **Closing** — the channel is deleted and a full **HTML transcript** (built from stored messages) is posted to `TICKETS_CLOSED`. The opener is then DM'd a **1–5 star rating** prompt; ratings land in `REVIEWS`.
