@@ -1,9 +1,9 @@
 ---
 title: "Features"
-description: "Every feature is gated by a per-tenant flag in the database (DiscordIntegrationConfig) and by the plugin's config.yml, so you can roll them out one at a…"
+description: "Every feature is gated by a per-tenant flag (admin panel → Server → Discord) and by the plugin's config.yml, so you can roll them out one at a time. The…"
 ---
 
-Every feature is gated by a per-tenant flag in the database (`DiscordIntegrationConfig`) **and** by the plugin's `config.yml`, so you can roll them out one at a time. The riskier ones (rewards, remote console, ban role) ship **off**.
+Every feature is gated by a per-tenant flag (admin panel → *Server → Discord*) **and** by the plugin's `config.yml`, so you can roll them out one at a time. The riskier ones (rewards, remote console, ban role) ship **off**.
 
 ## 💬 Chat sync
 
@@ -22,8 +22,8 @@ Minecraft chat is mirrored to a Discord channel and vice-versa.
 A ticket system modeled on PlexTickets, usable from **both** sides:
 
 - **Panels** — a Discord embed with buttons or a dropdown, posted with `/panel publish`. Each button/option is a **category**.
-- **Categories** (Discord side, in the database) — name, emoji, button color, the Discord category ticket channels spawn under, support roles, required roles, a channel-name template, a welcome message, and up to **5 modal questions** asked when opening.
-- **Opening** — in Discord, click a panel button → fill the modal → a **private channel** opens (only you + support roles can see it). In Minecraft, `/ticket create <category>` runs a short chat wizard against its own category list, configured locally in the plugin's `config.yml` (`tickets.categories`) — independent of the Discord-side categories above.
+- **Categories** (in the database) — name, emoji, button color, the Discord category ticket channels spawn under, support roles, required roles, a channel-name template, a welcome message, and up to **5 modal questions** asked when opening.
+- **Opening** — in Discord, click a panel button → fill the modal → a **private channel** opens (only you + support roles can see it). In Minecraft, `/ticket create <category>` runs a short chat wizard asking the same questions. The plugin caches the category list to disk, so ticket creation survives a website outage.
 - **In the ticket** — Claim 🙋, Close 🔒, and Close-Request ⏳ buttons; `/priority`, `/ticket-user add|remove`. Replies flow both ways: staff replies in Discord show privately to the player in game; the player replies with `/ticket reply` or from the channel.
 - **Lifecycle** — optional auto-close on inactivity (with a warning first), staff close-requests the player confirms, and configurable working hours.
 - **Closing** — the channel is deleted and a full **HTML transcript** (built from stored messages) is posted to `TICKETS_CLOSED`. The opener is then DM'd a **1–5 star rating** prompt; ratings land in `REVIEWS`.

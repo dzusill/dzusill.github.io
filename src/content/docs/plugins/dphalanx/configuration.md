@@ -6,7 +6,9 @@ description: "Configuration lives in two places:"
 Configuration lives in two places:
 
 - **`plugins/dPhalanx/config.yml`** — how the plugin connects and which in-game features it runs.
-- **The database (`DiscordIntegrationConfig` + `DiscordChannelLink`)** — per-tenant Discord feature flags, role ids, and channel mappings, read by the API and bot. Seeded with `pnpm --filter @repo/api seed:discord`; an admin-panel editor is planned.
+- **The admin panel** (*Server → Discord*) — per-tenant Discord feature flags, channel mappings, role ids and the ticket auto-close timers, stored in the database (`DiscordIntegrationConfig` + `DiscordChannelLink`) and read by the API and bot. Requires the `settings` permission. The `pnpm --filter @repo/api seed:discord` script still works for first-time provisioning, but the panel is now the normal way to change any of this.
+
+Ticket **categories** and **panels** remain database-only (seed script or direct DB edit) — they aren't in the admin panel yet.
 
 ---
 
@@ -32,17 +34,7 @@ tickets:
   enabled: true
   max-open-per-player: 3
   wizard-timeout-seconds: 60          # /ticket create question prompts
-  categories:                         # /ticket create's category list — local to this server
-    - id: "bug"
-      name: "Bug Report"
-      questions:
-        - question: "What happened? Be as specific as possible."
-        - question: "Steps to reproduce, if known"
-          required: false
-    - id: "player-report"
-      name: "Report a Player"
-      questions:
-        - question: "Which player, and what did they do?"
+  # Categories themselves live in the database (see above) — the plugin fetches them at startup.
 
 reports:
   enabled: true
@@ -79,12 +71,15 @@ Notes:
 
 - `api.key` / `api.tenant-slug` must line up with the API (`MC_PLUGIN_API_KEY`) and the bot (`TENANT_SLUG`) and the seeded database tenant. `/dphalanx status` prints the slug + host so you can confirm.
 - `remote-console.enabled` and `ban-role-sync.enabled` are **off** by default. Remote console also requires the API flag; ban-role also requires `bannedRoleId` in the database.
-- `tickets.categories` defines the **in-game** `/ticket create` category list and wizard questions entirely locally — no website/database round-trip, no restart needed beyond `/dphalanx reload`. This is independent of the Discord-side `TicketCategory` panel categories described below; the two lists don't need to match, only align the `id`s if you want them to correspond.
+- Ticket categories (and their wizard questions) are fetched from the website at startup and on `/dphalanx reload`. The last successful fetch is cached to `plugins/dPhalanx/ticket-categories.yml`, and that cache is loaded *before* the network call — so `/ticket create` keeps working with the last-known-good categories even if the website is unreachable when the server boots. The cache is never overwritten with an empty list.
 - `faction.placeholder` works with **any** faction plugin — set it to whatever placeholder that plugin exposes (requires PlaceholderAPI).
 
 ---
 
-## Database — `DiscordIntegrationConfig` (per tenant)
+## Admin panel — `DiscordIntegrationConfig` (per tenant)
+
+Edit these under *Server → Discord* in the admin panel. `workingHours` is the one field that isn't
+exposed there yet.
 
 | Field | Meaning |
 |---|---|
@@ -107,9 +102,11 @@ Notes:
 
 ---
 
-## Database — `DiscordChannelLink` (channel kinds)
+## Admin panel — `DiscordChannelLink` (channel kinds)
 
-One row per `(tenant, kind)`. `CHAT` may carry a `webhookUrl` (nicer per-line name+avatar).
+One row per `(tenant, kind)`, editable under *Server → Discord*. `CHAT` may carry a `webhookUrl`
+(nicer per-line name+avatar). Clearing a channel field removes the mapping, and that feature then has
+nowhere to post.
 
 | Kind | Used by |
 |---|---|
@@ -122,4 +119,4 @@ One row per `(tenant, kind)`. `CHAT` may carry a `webhookUrl` (nicer per-line na
 | `CONSOLE` | remote-console audit + results |
 | `SERVER_STATUS` | join/leave + start/stop (optional; falls back to `CHAT`) |
 
-Discord-panel ticket **categories** and **panels** are their own tables (`TicketCategory`, `TicketPanel`) — the seed creates a starter Support category + panel when you pass `DPH_TICKET_PARENT_ID`. These drive the Discord embed/button/modal side only; the in-game `/ticket create` category list is separate and lives in the plugin's `config.yml` (`tickets.categories`, above).
+Ticket **categories** and **panels** are their own tables (`TicketCategory`, `TicketPanel`) — the seed creates a starter Support category + panel when you pass `DPH_TICKET_PARENT_ID`. They drive both the Discord panel buttons/modals and the in-game `/ticket create` wizard. Not yet editable from the admin panel.
