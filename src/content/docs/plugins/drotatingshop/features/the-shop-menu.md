@@ -7,7 +7,7 @@ description: "/market (the name is configurable) opens the shop — a GUI showin
 
 ## Layout
 
-The GUI **grows to fit** `items-per-rotation` (up to 21) and always centres the items on both axes. Three rows of chrome are fixed — a filler border above the items, a filler border below, and a footer row for the clock — and 1–3 rows of items (7 per row) sit centred between the borders:
+By default the GUI **grows to fit** `items-per-rotation` and always centres the items on both axes. Three rows of chrome are fixed — a filler border above the items, a filler border below, and a footer row for the clock — and the item rows (7 per row) sit centred between the borders:
 
 ```
 7 items (4 rows / 36 slots)      14 items (5 rows / 45 slots)      21 items (6 rows / 54 slots)
@@ -19,11 +19,18 @@ The GUI **grows to fit** `items-per-rotation` (up to 21) and always centres the 
                                                                      . . . . ⏱ . . . .
 ```
 
-- **Items** are packed 7 per row and centred; a shorter final row (e.g. 3 items) is centred horizontally too, and the whole block is centred between the top and bottom borders.
+- **Items** are packed `gui.items-per-row` per row (7 by default) and centred; a shorter final row (e.g. 3 items) is centred horizontally too, and the whole block is centred between the top and bottom borders.
 - The **countdown clock** always sits in the centre of the bottom row — a `CLOCK` that reads *"Next rotation in 1h 5m 3s"* and ticks down once a second.
 - Every other slot is **filler** (`gui.fill-material` in [config.yml](/plugins/drotatingshop/configuration/config/)).
 
-The title comes from `gui.title`; the clock's own text comes from `gui.clock.*` — both MiniMessage, both editable without recompiling. See [items-per-rotation](/plugins/drotatingshop/configuration/config/#shop) for the exact row/slot math.
+### Sizing the grid
+
+Two `gui` keys reshape the grid (see [config.yml → gui](/plugins/drotatingshop/configuration/config/#gui)):
+
+- **`gui.items-per-row`** (default `7`, range 1–9) — the grid width. `7` keeps a filler border down each side; `9` fills a row edge to edge. A wider grid also raises how many items a rotation can show.
+- **`gui.rows`** (default `0`) — `0` auto-sizes the inventory to the items; a fixed `4`–`6` pins the height (a chest maxes out at 6 rows). When pinned, the items are centred inside the fixed box and `items-per-rotation` is capped to `items-per-row × (rows − 3)`.
+
+The title comes from `gui.title`; the clock's own text comes from `gui.clock.*` — both MiniMessage, both editable without recompiling.
 
 ## While the shop is rotating
 
