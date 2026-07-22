@@ -116,6 +116,17 @@ All require `factions.admin` (or the specific child node).
 | `/fa shield <faction> <startHour> <hours>` | `factions.cmd.shield` |
 | `/fa flag <faction> <flag> <value>` | `factions.cmd.flag.set` |
 | `/fa audit [faction]` | `factions.cmd.audit` |
+| `/fa level` / `/fa xp` / `/fa prestige` `<faction> <set\|add\|remove> <n>` | `factions.cmd.level.other` / `.xp.other` / `.prestige.other` |
+| `/fa money <faction> <set\|add\|remove> <amount>` | `factions.cmd.money.other` |
+| `/fa stats <faction> <field> <set\|add\|remove> <n>` | `factions.cmd.stats.other` |
+| `/fa description` / `/fa motd <faction> <clear\|text>` | `factions.cmd.description.other` / `.motd.other` |
+| `/fa rename <faction> <new-name>` | `factions.cmd.rename.other` |
+
+Admins can directly set or adjust (`set`/`add`/`remove`) any faction's level, XP, prestige rank,
+bank balance, kills/deaths/wars-won/wars-lost, description, MOTD, or name — bypassing normal
+membership/ownership requirements. Every change is written to the audit log. See
+[Leveling & Prestige](/plugins/dfactions/features/progression/) and
+[Economy & Bank](/plugins/dfactions/features/economy/) for the systems these override.
 
 ## Permission defaults
 

@@ -19,6 +19,10 @@ Every faction tracks **kills**, **deaths**, **wars won** and **wars lost**. Stat
 `/f info`, the [Statistics GUI](/plugins/dfactions/features/gui/), `/f top kills|wars|level`, and placeholders
 (`%dfactions_faction_kills%`, `%dfactions_faction_kd%`, …).
 
+Staff can correct any of the four counters with
+`/fa stats <faction> <kills|deaths|wars-won|wars-lost> <set|add|remove> <n>` — see
+[Commands & Permissions](/plugins/dfactions/commands-and-permissions/).
+
 ## Shields
 
 **Enabled by default.** A shield grants **timed protection** from war declaration, bought from

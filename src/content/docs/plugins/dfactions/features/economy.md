@@ -43,6 +43,10 @@ factions:
 Bank transactions also appear in the **Activity log** GUI, formatted with the acting player's name,
 a friendly action label ("Bank Withdraw"), and a grouped amount (`$10,000.00`).
 
+Staff can directly set or adjust any faction's balance with
+`/fa money <faction> <set|add|remove> <amount>`, bypassing Vault entirely — see
+[Commands & Permissions](/plugins/dfactions/commands-and-permissions/).
+
 ## Tax
 
 **Enabled by default.** Periodically deducts a fraction of each faction's bank — a money sink.

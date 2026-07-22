@@ -69,6 +69,13 @@ factions:
 Bonuses scale with rank — e.g. `xp-mult-per-prestige: 0.05` gives +5% XP at prestige 1, +10% at
 prestige 2, and so on.
 
+## Admin overrides
+
+Staff can directly set or adjust any faction's level, XP, or prestige rank with
+`/fa level`, `/fa xp`, and `/fa prestige <faction> <set|add|remove> <n>` — raw overrides that don't
+reset each other the way `/f prestige` does, useful for corrections or testing. See
+[Commands & Permissions](/plugins/dfactions/commands-and-permissions/).
+
 ## Prestige-gated claim capacity
 
 ```yaml
