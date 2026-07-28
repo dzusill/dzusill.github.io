@@ -30,6 +30,7 @@ const PLUGINS = [
   { slug: 'dhomegui',      name: 'dHomeGUI',      src: '../dHomeGUI/docs' },
   { slug: 'dnicks',        name: 'dNicks',        src: '../dNicks/docs' },
   { slug: 'dbloodmoney',   name: 'dBloodMoney',   src: '../dbloodmoney/docs' },
+  { slug: 'dkilltracker',  name: 'dKillTracker',  src: '../dKillTracker/docs' },
   { slug: 'toolsnotifier', name: 'ToolsNotifier', src: '../ToolNotifier/docs' },
   { slug: 'ddeathpenalty', name: 'dDeathPenalty', src: '../DeathPenalty/docs' },
   { slug: 'dlottery',      name: 'dLottery',      src: '../dLottery/docs' },
@@ -43,7 +44,7 @@ const PLUGINS = [
 const PLUGIN_EMOJI = {
   dzusillcore: '🛠️', dstattrack: '📊', warpgui: '🧭', dhomegui: '🏠',
   dnicks: '🎨', dbloodmoney: '💰', toolsnotifier: '🔔', ddeathpenalty: '💀',
-  dlottery: '🎰', drotatingshop: '🛒', dfactions: '⚔️',
+  dlottery: '🎰', drotatingshop: '🛒', dfactions: '⚔️', dkilltracker: '🗡️',
 };
 const SECTION_EMOJI = {
   'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',

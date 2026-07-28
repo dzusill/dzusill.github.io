@@ -774,6 +774,100 @@
     ]
   },
   {
+    "label": "🗡️ dKillTracker",
+    "collapsed": true,
+    "items": [
+      {
+        "label": "📘 Introduction",
+        "slug": "plugins/dkilltracker"
+      },
+      {
+        "label": "🚀 Getting Started",
+        "items": [
+          {
+            "label": "Requirements",
+            "slug": "plugins/dkilltracker/getting-started/requirements"
+          },
+          {
+            "label": "Installation",
+            "slug": "plugins/dkilltracker/getting-started/installation"
+          },
+          {
+            "label": "Quick Start",
+            "slug": "plugins/dkilltracker/getting-started/quick-start"
+          }
+        ]
+      },
+      {
+        "label": "✨ Features",
+        "items": [
+          {
+            "label": "Kill Tracking",
+            "slug": "plugins/dkilltracker/features/kill-tracking"
+          },
+          {
+            "label": "Anti-Farm Protection",
+            "slug": "plugins/dkilltracker/features/anti-farm"
+          },
+          {
+            "label": "Milestones & Ranks",
+            "slug": "plugins/dkilltracker/features/milestones"
+          },
+          {
+            "label": "Combat Tagging",
+            "slug": "plugins/dkilltracker/features/combat-tagging"
+          },
+          {
+            "label": "Leaderboard",
+            "slug": "plugins/dkilltracker/features/leaderboard"
+          }
+        ]
+      },
+      {
+        "label": "⚙️ Configuration",
+        "items": [
+          {
+            "label": "config.yml",
+            "slug": "plugins/dkilltracker/configuration/config"
+          },
+          {
+            "label": "messages.yml",
+            "slug": "plugins/dkilltracker/configuration/messages"
+          },
+          {
+            "label": "database.yml",
+            "slug": "plugins/dkilltracker/configuration/database"
+          },
+          {
+            "label": "Reloading",
+            "slug": "plugins/dkilltracker/configuration/reloading"
+          }
+        ]
+      },
+      {
+        "label": "📖 Reference",
+        "items": [
+          {
+            "label": "Commands & Permissions",
+            "slug": "plugins/dkilltracker/commands-and-permissions"
+          },
+          {
+            "label": "Placeholders",
+            "slug": "plugins/dkilltracker/placeholders"
+          },
+          {
+            "label": "FAQ & Troubleshooting",
+            "slug": "plugins/dkilltracker/faq"
+          },
+          {
+            "label": "Credits",
+            "slug": "plugins/dkilltracker/credits"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "label": "🔔 ToolsNotifier",
     "collapsed": true,
     "items": [

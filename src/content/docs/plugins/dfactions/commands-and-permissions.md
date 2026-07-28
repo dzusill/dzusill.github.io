@@ -153,8 +153,8 @@ All require `factions.admin` (or the specific child node).
 Admins can directly set or adjust (`set`/`add`/`remove`) any faction's level, XP, prestige rank,
 bank balance, kills/deaths/wars-won/wars-lost, description, MOTD, or name — bypassing normal
 membership/ownership requirements. Every change is written to the audit log. See
-[Leveling & Prestige](/plugins/dfactions/features/progression/) and
-[Economy & Bank](/plugins/dfactions/features/economy/) for the systems these override.
+[Leveling & Prestige](/plugins/dfactions/features/progression/) and [Economy & Bank](/plugins/dfactions/features/economy/) for the
+systems these override.
 
 ## Permission defaults
 
