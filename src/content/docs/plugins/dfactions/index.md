@@ -21,6 +21,8 @@ dynmap, Phalanx (Discord) and LWC — every integration fully optional.
 - 🛰️ **Beacon HQ** — a physical, protected beacon block is your faction's heart and, during wars, the
   objective enemies must destroy.
 - ⚔️ **Declared wars** — prep window, level-range gating, per-kill bank steal, beacon-destroy victory.
+- 📊 **Statistics & seasons** — a permanent event log, competitive seasons, and a skill ranking that
+  is not worth farming, with public leaderboards and profiles on your website.
 - 🛡️ **Shields** — buy timed protection tiers (6 / 12 / 24 / 48h) from the faction bank.
 - 🎁 **Supply drops** — timed, contested loot chests spawn in the world.
 - 💰 **Economy** — faction bank, create/claim costs, tax and interest through Vault.

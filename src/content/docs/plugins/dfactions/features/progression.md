@@ -23,6 +23,7 @@ factions:
     enabled: true
     max-level: 100
     resource-chest: { title: "Faction Resources", rows: 3 }
+    item-xp-default: 0.5
     item-xp:
       STONE: 1
       OAK_LOG: 1
@@ -32,7 +33,35 @@ factions:
       NETHERITE_INGOT: 100
 ```
 
-Add any Bukkit `Material` to `item-xp` to make it depositable. Unlisted items grant no XP.
+Add any Bukkit `Material` to `item-xp` to make it depositable. Items not listed fall back to
+`item-xp-default` (set it to `0` for list-only rewards).
+
+### Enchantment bonus
+
+Enchanted items are worth more. On top of an item's base `item-xp`, each enchantment adds
+`value × enchant-level`, so a Sharpness V + Unbreaking III sword deposits for far more than a plain
+one. Enchanted books count their **stored** enchantments, so a valuable book is worth depositing
+even when `ENCHANTED_BOOK` has no base value.
+
+```yaml
+factions:
+  leveling:
+    enchant-xp:
+      enabled: true
+      default: 2.0          # per-level value for any enchant not listed below
+      values:               # keyed by the modern namespaced enchant key
+        sharpness: 3.0
+        unbreaking: 2.0
+        looting: 10.0
+        fortune: 15.0
+        silk_touch: 15.0
+        mending: 25.0
+```
+
+Per item: `bonus = Σ (value × level)` over its enchantments, added to the base `item-xp`, then
+multiplied by the stack amount. A diamond sword with base `10`, Sharpness V (`3.0×5`) and Unbreaking
+III (`2.0×3`) deposits for `10 + 15 + 6 = 31` XP. Set `enchant-xp.enabled: false` to ignore
+enchantments.
 
 ## The level curve
 

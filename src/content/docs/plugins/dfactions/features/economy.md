@@ -93,4 +93,5 @@ individual warps with a password:
 /f warp password <name> ...  # protect a warp (officer+)
 ```
 
-See [Homes & Warps](/plugins/dfactions/features/homes-and-warps/) for the full command set (icons, descriptions, GUI).
+See [Commands & Permissions](/plugins/dfactions/commands-and-permissions/#home-warps--storage) for the full
+command set (icons, descriptions, GUI).

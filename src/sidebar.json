@@ -1258,6 +1258,10 @@
             "slug": "plugins/dfactions/features/wars-and-shields"
           },
           {
+            "label": "Statistics & Seasons",
+            "slug": "plugins/dfactions/features/statistics"
+          },
+          {
             "label": "Economy & Bank",
             "slug": "plugins/dfactions/features/economy"
           },
@@ -1306,6 +1310,10 @@
           {
             "label": "Integrations",
             "slug": "plugins/dfactions/integrations"
+          },
+          {
+            "label": "The Statistics Website",
+            "slug": "plugins/dfactions/website-statistics"
           },
           {
             "label": "FAQ & Troubleshooting",

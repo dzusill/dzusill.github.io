@@ -22,8 +22,14 @@ These systems ship **disabled by default** — flip them on when ready:
 | Faction merges | `factions.merge.enabled` | `false` |
 | Admin war-shield | `factions.war.shield.enabled` | `false` |
 | Phalanx Discord | `integrations.phalanx.enabled` | `false` |
+| Statistics push to the website | `integrations.phalanx.stats.enabled` | `false` |
 
-Enabled by default: leveling, combat stats, economy, fly, safe/war zones, bStats, update checks.
+Enabled by default: leveling, combat stats, the statistics event log, seasons, economy, fly,
+safe/war zones, bStats, update checks.
+
+> The statistics **event log** records locally from day one; only the **push to the website**
+> is opt-in. Enabling it later uploads the whole backlog, so nothing from the meantime is lost —
+> see [Statistics & Seasons](/plugins/dfactions/features/statistics/).
 
 ## Core limits
 
@@ -58,11 +64,14 @@ Each system has its own section; the full detail is on the feature pages:
   [Territory & Claims](/plugins/dfactions/features/territory/)
 - `factions.leveling`, `factions.prestige` — [Leveling & Prestige](/plugins/dfactions/features/progression/)
 - `factions.beacon` — [Beacon HQ](/plugins/dfactions/features/beacon/)
-- `factions.stats`, `factions.shield`, `factions.war` — [Wars, Shields & Stats](/plugins/dfactions/features/wars-and-shields/)
+- `factions.shield`, `factions.war` — [Wars, Shields & Stats](/plugins/dfactions/features/wars-and-shields/)
+- `factions.stats`, `factions.seasons` — [Statistics & Seasons](/plugins/dfactions/features/statistics/)
 - `factions.economy` — [Economy & Bank](/plugins/dfactions/features/economy/)
 - `factions.supply-drops` — [Supply Drops](/plugins/dfactions/features/supply-drops/)
 - `factions.flags` — per-faction PvP/explosion/fire/open toggles
 - `factions.fly` — faction flight in own territory
+- `factions.warp`, `factions.home`, `factions.teleport` — teleport timing (see below)
+- `factions.broadcast` — server-wide announcements (see below)
 - `integrations.*` — [Integrations](/plugins/dfactions/integrations/)
 
 ## Flags
@@ -85,6 +94,36 @@ Officers toggle flags with `/f flag set <flag>` unless `player-editable: false`.
 factions:
   fly: { enabled: true, disable-on-threat: true, require-own-territory: true }
 ```
+
+## Teleport timing
+
+`/f home` and `/f warp` share the same gates: a **cooldown** between teleports and a stand-still
+**warmup** before each one completes (moving, taking damage, or attacking cancels it). `0` disables
+either. While a warmup counts down, a live per-second **countdown title** is shown on screen; the
+chat line is always sent, so `warmup-title.enabled: false` only hides the title.
+
+```yaml
+factions:
+  home: { cooldown-seconds: 5, warmup-seconds: 10 }
+  warp: { cooldown-seconds: 5, warmup-seconds: 10 }
+  teleport:
+    warmup-title: { enabled: true }
+```
+
+Bypass permissions: `factions.teleport.cooldown.bypass`, `factions.teleport.warmup.bypass`.
+
+## Broadcasts
+
+```yaml
+factions:
+  broadcast:
+    faction-disbanded: true              # announce every disband server-wide
+    faction-disbanded-on-war-loss: true  # also announce war losses (they also show a WAR OVERVIEW)
+```
+
+Every online player is told (via the `faction.disbanded` message) when any faction is destroyed —
+manual `/f disband`, admin `/fa disband`, or a war loss. Set `faction-disbanded-on-war-loss: false`
+to drop the extra line on war losses, or `faction-disbanded: false` to disable it entirely.
 
 ## Territory indicators & border visualizer
 

@@ -6,6 +6,9 @@ description: "/f gui (or right-clicking the Beacon HQ) opens the graphical facti
 `/f gui` (or right-clicking the [Beacon HQ](/plugins/dfactions/features/beacon/)) opens the graphical faction menu — a
 chest-style interface that surfaces most of the plugin without typing commands.
 
+> **`/f gui` requires being in a faction.** Players without one get a "you are not in a faction"
+> message instead of an empty Wilderness menu.
+
 ## Menu sections
 
 | Icon | Section | What it does |

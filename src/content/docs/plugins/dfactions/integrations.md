@@ -42,7 +42,10 @@ With `worldguard-sync-regions: true`, faction claims are mirrored as WorldGuard
 integrations: { essentialsx: { enabled: false } }
 ```
 
-When enabled, `/f home` teleports through EssentialsX (respecting warmups/cooldowns).
+When enabled, `/f home` teleports through EssentialsX, which applies its own teleport cooldown and
+can still refuse the teleport. The stand-still warmup before `/f home` and `/f warp` is dFactions'
+own (`factions.<home|warp>.warmup-seconds`) and runs first; EssentialsX does not add a second delay
+on top of it.
 
 ## dynmap
 
@@ -92,6 +95,42 @@ categories you don't want announced — whether an event actually posts to Disco
 channel) is controlled server-side in phalanx-mono. On each enabled event, the plugin sends an
 async `POST` to `{api-url}{event-path}` with `Authorization: Bearer <api-key>` and
 `X-Tenant-Slug: <tenant-slug>`. The receiving endpoint must exist on your phalanx-mono deployment.
+
+### Statistics event stream
+
+The same credentials also carry the [statistics platform](/plugins/dfactions/features/statistics/) — season
+leaderboards, player and faction profiles and the skill ranking. **Opt-in and off by default.**
+
+```yaml
+integrations:
+  phalanx:
+    stats:
+      enabled: false
+      event-path: "/api/v1/factions/stat-events"
+      push-interval-seconds: 30
+      batch-size: 500
+      max-backoff-seconds: 900
+      request-timeout-seconds: 15
+      accept-leaderboard-mirror: true
+      stale-after-minutes: 60
+```
+
+Batches of raw observations are `POST`ed to `{api-url}{event-path}` with the same
+`Authorization: Bearer <api-key>` and `X-Tenant-Slug: <tenant-slug>` headers as above, plus an
+`X-Batch-Uid` used for deduplication. Delivery is at-least-once — a batch whose response was lost
+is re-sent with identical event ids — so the receiving side deduplicates and a repeat is a normal,
+silent outcome.
+
+The response may carry a leaderboard mirror, which is applied to `ranked_rating` and
+`ranked_position`. That mirror contains **only a position and a rating**: no weight, no reason and
+no flag, because a player who could tell their results had been discounted would simply adjust
+until they stopped being discounted.
+
+Turning this off does not stop recording. The local log fills either way and resumes from its
+watermark once re-enabled, so nothing from the meantime is lost. If the API is unreachable, events
+accumulate locally and nothing else on the server is affected.
+
+See [The Statistics Website](/plugins/dfactions/website-statistics/) for the read endpoints and what the site shows.
 
 ## TeamsAPI
 
