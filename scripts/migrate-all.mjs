@@ -35,6 +35,8 @@ const PLUGINS = [
   { slug: 'ddeathpenalty', name: 'dDeathPenalty', src: '../DeathPenalty/docs' },
   { slug: 'dlottery',      name: 'dLottery',      src: '../dLottery/docs' },
   { slug: 'drotatingshop', name: 'DRotatingShop', src: '../DRotatingShop/docs' },
+  // Sits right after the shop it derives its sell prices from.
+  { slug: 'ddonutworth',   name: 'dDonutWorth',   src: '../dDonutWorth/docs' },
   // dFactions source lives in docs-site/ (the plugin repo's docs/ holds a separate Jekyll site).
   { slug: 'dfactions',     name: 'dFactions',     src: '../dFactions/docs-site' },
   { slug: 'dphalanx',      name: 'dPhalanx',      src: '../dPhalanx/docs' },
@@ -45,6 +47,7 @@ const PLUGIN_EMOJI = {
   dzusillcore: '🛠️', dstattrack: '📊', warpgui: '🧭', dhomegui: '🏠',
   dnicks: '🎨', dbloodmoney: '💰', toolsnotifier: '🔔', ddeathpenalty: '💀',
   dlottery: '🎰', drotatingshop: '🛒', dfactions: '⚔️', dkilltracker: '🗡️',
+  ddonutworth: '🍩',
 };
 const SECTION_EMOJI = {
   'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',

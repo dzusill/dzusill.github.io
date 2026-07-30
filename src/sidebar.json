@@ -1308,6 +1308,128 @@
     ]
   },
   {
+    "label": "🍩 dDonutWorth",
+    "collapsed": true,
+    "items": [
+      {
+        "label": "📘 Introduction",
+        "slug": "plugins/ddonutworth"
+      },
+      {
+        "label": "🚀 Getting Started",
+        "items": [
+          {
+            "label": "Requirements",
+            "slug": "plugins/ddonutworth/getting-started/requirements"
+          },
+          {
+            "label": "Installation",
+            "slug": "plugins/ddonutworth/getting-started/installation"
+          },
+          {
+            "label": "Quick Start",
+            "slug": "plugins/ddonutworth/getting-started/quick-start"
+          }
+        ]
+      },
+      {
+        "label": "✨ Features",
+        "items": [
+          {
+            "label": "Price Sources",
+            "slug": "plugins/ddonutworth/features/price-sources"
+          },
+          {
+            "label": "Readable Item Keys",
+            "slug": "plugins/ddonutworth/features/item-keys"
+          },
+          {
+            "label": "Selling",
+            "slug": "plugins/ddonutworth/features/selling"
+          },
+          {
+            "label": "Worth Lore",
+            "slug": "plugins/ddonutworth/features/worth-lore"
+          },
+          {
+            "label": "Sell Multipliers",
+            "slug": "plugins/ddonutworth/features/sell-multipliers"
+          },
+          {
+            "label": "The Sell Axe",
+            "slug": "plugins/ddonutworth/features/the-sell-axe"
+          },
+          {
+            "label": "Sell History",
+            "slug": "plugins/ddonutworth/features/sell-history"
+          },
+          {
+            "label": "Custom Items",
+            "slug": "plugins/ddonutworth/features/custom-items"
+          }
+        ]
+      },
+      {
+        "label": "⚙️ Configuration",
+        "items": [
+          {
+            "label": "config.yml",
+            "slug": "plugins/ddonutworth/configuration/config"
+          },
+          {
+            "label": "prices.yml",
+            "slug": "plugins/ddonutworth/configuration/prices"
+          },
+          {
+            "label": "Sell Categories",
+            "slug": "plugins/ddonutworth/configuration/sell-categories"
+          },
+          {
+            "label": "GUIs",
+            "slug": "plugins/ddonutworth/configuration/guis"
+          },
+          {
+            "label": "sellaxe.yml",
+            "slug": "plugins/ddonutworth/configuration/sellaxe"
+          },
+          {
+            "label": "Sounds",
+            "slug": "plugins/ddonutworth/configuration/sounds"
+          },
+          {
+            "label": "messages.yml",
+            "slug": "plugins/ddonutworth/configuration/messages"
+          },
+          {
+            "label": "Reloading",
+            "slug": "plugins/ddonutworth/configuration/reloading"
+          }
+        ]
+      },
+      {
+        "label": "📖 Reference",
+        "items": [
+          {
+            "label": "Commands & Permissions",
+            "slug": "plugins/ddonutworth/commands-and-permissions"
+          },
+          {
+            "label": "Placeholders",
+            "slug": "plugins/ddonutworth/placeholders"
+          },
+          {
+            "label": "FAQ & Troubleshooting",
+            "slug": "plugins/ddonutworth/faq"
+          },
+          {
+            "label": "Credits",
+            "slug": "plugins/ddonutworth/credits"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "label": "⚔️ dFactions",
     "collapsed": true,
     "items": [
