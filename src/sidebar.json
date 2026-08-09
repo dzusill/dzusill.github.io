@@ -126,6 +126,31 @@
         ]
       },
       {
+        "label": "📂 Dialogs",
+        "items": [
+          {
+            "label": "Overview",
+            "slug": "plugins/dzusillcore/dialogs/overview"
+          },
+          {
+            "label": "DialogService",
+            "slug": "plugins/dzusillcore/dialogs/service"
+          },
+          {
+            "label": "Fallbacks",
+            "slug": "plugins/dzusillcore/dialogs/fallback"
+          },
+          {
+            "label": "Examples",
+            "slug": "plugins/dzusillcore/dialogs/examples"
+          },
+          {
+            "label": "Chat prompts",
+            "slug": "plugins/dzusillcore/prompts"
+          }
+        ]
+      },
+      {
         "label": "📡 Events",
         "items": [
           {
@@ -1578,6 +1603,25 @@
           {
             "label": "Commands & Permissions",
             "slug": "plugins/dphalanx/commands-and-permissions"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "💬 DDialogs",
+    "collapsed": true,
+    "items": [
+      {
+        "label": "DDialogs",
+        "slug": "plugins/ddialogs"
+      },
+      {
+        "label": "📖 Reference",
+        "items": [
+          {
+            "label": "How it works",
+            "slug": "plugins/ddialogs/how-it-works"
           }
         ]
       }

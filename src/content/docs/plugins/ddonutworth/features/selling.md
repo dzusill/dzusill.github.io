@@ -5,10 +5,22 @@ description: "Four ways to sell, all going through the same payout path."
 
 Four ways to sell, all going through the same payout path.
 
-## From your hand
+## The sell menu
 
 ```
 /sell
+/sellgui
+```
+
+Opens a menu you drop items into. Close it and the sale settles in **one** payout with one summary
+message.
+
+This is what the bare `/sell` does, because it is what players reach for and it is far harder to sell
+something by accident: you see what you put in before it goes.
+
+## From your hand
+
+```
 /sell hand
 ```
 
@@ -23,13 +35,7 @@ Sells the stack you are holding.
 
 Sells everything sellable and leaves everything else alone.
 
-## The sell GUI
-
-```
-/sellgui
-```
-
-Opens a menu you drop items into. Close it and the sale settles in **one** payout with one summary message.
+## The sell GUI in detail
 
 Anything unsellable is handed straight back — into the inventory if there is room, dropped at your feet if
 not — so a mis-drop never costs an item. Which slots accept items is up to you; see
@@ -69,6 +75,22 @@ blacklisted-worlds:
 
 Selling is refused entirely in these. Matching ignores capitalisation, so a typo in a world name is not a
 loophole.
+
+## Blocked game modes
+
+```yaml
+disabled-gamemodes:
+  - CREATIVE
+  - SPECTATOR
+```
+
+In these the plugin does nothing at all: no worth lore, no selling by any route, no sell axe.
+
+**Leave `CREATIVE` in unless you know exactly why you are taking it out.** A creative player has unlimited
+items, so any way for them to sell is unlimited money. This is an exploit guard, not a preference.
+
+The check sits on the payout itself as well as on every command, GUI and the sell axe — so a route that
+forgot to ask still cannot pay out.
 
 ## Messages
 

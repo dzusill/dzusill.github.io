@@ -78,10 +78,14 @@ GUI's `items` — are **never** merged, so an entry you deleted stays deleted.
 
 Your existing GUI files largely paste in: the icon keys (`name`, `lore`, `material`, `slot`,
 `customModelData`, `sound`), the cycling-button styling (`selected_color`, `unselected_color`,
-`bullet_icon`), `collect_slots` and the `sell/<category>.yml` progress layout all use the same names. Both
-colour dialects work too — legacy `&f` codes and bare `#00F986` hex, alongside MiniMessage.
+`bullet_icon`), `collect_slots` and the `sell/<category>.yml` progress layout all use the same names. In
+**those** files both colour dialects work too — legacy `&f` codes and bare `#00F986` hex, alongside
+MiniMessage.
 
-Two things do **not** carry over:
+Three things do **not** carry over:
+
+- **`messages.yml` colours.** Chat is MiniMessage only, so `&7` and a bare `#00F986` would print as text
+  rather than colour it. Write `<gray>` and `<#00F986>`. See [messages.yml](/plugins/ddonutworth/configuration/messages/).
 
 - **`prices.yml`** — the old numbered format (`item_17: 7000.0`) is not read. That is deliberate; see
   [Readable Item Keys](/plugins/ddonutworth/features/item-keys/). Either let dRotatingShop supply prices, or re-add the

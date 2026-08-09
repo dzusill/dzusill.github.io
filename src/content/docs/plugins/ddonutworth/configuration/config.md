@@ -51,7 +51,10 @@ worth-lore:
 | `shulker-totals` | `true` | Show a shulker box's contents total on the box |
 | `player-inventory` | `true` | Also decorate the player's own inventory while a container is open |
 | `allow-toggle` | `true` | Let players use `/toggleworth` |
+| `refresh-ticks` | `20` | How often to re-check online inventories. `0` = events only |
 | `inventories` | (a long list) | Which inventories get lore — an `InventoryType` name, or any part of a title |
+| `excluded-inventories` | empty | Never get lore. Checked first and wins over the list above |
+| `only-real-containers` | `false` | Decorate only inventories with a real holder, ruling out other plugins' menus wholesale |
 
 See [Worth Lore](/plugins/ddonutworth/features/worth-lore/).
 
@@ -103,6 +106,33 @@ history:
 Entries retained per player. Repeat sales of the same item merge, so this is 100 distinct items rather
 than 100 transactions.
 
+## search
+
+```yaml
+search:
+  input: sign
+```
+
+How the Item Prices GUI asks for a search term.
+
+| Value | Behaviour |
+|---|---|
+| `sign` | opens a sign the player types into; the GUI comes straight back. Needs ProtocolLib |
+| `chat` | closes the GUI and reads the player's next chat line. Works everywhere |
+
+Without ProtocolLib, `sign` behaves as `chat` — the button always works. Which one is live is logged at
+startup:
+
+```
+[dDonutWorth] Item searches are typed into a sign.
+```
+
+The sign is not a real block: it is drawn for that one player and taken back the instant they are done.
+Nothing is placed and nobody else sees it. It is drawn with packets though, which is version-dependent by
+nature — if a Minecraft update ever breaks it, set this to `chat` and the search keeps working.
+
+See [GUIs](/plugins/ddonutworth/configuration/guis/#gui-worthyml-item-prices) for the icon and its wording.
+
 ## storage
 
 ```yaml
@@ -121,6 +151,21 @@ blacklisted-worlds:
 ```
 
 Selling is refused entirely in these. Matching ignores capitalisation.
+
+## disabled-gamemodes
+
+```yaml
+disabled-gamemodes:
+  - CREATIVE
+  - SPECTATOR
+```
+
+Game modes the plugin stays out of completely — no worth lore, no selling, no sell axe. Valid values are
+`SURVIVAL`, `CREATIVE`, `ADVENTURE` and `SPECTATOR`; an unrecognised name is ignored rather than breaking
+the list.
+
+`CREATIVE` is there because a creative player has unlimited items, so selling from it is unlimited money.
+Removing it opens that hole.
 
 ## custom-items
 

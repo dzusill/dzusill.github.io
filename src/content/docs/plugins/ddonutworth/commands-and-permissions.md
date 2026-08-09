@@ -13,8 +13,8 @@ no conflict with another plugin's `/sell` unless it also registers at runtime.
 | `/worth` | `/itemworth` | `ddonutworth.worth` | What the held item is worth |
 | `/worth <material>` | | `ddonutworth.worth` | Look up any material |
 | `/worth gui` | `list`, `prices` | `ddonutworth.gui` | The paginated price list |
-| `/sell` | | `ddonutworth.sell` | Sell the held stack |
-| `/sell hand` | | `ddonutworth.sell` | The same, explicitly |
+| `/sell` | | `ddonutworth.sell` | Open the drop-items-in-here menu |
+| `/sell hand` | | `ddonutworth.sell` | Sell the held stack |
 | `/sell all` | `inventory`, `everything` | `ddonutworth.sell` | Sell your whole inventory |
 | `/sellall` | | `ddonutworth.sell` | Shorthand for the above |
 | `/sellgui` | `/sellmenu` | `ddonutworth.sellgui` | Drop-items-in-here menu |

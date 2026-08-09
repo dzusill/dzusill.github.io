@@ -51,7 +51,7 @@ From `gui/history.yml`:
 ```yaml
 entry-lore:
   - "&7Sold: &f{amount}"
-  - "&7Earned: #00F986${total}"
+  - "&7Earned: #00F986{total}"
   - "&7When: &f{when}"
 ```
 

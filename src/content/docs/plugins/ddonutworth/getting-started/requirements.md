@@ -11,6 +11,7 @@ description: "Vault is not optional. With no economy provider there is nothing t
 | Vault + an economy plugin | any | **Required.** Payouts go through it |
 | [dRotatingShop](/plugins/drotatingshop/) | 1.1.0+ | Optional, but the default price source |
 | PlaceholderAPI | 2.11+ | Optional — for the [placeholders](/plugins/ddonutworth/placeholders/) |
+| ProtocolLib | 5.x | Optional — recommended; see below |
 
 ## About Vault
 
@@ -31,6 +32,23 @@ dRotatingShop is a **soft** dependency. Without it the plugin still runs — it 
 
 If you run it, load order takes care of itself: dDonutWorth declares it as a soft dependency, so the shop is
 always up first.
+
+## About ProtocolLib
+
+Optional, and worth installing. It buys two things, and the plugin works without it either way:
+
+- **[Worth lore](/plugins/ddonutworth/features/worth-lore/) sent per player** instead of written into items. Items are
+  never modified, so a price line can show the total for a whole stack without stopping stacks of
+  different sizes from merging.
+- **A sign to type item searches into**, rather than closing the GUI and typing in chat. See
+  [`search.input`](/plugins/ddonutworth/configuration/config/#search).
+
+Which mode is live is logged at startup, so you never have to guess:
+
+```
+[dDonutWorth] Worth lore is sent per player through ProtocolLib; items are never modified.
+[dDonutWorth] Item searches are typed into a sign.
+```
 
 ## About custom-item plugins
 

@@ -7,16 +7,22 @@ Every user-facing string. Nothing is hard-coded.
 
 ## Colours
 
-Three dialects work everywhere, and you can mix them in one line:
+**This file is MiniMessage only.**
 
 ```yaml
-worth_lore: "&7Worth: #00FC00${price}"          # legacy + bare hex
-prefix: "<gray>[<#00F986>Worth<gray>] "         # MiniMessage
-sold: "<gradient:#00F986:#00A3FB>+${price}"     # MiniMessage gradients
+prefix: "<#00F986>ᴡᴏʀᴛʜ <dark_gray>» <white>"
+worth_lore: "<gray>Worth: <#00FC00>{price}"
+sold: "<gradient:#00F986:#00A3FB>+{price}"
 ```
 
-Bare hex (`#00F986`) and legacy codes (`&f`) are translated to MiniMessage before rendering. Anything
-already inside a `<...>` tag is left alone, so a gradient's own hex is not mangled.
+Legacy codes (`&7`) and bare hex (`#00F986`) are **not** translated here. They do not colour anything —
+they print, and the player sees the markup. Write `<gray>` and `<#00F986>` instead.
+
+That is a real difference from the other files: `gui/*.yml` and `sellaxe.yml` accept all three dialects and
+you can mix them freely, because those strings go through this plugin's own converter. Chat goes through
+the framework's message service, which hands the string straight to MiniMessage.
+
+Full syntax reference: [docs.advntr.dev/minimessage](https://docs.advntr.dev/minimessage/format.html).
 
 `<prefix>` expands to the `prefix` value.
 
