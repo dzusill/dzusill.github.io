@@ -1,44 +1,76 @@
 ---
 title: "config.yml"
-description: "Full reference for plugins/dWebLink/config.yml — the API base URL, shared key, tenant slug, command cooldown, and the profile-sync options."
+description: "Every key, with its default."
 ---
 
-The whole plugin is configured from `plugins/dWebLink/config.yml`.
+Every key, with its default.
 
-```yml
-# Base URL of the website API (no trailing slash, no /api/v1).
-api-base-url: "https://api.yourserver.gg"
+---
 
-# Shared secret. MUST equal MC_PLUGIN_API_KEY on the API. Keep it private.
+## Connection
+
+```yaml
+# Base URL of the website API (no trailing slash), e.g. https://api.yourserver.gg
+api-base-url: "http://localhost:3000"
+
+# Shared secret. MUST equal MC_PLUGIN_API_KEY configured on the API. Keep it private.
 api-key: ""
 
 # Which website tenant this server maps to (sent as the X-Tenant-Slug header).
 tenant-slug: "default"
+```
 
+| Key | Default | Notes |
+|---|---|---|
+| `api-base-url` | `http://localhost:3000` | **no trailing slash** — a trailing `/` produces double-slash URLs and 404s |
+| `api-key` | *(empty)* | must match `MC_PLUGIN_API_KEY` on the API exactly |
+| `tenant-slug` | `default` | sent as `X-Tenant-Slug`; a wrong value looks like a broken API key |
+
+While any of these is empty, every command answers *"Website linking isn't configured on this server yet."*
+
+---
+
+## Timings
+
+```yaml
 # Seconds a player must wait between /linkdiscord requests.
 cooldown-seconds: 30
 
-# Push each player's LuckPerms rank to the website so it shows as their author identity.
+# Seconds a player has to type "confirm" in chat after running /discordunlink
+# before the pending unlink expires (minimum 5).
+unlink-confirm-seconds: 60
+```
+
+| Key | Default | Notes |
+|---|---|---|
+| `cooldown-seconds` | 30 | inside the window the cached code is returned instead of a new one |
+| `unlink-confirm-seconds` | 60 | values below 5 are clamped to 5 |
+
+---
+
+## Profile sync
+
+```yaml
 profile-sync:
   enabled: true
   join-delay-ticks: 40
   min-interval-seconds: 300
+  on-rank-change: true
+  rank-change-settle-ticks: 10
+  rank-change-coalesce-seconds: 2
 ```
 
-## Reference
+Explained in full on [Profile & Rank Sync](/plugins/dweblink/features/profile-sync/).
 
-| Key | Default | Description |
-|---|---|---|
-| `api-base-url` | `http://localhost:3000` | Host of the Phalanx API. **No trailing slash and no `/api/v1`** — the plugin appends the path itself. |
-| `api-key` | `""` | Shared service key. Must equal the API's `MC_PLUGIN_API_KEY`. Empty ⇒ `/verify`, `/linkdiscord` and sync are disabled. |
-| `tenant-slug` | `default` | Sent as the `X-Tenant-Slug` header; selects which website tenant this server maps to. |
-| `cooldown-seconds` | `30` | Minimum seconds between `/linkdiscord` uses per player. (`/verify` is throttled server-side instead.) |
-| `profile-sync.enabled` | `true` | Master switch for pushing LuckPerms rank on join and after `/verify`. |
-| `profile-sync.join-delay-ticks` | `40` | Ticks to wait after join before reading LuckPerms (20 ticks = 1s). Raise if LuckPerms loads slowly. |
-| `profile-sync.min-interval-seconds` | `300` | Minimum seconds between **automatic** (join) pushes per player. `/verify` pushes ignore this. |
+---
 
-## Notes
+## Security notes
 
-- After editing, restart the server (or reload if you use a config-reload flow) so the values take effect.
-- `api-key` is a secret — do not commit it or share screenshots of `config.yml`.
-- Set `profile-sync.enabled: false` to keep account linking while turning off rank sync entirely.
+- `api-key` grants the ability to verify accounts on your website. Treat it like a database password.
+- Keep the file readable by the server user only (`chmod 600`).
+- Use **https** in production. Over plain http the key travels in the clear.
+
+## Next
+
+- [messages.yml](/plugins/dweblink/configuration/messages/)
+- [Reloading](/plugins/dweblink/configuration/reloading/)

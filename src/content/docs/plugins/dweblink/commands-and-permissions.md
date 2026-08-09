@@ -1,30 +1,65 @@
 ---
 title: "Commands & Permissions"
-description: "dWebLink's in-game commands — /verify (website login) and /linkdiscord — and their permissions."
+description: "---"
 ---
 
-dWebLink is deliberately tiny in game — two commands. Everything else happens on the website and Discord.
+---
 
 ## Commands
 
-| Command | Aliases | Description |
+| Command | Permission | Description |
 |---|---|---|
-| `/verify <code>` | — | Confirms the login code you got by entering your nickname on the website. On success the website logs you in. Also refreshes your rank on the site. |
-| `/linkdiscord` | `/discordlink` | Generates a one-time code to link your Discord — run `/link <code>` with the bot in Discord to finish. Works without the website (creates your account if needed). |
+| `/verify <code>` | `dweblink.verify` | Confirm a website login code |
+| `/verifyemail <code>` | `dweblink.verifyemail` | Confirm an email verification code |
+| `/linkdiscord` | `dweblink.linkdiscord` | Generate a code for the Discord bot |
+| `/discordunlink` | `dweblink.discordunlink` | Unlink your Discord account (chat confirmation) |
+| `/dweblink reload` | `dweblink.admin` | Reload `config.yml` and `messages.yml` |
 
-- Player-only (they need your account's UUID).
-- `/verify` abuse is throttled by the API: **3 wrong codes** (or too many code requests) lock the nickname for ~15 minutes. `/linkdiscord` is subject to the plugin's `cooldown-seconds` (default 30s).
+All commands are player-only except `/dweblink reload`, which also works from console.
+
+---
 
 ## Permissions
 
 | Permission | Default | Grants |
 |---|---|---|
-| `dweblink.verify` | `true` | Allows confirming a website login code with `/verify`. |
-| `dweblink.linkdiscord` | `true` | Allows generating a Discord-link code with `/linkdiscord`. |
+| `dweblink.verify` | `true` | `/verify` |
+| `dweblink.verifyemail` | `true` | `/verifyemail` |
+| `dweblink.linkdiscord` | `true` | `/linkdiscord` |
+| `dweblink.discordunlink` | `true` | `/discordunlink` |
+| `dweblink.admin` | `op` | `/dweblink reload` |
 
-Both default to **true** so any player can link. To restrict (e.g. to a rank), set the permission to `false` for the default group in LuckPerms and grant it where you want:
+The four player permissions default to `true` on purpose: linking is how a player gets onto your website in the first place, and gating it behind a rank generally means nobody ever links.
+
+---
+
+## LuckPerms examples
+
+Give staff the reload permission without full op:
 
 ```
-/lp group default permission set dweblink.verify false
-/lp group member permission set dweblink.verify true
+lp group staff permission set dweblink.admin true
 ```
+
+Restrict Discord linking to a rank:
+
+```
+lp group default permission set dweblink.linkdiscord false
+lp group vip permission set dweblink.linkdiscord true
+```
+
+Stop players unlinking themselves (staff handle it on the website):
+
+```
+lp group default permission set dweblink.discordunlink false
+```
+
+---
+
+## Command registration
+
+Commands are registered at runtime through DzusillCore's `CommandRegistry`, which is why `plugin.yml` has no `commands:` block. Tab-completion is generated from the same definitions, so it always matches what the command actually accepts.
+
+## Next
+
+- [FAQ & Troubleshooting](/plugins/dweblink/faq/)

@@ -1,41 +1,40 @@
 ---
 title: "Requirements"
-description: "What you need before installing dWebLink — a Paper server, DzusillCore, a running Phalanx website + API, and optionally LuckPerms. Login is passwordless (no AuthMe / password DB)."
+description: "---"
 ---
 
-dWebLink is a **client** to your Phalanx website. It does nothing on its own — it needs the website and API running, and it shares a secret with them.
+| Requirement | Version | Notes |
+|---|---|---|
+| Server | Paper / Purpur / Folia **1.21.x** | `folia-supported: true` |
+| Java | **21+** | |
+| DzusillCore | **required** | hard dependency |
+| Phalanx API | **required** | the website that issues and checks the codes |
+| LuckPerms | optional | needed for rank sync; without it only the username is pushed |
 
-## On the Minecraft server
+---
 
-| Requirement | Version / note |
-|---|---|
-| Paper | **1.21.x** |
-| Java | **21** |
-| [DzusillCore](https://github.com/dzusill/DzusillCore) | **1.1.0+**, installed as a separate plugin |
-| Online-mode (premium) server | required — login trusts Mojang's authentication, so confirming a code in game with `/verify` proves ownership |
-| [LuckPerms](https://luckperms.net/) | optional — enables rank sync (primary group + prefix) |
+## What you need from the website side
 
-:memo: Login is **passwordless** — no AuthMe, no MySQL, no password database. A player types their nickname on the website, gets a code, and confirms it in game with `/verify <code>`.
+Three values, all found in the Phalanx admin panel:
 
-## The website side (Phalanx)
+| Value | Goes into | What it is |
+|---|---|---|
+| API base URL | `api-base-url` | e.g. `https://api.yourserver.gg` — no trailing slash |
+| Plugin API key | `api-key` | must match `MC_PLUGIN_API_KEY` on the API |
+| Tenant slug | `tenant-slug` | which website tenant this Minecraft server belongs to |
 
-You need the Phalanx stack deployed and reachable:
+Without these three, every command answers *"Website linking isn't configured on this server yet."* and nothing else happens. That is deliberate — the plugin refuses to guess.
 
-| Component | Purpose |
-|---|---|
-| **API** (`api.yourserver.gg`) | dWebLink calls this; mints/consumes login codes; stores linked accounts |
-| **Website** (`yourserver.gg`) | where players log in and link Discord |
-| **Admin panel** (`admin.yourserver.gg`) | where staff manage content — requires a verified Minecraft link |
-| **Discord bot** | confirms the Discord side of a link and syncs roles |
+## Network
 
-## Shared secret
+The plugin makes **outbound HTTPS calls only**. It never opens a port and never accepts an inbound connection. If your host firewalls outbound traffic, allow the API's host.
 
-dWebLink authenticates to the API with a **service key**. The value you put in the plugin's `api-key` must equal the API's `MC_PLUGIN_API_KEY` environment variable. Generate it once:
+All API calls run off the main thread, so a slow or unreachable website cannot lag the server. A failed call becomes a chat message to the player, not a stall.
 
-```bash
-openssl rand -base64 32
-```
+## Folia
 
-Keep it private — anyone with this key can mint link codes and push profiles for any UUID.
+Fully supported. Scheduling goes through DzusillCore's Folia-aware scheduler.
 
-Next: [Installation & setup](/plugins/dweblink/getting-started/installation/).
+## Next
+
+- [Installation](/plugins/dweblink/getting-started/installation/)

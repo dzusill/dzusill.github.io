@@ -1,53 +1,70 @@
 ---
 title: "FAQ & Troubleshooting"
-description: "Common dWebLink problems — /verify errors, key mismatches, lockouts, missing ranks, admins locked out of the panel — and how to fix them."
+description: "One of api-base-url, api-key or tenant-slug is empty in config.yml. Fill all three and run /dweblink reload."
 ---
 
-## `/verify` says "not configured"
+### Every command says "Website linking isn't configured on this server yet."
 
-`api-key` is empty in `plugins/dWebLink/config.yml`. Paste the shared key (the same value as the API's `MC_PLUGIN_API_KEY`) and restart.
+One of `api-base-url`, `api-key` or `tenant-slug` is empty in `config.yml`. Fill all three and run `/dweblink reload`.
 
-## `/verify` returns an error / "HTTP 401"
+### "couldn't reach the website"
 
-The plugin's `api-key` does not match the API's `MC_PLUGIN_API_KEY`, or the API is unreachable. Check:
+The plugin could not open a connection at all. Check:
 
-- both values are **identical** (no stray spaces or quotes),
-- `api-base-url` is correct, has **no trailing slash**, and **no `/api/v1`**,
-- the API is up: `curl https://api.yourserver.gg/api/v1/health`.
+- `api-base-url` is reachable **from the server host** — try `curl` from that machine, not your laptop
+- no trailing slash on the URL
+- outbound HTTPS is not firewalled
+- the API is actually running
 
-## `/verify` says the code is wrong or I'm locked out
+### "the website returned an unexpected response"
 
-- The code you type must match the one shown on the website **for your nickname** — get it by entering your nickname on the login page.
-- Codes last **~5 minutes** and are single-use; if it expired, request a new one on the site.
-- After **3 wrong tries** (or too many code requests) a nickname is locked for **~15 minutes** — wait it out.
+The connection worked but the API refused the request. Almost always one of:
 
-## A player linked but has no rank on the site
+- `api-key` does not match `MC_PLUGIN_API_KEY`
+- `tenant-slug` names a tenant that does not exist
+- the API is a different major version than the plugin
 
-Rank is pushed on the **first join after linking** (or on `/verify`). Ask them to relog or run `/verify`. Then check:
+### Does the plugin store player data?
 
-- **LuckPerms** is installed (without it, only the name is pushed),
-- `profile-sync.enabled: true`,
-- the player actually has a primary group / prefix in LuckPerms.
+No. There is no database and no data file. Everything lives on the Phalanx API; the plugin holds only short-lived in-memory state (a cached Discord code, a pending unlink confirmation), both lost on restart by design.
 
-## A rank shows with weird symbols
+### Can a player brute-force a code?
 
-The prefix contained color codes the stripper did not catch. dWebLink removes `&`/`§` codes, `§x` hex, and MiniMessage tags. If something slips through, simplify the LuckPerms prefix or open an issue with the exact prefix string.
+No. Attempt counting and lockout are enforced by the API, not the plugin, so restarting the server or hopping between servers on a network does not reset them.
 
-## An admin can't log into the panel
+### A player's rank is wrong on the website.
 
-The admin panel **requires a verified Minecraft link**. The admin must:
+In order:
 
-1. on the website, enter their nickname to get a code,
-2. run `/verify <code>` in game to log in,
-3. **Link Discord** on their profile via the bot,
-4. then sign into the panel with Discord.
+1. Is LuckPerms installed? Without it only the username is pushed.
+2. Is `profile-sync.enabled` true?
+3. For live updates, is `on-rank-change` true?
+4. If a promotion is several commands, raise `rank-change-settle-ticks` so the plugin reads after the last one.
 
-If you just enabled the gate and several admins are locked out, they each need to complete the above. Run the API's `admin:link-check` to see exactly who is unlinked.
+### Rank updates arrive several times for one promotion.
 
-## Does dWebLink open any ports or expose an endpoint?
+Raise `rank-change-coalesce-seconds`. LuckPerms emits a burst of recalculation events per change; coalescing collapses them into one push.
 
-No. It only makes **outbound** HTTPS calls to your API. There is nothing to firewall on the Minecraft side beyond normal outbound access.
+### Can I run dWebLink without dPhalanx?
 
-## Can one API serve several Minecraft servers?
+Yes. dWebLink is standalone and gives you website login, email verification and Discord linking. dPhalanx adds chat relay, tickets, reports and the rest — and requires dWebLink.
 
-Yes — give each server its own `tenant-slug` (and the matching tenant on the website). Each server links players into its own tenant.
+### Can I run dPhalanx without dWebLink?
+
+No. dPhalanx delegates all account linking to dWebLink.
+
+### Does it work on Folia?
+
+Yes.
+
+### A player cannot unlink their Discord — "admin blocked".
+
+That link was made administratively and is deliberately not player-removable. Remove it from the website admin panel.
+
+### Does `/reload confirm` work?
+
+Do not use it. Use `/dweblink reload` for config, and a real restart for a jar upgrade.
+
+## Next
+
+- [Credits](/plugins/dweblink/credits/)

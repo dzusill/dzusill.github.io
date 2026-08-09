@@ -34,12 +34,19 @@ const PLUGINS = [
   { slug: 'toolsnotifier', name: 'ToolsNotifier', src: '../ToolNotifier/docs' },
   { slug: 'ddeathpenalty', name: 'dDeathPenalty', src: '../DeathPenalty/docs' },
   { slug: 'dlottery',      name: 'dLottery',      src: '../dLottery/docs' },
+  // BasicLand.cz build of the same lottery — kept right after the general-purpose one.
+  { slug: 'blottery',      name: 'bLottery',      src: '../bLottery2/docs' },
+  { slug: 'dmentions',     name: 'dMentions',     src: '../DzMentions/docs' },
   { slug: 'drotatingshop', name: 'DRotatingShop', src: '../DRotatingShop/docs' },
   // Sits right after the shop it derives its sell prices from.
   { slug: 'ddonutworth',   name: 'dDonutWorth',   src: '../dDonutWorth/docs' },
+  { slug: 'dgems',         name: 'dGems',         src: '../dGems/docs' },
   // dFactions source lives in docs-site/ (the plugin repo's docs/ holds a separate Jekyll site).
   { slug: 'dfactions',     name: 'dFactions',     src: '../dFactions/docs-site' },
+  // The Phalanx stack: linking first (dPhalanx and dStore both build on it), then the rest.
+  { slug: 'dweblink',      name: 'dWebLink',      src: '../dWebLink/docs' },
   { slug: 'dphalanx',      name: 'dPhalanx',      src: '../dPhalanx/docs' },
+  { slug: 'dstore',        name: 'dStore',        src: '../dStore/docs' },
   { slug: 'ddialogs',      name: 'DDialogs',      src: '../DDialogs/docs' },
 ];
 
@@ -48,7 +55,8 @@ const PLUGIN_EMOJI = {
   dzusillcore: '🛠️', dstattrack: '📊', warpgui: '🧭', dhomegui: '🏠',
   dnicks: '🎨', dbloodmoney: '💰', toolsnotifier: '🔔', ddeathpenalty: '💀',
   dlottery: '🎰', drotatingshop: '🛒', dfactions: '⚔️', dkilltracker: '🗡️',
-  ddonutworth: '🍩', ddialogs: '💬',
+  ddonutworth: '🍩', ddialogs: '💬', blottery: '🍀', dmentions: '🙋',
+  dgems: '💎', dweblink: '🔗', dphalanx: '🌐', dstore: '🧾',
 };
 const SECTION_EMOJI = {
   'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',
