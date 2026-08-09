@@ -2078,6 +2078,10 @@
         "label": "📂 Guide",
         "items": [
           {
+            "label": "Make your first dialog",
+            "slug": "plugins/ddialogs/tutorial"
+          },
+          {
             "label": "Writing dialogs",
             "slug": "plugins/ddialogs/writing-dialogs"
           }

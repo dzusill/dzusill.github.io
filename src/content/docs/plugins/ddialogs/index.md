@@ -57,4 +57,6 @@ Nothing breaks — it just never upgrades. Switching that plugin to `provided` s
 
 ## Pages
 
-* [How it works](/plugins/ddialogs/how-it-works/)
+* [Make your first dialog](/plugins/ddialogs/tutorial/) — start here; ten minutes, no Java
+* [Writing dialogs](/plugins/ddialogs/writing-dialogs/) — the full reference
+* [How it works](/plugins/ddialogs/how-it-works/) — internals, for whoever maintains it next
