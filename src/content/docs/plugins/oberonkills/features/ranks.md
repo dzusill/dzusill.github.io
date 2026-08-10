@@ -10,7 +10,39 @@ Ranks: []
 Default-Rank: ""
 ```
 
-## Turning it on
+## The easy way: let LuckPerms own it
+
+If you already have ranks configured in a permissions plugin, do not write them out a second time here — point at
+the one you have:
+
+```yaml
+Ranks: []
+Default-Rank: "%luckperms_prefix%"
+```
+
+That is the whole setup. Needs PlaceholderAPI and the LuckPerms expansion:
+
+```
+/papi ecloud download LuckPerms
+/papi reload
+```
+
+Any PlaceholderAPI placeholder works, not just that one — `%vault_prefix%`, `%luckperms_primary_group_name%`,
+whatever your setup exposes.
+
+Two things it handles for you:
+
+- **Legacy colour codes are converted.** A prefix stored as `&c[Admin]` becomes red text, not the literal
+  characters `&c`. Prefixes are almost always stored that way, and without this the codes would be broadcast to the
+  whole server as text.
+- **Your own MiniMessage still works alongside it.** `"%luckperms_prefix%<gray>»"` does what it looks like.
+
+If PlaceholderAPI is not installed the text is used as-is, so nothing breaks — you just see the placeholder rather
+than a prefix.
+
+## The manual way: a ladder here
+
+Use this when you want the death message styled differently from chat, or you have no permissions plugin.
 
 ```yaml
 Ranks:
