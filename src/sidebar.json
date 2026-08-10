@@ -1809,6 +1809,10 @@
             "slug": "plugins/dfactions/features/supply-drops"
           },
           {
+            "label": "Control Zones",
+            "slug": "plugins/dfactions/features/control-zones"
+          },
+          {
             "label": "Roles & Relations",
             "slug": "plugins/dfactions/features/roles-and-relations"
           },

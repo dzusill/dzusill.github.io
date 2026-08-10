@@ -73,6 +73,22 @@ Faction-side equivalents use the `fstat_` prefix — `%dfactions_fstat_networth%
 > There is no placeholder for a weighting, a flag or a suspicion score, and there never will be.
 > See [how the ranking stays honest](/plugins/dfactions/features/statistics/#how-the-ranking-stays-honest).
 
+## Control zone
+
+| Placeholder | Shows |
+|---|---|
+| `%dfactions_controlzone_active%` | `true` / `false` |
+| `%dfactions_controlzone_state%` | `NEUTRAL`, `CAPTURING`, `HELD`, `CONTESTED` or `None` |
+| `%dfactions_controlzone_owner%` | Holding faction (or player) name |
+| `%dfactions_controlzone_world%` | Zone world |
+| `%dfactions_controlzone_x%` | Zone centre X |
+| `%dfactions_controlzone_z%` | Zone centre Z |
+| `%dfactions_controlzone_time_left%` | `m:ss` until the zone closes |
+| `%dfactions_controlzone_distance%` | Blocks from the viewer to the zone centre |
+
+These read live in-memory state, so a scoreboard refreshing every tick costs no database work.
+See [Control Zones](/plugins/dfactions/features/control-zones/).
+
 ## Example — scoreboard
 
 ```
