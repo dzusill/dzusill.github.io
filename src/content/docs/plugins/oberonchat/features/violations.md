@@ -130,6 +130,45 @@ The offender never sees the alert, and never sees that other staff saw it.
 **All four actions are in the list** because alerts are the only signal — a `WARN` word nobody hears about might as
 well not be on the word list. Drop `WARN` if it turns out too noisy on your server.
 
+The offender is never alerted about their own message, even if they hold `oberonchat.alerts` themselves.
+
+### Where the alert lands
+
+The alert is a chat line by default, but it can go over the same four channels the player feedback uses:
+
+```yaml
+Staff-Alerts:
+  Channels:
+    Chat: true
+    Action-Bar: false
+    Title: false
+    Title-Header: ""
+    Sound:
+      Enabled: false
+      Name: "block.note_block.pling"
+      Volume: 1.0
+      Pitch: 1.5
+```
+
+| Key | What it does |
+|---|---|
+| `Chat` | The alert as a normal chat line. This is the default and usually enough |
+| `Action-Bar` | Above the hotbar. Reaches a moderator who is mid-build or in an inventory and not reading chat |
+| `Title` | Across the middle of the screen. Reserve this for a server where a flagged message is genuinely rare |
+| `Title-Header` | With one set, the alert becomes the subtitle underneath it. Left empty, it takes the big line alone |
+| `Sound` | A cue that does not depend on them looking at anything |
+
+Turning `Action-Bar` on is the common change — a moderator who is doing something else is exactly the case where an
+alert earns its keep. It is **off by default** because on a busy server it would keep overwriting whatever else they
+were being shown, and the action bar is one line for the whole server.
+
+Title timings come from `Feedback.Title-Times`, shared with the player feedback.
+
+Two things these channels do not change:
+
+- **The console always gets the plain chat form.** A console has no action bar, no title and no ears.
+- **`/oberonchat alerts` still silences everything** for that moderator, on every channel at once.
+
 ### Restyling it
 
 The message is `staff.alert` in `messages.yml` and takes `%player%` `%message%` `%reason%` `%source%` `%outcome%`.

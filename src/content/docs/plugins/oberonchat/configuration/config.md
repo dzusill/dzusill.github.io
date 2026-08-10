@@ -105,12 +105,26 @@ Staff-Alerts:
   Enabled: true
   On-Actions: [ BLOCK, CENSOR, WARN, NOTIFY ]
   Console: true
+  Channels:
+    Chat: true
+    Action-Bar: false
+    Title: false
+    Title-Header: ""
+    Sound:
+      Enabled: false
+      Name: "block.note_block.pling"
+      Volume: 1.0
+      Pitch: 1.5
 ```
 
 Who sees them: anyone with `oberonchat.alerts` who has not silenced their own with `/oberonchat alerts`.
 
 **All four actions by default.** With automatic punishment shipped off, these alerts are the only thing that tells
 staff anything — a `WARN` word nobody hears about might as well not be on the list. Drop `WARN` if it is too noisy.
+
+`Channels` takes the same four keys as [`Feedback`](#four-channels) and decides *where* the alert lands. Chat only
+by default; `Action-Bar` and `Sound` are the two worth turning on if your moderators are usually mid-task and not
+reading chat. See [Violations & Punishment](/plugins/oberonchat/features/violations/#where-the-alert-lands).
 
 ## Violations
 
