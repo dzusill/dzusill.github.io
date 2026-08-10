@@ -60,6 +60,7 @@ channel a message is in — see [Messages & Languages](/plugins/dfactions/config
 | `/f unclaim` | | `factions.cmd.unclaim` |
 | `/f unclaimall` | | leader-only (in-command) |
 | `/f map` | | `factions.cmd.map` |
+| `/f controlzone` | `/f cz` | `factions.cmd.controlzone` |
 | `/f entermsg [clear\|text]` | | `factions.cmd.entermsg` |
 | `/f leavemsg [clear\|text]` | | `factions.cmd.leavemsg` |
 | `/f border` | | `factions.cmd.border` |
@@ -149,6 +150,8 @@ All require `factions.admin` (or the specific child node).
 | `/fa season [info\|list\|end confirm]` | `factions.cmd.season` |
 | `/fa description` / `/fa motd <faction> <clear\|text>` | `factions.cmd.description.other` / `.motd.other` |
 | `/fa rename <faction> <new-name>` | `factions.cmd.rename.other` |
+| `/fa supplydrop` | `factions.admin` |
+| `/fa controlzone [start\|start here\|stop\|info]` | `factions.admin` |
 
 Admins can directly set or adjust (`set`/`add`/`remove`) any faction's level, XP, prestige rank,
 bank balance, kills/deaths/wars-won/wars-lost, description, MOTD, or name — bypassing normal
