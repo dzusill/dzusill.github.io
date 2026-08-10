@@ -3,17 +3,30 @@ title: "Commands & Permissions"
 description: "Base command /oberonchat, aliases /ochat and /oc. Four subcommands, four bypass nodes."
 ---
 
-Base command `/oberonchat`, aliases `/ochat` and `/oc`. Everything under it needs `oberonchat.admin`.
+Base command `/oberonchat`, aliases `/ochat` and `/oc`.
 
 ## Commands
 
-| Command | Description |
-|---|---|
-| `/oberonchat` | Show the usage list. |
-| `/oberonchat reload` | Reload `config.yml`, `filter.yml` and `messages.yml`. |
-| `/oberonchat check <text>` | Run the live filter over a phrase and report what it found. |
-| `/oberonchat history <player>` | The player's recent offences. |
-| `/oberonchat clear <player>` | Wipe their running total and stored history. |
+| Command | Permission | Description |
+|---|---|---|
+| `/oberonchat` | — | Show the usage list. |
+| `/oberonchat alerts` | `oberonchat.alerts` | Silence or restore **your own** filter alerts. |
+| `/oberonchat reload` | `oberonchat.admin` | Reload `config.yml`, `filter.yml` and `messages.yml`. |
+| `/oberonchat check <text>` | `oberonchat.admin` | Run the live filter over a phrase and report what it found. |
+| `/oberonchat history <player>` | `oberonchat.admin` | The player's recent offences. |
+| `/oberonchat clear <player>` | `oberonchat.admin` | Wipe their running total and stored history. |
+
+The root command carries **no** permission and each subcommand gates itself. That is what lets a moderator holding
+only `oberonchat.alerts` reach `/oberonchat alerts`, without being handed the whole admin surface to get there.
+
+### `alerts` — a personal switch, not a permission change
+
+```
+/oberonchat alerts
+```
+
+Stored per player, so it survives a relog. The alternative would be asking an admin to revoke and re-grant the
+permission every time somebody wants a quiet shift.
 
 ### `check` is the one to remember
 
@@ -29,8 +42,8 @@ This is how you verify a rule without a second account and without anybody swear
 
 | Node | Default | Grants |
 |---|---|---|
-| `oberonchat.admin` | op | The `/oberonchat` command and all subcommands. |
-| `oberonchat.alerts` | op | **Receive** staff alerts when a rule fires. |
+| `oberonchat.admin` | op | `reload`, `check`, `history` and `clear`. |
+| `oberonchat.alerts` | op | **Receive** staff alerts when a rule fires, and use `/oberonchat alerts`. |
 | `oberonchat.bypass.filter` | false | Skip the word filter. |
 | `oberonchat.bypass.caps` | false | Skip the caps check. |
 | `oberonchat.bypass.spam` | false | Skip cooldown, flood and duplicate. |
@@ -42,7 +55,8 @@ A bypassed check **never runs** — it is not merely ignored afterwards. Staff w
 
 ### Suggested setup
 
-Out of the box only ops can do anything, and nobody receives alerts. At minimum:
+Out of the box only ops can do anything, and nobody receives alerts. **`oberonchat.alerts` is the important one** —
+with automatic punishment shipped off, alerts are how anything reaches your team at all.
 
 ```
 /lp group mod permission set oberonchat.alerts true

@@ -44,9 +44,26 @@ The reply names the rule that fired, what would happen, and the resulting text. 
 
 `NOTIFY` is the interesting one: the player has no idea they tripped anything, which is what you want for advertising or grooming patterns you would rather watch than tip off.
 
-## 4. Set up a punishment
+## 4. Make sure staff hear about it
 
-`config.yml`, under `Violations.Thresholds`:
+**This is the important step.** Nothing is punished automatically, so alerts are how anything reaches your team:
+
+```
+/lp group mod permission set oberonchat.alerts true
+```
+
+They will see, in chat and in the console:
+
+```
+Filter » Steve was flagged for "you idiot" (word:idiot)
+```
+
+A staff member who wants a quiet shift runs `/oberonchat alerts` — their own switch, stored, no permission change
+needed.
+
+## 5. Optional — automatic punishment
+
+Off by default. `config.yml` ships this, commented out under an empty `Thresholds: {}`:
 
 ```yaml
 Violations:
@@ -65,7 +82,10 @@ Every offence adds its word's **weight** to a running total. Reaching a threshol
 
 The commands are yours; use whatever your punishment plugin provides.
 
-## 5. When it fires too much or too little
+> Leave `Violations.Enabled: true` either way. It is what records offences for `/oberonchat history` — it does not
+> punish anybody on its own.
+
+## 6. When it fires too much or too little
 
 | Symptom | Turn this |
 |---|---|
@@ -77,10 +97,12 @@ The commands are yours; use whatever your punishment plugin provides.
 
 Details on the [word filter page](/plugins/oberonchat/features/word-filter/).
 
-## 6. Make sure staff see it
+## 7. Restyle the alert
 
-```
-/lp group mod permission set oberonchat.alerts true
-```
+`messages.yml`, `staff.alert`. It takes `%player%` `%message%` `%reason%` `%source%` `%outcome%` and is parsed as
+MiniMessage, so it can be made clickable:
 
-Without that node, nobody sees the alerts and `NOTIFY` rules are shouting into an empty room.
+```yaml
+staff:
+  alert: "<click:run_command:'/tp %player%'><hover:show_text:'Click to teleport'><#C21807>%player%</#C21807> <gray>was flagged for</gray> <white>\"%message%\"</white></hover></click>"
+```

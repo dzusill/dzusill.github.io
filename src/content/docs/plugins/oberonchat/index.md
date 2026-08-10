@@ -17,8 +17,8 @@ Most word filters compare what a player typed against a list. That fails the mom
 - 🧯 **Anti-spam** — cooldown, near-duplicate detection, flood window and message length, each switchable on its own.
 - 📢 **Caps control** — with online player names excluded, so a loud username doesn't make everyone who greets them a violator.
 - 🕸️ **Five inputs covered** — chat, command arguments, signs, books, anvil renames.
-- ⚖️ **Violations that decay** — offences add up over a window and run the punishment commands you choose.
-- 🔔 **Staff alerts** — see attempts as they happen.
+- 🔔 **Staff alerts** — `Steve was flagged for "…"`, to anyone with the permission, fully configurable, silenceable per person.
+- ⚖️ **Violations that decay** — offences are recorded for `/oberonchat history`. Automatic punishment ships **off**; it is four uncommented lines away when you want it.
 - 🗂️ **History** — stored in an embedded database, no setup required.
 
 ---

@@ -103,11 +103,14 @@ Spam:
 ```yaml
 Staff-Alerts:
   Enabled: true
-  On-Actions: [ BLOCK, CENSOR, NOTIFY ]
+  On-Actions: [ BLOCK, CENSOR, WARN, NOTIFY ]
   Console: true
 ```
 
-Who sees them: anyone with `oberonchat.alerts`. `On-Actions` decides which actions are worth interrupting for.
+Who sees them: anyone with `oberonchat.alerts` who has not silenced their own with `/oberonchat alerts`.
+
+**All four actions by default.** With automatic punishment shipped off, these alerts are the only thing that tells
+staff anything — a `WARN` word nobody hears about might as well not be on the list. Drop `WARN` if it is too noisy.
 
 ## Violations
 
@@ -116,11 +119,16 @@ Violations:
   Enabled: true
   Decay-Seconds: 3600
   Persist: true
-  Thresholds:
-    3:
-      Commands: [ "mute %player% 10m Chat filter: %reason%" ]
-      Broadcast: false
+  Thresholds: {}
 ```
+
+**`Thresholds` ships empty — nothing is punished automatically.** Offences are still recorded, so
+`/oberonchat history` and the placeholders work; staff read the alerts and decide.
+
+The shipped file has a mute-and-kick example commented out under it. Uncomment and reload to switch punishment on.
+
+> Do **not** use `Violations.Enabled: false` to stop punishment. That also stops offences being recorded, which
+> costs you the history and the totals. Keep it on and leave `Thresholds` empty.
 
 Covered in full on [Violations & Punishment](/plugins/oberonchat/features/violations/).
 

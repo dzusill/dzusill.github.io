@@ -51,10 +51,27 @@ Three things, in order:
 
 ## Punishments aren't running
 
-- `Violations.Enabled: true`.
+**That is the shipped behaviour.** `Violations.Thresholds` is empty by default — nothing mutes, kicks or bans
+automatically. Staff read the alerts and decide.
+
+To switch it on, uncomment the example steps in `config.yml` under `Thresholds` and reload. Then if they still do not
+fire:
+
 - The word's `weight` is above `0`. A `weight: 0` entry is tracked and alerted but never escalates — that is what the shipped `idiot` and `moron` entries do.
 - The command in `Commands` works when you type it in the console yourself. OberonChat dispatches it as-is; if your punishment plugin wants different syntax, that is the syntax to put there.
 - The threshold has not already fired inside this window. It fires once per window, not once per message.
+
+> Do not set `Violations.Enabled: false` to keep punishment off — it is already off, and that switch would also stop
+> offences being recorded, costing you `/oberonchat history`.
+
+## A staff member wants to stop getting alerts
+
+```
+/oberonchat alerts
+```
+
+Their own, stored, reversible, and it needs only `oberonchat.alerts`. Revoking the permission is not the answer —
+they would also stop being able to turn them back on.
 
 ## A player got punished twice for one message
 

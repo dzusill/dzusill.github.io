@@ -73,6 +73,21 @@ CREATE TABLE IF NOT EXISTS oberonchat_violations (
 
 One row per offence. `player` is stored alongside `uuid` so history stays readable after a rename. Messages longer than 512 characters are truncated before storing.
 
+A second, tiny table holds staff who silenced their own alerts with `/oberonchat alerts`:
+
+```sql
+CREATE TABLE IF NOT EXISTS oberonchat_preferences (
+    uuid       VARCHAR(36) NOT NULL,
+    pref_key   VARCHAR(32) NOT NULL,
+    enabled    BOOLEAN     NOT NULL,
+    updated_at BIGINT      NOT NULL,
+    PRIMARY KEY (uuid, pref_key)
+);
+```
+
+The absence of a row means the default — alerts on — so a staff member granted the permission starts hearing them
+without a row being written first.
+
 ## Networks
 
 Point every server at the same MySQL database and violation history follows players across the network.
