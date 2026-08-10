@@ -77,13 +77,21 @@ A whitelisted word cannot *be* a hit and cannot *complete* one across a space ei
 
 The default list is deliberately modest — it is a starting point you are expected to extend for your community.
 
+**Everything blocks.** If a player types one of these words the message is never sent, rather than being starred out.
+That is the posture this server asked for.
+
 | Group | Action | Notes |
 |---|---|---|
-| General profanity | `CENSOR` | `fuck` `shit` `bitch` `cunt` and similar — message still goes through |
-| Short stems | `CENSOR`, `LITERAL` | `ass` `tits` — whole-word only, or they fire inside normal words |
-| Insults | `WARN`, weight `0` | `idiot` `moron` — tracked and alerted, never escalates |
-| Slurs | `BLOCK`, weight `5` | Blocked outright and weighted so two of them reach the second threshold |
-| Advertising | `NOTIFY`, regex | IP addresses and domain names — staff are told, the player is not |
+| General profanity | `BLOCK` | `fuck` `shit` `bitch` `cunt` and similar |
+| Short stems | `BLOCK`, `LITERAL` | `ass` `tits` — whole-word only, or they fire inside normal words |
+| Insults | `BLOCK`, weight `0` | `idiot` `moron` — blocked and alerted, but never counts towards a punishment |
+| Slurs | `BLOCK`, weight `5` | Weighted so two of them reach a second threshold, if you enable punishment |
+| Advertising | `NOTIFY`, regex | IP addresses and domain names — the message goes through, staff are told, the player is not |
+
+`CENSOR` and `WARN` are still available per word if you ever want a softer touch on something mild.
+
+The one deliberate exception is advertising: `NOTIFY` rather than `BLOCK`, so somebody advertising does not learn
+what tripped the filter and start working around it.
 
 The whitelist ships with the usual Scunthorpe suspects: `class`, `grass`, `assassin`, `analysis`, `cocktail`, `hancock`, `dickens`, `document`.
 

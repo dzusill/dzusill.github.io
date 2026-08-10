@@ -136,17 +136,76 @@ Covered in full on [Violations & Punishment](/plugins/oberonchat/features/violat
 
 ## Feedback
 
-How the player is told their message was stopped.
+How the player is told, **per message**. A blocked slur and a spam cooldown are not the same event, and you will not
+want them announced the same way.
 
 ```yaml
 Feedback:
-  Chat-Message: true
-  Action-Bar: true
-  Sound:
-    Enabled: true
-    Name: "entity.villager.no"
-    Volume: 1.0
-    Pitch: 1.0
+  Default:
+    Chat: true
+    Action-Bar: true
+    Title: false
+    Title-Header: ""
+    Sound:
+      Enabled: true
+      Name: "entity.villager.no"
+      Volume: 1.0
+      Pitch: 1.0
+
+  Title-Times:
+    Fade-In: 5
+    Stay: 40
+    Fade-Out: 10
+
+  Overrides:
+    filter:
+      blocked:
+        Title: true
+        Title-Header: "<red><bold>Blocked"
+        Sound:
+          Name: "entity.wither.spawn"
+          Pitch: 1.4
+    spam:
+      cooldown:
+        Chat: false
+        Sound:
+          Enabled: false
 ```
 
-All three are independent — servers disagree about which is least annoying. `Name` is any namespaced sound key, e.g. `block.note_block.bass`.
+### Four channels
+
+| Key | Does |
+|---|---|
+| `Chat` | the reason as a chat message |
+| `Action-Bar` | the same text above the hotbar |
+| `Title` | the same text on screen |
+| `Sound` | any namespaced sound key, with volume and pitch |
+
+With `Title-Header` set, the message becomes the **subtitle** underneath it — which is where a sentence belongs.
+Left empty, the message takes the big line on its own, which suits a short one.
+
+`Title-Times` is in ticks; 20 ticks is a second.
+
+### Overrides inherit
+
+**An override only names what it changes.** The `filter.blocked` example above adds a title and a different sound;
+its chat message and action bar still come from `Default`. That is what makes the common case two lines rather than
+eight.
+
+Keys are nested exactly like `messages.yml`:
+
+| Group | Entries |
+|---|---|
+| `filter` | `blocked` `censored` `warned` |
+| `caps` | `blocked` `lowercased` `warned` |
+| `spam` | `cooldown` `duplicate` `flood` `too-long` |
+
+> Write them **nested**, not as `filter.blocked:`. A dot inside a config key is read by Bukkit as a path separator,
+> so a dotted key silently never loads.
+
+> `Feedback.Overrides` is never merged back from the defaults. An override you delete stays deleted.
+
+### Upgrading from an older config
+
+A config still using the flat `Feedback.Chat-Message` / `Action-Bar` / `Sound` form keeps working — it is read as the
+`Default` profile, with no overrides. Nothing changes until you add a `Default:` block.

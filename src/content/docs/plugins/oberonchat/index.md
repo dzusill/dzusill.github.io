@@ -13,6 +13,7 @@ Most word filters compare what a player typed against a list. That fails the mom
 
 - 🧠 **Anti-bypass matching** — leetspeak, inserted punctuation, repeated letters, accents, full-width text and Cyrillic/Greek lookalikes all fold to one form.
 - 🎚️ **Four match modes per word** — from "never surprises anyone" to "catches a word spread across spaces".
+- 📣 **Per-message feedback** — chat, action bar, title and sound, chosen separately for a blocked slur and a spam cooldown.
 - ✅ **Whitelist** — so `class` survives a rule about `ass`.
 - 🧯 **Anti-spam** — cooldown, near-duplicate detection, flood window and message length, each switchable on its own.
 - 📢 **Caps control** — with online player names excluded, so a loud username doesn't make everyone who greets them a violator.
