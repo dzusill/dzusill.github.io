@@ -78,6 +78,24 @@ are read per state on every redraw — so the square is white while unclaimed, y
 captured, green while held and red while contested. Any `org.bukkit.Particle` name works;
 `dust-color` applies when the particle is `DUST`.
 
+### Making the wall visible
+
+The outline is a vertical wall, `height-below` blocks down and `height-above` blocks up from its
+anchor — 21 blocks tall by default. What matters more is **where it is anchored**:
+
+| `anchor` | Wall sits at | Trade-off |
+|---|---|---|
+| `VIEWER` (default) | The watching player's own Y | Always at eye level, whether they are on a hilltop, in a cave under the zone or flying over |
+| `GROUND` | The zone's surface height | Fixed in the world, but invisible from anywhere far above or below it |
+
+The anchor is clamped so the wall never runs past the world's build limits.
+
+> **Why `packed-columns` defaults to `true`.** A 21-block solid wall with 12 points per edge is about
+> **1,000 individual particle packets per viewer per frame** — enough to hurt with a handful of players
+> watching. Packed columns send each vertical column as one spread packet instead, cutting that to
+> ~52 while still reading as a wall. Set `packed-columns: false` for a crisp grid at full cost;
+> `vertical-step: 2` then halves it again by drawing every other block.
+
 ## Configuration
 
 ```yaml
@@ -136,7 +154,11 @@ factions:
       interval-ticks: 10
       view-distance: 64
       points-per-edge: 12
-      height: 3
+      height-above: 10      # blocks of wall above the anchor
+      height-below: 10      # blocks of wall below the anchor
+      anchor: VIEWER        # VIEWER | GROUND
+      packed-columns: true  # one packet per column instead of one per block
+      vertical-step: 1      # only used when packed-columns is false
       neutral:
         particle: HAPPY_VILLAGER
         dust-color: '#FFFFFF'
