@@ -45,14 +45,44 @@ spam:
 
 Sent to everyone holding `oberonchat.alerts`.
 
-`%player%` `%reason%` `%source%` `%message%` `%outcome%`
+`%player%` `%reason%` `%source%` `%where%` `%message%` `%outcome%`
 
 ```yaml
 staff:
-  alert: "<#C21807><bold>Filter</bold></#C21807> <dark_gray>»</dark_gray> <#C21807>%player%</#C21807> <dark_gray>(<gray>%source%</gray>, <gray>%reason%</gray>)</dark_gray><dark_gray>:</dark_gray> <gray>%message%"
+  alert: "<#C21807><bold>Filter</bold></#C21807> <dark_gray>»</dark_gray> <#C21807>%player%</#C21807> <gray>was flagged for</gray> <white>\"%message%\"</white> <dark_gray>(<gray>%reason%</gray>)</dark_gray>%where%"
+
+  source:
+    chat: ""
+    command: "<dark_gray> — in a command"
+    sign: "<dark_gray> — on a sign"
+    book: "<dark_gray> — in a book"
+    anvil: "<dark_gray> — renamed in an anvil"
 ```
 
-`%source%` is `chat`, `command`, `sign`, `book` or `anvil`. `%reason%` is `word:<the rule>` or `spam:flood` and so on.
+`%reason%` is `word:<the rule>` or `spam:flood` and so on.
+
+### Saying where it was typed
+
+`%source%` is the bare key — `chat`, `command`, `sign`, `book` or `anvil`. `%where%` is the wording from the
+`source` block above, and is the one you normally put in the message.
+
+This matters more than it looks. A moderator reading chat cannot tell a blocked word that was typed in chat from
+one carved into a sign in some corner of the map — the alert looks identical either way. `%where%` is what
+separates them:
+
+```
+Filter » Steve was flagged for "…" (word:idiot) — renamed in an anvil
+```
+
+`chat` ships blank on purpose: it is the ordinary case, and repeating it on every alert is noise. Delete any line
+to say nothing for that source, or rewrite the wording — it is parsed as MiniMessage like everything else.
+
+### The message is inert
+
+`%message%` is the one part of the alert a player writes themselves, so it is escaped before it goes in. A player
+typing `<red>` or `<click:run_command:'/op me'>` gets those tags shown literally in the alert; they are never
+parsed. Without that, anyone could colour your moderators' chat — or hand them a clickable line that runs a
+command they never wrote.
 
 ## Punishment broadcast
 

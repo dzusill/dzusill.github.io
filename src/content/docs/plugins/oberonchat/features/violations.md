@@ -169,15 +169,33 @@ Two things these channels do not change:
 - **The console always gets the plain chat form.** A console has no action bar, no title and no ears.
 - **`/oberonchat alerts` still silences everything** for that moderator, on every channel at once.
 
+### Where the text was typed
+
+The filter covers chat, command arguments, signs, books and anvil renames — but the alert for all five looks the
+same unless you say otherwise, and a moderator has no way of guessing that a blocked word was carved into a sign
+somewhere rather than said in chat.
+
+`%where%` closes that. It expands to the wording under `staff.source` in `messages.yml`:
+
+```
+Filter » Steve was flagged for "…" (word:idiot) — renamed in an anvil
+```
+
+`chat` ships blank — it is the ordinary case, and repeating it on every alert is noise. Full detail on
+[Messages](/plugins/oberonchat/configuration/messages/#saying-where-it-was-typed).
+
 ### Restyling it
 
-The message is `staff.alert` in `messages.yml` and takes `%player%` `%message%` `%reason%` `%source%` `%outcome%`.
-It is parsed as MiniMessage, so it can be made actionable:
+The message is `staff.alert` in `messages.yml` and takes `%player%` `%message%` `%reason%` `%source%` `%where%`
+`%outcome%`. It is parsed as MiniMessage, so it can be made actionable:
 
 ```yaml
 staff:
-  alert: "<click:run_command:'/tp %player%'><hover:show_text:'Click to teleport'><#C21807>%player%</#C21807> <gray>was flagged for</gray> <white>\"%message%\"</white></hover></click>"
+  alert: "<click:run_command:'/tp %player%'><hover:show_text:'Click to teleport'><#C21807>%player%</#C21807> <gray>was flagged for</gray> <white>\"%message%\"</white></hover></click>%where%"
 ```
+
+`%message%` is escaped before substitution, so a player cannot smuggle their own colours — or their own
+`click:run_command` — into a line your moderators are likely to click.
 
 ### Silencing your own
 
