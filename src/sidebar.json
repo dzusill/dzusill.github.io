@@ -2379,5 +2379,177 @@
         ]
       }
     ]
+  },
+  {
+    "label": "✉️ OberonMSG",
+    "collapsed": true,
+    "items": [
+      {
+        "label": "📘 Introduction",
+        "slug": "plugins/oberonmsg"
+      },
+      {
+        "label": "🚀 Getting Started",
+        "items": [
+          {
+            "label": "Requirements",
+            "slug": "plugins/oberonmsg/getting-started/requirements"
+          },
+          {
+            "label": "Installation",
+            "slug": "plugins/oberonmsg/getting-started/installation"
+          },
+          {
+            "label": "Quick Start",
+            "slug": "plugins/oberonmsg/getting-started/quick-start"
+          }
+        ]
+      },
+      {
+        "label": "✨ Features",
+        "items": [
+          {
+            "label": "Sending Messages",
+            "slug": "plugins/oberonmsg/features/messages"
+          },
+          {
+            "label": "Ignore Lists",
+            "slug": "plugins/oberonmsg/features/ignore"
+          },
+          {
+            "label": "Social Spy & Logging",
+            "slug": "plugins/oberonmsg/features/social-spy"
+          },
+          {
+            "label": "Vanish & AFK",
+            "slug": "plugins/oberonmsg/features/vanish-and-afk"
+          }
+        ]
+      },
+      {
+        "label": "⚙️ Configuration",
+        "items": [
+          {
+            "label": "config.yml",
+            "slug": "plugins/oberonmsg/configuration/config"
+          },
+          {
+            "label": "messages.yml",
+            "slug": "plugins/oberonmsg/configuration/messages"
+          },
+          {
+            "label": "database.yml",
+            "slug": "plugins/oberonmsg/configuration/database"
+          },
+          {
+            "label": "Reloading",
+            "slug": "plugins/oberonmsg/configuration/reloading"
+          }
+        ]
+      },
+      {
+        "label": "📖 Reference",
+        "items": [
+          {
+            "label": "Commands & Permissions",
+            "slug": "plugins/oberonmsg/commands-and-permissions"
+          },
+          {
+            "label": "Placeholders",
+            "slug": "plugins/oberonmsg/placeholders"
+          },
+          {
+            "label": "FAQ & Troubleshooting",
+            "slug": "plugins/oberonmsg/faq"
+          },
+          {
+            "label": "Credits",
+            "slug": "plugins/oberonmsg/credits"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "💀 OberonKills",
+    "collapsed": true,
+    "items": [
+      {
+        "label": "📘 Introduction",
+        "slug": "plugins/oberonkills"
+      },
+      {
+        "label": "🚀 Getting Started",
+        "items": [
+          {
+            "label": "Requirements",
+            "slug": "plugins/oberonkills/getting-started/requirements"
+          },
+          {
+            "label": "Installation",
+            "slug": "plugins/oberonkills/getting-started/installation"
+          },
+          {
+            "label": "Quick Start",
+            "slug": "plugins/oberonkills/getting-started/quick-start"
+          }
+        ]
+      },
+      {
+        "label": "✨ Features",
+        "items": [
+          {
+            "label": "Weapons & Causes",
+            "slug": "plugins/oberonkills/features/weapons"
+          },
+          {
+            "label": "Item Names",
+            "slug": "plugins/oberonkills/features/item-names"
+          },
+          {
+            "label": "Writing Messages",
+            "slug": "plugins/oberonkills/features/message-sets"
+          },
+          {
+            "label": "Rank Prefixes",
+            "slug": "plugins/oberonkills/features/ranks"
+          }
+        ]
+      },
+      {
+        "label": "⚙️ Configuration",
+        "items": [
+          {
+            "label": "config.yml",
+            "slug": "plugins/oberonkills/configuration/config"
+          },
+          {
+            "label": "messages.yml",
+            "slug": "plugins/oberonkills/configuration/messages"
+          },
+          {
+            "label": "Reloading",
+            "slug": "plugins/oberonkills/configuration/reloading"
+          }
+        ]
+      },
+      {
+        "label": "📖 Reference",
+        "items": [
+          {
+            "label": "Commands & Permissions",
+            "slug": "plugins/oberonkills/commands-and-permissions"
+          },
+          {
+            "label": "FAQ & Troubleshooting",
+            "slug": "plugins/oberonkills/faq"
+          },
+          {
+            "label": "Credits",
+            "slug": "plugins/oberonkills/credits"
+          }
+        ]
+      }
+    ]
   }
 ]
