@@ -69,7 +69,19 @@ Every key, every tag and the fallback behaviour are on
 
 ## Ranks
 
-Optional, empty by default.
+Optional, empty by default. Two ways to fill it in.
+
+**From your permissions plugin** — one line, and LuckPerms stays the only place a rank is defined:
+
+```yaml
+Ranks: []
+Default-Rank: "%luckperms_prefix%"
+```
+
+Needs PlaceholderAPI and `/papi ecloud download LuckPerms`. Legacy colour codes in the prefix (`&c[Admin]`) are
+converted, so it looks the same as it does in chat.
+
+**Or a ladder here**, when the death message should be styled differently from chat:
 
 ```yaml
 Ranks:

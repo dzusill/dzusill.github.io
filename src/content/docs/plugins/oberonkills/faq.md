@@ -65,6 +65,24 @@ so the highest rank has to be listed first.
 
 `Default-Rank` is set. Leave it empty and players with no matching rank get nothing.
 
+Unless you set it to `%luckperms_prefix%` on purpose — then that is the intended behaviour, and everybody gets
+whatever prefix their own group has.
+
+## `%luckperms_prefix%` shows up as literal text
+
+The placeholder was never expanded. Three things have to be true:
+
+1. **PlaceholderAPI is installed.** Without it the text is used as-is, by design — that is what keeps a
+   hand-written rank working on a server that has no PlaceholderAPI.
+2. **The LuckPerms expansion is downloaded:** `/papi ecloud download LuckPerms` then `/papi reload`. Check with
+   `/papi list` — `luckperms` should be there.
+3. **The group actually has a prefix:** `/lp group admin meta info`.
+
+## The rank shows `&c[Admin]` instead of red text
+
+That would be a bug — report it. LuckPerms stores prefixes with legacy colour codes and OberonKills converts them
+before the message is parsed, including the `&x&R&R&G&G&B&B` hex form.
+
 ## Can players put colours in their name to break a message?
 
 No. `<victim>` and `<killer>` are inserted as literal text. Somebody called `<red>Steve` shows as `<red>Steve`.
