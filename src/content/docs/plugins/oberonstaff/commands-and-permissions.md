@@ -30,7 +30,7 @@ The `o` variants reach players who have `/tptoggle` on. So does holding `oberons
 | `/oberonstaff` | Show the usage list. |
 | `/oberonstaff reload` | Reload `config.yml` and `messages.yml`. |
 | `/oberonstaff status` | Active integrations and current usage. |
-| `/oberonstaff log [count]` | Recent staff teleports. Default 10, max 100. |
+| `/oberonstaff log [player] [page] [filters]` | Staff teleports, ten to a page. See [Paged logs](#paged-logs). |
 
 ### `status` is the one to run first
 
@@ -101,3 +101,55 @@ Or rename ours (`Name: stp`). Either way, restart.
 ## Tab completion
 
 Every command's player arguments tab-complete — with vanished players stripped out, along with every other command's suggestions on the server. See [Vanish](/plugins/oberonstaff/features/vanish/).
+
+## Paged logs
+
+`/oberonstaff log` prints one page at a time rather than a wall of text. Under the list is a footer you click:
+
+```
+  « Prev   Page 2/7   Next »
+```
+
+Clicking re-runs the command for that page — so the buttons keep working after a relog, and after a reload. You
+can also just type the number:
+
+```
+/oberonstaff log 3
+/oberonstaff log Steve 2
+```
+
+### Narrowing it
+
+Paging through a month of entries to find one is not much better than scrolling. Three flags cut the list down,
+and they combine:
+
+| Flag | What it takes | Example |
+|---|---|---|
+| `--since` | how far back, or a date | `--since 7d`, `--since 2026-08-01` |
+| `--until` | the other end of the window | `--until 24h`, `--until 2026-08-05 18:00` |
+| `--find` | text to look for | `--find discord.gg` |
+
+```
+/oberonstaff log Steve --since 7d --find tphere
+```
+
+Times are relative (`30m` `6h` `7d` `2w`) or absolute (`2026-08-01`, `2026-08-01 14:30`, server time). `--find`
+is case-insensitive and matches the staff member, the action and the target.
+
+The filters survive a page turn — clicking Next keeps whatever you narrowed to, so page two is page two of the
+same list.
+
+A flag it cannot read is refused outright rather than quietly ignored:
+
+```
+Could not read that filter: --since yesterday
+   try --since 7d, --until 2026-08-01 or --find text
+```
+
+That is deliberate. Reading a full log while believing it was filtered is the one outcome worth stopping.
+
+### Page size
+
+`Log-Page-Size` in `config.yml`, ten by default — chat holds about twenty lines. Capped at 50 whatever you put
+there. The Prev/Next wording lives under `paging` in `messages.yml` and can be reworded or translated like
+everything else.

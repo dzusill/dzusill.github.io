@@ -13,7 +13,7 @@ Base command `/oberonchat`, aliases `/ochat` and `/oc`.
 | `/oberonchat alerts` | `oberonchat.alerts` | Silence or restore **your own** filter alerts. |
 | `/oberonchat reload` | `oberonchat.admin` | Reload `config.yml`, `filter.yml` and `messages.yml`. |
 | `/oberonchat check <text>` | `oberonchat.admin` | Run the live filter over a phrase and report what it found. |
-| `/oberonchat history <player>` | `oberonchat.admin` | The player's recent offences. |
+| `/oberonchat history <player> [page] [filters]` | `oberonchat.admin` | The player's offences, ten to a page. See [Paged logs](#paged-logs). |
 | `/oberonchat clear <player>` | `oberonchat.admin` | Wipe their running total and stored history. |
 
 The root command carries **no** permission and each subcommand gates itself. That is what lets a moderator holding
@@ -74,3 +74,54 @@ Bypasses are deliberately `false` by default, including for ops. Grant them narr
 ## Tab completion
 
 Every subcommand and both player arguments tab-complete. `check` does not, because it takes free text.
+
+## Paged logs
+
+`/oberonchat history` prints one page at a time rather than a wall of text. Under the list is a footer you click:
+
+```
+  « Prev   Page 2/7   Next »
+```
+
+Clicking re-runs the command for that page — so the buttons keep working after a relog, and after a reload. You
+can also just type the number:
+
+```
+/oberonchat history Steve 3
+```
+
+### Narrowing it
+
+Paging through a month of entries to find one is not much better than scrolling. Three flags cut the list down,
+and they combine:
+
+| Flag | What it takes | Example |
+|---|---|---|
+| `--since` | how far back, or a date | `--since 7d`, `--since 2026-08-01` |
+| `--until` | the other end of the window | `--until 24h`, `--until 2026-08-05 18:00` |
+| `--find` | text to look for | `--find discord.gg` |
+
+```
+/oberonchat history Steve --since 7d --find discord.gg
+```
+
+Times are relative (`30m` `6h` `7d` `2w`) or absolute (`2026-08-01`, `2026-08-01 14:30`, server time). `--find`
+is case-insensitive and matches the rule that tripped and the text the player typed.
+
+The filters survive a page turn — clicking Next keeps whatever you narrowed to, so page two is page two of the
+same list.
+
+A flag it cannot read is refused outright rather than quietly ignored:
+
+```
+Could not read that filter: --since yesterday
+   try --since 7d, --until 2026-08-01 or --find text
+```
+
+That is deliberate. Reading a full log while believing it was filtered is the one outcome worth stopping.
+
+### Page size
+
+`Log-Page-Size` in `config.yml`, ten by default — chat holds about twenty lines. Capped at 50 whatever you put
+there. The Prev/Next wording lives under `paging` in `messages.yml` and can be reworded or translated like
+everything else.
