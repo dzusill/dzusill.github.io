@@ -2101,5 +2101,283 @@
         ]
       }
     ]
+  },
+  {
+    "label": "🛡️ OberonChat",
+    "collapsed": true,
+    "items": [
+      {
+        "label": "📘 Introduction",
+        "slug": "plugins/oberonchat"
+      },
+      {
+        "label": "🚀 Getting Started",
+        "items": [
+          {
+            "label": "Requirements",
+            "slug": "plugins/oberonchat/getting-started/requirements"
+          },
+          {
+            "label": "Installation",
+            "slug": "plugins/oberonchat/getting-started/installation"
+          },
+          {
+            "label": "Quick Start",
+            "slug": "plugins/oberonchat/getting-started/quick-start"
+          }
+        ]
+      },
+      {
+        "label": "✨ Features",
+        "items": [
+          {
+            "label": "The Word Filter",
+            "slug": "plugins/oberonchat/features/word-filter"
+          },
+          {
+            "label": "What Gets Checked",
+            "slug": "plugins/oberonchat/features/what-gets-checked"
+          },
+          {
+            "label": "Anti-Spam & Caps",
+            "slug": "plugins/oberonchat/features/anti-spam"
+          },
+          {
+            "label": "Violations & Punishment",
+            "slug": "plugins/oberonchat/features/violations"
+          }
+        ]
+      },
+      {
+        "label": "⚙️ Configuration",
+        "items": [
+          {
+            "label": "config.yml",
+            "slug": "plugins/oberonchat/configuration/config"
+          },
+          {
+            "label": "filter.yml",
+            "slug": "plugins/oberonchat/configuration/filter"
+          },
+          {
+            "label": "messages.yml",
+            "slug": "plugins/oberonchat/configuration/messages"
+          },
+          {
+            "label": "database.yml",
+            "slug": "plugins/oberonchat/configuration/database"
+          },
+          {
+            "label": "Reloading",
+            "slug": "plugins/oberonchat/configuration/reloading"
+          }
+        ]
+      },
+      {
+        "label": "📖 Reference",
+        "items": [
+          {
+            "label": "Commands & Permissions",
+            "slug": "plugins/oberonchat/commands-and-permissions"
+          },
+          {
+            "label": "Placeholders",
+            "slug": "plugins/oberonchat/placeholders"
+          },
+          {
+            "label": "FAQ & Troubleshooting",
+            "slug": "plugins/oberonchat/faq"
+          },
+          {
+            "label": "Credits",
+            "slug": "plugins/oberonchat/credits"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "🐺 OberonMob",
+    "collapsed": true,
+    "items": [
+      {
+        "label": "📘 Introduction",
+        "slug": "plugins/oberonmob"
+      },
+      {
+        "label": "🚀 Getting Started",
+        "items": [
+          {
+            "label": "Requirements",
+            "slug": "plugins/oberonmob/getting-started/requirements"
+          },
+          {
+            "label": "Installation",
+            "slug": "plugins/oberonmob/getting-started/installation"
+          },
+          {
+            "label": "Quick Start",
+            "slug": "plugins/oberonmob/getting-started/quick-start"
+          }
+        ]
+      },
+      {
+        "label": "✨ Features",
+        "items": [
+          {
+            "label": "How It Works",
+            "slug": "plugins/oberonmob/features/how-it-works"
+          },
+          {
+            "label": "Entity Groups",
+            "slug": "plugins/oberonmob/features/entity-groups"
+          },
+          {
+            "label": "Spawn Reasons",
+            "slug": "plugins/oberonmob/features/spawn-reasons"
+          },
+          {
+            "label": "Adding Your Own Toggle",
+            "slug": "plugins/oberonmob/features/custom-toggles"
+          }
+        ]
+      },
+      {
+        "label": "⚙️ Configuration",
+        "items": [
+          {
+            "label": "config.yml",
+            "slug": "plugins/oberonmob/configuration/config"
+          },
+          {
+            "label": "messages.yml",
+            "slug": "plugins/oberonmob/configuration/messages"
+          },
+          {
+            "label": "database.yml",
+            "slug": "plugins/oberonmob/configuration/database"
+          },
+          {
+            "label": "Reloading",
+            "slug": "plugins/oberonmob/configuration/reloading"
+          }
+        ]
+      },
+      {
+        "label": "📖 Reference",
+        "items": [
+          {
+            "label": "Commands & Permissions",
+            "slug": "plugins/oberonmob/commands-and-permissions"
+          },
+          {
+            "label": "Placeholders",
+            "slug": "plugins/oberonmob/placeholders"
+          },
+          {
+            "label": "FAQ & Troubleshooting",
+            "slug": "plugins/oberonmob/faq"
+          },
+          {
+            "label": "Credits",
+            "slug": "plugins/oberonmob/credits"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "🎖️ OberonStaff",
+    "collapsed": true,
+    "items": [
+      {
+        "label": "📘 Introduction",
+        "slug": "plugins/oberonstaff"
+      },
+      {
+        "label": "🚀 Getting Started",
+        "items": [
+          {
+            "label": "Requirements",
+            "slug": "plugins/oberonstaff/getting-started/requirements"
+          },
+          {
+            "label": "Installation",
+            "slug": "plugins/oberonstaff/getting-started/installation"
+          },
+          {
+            "label": "Quick Start",
+            "slug": "plugins/oberonstaff/getting-started/quick-start"
+          }
+        ]
+      },
+      {
+        "label": "✨ Features",
+        "items": [
+          {
+            "label": "Staff Chat",
+            "slug": "plugins/oberonstaff/features/staff-chat"
+          },
+          {
+            "label": "Teleports",
+            "slug": "plugins/oberonstaff/features/teleports"
+          },
+          {
+            "label": "Vanish",
+            "slug": "plugins/oberonstaff/features/vanish"
+          },
+          {
+            "label": "Ranks",
+            "slug": "plugins/oberonstaff/features/ranks"
+          },
+          {
+            "label": "Action Log",
+            "slug": "plugins/oberonstaff/features/action-log"
+          }
+        ]
+      },
+      {
+        "label": "⚙️ Configuration",
+        "items": [
+          {
+            "label": "config.yml",
+            "slug": "plugins/oberonstaff/configuration/config"
+          },
+          {
+            "label": "messages.yml",
+            "slug": "plugins/oberonstaff/configuration/messages"
+          },
+          {
+            "label": "database.yml",
+            "slug": "plugins/oberonstaff/configuration/database"
+          },
+          {
+            "label": "Reloading",
+            "slug": "plugins/oberonstaff/configuration/reloading"
+          }
+        ]
+      },
+      {
+        "label": "📖 Reference",
+        "items": [
+          {
+            "label": "Commands & Permissions",
+            "slug": "plugins/oberonstaff/commands-and-permissions"
+          },
+          {
+            "label": "Placeholders",
+            "slug": "plugins/oberonstaff/placeholders"
+          },
+          {
+            "label": "FAQ & Troubleshooting",
+            "slug": "plugins/oberonstaff/faq"
+          },
+          {
+            "label": "Credits",
+            "slug": "plugins/oberonstaff/credits"
+          }
+        ]
+      }
+    ]
   }
 ]
