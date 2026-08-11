@@ -39,6 +39,31 @@ For each entry, the seeder writes an [items.yml](/plugins/drotatingshop/configur
 
 Edit `prices_1_21.yml` (or replace it entirely) **before** the first seed — change prices, drop entries, or add your own. Any key that doesn't resolve to a material on your server version (e.g. potions, tipped arrows, or items from a newer release) is simply **skipped**, so a mismatched list won't error.
 
+## Enchanted books
+
+An id shaped `enchanted_book_<enchantment>_<level>` is seeded as an `ENCHANTED_BOOK` carrying that **stored** enchantment, so the 121 book entries in the bundled list become real, sellable, buyable books:
+
+```yaml
+# in prices_1_21.yml
+enchanted_book_fortune_3:
+  name: enchanted book (fortune iii)
+  unit_buy: 1200
+```
+
+```yaml
+# seeded into items.yml
+enchanted_book_fortune_3:
+  display-name: "Enchanted Book (Fortune Iii)"
+  material: ENCHANTED_BOOK
+  enchantments:
+    fortune: 3
+  price: 1200.0
+```
+
+The name is split at the **last** underscore, so `enchanted_book_bane_of_arthropods_5` reads as Bane of Arthropods V. It must be the enchantment's **registry** name — `binding_curse`, not `curse_of_binding` — or the entry is skipped like an unknown material.
+
+> Books were skipped entirely before this, because `enchanted_book_fortune_3` matches no Bukkit material. If your `items.yml` was seeded on an older build, run `/dshop seed` to add them; existing ids are never overwritten.
+
 After the first seed, the live pool is [items.yml](/plugins/drotatingshop/configuration/items/) — edit prices there. `prices_1_21.yml` is only consulted by the seed.
 
 ## Re-seed from scratch

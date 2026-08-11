@@ -1573,6 +1573,10 @@
             "slug": "plugins/ddonutworth/features/worth-lore"
           },
           {
+            "label": "Enchantment Worth",
+            "slug": "plugins/ddonutworth/features/enchantment-worth"
+          },
+          {
             "label": "Sell Multipliers",
             "slug": "plugins/ddonutworth/features/sell-multipliers"
           },
@@ -1600,6 +1604,10 @@
           {
             "label": "prices.yml",
             "slug": "plugins/ddonutworth/configuration/prices"
+          },
+          {
+            "label": "enchantments.yml",
+            "slug": "plugins/ddonutworth/configuration/enchantments"
           },
           {
             "label": "Sell Categories",
