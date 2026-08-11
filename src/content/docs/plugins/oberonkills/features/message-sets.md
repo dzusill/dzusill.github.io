@@ -71,7 +71,7 @@ Keep-Vanilla-When-Unconfigured: true
 | `<killer>` | who killed them | Pvp, Mob |
 | `<mob>` | the mob | Mob |
 | `<item>` | the weapon, named properly | Pvp |
-| `<distance>` | blocks | Pvp, ranged only |
+| `<distance>` | blocks | Pvp — `bow`, `crossbow`, `trident` only |
 | `<cause>` | the raw key | all |
 | `<killer_rank>` | rank prefix | Pvp |
 | `<victim_rank>` | rank prefix | all |

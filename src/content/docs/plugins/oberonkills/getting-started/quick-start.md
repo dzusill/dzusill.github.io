@@ -43,7 +43,7 @@ A key takes one line or a list. With a list, one is picked at random per death:
 | `<killer>` | who killed them (PvP) |
 | `<mob>` | the mob that killed them (Mob) |
 | `<item>` | the weapon, named properly |
-| `<distance>` | blocks — bow, crossbow and trident kills only |
+| `<distance>` | blocks — bow, crossbow and thrown trident kills only |
 | `<cause>` | the raw key, e.g. `fall` |
 | `<killer_rank>` `<victim_rank>` | rank prefixes, if you configure `Ranks` |
 

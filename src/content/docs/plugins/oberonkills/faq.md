@@ -41,20 +41,41 @@ They should not. Check `/oberonkills status` for the mode, then:
 - **The material name instead of an anvil name** — a custom name should always win. If it does not, please report it
   with the item.
 
-## `<distance>` is empty
+## `<distance>` is empty — "from  blocks away"
 
-It is only filled for `bow`, `crossbow` and `trident` kills. A melee kill leaves it empty rather than showing `0` —
-so a format that mentions it in a melee message reads oddly rather than lying.
+It is only filled for `bow`, `crossbow` and thrown `trident` kills. In any other key it renders as a gap, so write
+`from <distance>m` only where there is one.
 
-If it is empty on a genuine bow kill, the shot landed more than ten seconds before the victim actually died, so the
-record had expired.
+On a **genuine bow kill**, one of two things happened:
+
+1. **Another plugin dealt the damage.** Custom-item and custom-enchant plugins routinely cancel the arrow's damage and
+   apply their own, so no projectile is ever seen and there is nothing to measure. This is the common one on a server
+   that runs custom weapons.
+2. The shot landed more than `Combat.Remember-Hits-Seconds` before the victim actually died, so the record had expired.
+
+`Combat.Measure-Distance-At-Death` is on by default and covers both — those kills are measured killer-to-victim at the
+moment of death instead. If you are still seeing a gap, check it is not set to `false`, and set `Debug: true` to see
+what each death resolved to.
+
+## A stabbed trident says "from  blocks away"
+
+That was the old behaviour, when thrown and stabbed tridents shared one key. A stab now uses `trident-melee`, whose
+shipped wording mentions no distance.
+
+If you see it, your config has no `trident-melee` key — it was written before the key existed, or deleted. Add it:
+
+```yaml
+    trident-melee:
+      - "<#C21807><victim></#C21807> <gray>was run through by</gray> <#C21807><killer></#C21807><gray>'s</gray> <item>"
+```
 
 ## A death is attributed to the wrong thing
 
-The last blow from another entity is remembered for **ten seconds**. Beyond that a death falls through to the
-environmental set, which is almost always right — whatever finished them was not that blow.
+The last blow from another entity is remembered for `Combat.Remember-Hits-Seconds`, **ten seconds** by default. Beyond
+that a death falls through to the environmental set, which is almost always right — whatever finished them was not
+that blow.
 
-Ten seconds is not configurable. If your server needs it longer, say so and it can be.
+Raise it if players regularly die of burning or falling well after the shot that started it.
 
 ## Ranks show the wrong one
 

@@ -22,20 +22,50 @@ Keep-Vanilla-When-Unconfigured: true
 | `Debug` | `false` | Extra console logging. |
 | `Keep-Vanilla-When-Unconfigured` | `true` | What happens to a death with no message and no `default` — keep the vanilla line, or say nothing. |
 
+## Combat
+
+```yaml
+Combat:
+  Remember-Hits-Seconds: 10
+  Measure-Distance-At-Death: true
+```
+
+| Key | Default | Does |
+|---|---|---|
+| `Remember-Hits-Seconds` | `10` | How long a recorded blow can still be blamed for a death. Raise it if players regularly die of burning or falling well after the shot that started it. |
+| `Measure-Distance-At-Death` | `true` | When a ranged kill's shot was never recorded, measure killer-to-victim at the moment of death instead of leaving `<distance>` blank. |
+
+`Measure-Distance-At-Death` is the answer to a bow message reading *"from  blocks away"*. That happens when no
+projectile was ever seen — usually because a custom-item or custom-enchant plugin cancelled the arrow's damage and
+applied its own. Details on [Weapons & causes](/plugins/oberonkills/features/weapons/#distance).
+
 ## Item-Names
 
 ```yaml
 Item-Names:
   Mode: TRANSLATE
   Hover: true
+  Strip-Styling: true
 ```
 
 | Key | Default | Does |
 |---|---|---|
 | `Mode` | `TRANSLATE` | `TRANSLATE` sends the item's translation key so each client renders its own language. `PRETTY` title-cases the material name here. |
 | `Hover` | `true` | Attach the item's own hover — enchantments, durability, lore. |
+| `Strip-Styling` | `true` | Drop colour the item name carries of its own, so `<item>` takes the colour of the message. Off, an enchanted weapon arrives blue whatever the message says. |
 
 A custom anvil name beats both modes. Full explanation on [Item names](/plugins/oberonkills/features/item-names/).
+
+## Mob-Names
+
+```yaml
+Mob-Names:
+  Mode: TRANSLATE
+  Strip-Styling: true
+```
+
+The same two settings, for the mob that killed somebody. Without this the message shows the config key —
+`cave-spider` — which is not a name anyone wants broadcast. A name tag wins, exactly as a custom item name does.
 
 ## Messages
 

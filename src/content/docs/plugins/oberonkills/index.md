@@ -16,7 +16,8 @@ smash** — the move the weapon exists for.
 
 ## What it does
 
-- 🗡️ **Weapon-aware** — `sword` `axe` `bow` `crossbow` `trident` `mace` `mace-smash` `item` `unarmed`, each its own key.
+- 🗡️ **Weapon-aware** — `sword` `axe` `bow` `crossbow` `trident` `trident-melee` `mace` `mace-smash` `item` `unarmed`,
+  each its own key.
 - 🏷️ **Proper item names** — translation keys by default; custom anvil names always win.
 - 📚 **Three message sets** — PvP, mob and environmental deaths, styled separately.
 - 🎲 **Random variants** — list several lines under a key and one is picked per death.
