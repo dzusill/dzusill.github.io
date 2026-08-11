@@ -2079,29 +2079,116 @@
     ]
   },
   {
-    "label": "💬 DDialogs",
+    "label": "💬 dDialogs",
     "collapsed": true,
     "items": [
       {
-        "label": "DDialogs",
+        "label": "📘 Introduction",
         "slug": "plugins/ddialogs"
       },
       {
-        "label": "📂 Guide",
+        "label": "🚀 Getting Started",
         "items": [
+          {
+            "label": "Requirements",
+            "slug": "plugins/ddialogs/getting-started/requirements"
+          },
+          {
+            "label": "Installation",
+            "slug": "plugins/ddialogs/getting-started/installation"
+          },
           {
             "label": "Make your first dialog",
             "slug": "plugins/ddialogs/tutorial"
+          }
+        ]
+      },
+      {
+        "label": "✨ Building Blocks",
+        "items": [
+          {
+            "label": "Dialog types",
+            "slug": "plugins/ddialogs/features/dialog-types"
           },
           {
-            "label": "Writing dialogs",
-            "slug": "plugins/ddialogs/writing-dialogs"
+            "label": "Body & text",
+            "slug": "plugins/ddialogs/features/body-and-text"
+          },
+          {
+            "label": "Buttons & actions",
+            "slug": "plugins/ddialogs/features/buttons-and-actions"
+          },
+          {
+            "label": "Inputs (forms)",
+            "slug": "plugins/ddialogs/features/inputs"
+          },
+          {
+            "label": "Sub-dialogs & navigation",
+            "slug": "plugins/ddialogs/features/sub-dialogs"
+          },
+          {
+            "label": "Icons",
+            "slug": "plugins/ddialogs/features/icons"
+          },
+          {
+            "label": "Placeholders",
+            "slug": "plugins/ddialogs/features/placeholders"
+          },
+          {
+            "label": "Dynamic lists",
+            "slug": "plugins/ddialogs/features/dynamic-lists"
+          },
+          {
+            "label": "Leaderboards",
+            "slug": "plugins/ddialogs/features/leaderboards"
+          },
+          {
+            "label": "Permissions & locks",
+            "slug": "plugins/ddialogs/features/permissions"
+          },
+          {
+            "label": "Pause menu button",
+            "slug": "plugins/ddialogs/features/pause-menu"
+          }
+        ]
+      },
+      {
+        "label": "📚 Cookbook",
+        "items": [
+          {
+            "label": "All 21 examples",
+            "slug": "plugins/ddialogs/examples"
+          },
+          {
+            "label": "Menu patterns",
+            "slug": "plugins/ddialogs/menu-patterns"
+          }
+        ]
+      },
+      {
+        "label": "⚙️ Configuration",
+        "items": [
+          {
+            "label": "config.yml",
+            "slug": "plugins/ddialogs/configuration/config"
           }
         ]
       },
       {
         "label": "📖 Reference",
         "items": [
+          {
+            "label": "Writing dialogs",
+            "slug": "plugins/ddialogs/writing-dialogs"
+          },
+          {
+            "label": "Commands & Permissions",
+            "slug": "plugins/ddialogs/commands-and-permissions"
+          },
+          {
+            "label": "FAQ & Troubleshooting",
+            "slug": "plugins/ddialogs/faq"
+          },
           {
             "label": "How it works",
             "slug": "plugins/ddialogs/how-it-works"

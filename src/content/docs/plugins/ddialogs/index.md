@@ -1,62 +1,60 @@
 ---
-title: "DDialogs"
-description: "Native Minecraft dialogs for the DzusillCore ecosystem."
+title: "dDialogs"
+description: "Build real Minecraft menus in YAML — no Java, no chest GUIs. Native client-rendered screens with buttons, text fields, sliders and checkboxes."
 ---
 
-Native Minecraft dialogs for the DzusillCore ecosystem.
+**dDialogs turns a YAML file into a real Minecraft menu.** Not items in a chest pretending to be buttons — an actual screen the client draws, with proper buttons, text fields, checkboxes and sliders.
 
-Minecraft 1.21.6 added server-driven dialogs — real client-rendered screens with text fields, checkboxes, sliders and option pickers, instead of items arranged in a chest. DDialogs is what draws them.
+Minecraft 1.21.6 added server-driven dialogs. dDialogs is what lets you write them without touching Java.
 
-## What it does
+## What you can build
 
-It renders. It does not add commands, configuration, or an API of its own.
+Everything below is one `.yml` file each, and every one of them ships as a working example you can open in-game:
 
-Every DzusillCore plugin already calls `DialogService`. Without DDialogs those calls fall back to chat prompts and chest menus; installing DDialogs upgrades the same call sites to real dialogs. Removing it downgrades them again. **No plugin needs to change, and nothing references DDialogs directly.**
+| | |
+|---|---|
+| A server menu | a grid of buttons that run commands |
+| A rules page | scrolling text with an OK button |
+| "Are you sure?" | a two-button confirmation |
+| A form | text fields, a checkbox, a dropdown, a slider — all on one screen |
+| A player list | one button per online player, built the moment it opens |
+| A top-10 | one row per rank, each with that player's head |
+| A settings screen | rows that show their value and flip when pressed |
 
-| Without DDialogs | With DDialogs |
+## Two jobs in one plugin
+
+**1. You write menus.** Drop a `.yml` in `plugins/dDialogs/dialogs/`, run `/ddialogs reload`, and it exists. This is what most of this documentation is about, and it needs no programming at all.
+
+**2. It upgrades other plugins.** Every DzusillCore plugin already asks for a dialog when it needs one. Without dDialogs those requests fall back to chat prompts and chest menus; with it, the same call sites become real screens. **No other plugin has to change, and none of them reference dDialogs directly.**
+
+| Without dDialogs | With dDialogs |
 |---|---|
 | "Delete that warp?" as a clickable yes/no in chat | a proper confirmation screen |
 | pick an amount with +1 / +half / +stack buttons | a slider |
 | one ticket question per chat message | the whole form on one screen |
 
-## Requirements
+## Where to start
 
-- **Paper 1.21.7 or newer.** Dialogs reached the client in 1.21.6, but the server API for them arrived in 1.21.7.
-- **DzusillCore 1.4.0 or newer**, installed as a separate jar.
+**Never written one before?** [Make your first dialog](/plugins/ddialogs/tutorial) — ten minutes, no Java, and you press your own button at the end.
 
-On an older server the plugin loads, logs that dialogs are unavailable, and stays out of the way — plugins using `DialogService` keep working through its fallbacks.
+**Want to see everything working first?** A fresh install ships all 21 [examples](/plugins/ddialogs/examples) as live dialogs, each with its own command. Type `/examplemenu` and click around.
 
-## Installation
+**Designing a whole menu tree?** [Menu patterns](/plugins/ddialogs/menu-patterns) covers the screens published servers actually ship, and why they look the way they do.
 
-Drop `DDialogs.jar` into `plugins/` alongside `DzusillCore.jar` and restart. You should see:
+**Looking up one key?** [Writing dialogs](/plugins/ddialogs/writing-dialogs) is the complete reference.
 
-```
-[DDialogs] Native dialog rendering enabled: paper-typed (1.21.11, client-gate=none)
-```
+## The one rule to understand early
 
-`client-gate` reports how per-player client versions are detected. With ViaVersion installed it reads `viaversion`, and players on clients older than 1.21.6 are routed to the fallback rather than being sent a screen they cannot draw. Without it, `none` — every client is assumed to speak the server's protocol, which is true when no translating proxy is involved.
+> **A dialog is drawn once, when it opens, and nothing in it can change afterwards.**
 
-## Verifying it
+Almost every question people ask comes back to this sentence. A setting that appears to toggle is a screen thrown away and rebuilt. A list that appears to filter is the same screen reopened with a stored search term. There is no live updating, no pagination, no if-statements.
 
-DzusillCore ships `/coredialog` for exactly this:
+That sounds limiting. In practice it makes menus *simpler* to write, because there is only ever one thing on screen and you always know exactly what it is.
 
-| | |
-|---|---|
-| `/coredialog status` | whether native rendering is active for *you* |
-| `/coredialog confirm` | a confirmation |
-| `/coredialog input` | a single text field |
-| `/coredialog full` | every input type at once, echoing each value back |
+## Requirements at a glance
 
-`full` is the useful one: a mistranslated field shows up as a wrong value in chat rather than as a screen that silently looks fine.
+- **Paper 1.21.7 or newer** — dialogs reached the client in 1.21.6, but the server API arrived in 1.21.7
+- **DzusillCore 1.4.0 or newer**, as a separate jar
+- Optional: **PlaceholderAPI** for `%placeholders%`, **ViaVersion** so old clients get the fallback instead of a blank screen
 
-## A caveat worth knowing
-
-A plugin that **shades DzusillCore** into its own jar, rather than depending on a separate core jar, carries its own copy of the dialog interfaces. Bukkit's service lookup matches on class identity, so DDialogs' registration cannot be found from such a plugin and it will always use the fallback.
-
-Nothing breaks — it just never upgrades. Switching that plugin to `provided` scope and installing DzusillCore separately is what enables native rendering there.
-
-## Pages
-
-* [Make your first dialog](/plugins/ddialogs/tutorial/) — start here; ten minutes, no Java
-* [Writing dialogs](/plugins/ddialogs/writing-dialogs/) — the full reference
-* [How it works](/plugins/ddialogs/how-it-works/) — internals, for whoever maintains it next
+Full detail on the [Requirements](/plugins/ddialogs/getting-started/requirements) page.
