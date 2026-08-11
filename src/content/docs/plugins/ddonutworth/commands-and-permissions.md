@@ -37,6 +37,7 @@ no conflict with another plugin's `/sell` unless it also registers at runtime.
 | `/sellaxe give <player> <duration>` | `ddonutworth.sellaxe` | Hand out a sell axe |
 | `/ddonutworth reload` | `ddonutworth.admin` | Reload configs, drop cached prices |
 | `/ddonutworth cleanup [radius]` | `ddonutworth.admin` | Strip leftover worth lore nearby |
+| `/ddonutworth resetmultiplier <player> [category\|all]` | `ddonutworth.admin` | Reset a sell ladder, banking what was earned |
 
 `/ddonutworth` also answers to `/donutworth` and `/dworth`.
 
