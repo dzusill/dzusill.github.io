@@ -11,6 +11,7 @@ The weapon in the killer's hand at the moment of the blow.
 |---|---|
 | `sword` | any sword |
 | `axe` | any axe — **not** a pickaxe, which ends in `_AXE` too |
+| `spear` | any spear, wooden through netherite. Vanilla since 1.21.11 |
 | `bow` | an arrow from a bow |
 | `crossbow` | an arrow or firework from a crossbow |
 | `trident` | a trident, thrown |
@@ -22,6 +23,14 @@ The weapon in the killer's hand at the moment of the blow.
 | `default` | anything the above did not cover |
 
 Splitting these is the point. AxKills reads the same for all of them.
+
+Weapons are recognised by material **name**, not by a fixed list, so the plugin classifies items added after it was
+built. A spear and the copper tools both arrived that way: `COPPER_SWORD` was a sword and `NETHERITE_SPEAR` a spear on
+a build that had never heard of either.
+
+The spear is melee only — there is no spear projectile — so `spear` never carries a `<distance>`. Its charged jab and
+its ordinary one are the same key: the server exposes nothing that tells them apart, unlike the mace, where fall
+distance does.
 
 ## The mace smash
 

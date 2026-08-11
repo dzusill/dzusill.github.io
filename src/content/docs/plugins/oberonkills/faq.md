@@ -57,6 +57,14 @@ On a **genuine bow kill**, one of two things happened:
 moment of death instead. If you are still seeing a gap, check it is not set to `false`, and set `Debug: true` to see
 what each death resolved to.
 
+## A spear kill uses the `item` message
+
+Fixed. The spear became a vanilla weapon in 1.21.11, and builds before that classified it as "anything else held", so
+a spear kill read *"was killed by X using Netherite Spear"* and a `spear:` key in the config was never reached.
+
+`spear` is a real key now, covering every tier from wooden to netherite. It has no `<distance>` — a spear cannot be
+thrown.
+
 ## A stabbed trident says "from  blocks away"
 
 That was the old behaviour, when thrown and stabbed tridents shared one key. A stab now uses `trident-melee`, whose
