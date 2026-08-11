@@ -1,9 +1,9 @@
 ---
 title: "How it works"
-description: "Useful if you are extending DDialogs, or wondering why the rendering is not simply part of DzusillCore."
+description: "Useful if you are extending dDialogs, or wondering why the rendering is not simply part of DzusillCore."
 ---
 
-Useful if you are extending DDialogs, or wondering why the rendering is not simply part of DzusillCore.
+Useful if you are extending dDialogs, or wondering why the rendering is not simply part of DzusillCore.
 
 ## Why rendering is a separate plugin
 
@@ -17,14 +17,14 @@ Audience#showDialog(net.kyori.adventure.dialog.DialogLike)
 
 Core calling any of those has its bytecode rewritten by the shade relocator, and the rewritten call fails at runtime. Not a style problem — a hard one.
 
-DDialogs is not shaded, so it calls the API directly. It also gets a second benefit: it parses MiniMessage with the **server's own** instance, which always produces the component format the running server expects. Core's bundled Adventure is older and emits a pre-1.21.5 format, which would be wrong on the wire.
+dDialogs is not shaded, so it calls the API directly. It also gets a second benefit: it parses MiniMessage with the **server's own** instance, which always produces the component format the running server expects. Core's bundled Adventure is older and emits a pre-1.21.5 format, which would be wrong on the wire.
 
 ## What crosses the boundary
 
 Only plain core types — `DialogSpec` and friends are records of `String`, primitives and `java.util` collections. No component, no NBT, no SNBT. That is what makes the boundary safe against the relocation.
 
 ```
-DzusillCore (relocated)                    DDialogs (unrelocated)
+DzusillCore (relocated)                    dDialogs (unrelocated)
   DialogService                              PaperDialogBackend
   DialogSpec (records) ───── spec ─────────►   MiniMessage → native Component
   PendingDialogs (tokens)                      → typed builders → showDialog()
@@ -34,7 +34,7 @@ DzusillCore (relocated)                    DDialogs (unrelocated)
 
 ## Registration and lookup
 
-Registration goes through Bukkit's `ServicesManager`, not core's own registry. DDialogs declares `depend: [DzusillCore]`, so core finishes enabling *before* this plugin exists — anything core checked during its own startup would always miss. Core resolves the backend lazily on first use and calls `attach` once.
+Registration goes through Bukkit's `ServicesManager`, not core's own registry. dDialogs declares `depend: [DzusillCore]`, so core finishes enabling *before* this plugin exists — anything core checked during its own startup would always miss. Core resolves the backend lazily on first use and calls `attach` once.
 
 The lookup is invalidated on `PluginDisableEvent`; otherwise core would keep a reference into a dead class loader and the next click would fail with `NoClassDefFoundError`.
 

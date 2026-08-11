@@ -81,3 +81,36 @@ Bare hands, a mob kill, an environmental death: `<item>` renders as nothing at a
 
 A format that mentions `<item>` in an `unarmed` message therefore reads a little oddly — which is a reason to give
 `unarmed` its own wording, as the shipped config does.
+
+## Colour and brackets are the message's business
+
+`<item>` and `<mob>` come out **bare** — no brackets, no colour of their own — so the message decides:
+
+```yaml
+"<gold><item></gold>"        # Netherite Sword, gold
+"<gray>[<item>]</gray>"      # [Netherite Sword], grey
+"<#C21807><item></#C21807>"  # any hex colour
+```
+
+Bukkit's own `displayName()` would have been shorter, but it hard-codes both: `[Netherite Sword]`, in the item's
+rarity colour, which no config could then change.
+
+### `Strip-Styling`
+
+```yaml
+Item-Names:
+  Strip-Styling: true    # default
+Mob-Names:
+  Strip-Styling: true    # default
+```
+
+Two names arrive already carrying a colour: an **enchanted weapon**, coloured by its rarity, and one **named by a
+player** in an anvil or on a name tag. A colour set on a component beats the one it inherits — so without this,
+`<gray><item></gray>` has no effect on either, and an enchanted sword shows up blue whatever the message says.
+
+On by default, and it is applied at every depth: clearing the outer layer alone leaves a player-written name still
+coloured inside.
+
+Turn it off if you would rather see each weapon in its own rarity colour.
+
+The item's hover survives either way, so staff can still see the enchantments that did it.

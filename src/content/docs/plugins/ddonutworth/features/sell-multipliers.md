@@ -62,6 +62,40 @@ Tokens: `{category}`, `{playerMultiplier}`, `{tier}`. A `rank_up` sound plays al
 
 One large sale that crosses several tiers announces the **highest** one reached, not each in turn.
 
+## Resetting a player's ladder
+
+```
+/ddonutworth resetmultiplier <player>            every category they have touched
+/ddonutworth resetmultiplier <player> ores       just that category
+/ddonutworth resetmultiplier <player> all        the same as omitting it
+```
+
+Requires `ddonutworth.admin`, and works on an offline player.
+
+A reset is **not** a punishment. It wipes the money sold and drops the tier back to 0, but it **banks the
+multiplier the player had** as a permanent floor on that category — so the payout does not fall, and
+climbing the ladder again leaves them strictly higher than before.
+
+```yaml
+multipliers:
+  reset:
+    enabled: true
+    keep-fraction: 1.0   # how much of the earned multiplier is banked
+    max-bonus: 0.0       # ceiling on the banked bonus; 0 = none
+```
+
+| `keep-fraction` | Reset at 1.3× | After re-climbing to tier 3 |
+|---|---|---|
+| `1.0` (default) | still 1.3× | 1.6× |
+| `0.5` | 1.15× | 1.45× |
+| `0.0` | 1.0× — a plain wipe | 1.3× |
+
+At the default, a reset can never leave a player worse off; lower the fraction if you want it to cost
+something. `max-bonus` caps how far repeated resets can compound.
+
+The banked bonus is **additive** on top of the tier multiplier and is stored per category, so resetting
+`ores` never touches `crops`.
+
 ## Turning it all off
 
 ```yaml

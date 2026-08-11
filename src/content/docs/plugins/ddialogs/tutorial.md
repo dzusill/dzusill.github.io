@@ -1,242 +1,263 @@
 ---
 title: "Make your first dialog"
-description: "No Java, no restarts, no plugin knowledge. Ten minutes."
+description: "From an empty file to a working menu. No Java, no programming, ten minutes."
 ---
 
-No Java, no restarts, no plugin knowledge. Ten minutes.
+You will build a menu with real buttons. No Java, no programming, nothing to compile. If you can edit a text file, you can do this.
 
-## Where things are
+## Step 1 — Make a file
 
-After the first start you have:
+Go to `plugins/dDialogs/dialogs/` and create a new file called **`mymenu.yml`**.
 
-```
-plugins/DDialogs/
-├── dialogs/              ← your dialogs live here. One file = one dialog.
-└── .example-configs/     ← one worked example per feature. Copy from here.
-```
+The filename matters: `mymenu.yml` means this dialog's **id** is `mymenu`. That is how everything else will refer to it.
 
-The `.example-configs` folder is **reference only** — nothing in it is loaded. It is rewritten every start, so upgrading gives you examples for whatever was added. Copy a file out of it into `dialogs/`, rename it, and it becomes real.
+## Step 2 — The smallest thing that works
 
-## 1. The smallest possible dialog
-
-Create `plugins/DDialogs/dialogs/hello.yml`:
+Put exactly this in the file:
 
 ```yaml
 type: notice
-title: "<gold>Hello"
+title: "Hello"
 ok-button:
-  label: "<green>Close"
+  label: "Close"
 ```
 
-In game:
+Three ideas, and that is the whole language:
+
+- **`type`** — what shape of screen this is. `notice` means "some text and one button".
+- **`title`** — the heading at the top.
+- **`ok-button`** — the single button a `notice` has. `label` is the words on it.
+
+Save it, then in-game:
 
 ```
 /ddialogs reload
-/ddialogs open hello
+/ddialogs open mymenu
 ```
 
-That is a complete dialog. The **id** is the filename without `.yml`, so this one is `hello`.
+A screen appears. You made a dialog.
 
-## 2. Give it a command
+## Step 3 — Add some text
+
+The title is one line. Real text goes in the **body**:
 
 ```yaml
 type: notice
-title: "<gold>Hello"
-
-open:
-  command: hello        # now /hello opens it
-
-ok-button:
-  label: "<green>Close"
-```
-
-> Commands are registered when the server **starts**. Adding a `command:` needs a restart — everything else in the file reloads with `/ddialogs reload`.
-
-## 3. Make it do something
-
-```yaml
-ok-button:
-  label: "<green>Take me to spawn"
-  actions:
-    - "[message] <gray>Off you go."
-    - "[sound] entity.enderman.teleport"
-    - "[player] spawn"
-    - "[close]"
-```
-
-Actions run top to bottom. `[player]` runs a command **as the player**, exactly as if they typed it, so their permissions apply.
-
-If you mistype a tag — `[mesage]` — the server refuses the file at startup and lists the valid ones. It will not silently give you a dead button.
-
-## 4. Ask a question
-
-Change `type` to `confirmation` and give it two named buttons:
-
-```yaml
-type: confirmation
-title: "<red>Really?"
+title: "Hello"
 
 body:
   - type: text
-    text: "<gray>This cannot be undone."
+    text: "Welcome to the server!"
+    width: 300
 
-confirm-button:
-  label: "<red>Do it"
-  actions: ["[message] <red>Done."]
-
-deny-button:
-  label: "<gray>Never mind"
-  actions: ["[message] <green>Nothing happened."]
+ok-button:
+  label: "Close"
 ```
 
-The buttons have **names**, so you cannot get their order wrong.
+The `- ` before `type: text` matters — it means "this is one item in a list", and the body is a list because you can have many lines.
 
-## 5. Build a menu
+`width` is how wide the line is allowed to be before it wraps, in pixels. 300 is comfortable.
+
+:::tip[YAML is picky about spaces]
+Indentation must be **spaces, never tabs**, and lines at the same level must line up exactly. If a dialog refuses to load, this is the first thing to check — the console tells you which line.
+:::
+
+## Step 4 — Colour it
+
+Colours use MiniMessage tags. A tag turns something on, and `</...>` turns it off:
+
+```yaml
+title: "<gold><b>Hello</b></gold>"
+text: "<gray>Welcome, <white>friend</white>. Enjoy your stay."
+```
+
+Useful ones: `<red>` `<green>` `<blue>` `<yellow>` `<gold>` `<aqua>` `<gray>` `<white>` `<dark_gray>`, plus `<b>` for bold and `<i>` for italic. There is also `<gradient:#5BE585:#2C99F8>text</gradient>` if you want to show off.
+
+## Step 5 — Say the player's name
+
+```yaml
+text: "<gray>Welcome back, <white>%player_name%</white>."
+```
+
+`%player_name%` is a **placeholder** — it is replaced with the name of whoever is looking at the screen. A handful work with nothing installed: `%player_name%`, `%player_world%`, `%player_health%`, `%server_online%` and more. See [Placeholders](/plugins/ddialogs/features/placeholders).
+
+## Step 6 — Buttons that do things
+
+A `notice` only has one button. Switch to **`multi_action`** to get a grid:
 
 ```yaml
 type: multi_action
-title: "<aqua>My menu"
+title: "<gold><b>Server menu</b></gold>"
 columns: 2
 
-open:
-  command: mymenu
+body:
+  - type: text
+    text: "<gray>Welcome back, <white>%player_name%</white>."
+    width: 300
 
 buttons:
-  - label: "<item:ender_pearl> Spawn"
-    actions: ["[player] spawn", "[close]"]
+  - label: "<green>Spawn"
+    tooltip: "<gray>Teleport to spawn"
+    width: 150
+    actions:
+      - "[player] spawn"
+      - "[close]"
 
-  - label: "<item:book> Rules"
-    actions: ["[dialog] hello"]      # opens another dialog by its id
+  - label: "<aqua>Who is online"
+    width: 150
+    actions:
+      - "[player] list"
 
 exit-button:
   label: "<gray>Close"
-  actions: ["[close]"]
+  width: 100
+  actions:
+    - "[close]"
 ```
 
-`[dialog] <id>` is how menus connect. In the dialog you jump to, use `[back]` for its back button rather than naming a destination — otherwise a screen reachable from two menus sends half your players to the wrong one.
+What is new:
 
-## 6. Ask for input
+- **`columns: 2`** — the grid is two buttons wide. They fill left, right, left, right.
+- **`buttons`** — a list. Each `- label:` starts a new button.
+- **`tooltip`** — the little box shown on hover.
+- **`actions`** — what happens when pressed, **in order, top to bottom**.
+- **`exit-button`** — a special button centred underneath the grid.
+
+### The action tags
+
+Each action starts with a tag in square brackets:
+
+| Tag | Does |
+|---|---|
+| `[player] spawn` | runs `/spawn` **as the player**, with their permissions |
+| `[console] give ...` | runs it as the **server** — powerful, be careful |
+| `[message] <green>Hi` | sends a chat message to that player only |
+| `[sound] entity.player.levelup` | plays a sound |
+| `[dialog] otherfile` | opens another dialog |
+| `[back]` | goes back to the previous dialog |
+| `[close]` | shuts the screen |
+
+There are thirteen in total — see [Buttons & actions](/plugins/ddialogs/features/buttons-and-actions).
+
+:::caution[`[console]` runs with full server power]
+Never put text a player typed into a `[console]` action. Use `[player]` unless you specifically need the server's permissions.
+:::
+
+## Step 7 — Give it a command
+
+Right now you open it with `/ddialogs open mymenu`. Give it a real command:
 
 ```yaml
-inputs:
-  - key: who
-    type: text
-    label: "Player"
-    max-length: 16
-
-  - key: amount
-    type: number_range
-    label: "How much"
-    start: 1
-    end: 1000
-    initial: 100
-
-buttons:
-  - label: "<green>Pay"
-    actions: ["[player] pay $(who) $(amount)"]
+open:
+  command: mymenu
 ```
 
-Whatever the player enters comes back as `$(key)`.
+Now `/mymenu` works. **Commands only register at startup, so restart the server** — a reload will not do it.
 
-**Keys must be letters, digits or underscore.** `player-name` is refused when the file loads — Minecraft itself rejects it, so it is better to hear about it at startup than to wonder why the screen never opens.
-
-## 7. A list of players
+Want it restricted?
 
 ```yaml
-type: multi_action
-title: "<gold>Who is online"
-columns: 3
-
-dynamic-list:
-  source: online_players
-  template:
-    - label: "<head:$(player_name)> $(player_name)"
-      actions: ["[player] tpa $(player_name)", "[close]"]
+open:
+  command: mymenu
+  permission: myserver.menu
 ```
 
-One button per online player, each with their face, built fresh every time the dialog opens.
+## Step 8 — A second screen, and going back
 
-Adding a search box takes two steps, and this is the part people expect to work differently:
-
-```yaml
-inputs:
-  - { key: search, type: text, label: "Search" }
-
-footer-buttons:
-  - label: "Search"
-    actions:
-      - "[filter] $(search)"
-      - "[dialog] my-player-list"     # this dialog's own id
-```
-
-A dialog **cannot filter while you type** — the contents of a field only reach the server when a button is pressed. So searching is: store the term, reopen the screen, list comes back narrowed.
-
-## 8. A leaderboard
-
-One player per line, with their head. This needs **PlaceholderAPI** plus an expansion that provides ranked placeholders.
+Make a second file, `myrules.yml`:
 
 ```yaml
 type: notice
-title: "<red>Top killers"
+title: "<gold><b>Rules</b></gold>"
 
-dynamic-body:
-  source: placeholder
-  count: 10
-  skip-empty: true
-  fields:
-    name:  "%ajlb_lb_statistic_player_kills_$(i)_alltime_name%"
-    value: "%ajlb_lb_statistic_player_kills_$(i)_alltime_value%"
-  template: "<red>#$(i) <head:$(name)> <white>$(name) <gray>— <red>$(value)"
+body:
+  - type: text
+    text: "<yellow><b>1. Be decent</b>"
+    width: 320
+  - type: text
+    text: ""
+  - type: text
+    text: "<yellow><b>2. No cheating</b>"
+    width: 320
 
 ok-button:
   label: "<gray>Back"
-  actions: ["[back]"]
+  actions:
+    - "[back]"
 ```
 
-**How `$(i)` works.** It is the row number. Row 3 turns
-
-```
-%ajlb_lb_statistic_player_kills_$(i)_alltime_name%
-```
-
-into
-
-```
-%ajlb_lb_statistic_player_kills_3_alltime_name%
-```
-
-which PlaceholderAPI then expands. One pattern, ten placeholders — instead of writing ten near-identical lines.
-
-**`skip-empty: true` matters.** On a server with three players, ranks 4–10 resolve to nothing. Without it you get seven blank lines; with it they disappear.
-
-**Use your own placeholders.** Run `/papi list` to see which expansions you have, and `/papi parse me %some_placeholder%` to test one before putting it in a file. If the whole leaderboard is missing, that placeholder is not resolving — check it with `/papi parse` first.
-
-> `dynamic-body` writes **text lines**. `dynamic-list` writes **buttons**. A top-10 as ten buttons looks wrong and invites clicks that do nothing, which is why they are separate.
-
-## 9. Icons
+Then add a button to `mymenu.yml` that opens it:
 
 ```yaml
-text: "<item:diamond> a diamond, <sprite:block/dirt> some dirt, <head:%player_name%> you"
+  - label: "<yellow>Rules"
+    width: 150
+    actions:
+      - "[dialog] myrules"
 ```
 
-Needs a 1.21.9+ client; older ones show nothing rather than breaking the dialog.
+That is a **sub-dialog**. `[dialog] myrules` opens the file `myrules.yml`, and `[back]` in that file returns to wherever the player came from — dDialogs remembers the trail for you, so the same Rules page works no matter which menu opened it.
 
-One trap: a **block** has no item texture — its inventory icon is a rendered model, not a picture. `<item:gold_block>` gives a pink square. Use `<sprite:block/gold_block>`.
+An empty `text: ""` is a deliberate blank line. That is how you get spacing.
 
-## When something is wrong
+## Step 9 — Ask the player something
+
+Inputs put fields on the screen. Whatever the player typed comes back as `$(key)`:
+
+```yaml
+type: multi_action
+title: "<green><b>Send feedback</b></green>"
+columns: 1
+
+inputs:
+  - key: msg
+    type: text
+    label: "Your message"
+    max-length: 200
+
+buttons:
+  - label: "<green>Send"
+    width: 220
+    actions:
+      - "[console] mail send Admin $(msg)"
+      - "[message] <green>Thanks!"
+      - "[close]"
+```
+
+`key: msg` names the field, and `$(msg)` is where its contents land. There are four input types — text, checkbox, dropdown and slider. See [Inputs](/plugins/ddialogs/features/inputs).
+
+:::note[The value only arrives when a button is pressed]
+Nothing reads a field while the player types. That is why a search box needs two steps — see [Dynamic lists](/plugins/ddialogs/features/dynamic-lists).
+:::
+
+## Step 10 — Add an icon
+
+```yaml
+label: "<item:diamond> <white>Shop"
+```
+
+`<item:diamond>` draws the diamond icon inline. Also `<head:%player_name%>` for a player's face and `<sprite:block/stone>` for block textures.
+
+:::caution[Blocks are not items]
+A *block* has no flat icon — Minecraft renders a 3D model for it. `<item:gold_block>` draws a pink missing-texture square. Use `<sprite:block/gold_block>` for blocks. Same trap for chests, beds, shields and clocks. [Icons](/plugins/ddialogs/features/icons) has a verified list.
+:::
+
+## When something goes wrong
 
 | What you see | What it means |
 |---|---|
-| The dialog does not appear at all | Check the console at startup: a file with an error is skipped and the message names the file and the key |
-| `/mycommand` says unknown | Commands register at startup. Restart, do not reload |
+| The dialog does not appear at all | It did not parse. The console names the file, the key and what it expected |
+| `/mycommand` says unknown | Commands register at startup — restart, do not reload |
 | A placeholder shows as `%…%` | PlaceholderAPI is missing, or that expansion is not installed. Test with `/papi parse me %…%` |
-| A button does nothing | Its command probably does not exist. Try typing the command yourself |
-| An icon is a pink square | Wrong texture path — see step 9 |
+| A button does nothing | Its command does not exist here. The console lists every such button at startup, and pressing it now tells the player instead of failing silently |
+| An icon is a pink square | It is a block or an animated item — see step 10 |
+| The dialog appears **in chat** instead of on screen | The server could not encode it. Look for `Dialog backend failed to render` in the console and read to the **end** of that message |
 | Blank rows in a leaderboard | Add `skip-empty: true` |
 
-`/ddialogs list` shows every dialog that loaded. If yours is not there, it did not parse — the console says why.
+`/ddialogs list` shows every dialog that loaded. If yours is not there, it did not parse.
 
-## Next
+## Where next
 
-- [Writing dialogs](/plugins/ddialogs/writing-dialogs/) — the full reference: every key, every action tag, every input option
-- `.example-configs/` — a working file for each feature, ready to copy
+- [Dialog types](/plugins/ddialogs/features/dialog-types) — all four shapes and when to use each
+- [Examples](/plugins/ddialogs/examples) — 21 working files, one per feature
+- [Menu patterns](/plugins/ddialogs/menu-patterns) — how real servers lay out a menu tree
+- [Writing dialogs](/plugins/ddialogs/writing-dialogs) — every key, in one place

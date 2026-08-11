@@ -114,3 +114,12 @@ set is a starting point rather than a fixture.
 
 Renders with stand-in names. If it says nothing is configured, the key has neither an entry nor a `default` — which
 is also worth knowing.
+
+## Every mob line uses `<mob>`
+
+The shipped `Mob` messages say `was blown up by a <mob>` rather than writing "creeper" into the sentence. Two
+reasons, and the second is the one that bites:
+
+- A name-tagged creeper called *Kevin* should say Kevin, and a hard-coded sentence never will.
+- Only `<mob>` is capitalised and translated. Spelling the mob out gives you a lower-case English word next to
+  properly-cased names — which is exactly how it was first reported.
