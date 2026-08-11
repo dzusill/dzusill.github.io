@@ -34,10 +34,52 @@ Commands:
 | `Name` | Command name, without the slash. |
 | `Aliases` | Alternative names. |
 | `Permission` | Who may run it. |
-
-> **`Enabled: false` matters if you run EssentialsX.** Two plugins registering `/tp` means load order decides which wins. Pick one.
+| `Take-Name-From-Other-Plugins` | Answer for this name even if another plugin registered it first. Off by default. |
 
 Servers that already permission their staff with `teleport.use` and `staffchat.use` can keep those nodes by putting them in `Permission` — no re-permissioning needed.
+
+### Command names
+
+Command names collide. Vanilla owns `/tp`; EssentialsX owns `/tp`, `/back` and `/tphere`; a tpa plugin often keeps
+`/tphere` as an alias. Whoever registered a name first keeps it.
+
+The plugin says so at startup rather than leaving you to find out:
+
+```
+[OberonStaff] Another plugin already owns some of these command names:
+[OberonStaff]   /tphere is owned by Essentials
+[OberonStaff]   They still work when typed, but that plugin answers their tab completion.
+```
+
+That second line is the part worth reading. A name somebody else owns **still runs our command** — the label is
+rewritten before dispatch — so the only visible symptom is that it will not tab-complete. That is a confusing
+thing to debug from the outside.
+
+`/oberonstaff status` lists who owns each name right now.
+
+Three ways to settle it:
+
+```yaml
+  tphere:
+    Take-Name-From-Other-Plugins: true   # ours wins
+```
+
+```yaml
+  tphere:
+    Name: staffhere                      # ours moves out of the way
+```
+
+```yaml
+  tphere:
+    Enabled: false                       # theirs wins, ours is not registered
+```
+
+Taking a name is off by default on purpose: two plugins on one name is your decision, not something to settle by
+load order. Turn it on when you know the other plugin only uses the name as an alias and has its own command for
+the real thing.
+
+Vanilla names are different — those we take automatically, because vanilla `/tp` does not log, and a staff
+teleport that no audit log records is not much of a staff teleport. Vanilla stays reachable as `/minecraft:tp`.
 
 ## Staff-Chat
 

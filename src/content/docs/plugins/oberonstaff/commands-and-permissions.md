@@ -54,6 +54,56 @@ Vanish: PremiumVanish (enabled: yes, 6 level(s))
 | `oberonstaff.back` | op | `/back`. |
 | `oberonstaff.*` | op | Everything above. |
 
+## Partial names
+
+Any command taking a player accepts the start of a name:
+
+```
+/tp elz        →  elz1one
+```
+
+An exact name always wins, so somebody called `el` stays reachable while `elz1one` is online. If the fragment
+matches more than one player it is refused and the candidates are named:
+
+```
+'elz' matches several players: elz1one, elzabeth
+```
+
+Guessing would be worse than asking for one more letter — on a teleport it means moving the wrong person, and
+nobody would notice.
+
+## A command is red, or will not tab-complete
+
+Two different causes, and they look identical in game.
+
+**They do not hold the permission.** The server sends each player a command list filtered by permission, so a
+command they cannot run is red and suggests nothing. It is invisible to an owner: op holds everything, so
+everything is white. Check with the player's own account, not yours:
+
+```
+/lp user <staff> permission check oberonstaff.teleport
+```
+
+The nodes are op-only by default — a staff group needs them granted explicitly. `/tp` and `/tphere` are one node,
+`oberonstaff.teleport`; missing it means both go red.
+
+**Another plugin owns the name.** Then the command still runs when typed in full, but the other plugin answers its
+tab completion. The console says so at startup, and:
+
+```
+/oberonstaff status
+```
+
+lists who owns each name right now:
+
+```
+/tphere -> Essentials
+/tp     -> OberonStaff
+```
+
+Fix it by giving ours a different `Name`, or by taking the name — see
+[Command names](/plugins/oberonstaff/configuration/config/#command-names).
+
 PremiumVanish's own `pv.see.*` nodes decide who can see whom. That plugin owns them; the ladder that reads them is in [`config.yml`](/plugins/oberonstaff/configuration/config/).
 
 ### Suggested setup

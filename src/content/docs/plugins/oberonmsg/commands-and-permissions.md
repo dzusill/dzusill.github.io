@@ -96,6 +96,25 @@ Commands:
 Player arguments tab-complete, with vanished players stripped out — along with every other command's suggestions on
 the server. See [Vanish & AFK](/plugins/oberonmsg/features/vanish-and-afk/).
 
+## Partial names
+
+Any command taking a player accepts the start of a name:
+
+```
+/msg elz hello        →  elz1one
+/ignore elz           →  elz1one
+```
+
+An exact name always wins, so somebody called `el` stays reachable while `elz1one` is online. If the fragment
+matches more than one player it is refused and the candidates are named:
+
+```
+'elz' matches several players: elz1one, elzabeth
+```
+
+Guessing would be worse than asking for one more letter — here it means sending a private message to the wrong
+person, and neither of you would know.
+
 ## Paged logs
 
 `/oberonmsg log` prints one page at a time rather than a wall of text. Under the list is a footer you click:

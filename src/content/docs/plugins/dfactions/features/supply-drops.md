@@ -21,6 +21,7 @@ factions:
     radius: 2000              # max distance from spawn a drop may appear
     min-distance: 500         # min distance from spawn
     marker-material: CHEST    # block placed to mark the drop
+    announce-landing: false   # chat broadcast; off because the boss bar shows the coordinates
     loot:                     # list of items; each rolled independently
       - material: DIAMOND
         amount: 8
