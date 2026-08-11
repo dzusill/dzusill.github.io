@@ -75,6 +75,23 @@ Bypasses are deliberately `false` by default, including for ops. Grant them narr
 
 Every subcommand and both player arguments tab-complete. `check` does not, because it takes free text.
 
+## Partial names
+
+`/oberonchat history` and `/oberonchat clear` take the start of a name:
+
+```
+/oberonchat history elz        →  elz1one
+```
+
+An exact name wins, so somebody called `el` stays reachable while `elz1one` is online. A fragment matching more
+than one online player is refused and the candidates are named, rather than one being picked:
+
+```
+'elz' matches several players: elz1one, elzabeth
+```
+
+Offline players still need their whole name — there is no list of them to match a fragment against.
+
 ## Paged logs
 
 `/oberonchat history` prints one page at a time rather than a wall of text. Under the list is a footer you click:
