@@ -80,3 +80,22 @@ Staff chat is delivered directly, not through your chat formatter — which is w
 ## Placeholders
 
 `%oberonstaff_staffchat%` returns `on` or `off` for the viewing player; `%oberonstaff_staffchat_users%` returns how many staff currently have the mode on. See [Placeholders](/plugins/oberonstaff/placeholders/).
+
+### A sound on a staff chat line
+
+```yaml
+Staff-Chat:
+  Sound:
+    Enabled: false                        # off by default
+    Name: "entity.experience_orb.pickup"
+    Volume: 0.6
+    Pitch: 1.6
+```
+
+A sound and **not** an action bar, deliberately. Staff chat is a conversation — something that overwrote whatever a
+moderator was being shown on every single line would cost more than it gave. A cue they can hear while doing
+something else is the part that helps.
+
+The sender never hears their own message. A name the server does not know costs the cue, not the message.
+
+Off by default: on a busy staff team it is a lot of noise.
