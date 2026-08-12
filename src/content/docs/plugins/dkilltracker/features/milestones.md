@@ -107,6 +107,31 @@ Milestones 5, 10 and 25 all fire, in order.
 
 Players below the first tier show `Default-Rank`.
 
+## Exempting staff and donor ranks
+
+`rank %player% bandit` **replaces** a group in most permission plugins. So the moment a moderator gets their fifth kill, the tier-5 command fires, their staff group is swapped for Bandit, and the rank they had is gone.
+
+Give those groups the exemption:
+
+```
+lp group mod permission set killtracker.bypass.milestones true
+lp group admin permission set killtracker.bypass.milestones true
+lp group vip permission set killtracker.bypass.milestones true
+```
+
+| | |
+|---|---|
+| Kills | Still counted. They stay on `/killtop` and every placeholder keeps working. |
+| Reward commands | Never run. Their group is never touched. |
+| `milestone-reached` / broadcast | Never sent. |
+| `%killtracker_rank%` | Stays at `Default-Rank` — no milestone was ever awarded, so there is nothing else honest to show. |
+
+The node is **not** part of `killtracker.*`, on purpose: exemption belongs to a rank, not to a permission level, and plenty of servers want their ops ranking up normally. Grant it explicitly.
+
+It is also safe to remove later. Their watermark never moved while exempt, but the `Backfill: false` rule still applies — the tiers they passed as staff are absorbed silently on their next kill, so demoting someone doesn't dump five rank commands on them at once.
+
+> Also worth exempting: the *victim* side. `killtracker.bypass.victim` stops players farming a staff member who has to stand at spawn. The two nodes are independent.
+
 ## Announcements
 
 ```yaml

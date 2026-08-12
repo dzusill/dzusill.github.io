@@ -56,12 +56,15 @@ Use `set` to fix a number. Use `add` to actually reward someone.
 | `killtracker.bypass.antifarm` | op | Killer skips every anti-farm gate. |
 | `killtracker.bypass.sameip` | nobody | Kills count despite sharing an IP with the victim. |
 | `killtracker.bypass.victim` | nobody | Killing this player never counts, for anyone. |
+| `killtracker.bypass.milestones` | nobody | This player never reaches a milestone — no reward commands, no rank change. |
 
 ### Umbrella
 
-`killtracker.*` grants everything **except** `killtracker.bypass.victim`.
+`killtracker.*` grants everything **except** `killtracker.bypass.victim` and `killtracker.bypass.milestones`.
 
-That exclusion is deliberate. If `bypass.victim` were included, every op would silently become worthless to kill — which nobody expects and which is very confusing to debug. Grant it explicitly to the staff or NPC accounts that need it.
+That exclusion is deliberate. If `bypass.victim` were included, every op would silently become worthless to kill — which nobody expects and which is very confusing to debug. Grant it explicitly to the staff or NPC accounts that need it. `bypass.milestones` is left out for the same reason: it is a property of a *rank*, not of a permission level, and plenty of servers want their ops ranking up normally.
+
+> **Give `killtracker.bypass.milestones` to every staff and donor group.** A tier command like `rank %player% bandit` *replaces* the player's group, so without it a moderator who reaches five kills is demoted to Bandit and loses their staff rank. Kills still count for exempt players — they stay on the leaderboard, they just never trigger a reward. See [Milestones](/plugins/dkilltracker/features/milestones/#exempting-staff-and-donor-ranks).
 
 > `killtracker.bypass.antifarm` defaulting to op is worth a second look on a server where staff play normally. It makes their kills exempt from the same-victim cooldown, which is right for testing and wrong for a fair leaderboard. Revoke it from your regular staff group.
 
@@ -75,9 +78,11 @@ lp group default permission set killtracker.top true
 # staff who play
 lp group mod permission set killtracker.info.others true
 lp group mod permission set killtracker.bypass.antifarm false
+lp group mod permission set killtracker.bypass.milestones true
 
 # admins
 lp group admin permission set killtracker.admin true
+lp group admin permission set killtracker.bypass.milestones true
 
 # staff who get hunted at spawn
 lp user Steve permission set killtracker.bypass.victim true

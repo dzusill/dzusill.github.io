@@ -15,6 +15,7 @@ It is built on [DzusillCore](https://github.com/dzusill/DzusillCore) and works o
 - 🛡️ **Anti kill-farming built in** — a configurable cooldown per killer + victim pair, same-IP alt detection, world safezones and exempt victims. Farmed kills are recorded but never count.
 - 🏅 **Kill milestones** — unlimited tiers in `config.yml`; each one runs any console commands you want (`rank %player% bandit`, `give`, `eco give`, `broadcast`, anything).
 - 🔒 **Rewards never fire twice** — the highest awarded milestone is stored per player, so restarts, relogs and reloads are safe.
+- 🎫 **Staff-safe** — `killtracker.bypass.milestones` stops a rank reward overwriting a moderator's or donor's group. Their kills still count.
 - 🧩 **PlaceholderAPI** — 16 placeholders for TAB, scoreboards, holograms and chat formats.
 - 🏆 **Leaderboard** — `/killtop` plus `%killtracker_top_name_1%` style placeholders.
 - 🗄️ **Flat file or SQL** — `kills.yml` by default, MySQL/PostgreSQL for a network.

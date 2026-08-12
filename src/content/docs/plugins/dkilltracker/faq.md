@@ -67,6 +67,16 @@ They shouldn't — the awarded threshold is stored per player. If it genuinely h
 **I added a tier and nobody got it.**
 `Backfill: false` (the default). Set it to `true`, reload, let it apply, set it back.
 
+**My moderator got 5 kills and was demoted to Bandit — their staff rank is gone.**
+`rank %player% bandit` *replaces* a group; the plugin only ran the command you configured. Give staff and donor groups `killtracker.bypass.milestones` and they stop reaching milestones altogether — kills still count, rewards never fire:
+```
+lp group mod permission set killtracker.bypass.milestones true
+```
+The node is not part of `killtracker.*`, so grant it per group. See [Milestones](/plugins/dkilltracker/features/milestones/#exempting-staff-and-donor-ranks). Restore the lost rank manually — the plugin never stored what it was.
+
+**A staff member has the exemption but `%killtracker_rank%` still says `Rookie`.**
+Correct. The exemption means no milestone was ever awarded, and the placeholder reports awarded milestones, not kills. Their kill count and `/killtop` position are unaffected.
+
 **I restored a backup and everyone got re-ranked.**
 The backup had an older `Last-Milestone` for those players, so tiers above it were legitimately unearned again. Nothing to fix in the plugin — restore the matching `kills.yml`, not a partial one.
 

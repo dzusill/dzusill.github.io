@@ -103,6 +103,8 @@ Milestones:
 
 > **`Tiers` is never merged on update.** Every other section gets new keys added automatically when you update the plugin; the tier list is deliberately left alone so a tier you deleted stays deleted. The trade-off is that new *example* tiers from an update won't appear either — check the changelog.
 
+> **Exempt your staff.** `rank %player% bandit` *replaces* a group, so a moderator hitting five kills loses their staff rank. Give staff and donor groups `killtracker.bypass.milestones` — kills still count, rewards never fire. See [Exempting staff and donor ranks](/plugins/dkilltracker/features/milestones/#exempting-staff-and-donor-ranks).
+
 See [Milestones & Ranks](/plugins/dkilltracker/features/milestones/).
 
 ## Leaderboard
