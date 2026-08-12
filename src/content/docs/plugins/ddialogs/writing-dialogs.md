@@ -39,7 +39,7 @@ Arity is enforced at load, not at render: vanilla rejects a wrong-sized dialog o
 | `title` | **required** | the heading. May be `""` to hide the header bar |
 | `external-title` | — | short name used when referenced from outside, e.g. the pause screen |
 | `columns` | 2 | grid width for `multi_action` |
-| `can-close-with-escape` | `true` | whether Escape closes it |
+| `escape` | from config | `close` or `none`. Older spelling: `can-close-with-escape: true/false` |
 | `pause` | `false` | pauses a singleplayer world |
 | `after-action` | `close` | `close`, `none`, or `wait_for_response` |
 | `body` | — | text and item elements |
@@ -50,6 +50,32 @@ Arity is enforced at load, not at render: vanilla rejects a wrong-sized dialog o
 | `dynamic-list` | — | buttons from live data |
 | `dynamic-body` | — | body lines from live data or ranked placeholders |
 | `open` | — | how it may be opened |
+
+## The Escape key
+
+| Value | Escape does |
+|---|---|
+| `escape: close` | shuts the screen; the player is back in the world |
+| `escape: none` | nothing. The only way out is a button |
+
+A file that says neither takes `defaults.escape-closes` from `config.yml`, so a whole tree can be given one policy without editing every file. The named form wins over `can-close-with-escape:` where both appear.
+
+:::caution[There is no `escape: back`]
+Writing it is a load error, not a silent fallback.
+
+Escape is handled entirely by the client: the flag travels with the dialog and the client acts on it locally, without telling the server. Paper's dialog API is two interfaces — `Dialog` and `DialogResponseView` — and contains no close event of any kind, so nothing can run at the moment a screen is dismissed. Escape can only be on or off.
+:::
+
+To make going back the only way out, turn Escape off and give the dialog a `[back]` button:
+
+```yaml
+escape: none
+exit-button:
+  label: "<gray>Back"
+  actions: ["[back]"]
+```
+
+The usual tree policy is `defaults.escape-closes: false` plus `escape: close` on the root alone — Escape then works exactly once, at the top, and every screen below is left through its own Back button.
 
 ## Body
 

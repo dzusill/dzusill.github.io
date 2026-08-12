@@ -3,12 +3,11 @@ title: "config.yml"
 description: "The whole file — dDialogs has exactly one setting group, and it is the pause-menu button."
 ---
 
-dDialogs has almost no configuration. Your dialogs are the configuration; `config.yml` holds one thing.
+dDialogs has almost no configuration. Your dialogs are the configuration; `config.yml` holds two things.
 
 ```yaml
-# ============================================================
-#  dDialogs
-# ============================================================
+defaults:
+  escape-closes: true
 
 pause-menu:
   enabled: false
@@ -17,6 +16,29 @@ pause-menu:
   quick-actions: false
   direct-open: false
 ```
+
+## defaults
+
+House rules every dialog inherits unless its own file says otherwise.
+
+| Key | Default | Meaning |
+|---|---|---|
+| `escape-closes` | `true` | whether Escape closes a dialog that does not specify |
+
+Per dialog, write it as a word rather than a bare boolean:
+
+```yaml
+escape: close      # or the old spelling, can-close-with-escape: true
+escape: none       # or can-close-with-escape: false
+```
+
+**A tree policy worth copying:** set `escape-closes: false` so no sub-screen can be dismissed by accident, then put `escape: close` on the root menu alone. Escape then works exactly once, at the top, and every screen below it is left through its own Back button.
+
+:::caution[There is no `escape: back`]
+Escape is handled by the client. The flag travels with the dialog and the client acts on it locally, without telling the server — Paper's dialog API has no close event of any kind, so nothing can run when a screen is dismissed.
+
+Escape can only be on or off. Writing `escape: back` is a load error with that explanation, rather than being silently ignored. Use `escape: none` plus a `[back]` button.
+:::
 
 | Key | Default | Meaning |
 |---|---|---|
