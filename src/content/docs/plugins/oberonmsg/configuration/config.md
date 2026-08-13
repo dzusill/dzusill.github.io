@@ -30,6 +30,27 @@ Commands:
 
 A server already permissioned with its own nodes can keep them by putting them in `Permission`.
 
+## Presentation
+
+Where each kind of message is shown, and what it sounds like.
+
+```yaml
+Presentation:
+  Categories:
+    TOGGLE:  { Channel: ACTION_BAR, Sound: { Enabled: true, Name: "entity.experience_orb.pickup" } }
+    ERROR:   { Channel: BOTH,       Sound: { Enabled: true, Name: "entity.villager.no" } }
+    INFO:    { Channel: CHAT }
+  Overrides: {}
+```
+
+`TOGGLE` covers `/msgtoggle`, `/socialspy` and the ignore confirmations. `ERROR` covers every refusal. `INFO` is
+everything else and stays in chat.
+
+**Private messages are not affected** — they are built under `Formats` below and always go to chat, because a
+conversation needs history.
+
+Full explanation on [Action bar, chat & sounds](/plugins/oberonmsg/features/presentation/).
+
 ## Formats
 
 The three lines a message produces. Here rather than in `messages.yml` because they are built from MiniMessage tags.

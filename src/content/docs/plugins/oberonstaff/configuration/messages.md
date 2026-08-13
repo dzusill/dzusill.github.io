@@ -89,6 +89,26 @@ The shipped messages use `<gradient:#a:#b>` rather than a hex code per letter. S
 
 The bottom of the file holds the framework's own messages: `no-permission`, `players-only`, `invalid-usage` and friends. Restyle them freely; don't rename the keys — and mind `player-not-found`, noted above.
 
+### `invalid-usage` names the command
+
+`%usage%` now includes the command itself, so the shipped message reads **`Usage: /tp <player>`** rather than
+`Usage: <player>`. Nothing to change: the same key, a fuller value.
+
+`%cmd%` is available separately if you want it somewhere else in the sentence — it is the command as the sender typed
+it, subcommand path included (`/oberonstaff status`).
+
+### `player-ambiguous`
+
+```yaml
+player-ambiguous: "<prefix><red>More than one player matches '%name%': <white>%players%</white>"
+```
+
+Sent when a name fragment matches two or more players online. Both are named rather than one being picked — guessing
+is how somebody ends up teleported to the wrong person.
+
+This key was missing from earlier builds, so the raw key was what players saw. It is added to your file automatically
+on the next start.
+
 ## If a message shows as its key
 
 Seeing `teleport.denied` in-game means the key is missing. That is deliberate — a missing message is visible rather than silent. Add it back, or delete the file and restart to regenerate it.

@@ -94,6 +94,21 @@ Any message key can be a list, and renders as several lines.
 The bottom of the file holds the framework's own messages. Restyle freely; don't rename the keys — and mind
 `player-not-found`, noted above.
 
+### `invalid-usage` names the command
+
+`%usage%` now includes the command itself, so the shipped message reads **`Usage: /msg <player> <message>`** rather
+than `Usage: <player> <message>`. Nothing to change: the same key, a fuller value. `%cmd%` is available separately if
+you want the command elsewhere in the sentence.
+
+### `player-ambiguous`
+
+```yaml
+player-ambiguous: "<prefix><red>More than one player matches '%name%': <white>%players%</white>"
+```
+
+Sent when a name fragment matches two or more players online. This key was missing from earlier builds, so the raw key
+was what players saw; it is added to your file automatically on the next start.
+
 ## If a message shows as its key
 
 Seeing `message.self` in-game means the key is missing. That is deliberate — a missing message is visible rather than

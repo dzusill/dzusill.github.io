@@ -2418,6 +2418,10 @@
             "slug": "plugins/oberonstaff/features/teleports"
           },
           {
+            "label": "Action Bar & Sounds",
+            "slug": "plugins/oberonstaff/features/presentation"
+          },
+          {
             "label": "Vanish",
             "slug": "plugins/oberonstaff/features/vanish"
           },
@@ -2518,6 +2522,10 @@
           {
             "label": "Vanish & AFK",
             "slug": "plugins/oberonmsg/features/vanish-and-afk"
+          },
+          {
+            "label": "Action Bar & Sounds",
+            "slug": "plugins/oberonmsg/features/presentation"
           }
         ]
       },

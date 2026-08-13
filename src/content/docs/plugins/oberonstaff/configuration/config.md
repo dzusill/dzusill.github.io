@@ -81,6 +81,28 @@ the real thing.
 Vanilla names are different — those we take automatically, because vanilla `/tp` does not log, and a staff
 teleport that no audit log records is not much of a staff teleport. Vanilla stays reachable as `/minecraft:tp`.
 
+## Presentation
+
+Where each kind of message is shown, and what it sounds like.
+
+```yaml
+Presentation:
+  Categories:
+    TOGGLE:    { Channel: ACTION_BAR, Sound: { Enabled: true, Name: "entity.experience_orb.pickup" } }
+    TELEPORT:  { Channel: ACTION_BAR, Sound: { Enabled: false } }
+    ERROR:     { Channel: BOTH,       Sound: { Enabled: true, Name: "entity.villager.no" } }
+    INFO:      { Channel: CHAT }
+  Overrides: {}
+```
+
+Four categories, four channels (`CHAT`, `ACTION_BAR`, `BOTH`, `NONE`), and per-key `Overrides` for the one message
+that should not behave like the rest of its category.
+
+Full explanation on [Action bar, chat & sounds](/plugins/oberonstaff/features/presentation/).
+
+> This replaces `Staff-Chat.Toggle-Action-Bar`, which sent the chat line **and** repeated it above the hotbar with no
+> way to ask for one. An old key left in your config is ignored, not an error.
+
 ## Staff-Chat
 
 ```yaml

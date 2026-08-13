@@ -70,6 +70,33 @@ or rename ours (`Name: stp`). Restart afterwards.
 
 `/tpo` overrides `/tptoggle`, not permissions. You still need `oberonstaff.teleport.override` to run it at all.
 
+## Teleport commands tab-complete for admins but not for staff
+
+Fixed. This was ours, and it looked like a permission problem because of how it failed.
+
+`/tp` is a name vanilla owns, so this plugin takes it on use — the command runs as ours. Completion took a different
+route: newer Paper hands vanilla commands out owned by an *internal* plugin, which the ownership test read as a third
+party's, so completion was declined and fell through to vanilla's own command node. That node requires operator.
+Admins therefore got vanilla's suggestions and everybody else got silence.
+
+Execution and completion now use the same rule: if we run the command, we complete it.
+
+## `/tphere` makes no sound
+
+Fixed. The arrival sound was played *to the moved player*, and `/tphere` moves somebody else — so the only person who
+heard anything was the one who had just been pulled across the map, while the staff member watching them appear heard
+nothing.
+
+It is now played at the location the player lands, so everyone standing there hears it. `Teleport.Sound` controls it,
+and it is on by default with `entity.enderman.teleport`.
+
+## The toggle confirmation shows in chat *and* above the hotbar
+
+Fixed, and it is now your choice. `Staff-Chat.Toggle-Action-Bar` sent both with no way to ask for one; it is replaced
+by the `Presentation` block, where `TOGGLE` ships as `ACTION_BAR` only. Put it back in chat with
+`Channel: CHAT`, or have both with `Channel: BOTH`. See
+[Action bar, chat & sounds](/plugins/oberonstaff/features/presentation/).
+
 ## Staff chat messages have weird colours in them
 
 They shouldn't — player text is inserted as literal characters and never parsed. If somebody typed `<red>` it shows as `<red>`.

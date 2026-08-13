@@ -78,6 +78,23 @@ old script cleared them on join, which is the bug this replaced.
 It shouldn't — the two people in the conversation are excluded from the spy broadcast. If you can reproduce it,
 please report it.
 
+## My edited messages don't seem to save
+
+The wording always survived — but `messages.yml` was being rewritten on **every start**, because one key
+(`player-ambiguous`) was missing from the shipped defaults. The merge adds what is missing and then saves, and saving
+reflows the whole document: comments, blank lines and wrapping all come back as the writer produces them rather than
+as you typed them.
+
+Fixed by shipping the missing key. A file with nothing missing is now left byte-for-byte alone.
+
+If a specific message is still not what you configured, check you edited `messages.yml` and not `Formats` in
+`config.yml` — the three private-message lines live there, not in `messages.yml`.
+
+## Can `/msgtoggle` and `/socialspy` confirm above the hotbar?
+
+Yes, and they do by default now. `Presentation.Categories.TOGGLE` ships as `ACTION_BAR` with a sound, and covers the
+ignore confirmations too. See [Action bar, chat & sounds](/plugins/oberonmsg/features/presentation/).
+
 ## Are private messages logged?
 
 **Not by default.** `Log.Enabled` is `false` in `config.yml`, deliberately: recording what players say in private is
