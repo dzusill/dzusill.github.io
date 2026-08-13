@@ -7,9 +7,27 @@ description: "The filter flags innocent words, players get through anyway, alert
 
 Add the real word to `Whitelist` in `filter.yml` and reload. That is what it is for.
 
-If it keeps happening across many words, the rule causing it is probably short and set to `CONTAINS` or `WORD`. Either give that rule `match: LITERAL`, or raise `Word-Filter.Minimum-Contains-Length` so short rules default to literal matching.
+One caveat: the whitelist works on the *normalised* form, so an entry whose normalised spelling is identical to a
+blocked word's would switch that rule off entirely. Whitelist the longer forms (`nigeria`), never the bare needle.
 
 Use `/oberonchat check <phrase>` to confirm the fix without asking a player to test it.
+
+## `"that was crazy"` was flagged for a word it doesn't contain
+
+Fixed. Normalisation collapses repeated letters — `ass` becomes `as`, `kkk` becomes `k` — and a loose mode matches
+that *inside* other words. A hand-written `match: WORD` on a short word therefore meant "flag every message containing
+the letter k": `was` contains `as`, `think` contains `k`.
+
+A loose rule (`WORD` / `CONTAINS`) whose **normalised** form is shorter than `Word-Filter.Minimum-Contains-Length` is
+now matched as the exact word instead, and the console says so at load:
+
+```
+Filter word 'kkk' normalises to 'k', which is too short to match inside other
+words without false positives - matching it as an exact word instead.
+```
+
+Nothing is dropped — `kkk` typed out still blocks. Lower `Minimum-Contains-Length` only if you understand exactly what
+that trades away.
 
 ## A player got a banned word through
 
