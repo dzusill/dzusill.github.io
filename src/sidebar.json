@@ -2654,5 +2654,95 @@
         ]
       }
     ]
+  },
+  {
+    "label": "🔒 OberonWhitelist",
+    "collapsed": true,
+    "items": [
+      {
+        "label": "📘 Introduction",
+        "slug": "plugins/oberonwhitelist"
+      },
+      {
+        "label": "🚀 Getting Started",
+        "items": [
+          {
+            "label": "Requirements",
+            "slug": "plugins/oberonwhitelist/getting-started/requirements"
+          },
+          {
+            "label": "Installation",
+            "slug": "plugins/oberonwhitelist/getting-started/installation"
+          },
+          {
+            "label": "Quick Start",
+            "slug": "plugins/oberonwhitelist/getting-started/quick-start"
+          },
+          {
+            "label": "Migrating from PerfCommandWhitelist",
+            "slug": "plugins/oberonwhitelist/getting-started/migrating"
+          }
+        ]
+      },
+      {
+        "label": "✨ Features",
+        "items": [
+          {
+            "label": "The Three Tiers",
+            "slug": "plugins/oberonwhitelist/features/three-tiers"
+          },
+          {
+            "label": "Command Identity",
+            "slug": "plugins/oberonwhitelist/features/command-identity"
+          },
+          {
+            "label": "Menu & Dialog Plugins",
+            "slug": "plugins/oberonwhitelist/features/menu-plugins"
+          },
+          {
+            "label": "Tab Completion",
+            "slug": "plugins/oberonwhitelist/features/tab-completion"
+          },
+          {
+            "label": "One Indistinguishable Error",
+            "slug": "plugins/oberonwhitelist/features/one-error"
+          },
+          {
+            "label": "Groups & Ranks",
+            "slug": "plugins/oberonwhitelist/features/groups"
+          }
+        ]
+      },
+      {
+        "label": "⚙️ Configuration",
+        "items": [
+          {
+            "label": "config.yml",
+            "slug": "plugins/oberonwhitelist/configuration/config"
+          },
+          {
+            "label": "Reloading",
+            "slug": "plugins/oberonwhitelist/configuration/reloading"
+          }
+        ]
+      },
+      {
+        "label": "📖 Reference",
+        "items": [
+          {
+            "label": "Commands & Permissions",
+            "slug": "plugins/oberonwhitelist/commands-and-permissions"
+          },
+          {
+            "label": "FAQ & Troubleshooting",
+            "slug": "plugins/oberonwhitelist/faq"
+          },
+          {
+            "label": "Credits",
+            "slug": "plugins/oberonwhitelist/credits"
+          }
+        ]
+      }
+    ]
   }
 ]
