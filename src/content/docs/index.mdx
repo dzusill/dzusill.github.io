@@ -24,36 +24,90 @@ Glad you're here! Whether you're spinning up your first plugin or fine-tuning a 
 - ⚙️ **Configuration** — every config key, what it does, and sensible defaults.
 - 📖 **Reference** — commands, permissions, placeholders and FAQs at a glance.
 
-Jump straight to whatever plugin you're running below. 🔍 The search bar (top right) finds anything across every plugin.
+Jump straight to whatever plugin you're running below — they're grouped by what they do. 🔍 The search bar (top right) finds anything across every plugin.
 
 ## The plugins
+
+### 🛠️ Framework
+
+The base everything else is built on.
 
 | Plugin | What it does |
 | --- | --- |
 | [🛠️ DzusillCore](/plugins/dzusillcore/) | Reusable Paper plugin template framework |
-| [📊 dStattrack](/plugins/dstattrack/) | Item stat tracker built on the DzusillCore framework |
-| [🧭 WarpGUI](/plugins/warpgui/) | Warp menu with categories, extra locations & per-warp permissions |
-| [🏠 dHomeGUI](/plugins/dhomegui/) | Homes GUI with limits, warmups & world rules (Folia-ready) |
-| [🎨 dNicks](/plugins/dnicks/) | Colored & gradient nicknames in chat, tablist, nametag and messages |
-| [💰 dBloodMoney](/plugins/dbloodmoney/) | Kill a player, take their money |
-| [🗡️ dKillTracker](/plugins/dkilltracker/) | Counts PvP kills, blocks kill-farming & runs milestone rank rewards |
-| [🔔 ToolsNotifier](/plugins/toolsnotifier/) | Low-durability tool & armor notifications (Free + PRO) |
-| [💀 dDeathPenalty](/plugins/ddeathpenalty/) | Punishment-style death penalty (money / xp / item loss) |
-| [🎰 dLottery](/plugins/dlottery/) | Server lottery with MySQL-backed rounds, history & stats |
-| [🍀 bLottery](/plugins/blottery/) | The BasicLand.cz lottery build — rank ticket tiers & weighted draws |
-| [🙋 dMentions](/plugins/dmentions/) | `@name`, `@nearby`, `@everyone` and group mentions in chat |
+| [💬 DDialogs](/plugins/ddialogs/) | Native Minecraft dialog screens for every DzusillCore plugin |
+
+### 🌙 Oberon Suite
+
+The plugins written for the Oberon server, each usable on its own.
+
+| Plugin | What it does |
+| --- | --- |
+| [🛡️ OberonChat](/plugins/oberonchat/) | Chat filter that folds leetspeak, spacing & lookalikes before matching — and reads commands, signs, books & anvils |
+| [✉️ OberonMSG](/plugins/oberonmsg/) | Private messages with UUID-keyed ignore lists, social spy & vanish-aware delivery |
+| [🎖️ OberonStaff](/plugins/oberonstaff/) | Staff chat, the full teleport suite & vanish visibility that holds in tab completion too |
+| [🔒 OberonWhitelist](/plugins/oberonwhitelist/) | Command & tab whitelist that keeps menus working — one error for everything a player may not run |
+| [💀 OberonKills](/plugins/oberonkills/) | Death messages that name the weapon and spell the item properly |
+| [🐺 OberonMob](/plugins/oberonmob/) | Per-player mob & phantom spawn toggles, with a choice of cancelling the spawn or hiding it |
+
+### 💰 Economy & Shops
+
+Currencies, shops, payouts and everything that moves money.
+
+| Plugin | What it does |
+| --- | --- |
 | [🛒 DRotatingShop](/plugins/drotatingshop/) | Buy-only rotating GUI shop with Vault pricing and per-rotation limits |
 | [🍩 dDonutWorth](/plugins/ddonutworth/) | Sell prices that follow your shop, worth lore & per-category sell multipliers |
 | [💎 dGems](/plugins/dgems/) | Premium currency with a real-reward shop, order queue & audited ledger |
+| [🧾 dStore](/plugins/dstore/) | Delivers webstore purchases in game, exactly once, with a receipt ledger |
+| [🎰 dLottery](/plugins/dlottery/) | Server lottery with MySQL-backed rounds, history & stats |
+| [🍀 bLottery](/plugins/blottery/) | The BasicLand.cz lottery build — rank ticket tiers & weighted draws |
+
+### ⚔️ PvP & Combat
+
+Fighting, dying, and what it costs.
+
+| Plugin | What it does |
+| --- | --- |
 | [⚔️ dFactions](/plugins/dfactions/) | Factions with Beacon HQ, leveling & prestige, wars, shields & supply drops |
+| [🗡️ dKillTracker](/plugins/dkilltracker/) | Counts PvP kills, blocks kill-farming & runs milestone rank rewards |
+| [💰 dBloodMoney](/plugins/dbloodmoney/) | Kill a player, take their money |
+| [💀 dDeathPenalty](/plugins/ddeathpenalty/) | Punishment-style death penalty (money / xp / item loss) |
+
+### 🧭 Teleportation
+
+Getting players where they want to go.
+
+| Plugin | What it does |
+| --- | --- |
+| [🧭 WarpGUI](/plugins/warpgui/) | Warp menu with categories, extra locations & per-warp permissions |
+| [🏠 dHomeGUI](/plugins/dhomegui/) | Homes GUI with limits, warmups & world rules (Folia-ready) |
+
+### 💬 Chat & Social
+
+How players talk to each other, and how they look doing it.
+
+| Plugin | What it does |
+| --- | --- |
+| [🎨 dNicks](/plugins/dnicks/) | Colored & gradient nicknames in chat, tablist, nametag and messages |
+| [🙋 dMentions](/plugins/dmentions/) | `@name`, `@nearby`, `@everyone` and group mentions in chat |
+
+### 🔗 Web & Integrations
+
+Connecting the server to everything outside it.
+
+| Plugin | What it does |
+| --- | --- |
 | [🔗 dWebLink](/plugins/dweblink/) | Links in-game accounts to your website & Discord, keeps LuckPerms ranks in sync |
 | [🌐 dPhalanx](/plugins/dphalanx/) | Two-way website & Discord bridge — chat relay, tickets, reports & remote console |
-| [🧾 dStore](/plugins/dstore/) | Delivers webstore purchases in game, exactly once, with a receipt ledger |
-| [💬 DDialogs](/plugins/ddialogs/) | Native Minecraft dialog screens for every DzusillCore plugin |
-| [🛡️ OberonChat](/plugins/oberonchat/) | Chat filter that folds leetspeak, spacing & lookalikes before matching — and reads commands, signs, books & anvils |
-| [🐺 OberonMob](/plugins/oberonmob/) | Per-player mob & phantom spawn toggles, with a choice of cancelling the spawn or hiding it |
-| [🎖️ OberonStaff](/plugins/oberonstaff/) | Staff chat, the full teleport suite & vanish visibility that holds in tab completion too |
-| [✉️ OberonMSG](/plugins/oberonmsg/) | Private messages with UUID-keyed ignore lists, social spy & vanish-aware delivery |
-| [💀 OberonKills](/plugins/oberonkills/) | Death messages that name the weapon and spell the item properly |
+
+### 🧰 Tools & Utilities
+
+Quality-of-life pieces that stay out of the way.
+
+| Plugin | What it does |
+| --- | --- |
+| [📊 dStattrack](/plugins/dstattrack/) | Item stat tracker built on the DzusillCore framework |
+| [🔔 ToolsNotifier](/plugins/toolsnotifier/) | Low-durability tool & armor notifications (Free + PRO) |
 
 Happy building! 🎉

@@ -50,6 +50,40 @@ const PLUGINS = [
   { slug: 'ddialogs',      name: 'DDialogs',      src: '../DDialogs/docs' },
 ];
 
+// Plugins whose pages are written directly into src/content/docs/plugins/<slug>/ rather than
+// migrated from a repo's docs/. They have no source dir to build a sidebar group from, so their
+// existing group is carried over from the current sidebar.json — which is also what stops this
+// script from deleting them, as it silently did before.
+//
+// ddialogs is here despite having a docs/ dir: that dir holds 5 pages while the site holds 22, the
+// rest written straight into the site. Migrating it would delete the other 17.
+const IN_PLACE = [
+  'oberonchat', 'oberonkills', 'oberonmob', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'ddialogs',
+];
+
+// --sidebar-only regroups the existing sidebar and touches no page.
+//
+// Worth knowing before running this script without it: a full run rewrites every migrated plugin's
+// pages from its repo's docs/, so any edit made to the site copy afterwards is reverted. Several
+// plugins have such edits. Unless you have just changed a source docs/ dir, --sidebar-only is the
+// one you want.
+const SIDEBAR_ONLY = process.argv.includes('--sidebar-only');
+
+// Sidebar categories. Order here is the order they appear; order within each list is the order
+// plugins appear inside the category. A plugin missing from every list lands in Miscellaneous, so
+// adding a plugin above without touching this still produces a working sidebar.
+const CATEGORIES = [
+  { label: '🛠️ Framework', plugins: ['dzusillcore', 'ddialogs'] },
+  { label: '🌙 Oberon Suite', plugins: ['oberonchat', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonkills', 'oberonmob'] },
+  { label: '💰 Economy & Shops', plugins: ['drotatingshop', 'ddonutworth', 'dgems', 'dstore', 'dlottery', 'blottery'] },
+  { label: '⚔️ PvP & Combat', plugins: ['dfactions', 'dkilltracker', 'dbloodmoney', 'ddeathpenalty'] },
+  { label: '🧭 Teleportation', plugins: ['warpgui', 'dhomegui'] },
+  { label: '💬 Chat & Social', plugins: ['dnicks', 'dmentions'] },
+  { label: '🔗 Web & Integrations', plugins: ['dweblink', 'dphalanx'] },
+  { label: '🧰 Tools & Utilities', plugins: ['dstattrack', 'toolsnotifier'] },
+];
+const MISC_LABEL = '📦 Miscellaneous';
+
 // Emoji prefixes for the sidebar — one per plugin, per section header, and the intro item.
 const PLUGIN_EMOJI = {
   dzusillcore: '🛠️', dstattrack: '📊', warpgui: '🧭', dhomegui: '🏠',
@@ -198,19 +232,86 @@ function buildSidebarGroup(plugin, srcDir) {
   return group;
 }
 
-const sidebar = [{ label: '👋 Welcome', link: '/' }];
-let total = 0;
-for (const p of PLUGINS) {
-  const srcDir = join(ROOT, p.src);
-  if (!existsSync(srcDir) || !existsSync(join(srcDir, 'README.md'))) {
-    console.log(`skip ${p.slug.padEnd(14)} (no docs yet at ${p.src})`);
-    continue;
+// The sidebar that is about to be replaced, keyed by slug. Used to carry over the groups this
+// script cannot build: the in-place plugins, whose page order is curated by hand and exists
+// nowhere else.
+function previousGroupsBySlug() {
+  const file = join(ROOT, 'src/sidebar.json');
+  if (!existsSync(file)) return new Map();
+  const bySlug = new Map();
+  const firstSlug = (node) => {
+    if (node.slug) return node.slug;
+    for (const child of node.items ?? []) {
+      const found = firstSlug(child);
+      if (found) return found;
+    }
+    return null;
+  };
+  const visit = (nodes) => {
+    for (const node of nodes) {
+      const slug = firstSlug(node);
+      const match = slug?.match(/^plugins\/([^/]+)/);
+      // A category has no slug of its own; recurse so a re-run reads an already-categorised file.
+      if (match && node.items) bySlug.set(match[1], node);
+      else if (node.items) visit(node.items);
+    }
+  };
+  try {
+    visit(JSON.parse(readFileSync(file, 'utf8')));
+  } catch {
+    console.log('note: could not parse the existing sidebar.json; in-place plugins will be dropped');
   }
-  const n = migrateFiles(p, srcDir);
-  sidebar.push(buildSidebarGroup(p, srcDir));
-  total += n;
-  console.log(`ok   ${p.slug.padEnd(14)} ${n} pages`);
+  return bySlug;
+}
+
+const previous = previousGroupsBySlug();
+const groups = new Map(); // slug -> sidebar group
+let total = 0;
+
+if (SIDEBAR_ONLY) {
+  for (const [slug, group] of previous) groups.set(slug, group);
+  console.log(`sidebar-only: regrouping ${groups.size} plugins, no pages touched\n`);
+} else {
+  for (const p of PLUGINS) {
+    const srcDir = join(ROOT, p.src);
+    if (!existsSync(srcDir) || !existsSync(join(srcDir, 'README.md'))) {
+      console.log(`skip ${p.slug.padEnd(14)} (no docs yet at ${p.src})`);
+      continue;
+    }
+    if (IN_PLACE.includes(p.slug)) {
+      console.log(`skip ${p.slug.padEnd(14)} (in-place: migrating would delete its site-only pages)`);
+      continue;
+    }
+    const n = migrateFiles(p, srcDir);
+    groups.set(p.slug, buildSidebarGroup(p, srcDir));
+    total += n;
+    console.log(`ok   ${p.slug.padEnd(14)} ${n} pages`);
+  }
+
+  for (const slug of IN_PLACE) {
+    const carried = previous.get(slug);
+    if (carried) {
+      groups.set(slug, carried);
+      console.log(`keep ${slug.padEnd(14)} (authored in place)`);
+    } else {
+      console.log(`WARN ${slug.padEnd(14)} listed as in-place but absent from the current sidebar`);
+    }
+  }
+}
+
+const sidebar = [{ label: '👋 Welcome', link: '/' }];
+const placed = new Set();
+for (const category of CATEGORIES) {
+  const items = category.plugins.map((slug) => groups.get(slug)).filter(Boolean);
+  category.plugins.forEach((slug) => groups.has(slug) && placed.add(slug));
+  if (items.length) sidebar.push({ label: category.label, collapsed: true, items });
+}
+// Anything not named in CATEGORIES still reaches the sidebar rather than vanishing.
+const leftovers = [...groups.keys()].filter((slug) => !placed.has(slug));
+if (leftovers.length) {
+  sidebar.push({ label: MISC_LABEL, collapsed: true, items: leftovers.map((slug) => groups.get(slug)) });
+  console.log(`\nuncategorised (went to Miscellaneous): ${leftovers.join(', ')}`);
 }
 
 writeFileSync(join(ROOT, 'src/sidebar.json'), JSON.stringify(sidebar, null, 2) + '\n');
-console.log(`\nwrote src/sidebar.json (${sidebar.length - 1} plugin groups), ${total} pages total`);
+console.log(`\nwrote src/sidebar.json (${groups.size} plugins in ${sidebar.length - 1} categories), ${total} pages total`);

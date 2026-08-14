@@ -4,2742 +4,2790 @@
     "link": "/"
   },
   {
-    "label": "🛠️ DzusillCore",
+    "label": "🛠️ Framework",
     "collapsed": true,
     "items": [
       {
-        "label": "📘 Introduction",
-        "slug": "plugins/dzusillcore"
-      },
-      {
-        "label": "🚀 Getting Started",
+        "label": "🛠️ DzusillCore",
+        "collapsed": true,
         "items": [
           {
-            "label": "Requirements",
-            "slug": "plugins/dzusillcore/getting-started/requirements"
+            "label": "📘 Introduction",
+            "slug": "plugins/dzusillcore"
           },
           {
-            "label": "Installation (Template)",
-            "slug": "plugins/dzusillcore/getting-started/installation"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dzusillcore/getting-started/requirements"
+              },
+              {
+                "label": "Installation (Template)",
+                "slug": "plugins/dzusillcore/getting-started/installation"
+              },
+              {
+                "label": "Installation (JitPack Dependency)",
+                "slug": "plugins/dzusillcore/getting-started/as-dependency"
+              },
+              {
+                "label": "Project Structure",
+                "slug": "plugins/dzusillcore/getting-started/project-structure"
+              },
+              {
+                "label": "Your First Plugin",
+                "slug": "plugins/dzusillcore/getting-started/first-plugin"
+              }
+            ]
           },
           {
-            "label": "Installation (JitPack Dependency)",
-            "slug": "plugins/dzusillcore/getting-started/as-dependency"
+            "label": "🧠 Core Concepts",
+            "items": [
+              {
+                "label": "Plugin Lifecycle",
+                "slug": "plugins/dzusillcore/core-concepts/lifecycle"
+              },
+              {
+                "label": "Modules",
+                "slug": "plugins/dzusillcore/core-concepts/modules"
+              },
+              {
+                "label": "Services",
+                "slug": "plugins/dzusillcore/core-concepts/services"
+              }
+            ]
           },
           {
-            "label": "Project Structure",
-            "slug": "plugins/dzusillcore/getting-started/project-structure"
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "Config Files",
+                "slug": "plugins/dzusillcore/configuration/config"
+              },
+              {
+                "label": "Typed Config Wrappers",
+                "slug": "plugins/dzusillcore/configuration/typed-config"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/dzusillcore/configuration/reloading"
+              }
+            ]
           },
           {
-            "label": "Your First Plugin",
-            "slug": "plugins/dzusillcore/getting-started/first-plugin"
+            "label": "💬 Messages & Colors",
+            "items": [
+              {
+                "label": "Message Service",
+                "slug": "plugins/dzusillcore/messages-and-colors/messages"
+              },
+              {
+                "label": "Colors & MiniMessage",
+                "slug": "plugins/dzusillcore/messages-and-colors/colors"
+              }
+            ]
+          },
+          {
+            "label": "⌨️ Commands",
+            "items": [
+              {
+                "label": "Overview",
+                "slug": "plugins/dzusillcore/commands/overview"
+              },
+              {
+                "label": "Arguments",
+                "slug": "plugins/dzusillcore/commands/arguments"
+              },
+              {
+                "label": "Examples",
+                "slug": "plugins/dzusillcore/commands/examples"
+              }
+            ]
+          },
+          {
+            "label": "🖼️ GUIs",
+            "items": [
+              {
+                "label": "Overview",
+                "slug": "plugins/dzusillcore/guis/overview"
+              },
+              {
+                "label": "Menu Registry",
+                "slug": "plugins/dzusillcore/guis/registry"
+              },
+              {
+                "label": "Templates",
+                "slug": "plugins/dzusillcore/guis/templates"
+              },
+              {
+                "label": "Pagination",
+                "slug": "plugins/dzusillcore/guis/pagination"
+              },
+              {
+                "label": "Examples",
+                "slug": "plugins/dzusillcore/guis/examples"
+              }
+            ]
+          },
+          {
+            "label": "📂 Dialogs",
+            "items": [
+              {
+                "label": "Overview",
+                "slug": "plugins/dzusillcore/dialogs/overview"
+              },
+              {
+                "label": "DialogService",
+                "slug": "plugins/dzusillcore/dialogs/service"
+              },
+              {
+                "label": "Fallbacks",
+                "slug": "plugins/dzusillcore/dialogs/fallback"
+              },
+              {
+                "label": "Examples",
+                "slug": "plugins/dzusillcore/dialogs/examples"
+              },
+              {
+                "label": "Chat prompts",
+                "slug": "plugins/dzusillcore/prompts"
+              }
+            ]
+          },
+          {
+            "label": "📡 Events",
+            "items": [
+              {
+                "label": "Listeners",
+                "slug": "plugins/dzusillcore/events"
+              }
+            ]
+          },
+          {
+            "label": "🔌 Integrations",
+            "items": [
+              {
+                "label": "Hooks",
+                "slug": "plugins/dzusillcore/integrations/hooks"
+              }
+            ]
+          },
+          {
+            "label": "🧬 NMS & Multi-Version",
+            "items": [
+              {
+                "label": "Overview",
+                "slug": "plugins/dzusillcore/nms/overview"
+              },
+              {
+                "label": "Version Detection",
+                "slug": "plugins/dzusillcore/nms/version-detection"
+              },
+              {
+                "label": "Adapters",
+                "slug": "plugins/dzusillcore/nms/adapters"
+              },
+              {
+                "label": "Extending for Forks",
+                "slug": "plugins/dzusillcore/nms/extending"
+              }
+            ]
+          },
+          {
+            "label": "🗃️ Storage",
+            "items": [
+              {
+                "label": "File Storage",
+                "slug": "plugins/dzusillcore/storage"
+              },
+              {
+                "label": "Item Data",
+                "slug": "plugins/dzusillcore/item-data"
+              }
+            ]
+          },
+          {
+            "label": "🗄️ Database",
+            "items": [
+              {
+                "label": "Overview",
+                "slug": "plugins/dzusillcore/database/overview"
+              },
+              {
+                "label": "Configuration",
+                "slug": "plugins/dzusillcore/database/configuration"
+              },
+              {
+                "label": "Dialects",
+                "slug": "plugins/dzusillcore/database/dialects"
+              },
+              {
+                "label": "Queries",
+                "slug": "plugins/dzusillcore/database/queries"
+              },
+              {
+                "label": "Schema",
+                "slug": "plugins/dzusillcore/database/schema"
+              },
+              {
+                "label": "Repositories",
+                "slug": "plugins/dzusillcore/database/repositories"
+              }
+            ]
+          },
+          {
+            "label": "🧰 Utilities",
+            "items": [
+              {
+                "label": "Helpers",
+                "slug": "plugins/dzusillcore/utilities/helpers"
+              },
+              {
+                "label": "Scheduler",
+                "slug": "plugins/dzusillcore/utilities/scheduler"
+              },
+              {
+                "label": "Cooldowns",
+                "slug": "plugins/dzusillcore/utilities/cooldowns"
+              },
+              {
+                "label": "Permissions",
+                "slug": "plugins/dzusillcore/utilities/permissions"
+              }
+            ]
+          },
+          {
+            "label": "🧪 Testing",
+            "items": [
+              {
+                "label": "Testing",
+                "slug": "plugins/dzusillcore/testing"
+              }
+            ]
+          },
+          {
+            "label": "❤️ Credits",
+            "items": [
+              {
+                "label": "Credits",
+                "slug": "plugins/dzusillcore/credits"
+              }
+            ]
           }
         ]
       },
       {
-        "label": "🧠 Core Concepts",
+        "label": "💬 dDialogs",
+        "collapsed": true,
         "items": [
           {
-            "label": "Plugin Lifecycle",
-            "slug": "plugins/dzusillcore/core-concepts/lifecycle"
+            "label": "📘 Introduction",
+            "slug": "plugins/ddialogs"
           },
           {
-            "label": "Modules",
-            "slug": "plugins/dzusillcore/core-concepts/modules"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/ddialogs/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/ddialogs/getting-started/installation"
+              },
+              {
+                "label": "Make your first dialog",
+                "slug": "plugins/ddialogs/tutorial"
+              }
+            ]
           },
           {
-            "label": "Services",
-            "slug": "plugins/dzusillcore/core-concepts/services"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "Config Files",
-            "slug": "plugins/dzusillcore/configuration/config"
+            "label": "✨ Building Blocks",
+            "items": [
+              {
+                "label": "Dialog types",
+                "slug": "plugins/ddialogs/features/dialog-types"
+              },
+              {
+                "label": "Body & text",
+                "slug": "plugins/ddialogs/features/body-and-text"
+              },
+              {
+                "label": "Buttons & actions",
+                "slug": "plugins/ddialogs/features/buttons-and-actions"
+              },
+              {
+                "label": "Inputs (forms)",
+                "slug": "plugins/ddialogs/features/inputs"
+              },
+              {
+                "label": "Sub-dialogs & navigation",
+                "slug": "plugins/ddialogs/features/sub-dialogs"
+              },
+              {
+                "label": "Icons",
+                "slug": "plugins/ddialogs/features/icons"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/ddialogs/features/placeholders"
+              },
+              {
+                "label": "Dynamic lists",
+                "slug": "plugins/ddialogs/features/dynamic-lists"
+              },
+              {
+                "label": "Leaderboards",
+                "slug": "plugins/ddialogs/features/leaderboards"
+              },
+              {
+                "label": "Permissions & locks",
+                "slug": "plugins/ddialogs/features/permissions"
+              },
+              {
+                "label": "Pause menu button",
+                "slug": "plugins/ddialogs/features/pause-menu"
+              }
+            ]
           },
           {
-            "label": "Typed Config Wrappers",
-            "slug": "plugins/dzusillcore/configuration/typed-config"
+            "label": "📚 Cookbook",
+            "items": [
+              {
+                "label": "All 21 examples",
+                "slug": "plugins/ddialogs/examples"
+              },
+              {
+                "label": "Menu patterns",
+                "slug": "plugins/ddialogs/menu-patterns"
+              }
+            ]
           },
           {
-            "label": "Reloading",
-            "slug": "plugins/dzusillcore/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "💬 Messages & Colors",
-        "items": [
-          {
-            "label": "Message Service",
-            "slug": "plugins/dzusillcore/messages-and-colors/messages"
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/ddialogs/configuration/config"
+              }
+            ]
           },
           {
-            "label": "Colors & MiniMessage",
-            "slug": "plugins/dzusillcore/messages-and-colors/colors"
-          }
-        ]
-      },
-      {
-        "label": "⌨️ Commands",
-        "items": [
-          {
-            "label": "Overview",
-            "slug": "plugins/dzusillcore/commands/overview"
-          },
-          {
-            "label": "Arguments",
-            "slug": "plugins/dzusillcore/commands/arguments"
-          },
-          {
-            "label": "Examples",
-            "slug": "plugins/dzusillcore/commands/examples"
-          }
-        ]
-      },
-      {
-        "label": "🖼️ GUIs",
-        "items": [
-          {
-            "label": "Overview",
-            "slug": "plugins/dzusillcore/guis/overview"
-          },
-          {
-            "label": "Menu Registry",
-            "slug": "plugins/dzusillcore/guis/registry"
-          },
-          {
-            "label": "Templates",
-            "slug": "plugins/dzusillcore/guis/templates"
-          },
-          {
-            "label": "Pagination",
-            "slug": "plugins/dzusillcore/guis/pagination"
-          },
-          {
-            "label": "Examples",
-            "slug": "plugins/dzusillcore/guis/examples"
-          }
-        ]
-      },
-      {
-        "label": "📂 Dialogs",
-        "items": [
-          {
-            "label": "Overview",
-            "slug": "plugins/dzusillcore/dialogs/overview"
-          },
-          {
-            "label": "DialogService",
-            "slug": "plugins/dzusillcore/dialogs/service"
-          },
-          {
-            "label": "Fallbacks",
-            "slug": "plugins/dzusillcore/dialogs/fallback"
-          },
-          {
-            "label": "Examples",
-            "slug": "plugins/dzusillcore/dialogs/examples"
-          },
-          {
-            "label": "Chat prompts",
-            "slug": "plugins/dzusillcore/prompts"
-          }
-        ]
-      },
-      {
-        "label": "📡 Events",
-        "items": [
-          {
-            "label": "Listeners",
-            "slug": "plugins/dzusillcore/events"
-          }
-        ]
-      },
-      {
-        "label": "🔌 Integrations",
-        "items": [
-          {
-            "label": "Hooks",
-            "slug": "plugins/dzusillcore/integrations/hooks"
-          }
-        ]
-      },
-      {
-        "label": "🧬 NMS & Multi-Version",
-        "items": [
-          {
-            "label": "Overview",
-            "slug": "plugins/dzusillcore/nms/overview"
-          },
-          {
-            "label": "Version Detection",
-            "slug": "plugins/dzusillcore/nms/version-detection"
-          },
-          {
-            "label": "Adapters",
-            "slug": "plugins/dzusillcore/nms/adapters"
-          },
-          {
-            "label": "Extending for Forks",
-            "slug": "plugins/dzusillcore/nms/extending"
-          }
-        ]
-      },
-      {
-        "label": "🗃️ Storage",
-        "items": [
-          {
-            "label": "File Storage",
-            "slug": "plugins/dzusillcore/storage"
-          },
-          {
-            "label": "Item Data",
-            "slug": "plugins/dzusillcore/item-data"
-          }
-        ]
-      },
-      {
-        "label": "🗄️ Database",
-        "items": [
-          {
-            "label": "Overview",
-            "slug": "plugins/dzusillcore/database/overview"
-          },
-          {
-            "label": "Configuration",
-            "slug": "plugins/dzusillcore/database/configuration"
-          },
-          {
-            "label": "Dialects",
-            "slug": "plugins/dzusillcore/database/dialects"
-          },
-          {
-            "label": "Queries",
-            "slug": "plugins/dzusillcore/database/queries"
-          },
-          {
-            "label": "Schema",
-            "slug": "plugins/dzusillcore/database/schema"
-          },
-          {
-            "label": "Repositories",
-            "slug": "plugins/dzusillcore/database/repositories"
-          }
-        ]
-      },
-      {
-        "label": "🧰 Utilities",
-        "items": [
-          {
-            "label": "Helpers",
-            "slug": "plugins/dzusillcore/utilities/helpers"
-          },
-          {
-            "label": "Scheduler",
-            "slug": "plugins/dzusillcore/utilities/scheduler"
-          },
-          {
-            "label": "Cooldowns",
-            "slug": "plugins/dzusillcore/utilities/cooldowns"
-          },
-          {
-            "label": "Permissions",
-            "slug": "plugins/dzusillcore/utilities/permissions"
-          }
-        ]
-      },
-      {
-        "label": "🧪 Testing",
-        "items": [
-          {
-            "label": "Testing",
-            "slug": "plugins/dzusillcore/testing"
-          }
-        ]
-      },
-      {
-        "label": "❤️ Credits",
-        "items": [
-          {
-            "label": "Credits",
-            "slug": "plugins/dzusillcore/credits"
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Writing dialogs",
+                "slug": "plugins/ddialogs/writing-dialogs"
+              },
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/ddialogs/commands-and-permissions"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/ddialogs/faq"
+              },
+              {
+                "label": "How it works",
+                "slug": "plugins/ddialogs/how-it-works"
+              }
+            ]
           }
         ]
       }
     ]
   },
   {
-    "label": "📊 dStattrack",
+    "label": "🌙 Oberon Suite",
     "collapsed": true,
     "items": [
       {
-        "label": "📘 Introduction",
-        "slug": "plugins/dstattrack"
-      },
-      {
-        "label": "🚀 Getting Started",
+        "label": "🛡️ OberonChat",
+        "collapsed": true,
         "items": [
           {
-            "label": "Requirements",
-            "slug": "plugins/dstattrack/getting-started/requirements"
+            "label": "📘 Introduction",
+            "slug": "plugins/oberonchat"
           },
           {
-            "label": "Installation",
-            "slug": "plugins/dstattrack/getting-started/installation"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/oberonchat/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonchat/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/oberonchat/getting-started/quick-start"
+              }
+            ]
           },
           {
-            "label": "Quick Start",
-            "slug": "plugins/dstattrack/getting-started/quick-start"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "The Word Filter",
+                "slug": "plugins/oberonchat/features/word-filter"
+              },
+              {
+                "label": "What Gets Checked",
+                "slug": "plugins/oberonchat/features/what-gets-checked"
+              },
+              {
+                "label": "Anti-Spam & Caps",
+                "slug": "plugins/oberonchat/features/anti-spam"
+              },
+              {
+                "label": "Violations & Punishment",
+                "slug": "plugins/oberonchat/features/violations"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonchat/configuration/config"
+              },
+              {
+                "label": "filter.yml",
+                "slug": "plugins/oberonchat/configuration/filter"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/oberonchat/configuration/messages"
+              },
+              {
+                "label": "database.yml",
+                "slug": "plugins/oberonchat/configuration/database"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/oberonchat/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/oberonchat/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberonchat/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/oberonchat/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/oberonchat/credits"
+              }
+            ]
           }
         ]
       },
       {
-        "label": "✨ Features",
+        "label": "✉️ OberonMSG",
+        "collapsed": true,
         "items": [
           {
-            "label": "Tracked Stats",
-            "slug": "plugins/dstattrack/features/tracked-stats"
+            "label": "📘 Introduction",
+            "slug": "plugins/oberonmsg"
           },
           {
-            "label": "Applying a Stattrack",
-            "slug": "plugins/dstattrack/features/applying-a-stattrack"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/oberonmsg/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonmsg/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/oberonmsg/getting-started/quick-start"
+              }
+            ]
           },
           {
-            "label": "The GUI",
-            "slug": "plugins/dstattrack/features/the-gui"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Sending Messages",
+                "slug": "plugins/oberonmsg/features/messages"
+              },
+              {
+                "label": "Ignore Lists",
+                "slug": "plugins/oberonmsg/features/ignore"
+              },
+              {
+                "label": "Social Spy & Logging",
+                "slug": "plugins/oberonmsg/features/social-spy"
+              },
+              {
+                "label": "Vanish & AFK",
+                "slug": "plugins/oberonmsg/features/vanish-and-afk"
+              },
+              {
+                "label": "Action Bar & Sounds",
+                "slug": "plugins/oberonmsg/features/presentation"
+              }
+            ]
           },
           {
-            "label": "Lore & Display",
-            "slug": "plugins/dstattrack/features/lore-and-display"
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonmsg/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/oberonmsg/configuration/messages"
+              },
+              {
+                "label": "database.yml",
+                "slug": "plugins/oberonmsg/configuration/database"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/oberonmsg/configuration/reloading"
+              }
+            ]
           },
           {
-            "label": "Sounds",
-            "slug": "plugins/dstattrack/features/sounds"
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/oberonmsg/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberonmsg/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/oberonmsg/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/oberonmsg/credits"
+              }
+            ]
           }
         ]
       },
       {
-        "label": "⚙️ Configuration",
+        "label": "🎖️ OberonStaff",
+        "collapsed": true,
         "items": [
           {
-            "label": "config.yml",
-            "slug": "plugins/dstattrack/configuration/config"
+            "label": "📘 Introduction",
+            "slug": "plugins/oberonstaff"
           },
           {
-            "label": "messages.yml",
-            "slug": "plugins/dstattrack/configuration/messages"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/oberonstaff/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonstaff/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/oberonstaff/getting-started/quick-start"
+              }
+            ]
           },
           {
-            "label": "Reloading",
-            "slug": "plugins/dstattrack/configuration/reloading"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Staff Chat",
+                "slug": "plugins/oberonstaff/features/staff-chat"
+              },
+              {
+                "label": "Teleports",
+                "slug": "plugins/oberonstaff/features/teleports"
+              },
+              {
+                "label": "Action Bar & Sounds",
+                "slug": "plugins/oberonstaff/features/presentation"
+              },
+              {
+                "label": "Vanish",
+                "slug": "plugins/oberonstaff/features/vanish"
+              },
+              {
+                "label": "Ranks",
+                "slug": "plugins/oberonstaff/features/ranks"
+              },
+              {
+                "label": "Action Log",
+                "slug": "plugins/oberonstaff/features/action-log"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonstaff/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/oberonstaff/configuration/messages"
+              },
+              {
+                "label": "database.yml",
+                "slug": "plugins/oberonstaff/configuration/database"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/oberonstaff/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/oberonstaff/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberonstaff/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/oberonstaff/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/oberonstaff/credits"
+              }
+            ]
           }
         ]
       },
       {
-        "label": "📖 Reference",
+        "label": "🔒 OberonWhitelist",
+        "collapsed": true,
         "items": [
           {
-            "label": "Commands & Permissions",
-            "slug": "plugins/dstattrack/commands-and-permissions"
+            "label": "📘 Introduction",
+            "slug": "plugins/oberonwhitelist"
           },
           {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/dstattrack/faq"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/oberonwhitelist/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonwhitelist/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/oberonwhitelist/getting-started/quick-start"
+              },
+              {
+                "label": "Migrating from PerfCommandWhitelist",
+                "slug": "plugins/oberonwhitelist/getting-started/migrating"
+              }
+            ]
           },
           {
-            "label": "Credits",
-            "slug": "plugins/dstattrack/credits"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "The Three Tiers",
+                "slug": "plugins/oberonwhitelist/features/three-tiers"
+              },
+              {
+                "label": "Command Identity",
+                "slug": "plugins/oberonwhitelist/features/command-identity"
+              },
+              {
+                "label": "Menu & Dialog Plugins",
+                "slug": "plugins/oberonwhitelist/features/menu-plugins"
+              },
+              {
+                "label": "Tab Completion",
+                "slug": "plugins/oberonwhitelist/features/tab-completion"
+              },
+              {
+                "label": "One Indistinguishable Error",
+                "slug": "plugins/oberonwhitelist/features/one-error"
+              },
+              {
+                "label": "Groups & Ranks",
+                "slug": "plugins/oberonwhitelist/features/groups"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonwhitelist/configuration/config"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/oberonwhitelist/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/oberonwhitelist/commands-and-permissions"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/oberonwhitelist/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/oberonwhitelist/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "💀 OberonKills",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/oberonkills"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/oberonkills/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonkills/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/oberonkills/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Weapons & Causes",
+                "slug": "plugins/oberonkills/features/weapons"
+              },
+              {
+                "label": "Item Names",
+                "slug": "plugins/oberonkills/features/item-names"
+              },
+              {
+                "label": "Writing Messages",
+                "slug": "plugins/oberonkills/features/message-sets"
+              },
+              {
+                "label": "Rank Prefixes",
+                "slug": "plugins/oberonkills/features/ranks"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonkills/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/oberonkills/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/oberonkills/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/oberonkills/commands-and-permissions"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/oberonkills/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/oberonkills/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "🐺 OberonMob",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/oberonmob"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/oberonmob/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonmob/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/oberonmob/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "How It Works",
+                "slug": "plugins/oberonmob/features/how-it-works"
+              },
+              {
+                "label": "Entity Groups",
+                "slug": "plugins/oberonmob/features/entity-groups"
+              },
+              {
+                "label": "Spawn Reasons",
+                "slug": "plugins/oberonmob/features/spawn-reasons"
+              },
+              {
+                "label": "Adding Your Own Toggle",
+                "slug": "plugins/oberonmob/features/custom-toggles"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonmob/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/oberonmob/configuration/messages"
+              },
+              {
+                "label": "database.yml",
+                "slug": "plugins/oberonmob/configuration/database"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/oberonmob/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/oberonmob/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberonmob/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/oberonmob/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/oberonmob/credits"
+              }
+            ]
           }
         ]
       }
     ]
   },
   {
-    "label": "🧭 WarpGUI",
+    "label": "💰 Economy & Shops",
     "collapsed": true,
     "items": [
       {
-        "label": "📘 Introduction",
-        "slug": "plugins/warpgui"
-      },
-      {
-        "label": "🚀 Getting Started",
+        "label": "🛒 DRotatingShop",
+        "collapsed": true,
         "items": [
           {
-            "label": "Requirements",
-            "slug": "plugins/warpgui/getting-started/requirements"
+            "label": "📘 Introduction",
+            "slug": "plugins/drotatingshop"
           },
           {
-            "label": "Installation",
-            "slug": "plugins/warpgui/getting-started/installation"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/drotatingshop/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/drotatingshop/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/drotatingshop/getting-started/quick-start"
+              }
+            ]
           },
           {
-            "label": "Quick Start",
-            "slug": "plugins/warpgui/getting-started/quick-start"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "The Shop Menu",
+                "slug": "plugins/drotatingshop/features/the-shop-menu"
+              },
+              {
+                "label": "The Buy Menu",
+                "slug": "plugins/drotatingshop/features/the-buy-menu"
+              },
+              {
+                "label": "Rotations",
+                "slug": "plugins/drotatingshop/features/rotations"
+              },
+              {
+                "label": "Opening Hours",
+                "slug": "plugins/drotatingshop/features/opening-hours"
+              },
+              {
+                "label": "Stock & Purchase Limits",
+                "slug": "plugins/drotatingshop/features/stock-and-limits"
+              },
+              {
+                "label": "Pricing & Perks",
+                "slug": "plugins/drotatingshop/features/pricing-and-perks"
+              },
+              {
+                "label": "Buying Items",
+                "slug": "plugins/drotatingshop/features/buying"
+              },
+              {
+                "label": "Custom Items",
+                "slug": "plugins/drotatingshop/features/custom-items"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/drotatingshop/configuration/config"
+              },
+              {
+                "label": "items.yml",
+                "slug": "plugins/drotatingshop/configuration/items"
+              },
+              {
+                "label": "Default Prices (1.21)",
+                "slug": "plugins/drotatingshop/configuration/default-prices"
+              },
+              {
+                "label": "quantity-menu.yml",
+                "slug": "plugins/drotatingshop/configuration/quantity-menu"
+              },
+              {
+                "label": "groups.yml",
+                "slug": "plugins/drotatingshop/configuration/groups"
+              },
+              {
+                "label": "Sounds",
+                "slug": "plugins/drotatingshop/configuration/sounds"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/drotatingshop/configuration/messages"
+              },
+              {
+                "label": "data.yml",
+                "slug": "plugins/drotatingshop/configuration/data"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/drotatingshop/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/drotatingshop/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/drotatingshop/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/drotatingshop/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/drotatingshop/credits"
+              }
+            ]
           }
         ]
       },
       {
-        "label": "✨ Features",
+        "label": "🍩 dDonutWorth",
+        "collapsed": true,
         "items": [
           {
-            "label": "The Warp Menu",
-            "slug": "plugins/warpgui/features/warp-menu"
+            "label": "📘 Introduction",
+            "slug": "plugins/ddonutworth"
           },
           {
-            "label": "Creating & Deleting Warps",
-            "slug": "plugins/warpgui/features/creating-warps"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/ddonutworth/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/ddonutworth/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/ddonutworth/getting-started/quick-start"
+              }
+            ]
           },
           {
-            "label": "Editing Warps",
-            "slug": "plugins/warpgui/features/editing-warps"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Price Sources",
+                "slug": "plugins/ddonutworth/features/price-sources"
+              },
+              {
+                "label": "Readable Item Keys",
+                "slug": "plugins/ddonutworth/features/item-keys"
+              },
+              {
+                "label": "Selling",
+                "slug": "plugins/ddonutworth/features/selling"
+              },
+              {
+                "label": "Worth Lore",
+                "slug": "plugins/ddonutworth/features/worth-lore"
+              },
+              {
+                "label": "Enchantment Worth",
+                "slug": "plugins/ddonutworth/features/enchantment-worth"
+              },
+              {
+                "label": "Sell Multipliers",
+                "slug": "plugins/ddonutworth/features/sell-multipliers"
+              },
+              {
+                "label": "The Sell Axe",
+                "slug": "plugins/ddonutworth/features/the-sell-axe"
+              },
+              {
+                "label": "Sell History",
+                "slug": "plugins/ddonutworth/features/sell-history"
+              },
+              {
+                "label": "Custom Items",
+                "slug": "plugins/ddonutworth/features/custom-items"
+              }
+            ]
           },
           {
-            "label": "Categories",
-            "slug": "plugins/warpgui/features/categories"
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/ddonutworth/configuration/config"
+              },
+              {
+                "label": "prices.yml",
+                "slug": "plugins/ddonutworth/configuration/prices"
+              },
+              {
+                "label": "enchantments.yml",
+                "slug": "plugins/ddonutworth/configuration/enchantments"
+              },
+              {
+                "label": "Sell Categories",
+                "slug": "plugins/ddonutworth/configuration/sell-categories"
+              },
+              {
+                "label": "GUIs",
+                "slug": "plugins/ddonutworth/configuration/guis"
+              },
+              {
+                "label": "sellaxe.yml",
+                "slug": "plugins/ddonutworth/configuration/sellaxe"
+              },
+              {
+                "label": "Sounds",
+                "slug": "plugins/ddonutworth/configuration/sounds"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/ddonutworth/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/ddonutworth/configuration/reloading"
+              }
+            ]
           },
           {
-            "label": "Extra Locations",
-            "slug": "plugins/warpgui/features/extra-locations"
-          },
-          {
-            "label": "Teleporting",
-            "slug": "plugins/warpgui/features/teleporting"
-          },
-          {
-            "label": "Recommended Warps",
-            "slug": "plugins/warpgui/features/recommended-warps"
-          },
-          {
-            "label": "Trending",
-            "slug": "plugins/warpgui/features/trending"
-          },
-          {
-            "label": "Favorites & Ratings",
-            "slug": "plugins/warpgui/features/favorites-and-ratings"
-          },
-          {
-            "label": "Search",
-            "slug": "plugins/warpgui/features/search"
-          },
-          {
-            "label": "Importing Warps",
-            "slug": "plugins/warpgui/features/importing"
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/ddonutworth/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/ddonutworth/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/ddonutworth/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/ddonutworth/credits"
+              }
+            ]
           }
         ]
       },
       {
-        "label": "⚙️ Configuration",
+        "label": "💎 dGems",
+        "collapsed": true,
         "items": [
           {
-            "label": "config.yml",
-            "slug": "plugins/warpgui/configuration/config"
+            "label": "📘 Introduction",
+            "slug": "plugins/dgems"
           },
           {
-            "label": "messages.yml",
-            "slug": "plugins/warpgui/configuration/messages"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dgems/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dgems/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/dgems/getting-started/quick-start"
+              }
+            ]
           },
           {
-            "label": "Storage & Database",
-            "slug": "plugins/warpgui/configuration/storage"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "The Currency",
+                "slug": "plugins/dgems/features/currency"
+              },
+              {
+                "label": "Transfers",
+                "slug": "plugins/dgems/features/transfers"
+              },
+              {
+                "label": "The Shop",
+                "slug": "plugins/dgems/features/shop"
+              },
+              {
+                "label": "Orders",
+                "slug": "plugins/dgems/features/orders"
+              },
+              {
+                "label": "Ledger & Audit",
+                "slug": "plugins/dgems/features/ledger-and-audit"
+              },
+              {
+                "label": "External Grants",
+                "slug": "plugins/dgems/features/external-grants"
+              },
+              {
+                "label": "Discord Webhooks",
+                "slug": "plugins/dgems/features/webhooks"
+              }
+            ]
           },
           {
-            "label": "Reloading",
-            "slug": "plugins/warpgui/configuration/reloading"
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dgems/configuration/config"
+              },
+              {
+                "label": "database.yml",
+                "slug": "plugins/dgems/configuration/database"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/dgems/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/dgems/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/dgems/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/dgems/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/dgems/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/dgems/credits"
+              }
+            ]
           }
         ]
       },
       {
-        "label": "📖 Reference",
+        "label": "🧾 dStore",
+        "collapsed": true,
         "items": [
           {
-            "label": "Commands & Permissions",
-            "slug": "plugins/warpgui/commands-and-permissions"
+            "label": "📘 Introduction",
+            "slug": "plugins/dstore"
           },
           {
-            "label": "Placeholders",
-            "slug": "plugins/warpgui/placeholders"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dstore/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dstore/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/dstore/getting-started/quick-start"
+              }
+            ]
           },
           {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/warpgui/faq"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "How Fulfilment Works",
+                "slug": "plugins/dstore/features/fulfilment"
+              },
+              {
+                "label": "The Receipt Ledger",
+                "slug": "plugins/dstore/features/receipt-ledger"
+              },
+              {
+                "label": "Action Types",
+                "slug": "plugins/dstore/features/action-types"
+              },
+              {
+                "label": "Updates",
+                "slug": "plugins/dstore/features/updates"
+              }
+            ]
           },
           {
-            "label": "Credits",
-            "slug": "plugins/warpgui/credits"
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dstore/configuration/config"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/dstore/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/dstore/commands-and-permissions"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/dstore/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/dstore/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "🎰 dLottery",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/dlottery"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dlottery/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dlottery/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/dlottery/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "How a Round Works",
+                "slug": "plugins/dlottery/features/how-a-round-works"
+              },
+              {
+                "label": "Buying Tickets",
+                "slug": "plugins/dlottery/features/buying-tickets"
+              },
+              {
+                "label": "The Lottery GUI",
+                "slug": "plugins/dlottery/features/the-gui"
+              },
+              {
+                "label": "Winning & Payouts",
+                "slug": "plugins/dlottery/features/winning-and-payouts"
+              },
+              {
+                "label": "Leaderboard & Stats",
+                "slug": "plugins/dlottery/features/leaderboard"
+              },
+              {
+                "label": "Round History",
+                "slug": "plugins/dlottery/features/history"
+              },
+              {
+                "label": "Reminders & Announcements",
+                "slug": "plugins/dlottery/features/reminders"
+              },
+              {
+                "label": "Admin Controls",
+                "slug": "plugins/dlottery/features/admin-controls"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "settings.yml",
+                "slug": "plugins/dlottery/configuration/settings"
+              },
+              {
+                "label": "database.yml",
+                "slug": "plugins/dlottery/configuration/database"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/dlottery/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/dlottery/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/dlottery/commands-and-permissions"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/dlottery/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/dlottery/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "🍀 bLottery",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/blottery"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/blottery/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/blottery/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/blottery/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "How a Round Works",
+                "slug": "plugins/blottery/features/how-a-round-works"
+              },
+              {
+                "label": "Buying Tickets",
+                "slug": "plugins/blottery/features/buying-tickets"
+              },
+              {
+                "label": "The Lottery GUI",
+                "slug": "plugins/blottery/features/the-gui"
+              },
+              {
+                "label": "Winning & Payouts",
+                "slug": "plugins/blottery/features/winning-and-payouts"
+              },
+              {
+                "label": "Leaderboard & Stats",
+                "slug": "plugins/blottery/features/leaderboard"
+              },
+              {
+                "label": "Round History",
+                "slug": "plugins/blottery/features/history"
+              },
+              {
+                "label": "Reminders & Announcements",
+                "slug": "plugins/blottery/features/reminders"
+              },
+              {
+                "label": "Admin Controls",
+                "slug": "plugins/blottery/features/admin-controls"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "settings.yml",
+                "slug": "plugins/blottery/configuration/settings"
+              },
+              {
+                "label": "database.yml",
+                "slug": "plugins/blottery/configuration/database"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/blottery/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/blottery/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/blottery/commands-and-permissions"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/blottery/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/blottery/credits"
+              }
+            ]
           }
         ]
       }
     ]
   },
   {
-    "label": "🏠 dHomeGUI",
+    "label": "⚔️ PvP & Combat",
     "collapsed": true,
     "items": [
       {
-        "label": "📘 Introduction",
-        "slug": "plugins/dhomegui"
-      },
-      {
-        "label": "🚀 Getting Started",
+        "label": "⚔️ dFactions",
+        "collapsed": true,
         "items": [
           {
-            "label": "Requirements",
-            "slug": "plugins/dhomegui/getting-started/requirements"
+            "label": "📘 Introduction",
+            "slug": "plugins/dfactions"
           },
           {
-            "label": "Installation",
-            "slug": "plugins/dhomegui/getting-started/installation"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dfactions/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dfactions/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/dfactions/getting-started/quick-start"
+              }
+            ]
           },
           {
-            "label": "Quick Start",
-            "slug": "plugins/dhomegui/getting-started/quick-start"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Territory & Claims",
+                "slug": "plugins/dfactions/features/territory"
+              },
+              {
+                "label": "Leveling & Prestige",
+                "slug": "plugins/dfactions/features/progression"
+              },
+              {
+                "label": "Beacon HQ",
+                "slug": "plugins/dfactions/features/beacon"
+              },
+              {
+                "label": "Wars, Shields & Stats",
+                "slug": "plugins/dfactions/features/wars-and-shields"
+              },
+              {
+                "label": "Statistics & Seasons",
+                "slug": "plugins/dfactions/features/statistics"
+              },
+              {
+                "label": "Economy & Bank",
+                "slug": "plugins/dfactions/features/economy"
+              },
+              {
+                "label": "Supply Drops",
+                "slug": "plugins/dfactions/features/supply-drops"
+              },
+              {
+                "label": "Control Zones",
+                "slug": "plugins/dfactions/features/control-zones"
+              },
+              {
+                "label": "Roles & Relations",
+                "slug": "plugins/dfactions/features/roles-and-relations"
+              },
+              {
+                "label": "The GUI",
+                "slug": "plugins/dfactions/features/gui"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dfactions/configuration/config"
+              },
+              {
+                "label": "database.yml",
+                "slug": "plugins/dfactions/configuration/database"
+              },
+              {
+                "label": "Messages & Languages",
+                "slug": "plugins/dfactions/configuration/messages"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/dfactions/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/dfactions/placeholders"
+              },
+              {
+                "label": "Integrations",
+                "slug": "plugins/dfactions/integrations"
+              },
+              {
+                "label": "The Statistics Website",
+                "slug": "plugins/dfactions/website-statistics"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/dfactions/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/dfactions/credits"
+              }
+            ]
           }
         ]
       },
       {
-        "label": "✨ Features",
+        "label": "🗡️ dKillTracker",
+        "collapsed": true,
         "items": [
           {
-            "label": "The Homes Menu",
-            "slug": "plugins/dhomegui/features/homes-menu"
+            "label": "📘 Introduction",
+            "slug": "plugins/dkilltracker"
           },
           {
-            "label": "Setting & Deleting Homes",
-            "slug": "plugins/dhomegui/features/setting-homes"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dkilltracker/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dkilltracker/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/dkilltracker/getting-started/quick-start"
+              }
+            ]
           },
           {
-            "label": "The Home Editor",
-            "slug": "plugins/dhomegui/features/home-editor"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Kill Tracking",
+                "slug": "plugins/dkilltracker/features/kill-tracking"
+              },
+              {
+                "label": "Anti-Farm Protection",
+                "slug": "plugins/dkilltracker/features/anti-farm"
+              },
+              {
+                "label": "Milestones & Ranks",
+                "slug": "plugins/dkilltracker/features/milestones"
+              },
+              {
+                "label": "Combat Tagging",
+                "slug": "plugins/dkilltracker/features/combat-tagging"
+              },
+              {
+                "label": "Leaderboard",
+                "slug": "plugins/dkilltracker/features/leaderboard"
+              }
+            ]
           },
           {
-            "label": "Home Limits & Buying Slots",
-            "slug": "plugins/dhomegui/features/home-limits"
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dkilltracker/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/dkilltracker/configuration/messages"
+              },
+              {
+                "label": "database.yml",
+                "slug": "plugins/dkilltracker/configuration/database"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/dkilltracker/configuration/reloading"
+              }
+            ]
           },
           {
-            "label": "Teleporting",
-            "slug": "plugins/dhomegui/features/teleporting"
-          },
-          {
-            "label": "Visibility & Whitelist",
-            "slug": "plugins/dhomegui/features/visibility"
-          },
-          {
-            "label": "World Rules",
-            "slug": "plugins/dhomegui/features/world-rules"
-          },
-          {
-            "label": "Economy",
-            "slug": "plugins/dhomegui/features/economy"
-          },
-          {
-            "label": "Folia Support",
-            "slug": "plugins/dhomegui/features/folia"
-          },
-          {
-            "label": "Admin Tools",
-            "slug": "plugins/dhomegui/features/admin-tools"
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/dkilltracker/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/dkilltracker/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/dkilltracker/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/dkilltracker/credits"
+              }
+            ]
           }
         ]
       },
       {
-        "label": "⚙️ Configuration",
+        "label": "💰 dBloodMoney",
+        "collapsed": true,
         "items": [
           {
-            "label": "config.yml",
-            "slug": "plugins/dhomegui/configuration/config"
+            "label": "📘 Introduction",
+            "slug": "plugins/dbloodmoney"
           },
           {
-            "label": "messages.yml",
-            "slug": "plugins/dhomegui/configuration/messages"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dbloodmoney/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dbloodmoney/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/dbloodmoney/getting-started/quick-start"
+              },
+              {
+                "label": "Free vs PRO",
+                "slug": "plugins/dbloodmoney/getting-started/free-vs-pro"
+              }
+            ]
           },
           {
-            "label": "Storage & Database",
-            "slug": "plugins/dhomegui/configuration/storage"
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dbloodmoney/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/dbloodmoney/configuration/messages"
+              },
+              {
+                "label": "database.yml",
+                "slug": "plugins/dbloodmoney/configuration/database"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/dbloodmoney/configuration/reloading"
+              }
+            ]
           },
           {
-            "label": "Reloading",
-            "slug": "plugins/dhomegui/configuration/reloading"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Kill Rewards",
+                "slug": "plugins/dbloodmoney/features/kill-rewards"
+              },
+              {
+                "label": "Anti-Farm Protection",
+                "slug": "plugins/dbloodmoney/features/anti-farm"
+              },
+              {
+                "label": "Combat Tagging",
+                "slug": "plugins/dbloodmoney/features/combat-tagging"
+              },
+              {
+                "label": "Safezones",
+                "slug": "plugins/dbloodmoney/features/safezones"
+              },
+              {
+                "label": "Bounties (PRO)",
+                "slug": "plugins/dbloodmoney/features/bounties"
+              },
+              {
+                "label": "Leaderboards (PRO)",
+                "slug": "plugins/dbloodmoney/features/leaderboards"
+              },
+              {
+                "label": "Kill Streaks (PRO)",
+                "slug": "plugins/dbloodmoney/features/kill-streaks"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/dbloodmoney/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders (PRO)",
+                "slug": "plugins/dbloodmoney/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/dbloodmoney/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/dbloodmoney/credits"
+              }
+            ]
           }
         ]
       },
       {
-        "label": "📖 Reference",
+        "label": "💀 dDeathPenalty",
+        "collapsed": true,
         "items": [
           {
-            "label": "Commands & Permissions",
-            "slug": "plugins/dhomegui/commands-and-permissions"
+            "label": "📘 Introduction",
+            "slug": "plugins/ddeathpenalty"
           },
           {
-            "label": "Placeholders",
-            "slug": "plugins/dhomegui/placeholders"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/ddeathpenalty/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/ddeathpenalty/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/ddeathpenalty/getting-started/quick-start"
+              }
+            ]
           },
           {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/dhomegui/faq"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Penalty Profiles",
+                "slug": "plugins/ddeathpenalty/features/penalty-profiles"
+              },
+              {
+                "label": "Money Penalty",
+                "slug": "plugins/ddeathpenalty/features/money-penalty"
+              },
+              {
+                "label": "XP Penalty",
+                "slug": "plugins/ddeathpenalty/features/xp-penalty"
+              },
+              {
+                "label": "Item Penalty",
+                "slug": "plugins/ddeathpenalty/features/item-penalty"
+              },
+              {
+                "label": "Respawn Effects",
+                "slug": "plugins/ddeathpenalty/features/respawn-effects"
+              },
+              {
+                "label": "Extra Penalties",
+                "slug": "plugins/ddeathpenalty/features/extra-penalties"
+              },
+              {
+                "label": "Exemptions & Ignore",
+                "slug": "plugins/ddeathpenalty/features/exemptions"
+              },
+              {
+                "label": "WorldGuard Regions",
+                "slug": "plugins/ddeathpenalty/features/worldguard"
+              },
+              {
+                "label": "Stats & Leaderboards",
+                "slug": "plugins/ddeathpenalty/features/stats"
+              }
+            ]
           },
           {
-            "label": "Credits",
-            "slug": "plugins/dhomegui/credits"
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/ddeathpenalty/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/ddeathpenalty/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/ddeathpenalty/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/ddeathpenalty/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/ddeathpenalty/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/ddeathpenalty/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/ddeathpenalty/credits"
+              }
+            ]
           }
         ]
       }
     ]
   },
   {
-    "label": "🎨 dNicks",
+    "label": "🧭 Teleportation",
     "collapsed": true,
     "items": [
       {
-        "label": "📘 Introduction",
-        "slug": "plugins/dnicks"
-      },
-      {
-        "label": "🚀 Getting Started",
+        "label": "🧭 WarpGUI",
+        "collapsed": true,
         "items": [
           {
-            "label": "Requirements",
-            "slug": "plugins/dnicks/getting-started/requirements"
+            "label": "📘 Introduction",
+            "slug": "plugins/warpgui"
           },
           {
-            "label": "Installation",
-            "slug": "plugins/dnicks/getting-started/installation"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/warpgui/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/warpgui/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/warpgui/getting-started/quick-start"
+              }
+            ]
           },
           {
-            "label": "Quick Start",
-            "slug": "plugins/dnicks/getting-started/quick-start"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "The Warp Menu",
+                "slug": "plugins/warpgui/features/warp-menu"
+              },
+              {
+                "label": "Creating & Deleting Warps",
+                "slug": "plugins/warpgui/features/creating-warps"
+              },
+              {
+                "label": "Editing Warps",
+                "slug": "plugins/warpgui/features/editing-warps"
+              },
+              {
+                "label": "Categories",
+                "slug": "plugins/warpgui/features/categories"
+              },
+              {
+                "label": "Extra Locations",
+                "slug": "plugins/warpgui/features/extra-locations"
+              },
+              {
+                "label": "Teleporting",
+                "slug": "plugins/warpgui/features/teleporting"
+              },
+              {
+                "label": "Recommended Warps",
+                "slug": "plugins/warpgui/features/recommended-warps"
+              },
+              {
+                "label": "Trending",
+                "slug": "plugins/warpgui/features/trending"
+              },
+              {
+                "label": "Favorites & Ratings",
+                "slug": "plugins/warpgui/features/favorites-and-ratings"
+              },
+              {
+                "label": "Search",
+                "slug": "plugins/warpgui/features/search"
+              },
+              {
+                "label": "Importing Warps",
+                "slug": "plugins/warpgui/features/importing"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/warpgui/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/warpgui/configuration/messages"
+              },
+              {
+                "label": "Storage & Database",
+                "slug": "plugins/warpgui/configuration/storage"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/warpgui/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/warpgui/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/warpgui/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/warpgui/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/warpgui/credits"
+              }
+            ]
           }
         ]
       },
       {
-        "label": "✨ Features",
+        "label": "🏠 dHomeGUI",
+        "collapsed": true,
         "items": [
           {
-            "label": "Gradient & Color Nicks",
-            "slug": "plugins/dnicks/features/gradient-nicks"
+            "label": "📘 Introduction",
+            "slug": "plugins/dhomegui"
           },
           {
-            "label": "Chat",
-            "slug": "plugins/dnicks/features/chat"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dhomegui/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dhomegui/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/dhomegui/getting-started/quick-start"
+              }
+            ]
           },
           {
-            "label": "The Tab List",
-            "slug": "plugins/dnicks/features/tablist"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "The Homes Menu",
+                "slug": "plugins/dhomegui/features/homes-menu"
+              },
+              {
+                "label": "Setting & Deleting Homes",
+                "slug": "plugins/dhomegui/features/setting-homes"
+              },
+              {
+                "label": "The Home Editor",
+                "slug": "plugins/dhomegui/features/home-editor"
+              },
+              {
+                "label": "Home Limits & Buying Slots",
+                "slug": "plugins/dhomegui/features/home-limits"
+              },
+              {
+                "label": "Teleporting",
+                "slug": "plugins/dhomegui/features/teleporting"
+              },
+              {
+                "label": "Visibility & Whitelist",
+                "slug": "plugins/dhomegui/features/visibility"
+              },
+              {
+                "label": "World Rules",
+                "slug": "plugins/dhomegui/features/world-rules"
+              },
+              {
+                "label": "Economy",
+                "slug": "plugins/dhomegui/features/economy"
+              },
+              {
+                "label": "Folia Support",
+                "slug": "plugins/dhomegui/features/folia"
+              },
+              {
+                "label": "Admin Tools",
+                "slug": "plugins/dhomegui/features/admin-tools"
+              }
+            ]
           },
           {
-            "label": "The Nametag Above the Head",
-            "slug": "plugins/dnicks/features/nametag"
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dhomegui/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/dhomegui/configuration/messages"
+              },
+              {
+                "label": "Storage & Database",
+                "slug": "plugins/dhomegui/configuration/storage"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/dhomegui/configuration/reloading"
+              }
+            ]
           },
           {
-            "label": "Join, Quit & Death Messages",
-            "slug": "plugins/dnicks/features/messages"
-          },
-          {
-            "label": "The Picker GUI",
-            "slug": "plugins/dnicks/features/picker-gui"
-          },
-          {
-            "label": "Reverse Lookup (/realname)",
-            "slug": "plugins/dnicks/features/realname"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/dnicks/configuration/config"
-          },
-          {
-            "label": "Messages & Language",
-            "slug": "plugins/dnicks/configuration/messages"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/dnicks/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/dnicks/commands-and-permissions"
-          },
-          {
-            "label": "Placeholders",
-            "slug": "plugins/dnicks/placeholders"
-          },
-          {
-            "label": "Integrations",
-            "slug": "plugins/dnicks/integrations"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/dnicks/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/dnicks/credits"
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/dhomegui/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/dhomegui/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/dhomegui/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/dhomegui/credits"
+              }
+            ]
           }
         ]
       }
     ]
   },
   {
-    "label": "💰 dBloodMoney",
+    "label": "💬 Chat & Social",
     "collapsed": true,
     "items": [
       {
-        "label": "📘 Introduction",
-        "slug": "plugins/dbloodmoney"
-      },
-      {
-        "label": "🚀 Getting Started",
+        "label": "🎨 dNicks",
+        "collapsed": true,
         "items": [
           {
-            "label": "Requirements",
-            "slug": "plugins/dbloodmoney/getting-started/requirements"
+            "label": "📘 Introduction",
+            "slug": "plugins/dnicks"
           },
           {
-            "label": "Installation",
-            "slug": "plugins/dbloodmoney/getting-started/installation"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dnicks/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dnicks/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/dnicks/getting-started/quick-start"
+              }
+            ]
           },
           {
-            "label": "Quick Start",
-            "slug": "plugins/dbloodmoney/getting-started/quick-start"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Gradient & Color Nicks",
+                "slug": "plugins/dnicks/features/gradient-nicks"
+              },
+              {
+                "label": "Chat",
+                "slug": "plugins/dnicks/features/chat"
+              },
+              {
+                "label": "The Tab List",
+                "slug": "plugins/dnicks/features/tablist"
+              },
+              {
+                "label": "The Nametag Above the Head",
+                "slug": "plugins/dnicks/features/nametag"
+              },
+              {
+                "label": "Join, Quit & Death Messages",
+                "slug": "plugins/dnicks/features/messages"
+              },
+              {
+                "label": "The Picker GUI",
+                "slug": "plugins/dnicks/features/picker-gui"
+              },
+              {
+                "label": "Reverse Lookup (/realname)",
+                "slug": "plugins/dnicks/features/realname"
+              }
+            ]
           },
           {
-            "label": "Free vs PRO",
-            "slug": "plugins/dbloodmoney/getting-started/free-vs-pro"
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dnicks/configuration/config"
+              },
+              {
+                "label": "Messages & Language",
+                "slug": "plugins/dnicks/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/dnicks/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/dnicks/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/dnicks/placeholders"
+              },
+              {
+                "label": "Integrations",
+                "slug": "plugins/dnicks/integrations"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/dnicks/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/dnicks/credits"
+              }
+            ]
           }
         ]
       },
       {
-        "label": "⚙️ Configuration",
+        "label": "🙋 dMentions",
+        "collapsed": true,
         "items": [
           {
-            "label": "config.yml",
-            "slug": "plugins/dbloodmoney/configuration/config"
+            "label": "📘 Introduction",
+            "slug": "plugins/dmentions"
           },
           {
-            "label": "messages.yml",
-            "slug": "plugins/dbloodmoney/configuration/messages"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dmentions/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dmentions/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/dmentions/getting-started/quick-start"
+              }
+            ]
           },
           {
-            "label": "database.yml",
-            "slug": "plugins/dbloodmoney/configuration/database"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Player Mentions",
+                "slug": "plugins/dmentions/features/player-mentions"
+              },
+              {
+                "label": "Nearby & Everyone",
+                "slug": "plugins/dmentions/features/nearby-and-everyone"
+              },
+              {
+                "label": "Group Mentions",
+                "slug": "plugins/dmentions/features/group-mentions"
+              },
+              {
+                "label": "Cooldowns & Limits",
+                "slug": "plugins/dmentions/features/cooldowns-and-limits"
+              },
+              {
+                "label": "Player Customisation",
+                "slug": "plugins/dmentions/features/customisation"
+              },
+              {
+                "label": "Settings GUI",
+                "slug": "plugins/dmentions/features/settings-gui"
+              },
+              {
+                "label": "Integrations",
+                "slug": "plugins/dmentions/features/integrations"
+              }
+            ]
           },
           {
-            "label": "Reloading",
-            "slug": "plugins/dbloodmoney/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "Kill Rewards",
-            "slug": "plugins/dbloodmoney/features/kill-rewards"
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dmentions/configuration/config"
+              },
+              {
+                "label": "Language Files",
+                "slug": "plugins/dmentions/configuration/language"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/dmentions/configuration/reloading"
+              }
+            ]
           },
           {
-            "label": "Anti-Farm Protection",
-            "slug": "plugins/dbloodmoney/features/anti-farm"
-          },
-          {
-            "label": "Combat Tagging",
-            "slug": "plugins/dbloodmoney/features/combat-tagging"
-          },
-          {
-            "label": "Safezones",
-            "slug": "plugins/dbloodmoney/features/safezones"
-          },
-          {
-            "label": "Bounties (PRO)",
-            "slug": "plugins/dbloodmoney/features/bounties"
-          },
-          {
-            "label": "Leaderboards (PRO)",
-            "slug": "plugins/dbloodmoney/features/leaderboards"
-          },
-          {
-            "label": "Kill Streaks (PRO)",
-            "slug": "plugins/dbloodmoney/features/kill-streaks"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/dbloodmoney/commands-and-permissions"
-          },
-          {
-            "label": "Placeholders (PRO)",
-            "slug": "plugins/dbloodmoney/placeholders"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/dbloodmoney/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/dbloodmoney/credits"
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/dmentions/commands-and-permissions"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/dmentions/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/dmentions/credits"
+              }
+            ]
           }
         ]
       }
     ]
   },
   {
-    "label": "🗡️ dKillTracker",
+    "label": "🔗 Web & Integrations",
     "collapsed": true,
     "items": [
       {
-        "label": "📘 Introduction",
-        "slug": "plugins/dkilltracker"
-      },
-      {
-        "label": "🚀 Getting Started",
+        "label": "🔗 dWebLink",
+        "collapsed": true,
         "items": [
           {
-            "label": "Requirements",
-            "slug": "plugins/dkilltracker/getting-started/requirements"
+            "label": "📘 Introduction",
+            "slug": "plugins/dweblink"
           },
           {
-            "label": "Installation",
-            "slug": "plugins/dkilltracker/getting-started/installation"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dweblink/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dweblink/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/dweblink/getting-started/quick-start"
+              }
+            ]
           },
           {
-            "label": "Quick Start",
-            "slug": "plugins/dkilltracker/getting-started/quick-start"
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Website Login",
+                "slug": "plugins/dweblink/features/website-login"
+              },
+              {
+                "label": "Email Verification",
+                "slug": "plugins/dweblink/features/email-verification"
+              },
+              {
+                "label": "Discord Linking",
+                "slug": "plugins/dweblink/features/discord-linking"
+              },
+              {
+                "label": "Profile & Rank Sync",
+                "slug": "plugins/dweblink/features/profile-sync"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dweblink/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/dweblink/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/dweblink/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/dweblink/commands-and-permissions"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/dweblink/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/dweblink/credits"
+              }
+            ]
           }
         ]
       },
       {
-        "label": "✨ Features",
+        "label": "🌐 dPhalanx",
+        "collapsed": true,
         "items": [
           {
-            "label": "Kill Tracking",
-            "slug": "plugins/dkilltracker/features/kill-tracking"
+            "label": "📘 Introduction",
+            "slug": "plugins/dphalanx"
           },
           {
-            "label": "Anti-Farm Protection",
-            "slug": "plugins/dkilltracker/features/anti-farm"
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dphalanx/getting-started/requirements"
+              },
+              {
+                "label": "Installation & Setup",
+                "slug": "plugins/dphalanx/getting-started/installation"
+              }
+            ]
           },
           {
-            "label": "Milestones & Ranks",
-            "slug": "plugins/dkilltracker/features/milestones"
-          },
-          {
-            "label": "Combat Tagging",
-            "slug": "plugins/dkilltracker/features/combat-tagging"
-          },
-          {
-            "label": "Leaderboard",
-            "slug": "plugins/dkilltracker/features/leaderboard"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/dkilltracker/configuration/config"
-          },
-          {
-            "label": "messages.yml",
-            "slug": "plugins/dkilltracker/configuration/messages"
-          },
-          {
-            "label": "database.yml",
-            "slug": "plugins/dkilltracker/configuration/database"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/dkilltracker/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/dkilltracker/commands-and-permissions"
-          },
-          {
-            "label": "Placeholders",
-            "slug": "plugins/dkilltracker/placeholders"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/dkilltracker/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/dkilltracker/credits"
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Features",
+                "slug": "plugins/dphalanx/features"
+              },
+              {
+                "label": "Configuration",
+                "slug": "plugins/dphalanx/configuration"
+              },
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/dphalanx/commands-and-permissions"
+              }
+            ]
           }
         ]
       }
     ]
   },
   {
-    "label": "🔔 ToolsNotifier",
+    "label": "🧰 Tools & Utilities",
     "collapsed": true,
     "items": [
       {
-        "label": "📘 Introduction",
-        "slug": "plugins/toolsnotifier"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/toolsnotifier/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/toolsnotifier/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/toolsnotifier/getting-started/quick-start"
-          },
-          {
-            "label": "Free vs PRO",
-            "slug": "plugins/toolsnotifier/getting-started/free-vs-pro"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "How Notifications Work",
-            "slug": "plugins/toolsnotifier/features/how-notifications-work"
-          },
-          {
-            "label": "Thresholds & Categories",
-            "slug": "plugins/toolsnotifier/features/thresholds-and-categories"
-          },
-          {
-            "label": "Notification Channels",
-            "slug": "plugins/toolsnotifier/features/notification-channels"
-          },
-          {
-            "label": "Status & Toggle",
-            "slug": "plugins/toolsnotifier/features/status-and-toggle"
-          },
-          {
-            "label": "Preferences GUI (PRO)",
-            "slug": "plugins/toolsnotifier/features/preferences-gui"
-          },
-          {
-            "label": "Inventory Scan (PRO)",
-            "slug": "plugins/toolsnotifier/features/inventory-scan"
-          },
-          {
-            "label": "Admin Monitoring (PRO)",
-            "slug": "plugins/toolsnotifier/features/admin-monitoring"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/toolsnotifier/configuration/config"
-          },
-          {
-            "label": "Messages & Sounds",
-            "slug": "plugins/toolsnotifier/configuration/messages"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/toolsnotifier/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/toolsnotifier/commands-and-permissions"
-          },
-          {
-            "label": "Placeholders",
-            "slug": "plugins/toolsnotifier/placeholders"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/toolsnotifier/faq"
-          },
-          {
-            "label": "Changelog",
-            "slug": "plugins/toolsnotifier/changelog"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/toolsnotifier/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "💀 dDeathPenalty",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/ddeathpenalty"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/ddeathpenalty/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/ddeathpenalty/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/ddeathpenalty/getting-started/quick-start"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "Penalty Profiles",
-            "slug": "plugins/ddeathpenalty/features/penalty-profiles"
-          },
-          {
-            "label": "Money Penalty",
-            "slug": "plugins/ddeathpenalty/features/money-penalty"
-          },
-          {
-            "label": "XP Penalty",
-            "slug": "plugins/ddeathpenalty/features/xp-penalty"
-          },
-          {
-            "label": "Item Penalty",
-            "slug": "plugins/ddeathpenalty/features/item-penalty"
-          },
-          {
-            "label": "Respawn Effects",
-            "slug": "plugins/ddeathpenalty/features/respawn-effects"
-          },
-          {
-            "label": "Extra Penalties",
-            "slug": "plugins/ddeathpenalty/features/extra-penalties"
-          },
-          {
-            "label": "Exemptions & Ignore",
-            "slug": "plugins/ddeathpenalty/features/exemptions"
-          },
-          {
-            "label": "WorldGuard Regions",
-            "slug": "plugins/ddeathpenalty/features/worldguard"
-          },
-          {
-            "label": "Stats & Leaderboards",
-            "slug": "plugins/ddeathpenalty/features/stats"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/ddeathpenalty/configuration/config"
-          },
-          {
-            "label": "messages.yml",
-            "slug": "plugins/ddeathpenalty/configuration/messages"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/ddeathpenalty/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/ddeathpenalty/commands-and-permissions"
-          },
-          {
-            "label": "Placeholders",
-            "slug": "plugins/ddeathpenalty/placeholders"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/ddeathpenalty/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/ddeathpenalty/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "🎰 dLottery",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/dlottery"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/dlottery/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/dlottery/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/dlottery/getting-started/quick-start"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "How a Round Works",
-            "slug": "plugins/dlottery/features/how-a-round-works"
-          },
-          {
-            "label": "Buying Tickets",
-            "slug": "plugins/dlottery/features/buying-tickets"
-          },
-          {
-            "label": "The Lottery GUI",
-            "slug": "plugins/dlottery/features/the-gui"
-          },
-          {
-            "label": "Winning & Payouts",
-            "slug": "plugins/dlottery/features/winning-and-payouts"
-          },
-          {
-            "label": "Leaderboard & Stats",
-            "slug": "plugins/dlottery/features/leaderboard"
-          },
-          {
-            "label": "Round History",
-            "slug": "plugins/dlottery/features/history"
-          },
-          {
-            "label": "Reminders & Announcements",
-            "slug": "plugins/dlottery/features/reminders"
-          },
-          {
-            "label": "Admin Controls",
-            "slug": "plugins/dlottery/features/admin-controls"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "settings.yml",
-            "slug": "plugins/dlottery/configuration/settings"
-          },
-          {
-            "label": "database.yml",
-            "slug": "plugins/dlottery/configuration/database"
-          },
-          {
-            "label": "messages.yml",
-            "slug": "plugins/dlottery/configuration/messages"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/dlottery/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/dlottery/commands-and-permissions"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/dlottery/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/dlottery/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "🍀 bLottery",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/blottery"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/blottery/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/blottery/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/blottery/getting-started/quick-start"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "How a Round Works",
-            "slug": "plugins/blottery/features/how-a-round-works"
-          },
-          {
-            "label": "Buying Tickets",
-            "slug": "plugins/blottery/features/buying-tickets"
-          },
-          {
-            "label": "The Lottery GUI",
-            "slug": "plugins/blottery/features/the-gui"
-          },
-          {
-            "label": "Winning & Payouts",
-            "slug": "plugins/blottery/features/winning-and-payouts"
-          },
-          {
-            "label": "Leaderboard & Stats",
-            "slug": "plugins/blottery/features/leaderboard"
-          },
-          {
-            "label": "Round History",
-            "slug": "plugins/blottery/features/history"
-          },
-          {
-            "label": "Reminders & Announcements",
-            "slug": "plugins/blottery/features/reminders"
-          },
-          {
-            "label": "Admin Controls",
-            "slug": "plugins/blottery/features/admin-controls"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "settings.yml",
-            "slug": "plugins/blottery/configuration/settings"
-          },
-          {
-            "label": "database.yml",
-            "slug": "plugins/blottery/configuration/database"
-          },
-          {
-            "label": "messages.yml",
-            "slug": "plugins/blottery/configuration/messages"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/blottery/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/blottery/commands-and-permissions"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/blottery/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/blottery/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "🙋 dMentions",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/dmentions"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/dmentions/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/dmentions/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/dmentions/getting-started/quick-start"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "Player Mentions",
-            "slug": "plugins/dmentions/features/player-mentions"
-          },
-          {
-            "label": "Nearby & Everyone",
-            "slug": "plugins/dmentions/features/nearby-and-everyone"
-          },
-          {
-            "label": "Group Mentions",
-            "slug": "plugins/dmentions/features/group-mentions"
-          },
-          {
-            "label": "Cooldowns & Limits",
-            "slug": "plugins/dmentions/features/cooldowns-and-limits"
-          },
-          {
-            "label": "Player Customisation",
-            "slug": "plugins/dmentions/features/customisation"
-          },
-          {
-            "label": "Settings GUI",
-            "slug": "plugins/dmentions/features/settings-gui"
-          },
-          {
-            "label": "Integrations",
-            "slug": "plugins/dmentions/features/integrations"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/dmentions/configuration/config"
-          },
-          {
-            "label": "Language Files",
-            "slug": "plugins/dmentions/configuration/language"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/dmentions/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/dmentions/commands-and-permissions"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/dmentions/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/dmentions/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "🛒 DRotatingShop",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/drotatingshop"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/drotatingshop/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/drotatingshop/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/drotatingshop/getting-started/quick-start"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "The Shop Menu",
-            "slug": "plugins/drotatingshop/features/the-shop-menu"
-          },
-          {
-            "label": "The Buy Menu",
-            "slug": "plugins/drotatingshop/features/the-buy-menu"
-          },
-          {
-            "label": "Rotations",
-            "slug": "plugins/drotatingshop/features/rotations"
-          },
-          {
-            "label": "Opening Hours",
-            "slug": "plugins/drotatingshop/features/opening-hours"
-          },
-          {
-            "label": "Stock & Purchase Limits",
-            "slug": "plugins/drotatingshop/features/stock-and-limits"
-          },
-          {
-            "label": "Pricing & Perks",
-            "slug": "plugins/drotatingshop/features/pricing-and-perks"
-          },
-          {
-            "label": "Buying Items",
-            "slug": "plugins/drotatingshop/features/buying"
-          },
-          {
-            "label": "Custom Items",
-            "slug": "plugins/drotatingshop/features/custom-items"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/drotatingshop/configuration/config"
-          },
-          {
-            "label": "items.yml",
-            "slug": "plugins/drotatingshop/configuration/items"
-          },
-          {
-            "label": "Default Prices (1.21)",
-            "slug": "plugins/drotatingshop/configuration/default-prices"
-          },
-          {
-            "label": "quantity-menu.yml",
-            "slug": "plugins/drotatingshop/configuration/quantity-menu"
-          },
-          {
-            "label": "groups.yml",
-            "slug": "plugins/drotatingshop/configuration/groups"
-          },
-          {
-            "label": "Sounds",
-            "slug": "plugins/drotatingshop/configuration/sounds"
-          },
-          {
-            "label": "messages.yml",
-            "slug": "plugins/drotatingshop/configuration/messages"
-          },
-          {
-            "label": "data.yml",
-            "slug": "plugins/drotatingshop/configuration/data"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/drotatingshop/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/drotatingshop/commands-and-permissions"
-          },
-          {
-            "label": "Placeholders",
-            "slug": "plugins/drotatingshop/placeholders"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/drotatingshop/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/drotatingshop/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "🍩 dDonutWorth",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/ddonutworth"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/ddonutworth/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/ddonutworth/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/ddonutworth/getting-started/quick-start"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "Price Sources",
-            "slug": "plugins/ddonutworth/features/price-sources"
-          },
-          {
-            "label": "Readable Item Keys",
-            "slug": "plugins/ddonutworth/features/item-keys"
-          },
-          {
-            "label": "Selling",
-            "slug": "plugins/ddonutworth/features/selling"
-          },
-          {
-            "label": "Worth Lore",
-            "slug": "plugins/ddonutworth/features/worth-lore"
-          },
-          {
-            "label": "Enchantment Worth",
-            "slug": "plugins/ddonutworth/features/enchantment-worth"
-          },
-          {
-            "label": "Sell Multipliers",
-            "slug": "plugins/ddonutworth/features/sell-multipliers"
-          },
-          {
-            "label": "The Sell Axe",
-            "slug": "plugins/ddonutworth/features/the-sell-axe"
-          },
-          {
-            "label": "Sell History",
-            "slug": "plugins/ddonutworth/features/sell-history"
-          },
-          {
-            "label": "Custom Items",
-            "slug": "plugins/ddonutworth/features/custom-items"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/ddonutworth/configuration/config"
-          },
-          {
-            "label": "prices.yml",
-            "slug": "plugins/ddonutworth/configuration/prices"
-          },
-          {
-            "label": "enchantments.yml",
-            "slug": "plugins/ddonutworth/configuration/enchantments"
-          },
-          {
-            "label": "Sell Categories",
-            "slug": "plugins/ddonutworth/configuration/sell-categories"
-          },
-          {
-            "label": "GUIs",
-            "slug": "plugins/ddonutworth/configuration/guis"
-          },
-          {
-            "label": "sellaxe.yml",
-            "slug": "plugins/ddonutworth/configuration/sellaxe"
-          },
-          {
-            "label": "Sounds",
-            "slug": "plugins/ddonutworth/configuration/sounds"
-          },
-          {
-            "label": "messages.yml",
-            "slug": "plugins/ddonutworth/configuration/messages"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/ddonutworth/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/ddonutworth/commands-and-permissions"
-          },
-          {
-            "label": "Placeholders",
-            "slug": "plugins/ddonutworth/placeholders"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/ddonutworth/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/ddonutworth/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "💎 dGems",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/dgems"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/dgems/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/dgems/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/dgems/getting-started/quick-start"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "The Currency",
-            "slug": "plugins/dgems/features/currency"
-          },
-          {
-            "label": "Transfers",
-            "slug": "plugins/dgems/features/transfers"
-          },
-          {
-            "label": "The Shop",
-            "slug": "plugins/dgems/features/shop"
-          },
-          {
-            "label": "Orders",
-            "slug": "plugins/dgems/features/orders"
-          },
-          {
-            "label": "Ledger & Audit",
-            "slug": "plugins/dgems/features/ledger-and-audit"
-          },
-          {
-            "label": "External Grants",
-            "slug": "plugins/dgems/features/external-grants"
-          },
-          {
-            "label": "Discord Webhooks",
-            "slug": "plugins/dgems/features/webhooks"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/dgems/configuration/config"
-          },
-          {
-            "label": "database.yml",
-            "slug": "plugins/dgems/configuration/database"
-          },
-          {
-            "label": "messages.yml",
-            "slug": "plugins/dgems/configuration/messages"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/dgems/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/dgems/commands-and-permissions"
-          },
-          {
-            "label": "Placeholders",
-            "slug": "plugins/dgems/placeholders"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/dgems/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/dgems/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "⚔️ dFactions",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/dfactions"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/dfactions/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/dfactions/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/dfactions/getting-started/quick-start"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "Territory & Claims",
-            "slug": "plugins/dfactions/features/territory"
-          },
-          {
-            "label": "Leveling & Prestige",
-            "slug": "plugins/dfactions/features/progression"
-          },
-          {
-            "label": "Beacon HQ",
-            "slug": "plugins/dfactions/features/beacon"
-          },
-          {
-            "label": "Wars, Shields & Stats",
-            "slug": "plugins/dfactions/features/wars-and-shields"
-          },
-          {
-            "label": "Statistics & Seasons",
-            "slug": "plugins/dfactions/features/statistics"
-          },
-          {
-            "label": "Economy & Bank",
-            "slug": "plugins/dfactions/features/economy"
-          },
-          {
-            "label": "Supply Drops",
-            "slug": "plugins/dfactions/features/supply-drops"
-          },
-          {
-            "label": "Control Zones",
-            "slug": "plugins/dfactions/features/control-zones"
-          },
-          {
-            "label": "Roles & Relations",
-            "slug": "plugins/dfactions/features/roles-and-relations"
-          },
-          {
-            "label": "The GUI",
-            "slug": "plugins/dfactions/features/gui"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/dfactions/configuration/config"
-          },
-          {
-            "label": "database.yml",
-            "slug": "plugins/dfactions/configuration/database"
-          },
-          {
-            "label": "Messages & Languages",
-            "slug": "plugins/dfactions/configuration/messages"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/dfactions/commands-and-permissions"
-          },
-          {
-            "label": "Placeholders",
-            "slug": "plugins/dfactions/placeholders"
-          },
-          {
-            "label": "Integrations",
-            "slug": "plugins/dfactions/integrations"
-          },
-          {
-            "label": "The Statistics Website",
-            "slug": "plugins/dfactions/website-statistics"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/dfactions/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/dfactions/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "🔗 dWebLink",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/dweblink"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/dweblink/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/dweblink/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/dweblink/getting-started/quick-start"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "Website Login",
-            "slug": "plugins/dweblink/features/website-login"
-          },
-          {
-            "label": "Email Verification",
-            "slug": "plugins/dweblink/features/email-verification"
-          },
-          {
-            "label": "Discord Linking",
-            "slug": "plugins/dweblink/features/discord-linking"
-          },
-          {
-            "label": "Profile & Rank Sync",
-            "slug": "plugins/dweblink/features/profile-sync"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/dweblink/configuration/config"
-          },
-          {
-            "label": "messages.yml",
-            "slug": "plugins/dweblink/configuration/messages"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/dweblink/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/dweblink/commands-and-permissions"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/dweblink/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/dweblink/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "🌐 dPhalanx",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/dphalanx"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/dphalanx/getting-started/requirements"
-          },
-          {
-            "label": "Installation & Setup",
-            "slug": "plugins/dphalanx/getting-started/installation"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Features",
-            "slug": "plugins/dphalanx/features"
-          },
-          {
-            "label": "Configuration",
-            "slug": "plugins/dphalanx/configuration"
-          },
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/dphalanx/commands-and-permissions"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "🧾 dStore",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/dstore"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/dstore/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/dstore/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/dstore/getting-started/quick-start"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "How Fulfilment Works",
-            "slug": "plugins/dstore/features/fulfilment"
-          },
-          {
-            "label": "The Receipt Ledger",
-            "slug": "plugins/dstore/features/receipt-ledger"
-          },
-          {
-            "label": "Action Types",
-            "slug": "plugins/dstore/features/action-types"
-          },
-          {
-            "label": "Updates",
-            "slug": "plugins/dstore/features/updates"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/dstore/configuration/config"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/dstore/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/dstore/commands-and-permissions"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/dstore/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/dstore/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "💬 dDialogs",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/ddialogs"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/ddialogs/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/ddialogs/getting-started/installation"
-          },
-          {
-            "label": "Make your first dialog",
-            "slug": "plugins/ddialogs/tutorial"
-          }
-        ]
-      },
-      {
-        "label": "✨ Building Blocks",
-        "items": [
-          {
-            "label": "Dialog types",
-            "slug": "plugins/ddialogs/features/dialog-types"
-          },
-          {
-            "label": "Body & text",
-            "slug": "plugins/ddialogs/features/body-and-text"
-          },
-          {
-            "label": "Buttons & actions",
-            "slug": "plugins/ddialogs/features/buttons-and-actions"
-          },
-          {
-            "label": "Inputs (forms)",
-            "slug": "plugins/ddialogs/features/inputs"
-          },
-          {
-            "label": "Sub-dialogs & navigation",
-            "slug": "plugins/ddialogs/features/sub-dialogs"
-          },
-          {
-            "label": "Icons",
-            "slug": "plugins/ddialogs/features/icons"
-          },
-          {
-            "label": "Placeholders",
-            "slug": "plugins/ddialogs/features/placeholders"
-          },
-          {
-            "label": "Dynamic lists",
-            "slug": "plugins/ddialogs/features/dynamic-lists"
-          },
-          {
-            "label": "Leaderboards",
-            "slug": "plugins/ddialogs/features/leaderboards"
-          },
-          {
-            "label": "Permissions & locks",
-            "slug": "plugins/ddialogs/features/permissions"
-          },
-          {
-            "label": "Pause menu button",
-            "slug": "plugins/ddialogs/features/pause-menu"
-          }
-        ]
-      },
-      {
-        "label": "📚 Cookbook",
-        "items": [
-          {
-            "label": "All 21 examples",
-            "slug": "plugins/ddialogs/examples"
-          },
-          {
-            "label": "Menu patterns",
-            "slug": "plugins/ddialogs/menu-patterns"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/ddialogs/configuration/config"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Writing dialogs",
-            "slug": "plugins/ddialogs/writing-dialogs"
-          },
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/ddialogs/commands-and-permissions"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/ddialogs/faq"
-          },
-          {
-            "label": "How it works",
-            "slug": "plugins/ddialogs/how-it-works"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "🛡️ OberonChat",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/oberonchat"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/oberonchat/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/oberonchat/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/oberonchat/getting-started/quick-start"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "The Word Filter",
-            "slug": "plugins/oberonchat/features/word-filter"
-          },
-          {
-            "label": "What Gets Checked",
-            "slug": "plugins/oberonchat/features/what-gets-checked"
-          },
-          {
-            "label": "Anti-Spam & Caps",
-            "slug": "plugins/oberonchat/features/anti-spam"
-          },
-          {
-            "label": "Violations & Punishment",
-            "slug": "plugins/oberonchat/features/violations"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/oberonchat/configuration/config"
-          },
-          {
-            "label": "filter.yml",
-            "slug": "plugins/oberonchat/configuration/filter"
-          },
-          {
-            "label": "messages.yml",
-            "slug": "plugins/oberonchat/configuration/messages"
-          },
-          {
-            "label": "database.yml",
-            "slug": "plugins/oberonchat/configuration/database"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/oberonchat/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/oberonchat/commands-and-permissions"
-          },
-          {
-            "label": "Placeholders",
-            "slug": "plugins/oberonchat/placeholders"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/oberonchat/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/oberonchat/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "🐺 OberonMob",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/oberonmob"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/oberonmob/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/oberonmob/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/oberonmob/getting-started/quick-start"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "How It Works",
-            "slug": "plugins/oberonmob/features/how-it-works"
-          },
-          {
-            "label": "Entity Groups",
-            "slug": "plugins/oberonmob/features/entity-groups"
-          },
-          {
-            "label": "Spawn Reasons",
-            "slug": "plugins/oberonmob/features/spawn-reasons"
-          },
-          {
-            "label": "Adding Your Own Toggle",
-            "slug": "plugins/oberonmob/features/custom-toggles"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/oberonmob/configuration/config"
-          },
-          {
-            "label": "messages.yml",
-            "slug": "plugins/oberonmob/configuration/messages"
-          },
-          {
-            "label": "database.yml",
-            "slug": "plugins/oberonmob/configuration/database"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/oberonmob/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/oberonmob/commands-and-permissions"
-          },
-          {
-            "label": "Placeholders",
-            "slug": "plugins/oberonmob/placeholders"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/oberonmob/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/oberonmob/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "🎖️ OberonStaff",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/oberonstaff"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/oberonstaff/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/oberonstaff/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/oberonstaff/getting-started/quick-start"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "Staff Chat",
-            "slug": "plugins/oberonstaff/features/staff-chat"
-          },
-          {
-            "label": "Teleports",
-            "slug": "plugins/oberonstaff/features/teleports"
-          },
-          {
-            "label": "Action Bar & Sounds",
-            "slug": "plugins/oberonstaff/features/presentation"
-          },
-          {
-            "label": "Vanish",
-            "slug": "plugins/oberonstaff/features/vanish"
-          },
-          {
-            "label": "Ranks",
-            "slug": "plugins/oberonstaff/features/ranks"
-          },
-          {
-            "label": "Action Log",
-            "slug": "plugins/oberonstaff/features/action-log"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/oberonstaff/configuration/config"
-          },
-          {
-            "label": "messages.yml",
-            "slug": "plugins/oberonstaff/configuration/messages"
-          },
-          {
-            "label": "database.yml",
-            "slug": "plugins/oberonstaff/configuration/database"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/oberonstaff/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/oberonstaff/commands-and-permissions"
-          },
-          {
-            "label": "Placeholders",
-            "slug": "plugins/oberonstaff/placeholders"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/oberonstaff/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/oberonstaff/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "✉️ OberonMSG",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/oberonmsg"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/oberonmsg/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/oberonmsg/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/oberonmsg/getting-started/quick-start"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "Sending Messages",
-            "slug": "plugins/oberonmsg/features/messages"
-          },
-          {
-            "label": "Ignore Lists",
-            "slug": "plugins/oberonmsg/features/ignore"
-          },
-          {
-            "label": "Social Spy & Logging",
-            "slug": "plugins/oberonmsg/features/social-spy"
-          },
-          {
-            "label": "Vanish & AFK",
-            "slug": "plugins/oberonmsg/features/vanish-and-afk"
-          },
-          {
-            "label": "Action Bar & Sounds",
-            "slug": "plugins/oberonmsg/features/presentation"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/oberonmsg/configuration/config"
-          },
-          {
-            "label": "messages.yml",
-            "slug": "plugins/oberonmsg/configuration/messages"
-          },
-          {
-            "label": "database.yml",
-            "slug": "plugins/oberonmsg/configuration/database"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/oberonmsg/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/oberonmsg/commands-and-permissions"
-          },
-          {
-            "label": "Placeholders",
-            "slug": "plugins/oberonmsg/placeholders"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/oberonmsg/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/oberonmsg/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "💀 OberonKills",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/oberonkills"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/oberonkills/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/oberonkills/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/oberonkills/getting-started/quick-start"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "Weapons & Causes",
-            "slug": "plugins/oberonkills/features/weapons"
-          },
-          {
-            "label": "Item Names",
-            "slug": "plugins/oberonkills/features/item-names"
-          },
-          {
-            "label": "Writing Messages",
-            "slug": "plugins/oberonkills/features/message-sets"
-          },
-          {
-            "label": "Rank Prefixes",
-            "slug": "plugins/oberonkills/features/ranks"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/oberonkills/configuration/config"
-          },
-          {
-            "label": "messages.yml",
-            "slug": "plugins/oberonkills/configuration/messages"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/oberonkills/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/oberonkills/commands-and-permissions"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/oberonkills/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/oberonkills/credits"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "label": "🔒 OberonWhitelist",
-    "collapsed": true,
-    "items": [
-      {
-        "label": "📘 Introduction",
-        "slug": "plugins/oberonwhitelist"
-      },
-      {
-        "label": "🚀 Getting Started",
-        "items": [
-          {
-            "label": "Requirements",
-            "slug": "plugins/oberonwhitelist/getting-started/requirements"
-          },
-          {
-            "label": "Installation",
-            "slug": "plugins/oberonwhitelist/getting-started/installation"
-          },
-          {
-            "label": "Quick Start",
-            "slug": "plugins/oberonwhitelist/getting-started/quick-start"
-          },
-          {
-            "label": "Migrating from PerfCommandWhitelist",
-            "slug": "plugins/oberonwhitelist/getting-started/migrating"
-          }
-        ]
-      },
-      {
-        "label": "✨ Features",
-        "items": [
-          {
-            "label": "The Three Tiers",
-            "slug": "plugins/oberonwhitelist/features/three-tiers"
-          },
-          {
-            "label": "Command Identity",
-            "slug": "plugins/oberonwhitelist/features/command-identity"
-          },
-          {
-            "label": "Menu & Dialog Plugins",
-            "slug": "plugins/oberonwhitelist/features/menu-plugins"
-          },
-          {
-            "label": "Tab Completion",
-            "slug": "plugins/oberonwhitelist/features/tab-completion"
-          },
-          {
-            "label": "One Indistinguishable Error",
-            "slug": "plugins/oberonwhitelist/features/one-error"
-          },
-          {
-            "label": "Groups & Ranks",
-            "slug": "plugins/oberonwhitelist/features/groups"
-          }
-        ]
-      },
-      {
-        "label": "⚙️ Configuration",
-        "items": [
-          {
-            "label": "config.yml",
-            "slug": "plugins/oberonwhitelist/configuration/config"
-          },
-          {
-            "label": "Reloading",
-            "slug": "plugins/oberonwhitelist/configuration/reloading"
-          }
-        ]
-      },
-      {
-        "label": "📖 Reference",
-        "items": [
-          {
-            "label": "Commands & Permissions",
-            "slug": "plugins/oberonwhitelist/commands-and-permissions"
-          },
-          {
-            "label": "FAQ & Troubleshooting",
-            "slug": "plugins/oberonwhitelist/faq"
-          },
-          {
-            "label": "Credits",
-            "slug": "plugins/oberonwhitelist/credits"
+        "label": "📊 dStattrack",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/dstattrack"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dstattrack/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dstattrack/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/dstattrack/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Tracked Stats",
+                "slug": "plugins/dstattrack/features/tracked-stats"
+              },
+              {
+                "label": "Applying a Stattrack",
+                "slug": "plugins/dstattrack/features/applying-a-stattrack"
+              },
+              {
+                "label": "The GUI",
+                "slug": "plugins/dstattrack/features/the-gui"
+              },
+              {
+                "label": "Lore & Display",
+                "slug": "plugins/dstattrack/features/lore-and-display"
+              },
+              {
+                "label": "Sounds",
+                "slug": "plugins/dstattrack/features/sounds"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dstattrack/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/dstattrack/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/dstattrack/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/dstattrack/commands-and-permissions"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/dstattrack/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/dstattrack/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "🔔 ToolsNotifier",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/toolsnotifier"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/toolsnotifier/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/toolsnotifier/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/toolsnotifier/getting-started/quick-start"
+              },
+              {
+                "label": "Free vs PRO",
+                "slug": "plugins/toolsnotifier/getting-started/free-vs-pro"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "How Notifications Work",
+                "slug": "plugins/toolsnotifier/features/how-notifications-work"
+              },
+              {
+                "label": "Thresholds & Categories",
+                "slug": "plugins/toolsnotifier/features/thresholds-and-categories"
+              },
+              {
+                "label": "Notification Channels",
+                "slug": "plugins/toolsnotifier/features/notification-channels"
+              },
+              {
+                "label": "Status & Toggle",
+                "slug": "plugins/toolsnotifier/features/status-and-toggle"
+              },
+              {
+                "label": "Preferences GUI (PRO)",
+                "slug": "plugins/toolsnotifier/features/preferences-gui"
+              },
+              {
+                "label": "Inventory Scan (PRO)",
+                "slug": "plugins/toolsnotifier/features/inventory-scan"
+              },
+              {
+                "label": "Admin Monitoring (PRO)",
+                "slug": "plugins/toolsnotifier/features/admin-monitoring"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/toolsnotifier/configuration/config"
+              },
+              {
+                "label": "Messages & Sounds",
+                "slug": "plugins/toolsnotifier/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/toolsnotifier/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/toolsnotifier/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/toolsnotifier/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/toolsnotifier/faq"
+              },
+              {
+                "label": "Changelog",
+                "slug": "plugins/toolsnotifier/changelog"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/toolsnotifier/credits"
+              }
+            ]
           }
         ]
       }
