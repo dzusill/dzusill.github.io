@@ -53,15 +53,20 @@ Only the command name itself is filtered. Once a player types a space, the sugge
 
 ## Commands that do not exist are reported
 
-At startup, every configured command is checked against what the server actually registers:
+Once the server has finished loading, every configured command is checked against what it actually registers:
 
 ```
 [OberonWhitelist] Group command '/homes' is not registered by any plugin on this
 server; it can never be suggested or run. Check the spelling, or the plugin that
 provides it.
+...
+[OberonWhitelist] 3 configured command(s) are not registered by any plugin here.
+Each one is inert: it grants nothing and blocks nothing.
 ```
 
-An entry like this is silently inert — it grants nothing and blocks nothing. Saying so at startup turns a mystery into a one-line fix.
+An entry like this grants nothing and blocks nothing. Saying so turns a mystery into a one-line fix.
+
+The timing is deliberate. The check waits for the server to finish enabling plugins rather than running while this one starts, because at that earlier point no plugin loading later has registered anything — and neither has this plugin's own `/oberonwhitelist`. Asked too soon it reports working commands as missing, and a list that cries wolf is worse than no list.
 
 Turn it off with `debug.warn-on-missing-commands: false` if you keep entries for plugins you have not installed yet.
 

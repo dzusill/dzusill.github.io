@@ -146,7 +146,7 @@ debug:
 | `log-blocked` | Log every blocked command to the console. Turn on for the first week after going strict — it is how you find menu commands the scan missed. |
 | `log-tab-filter` | Log what tab filtering removed and restored. Very noisy; for diagnosing one report only. |
 | `notify-permission` | Players holding this permission are told in chat when someone's command is blocked. `oberonwhitelist.notify` is the conventional value; empty disables it. |
-| `warn-on-missing-commands` | Warn at startup when a configured command is not registered on this server. |
+| `warn-on-missing-commands` | Warn when a configured command is not registered on this server. Runs once the server has finished enabling plugins — asked any earlier it would report every later-loading plugin's commands as missing. |
 
 ## update-checker
 

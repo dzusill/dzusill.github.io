@@ -25,16 +25,20 @@ The startup log tells you where you stand:
 
 ## 3. Read the warnings
 
-A warning here is not noise — it names something that will not work:
+Once every plugin has enabled, the whitelist checks its own config against what the server really registers. A warning here is not noise — it names something that will not work:
 
 ```
 [OberonWhitelist] Group command '/homes' is not registered by any plugin on this
 server; it can never be suggested or run.
+...
+[OberonWhitelist] 3 configured command(s) are not registered by any plugin here.
 ```
 
 That means `/homes` is listed in a rank but nothing provides it. Either it is a typo, or the plugin that provides it failed to load. Until one of those is fixed, that entry does nothing at all.
 
-This check can be turned off with `debug.warn-on-missing-commands: false`, but the default is on because a silently inert whitelist entry is very hard to notice any other way.
+The check runs after the server finishes loading, not while this plugin starts, so a plugin that enables later than this one is judged fairly rather than reported wholesale as missing.
+
+It can be turned off with `debug.warn-on-missing-commands: false`, but the default is on because a silently inert whitelist entry is very hard to notice any other way.
 
 ## 4. Set up your ranks
 

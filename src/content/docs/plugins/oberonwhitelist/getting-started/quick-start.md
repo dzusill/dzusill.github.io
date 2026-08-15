@@ -114,6 +114,12 @@ Leave `log-blocked` on for the first week. Every command a player tries and cann
 
 Give your staff `oberonwhitelist.notify` and they will see blocked attempts in chat as they happen.
 
+:::note[You are not about to lock yourself out]
+Operators bypass the whitelist by default, and the console is never filtered at all. If a rank list turns out wrong, you can still fix it from either.
+
+Staff who are not operators should get `oberonwhitelist.bypass` — grant it directly rather than relying on the `oberonwhitelist.*` wildcard, which LuckPerms does not necessarily pass on.
+:::
+
 ## 7. Turn the noise back off
 
 Once the log stays quiet:

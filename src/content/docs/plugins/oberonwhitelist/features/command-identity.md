@@ -77,3 +77,5 @@ Suggested in tab
 ```
 
 The second line is the resolution. When it reads `not registered on this server`, nothing provides that command — usually a typo, or a plugin that failed to load.
+
+The identity is always reported bare, never namespaced. Paper hands some commands out already namespaced — a vanilla `/gamemode` can arrive as `minecraft:gamemode` — and reporting that back would mean `/obw check` naming an identity that matches no config entry, for a command whose entry reads `/gamemode`. What you see on that line is what you write in `config.yml`.

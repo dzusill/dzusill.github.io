@@ -85,11 +85,19 @@ Writes `config.imported.yml` next to your config. Nothing is overwritten — see
 | `oberonwhitelist.notify` | false | be told in chat when someone's command is blocked |
 | `oberonwhitelist.group.<name>` | — | put the player in that group |
 
+**Server operators bypass the whitelist without holding any of these**, unless you set `bypass.operators: false` — see [config.yml](/plugins/oberonwhitelist/configuration/config/#bypassoperators).
+
 ### oberonwhitelist.bypass
 
 A total exemption: every command runs, tab completion is untouched, and the normal server error replies come back.
 
 Give it to staff, and give it to yourself before you start tightening ranks. It is the difference between a misconfigured whitelist being an inconvenience and being a lockout.
+
+:::caution
+Do not rely on the `oberonwhitelist.*` wildcard to hand this to your operators. It does in plain Bukkit terms, but when LuckPerms is installed it calculates permissions itself and the wildcard does not necessarily reach them — an operator can end up filtered while `/plugins` suggests they should not be.
+
+That is why operators are covered by an explicit setting instead. For staff who are not operators, grant `oberonwhitelist.bypass` directly rather than through the wildcard.
+:::
 
 ### oberonwhitelist.notify
 
