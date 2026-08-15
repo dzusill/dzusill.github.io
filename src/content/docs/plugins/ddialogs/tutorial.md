@@ -137,7 +137,7 @@ Each action starts with a tag in square brackets:
 | `[back]` | goes back to the previous dialog |
 | `[close]` | shuts the screen |
 
-There are thirteen in total — see [Buttons & actions](/plugins/ddialogs/features/buttons-and-actions).
+There are fourteen in total — see [Buttons & actions](/plugins/ddialogs/features/buttons-and-actions).
 
 :::caution[`[console]` runs with full server power]
 Never put text a player typed into a `[console]` action. Use `[player]` unless you specifically need the server's permissions.

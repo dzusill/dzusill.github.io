@@ -1,6 +1,6 @@
 ---
 title: "Buttons & actions"
-description: "Every key a button takes, and all thirteen action tags with what each one does."
+description: "Every key a button takes, and all fourteen action tags with what each one does."
 ---
 
 ## A button
@@ -45,7 +45,7 @@ Four things, in that order. Most run instantly; two are deliberately deferred (s
 
 **A tag-less line is a message.** `- "<green>Hello"` is the same as `- "[message] <green>Hello"`.
 
-## The thirteen tags
+## The fourteen tags
 
 ### Talking to the player
 
@@ -81,6 +81,7 @@ At startup dDialogs lists every button whose command no plugin provides. Pressin
 | Tag | What it does |
 |---|---|
 | `[dialog] <id>` | opens another dialog by id (the filename without `.yml`) |
+| `[dialog] <id> key=value` | opens it and tells it what was picked — see [parameters](/plugins/ddialogs/features/parameters) |
 | `[back]` | returns to the previous dialog |
 | `[close]` | shuts the screen |
 
@@ -97,6 +98,7 @@ If there is nowhere to go back to, `[back]` does nothing and the dialog simply c
 | `[permission] <node>` | **stops the rest of the list** unless the player has it |
 | `[delay] <ticks>` | waits, then continues. 20 ticks = 1 second |
 | `[filter] <text>` | stores a search term for the next dynamic list |
+| `[call] <handler> [arg]` | hands the form's answers to another plugin — see [calling other plugins](/plugins/ddialogs/features/external-plugins) |
 
 `[permission]` guards halfway through a chain:
 

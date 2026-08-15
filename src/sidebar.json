@@ -341,6 +341,18 @@
                 "slug": "plugins/ddialogs/features/leaderboards"
               },
               {
+                "label": "Dialog parameters",
+                "slug": "plugins/ddialogs/features/parameters"
+              },
+              {
+                "label": "Dynamic inputs",
+                "slug": "plugins/ddialogs/features/dynamic-inputs"
+              },
+              {
+                "label": "Calling other plugins",
+                "slug": "plugins/ddialogs/features/external-plugins"
+              },
+              {
                 "label": "Permissions & locks",
                 "slug": "plugins/ddialogs/features/permissions"
               },
@@ -354,7 +366,7 @@
             "label": "📚 Cookbook",
             "items": [
               {
-                "label": "All 21 examples",
+                "label": "All 26 examples",
                 "slug": "plugins/ddialogs/examples"
               },
               {

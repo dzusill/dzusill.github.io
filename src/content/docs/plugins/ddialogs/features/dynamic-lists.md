@@ -37,7 +37,9 @@ One button per row, all from a single template. `$(player_name)` is a **field** 
 
 Rows are capped at 60, and players you cannot see are skipped.
 
-Another plugin can add its own source with `DDialogsApi.registerSource("name", …)`; once it has, you use it here by name like any built-in.
+Another plugin can add its own source with `DDialogsApi.registerSource("name", …)`; once it has, you use it here by name like any built-in. A faction's warps, a player's homes, a support category's questions — see [calling other plugins](/plugins/ddialogs/features/external-plugins).
+
+A registered source can also be handed the [parameters](/plugins/ddialogs/features/parameters) the screen was opened with, which is how one file lists *the tickets of the category just pressed* rather than all of them.
 
 An unknown source name logs a warning at open time and renders that section empty, rather than failing quietly.
 

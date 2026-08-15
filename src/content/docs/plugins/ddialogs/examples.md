@@ -1,9 +1,9 @@
 ---
-title: "All 21 examples"
+title: "All 26 examples"
 description: "Every worked example that ships with dDialogs — what each teaches, its command, and the YAML that matters."
 ---
 
-dDialogs ships 21 examples, one per feature. On a fresh install they are copied into `dialogs/` as **live, working dialogs**, so you can press them rather than only read them.
+dDialogs ships 26 examples, one per feature. On a fresh install they are copied into `dialogs/` as **live, working dialogs**, so you can press them rather than only read them.
 
 Pristine copies always live in `plugins/dDialogs/.example-configs/`, rewritten on every start so an upgrade brings you the current set. Copy out of there; do not edit inside it.
 
@@ -32,6 +32,15 @@ Pristine copies always live in `plugins/dDialogs/.example-configs/`, rewritten o
 | 19 | [Player list, then a card](#19--player-cards) | `/playercards` |
 | 20 | [Search, filter and empty states](#20--search-and-filter) | `/searchdemo` |
 | 21 | [Slots and locks](#21--slots-and-locks) | `/slotsdemo` |
+| 22 | [Telling the next screen what was picked](#22--dialog-parameters) | `/paramdemo` |
+| 23 | [Categories from another plugin](#23--tickets) | `/ticketmenu` |
+| 24 | [A form built from those questions](#24--ticket-form) | opened by 23 |
+| 25 | [A cached list, and why](#25--my-tickets) | `/mytickets` |
+| 26 | [Sending a form to a plugin](#26--suggest-and-report) | `/suggestdemo` |
+
+:::note[23–26 need dPhalanx]
+They are the only examples that depend on another plugin. Without it they still **open** — the lists are simply empty and the console names the source that went unanswered, which is what any missing source looks like.
+:::
 
 :::tip[Start with 1, 3, 6]
 Example 1 is the whole language in six lines. Example 3 is a menu. Example 6 links them together. After those three you can build most things.
@@ -755,6 +764,122 @@ footer-buttons:
 ```
 
 Placeholder for the **text**, permission for the **behaviour**. Neither substitutes for the other, and "Show More" is a second file — dialogs have no pagination.
+
+---
+
+## 22 — dialog parameters
+
+**Telling the next screen what was picked.** Opens itself with a parameter, which is the "pick a tab" pattern.
+
+```yaml
+body:
+  - type: text
+    text: "<gray>Currently picked: <white>$(picked)"
+
+dynamic-list:
+  source: worlds
+  template:
+    - label: "<white>$(world_name)"
+      actions:
+        - "[dialog] 22-dialog-parameters picked=$(world_name)"
+```
+
+Before anything is pressed the body reads literally, as `$(picked)` — the token is left alone rather than blanked, so you can see the difference between "no parameter" and "an empty one". See [Dialog parameters](/plugins/ddialogs/features/parameters).
+
+---
+
+## 23 — tickets
+
+**Categories another plugin owns.** The list is not in the file; the icon, name and description all come from the row.
+
+```yaml
+dynamic-list:
+  source: phalanx_ticket_categories
+  template:
+    - label: "<item:$(category_material)> <white>$(category_name)"
+      tooltip: "<gray>$(category_description)"
+      actions:
+        - "[dialog] 24-ticket-form category=$(category_id)"
+```
+
+Nothing here needs editing when a category is added on the website.
+
+---
+
+## 24 — ticket form
+
+**One file for every category.** The questions of whichever category was pressed become the fields.
+
+```yaml
+dynamic-inputs:
+  source: phalanx_ticket_questions
+  template:
+    key: "$(q_key)"
+    label: "$(q_text)"
+    max-length: "$(q_max)"
+    height: "$(q_height)"
+    required: "$(q_required)"
+
+buttons:
+  - label: "<green><b>Submit</b></green>"
+    actions:
+      - "[call] phalanx_ticket_create $(category)"
+    on-success:
+      - "[message] <green>Ticket <white>#$(result_number)</white> opened."
+    on-failure:
+      - "[message] <red>$(result_error)"
+```
+
+`q_height` absent means a single-line field, present means a paragraph box. This is the example to read for both [dynamic inputs](/plugins/ddialogs/features/dynamic-inputs) and [`[call]`](/plugins/ddialogs/features/external-plugins).
+
+---
+
+## 25 — my tickets
+
+**A cached list, and the reason it has to be one.** The data lives on a website; a source runs on the main thread every time the screen opens.
+
+```yaml
+dynamic-list:
+  source: phalanx_my_tickets
+  template:
+    - label: "<white>#$(ticket_number) <gray>— $(ticket_subject)"
+      tooltip: "<gray>$(ticket_category) · <white>$(ticket_status)</white>"
+      actions:
+        - "[player] ticket view $(ticket_number)"
+        - "[close]"
+
+footer-buttons:
+  - label: "<yellow>Refresh"
+    actions:
+      - "[dialog] 25-my-tickets refreshed=yes"
+```
+
+The plugin answers instantly with what it last saw and refreshes behind the screen, so the first open can show nothing and a Refresh button earns its place.
+
+---
+
+## 26 — suggest and report
+
+**The simplest shape a `[call]` takes** — nothing dynamic at all, because the questions never change.
+
+```yaml
+inputs:
+  - key: suggestion
+    label: "Your suggestion"
+    height: 60
+    required: true
+    min-length: 10
+
+buttons:
+  - label: "<aqua>Send suggestion"
+    actions: ["[call] phalanx_suggest"]
+    on-success:
+      - "[message] <green>Sent. Thanks."
+    on-failure:
+      - "[message] <red>$(result_error)"
+```
+
+Two things to send means two buttons — which is also the rule, since one `[call]` per button is what keeps `on-success` unambiguous.
 
 ---
 

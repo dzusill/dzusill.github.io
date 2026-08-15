@@ -141,11 +141,13 @@ buttons:
 | `[player] <command>` | runs it as the player |
 | `[console] <command>` | runs it as the server |
 | `[dialog] <id>` | opens another dialog (deferred one tick) |
+| `[dialog] <id> key=value` | opens it carrying a [parameter](/plugins/ddialogs/features/parameters) |
 | `[back]` | returns to the previous dialog (deferred one tick) |
 | `[close]` | shuts the screen |
 | `[permission] <node>` | stops the rest of the list without it |
 | `[delay] <ticks>` | waits, then continues. 20 = 1 second |
 | `[filter] <text>` | stores a search term for the next dynamic list |
+| `[call] <handler> [arg]` | hands the form's answers to [another plugin](/plugins/ddialogs/features/external-plugins) |
 
 A string with no tag is treated as `[message]`. An unknown tag is rejected **at load**, naming the file — a typo used to be a button that silently did nothing.
 

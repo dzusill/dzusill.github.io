@@ -54,6 +54,15 @@ Your menu appears immediately. The copy is baked at startup and shared by every 
 - a body line containing one is dropped rather than printed half-empty
 - dynamic lists and leaderboards on that screen are empty
 
+**Two buttons are dropped from the baked copy entirely:**
+
+| Button | Why |
+|---|---|
+| a [`[dialog]` with parameters](/plugins/ddialogs/features/parameters) | `/dopen` takes an id and nothing else, so the screen would open without the selection it was written around — an empty list, or the wrong one |
+| a [`[call]`](/plugins/ddialogs/features/external-plugins) | there are no answers to hand over; this screen is registry data, not a form anyone filled in |
+
+Dropping them is the honest outcome: a button that appears and then does the wrong thing is worse than one that is not there.
+
 :::tip[How to choose]
 `true` is right for a **menu of buttons**, even a decorated one — which is what most main menus are.
 

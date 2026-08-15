@@ -114,6 +114,8 @@ Sliders suit "how many blocks of radius" and not "how much money". Nobody wants 
 | `options` | single_option | the list. At least one required |
 | `start` / `end` | number_range | the range. Default 0–100 |
 | `step` | number_range | omit for smooth |
+| `required` | all | refuses an empty answer — **only before a [`[call]`](/plugins/ddialogs/features/external-plugins)** |
+| `min-length` | all | refuses a short one, same condition |
 
 ## A complete form
 
@@ -163,7 +165,33 @@ exit-button:
 
 Press the button without filling something in and `$(key)` becomes an empty string, so the command runs one argument short and your plugin complains. That is the right outcome — the player gets a real error from the thing that knows the rules, which is clearer than anything a dialog could invent.
 
-Dialogs cannot validate. There is no "required" flag and no way to block a press.
+### Unless the button submits a form
+
+A button whose action is [`[call]`](/plugins/ddialogs/features/external-plugins) — handing the answers to another plugin — checks `required` and `min-length` **before** anything is sent:
+
+```yaml
+inputs:
+  - key: reason
+    label: "Why?"
+    required: true
+    min-length: 10
+
+buttons:
+  - label: "<green>Submit"
+    actions: ["[call] some_handler"]
+    on-failure:
+      - "[message] <red>$(result_error)"
+```
+
+A violation skips the call and runs `on-failure`, with the complaint naming the field in `$(result_error)`.
+
+:::caution[This is the only case where a press is blocked]
+A button running `[player]` or `[console]` is not checked, because there is nothing to hold back — the command has already been built and the plugin behind it does its own validation. `required` on such a button does nothing.
+:::
+
+## Fields you did not write
+
+`inputs:` is read once when the file loads. When the questions themselves come from somewhere else at runtime — a support category, a form edited on a website — see [dynamic inputs](/plugins/ddialogs/features/dynamic-inputs).
 
 ## Safety
 

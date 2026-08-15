@@ -47,7 +47,7 @@ plugins/dDialogs/
 │   ├── rules.yml
 │   ├── feedback.yml
 │   ├── menu.yml
-│   ├── 01-notice.yml       ← the 21 examples, seeded on first run
+│   ├── 01-notice.yml       ← the 26 examples, seeded on first run
 │   ├── 02-confirmation.yml
 │   └── ...
 └── .example-configs/       pristine copies of the examples, never loaded
@@ -58,7 +58,7 @@ plugins/dDialogs/
 **`.example-configs/` is reference material.** It is a dot-folder, it is never loaded, and it is rewritten on every start so an upgrade always brings you the current examples. Copy out of it; do not edit inside it.
 
 :::tip[The examples are live on a fresh install]
-On the run that *creates* `dialogs/`, all 21 examples are copied in as real, working dialogs — each with its own command. That is so you can press them, not just read them.
+On the run that *creates* `dialogs/`, all 26 examples are copied in as real, working dialogs — each with its own command. That is so you can press them, not just read them.
 
 They are never re-added. Delete the ones you do not want and they stay gone; the pristine copies remain in `.example-configs/`.
 
