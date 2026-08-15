@@ -36,16 +36,42 @@ blocked-actions:
 
 The default deliberately imitates a command that does not exist. Anything more specific — *You don't have permission for that* — confirms the command is real, which is what the whole arrangement is avoiding.
 
+### Choosing where it appears
+
+The list is a set of **independent actions**, not switches: every line present runs, and anything you delete simply stops happening.
+
+```yaml
+# Chat only
+blocked-actions:
+  - 'message: &cThis command does not exist.'
+
+# Action bar only — nothing in chat
+blocked-actions:
+  - 'actionbar: &cThis command does not exist.'
+
+# Both, plus a sound (the default)
+blocked-actions:
+  - 'message: &cThis command does not exist.'
+  - 'actionbar: &cThis command does not exist.'
+  - 'playsound: entity.villager.no;1.0;1.0'
+```
+
+Action bar only is worth considering if your players mistype often: the message disappears on its own and never pushes chat around. Chat only is easier to notice, and stays visible while a player reads it.
+
+There is no "silent" setting, and it is not an oversight — see [Silence would itself be a leak](#silence-would-itself-be-a-leak) below.
+
 ### Available actions
 
-| Prefix | Format | Notes |
+| Prefix | Format | Reaches the console? |
 |---|---|---|
-| `message:` | text | chat message |
-| `actionbar:` | text | above the hotbar |
-| `title:` | `title;subtitle` | |
-| `playsound:` | `key;volume;pitch` | e.g. `entity.villager.no;1.0;1.0` |
-| `give_potion_effect:` | `type;seconds;amplifier` | e.g. `blindness;3;0` |
-| `console_command:` | command | run by the console |
+| `message:` | text | yes |
+| `actionbar:` | text | no — needs a player |
+| `title:` | `title;subtitle` | no |
+| `playsound:` | `key;volume;pitch`, e.g. `entity.villager.no;1.0;1.0` | no |
+| `give_potion_effect:` | `type;seconds;amplifier`, e.g. `blindness;3;0` | no |
+| `console_command:` | command | yes — run by the console |
+
+The console column matters only if operators run commands from it: with an action-bar-only config, a denial there produces nothing visible. The console is never filtered in the first place, so in practice it rarely comes up.
 
 Both `&`-codes and MiniMessage tags work, so a config carried over from another plugin needs no rewriting.
 
@@ -65,6 +91,17 @@ blocked-action-cooldown-millis: 500
 ```
 
 The minimum gap between two replies to the same player. `0` disables it. Worth setting if you use a sound: a player holding a key down otherwise triggers it repeatedly.
+
+## Silence would itself be a leak
+
+Leaving `blocked-actions` empty is reported at startup rather than treated as a "quiet mode":
+
+```
+[OberonWhitelist] No usable entries in blocked-actions: players will see nothing at
+all when a command is denied, which tells them the command exists.
+```
+
+The reasoning is the same one the whole page is built on. A command that produces *no* reply behaves differently from one that produces the standard error — and on a server where every unknown command answers, silence is a signal in itself. Pick a quieter channel instead: an action-bar-only config is unobtrusive without being informative.
 
 ## A malformed action never silences the reply
 
