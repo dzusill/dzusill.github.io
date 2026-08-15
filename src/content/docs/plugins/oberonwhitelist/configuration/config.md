@@ -50,6 +50,27 @@ groups-from-luckperms: true
 
 Whether a player's LuckPerms primary group may decide their rank when no `oberonwhitelist.group.<name>` permission matches. Ignored when LuckPerms is not installed.
 
+With LuckPerms present, a rank change also applies **immediately**: the plugin listens for it and drops that player's cached rank, so neither `/obw reload` nor a rejoin is needed. Without LuckPerms, a rank comes from permission nodes and a change applies on the player's next login or on reload.
+
+## bypass.operators
+
+```yaml
+bypass:
+  operators: true
+```
+
+Whether server operators skip the whitelist entirely — every command runs, and tab completion is unfiltered.
+
+On by default, for two reasons. An operator being told *This command does not exist.* on their own server reads as a broken plugin rather than a working whitelist. And it is the safety net that stops a half-finished rank list locking you out of your own server.
+
+Set it to `false` if you want operators filtered like everybody else — for testing what players actually see, or on a server where op is handed out more freely than trust is. The console is never filtered either way, so you can always get back in.
+
+:::note
+`oberonwhitelist.bypass` works alongside this and is the better fit for staff who should not be operators.
+
+The permission alone is not enough to cover operators in practice: `plugin.yml` grants it to them through the `oberonwhitelist.*` wildcard, but when LuckPerms is installed it calculates permissions itself and that wildcard does not necessarily reach them. Hence the explicit setting.
+:::
+
 ## execute-only
 
 ```yaml

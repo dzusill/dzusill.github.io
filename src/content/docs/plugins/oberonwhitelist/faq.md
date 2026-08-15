@@ -48,6 +48,25 @@ Three possibilities, in order of likelihood:
 2. The mode is `tab-only`, where an unlisted command typed anyway still runs. Only `blocked-commands` stops execution there.
 3. The command is in `execute-only`, which grants to everyone.
 
+## I am an operator and my commands are blocked
+
+They should not be — operators bypass the whitelist by default. Check that `bypass.operators` has not been set to `false`:
+
+```yaml
+bypass:
+  operators: true
+```
+
+Then `/obw reload`.
+
+If it is already `true`, confirm you are actually op (`/obw check <you> <command>` reports `BYPASS` as the first line when you are). Note that being op in the server console is not the same as your in-game account being op.
+
+## Do I have to reload after changing someone's rank?
+
+With LuckPerms, no — the change applies immediately, including when you edit a group they inherit from.
+
+Without LuckPerms, ranks come from permission nodes and the plugin has no event to listen for, so the change applies on their next login or after `/obw reload`.
+
 ## I locked myself out
 
 Console is never filtered. From the server console:

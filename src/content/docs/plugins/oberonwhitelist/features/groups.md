@@ -97,9 +97,23 @@ The command count includes inherited commands, so it is a quick check that `exte
 
 ## Caching
 
-A player's group is resolved once and cached until they quit or `/obw reload` runs.
+A player's group is resolved once and cached — the check runs for every command anybody types, and walking the inheritance chain each time would be waste.
 
-Promote somebody mid-session and their new rank applies on their next login, or immediately after a reload.
+**With LuckPerms installed, a rank change applies immediately.** The plugin subscribes to LuckPerms' own recalculation event and drops that player's cached rank when it fires, so this is all you need:
+
+```
+/lp user Steve parent set mod
+```
+
+No reload, no rejoin. It covers the indirect cases too — editing a group Steve inherits from, or adding a permission to it.
+
+**Without LuckPerms**, ranks come from `oberonwhitelist.group.<name>` permission nodes, and there is no event to listen for. A change applies on the player's next login, or after:
+
+```
+/obw reload
+```
+
+which clears every cached rank.
 
 ## Broken configs are reported, not fatal
 
