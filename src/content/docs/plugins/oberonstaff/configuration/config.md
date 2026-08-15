@@ -168,8 +168,11 @@ Teleport:
     Name: "entity.enderman.teleport"
     Volume: 1.0
     Pitch: 1.0
+    Silent-When-Vanished: true
   Log-Actions: true
 ```
+
+`Silent-When-Vanished` skips the arrival sound when either player involved is vanished. The sound plays at the destination, so without it a hidden staff member teleporting to a player announces themselves with an enderman noise — see [Teleports → Sounds](/plugins/oberonstaff/features/teleports/#silent-when-vanished).
 
 | Key | Default | Does |
 |---|---|---|

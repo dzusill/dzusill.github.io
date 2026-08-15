@@ -3,7 +3,7 @@ title: "Vanish"
 description: "The level ladder, where it applies, why the tab-completion filter is server-wide, and how to check the integration actually took."
 ---
 
-OberonStaff works with **PremiumVanish** and **SuperVanish**, which share an API. It is reached by reflection, so there is no dependency to install beyond the vanish plugin itself and no shaded copy of anything.
+OberonStaff works with **PremiumVanish** and **SuperVanish**, which share an API, and falls back to the `vanished` metadata flag that **EssentialsX**, **VanishNoPacket** and **CMI** publish. Both are reached by reflection or plain Bukkit, so there is no dependency to install beyond the vanish plugin itself and no shaded copy of anything — see [Other vanish plugins](#other-vanish-plugins).
 
 ## Check it took — first thing you do
 
@@ -110,4 +110,19 @@ Vanish:
 
 ## Other vanish plugins
 
-Essentials vanish and CMI are not detected. If you use one, tell us and we will look at adding it — the hook is small and isolated.
+There are two checks, tried in order.
+
+**The PremiumVanish API**, which SuperVanish shares — same author, same `de.myzelyam` package, so one hook covers both. Preferred, because it answers from the plugin's own state.
+
+**The `vanished` metadata flag**, which EssentialsX, VanishNoPacket, CMI and most others publish. Used when the API above is not on the server and something that might set the flag is installed.
+
+`/oberonstaff status` names whichever took:
+
+```
+Vanish: PremiumVanish (enabled: yes, 6 level(s))
+Vanish: metadata (enabled: yes, 6 level(s))
+```
+
+The metadata check is second rather than first because it is a convention, not a contract: a plugin is free not to set it. If `status` shows `metadata` and hidden players still read as visible, your vanish plugin is one of the few that does not — tell us and we will add a hook for it.
+
+Either way the **levels come from permissions**, not from the vanish plugin. Which staff can see which hidden staff is decided by the ladder above, whichever check answered.

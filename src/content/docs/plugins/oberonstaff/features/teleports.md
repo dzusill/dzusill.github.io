@@ -69,9 +69,29 @@ Teleport:
     Name: "entity.enderman.teleport"
     Volume: 1.0
     Pitch: 1.0
+    Silent-When-Vanished: true
 ```
 
-Played to the player who moved. `Name` is any namespaced sound key.
+Played **at the destination**, not to the moved player alone — so everybody standing there hears it. That is on purpose: `/tphere` moves somebody *else*, and anchored to the moved player the only person who heard anything would be the one who had just been yanked across the map, while the staff member who ran the command — standing right there, watching them appear — heard nothing. It reads exactly like a sound that does not work.
+
+`Name` is any namespaced sound key; one this server does not have is silent rather than an error.
+
+### Silent-When-Vanished
+
+The same property that makes the sound useful makes it a problem when the teleport is meant to be hidden. A vanished staff member arriving beside a player sets off an enderman noise next to somebody who can see nobody — which gives away more than presence: it says *where*, and *when*.
+
+With this on (the default), the sound is skipped when **either** player is vanished:
+
+| | |
+|---|---|
+| `/tp <player>` — vanished staff goes to a player | silent |
+| `/tphere <player>` — vanished staff pulls a player to them | silent |
+| `/back` while vanished | silent |
+| any teleport between two visible players | **unchanged** |
+
+Both ends are checked, not only the player who moved. `/tphere` is the case that is easy to miss: the player who moved is perfectly visible, but the sound lands where the *vanished* staff member is standing.
+
+Set it to `false` only if your staff never teleport while vanished — it restores the old behaviour exactly.
 
 ## Folia
 

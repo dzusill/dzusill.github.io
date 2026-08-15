@@ -3,6 +3,26 @@ title: "FAQ & Troubleshooting"
 description: "Everyone shows as Member, vanished players are visible, /tp does nothing — the usual causes and the setting that fixes each one."
 ---
 
+## Players can hear when vanished staff teleport
+
+They should not — the arrival sound is skipped when either player is vanished, by default. Check the setting has not been turned off:
+
+```yaml
+Teleport:
+  Sound:
+    Silent-When-Vanished: true
+```
+
+If it is on and players still hear it, check which vanish integration took:
+
+```
+/oberonstaff status
+```
+
+`Vanish: none` means the plugin does not know anybody is hidden, so nothing keyed on vanish works — not the sound, not the tab filter. See [Other vanish plugins](/plugins/oberonstaff/features/vanish/#other-vanish-plugins).
+
+Note this covers the sound this plugin plays. A teleport also has its own particle effects and any sounds other plugins play, which are theirs to suppress.
+
 ## Everyone shows as "Member" in staff chat
 
 No entry in `Ranks` matched. Two causes:
