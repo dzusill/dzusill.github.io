@@ -414,6 +414,108 @@
     "collapsed": true,
     "items": [
       {
+        "label": "🧰 OberonUtils",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/oberonutils"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/oberonutils/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonutils/getting-started/installation"
+              },
+              {
+                "label": "Migrating from Skript",
+                "slug": "plugins/oberonutils/getting-started/migrating-from-skript"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Modules",
+                "slug": "plugins/oberonutils/features/modules"
+              },
+              {
+                "label": "Teleports & Warps",
+                "slug": "plugins/oberonutils/features/teleport"
+              },
+              {
+                "label": "Key All",
+                "slug": "plugins/oberonutils/features/key-all"
+              },
+              {
+                "label": "Kill Confirmation Menu",
+                "slug": "plugins/oberonutils/features/kill-menu"
+              },
+              {
+                "label": "Night Vision",
+                "slug": "plugins/oberonutils/features/night-vision"
+              },
+              {
+                "label": "Ping",
+                "slug": "plugins/oberonutils/features/ping"
+              },
+              {
+                "label": "Combat",
+                "slug": "plugins/oberonutils/features/combat"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonutils/configuration/config"
+              },
+              {
+                "label": "Messages & Sounds",
+                "slug": "plugins/oberonutils/configuration/messages"
+              },
+              {
+                "label": "warps.yml",
+                "slug": "plugins/oberonutils/configuration/warps"
+              },
+              {
+                "label": "keyall.yml",
+                "slug": "plugins/oberonutils/configuration/keyall"
+              }
+            ]
+          },
+          {
+            "label": "📋 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/oberonutils/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberonutils/placeholders"
+              },
+              {
+                "label": "FAQ",
+                "slug": "plugins/oberonutils/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/oberonutils/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "label": "🛡️ OberonChat",
         "collapsed": true,
         "items": [
