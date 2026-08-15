@@ -48,6 +48,21 @@ Three possibilities, in order of likelihood:
 2. The mode is `tab-only`, where an unlisted command typed anyway still runs. Only `blocked-commands` stops execution there.
 3. The command is in `execute-only`, which grants to everyone.
 
+## A player bought /fly but the whitelist blocks it
+
+Ranks are not the only way to grant a command, but they are the only one checked by default. When the permission sits on the player rather than on a rank — a bought perk, a crate reward, a timed trial — turn on per-player perks:
+
+```yaml
+permission-grants:
+  enabled: true
+  commands:
+    - /fly
+```
+
+Then `/obw reload`. The command now runs *and* tab-completes for anyone holding `essentials.fly`, whatever their rank.
+
+Full behaviour, including why a command with no permission of its own is never granted this way, in [Per-Player Perks](/plugins/oberonwhitelist/features/permission-grants/).
+
 ## I am an operator and my commands are blocked
 
 They should not be — operators bypass the whitelist by default. Check that `bypass.operators` has not been set to `false`:

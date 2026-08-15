@@ -47,6 +47,12 @@ OberonWhitelist adds granted commands back when the player can actually run them
 
 → [Tab Completion](/plugins/oberonwhitelist/features/tab-completion/)
 
+## Perks work without a rank for each one
+
+A player buys `/fly` and the permission goes on them, not on a rank. Rather than inventing a rank per purchasable perk, the whitelist can take the player's own permissions into account — the command runs and tab-completes for whoever holds it, and for nobody else.
+
+→ [Per-Player Perks](/plugins/oberonwhitelist/features/permission-grants/)
+
 ## Requirements
 
 * **Paper** 1.21 or newer (Folia supported)

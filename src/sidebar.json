@@ -742,6 +742,10 @@
               {
                 "label": "Groups & Ranks",
                 "slug": "plugins/oberonwhitelist/features/groups"
+              },
+              {
+                "label": "Per-Player Perks",
+                "slug": "plugins/oberonwhitelist/features/permission-grants"
               }
             ]
           },

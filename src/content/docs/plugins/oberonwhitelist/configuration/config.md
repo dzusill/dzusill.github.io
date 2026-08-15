@@ -91,6 +91,27 @@ Generate this list with `/obw scan-dialogs` rather than writing it by hand.
 Not rank-aware — it grants to everyone. Never list a command a rank is supposed to gate.
 :::
 
+## permission-grants
+
+```yaml
+permission-grants:
+  enabled: false
+  commands: []
+```
+
+Allows a command whose **own permission the player holds** even when no rank grants it — for perks given per player rather than per rank: a bought `/fly`, a temporary `/hat`.
+
+| | |
+|---|---|
+| `enabled` | off by default; turning it on loosens what the whitelist covers |
+| `commands` | narrows it to these commands. Empty means any command whose permission the player holds. |
+
+A command that declares no permission is never granted this way, because Bukkit treats those as runnable by anyone — counting them would open every unprotected command on the server.
+
+`blocked-commands` still outranks it.
+
+Full behaviour in [Per-Player Perks](/plugins/oberonwhitelist/features/permission-grants/).
+
 ## blocked-commands
 
 ```yaml

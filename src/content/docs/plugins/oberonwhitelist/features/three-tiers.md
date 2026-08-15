@@ -87,12 +87,13 @@ Under `tab-only`, an unlisted command a player types anyway still runs, and only
 
 When a player runs a command, in this order:
 
-1. **Bypass permission** → allowed, nothing else is checked
+1. **Bypass permission, or an operator** → allowed, nothing else is checked
 2. **Explicitly blocked** → denied, even if a rank grants it
 3. **No such command exists** → handed to the unknown-command path, which produces the same reply
 4. **Execute-only** → allowed
 5. **The rank grants it** → allowed
-6. **Otherwise** → denied under `strict`, allowed under `tab-only`
+6. **The player holds the command's own permission** → allowed, when [per-player perks](/plugins/oberonwhitelist/features/permission-grants/) are enabled
+7. **Otherwise** → denied under `strict`, allowed under `tab-only`
 
 Explicit blocks sit above every allowance so an operator who lists a command means it. Execute-only sits above the rank check so menu callbacks survive strict enforcement. Both placements are what make the tiers behave the way the table above describes.
 

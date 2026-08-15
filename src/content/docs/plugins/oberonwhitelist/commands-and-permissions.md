@@ -42,6 +42,7 @@ The verdict in brackets is one of:
 |---|---|
 | `BYPASS` | holds `oberonwhitelist.bypass` |
 | `GROUP_GRANTS` | the rank grants it |
+| `PERMISSION_GRANTS` | no rank grants it, but the player holds the command's own permission — a [per-player perk](/plugins/oberonwhitelist/features/permission-grants/) |
 | `EXECUTE_ONLY` | runnable, never suggested |
 | `EXPLICITLY_BLOCKED` | on the block list, which outranks rank grants |
 | `NOT_IN_GROUP` | not granted, and the mode is strict |
