@@ -108,6 +108,17 @@ plain name with **our** permission.
 > load order never silently decides which one a server ends up with. This is the setting to use for `/tphere` against
 > a tpa plugin.
 
+**A name taken back after startup.** `/oberonstaff status` used to be able to show `/tp -> the server (taken on use)`
+even with everything above configured correctly — some other plugin re-registered `/tp` *after* our own startup claim
+ran, and a claim made once does not defend itself against a second claim made later. Execution kept working (the
+`/tp` → `oberonstaff:tp` label rewrite is independent of who owns the plain name), so this only ever showed up as
+tab-complete quietly breaking again some time after the server had already come up clean.
+
+DzusillCore now checks command ownership on a repeating timer, not just once at startup, and re-sends a fresh command
+tree to a player a moment after they join in case something took a name back before they connected. `(taken on use)`
+in the status output means the fallback path is active for that command right now; it should self-correct within a
+few seconds without needing a restart.
+
 ## `/tphere` makes no sound
 
 Fixed. The arrival sound was played *to the moved player*, and `/tphere` moves somebody else — so the only person who
