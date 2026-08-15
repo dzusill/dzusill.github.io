@@ -72,14 +72,21 @@ or rename ours (`Name: stp`). Restart afterwards.
 
 ## Teleport commands tab-complete for admins but not for staff
 
-Fixed. This was ours, and it looked like a permission problem because of how it failed.
+Fixed, and the reason is worth knowing because it explains why nothing on the server could fix it earlier.
 
-`/tp` is a name vanilla owns, so this plugin takes it on use — the command runs as ours. Completion took a different
-route: newer Paper hands vanilla commands out owned by an *internal* plugin, which the ownership test read as a third
-party's, so completion was declined and fell through to vanilla's own command node. That node requires operator.
-Admins therefore got vanilla's suggestions and everybody else got silence.
+A client only asks for suggestions on a command **its own command tree contains**, and the server filters that tree by
+permission before sending it. Registering under `oberonstaff:tp` alone left the plain `/tp` pointing at vanilla's
+node — which requires operator. So an admin's client had the node and asked (getting *vanilla's* suggestions, not
+ours), and everybody else's client had nothing there and never sent a packet at all. No server-side handler can answer
+a question that is never asked.
 
-Execution and completion now use the same rule: if we run the command, we complete it.
+Command names are now taken in the command map rather than only rewritten at dispatch, which puts our node on the
+plain name with **our** permission.
+
+> A name another **plugin** owns is still only taken when you ask for it, with
+> `Take-Name-From-Other-Plugins: true` on that command. Without it the other plugin keeps the name, deliberately — so
+> load order never silently decides which one a server ends up with. This is the setting to use for `/tphere` against
+> a tpa plugin.
 
 ## `/tphere` makes no sound
 

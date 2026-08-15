@@ -90,6 +90,19 @@ Fixed by shipping the missing key. A file with nothing missing is now left byte-
 If a specific message is still not what you configured, check you edited `messages.yml` and not `Formats` in
 `config.yml` — the three private-message lines live there, not in `messages.yml`.
 
+## "You were not ignoring X" shows above the hotbar with the wrong sound
+
+Fixed. That message and "you were already ignoring X" both report that the command changed **nothing**, so they belong
+with the refusals however politely they are worded. Both are now `ERROR`: chat and action bar, with
+`entity.villager.no`.
+
+"You are now ignoring X" and "you are no longer ignoring X" stay `TOGGLE`, because those did change something.
+
+## The usage message names a command I never typed
+
+Fixed. It read `Usage: /oberonmsg:msg <player>`. A name the server owns is reached by rewriting the command before
+dispatch, and that rewritten form was being echoed back into the message. It now reads `Usage: /msg <player>`.
+
 ## Can `/msgtoggle` and `/socialspy` confirm above the hotbar?
 
 Yes, and they do by default now. `Presentation.Categories.TOGGLE` ships as `ACTION_BAR` with a sound, and covers the
