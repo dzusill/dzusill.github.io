@@ -1,9 +1,9 @@
 ---
-title: "All 26 examples"
+title: "All 28 examples"
 description: "Every worked example that ships with dDialogs — what each teaches, its command, and the YAML that matters."
 ---
 
-dDialogs ships 26 examples, one per feature. On a fresh install they are copied into `dialogs/` as **live, working dialogs**, so you can press them rather than only read them.
+dDialogs ships 28 examples, one per feature. On a fresh install they are copied into `dialogs/` as **live, working dialogs**, so you can press them rather than only read them.
 
 Pristine copies always live in `plugins/dDialogs/.example-configs/`, rewritten on every start so an upgrade brings you the current set. Copy out of there; do not edit inside it.
 
@@ -37,9 +37,11 @@ Pristine copies always live in `plugins/dDialogs/.example-configs/`, rewritten o
 | 24 | [A form built from those questions](#24--ticket-form) | opened by 23 |
 | 25 | [A cached list, and why](#25--my-tickets) | `/mytickets` |
 | 26 | [Sending a form to a plugin](#26--suggest-and-report) | `/suggestdemo` |
+| 27 | [Pick a player instead of typing a name](#27--report-player) | `/reportmenu` |
+| 28 | [A screen opened with a target parameter](#28--report-reason) | opened by 27 |
 
-:::note[23–26 need dPhalanx]
-They are the only examples that depend on another plugin. Without it they still **open** — the lists are simply empty and the console names the source that went unanswered, which is what any missing source looks like.
+:::note[23–28 need dPhalanx]
+They are the only examples that depend on another plugin. 27 itself does not - `known_players` is built into dDialogs - but the report it submits, on 28, is a `phalanx_report` call. Without dPhalanx the affected screens still **open**: a missing source renders as an empty list, and a missing `[call]` handler tells the player and names itself in the console, the same way a button pointing at a missing command does.
 :::
 
 :::tip[Start with 1, 3, 6]
@@ -880,6 +882,68 @@ buttons:
 ```
 
 Two things to send means two buttons — which is also the rule, since one `[call]` per button is what keeps `on-success` unambiguous.
+
+Reporting used to be a third field on this same screen — type a name, type a reason, press send. It moved out because a player picker cannot share a screen with a text field the way a suggestion box can: picking *is* pressing one of a list of buttons, and there is no name field to press. Reporting is buttons 27 and 28 instead, and this screen's own report button now just opens 27.
+
+---
+
+## 27 — report player
+
+**Pick a player instead of typing a name.** The list survives a log-off, which typing a name does not help with either way.
+
+```yaml
+inputs:
+  - key: name
+    type: text
+    label: "Search"
+
+dynamic-list:
+  source: known_players
+  template:
+    - label: "$(player_status) <head:$(player_name)> <white>$(player_name)"
+      actions:
+        - "[dialog] 28-report-reason target=$(player_name)"
+
+footer-buttons:
+  - label: "<yellow>Search"
+    actions: ["[filter] $(name)", "[dialog] 27-report-player"]
+```
+
+`known_players` is a **built-in** source - not one dPhalanx registers - because a player picker for a report form should not need a database, and should not need the friends system turned on. It keeps an in-memory list, filled on join, so somebody who has since logged off is still on it: the honest cost is that nobody who has not joined since the last restart will be found by search, which is the right trade for "who is this about right now."
+
+`$(player_status)` is not a condition - dDialogs has no conditional text in a template. The colour is decided once, in Java, and handed to the row as a finished tag: `<green>●` for online, `<gray>●` for everyone else. Online players sort first; within the same state, most-recently-seen wins.
+
+Pressing a row does not report anybody. It opens 28 with `target=$(player_name)` - see [Dialog parameters](/plugins/ddialogs/features/parameters) for the mechanism.
+
+---
+
+## 28 — report reason
+
+**Where the reason is written, and the `[call]` actually happens.** Opened only by 27; direct, it reads `$(target)` literally, which is the same thing [dialog parameters](/plugins/ddialogs/features/parameters#22--dialog-parameters) explains for every other example that takes one.
+
+```yaml
+title: "<red><b>Report $(target)</b></red>"
+
+body:
+  - type: text
+    text: "<head:$(target)> <white>$(target)"
+
+inputs:
+  - key: reason
+    label: "What did they do?"
+    required: true
+    min-length: 10
+
+buttons:
+  - label: "<red><b>Submit report</b></red>"
+    actions: ["[call] phalanx_report $(target)"]
+    on-success:
+      - "[message] <green>Report filed against <white>$(result_target)</white>. Staff will look."
+    on-failure:
+      - "[message] <red>$(result_error)"
+```
+
+`$(target)` does two different jobs on this one screen. In the title and body it is filled in when the screen is drawn. In the `[call]` line it is filled in at click time, through the same cleaning a typed field gets - a parameter can carry a player-chosen name, so it is not trusted any more than one. There is no `target` field on this screen, only `reason`; dPhalanx's handler reads the target from the `[call]` argument instead.
 
 ---
 

@@ -37,7 +37,7 @@ Everything below is one `.yml` file each, and every one of them ships as a worki
 
 **Never written one before?** [Make your first dialog](/plugins/ddialogs/tutorial) — ten minutes, no Java, and you press your own button at the end.
 
-**Want to see everything working first?** A fresh install ships all 26 [examples](/plugins/ddialogs/examples) as live dialogs, each with its own command. Type `/examplemenu` and click around.
+**Want to see everything working first?** A fresh install ships all 28 [examples](/plugins/ddialogs/examples) as live dialogs, each with its own command. Type `/examplemenu` and click around.
 
 **Designing a whole menu tree?** [Menu patterns](/plugins/ddialogs/menu-patterns) covers the screens published servers actually ship, and why they look the way they do.
 
