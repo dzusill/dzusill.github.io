@@ -66,6 +66,9 @@ teleport:
   bypass-worlds-applies-to-spawn-command: false
   no-args-action: MENU
   warps-menu-command: "warps"
+  dialog: "warps"
+  register-dialog-source: true
+  dialog-source: oberonutils_warps
   safe-arrival-check: false
   remember-previous-location: false
   spawn:
@@ -81,7 +84,9 @@ teleport:
 | `bypass-regions` | WorldGuard region IDs where the countdown is skipped. Matched **exactly**. |
 | `force-warmup-regions` | Regions where the countdown always applies. Beats everything, including the bypass permission. |
 | `no-args-action` | What `/warp` does with no arguments — see below. |
-| `warps-menu-command` | The menu command used when `no-args-action` is `MENU`. |
+| `warps-menu-command` | The command run when `no-args-action` is `MENU`. |
+| `dialog` | The DDialogs id opened when `no-args-action` is `DIALOG`. |
+| `register-dialog-source` | Publish the warp list to DDialogs so a dialog can build itself. |
 | `safe-arrival-check` | **Improvement.** Nudge a player out of blocks if a destination gets built over. |
 
 ### `/warp` with no arguments
@@ -91,14 +96,40 @@ Also applies to a warp name that does not exist.
 | Value | Does |
 |---|---|
 | `MENU` | Runs `warps-menu-command`. What the Skript version did, so it is the default. |
+| `DIALOG` | Opens one of your own DDialogs screens by id, through its API rather than a command. |
 | `USAGE` | Prints the `usage.warp` message, like any other mistyped command. |
 | `LIST` | Prints the warps the player can actually reach — gated warps they lack the permission for are left out. |
 
 With `LIST`, an unknown name also gets `warp.not-found` first, so the player is told they mistyped
 rather than silently handed a list.
 
-A blank `warps-menu-command` makes `MENU` fall back to the list rather than leaving the player with
-"unknown command" — which is what would happen if the external menu plugin were ever removed.
+Two fallbacks, both so a player who asked for warps never gets nothing:
+
+- A blank `warps-menu-command` makes `MENU` print the list instead of leaving the player with
+  "unknown command" if the menu plugin is ever removed.
+- `DIALOG` falls back to the list when the dialog cannot be shown — unknown id, a permission the
+  player lacks, or a client too old to draw one.
+
+### Feeding your dialog the warp list
+
+`register-dialog-source` publishes the warps to DDialogs as a `dynamic-list` source. Write **one**
+template button in your dialog and it repeats for every warp, so `/setwarp arena` puts a new button
+on the screen with no dialog edit at all.
+
+Rows are read each time the dialog opens, and are per player: a warp behind a permission they lack
+is not in their list, so the screen cannot offer a button that would refuse them.
+
+| Token | Gives |
+|---|---|
+| `$(warp_name)` | The id — use it for `/warp $(warp_name)` |
+| `$(warp_display)` | The coloured name from `warps.yml` |
+| `$(warp_icon)` | The `icon` material — use it as the button's item |
+| `$(warp_world)` | Destination world |
+| `$(warp_x)` `$(warp_y)` `$(warp_z)` | Rounded coordinates |
+| `$(warp_cooldown)` | Time left, or empty when there is none |
+| `$(warp_on_cooldown)` | `true` / `false` |
+
+Set `register-dialog-source: false` to leave DDialogs alone entirely.
 
 Region IDs are matched exactly. The Skript check tested whether the *printed list* of regions
 contained the text, so `spawn_pvp` and `oldspawn` both granted a bypass meant for `spawn`, and

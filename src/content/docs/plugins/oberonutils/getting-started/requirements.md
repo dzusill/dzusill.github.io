@@ -26,6 +26,7 @@ skipped when it is absent.
 | **WorldGuard** | Region-based teleport bypasses | Region rules are skipped; permission and world rules still apply |
 | **PremiumVanish** / **SuperVanish** | Hiding vanished players from `/ping` | Nobody can be vanished, so nobody is hidden |
 | **AxKoth** | The "is a KOTH running" requirement on a warp | Any warp with that requirement is **refused** |
+| **DDialogs** | Opening your own warps screen, and feeding it the live warp list | `/warp` falls back to the warp list; nothing else changes |
 
 ## Fail closed, and say so
 

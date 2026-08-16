@@ -23,6 +23,7 @@ Built by **dzusill**.
 | **WorldGuard** | region rules for teleport bypasses |
 | **PremiumVanish** / **SuperVanish** | hiding vanished players from `/ping` |
 | **AxKoth** | the KOTH requirement on a warp |
+| **DDialogs** | opening your warps screen, and supplying it the live warp list |
 
 None are required. Each is optional, detected at startup, and reported by `/oberonutils hooks`.
 

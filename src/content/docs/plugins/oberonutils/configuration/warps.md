@@ -12,17 +12,23 @@ here, so a warp created with `/setwarp` works everywhere the moment it exists.
 warps:
   hub:
     display: "<gradient:#C21807:#F11800>Hub</gradient>"
+    icon: BEACON
     location: {world: world, x: 0.5, y: 70.0, z: 0.5, yaw: -180.0, pitch: 0.0}
 ```
 
 `yaw` and `pitch` are which way the player faces on arrival. `/setwarp` records both from where you
 are standing and looking.
 
+`icon` is the item a dialog or menu draws for this warp. It reaches your dialog as
+`$(warp_icon)` — see [config.yml](/plugins/oberonutils/configuration/config/). Defaults to
+`ENDER_PEARL`.
+
 ## Everything a warp can carry
 
 | Key | Default | Meaning |
 |---|---|---|
 | `display` | the name | MiniMessage name used in messages |
+| `icon` | `ENDER_PEARL` | Material shown on a dialog or menu button |
 | `location` | — | `world` / `x` / `y` / `z` / `yaw` / `pitch` |
 | `permission` | none | When set, only holders may warp here |
 | `warmup` | `teleport.warmup` | Per-warp countdown override |
@@ -68,8 +74,8 @@ dropping into a PvP arena with no countdown at all.
 Names are stored lowercase and may contain `a-z`, `0-9`, `-` and `_`, up to 32 characters.
 `/warp KOTH` and `/warp koth` are the same warp.
 
-`/setwarp <existing>` moves the position and **keeps** the display name, cooldown and arrival
-effects you wrote by hand.
+`/setwarp <existing>` moves the position and **keeps** the display name, icon, cooldown and arrival
+effects you wrote by hand — moving a warp should not reset how it looks.
 
 ## Per-warp permissions
 

@@ -91,7 +91,12 @@ usage:
   kothcooldown: "<red>Usage: <white>/kothcooldown [player]"
   keyall: "<red>Usage: <white>/keyall <time|next|force|reset>"
   oberonutils: "<red>Usage: <white>/oberonutils <reload|migrate|hooks>"
+  destinations: "<red>Destinations: <white>%warps%"
 ```
+
+`destinations` is sent after the usage line for `/setwarp` and `/delwarp`, the way the setup this
+replaced did — except `%warps%` is the live list, so it cannot go stale the way a hand-written one
+does. Blank it to send only the usage line.
 
 They are ordinary messages, so one can be moved without disturbing the others:
 

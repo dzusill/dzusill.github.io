@@ -89,6 +89,29 @@ a slot number with Confirm.
 If it still happens, another plugin is handling the click. `/oberonutils reload` will not help;
 check for a second plugin listening on inventory clicks.
 
+## I have my own warps dialog — can `/warp` open it?
+
+Yes, two ways.
+
+```yaml
+teleport:
+  no-args-action: DIALOG
+  dialog: "warps"
+```
+
+opens it by id through the DDialogs API. Or keep `MENU` and point
+`warps-menu-command` at `dopen warps` to go the long way round through a command.
+
+Better than either: leave `register-dialog-source: true` on and your dialog builds its own buttons
+from the live warp list, icons included. One template button instead of one per warp, and
+`/setwarp` adds to the screen by itself. See
+[Teleports & Warps](/plugins/oberonutils/features/teleport/).
+
+## My dialog shows warps that no longer exist
+
+It is a hand-written list rather than a `dynamic-list` reading the source. Point it at
+`oberonutils_warps` and the problem cannot recur — rows are read every time the dialog opens.
+
 ## `/warp` opens a menu, I want a usage error
 
 ```yaml

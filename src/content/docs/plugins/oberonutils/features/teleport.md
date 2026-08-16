@@ -139,6 +139,17 @@ teleport:
 **`MENU`** runs `warps-menu-command`, so an external menu plugin stays in charge. This is what the
 Skript version did, so it is the default.
 
+**`DIALOG`** opens one of your own DDialogs screens by id, through its API rather than by
+dispatching a command and having it route back in. The dialog's own permission still applies.
+
+```yaml
+teleport:
+  no-args-action: DIALOG
+  dialog: "warps"
+```
+
+Better still, OberonUtils can hand that screen the warp list, so it builds itself — see below.
+
 **`USAGE`** prints the `usage.warp` message instead — `/warp` behaves like any other command given
 the wrong arguments. Being an ordinary message, that line can be moved to the action bar or given
 its own sound:
@@ -156,4 +167,46 @@ lack is left out. On an unknown name they get `warp.not-found` first, so a typo 
 rather than as a menu appearing for no reason.
 
 Blanking `warps-menu-command` makes `MENU` fall back to the list, so removing the menu plugin later
-leaves players with a warp list rather than "unknown command".
+leaves players with a warp list rather than "unknown command". `DIALOG` falls back the same way when
+a screen cannot be drawn.
+
+## Your dialog, built from the warp list
+
+A hand-written warps screen has to be kept in step with the warps by hand — add one and it is
+missing from the menu until somebody remembers to edit the dialog too. That is the same failure the
+hardcoded tab-complete list had.
+
+So OberonUtils publishes the warps to DDialogs as a `dynamic-list` source:
+
+```yaml
+teleport:
+  register-dialog-source: true
+  dialog-source: oberonutils_warps
+```
+
+Write **one** template button in your dialog against that source and it repeats per warp. `/setwarp
+arena` puts a new button on the screen immediately — rows are read fresh every time the dialog
+opens.
+
+They are also per player. A warp gated behind a permission the viewer lacks is not in their rows at
+all, so the screen never shows a button that would turn them away.
+
+| Token | Gives |
+|---|---|
+| `$(warp_name)` | The id — `/warp $(warp_name)` |
+| `$(warp_display)` | The coloured name |
+| `$(warp_icon)` | The warp's `icon` material, for the button's item |
+| `$(warp_world)` | Destination world |
+| `$(warp_x)` `$(warp_y)` `$(warp_z)` | Rounded coordinates |
+| `$(warp_cooldown)` | Time left, or empty |
+| `$(warp_on_cooldown)` | `true` / `false` |
+
+Set the icon per warp in [warps.yml](/plugins/oberonutils/configuration/warps/):
+
+```yaml
+  arena:
+    display: "<gradient:#C21807:#F11800>Arena</gradient>"
+    icon: DIAMOND_SWORD
+```
+
+Without DDialogs installed none of this loads and the module runs exactly as before.
