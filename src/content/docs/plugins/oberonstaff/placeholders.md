@@ -48,6 +48,29 @@ Staff scoreboard:
 - "&fTeleports: &a%oberonstaff_tptoggle%"
 ```
 
+## Ticket desk
+
+Available when `Tickets.Enabled` is on and the database is open.
+
+| Placeholder | Shows |
+|---|---|
+| `%oberonstaff_tickets_open%` | Open tickets |
+| `%oberonstaff_tickets_unclaimed%` | Open and unclaimed |
+| `%oberonstaff_reports_open%` | Open reports |
+| `%oberonstaff_tickets_mine%` | Tickets this staff member has claimed |
+
+Staff scoreboard:
+
+```yaml
+- "&fQueue: &e%oberonstaff_tickets_unclaimed%&7/&f%oberonstaff_tickets_open%"
+- "&fReports: &c%oberonstaff_reports_open%"
+- "&fMine: &a%oberonstaff_tickets_mine%"
+```
+
+These read a background snapshot refreshed every half minute, not the database. PlaceholderAPI resolves on the main thread and is asked again on every scoreboard tick, so a `COUNT(*)` here would be one round trip per player per tick.
+
+With the ticket desk off they resolve to nothing at all, so you see the raw placeholder text and know the desk is not running — rather than a confident `0`.
+
 ## Verifying
 
 ```

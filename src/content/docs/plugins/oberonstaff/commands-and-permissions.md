@@ -35,6 +35,8 @@ Registered only when the ticket desk is on and the database is open. See [Ticket
 | `/ticket close <#> [reason]` | | `oberonstaff.ticket.close.own` |
 | `/ticket rate <#> <1-5> [comment]` | | `oberonstaff.ticket.use` |
 | `/ticket follow <#>` · `unfollow <#>` | | `oberonstaff.ticket.follow` |
+| `/ticket notifications` | `/ticket notify` | `oberonstaff.ticket.use` |
+| `/report <player>` | | `oberonstaff.report.use` |
 
 Following somebody else's ticket ships **switched off** (`Tickets.Watchers.Allow-Player-Follow`).
 
@@ -53,6 +55,9 @@ Following somebody else's ticket ships **switched off** (`Tickets.Watchers.Allow
 | `/tickets close <#> [reason]` · `reopen <#>` | | `oberonstaff.ticket.close` / `.reopen` |
 | `/tickets tp <#>` | | `oberonstaff.ticket.teleport` |
 | `/tickets view <#>` | | `oberonstaff.ticket.admin` |
+| `/tickets stats [player] [window]` | | `oberonstaff.ticket.stats` |
+
+`/tickets stats` opens the [leaderboard](/plugins/oberonstaff/features/statistics/); the window is `today`, `week`, `month` or `all`. Naming a player prints their row in chat instead.
 
 `/tickets reply 43 !rules` expands a macro from `Tickets.Canned-Replies`. A word that is not a macro is sent as typed.
 
@@ -64,6 +69,14 @@ Give your staff group these and you are done:
 oberonstaff.ticket.staff
 oberonstaff.report.staff
 ```
+
+### Console only
+
+`/oberonstaff-flag <player> <check> <violations>` is the [anticheat bridge](/plugins/oberonstaff/features/reports/#the-command-bridge). It refuses anything that is not the console — checked on the sender itself, not on a permission — so no node can be misconfigured into letting a player fake anticheat flags against somebody. It is silent to players and never tab-completes.
+
+### Per-category notifications
+
+`oberonstaff.ticket.notify.<category>` is only consulted for staff who turned on "my categories only" in `/ticket notifications`. By default everybody with `oberonstaff.ticket.admin` hears about every category, so most servers never grant these — see [Notifications](/plugins/oberonstaff/features/notifications/#my-categories-only).
 
 Each is a parent of every granular node above. The granular ones exist so that the day you want a trial rank that can claim and reply but not close, it is a permission change rather than a plugin change.
 

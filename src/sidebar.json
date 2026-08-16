@@ -736,6 +736,18 @@
                 "slug": "plugins/oberonstaff/features/tickets"
               },
               {
+                "label": "Player Reports",
+                "slug": "plugins/oberonstaff/features/reports"
+              },
+              {
+                "label": "Ticket Notifications",
+                "slug": "plugins/oberonstaff/features/notifications"
+              },
+              {
+                "label": "Staff Statistics",
+                "slug": "plugins/oberonstaff/features/statistics"
+              },
+              {
                 "label": "Staff Chat",
                 "slug": "plugins/oberonstaff/features/staff-chat"
               },

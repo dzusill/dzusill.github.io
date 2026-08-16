@@ -7,8 +7,8 @@ The ticket desk is a support system inside OberonStaff. Players open tickets wit
 
 Turn it off with `Tickets.Enabled: false` and the rest of OberonStaff behaves exactly as before.
 
-:::caution[Version 1.6.0]
-This release ships the ticket half of the desk: categories, the wizard, both queues, ticket chat and the menus. Player **reports** (`/report`), punishment buttons, notifications, staff statistics and auto-close are specified but **not implemented yet** — see [What is not here yet](#what-is-not-here-yet).
+:::note[Version 1.6.0]
+The desk is complete: categories and the wizard, both queues, ticket chat, [reports](/plugins/oberonstaff/features/reports/) with evidence capture, punishment buttons, [notifications](/plugins/oberonstaff/features/notifications/), [staff statistics](/plugins/oberonstaff/features/statistics/), auto-close and ban appeals.
 :::
 
 ---
@@ -145,21 +145,62 @@ The stamp is written in SQL with an `IS NULL` guard, so two staff replying in th
 
 ---
 
-## What is not here yet
+## Lifecycle
 
-Specified, designed, and not in 1.6.0:
+A ticket nobody answers does not sit in the queue forever.
 
-| Feature | Status |
-|---|---|
-| `/report` with evidence capture | Not implemented |
-| Punish button (LiteBans) | Not implemented |
-| Anticheat flags on reports (Vulcan) | Not implemented |
-| Notifications and offline delivery | Not implemented |
-| Staff statistics leaderboard | Not implemented |
-| Auto-close, stale warnings, retention purge | Not implemented |
-| Ban appeals from a hub server | Not implemented |
+Every fifteen minutes the plugin sweeps:
 
-The database tables, the config blocks and the message keys for all of these are already shipped, so turning them on later is a plugin update rather than a migration. `/reports` works today — it is just a queue with nothing filing into it yet except tickets moved there by hand.
+| Step | When | What happens |
+|---|---|---|
+| **Warning** | One day before auto-close | A line is added to the thread and everybody following it is told |
+| **Auto-close** | `Auto-Close-After-Days` of silence | Closed with a reason saying why |
+| **Purge** | `Retention-Days` after closing | The ticket and everything attached to it is deleted |
+
+Nothing is ever auto-closed without a warning first, even if it is old enough for both in the same sweep — it warns now and closes next time. **Replying clears the warning**, so answering on day 13 does not still close the ticket on day 14.
+
+Set `Auto-Close-After-Days: 0` to never close anything, or `Retention-Days: 0` to keep closed tickets forever.
+
+```yaml
+Tickets:
+  Auto-Close-After-Days: 14
+  Retention-Days: 90
+```
+
+---
+
+## Ban appeals
+
+An appeal is the one category that usually cannot be filed where the ticket desk lives: the player is banned from that server. The shipped `appeal` category is off for that reason — on a single server it would only ever be opened by people who are not banned.
+
+It becomes useful when a hub and a survival server **share one MySQL database**:
+
+```yaml
+# hub's config.yml
+Tickets:
+  Server-Name: "hub"
+  Categories:
+    appeal:
+      Enabled: true
+      Allow-From: ["hub"]      # filed here and nowhere else
+  Admin-GUI:
+    This-Server-Only: false    # hub staff see every server's tickets
+```
+
+```yaml
+# survival's config.yml
+Tickets:
+  Server-Name: "survival"
+  Admin-GUI:
+    This-Server-Only: true     # no appeals in the survival queue
+```
+
+`Allow-From` decides where a category can be **opened**; `This-Server-Only` decides whose tickets a queue **shows**. Leave `This-Server-Only` off on the server that handles appeals.
+
+Two safeguards come with it:
+
+- **Teleporting** to a ticket opened on another server is refused with a message naming that server, rather than dropping you at the same coordinates in the wrong world.
+- Tickets written before `Server-Name` meant anything have no server recorded and are shown everywhere, so turning `This-Server-Only` on never makes old tickets disappear.
 
 ---
 
