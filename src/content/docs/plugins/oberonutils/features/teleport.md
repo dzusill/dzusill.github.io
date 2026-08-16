@@ -127,11 +127,33 @@ rank has `spawn.others`.
 
 ## `/warp` with no arguments
 
-Runs whatever `teleport.warps-menu-command` names, so an external menu plugin stays in charge:
+Three behaviours, set by `teleport.no-args-action`. The same setting covers a warp name that does
+not exist.
 
 ```yaml
+teleport:
+  no-args-action: MENU        # MENU | USAGE | LIST
   warps-menu-command: "warps"
 ```
 
-Blank it and OberonUtils prints a plain list of warps instead — which is also what happens if the
-menu plugin is uninstalled, rather than the player getting "unknown command".
+**`MENU`** runs `warps-menu-command`, so an external menu plugin stays in charge. This is what the
+Skript version did, so it is the default.
+
+**`USAGE`** prints the `usage.warp` message instead — `/warp` behaves like any other command given
+the wrong arguments. Being an ordinary message, that line can be moved to the action bar or given
+its own sound:
+
+```yaml
+Presentation:
+  Overrides:
+    usage.warp:
+      Channel: ACTION_BAR
+      Sound: {Name: block.note_block.bass, Volume: 1.0, Pitch: 0.5}
+```
+
+**`LIST`** prints the warps the player can actually reach — anything gated behind a permission they
+lack is left out. On an unknown name they get `warp.not-found` first, so a typo reads as a typo
+rather than as a menu appearing for no reason.
+
+Blanking `warps-menu-command` makes `MENU` fall back to the list, so removing the menu plugin later
+leaves players with a warp list rather than "unknown command".

@@ -74,6 +74,44 @@ under `warp:`.
 
 Anything not listed under `Overrides` uses its category.
 
+## Usage lines, one per command
+
+Each command has its own usage message, so they can be worded, coloured, routed and sounded
+independently:
+
+```yaml
+usage:
+  warp: "<red>Usage: <white>/warp <name>"
+  setwarp: "<red>Usage: <white>/setwarp <name>"
+  delwarp: "<red>Usage: <white>/delwarp <name>"
+  spawn: "<red>Usage: <white>/spawn [player]"
+  kill: "<red>Usage: <white>/kill [player]"
+  nightvision: "<red>Usage: <white>/nightvision [player]"
+  ping: "<red>Usage: <white>/ping [player]"
+  kothcooldown: "<red>Usage: <white>/kothcooldown [player]"
+  keyall: "<red>Usage: <white>/keyall <time|next|force|reset>"
+  oberonutils: "<red>Usage: <white>/oberonutils <reload|migrate|hooks>"
+```
+
+They are ordinary messages, so one can be moved without disturbing the others:
+
+```yaml
+Presentation:
+  Overrides:
+    usage.warp:
+      Channel: ACTION_BAR
+      Sound: {Name: block.note_block.bass, Volume: 1.0, Pitch: 0.5}
+```
+
+Delete a key and that command falls back to the shared `general.usage`, with `%usage%` filled in —
+so a command always says something, even if you strip the section out entirely.
+
+All ten are in the `ERROR` category, so by default they inherit the error channel and sound.
+
+`usage.warp` is only reached when `teleport.no-args-action` is `USAGE`; the default sends `/warp`
+with no arguments to the warps menu instead. See
+[config.yml](/plugins/oberonutils/configuration/config/).
+
 ## Sounds
 
 ```yaml

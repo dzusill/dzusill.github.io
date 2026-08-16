@@ -31,12 +31,13 @@ no tasks.
 
 ## Every message, wherever you want it
 
-Each message has three parts you control separately: the text, where it goes, and what it sounds
-like. Delivery is `CHAT`, `ACTION_BAR`, `BOTH` or `NONE`, set per **category** and overridable per
-individual message.
+Each of the **67 messages** has three parts you control separately: the text, where it goes, and what
+it sounds like. Delivery is `CHAT`, `ACTION_BAR`, `BOTH` or `NONE`, set per **category** and
+overridable per individual message.
 
 So moving every error onto the action bar is one line. Pinning one of them back to chat is one more.
-Sounds work the same way — a category sound, overridable per message, with volume and pitch.
+Sounds work the same way — a category sound, overridable per message, with volume and pitch. Even
+the usage lines are per command, so `/warp` and `/keyall` can be told off in different voices.
 
 [How messages are delivered →](/plugins/oberonutils/configuration/messages/)
 

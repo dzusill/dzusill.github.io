@@ -64,6 +64,7 @@ teleport:
   force-warmup-regions: [pvpzone]
   bypass-worlds: [spawn]
   bypass-worlds-applies-to-spawn-command: false
+  no-args-action: MENU
   warps-menu-command: "warps"
   safe-arrival-check: false
   remember-previous-location: false
@@ -79,8 +80,25 @@ teleport:
 | `block-while-tagged` | **Improvement.** Refuse `/spawn` and `/warp` outright while combat-tagged. |
 | `bypass-regions` | WorldGuard region IDs where the countdown is skipped. Matched **exactly**. |
 | `force-warmup-regions` | Regions where the countdown always applies. Beats everything, including the bypass permission. |
-| `warps-menu-command` | What `/warp` with no arguments runs. Blank prints a plain list instead. |
+| `no-args-action` | What `/warp` does with no arguments — see below. |
+| `warps-menu-command` | The menu command used when `no-args-action` is `MENU`. |
 | `safe-arrival-check` | **Improvement.** Nudge a player out of blocks if a destination gets built over. |
+
+### `/warp` with no arguments
+
+Also applies to a warp name that does not exist.
+
+| Value | Does |
+|---|---|
+| `MENU` | Runs `warps-menu-command`. What the Skript version did, so it is the default. |
+| `USAGE` | Prints the `usage.warp` message, like any other mistyped command. |
+| `LIST` | Prints the warps the player can actually reach — gated warps they lack the permission for are left out. |
+
+With `LIST`, an unknown name also gets `warp.not-found` first, so the player is told they mistyped
+rather than silently handed a list.
+
+A blank `warps-menu-command` makes `MENU` fall back to the list rather than leaving the player with
+"unknown command" — which is what would happen if the external menu plugin were ever removed.
 
 Region IDs are matched exactly. The Skript check tested whether the *printed list* of regions
 contained the text, so `spawn_pvp` and `oldspawn` both granted a bypass meant for `spawn`, and

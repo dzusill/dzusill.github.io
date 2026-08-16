@@ -89,10 +89,29 @@ a slot number with Confirm.
 If it still happens, another plugin is handling the click. `/oberonutils reload` will not help;
 check for a second plugin listening on inventory clicks.
 
+## `/warp` opens a menu, I want a usage error
+
+```yaml
+teleport:
+  no-args-action: USAGE
+```
+
+`MENU` is the default because that is what the setup this replaced did. `USAGE` prints
+`usage.warp`, `LIST` prints the warps the player can reach. The same setting covers a warp name that
+does not exist. See [Teleports & Warps](/plugins/oberonutils/features/teleport/).
+
+## Can each command have its own usage message?
+
+Yes — `usage.warp`, `usage.setwarp`, `usage.keyall` and so on, ten in total. Each is an ordinary
+message, so each can be worded differently and routed to chat or the action bar with its own sound.
+Delete one and that command falls back to the shared `general.usage`.
+
 ## Are the messages configurable?
 
 All of them, including where each one appears and what it sounds like — chat, the action bar, both,
-or sound only. See [Messages & Sounds](/plugins/oberonutils/configuration/messages/).
+or sound only. That is per message, not per group: there are 67 of them and any single one can be
+pinned on its own. Categories exist so you do not have to edit 67 entries to make a sweeping change.
+See [Messages & Sounds](/plugins/oberonutils/configuration/messages/).
 
 ## Does it work on Folia?
 
