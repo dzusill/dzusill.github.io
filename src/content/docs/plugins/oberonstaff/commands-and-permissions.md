@@ -21,6 +21,56 @@ Every name, alias and permission below is the **default**. All of them live in `
 
 The `o` variants reach players who have `/tptoggle` on. So does holding `oberonstaff.teleport.override` on the plain commands.
 
+## Ticket desk — players
+
+Registered only when the ticket desk is on and the database is open. See [Ticket Desk](/plugins/oberonstaff/features/tickets/).
+
+| Command | Default alias | Default permission |
+|---|---|---|
+| `/ticket` — your tickets | `/t` | `oberonstaff.ticket.use` |
+| `/ticket create [category]` | | `oberonstaff.ticket.create` |
+| `/ticket view <#>` | | `oberonstaff.ticket.use` |
+| `/ticket chat [#]` · `/ticket leave` | | `oberonstaff.ticket.use` |
+| `/ticket reply <#> <message>` | | `oberonstaff.ticket.use` |
+| `/ticket close <#> [reason]` | | `oberonstaff.ticket.close.own` |
+| `/ticket rate <#> <1-5> [comment]` | | `oberonstaff.ticket.use` |
+| `/ticket follow <#>` · `unfollow <#>` | | `oberonstaff.ticket.follow` |
+
+Following somebody else's ticket ships **switched off** (`Tickets.Watchers.Allow-Player-Follow`).
+
+## Ticket desk — staff
+
+| Command | Default alias | Granular permission |
+|---|---|---|
+| `/tickets` — support queue | `/ta` | `oberonstaff.ticket.admin` |
+| `/reports` — report queue | `/ra` | `oberonstaff.report.admin` |
+| `/tickets claim <#>` · `unclaim <#>` | | `oberonstaff.ticket.claim` / `.unclaim` |
+| `/tickets assign <#> <staff>` | | `oberonstaff.ticket.assign` |
+| `/tickets priority <#> <low\|normal\|high\|urgent>` | | `oberonstaff.ticket.priority` |
+| `/tickets note <#> <text>` | | `oberonstaff.ticket.note` |
+| `/tickets reply <#> <message\|!macro>` | | `oberonstaff.ticket.reply` |
+| `/tickets category <#> <category>` | | `oberonstaff.ticket.category` |
+| `/tickets close <#> [reason]` · `reopen <#>` | | `oberonstaff.ticket.close` / `.reopen` |
+| `/tickets tp <#>` | | `oberonstaff.ticket.teleport` |
+| `/tickets view <#>` | | `oberonstaff.ticket.admin` |
+
+`/tickets reply 43 !rules` expands a macro from `Tickets.Canned-Replies`. A word that is not a macro is sent as typed.
+
+### Two bundle nodes
+
+Give your staff group these and you are done:
+
+```
+oberonstaff.ticket.staff
+oberonstaff.report.staff
+```
+
+Each is a parent of every granular node above. The granular ones exist so that the day you want a trial rank that can claim and reply but not close, it is a permission change rather than a plugin change.
+
+:::note
+A player **without** `oberonstaff.ticket.admin` who types `/tickets` is sent to their own hub instead of being refused.
+:::
+
 ## Admin command
 
 `/oberonstaff`, aliases `/ostaff` and `/os`. Everything under it needs `oberonstaff.admin`.

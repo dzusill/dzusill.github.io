@@ -732,6 +732,10 @@
             "label": "✨ Features",
             "items": [
               {
+                "label": "Ticket Desk",
+                "slug": "plugins/oberonstaff/features/tickets"
+              },
+              {
                 "label": "Staff Chat",
                 "slug": "plugins/oberonstaff/features/staff-chat"
               },
@@ -763,6 +767,10 @@
               {
                 "label": "config.yml",
                 "slug": "plugins/oberonstaff/configuration/config"
+              },
+              {
+                "label": "menus.yml",
+                "slug": "plugins/oberonstaff/configuration/menus"
               },
               {
                 "label": "messages.yml",

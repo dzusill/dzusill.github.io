@@ -11,9 +11,11 @@ description: "Staff chat with rank-coloured names, the full teleport suite with 
 
 - 💬 **Staff chat** — `/staffchat` sends one line, or with no arguments switches the mode on. Rank-coloured names, every gradient in the config.
 - 🧭 **Teleport suite** — `/tp`, `/tpo`, `/tphere`, `/tpohere`, `/s`, `/back`, `/tptoggle`.
+- 🎫 **Ticket desk** — players open tickets through a guided wizard, staff work them from a paged queue, both sides talk inside the ticket. [Read more](/plugins/oberonstaff/features/tickets/)
 - 👻 **Vanish** — PremiumVanish and SuperVanish through their real API, with the level ladder honoured in teleports, messages **and tab completion**.
 - 🎨 **Ranks in config** — restyle a rank or add one without touching code.
 - 📜 **Action log** — optional record of who teleported to whom and when.
+- 🖼️ **Menus in config** — every ticket menu's size, slots and icons live in [`menus.yml`](/plugins/oberonstaff/configuration/menus/).
 - 🔧 **Everything renameable** — command names, aliases and permissions all come from the config.
 
 ---
