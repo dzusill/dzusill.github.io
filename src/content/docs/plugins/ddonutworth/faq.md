@@ -41,7 +41,7 @@ servers tune.
 - Is that inventory in `worth-lore.inventories`? Add its `InventoryType` name (`CHEST`, `BARREL`, …) or
   part of its title.
 - Has the player run `/toggleworth`?
-- Does the item have a price at all? Try `/worth` on it.
+- Does the item have a price at all? Try `/worth hand` on it.
 
 ## Worth lore is stuck on some items in a chest
 
@@ -55,7 +55,7 @@ That happens if the server crashed while the chest was open. Stand near it and r
 
 It shouldn't — renaming does not change an item's key, so a diamond called "Bob" still sells for the
 diamond price. If it genuinely has no price, check whether something else on it (custom model data, another
-plugin's NBT) is giving it a more specific key that isn't priced. `/worth` will tell you.
+plugin's NBT) is giving it a more specific key that isn't priced. `/worth hand` will tell you.
 
 ## An MMOItems / Oraxen item isn't recognised
 

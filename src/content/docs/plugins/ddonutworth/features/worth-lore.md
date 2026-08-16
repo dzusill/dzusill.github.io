@@ -156,7 +156,7 @@ can only show a **per-item** price: a line carrying the stack total would give a
 from a stack of 16, and Minecraft refuses to merge two stacks whose lore differs — split a stack of
 diamonds and the pieces would not go back together.
 
-`/worth` reports the stack total in this mode. If you would rather have the line itself show the whole
+`/worth hand` reports the stack total in this mode. If you would rather have the line itself show the whole
 stack:
 
 ```yaml
@@ -189,6 +189,14 @@ Lore is removed:
 After a click the whole view is stripped and re-stamped a tick later rather than guessing where the clicked
 item went. Whatever the click did — swap, shift-click, hotbar swap, a nine-slot drag — the state a tick
 later is clean and then freshly stamped.
+
+### The anvil
+
+An anvil builds its result by copying the left-hand item, **lore included**. In item mode that means the
+result preview arrives carrying the *input's* worth line: combine a $1,000 pickaxe with a Fortune III book
+and the preview would read $1,000 until something else touched it, then jump once you took it out. The
+preview is therefore re-priced as it is prepared — the inherited line is replaced, not added to. In packet
+mode the question never arises, because the item never carries the line in the first place.
 
 ## The one gap, and the fix for it
 

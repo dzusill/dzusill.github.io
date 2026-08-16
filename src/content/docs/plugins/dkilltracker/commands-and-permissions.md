@@ -64,7 +64,7 @@ Use `set` to fix a number. Use `add` to actually reward someone.
 
 That exclusion is deliberate. If `bypass.victim` were included, every op would silently become worthless to kill — which nobody expects and which is very confusing to debug. Grant it explicitly to the staff or NPC accounts that need it. `bypass.milestones` is left out for the same reason: it is a property of a *rank*, not of a permission level, and plenty of servers want their ops ranking up normally.
 
-> **Give `killtracker.bypass.milestones` to every staff and donor group.** A tier command like `rank %player% bandit` *replaces* the player's group, so without it a moderator who reaches five kills is demoted to Bandit and loses their staff rank. Kills still count for exempt players — they stay on the leaderboard, they just never trigger a reward. See [Milestones](/plugins/dkilltracker/features/milestones/#exempting-staff-and-donor-ranks).
+> **Give `killtracker.bypass.milestones` to every staff and donor group.** A tier command like `rank %player% bandit` *replaces* the player's group, so without it a moderator who reaches five kills is demoted to Bandit and loses their staff rank. Kills still count for exempt players — they stay on the leaderboard, they just never trigger a reward.
 
 > `killtracker.bypass.antifarm` defaulting to op is worth a second look on a server where staff play normally. It makes their kills exempt from the same-victim cooldown, which is right for testing and wrong for a fair leaderboard. Revoke it from your regular staff group.
 

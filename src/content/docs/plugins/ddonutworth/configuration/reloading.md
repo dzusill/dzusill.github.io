@@ -19,6 +19,7 @@ Needs `ddonutworth.admin`.
 | `config.yml` — ratios, multipliers, blacklisted worlds, disabled game modes, custom-item sources | ✅ |
 | `config.yml` — the eight settings listed below | ❌ needs a restart |
 | `prices.yml` — overrides added or removed by hand | ✅ |
+| `enchantments.yml` — enchantment values and their levers | ✅ |
 | `sell/*.yml` — patterns, tier ladders, icons, layouts | ✅ |
 | `gui/*.yml` — titles, icons, slots, filler | ✅ |
 | `sounds.yml`, `sellaxe.yml`, `messages.yml` | ✅ |
@@ -67,6 +68,7 @@ These sections are never merged from the jar's defaults, so an entry you delete 
 reloads and plugin updates:
 
 - `items` in `prices.yml`
+- `values` in `enchantments.yml`
 - `matches` and `progress.requirements` in each `sell/<id>.yml`
 - `custom-items` in `config.yml`
 - `items` in each `gui/*.yml`

@@ -7,7 +7,7 @@ description: "/market (the name is configurable) opens the shop — a GUI showin
 
 ## Layout
 
-By default the GUI **grows to fit** `items-per-rotation` and always centres the items on both axes. Three rows of chrome are fixed — a filler border above the items, a filler border below, and a footer row for the clock — and the item rows (7 per row) sit centred between the borders:
+By default the GUI **grows to fit** `items-per-rotation` (21 out of the box — a full 3 × 7 grid, the rightmost diagram below) and always centres the items on both axes. Three rows of chrome are fixed — a filler border above the items, a filler border below, and a footer row for the clock — and the item rows (7 per row) sit centred between the borders:
 
 ```
 7 items (4 rows / 36 slots)      14 items (5 rows / 45 slots)      21 items (6 rows / 54 slots)

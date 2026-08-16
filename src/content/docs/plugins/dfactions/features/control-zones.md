@@ -1,6 +1,6 @@
 ---
 title: "Control Zones"
-description: "A timed world event: a square appears in the wilderness, one faction alone inside holds it and earns rewards, two or more freeze all payouts."
+description: "A control zone is a timed world event. On a schedule, a square area appears at a random spot in"
 ---
 
 A **control zone** is a timed world event. On a schedule, a square area appears at a random spot in
@@ -251,11 +251,6 @@ Five events are fired on the zone lifecycle:
 
 Owner keys are faction ids, except for a factionless holder where the key is `PLAYER:<uuid>` — check
 `ControlZone#isSoloOwner()` before treating a key as a faction id.
-
-A factionless holder who founds or joins a faction mid-event **keeps** the zone: their key changes from
-`PLAYER:<uuid>` to the faction id without a re-capture, and the held timer and grace period carry over.
-`ControlZoneCaptureEvent` still fires for the change — the key you recorded is no longer the one being
-paid — but nothing is broadcast, because the zone did not change hands.
 
 ## Notes and limits
 

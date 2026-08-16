@@ -23,7 +23,7 @@ The timing lives in [config.yml](/plugins/drotatingshop/configuration/config/):
 ```yaml
 shop:
   rotation-interval: 3600         # seconds between rotations
-  items-per-rotation: 7           # items per rotation (max 21)
+  items-per-rotation: 21          # items per rotation (max 21 with the default grid)
   rotation-reveal-seconds: 3      # hold before the new items appear (0 = instant)
 ```
 

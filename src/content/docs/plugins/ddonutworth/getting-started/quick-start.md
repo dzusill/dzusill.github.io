@@ -11,21 +11,22 @@ Five minutes from a fresh install to a working sell economy.
 /worth
 ```
 
-Hold something. With [dRotatingShop](/plugins/drotatingshop/) installed you already have prices — its pool
-is seeded from a bundled 1.21 price list, so most vanilla items are covered before you configure anything.
-
-```
-/worth gui
-```
-
 The full price list, paginated. Cycle **Sort** for name / highest / lowest and **Filter** for a category.
+With [dRotatingShop](/plugins/drotatingshop/) installed you already have prices — its pool is seeded from a
+bundled 1.21 price list, so most vanilla items are covered before you configure anything.
+
+```
+/worth hand
+```
+
+Hold something: what one of it is worth, and what the whole stack is worth.
 
 ## 2. Sell something
 
 ```
-/sell          sell the stack in your hand
+/sell          a menu to drop items into — close it to sell
+/sell hand     sell the stack in your hand
 /sellall       sell everything sellable in your inventory
-/sellgui       a menu to drop items into — close it to sell
 ```
 
 ## 3. See worth lore

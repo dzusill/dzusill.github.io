@@ -49,7 +49,8 @@ DIAMOND_SWORD[sharpness=5]      →   DIAMOND_SWORD
 ```
 
 So you can price Sharpness V swords specially without touching plain ones, and an enchantment you never
-priced still falls back to the base sword price instead of becoming unsellable.
+priced still falls back to the base sword price — plus whatever that enchantment is worth, see
+[Enchantment Worth](/plugins/ddonutworth/features/enchantment-worth/).
 
 The same is true for custom model data (`DIAMOND{cmd=7}` → `DIAMOND`) and for both together
 (`DIAMOND[…]{cmd=7}` → `DIAMOND[…]` → `DIAMOND{cmd=7}` → `DIAMOND`).

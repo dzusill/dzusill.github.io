@@ -1066,6 +1066,105 @@
             ]
           }
         ]
+      },
+      {
+        "label": "📈 OberonStats",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/oberonstats"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/oberonstats/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonstats/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/oberonstats/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Blanking Empty Rows",
+                "slug": "plugins/oberonstats/features/blanking"
+              },
+              {
+                "label": "Other Players",
+                "slug": "plugins/oberonstats/features/targets"
+              },
+              {
+                "label": "Leaderboards",
+                "slug": "plugins/oberonstats/features/leaderboards"
+              },
+              {
+                "label": "Paging",
+                "slug": "plugins/oberonstats/features/paging"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonstats/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/oberonstats/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/oberonstats/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "🔌 Integrations",
+            "items": [
+              {
+                "label": "DialogMaster",
+                "slug": "plugins/oberonstats/integrations/dialogmaster"
+              },
+              {
+                "label": "ExcellentEconomy",
+                "slug": "plugins/oberonstats/integrations/excellenteconomy"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberonstats/placeholders"
+              },
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/oberonstats/commands-and-permissions"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/oberonstats/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/oberonstats/credits"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -1236,16 +1335,16 @@
                 "slug": "plugins/ddonutworth/features/item-keys"
               },
               {
+                "label": "Enchantment Worth",
+                "slug": "plugins/ddonutworth/features/enchantment-worth"
+              },
+              {
                 "label": "Selling",
                 "slug": "plugins/ddonutworth/features/selling"
               },
               {
                 "label": "Worth Lore",
                 "slug": "plugins/ddonutworth/features/worth-lore"
-              },
-              {
-                "label": "Enchantment Worth",
-                "slug": "plugins/ddonutworth/features/enchantment-worth"
               },
               {
                 "label": "Sell Multipliers",

@@ -35,6 +35,9 @@ items:
 
 Quote any key containing `[`, `{` or `:` — YAML needs it.
 
+A book price such as `"ENCHANTED_BOOK[mending=1]"` does double duty: it also stands in as the value of
+Mending on a tool, for any enchantment [enchantments.yml](/plugins/ddonutworth/configuration/enchantments/) does not list.
+
 ## Items with no readable key
 
 Written automatically by `/setworth` when a key cannot describe the item:

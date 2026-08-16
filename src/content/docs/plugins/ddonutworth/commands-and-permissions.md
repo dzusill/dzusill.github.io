@@ -10,9 +10,10 @@ no conflict with another plugin's `/sell` unless it also registers at runtime.
 
 | Command | Aliases | Permission | Does |
 |---|---|---|---|
-| `/worth` | `/itemworth` | `ddonutworth.worth` | What the held item is worth |
+| `/worth` | `/itemworth` | `ddonutworth.gui` | The paginated price list |
+| `/worth hand` | `item` | `ddonutworth.worth` | What the held item is worth |
 | `/worth <material>` | | `ddonutworth.worth` | Look up any material |
-| `/worth gui` | `list`, `prices` | `ddonutworth.gui` | The paginated price list |
+| `/worth gui` | `list`, `prices` | `ddonutworth.gui` | The price list, spelled out |
 | `/sell` | | `ddonutworth.sell` | Open the drop-items-in-here menu |
 | `/sell hand` | | `ddonutworth.sell` | Sell the held stack |
 | `/sell all` | `inventory`, `everything` | `ddonutworth.sell` | Sell your whole inventory |
@@ -24,7 +25,7 @@ no conflict with another plugin's `/sell` unless it also registers at runtime.
 
 `/sellhistory <player>` for someone else needs `ddonutworth.history.others`.
 
-`/worth` on a stack of more than one also reports what the whole stack is worth.
+`/worth hand` on a stack of more than one also reports what the whole stack is worth.
 
 ## Admin commands
 

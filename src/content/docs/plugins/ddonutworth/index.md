@@ -29,6 +29,9 @@ It is built on the [DzusillCore](https://github.com/dzusill/DzusillCore) framewo
   player's own inventory and any GUI you list. See [Worth Lore](/plugins/ddonutworth/features/worth-lore/).
 - 📦 **Shulker box totals** — a packed box shows the summed worth of everything inside it, nested boxes
   included.
+- ✨ **Enchantments are worth money** — an Efficiency V, Unbreaking III pickaxe sells for the pickaxe price
+  plus what those enchantments are worth, every vanilla one priced out of the box. See
+  [Enchantment Worth](/plugins/ddonutworth/features/enchantment-worth/).
 - 🪄 **`/setworth` on anything** — vanilla, enchanted, custom-model-data, or a sword from MMOItems, Oraxen,
   Nexo or ItemsAdder. See [Custom Items](/plugins/ddonutworth/features/custom-items/).
 - 📈 **Per-category sell multipliers** — nine categories out of the box, each with a twenty-tier ladder and

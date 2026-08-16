@@ -81,6 +81,10 @@ An overriding entry always beats a derived price. A stored-item match outranks e
 registered that exact item, whereas a material key is a generic fallback — but a plugin key still wins over
 it, being the item's real identity rather than a snapshot of one copy.
 
+Whichever rung answers, the item's **enchantments are added on top of it** — unless that price already
+named them, in which case it stands as the whole price. See
+[Enchantment Worth](/plugins/ddonutworth/features/enchantment-worth/).
+
 ## Adjusting hand-set prices
 
 ```yaml
@@ -102,4 +106,4 @@ pricing:
 
 Applied to every payout on top of everything else — `2.0` for a double-sell weekend. Unlike the blanket
 adjustment this scales what players are *paid*, not what items are *worth*, so the numbers shown in
-`/worth` and the prices GUI stay honest.
+`/worth hand` and the prices GUI stay honest.

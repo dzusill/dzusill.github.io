@@ -55,6 +55,19 @@ land, and admins with `factions.bypass` are exempt.
 > **Faction team chests are never locked**, even during a war — members can always retrieve their
 > gear. A losing faction only loses its chest contents if its [beacon](/plugins/dfactions/features/beacon/) is destroyed.
 >
+> **On disband the chests spill onto the ground** instead of vanishing with the faction — at the
+> faction home, falling back to the beacon and then to a claimed chunk. Applies to `/f disband`,
+> `/fa disband` and a war loss.
+>
+> ```yaml
+> factions:
+>   team-chest:
+>     drop-on-disband: true
+>     drop-location: HOME   # HOME | BEACON | CLAIM (the others are tried as fallbacks)
+>     drop-spread: 1.5      # random scatter in blocks
+>     announce-drop: true   # tell online members where the items landed
+> ```
+>
 > An active [supply drop](/plugins/dfactions/features/supply-drops/) that lands inside a claim stays contested — its crate is
 > exempt from container protection so anyone can loot it.
 

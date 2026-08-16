@@ -34,7 +34,7 @@ That is a supported setup, not an error. Set `pricing.source: independent` in
 ## 3. Check it works
 
 ```
-/worth
+/worth hand
 ```
 
 Hold something and run it. With dRotatingShop installed you should already get a price without configuring
@@ -47,6 +47,7 @@ priced before you touch a file.
 plugins/dDonutWorth/
 ├── config.yml            main settings
 ├── prices.yml            your worth overrides (starts empty)
+├── enchantments.yml      what each enchantment adds to the item carrying it
 ├── messages.yml          every user-facing string
 ├── sounds.yml            named sounds the GUIs reference
 ├── sellaxe.yml           the sell axe's look and timer format
@@ -71,8 +72,9 @@ plugins/dDonutWorth/
 ## Updating
 
 Replace the jar and restart. New config keys are merged in with their comments; the sections you curate —
-`items` in `prices.yml`, each category's `matches` and `progress.requirements`, `custom-items`, and each
-GUI's `items` — are **never** merged, so an entry you deleted stays deleted.
+`items` in `prices.yml`, `values` in `enchantments.yml`, each category's `matches` and
+`progress.requirements`, `custom-items`, and each GUI's `items` — are **never** merged, so an entry you
+deleted stays deleted.
 
 ## Coming from DonutWorth / SellWorth
 

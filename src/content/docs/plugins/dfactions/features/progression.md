@@ -67,12 +67,36 @@ enchantments.
 
 ```yaml
 curve:
-  base-xp: 1000      # XP for level 1 → 2
-  multiplier: 1.15   # each level costs 15% more than the last
+  type: POLYNOMIAL     # POLYNOMIAL | LINEAR | EXPONENTIAL
+  base-xp: 50          # XP for level 1 → 2
+  exponent: 1.1        # POLYNOMIAL growth power
+  step: 250            # LINEAR increment per level
+  multiplier: 1.06     # EXPONENTIAL per-level factor
+  max-xp-per-level: 0  # cap on any single level; 0 = uncapped
+  levels: {}           # explicit per-level overrides, e.g. 99: 5000
+xp-multiplier: 1.0     # global scale on every XP gain
 ```
 
-Level *n → n+1* costs `base-xp × multiplier^(n-1)`. Leveling continues to `max-level` (50 or 100),
-then a **prestige** is required to keep going. Each level-up notifies members.
+`curve.type` decides the shape of the climb, and it matters far more than the numbers:
+
+| Type | Cost of level *n → n+1* | Character |
+|---|---|---|
+| `POLYNOMIAL` (default) | `base-xp × n^exponent` | Steady growth, no runaway tail |
+| `LINEAR` | `base-xp + step × (n − 1)` | Every level costs a fixed amount more |
+| `EXPONENTIAL` | `base-xp × multiplier^(n − 1)` | Compounding — brutal end-game |
+
+An exponential curve compounds, so its last handful of levels can cost more than every earlier level
+combined. With the old defaults (`base-xp: 1000`, `multiplier: 1.06`) level 99 → 100 alone cost
+**~302,000 XP** and the whole climb was **~5.3M** — effectively unreachable. The shipped defaults
+cost **~373,000 XP** for the same 100 levels, about **14× cheaper**, with level 99 → 100 at ~7,800.
+
+`max-xp-per-level` caps what any single level may cost, and `curve.levels` overrides individual
+levels outright (the key is the level being left). `xp-multiplier` scales **every** XP gain —
+deposits, mining, war kills, control zones — so you can retune the whole climb with one number.
+
+Leveling continues to `max-level` (50 or 100), then a **prestige** is required to keep going. Each
+level-up notifies members. Levels are stored rather than derived, so changing the curve never demotes
+an existing faction.
 
 ## Prestige
 
@@ -89,6 +113,8 @@ factions:
   prestige:
     max: 5
     colors: ["<white>", "<green>", "<aqua>", "<light_purple>", "<gold>", "<red>"]
+    # xp-mult-per-prestige defaults to 0.25: prestige 1 earns +25% XP, prestige 4 +100%. Without it
+    # every prestige costs exactly what the first did, making the later ranks the real wall.
     bonuses:
       extra-claims-per-prestige: 0
       xp-mult-per-prestige: 0.0

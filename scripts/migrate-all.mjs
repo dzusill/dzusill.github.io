@@ -48,6 +48,9 @@ const PLUGINS = [
   { slug: 'dphalanx',      name: 'dPhalanx',      src: '../dPhalanx/docs' },
   { slug: 'dstore',        name: 'dStore',        src: '../dStore/docs' },
   { slug: 'ddialogs',      name: 'DDialogs',      src: '../DDialogs/docs' },
+  // The Oberon suite's own docs are written straight into this site (see IN_PLACE) — OberonStats is
+  // the exception: its docs live with the plugin, so they are migrated like everything else.
+  { slug: 'oberonstats',   name: 'OberonStats',   src: '../OberonStats/docs' },
 ];
 
 // Plugins whose pages are written directly into src/content/docs/plugins/<slug>/ rather than
@@ -58,7 +61,8 @@ const PLUGINS = [
 // ddialogs is here despite having a docs/ dir: that dir holds 5 pages while the site holds 22, the
 // rest written straight into the site. Migrating it would delete the other 17.
 const IN_PLACE = [
-  'oberonchat', 'oberonkills', 'oberonmob', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'ddialogs',
+  'oberonchat', 'oberonkills', 'oberonmob', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonutils',
+  'ddialogs',
 ];
 
 // --sidebar-only regroups the existing sidebar and touches no page.
@@ -74,7 +78,7 @@ const SIDEBAR_ONLY = process.argv.includes('--sidebar-only');
 // adding a plugin above without touching this still produces a working sidebar.
 const CATEGORIES = [
   { label: '🛠️ Framework', plugins: ['dzusillcore', 'ddialogs'] },
-  { label: '🌙 Oberon Suite', plugins: ['oberonchat', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonkills', 'oberonmob'] },
+  { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats'] },
   { label: '💰 Economy & Shops', plugins: ['drotatingshop', 'ddonutworth', 'dgems', 'dstore', 'dlottery', 'blottery'] },
   { label: '⚔️ PvP & Combat', plugins: ['dfactions', 'dkilltracker', 'dbloodmoney', 'ddeathpenalty'] },
   { label: '🧭 Teleportation', plugins: ['warpgui', 'dhomegui'] },
@@ -91,6 +95,7 @@ const PLUGIN_EMOJI = {
   dlottery: '🎰', drotatingshop: '🛒', dfactions: '⚔️', dkilltracker: '🗡️',
   ddonutworth: '🍩', ddialogs: '💬', blottery: '🍀', dmentions: '🙋',
   dgems: '💎', dweblink: '🔗', dphalanx: '🌐', dstore: '🧾',
+  oberonstats: '📈',
 };
 const SECTION_EMOJI = {
   'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',
@@ -239,21 +244,18 @@ function previousGroupsBySlug() {
   const file = join(ROOT, 'src/sidebar.json');
   if (!existsSync(file)) return new Map();
   const bySlug = new Map();
-  const firstSlug = (node) => {
-    if (node.slug) return node.slug;
-    for (const child of node.items ?? []) {
-      const found = firstSlug(child);
-      if (found) return found;
-    }
-    return null;
-  };
+  // A plugin group always has a direct child carrying the plugin's own slug (its Introduction);
+  // a category never does, its children are plugin groups. Matching on a *direct* child rather than
+  // the first slug found anywhere is what keeps a re-run over an already-categorised file from
+  // mistaking the whole category for its first plugin — which silently dropped every other plugin
+  // group in that category.
+  const directSlug = (node) => (node.items ?? []).map((child) => child.slug).find(Boolean);
   const visit = (nodes) => {
     for (const node of nodes) {
-      const slug = firstSlug(node);
-      const match = slug?.match(/^plugins\/([^/]+)/);
-      // A category has no slug of its own; recurse so a re-run reads an already-categorised file.
-      if (match && node.items) bySlug.set(match[1], node);
-      else if (node.items) visit(node.items);
+      if (!node.items) continue;
+      const match = directSlug(node)?.match(/^plugins\/([^/]+)/);
+      if (match) bySlug.set(match[1], node);
+      else visit(node.items);
     }
   };
   try {

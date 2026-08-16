@@ -10,7 +10,7 @@ shop:
   command: "market"               # players open the shop with this command
   rotation-interval: 3600          # seconds between rotations (default: 1 hour)
   open-duration: 0                 # seconds the market is open after each rotation (0 = always open)
-  items-per-rotation: 7            # items shown per rotation (capped to what the grid holds)
+  items-per-rotation: 21           # items shown per rotation (capped to what the grid holds)
   rotation-reveal-seconds: 3       # hold before new items appear after a rotation (0 = instant)
   list-page-size: 20               # results per page in /dshop list and /dshop search
 
@@ -41,7 +41,7 @@ sounds:
 | `command` | `market` | The command that opens the shop GUI. Registered at runtime, so changing it just works after a restart (it is **not** in `plugin.yml`). |
 | `rotation-interval` | `3600` | Seconds between [rotations](/plugins/drotatingshop/features/rotations/). |
 | `open-duration` | `0` | Seconds the market stays **open** after each rotation; `0` = always open. See [Opening Hours](/plugins/drotatingshop/features/opening-hours/). |
-| `items-per-rotation` | `7` | How many items a rotation shows, capped to what the grid holds (`gui.items-per-row` × the available item rows — 21 with the defaults). With `gui.rows: 0` the GUI grows and centres them to fit — with the default 7-wide grid, 1–7 items is 4 rows, 8–14 is 5 rows, 15–21 is 6 rows. |
+| `items-per-rotation` | `21` | How many items a rotation shows, capped to what the grid holds (`gui.items-per-row` × the available item rows — 21 with the defaults, i.e. a full 3 × 7 grid). With `gui.rows: 0` the GUI grows and centres them to fit — with the default 7-wide grid, 1–7 items is 4 rows, 8–14 is 5 rows, 15–21 is 6 rows. |
 | `rotation-reveal-seconds` | `3` | Seconds the shop "holds" after a rotation — items hidden, clock counting down, buying blocked — before the new items are revealed. `0` = instant swap, no hold. See [Rotations](/plugins/drotatingshop/features/rotations/#the-reveal-hold). |
 | `list-page-size` | `20` | Results per page in `/dshop list` and `/dshop search`. |
 

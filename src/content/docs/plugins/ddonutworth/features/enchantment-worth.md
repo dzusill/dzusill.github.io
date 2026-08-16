@@ -1,6 +1,6 @@
 ---
 title: "Enchantment Worth"
-description: "An enchanted item is worth its own price plus what its enchantments are worth, priced from one editable table."
+description: "An enchanted item is worth its own price plus what its enchantments are worth. A Diamond Pickaxe with"
 ---
 
 An enchanted item is worth its own price **plus** what its enchantments are worth. A Diamond Pickaxe with
@@ -9,18 +9,33 @@ enchantments — the same figures you would price their books at.
 
 ```
 DIAMOND_PICKAXE          1,000
-  Efficiency V            +900
-  Unbreaking III          +700
-  Fortune III           +2,400
-                       ────────
-                          5,000
+  Efficiency V            +200
+  Unbreaking III          +150
+  Fortune III             +240
+                        ───────
+                          1,590
 ```
 
 It applies to every enchantable item: tools, weapons, armour, elytra, fishing rods, tridents, maces and
 enchanted books. Nothing is whitelisted — an item either carries enchantments or it does not.
 
-The values live in [enchantments.yml](/plugins/ddonutworth/configuration/enchantments/), which ships with
-every vanilla enchantment already priced.
+The values live in [enchantments.yml](/plugins/ddonutworth/configuration/enchantments/), which ships with every vanilla
+enchantment already priced.
+
+## What scale the shipped numbers are in
+
+They are **worth**, not shop buy prices — what the enchantment adds to what a player is *paid*. The shipped
+table is dRotatingShop's own bundled book prices taken at the default `pricing.sell-ratio` of `0.20`, so an
+enchantment on a tool is worth what its book sells for and the two can never look inconsistent side by side.
+
+Running a different ratio, or an economy on another scale? Move `scale` rather than editing 43 entries:
+
+```yaml
+scale: 2.5      # you run sell-ratio 0.50, so enchantments are worth 2.5x the shipped table
+```
+
+It multiplies the table and `defaults.per-level`, including entries you have edited yourself. It does not
+touch a price that came from an actual book — that figure is already a worth.
 
 ## When the bonus is *not* added
 
@@ -66,18 +81,26 @@ rotation would be impossible to price against.
 
 ## Enchanted books
 
-A book's enchantment *is* the book — there is no item underneath it — so a book is the only thing the table
-will price with no base price at all:
+A book's enchantment *is* the book — there is no item underneath it, and a blank one is `BOOK` — so books
+are the exception to both rules above:
 
 | What matched | Worth |
 |---|---|
 | `ENCHANTED_BOOK[mending=1]` in `prices.yml`, or the same book in the shop | that price, whole |
-| a plain `ENCHANTED_BOOK` price | that price **plus** the table value |
+| a plain `ENCHANTED_BOOK` price | the table value; that price is the fallback when the table prices the book at nothing |
 | nothing at all | the table value **on its own** |
 
-That last row is what makes books work with no setup, and it is why they are exempt from the rule above.
-It matters most for combinations no price list names — a book carrying two enchantments, or a level the
-list stops short of — since no catalogue can enumerate them all.
+The last row is what makes books work with no setup. It matters most for combinations no price list names —
+a book carrying two enchantments, or a level the list stops short of — since no catalogue can enumerate
+them all.
+
+**A plain `ENCHANTED_BOOK` price is never topped up**, and that is the middle row's whole point. For a
+pickaxe the plain key prices the *unenchanted* tool, so the enchantments belong on top of it. A price filed
+under `ENCHANTED_BOOK` is already the price of an enchanted book, so adding the table to it would charge
+for the enchantment twice — a Mending book reading $560 against a $280 table value, while the same Mending
+correctly added $280 to a pickaxe. The table wins over the generic price rather than the other way round,
+because a price list that names books only as `ENCHANTED_BOOK` gives Mending and Fortune III the same
+number, which is the thing this plugin exists to fix.
 
 Turn it off if you would rather books were unsellable until you price them yourself:
 
@@ -104,6 +127,7 @@ Villager trading is a renewable source of books, and this makes those books wort
 | `max-bonus` | a hard ceiling on one item's bonus |
 
 All three are inert at their defaults (`1.0`, `1.0`, `-1`), so out of the box an enchantment is worth the
-same on a tool as it is in a book.
+same on a tool as it is in a book. `scale` is the fourth knob, but it is for matching your economy's size
+rather than for holding it down — see above.
 
 Curses are worth nothing. A cursed item is priced as though the curse were not there.

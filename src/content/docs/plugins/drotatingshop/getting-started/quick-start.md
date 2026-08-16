@@ -52,7 +52,7 @@ shop:
   command: "market"          # the command players run
   rotation-interval: 3600     # seconds between rotations (1 hour)
   open-duration: 0            # 0 = always open; e.g. 120 = open 2 min per rotation
-  items-per-rotation: 7       # how many items per rotation (max 7)
+  items-per-rotation: 21      # how many items per rotation (max 21 with the default 7-wide grid)
 ```
 
 You can also restyle the buy menu in [quantity-menu.yml](/plugins/drotatingshop/configuration/quantity-menu/) and tweak [sounds](/plugins/drotatingshop/configuration/sounds/).
