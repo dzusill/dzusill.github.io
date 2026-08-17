@@ -9,7 +9,7 @@ description: "All of these are soft dependencies — WarpGUI loads without them 
 |---|---|---|
 | Server software | Paper **1.21** | Spigot works; Paper recommended. |
 | Java | **21** | Required by 1.21. |
-| [DzusillCore](https://github.com/dzusill/DzusillCore) | latest | **Hard dependency** — WarpGUI won't enable without it. |
+| [DzusillCore](https://github.com/dzusill/DzusillCore) | 1.12.0 or newer | **Hard dependency** — WarpGUI won't enable without it. 2.5.0 is built against 1.12.0; update the core jar alongside the plugin. |
 
 ## Optional integrations
 
