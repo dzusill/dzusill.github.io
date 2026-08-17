@@ -20,6 +20,17 @@ Right-click a warp in **My Warps** to open its edit menu. Each button is permiss
 
 Slots, icons, names and lore for every button are configurable under `GUI:` in [config.yml](/plugins/warpgui/configuration/config/).
 
+## Warp icons
+
+**Change Icon** stores the *whole* held item, not just its type — a `/give` item keeps its custom model data, a textured `PLAYER_HEAD` keeps its skin, and enchantments, potion colour, trims and any other component survive into the menus. The **Change Icon** button itself previews the real icon.
+
+- Set `Settings.Icons.PreserveCustomItems: false` to keep only the material name (pre-2.5.0 behaviour).
+- Items whose stored form exceeds 8 KB (a filled shulker box, a long written book) fall back to the plain material, with a console warning.
+- The material name is always stored too — it feeds `%warpgui_<warp>_material%` and is the fallback if the stored item can't be read back.
+- An icon whose material has no item form (`FIRE`, `WATER`, `POTTED_CACTUS`, …) is rejected and the default icon is used; see [config.yml](/plugins/warpgui/configuration/config/).
+- An [Oraxen](/plugins/warpgui/compatibility/oraxen/) item is stored by id instead, so the icon follows the item's definition across resource-pack updates.
+- `/warpadmin seticon <warp> <material|oraxen:id>` sets an icon by name, from console too.
+
 ## Hidden warps
 
 A hidden warp doesn't appear in the public All Warps / Trending lists, but the owner still sees it in My Warps and can teleport to it. Toggle with the **Hidden** button or:

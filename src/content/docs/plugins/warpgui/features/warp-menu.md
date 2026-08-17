@@ -38,6 +38,8 @@ The tab icons, names and lore all live under `GUI:` in config. Tabs auto-fill th
 | **Shift-click** | Toggle [favourite](/plugins/warpgui/features/favorites-and-ratings/). |
 | **Right-click** (in My Warps) | Open the [edit menu](/plugins/warpgui/features/editing-warps/). |
 
+Nothing can be moved into or out of a WarpGUI menu: shift-clicking an item from your own inventory and double-clicking to sweep the menu's icons onto the cursor are both blocked. Rearranging your own inventory while a menu is open still works, so you can put an item in your main hand for **Change Icon** without closing the GUI.
+
 ## Decorative filler
 
 The border/background is configurable under `GUI.Filler` — set `Border: true` for an edge-only frame, or `false` to fill every empty slot. Change `Material` to recolour it.

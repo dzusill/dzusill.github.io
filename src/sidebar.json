@@ -2364,6 +2364,15 @@
             ]
           },
           {
+            "label": "📂 Compatibility",
+            "items": [
+              {
+                "label": "Oraxen",
+                "slug": "plugins/warpgui/compatibility/oraxen"
+              }
+            ]
+          },
+          {
             "label": "📖 Reference",
             "items": [
               {

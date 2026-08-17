@@ -17,6 +17,7 @@ description: "/warpadmin has the alias /wadmin. Commands are registered at runti
 | `/warpadmin setpermission <warp>` | `warpgui.setpermissions` | Toggle a warp's teleport lock. |
 | `/warpadmin sethidden <warp>` | `warpgui.sethidden` | Hide/unhide a warp. |
 | `/warpadmin category <warp> <id\|none>` | `warpgui.category` | Assign a category. |
+| `/warpadmin seticon <warp> <material\|oraxen:id>` | `warpgui.edit.material` | Set a warp's icon by name — works from console and reaches [Oraxen](/plugins/warpgui/compatibility/oraxen/) items without holding them. |
 | `/warpadmin import <essentials\|cmi>` | `warpgui.exportwarps` | Import warps. |
 | `/warpadmin reload` | `warpgui.reload` | Reload config & messages. |
 

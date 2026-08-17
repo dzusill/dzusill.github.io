@@ -31,7 +31,7 @@ Categories:
 |---|---|
 | *(id)* | The category id (`pvp`) — used in commands and on warps. Lower-case. |
 | `DisplayName` | MiniMessage title shown in the menu. |
-| `Material` | Icon item. |
+| `Material` | Icon item. Must have an item form — block-only names like `FIRE` or `POTTED_CACTUS` fall back to `PAPER` with a console warning. |
 | `Permission` | If set, only players with this permission see/enter the category. Empty = public. |
 | `Slot` | Fixed slot (0–53) in the category list menu. |
 | `Lore` | MiniMessage lore lines. |

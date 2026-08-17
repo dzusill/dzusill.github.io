@@ -13,6 +13,26 @@ The settings file at `plugins/WarpGUI/config.yml`. Display strings are [MiniMess
 
 `Settings.Materials` maps the menu's structural icons (default warp icon, filler glass, navigation arrows, etc.) to materials. `Settings.DisplayNameColor` is the MiniMessage colour applied to warp names.
 
+Every material name here — and in `Categories.*.Material`, `GUI.*.Material` and a warp's own stored icon — must be an **item**, not a block-only state. Names such as `FIRE`, `WATER`, `LAVA`, `NETHER_PORTAL`, `CARROTS`, `POTTED_CACTUS`, `OAK_WALL_SIGN` or `AIR` exist in Minecraft but have no item form and cannot sit in an inventory slot. WarpGUI falls back to the built-in default icon for those and logs a warning naming the offending value, e.g.:
+
+```
+[WarpGUI] Icon material 'FIRE' is a block with no item form and cannot be shown in a GUI slot; falling back to the default icon.
+```
+
+Command-only *items* (`BARRIER`, `LIGHT`, `COMMAND_BLOCK`, `SPAWNER`, `DEBUG_STICK`, `BEDROCK`, …) work fine as icons.
+
+With [Oraxen](/plugins/warpgui/compatibility/oraxen/) installed, every one of these keys also accepts `oraxen:<id>` for a custom item.
+
+### Icons
+
+```yaml
+Settings:
+  Icons:
+    PreserveCustomItems: true
+```
+
+`true` (default) makes **Change Icon** remember the whole held item, so a `/give` item keeps its custom model data, head texture, enchantments and any other component. `false` keeps only the material name, as before 2.5.0. Stored items larger than 8 KB always fall back to the plain material. Full details in [Editing Warps](/plugins/warpgui/features/editing-warps/#warp-icons).
+
 ### Topped (Recommended)
 
 ```yaml
