@@ -1,6 +1,6 @@
 ---
 title: "Buttons & actions"
-description: "Every key a button takes, and all fourteen action tags with what each one does."
+description: "Every key a button takes, and all fifteen action tags with what each one does."
 ---
 
 ## A button
@@ -45,7 +45,7 @@ Four things, in that order. Most run instantly; two are deliberately deferred (s
 
 **A tag-less line is a message.** `- "<green>Hello"` is the same as `- "[message] <green>Hello"`.
 
-## The fourteen tags
+## The fifteen tags
 
 ### Talking to the player
 
@@ -83,13 +83,20 @@ At startup dDialogs lists every button whose command no plugin provides. Pressin
 | `[dialog] <id>` | opens another dialog by id (the filename without `.yml`) |
 | `[dialog] <id> key=value` | opens it and tells it what was picked — see [parameters](/plugins/ddialogs/features/parameters) |
 | `[back]` | returns to the previous dialog |
+| `[home]` | opens your main menu — whatever `defaults.home-dialog` names in `config.yml` (`menu` out of the box) |
 | `[close]` | shuts the screen |
 
-`[dialog]` and `[back]` are **deferred by one tick** on purpose: the current screen has to close before the next opens, or the client stays on the old one.
+`[dialog]`, `[back]` and `[home]` are **deferred by one tick** on purpose: the current screen has to close before the next opens, or the client stays on the old one.
 
 That one-tick delay is also what makes the toggle pattern work — see [the toggle recipe](/plugins/ddialogs/menu-patterns#toggle-rows).
 
-If there is nowhere to go back to, `[back]` does nothing and the dialog simply closes. That is a sensible fallback for a screen reachable both from a menu and from its own command.
+If there is nowhere to go back to, `[back]` does nothing and the dialog simply closes. That is a sensible fallback for a screen reachable both from a menu and from its own command. `[home]` never has that problem — an unset or misspelled `home-dialog` just makes it behave like `[close]` instead, so it can never trap anybody.
+
+:::tip[Which one to reach for]
+Every dialog dDialogs ships uses `[home]` on its exit button, and yours probably should too — one press gets a player out of a screen they reached three menus deep, back to somewhere useful instead of dropped into the world.
+
+Use `[back]` when returning exactly one step is the point — a confirmation's "No" that should land wherever asked for it. Use `[close]` at the **end of an action**, not as navigation: `["[player] pay Bob 5", "[close]"]` means "done", and turning that into `[home]` would shove a menu in the player's face after every press.
+:::
 
 ### Control flow
 

@@ -45,9 +45,26 @@ Everywhere you can write a token: the title, `external-title`, body lines, butto
 |---|---|
 | A **dynamic-list row** beats a parameter of the same name | The row is the more specific of the two. Otherwise one parameter would relabel every row on the screen |
 | An **input** beats both | A field the player filled in resolves last, at click time |
-| Values **cannot contain spaces** | Parameters are split on whitespace |
+| An **unquoted** value cannot contain spaces | Parameters are split on whitespace |
 
-`subject=hello world` sets `subject` to `hello` and drops the rest — the orphaned token has no key, and guessing one would put the wrong thing on the next screen without saying so. Pass an id, not a sentence.
+`subject=hello world` sets `subject` to `hello` and drops the rest — the orphaned token has no key, and guessing one would put the wrong thing on the next screen without saying so.
+
+Wrap a value that needs a space in double quotes instead: `subject="hello world"` keeps it whole.
+
+```yaml
+dynamic-list:
+  source: phalanx_my_tickets
+  template:
+    - label: "<white>#$(ticket_number) <gray>— $(ticket_subject)"
+      actions:
+        - "[dialog] ticket-detail number=$(ticket_number) subject=\"$(ticket_subject)\""
+```
+
+Free text a website or another plugin wrote — a ticket subject, a category name — needs the quotes far more often than an id does: "Bug Report" is a more typical value than "bug-report". An id, a uuid or a number never needs them.
+
+:::tip[Keep quoting a value forwarded from a row]
+If a screen re-sends a parameter it was opened with — reopening itself with one value changed, or handing it on to a third screen — quote it again on the way out too. The value does not remember it was quoted; the next `[dialog]` line has to say so itself.
+:::
 
 :::tip[Keep the names distinct]
 Name your parameters so they cannot collide with your row fields or input keys — `category` beside rows of `category_id`, `category_name` is fine. Then none of the precedence above can ever bite you.
