@@ -29,9 +29,12 @@ restart, not a reload — command registration only happens at startup.
 ```yaml
 combat:
   only-when-tagged: true
+  tag-cache-ttl: 60s
   cooldowns:
     END_CRYSTAL: 2s
     RESPAWN_ANCHOR: 2s
+    FIREWORK_ROCKET: 8s
+    ENDER_PEARL: 10s
   exempt-tag-fix:
     enabled: true
     permission: pvpmanager.exempt
@@ -41,11 +44,37 @@ combat:
 | Key | Meaning |
 |---|---|
 | `only-when-tagged` | Apply the cooldowns only while PvPManager has the player combat-tagged. `false` applies them always. |
-| `cooldowns` | Material → cooldown. Applied after a **successful** placement, and from either hand. |
+| `cooldowns` | Material → cooldown. **Any item works.** Applied after a successful placement or use, and from either hand. |
+| `tag-cache-ttl` | How long an observed combat tag stays trusted when PvPManager itself cannot be reached. A backstop — see below. |
 | `exempt-tag-fix.cancel-both-sides` | `true` means nobody is tagged when either side of the fight holds the exempt node. |
 
 Charging a respawn anchor puts the cooldown on the **anchor**, so what it throttles is placing the
 next one. To throttle the charging itself, add a `GLOWSTONE` entry.
+
+### Which items can have a cooldown
+
+All of them. Three detection paths are used, and which one an item takes decides how precise it is:
+
+| Item | Path | Charged when |
+|---|---|---|
+| `END_CRYSTAL`, `ARMOR_STAND` | the entity being created | the entity really exists — a placement refused by WorldGuard costs nothing |
+| `RESPAWN_ANCHOR` | charge-level comparison | the charge actually rises — a full anchor costs nothing |
+| everything else | the item being used from the hand | the use is not cancelled |
+
+That third path is what makes `FIREWORK_ROCKET: 8s`, `ENDER_PEARL: 10s` and the like work.
+
+A material that is not an item, or has no usable duration, is **named in console at load** rather
+than sitting in the config doing nothing.
+
+### Combat state
+
+Combat state is read from PvPManager directly — its `CombatPlayer` API first, its PlaceholderAPI
+expansion second. `tag-cache-ttl` governs a fallback used only when neither can answer, and exists
+because the cache was once trusted *over* PvPManager: one missed untag left a player permanently "in
+combat" here, locked out of `/spawn` and `/warp`, while PvPManager knew they were fine.
+
+`/oberonutils hooks` reports whether the live state is reachable, separately from whether PvPManager
+is merely installed.
 
 [More on the combat module →](/plugins/oberonutils/features/combat/)
 
@@ -65,6 +94,7 @@ teleport:
   bypass-worlds: [spawn]
   bypass-worlds-applies-to-spawn-command: false
   no-args-action: MENU
+  repeat-command-action: IGNORE
   warps-menu-command: "warps"
   dialog: "warps"
   register-dialog-source: true
@@ -84,6 +114,7 @@ teleport:
 | `bypass-regions` | WorldGuard region IDs where the countdown is skipped. Matched **exactly**. |
 | `force-warmup-regions` | Regions where the countdown always applies. Beats everything, including the bypass permission. |
 | `no-args-action` | What `/warp` does with no arguments — see below. |
+| `repeat-command-action` | What a second `/spawn` or `/warp` does mid-countdown — see below. |
 | `warps-menu-command` | The command run when `no-args-action` is `MENU`. |
 | `dialog` | The DDialogs id opened when `no-args-action` is `DIALOG`. |
 | `register-dialog-source` | Publish the warp list to DDialogs so a dialog can build itself. |
@@ -130,6 +161,28 @@ is not in their list, so the screen cannot offer a button that would refuse them
 | `$(warp_on_cooldown)` | `true` / `false` |
 
 Set `register-dialog-source: false` to leave DDialogs alone entirely.
+
+### Running the command twice
+
+What a second `/spawn` or `/warp` does while a countdown is already running.
+
+| Value | Does |
+|---|---|
+| `IGNORE` | Nothing at all. What the scripts did, and the default. |
+| `MESSAGE` | Sends `spawn.already-teleporting` / `warp.already-teleporting`. |
+| `RESTART` | Cancels the running countdown and starts a fresh one. |
+
+`MESSAGE` looks like it stalls the countdown, and the reason is worth knowing: those messages are
+`ERROR` category, which goes to chat **and** the action bar — and the action bar is where the
+countdown is drawn. Overwriting a line that only refreshes once a second reads as a pause. Pin them
+to chat if you want the message without that:
+
+```yaml
+Presentation:
+  Overrides:
+    warp.already-teleporting: {Channel: CHAT}
+    spawn.already-teleporting: {Channel: CHAT}
+```
 
 Region IDs are matched exactly. The Skript check tested whether the *printed list* of regions
 contained the text, so `spawn_pvp` and `oldspawn` both granted a bypass meant for `spawn`, and

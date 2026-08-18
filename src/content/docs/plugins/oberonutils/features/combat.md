@@ -13,7 +13,12 @@ combat:
   cooldowns:
     END_CRYSTAL: 2s
     RESPAWN_ANCHOR: 2s
+    FIREWORK_ROCKET: 8s
+    ENDER_PEARL: 10s
 ```
+
+**Any item can be given a cooldown**, not just the ones shipped. Fireworks — the elytra-boost case —
+ender pearls, chorus fruit, totems all work.
 
 A cooldown lands after the placement **actually happens**, and applies from either hand.
 
@@ -44,8 +49,18 @@ To throttle the charging itself instead, add a `GLOWSTONE` entry:
     GLOWSTONE: 2s
 ```
 
-Any material works. An entry that is not a real material is named in console and skipped rather than
-taking the module down.
+An entry that is not a real material, is not an item at all, or has no usable duration is named in
+console at load and skipped — rather than sitting in the config looking configured and doing nothing.
+
+### Three detection paths
+
+Which path an item takes decides how precise its cooldown is:
+
+| Item | Charged when |
+|---|---|
+| `END_CRYSTAL`, `ARMOR_STAND` | the entity really exists — a placement refused by WorldGuard costs nothing |
+| `RESPAWN_ANCHOR` | the charge level actually rises — a full anchor costs nothing |
+| everything else | the item is used from the hand and the use is not cancelled |
 
 ### Only in combat
 
@@ -75,6 +90,14 @@ only the player fighting an exempt player escapes the tag.
 By reflection, with the tag events registered dynamically. Nothing to pin to a version, nothing that
 breaks when PvPManager updates, and the module simply does not install when it is absent.
 
-Combat state is tracked from PvPManager's own tag and untag events rather than asked for through a
-placeholder — so the answer is exact, and it does not quietly become "nobody is in combat" whenever
-PlaceholderAPI is reloading.
+Combat state is read from PvPManager itself: its `CombatPlayer` API first, its PlaceholderAPI
+expansion second, and only then a cache of the tag events we observed — aged out by
+`combat.tag-cache-ttl` and cleared on death and on quit.
+
+That order matters. The cache used to be trusted *over* PvPManager, so a single missed untag left a
+player permanently "in combat" as far as this plugin was concerned — refused `/spawn` and `/warp`
+indefinitely while PvPManager itself, and every other plugin on the server, considered them out of
+combat.
+
+`/oberonutils hooks` reports whether the live state is reachable separately from whether PvPManager
+is merely installed, so a silent downgrade to the fallback is visible.
