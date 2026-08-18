@@ -220,6 +220,21 @@ Or rename ours (`Name: stp`). Either way, restart.
 
 Every command's player arguments tab-complete — with vanished players stripped out, along with every other command's suggestions on the server. See [Vanish](/plugins/oberonstaff/features/vanish/).
 
+`/ticket` and `/tickets` complete their subcommands, **filtered to what you may actually run** — a rank without close is never offered `close`, the same rule the click hints in the queue follow. Past the subcommand:
+
+| After | You get |
+|---|---|
+| `priority <#>` | `low` `normal` `high` `urgent` |
+| `category <#>` | the configured category keys |
+| `assign <#>` | online players |
+| `create` | the categories you may open |
+| `stats` | `today` `week` `month` `all` |
+| `notifications` | the switch names, then `on` / `off` |
+
+Ticket **numbers** are deliberately not completed. Tab completion runs on the main thread on every keystroke, and the only way to know which numbers you may name is to ask the database — so suggesting them would put a query in the hot path of typing. Numbers are read off the queue or off a clickable line in chat, which is where they already come from.
+
+`notifications` and `stats` work on **both** commands, so staff do not have to remember which one carries which.
+
 ## Paged logs
 
 `/oberonstaff log` prints one page at a time rather than a wall of text. Under the list is a footer you click:

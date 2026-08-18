@@ -153,6 +153,21 @@ A sound name this server does not know plays nothing rather than erroring, so a 
 
 ---
 
+## Restyling the menu
+
+Every switch has its own block in [`menus.yml`](/plugins/oberonstaff/configuration/menus/#notification-switches), keyed by the same short name the command takes — so the word you edit is the word a player types:
+
+```yaml
+Notifications:
+  Buttons:
+    reply:
+      Material: WRITABLE_BOOK
+      Name: "<green>Replies"
+      Help: "Somebody answers a ticket you follow."
+```
+
+The icon a switched-off row uses (`Off-Material`) and the On/Off wording (`State`) are shared across all of them, so off looks off the same way everywhere.
+
 ## Permissions
 
 | Node | Default | Grants |

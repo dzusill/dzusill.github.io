@@ -57,6 +57,20 @@ Action-Icons:
 
 ---
 
+## Titles
+
+Every one of the eight menus has its own `Title`, and all eight are written out in the shipped file:
+
+```yaml
+Admin-Queue:
+  Title: "<#5DADE2>Tickets <dark_gray>· <gray><scope>"
+  Report-Title: "<red>Reports <dark_gray>· <gray><scope>"
+```
+
+`/tickets` and `/reports` are the **same menu section**, so without `Report-Title` they would share one name and renaming one would rename both. Delete that line to call them the same thing.
+
+The [dialog wizard](/plugins/oberonstaff/configuration/config/#how-the-wizard-asks) has its own title and submit button, in [`messages.yml`](/plugins/oberonstaff/configuration/messages/#the-wizard) rather than here — it is not an inventory.
+
 ## Anatomy of a menu
 
 ```yaml
@@ -82,6 +96,41 @@ Admin-Queue:
 Titles, names and lore are **MiniMessage**: `<red>`, `<gradient:#a:#b>`, `<bold>`, hex.
 
 ---
+
+## Border
+
+```yaml
+Admin-Queue:
+  Rows: 6
+  Border: true
+```
+
+Keeps the outer ring clear of content so the filler reads as a frame around it. Content starts on the **second row, second column** — slot 10 — and stops one column short of each edge.
+
+On the six-row queue that works out to `10-16, 19-25, 28-34`, which is exactly the `Content-Slots` list this file used to carry by hand. Turning it on changes nothing about where tickets are drawn; it just stops you having to write the list.
+
+| | |
+|---|---|
+| `Border: true` | *(default)* three rows of seven on a six-row queue |
+| `Border: false` | content uses the full width |
+
+Two things worth knowing:
+
+- **`Content-Slots` still wins.** A hand-written list is an instruction. The shipped file has its list commented out so `Border` applies on a fresh install — an existing `menus.yml` keeps whatever it already says, so delete that line to switch over.
+- **A menu too short to have an interior ignores it.** The three-row Punish menu with its reserved bottom row would inset to nothing, and a menu that opens empty is worse than one without a frame.
+
+`Border: true` with `Filler` deleted gives an empty ring, not a frame — the frame *is* the filler.
+
+## Hide-Attributes
+
+```yaml
+Punish:
+  Hide-Attributes: true
+```
+
+Hides the vanilla tooltip lines — attack damage, attribute modifiers, the enchantment list. A Diamond Sword used as a Punish button was advertising "+7 Attack Damage" underneath the punishment it runs; those lines describe an item nobody is going to hold, and they push the lore that matters off the bottom of the tooltip.
+
+On by default. Set it false per menu if you want vanilla tooltips back.
 
 ## Where icons sit
 
@@ -186,31 +235,181 @@ The same applies to a whole section. Delete `Confirm` and the confirmation scree
 
 ### The buttons that exist
 
-Five names, and only these five. A section under `Buttons` with any other name is read and then never placed — the menus look up the controls they know about, so `Statistics:` or `Refresh:` invents nothing.
+A section under `Buttons` with a name no menu looks up is read and then never placed — the keys are a fixed set, not something you can invent.
 
-| Key | In |
+**`Admin-Queue` and `Ticket-Hub`**
+
+| Key | |
 |---|---|
-| `Scope-Filter` | `Admin-Queue`, `Ticket-Hub` |
-| `Claim-Filter` | `Admin-Queue` only |
-| `Category-Filter` | `Admin-Queue`, `Ticket-Hub` |
-| `Sort` | `Admin-Queue`, `Ticket-Hub` |
+| `Scope-Filter` `Category-Filter` `Sort` | both menus |
+| `Claim-Filter` | `Admin-Queue` only — a player's own queue has no "whose" question |
 | `New-Ticket` | `Ticket-Hub` only |
+| `Refresh` | re-reads the queue |
+| `Empty` | drawn when the filters match nothing |
+| `Loading` | drawn while the query is in flight |
+
+**`Ticket-Detail`** — every control, staff and player alike:
+
+```
+Claim  Unclaim  Priority  Teleport  Reply  Punish  Close  Reopen
+Write-Message  Close-Own  Rate
+Answers  Conversation  Who-And-When  Evidence  Loading  Back
+```
+
+**Others:** `Confirm` / `Cancel` / `Question` on the confirm screen, and `Back` on `Punish`, `Stats`, `Category-Picker` and `Notifications`.
+
+Which of these actually appear is still decided by permission and by the ticket's own state — `Reopen` only on a closed ticket, `Punish` only on a report, `Rate` only to the owner of a closed one.
 
 `Ticket-Hub`'s filters ship **unwritten** — the built-in wording already reads correctly. Adding a `Scope-Filter` block there styles the player queue on its own; it inherits nothing from `Admin-Queue`.
+
+### Every field falls back on its own
+
+A block you do not write keeps the appearance the plugin ships with. A field you leave out of a block you *do* write falls back the same way:
+
+```yaml
+    Close:
+      Material: BARRIER      # ← only this
+```
+
+keeps the shipped name and lore. Writing one line must not silently blank two others — that is what stops people editing a layout file at all.
+
+Leaving `Material` out entirely on `Close`, `Reopen`, `Close-Own`, `Confirm` or `Cancel` falls back to [`Action-Icons`](#shared-action-colours), so recolouring every yes/no across the desk stays one edit.
+
+### Turning a button off
+
+```yaml
+    Rate:
+      Enabled: false
+```
+
+Not `Slot: -1`. A missing slot and a deliberately removed button are different intentions, and both parse to the same negative number — reading one as the other would make a block that sets only a `Name` silently vanish.
 
 ### Hiding a button by permission
 
 ```yaml
-    New-Ticket:
-      Slot: 38
-      Material: WRITABLE_BOOK
-      Name: "<green>New ticket"
-      Permission: "oberonstaff.ticket.create"
+    Punish:
+      Permission: "oberonstaff.report.punish"
 ```
 
-Anyone without the node does not see the item at all — the same rule the command tree applies to subcommands, rather than showing a button that then refuses.
+Anyone without the node does not see the item at all — the same rule the command tree applies to subcommands, rather than showing a button that then refuses. Ships blank, meaning no gate.
 
-Ships blank, meaning no gate. It is worth setting on `New-Ticket` if opening tickets is restricted on your server, so the button is not offered to players who will only be refused by the command behind it.
+### Panels
+
+The four read-only items in `Ticket-Detail` build their lore from the ticket, so they cannot simply take a `Lore:` list. Every line they say is under `Panels` instead:
+
+```yaml
+Ticket-Detail:
+  Panels:
+    Answers:
+      Name: "<#5DADE2>What they told us"
+      Question: "<gray>%prompt%"
+      Answer: "  <white>%answer%"
+      Empty: "<dark_gray>No answers recorded."
+    Conversation:
+      Name: "<#5DADE2>Conversation <gray>(%count%)"
+      Empty: "<dark_gray>Nothing said yet."
+      Hidden: "<dark_gray>… %count% earlier line(s) not shown"
+      Footer: [ "", "<yellow>Click <dark_gray>» <gray>read the whole conversation in chat" ]
+    Who-And-When:
+      Owner: "<gray>Opened by <white>%player%"
+      Target: "<gray>Reported: <red>%target%"
+      Opened: "<gray>Opened <white>%age%"
+      First-Reply: "<gray>First reply after <white>%time%"
+      No-Reply: "<red>No staff reply yet"
+      Rating: "<gray>Rating: %stars%"
+    Evidence:
+      Entry: "  <white>%value%"
+      Headers:
+        Location: "<gray>Where:"
+        Anticheat: "<red>Anticheat flags:"
+```
+
+:::note[The conversation lines are not here]
+They come from `thread.view.player` / `staff` / `note` / `system` in [`messages.yml`](/plugins/oberonstaff/configuration/messages/) — the **same** formats the chat view uses, so one edit restyles both.
+
+The menu used to keep its own copy. Editing `messages.yml` restyled the conversation in chat and left the menu saying something else: the same conversation reading two different ways depending on where you opened it.
+:::
+
+Evidence headings are configurable; the **grouping** is not. A report backed by seven Killaura flags is a different thing from one backed by none, and that has to be visible before anybody teleports anywhere.
+
+### The leaderboard row
+
+```yaml
+Stats:
+  Row:
+    Name: "<gray>%rank%. <white>%staff%"
+    Lore:
+      - "<gray>Handled: <white>%handled%"
+      - "<gray>First reply: <white>%response%"
+      - "<gray>Time to close: <white>%close%"
+      - "<gray>Rating: <white>%rating% <yellow>★"
+      - ""
+      - "<gray>Reopened: <white>%reopened% <dark_gray>(%reopen_rate%)"
+```
+
+Reorder, rename or drop any line. `%reopened%` ships beside `%reopen_rate%` on purpose: 3 out of 200 and 3 out of 5 are very different, and only the rate says which. Keeping the count and dropping the rate is how a leaderboard starts rewarding closing tickets rather than solving them.
+
+### Punishment lore
+
+The icon and name of a punishment come from `Reports.Punishments.Actions` in [`config.yml`](/plugins/oberonstaff/configuration/config/); this is the lore under it:
+
+```yaml
+Punish:
+  Action-Item:
+    Lore:
+      - "<dark_gray>Runs as console:"
+      - "<gray>/%command%"
+      - ""
+      - "%closes%"
+      - "<yellow>Click <dark_gray>» <gray>confirm"
+    Closes: "<yellow>Also closes report #%id%"
+    Leaves-Open: "<dark_gray>Leaves the report open"
+    Confirm: "<red>/%command%"
+```
+
+`%command%` is the exact console command that will run, escaped and **never trimmed**. Staff have to see precisely what they are about to dispatch — that is the one line in this file worth leaving alone.
+
+### Notification switches
+
+One block per switch, keyed by the **same short name** `/ticket notifications` takes — so the word you edit here is the word a player types there:
+
+```yaml
+Notifications:
+  Off-Material: GRAY_DYE
+  State:
+    Enabled: "<green>On"
+    Disabled: "<red>Off"
+    Turn-On: "<yellow>Click <dark_gray>» <gray>turn on"
+    Turn-Off: "<yellow>Click <dark_gray>» <gray>turn off"
+  Buttons:
+    reply:
+      Material: WRITABLE_BOOK
+      Name: "<green>Replies"
+      Help: "Somebody answers a ticket you follow."
+```
+
+`Enabled` / `Disabled`, not `On` / `Off`: a bare `On:` or `Off:` as a YAML **key** parses as a boolean, so the key becomes `true` and nothing ever finds it.
+
+### Click sounds
+
+```yaml
+    Refresh:
+      Sound:
+        Enabled: true
+        Name: "ui.button.click"
+        Volume: 0.5
+        Pitch: 1.2
+```
+
+Per button rather than one sound for the whole desk: a filter cycling and a ticket closing are not the same event. Either spelling works (`ui.button.click` or `UI_BUTTON_CLICK`), and a name this server does not have is silent rather than an error.
+
+`Enabled: false` is a decision, not an absence — it silences that one button instead of falling back to anything.
+
+### Refresh, not Close
+
+The queue's bottom-middle slot is a **Refresh** button with a name tag icon. The framework draws a Close button there by default; Escape already closes a menu, and a staff member watching a busy queue re-reads it far more often than they close it.
+
+Configure it like any other button, or `Enabled: false` to get the framework's Close back.
 
 ---
 
@@ -251,6 +450,31 @@ Each queue has a `Ticket-Item` block:
 | `<reporters>` | Distinct reporters on a merged report |
 | `<rating>` | `★★★★☆` once the player has rated it, or `not yet rated` |
 | `<server>` | Which server it was opened on, for a shared database |
+
+`<priority>`, `<status>` and `<claimed_by>` arrive **with their own colour already on them** — they are whole `Display` values from [`config.yml`](/plugins/oberonstaff/configuration/config/#tickets), not bare words. Do not put a colour tag in front of one; it would be overridden and the rung would lose the colour its owner gave it. `<priority_color>` is the leading tag of that same value, for colouring the rest of the line to match.
+
+### Click hints
+
+The lines under a ticket's lore telling you what each click does:
+
+```yaml
+  Ticket-Item:
+    Hints:
+      Open: "<yellow>Left <dark_gray>» <gray>open"
+      Claim: "<yellow>Shift-left <dark_gray>» <gray>claim"
+      Unclaim: "<yellow>Shift-left <dark_gray>» <gray>unclaim"
+      Priority: "<yellow>Right <dark_gray>» <gray>cycle priority"
+      Close: "<yellow>Shift-right <dark_gray>» <gray>close"
+      Teleport: "<yellow>Drop (Q) <dark_gray>» <gray>teleport there"
+```
+
+Blank a line to drop that hint for everybody. **Which hints a viewer sees is still decided by permission** — a rank without close never reads the close hint, whatever this says. The text is yours; the gate is not.
+
+`Claim` and `Unclaim` are two entries rather than one with a `%action%`, because the two words are not always a suffix swap in other languages.
+
+### Right-click steps back
+
+Every cycling filter goes forward on left-click and **backward on right-click**. With four values, getting from the last one to the one before it used to mean three more clicks and a full reload each time.
 
 :::note[These stay in angle brackets]
 Ticket-item placeholders are substituted by the plugin **before** the line reaches MiniMessage, so `<id>` here is correct and `%id%` would not work. `messages.yml` is the opposite way round — see [the note there](/plugins/oberonstaff/configuration/messages/#values-are-name-not-name). The two files are not interchangeable.

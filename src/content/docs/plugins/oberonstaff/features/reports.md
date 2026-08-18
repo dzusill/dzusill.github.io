@@ -51,6 +51,8 @@ Reports:
 
 Staff see it as a panel in the ticket detail menu, grouped by kind. It is staff-only and appears on reports only.
 
+The headings above each group — `Where:`, `Nearby:`, `Anticheat flags:` — are in [`menus.yml`](/plugins/oberonstaff/configuration/menus/#panels). The **grouping** is not configurable: a report backed by seven Killaura flags is a different thing from one backed by none, and that has to be visible before anybody teleports anywhere.
+
 ### Proof the player supplies
 
 Separately from what the plugin collects, the wizard asks for proof. That question is a `LINK`, and two independent settings decide how hard it pushes:
@@ -160,6 +162,8 @@ Reports:
 ```
 
 Each entry shows **the exact command it will run** in its lore, and clicking asks for confirmation first. A staff member should never be able to ban somebody without having read what they were about to do.
+
+That lore is [configurable](/plugins/oberonstaff/configuration/menus/#punishment-lore), but `%command%` is escaped and never trimmed — it is the one line worth leaving alone.
 
 Works with any punishment plugin — LiteBans, AdvancedBan, CMI, LibertyBans, BanManager — because it dispatches a console command rather than calling an API. The command simply has to exist on your server.
 

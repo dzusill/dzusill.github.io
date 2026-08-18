@@ -97,6 +97,16 @@ The bottom row cycles four filters, and the title shows where you are:
 | Category | all → each category in this queue → all |
 | Sort | priority → newest → oldest → waiting |
 
+Left-click steps forward, **right-click steps back**.
+
+:::note[**Open** means *not closed*]
+Not "status is exactly OPEN". Claiming a ticket moves it to `CLAIMED`, so the exact reading emptied the queue of everything anybody had picked up — and made **Owner: mine** plus the default **Showing: Open** return nothing at all, since a ticket you claimed is by definition no longer status OPEN.
+
+**Claimed** still matches exactly, so "only the ones being worked" is still one click away.
+:::
+
+The category filter only offers categories that exist here. A disabled one — the shipped `appeal` is disabled by default — is not a step in the cycle, because a filter for tickets nobody can open is a dead stop.
+
 All of it is filtered and sorted **in SQL**, not in memory. The queue is the screen that gets opened constantly on a busy server, and the table behind it is the one that grows without bound.
 
 ### Two queues
@@ -190,6 +200,8 @@ Ticket #43 rated ★★★★☆ | by Steve [Open]
 That announcement is staff-wide rather than sent to the ticket's followers, and it has its own switch in `/ticket notifications` (**Ratings**) and its own sound (`Staff-Rated`). A rating is feedback on how the team is doing, worth telling every admin — not only whoever happened to touch that one ticket.
 
 Rating is **once only**. A rating that could be changed is one player deciding a staff member's average.
+
+How the stars are drawn is in [`config.yml`](/plugins/oberonstaff/configuration/config/#wording) under `Tickets.Rating` — one place, because the star row is built in three: the queue lore, the detail panel and the staff announcement. Each star carries its own tag, so a gradient across the five works.
 
 ---
 

@@ -189,13 +189,74 @@ The ticket desk is the largest block in the file. Each part is documented where 
 | Block | What it decides | |
 |---|---|---|
 | `Tickets.Categories` | what a player can open, and what each one asks | [Ticket Desk](/plugins/oberonstaff/features/tickets/) |
-| `Tickets.Priorities` | the four rungs and their colours | [Ticket Desk](/plugins/oberonstaff/features/tickets/#statuses-and-priorities) |
+| `Tickets.Priorities` `Statuses` `Flags` | what every rung, state and flag is **called** | [below](#wording) |
+| `Tickets.Wizard` | dialog or chat | [below](#how-the-wizard-asks) |
 | `Tickets.Admin-GUI` | stale and response targets, default sort and scope, `This-Server-Only` | [Ticket Desk](/plugins/oberonstaff/features/tickets/) |
 | `Tickets.Thread` | page size, rank prefixes, who may read a conversation | [Conversation](/plugins/oberonstaff/features/conversation/) |
 | `Tickets.Notifications` | who is told what, and what is held for somebody offline | [Notifications](/plugins/oberonstaff/features/notifications/) |
 | `Tickets.Watchers` | following somebody else's ticket | [Ticket Desk](/plugins/oberonstaff/features/tickets/) |
 | `Tickets.Canned-Replies` | `!macro` expansions for `/tickets reply` | [Ticket Desk](/plugins/oberonstaff/features/tickets/) |
 | `Reports.*` | evidence, duplicates, anticheat, punishments | [Player Reports](/plugins/oberonstaff/features/reports/) |
+
+### Wording
+
+```yaml
+Tickets:
+  Priorities:
+    HIGH:
+      Display: "<gold>High"
+      Weight: 3
+  Statuses:
+    OPEN: "<green>Open"
+    CLAIMED: "<aqua>Claimed"
+    CLOSED: "<dark_gray>Closed"
+  Flags:
+    Stale: "<yellow>STALE"
+    Late: "<red>LATE"
+    Merged: "<dark_gray>x%count%"
+    Unclaimed: "<dark_gray>unclaimed"
+```
+
+`Display` is **the whole thing — the word and its colour**. `<priority_color>` in [`menus.yml`](/plugins/oberonstaff/configuration/menus/) is taken from the leading tag here, so the colour can never drift out of step with the word next to it. A `Display` with no leading tag simply inherits whatever colour surrounds it, which is correct rather than broken.
+
+Leave a rung out and it keeps its shipped wording — a half-written block costs you the rungs you left out, not the ones you did not touch.
+
+:::caution[The rung names are identifiers]
+`LOW` / `NORMAL` / `HIGH` / `URGENT` are what `/tickets priority` parses. Renaming `HIGH` to `"Urgentné"` changes what players read without breaking the command staff type — and tab completion still offers `high`, not the display, because completing a word the command then refuses would be worse than not completing at all.
+:::
+
+None of the four flags is a database column. All are the clock, or a count, compared at render time.
+
+```yaml
+Tickets:
+  Rating:
+    Star: "<gold>★"
+    Empty-Star: "<dark_gray>☆"
+    Not-Rated: "<dark_gray>not yet rated"
+    Claimed-By: "<white>%player%"
+```
+
+One place, because the star row is built in three: the queue lore, the ticket detail panel and the staff announcement. Each star carries its own tag, so a gradient across the five works.
+
+### How the wizard asks
+
+```yaml
+Tickets:
+  Wizard:
+    Input: AUTO
+```
+
+| | |
+|---|---|
+| `AUTO` | *(default)* a dialog where the server can show one, chat elsewhere |
+| `DIALOG` | always a dialog. Needs Paper 1.21.6+ |
+| `CHAT` | always chat, even where a dialog is available |
+
+A dialog puts every question on one screen with a Submit button; chat asks them one at a time. **Either way the answers go through the same validation** — reporting yourself is still refused, `Require-Link` still applies, and an optional question can still be left blank. A dialog is a different way of asking the same question, not a different rule about the answer.
+
+Which one is live is logged at startup. That is deliberate: "the wizard asked me in chat" and "this server has no Dialog API" look identical from in game, and only one of them is worth reporting as a bug.
+
+`DIALOG` on a server without the Dialog API prints a warning and asks in chat anyway — there is no third option, and silently downgrading a setting somebody chose deliberately is worse than saying so.
 
 ### Sections you own outright
 

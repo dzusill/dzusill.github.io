@@ -70,6 +70,24 @@ Nothing acts on these numbers automatically — a human reads them — so a minu
 
 ---
 
+## Restyling the board
+
+Every line of a row is a format in [`menus.yml`](/plugins/oberonstaff/configuration/menus/#the-leaderboard-row) — reorder them, rename them, or drop the ones your server does not care about:
+
+```yaml
+Stats:
+  Row:
+    Lore:
+      - "<gray>Handled: <white>%handled%"
+      - "<gray>Reopened: <white>%reopened% <dark_gray>(%reopen_rate%)"
+```
+
+The Window and Sort buttons, the empty state and the Back button are configurable the same way.
+
+:::caution[Keep the reopen rate next to the count]
+3 out of 200 and 3 out of 5 are very different, and only the rate says which. Dropping the rate and keeping the count is how a leaderboard starts rewarding closing tickets rather than solving them.
+:::
+
 ## Placeholders
 
 For a scoreboard or tab list, without opening anything:

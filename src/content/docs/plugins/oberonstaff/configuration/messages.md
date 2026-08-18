@@ -171,6 +171,54 @@ is how somebody ends up teleported to the wrong person.
 This key was missing from earlier builds, so the raw key was what players saw. It is added to your file automatically
 on the next start.
 
+## Time
+
+```yaml
+time:
+  just-now: "just now"
+  days: "d"
+  hours: "h"
+  minutes: "m"
+  format: "%amount%%unit% ago"
+```
+
+How `3h ago` is written — the "Last activity" line in every ticket, and the ages in the detail view.
+
+This was the last English built into the renderer rather than read from a file, so a fully translated `messages.yml` still produced English on every ticket in the queue.
+
+`%amount%` is the number and `%unit%` one of the three suffixes. Lines that read "first reply after 3h" are built from the same parts with the `format` wrapper left off, rather than by stripping `" ago"` off the result — that only ever worked against the English it was written for.
+
+## The wizard
+
+```yaml
+ticket:
+  confirm-close: "<red>Close ticket #%id%?"
+  wizard:
+    dialog-title: "<#5DADE2>New ticket"
+    dialog-submit: "<green>Submit"
+    skip-hint: " <dark_gray>(or type <white>skip</white>)"
+```
+
+| Key | |
+|---|---|
+| `confirm-close` | the question on the confirmation screen, from all three places a ticket can be closed |
+| `dialog-title` · `dialog-submit` | the dialog form's own chrome, when [`Wizard.Input`](/plugins/oberonstaff/configuration/config/#how-the-wizard-asks) asks for one |
+| `skip-hint` | appended to an optional question. Blank it to stop offering the word — the answer stays optional either way |
+
+## What a follower is told
+
+```yaml
+thread:
+  summary:
+    claimed: "<#5DADE2>%staff%<gray> is now on this ticket"
+    priority: "<gray>Priority is now %priority%"
+    closed: "<gray>Closed by <white>%staff%<dark_gray> — <gray>%reason%"
+```
+
+Deliberately not the same strings as `thread.action` above. Those are the record written into the thread and name who did it; these land in somebody's chat and are about what happened to *their* ticket — so "Peter claimed this ticket" reads wrong where "Peter is now on this ticket" reads right.
+
+`%priority%` and `%category%` arrive with their own colour on them, from [`config.yml`](/plugins/oberonstaff/configuration/config/#wording). Do not put a colour tag in front of one.
+
 ## If a message shows as its key
 
 Seeing `teleport.denied` in-game means the key is missing. That is deliberate — a missing message is visible rather than silent. Add it back, or delete the file and restart to regenerate it.
