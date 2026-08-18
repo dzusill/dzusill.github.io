@@ -20,6 +20,22 @@ A value is **nothing** when:
 
 When a row is nothing, **every field of that row is nothing**: `top_name`, `top_value`, `top_uuid` and `top_line` all return `Blanking.Text` together. A menu row can never come out half-drawn — a name next to an empty amount, or a decorated line wrapped around nothing.
 
+## Ranks close up; they never leave a hole
+
+Removed rows do not leave gaps behind. The board a placeholder resolves against is rebuilt from what survives: deduplicated, sorted highest first, renumbered from 1. So:
+
+- `%oberonstats_top_name_5_<track>%` is the **fifth player worth showing**, not "whatever the economy filed under rank 5";
+- ranks `1` through `%oberonstats_top_size_<track>%` always draw — a menu sized to `top_size` never shows an empty line in the middle;
+- only ranks past the end of the board are blank.
+
+This matters more than it sounds. ExcellentEconomy builds its leaderboard into a map keyed by **lower-case player name**, so two accounts sharing a name — offline-mode duplicates, leftovers from a name change, NPC accounts — collapse into one slot. The poorer entry lands in the richer one's position, the numbering gains a hole, and the list stops being sorted. Taken literally that shows up in a menu as *one rank in the middle rendering empty while the ranks below it are fine*. OberonStats does not take it literally.
+
+`/oberonstats board <track>` reports what it had to correct:
+
+```
+ » Source list: 4 row(s) worth nothing, 1 duplicate(s) dropped, sorted: NO — the source list is not sorted
+```
+
 The same rule decides a player's rank: somebody sitting on zero is treated as unranked, so `%oberonstats_position_coins%` is blank rather than a proud `47th` for an empty wallet.
 
 ## Settings

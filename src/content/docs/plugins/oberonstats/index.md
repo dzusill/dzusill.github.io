@@ -1,9 +1,11 @@
 ---
 title: "OberonStats"
-description: "OberonStats turns ExcellentEconomy into placeholders you can actually build a menu out of: a player's own stats, another player's stats, and leaderboard…"
+description: "OberonStats turns your server's numbers into placeholders you can actually build a menu out of: a player's own stats, another player's stats, and…"
 ---
 
-**OberonStats** turns [ExcellentEconomy](https://nightexpressdev.com/excellenteconomy/) into placeholders you can actually build a menu out of: a player's own stats, **another player's** stats, and leaderboard rows that **disappear completely when they are worth nothing**.
+**OberonStats** turns your server's numbers into placeholders you can actually build a menu out of: a player's own stats, **another player's** stats, and leaderboard rows that **disappear completely when they are worth nothing**.
+
+It ranks three sources — [ExcellentEconomy](https://nightexpressdev.com/excellenteconomy/) currencies, the Vault balance, and **vanilla Minecraft statistics** (kills, deaths, playtime, blocks) that need no extra plugin at all — and every one of them gets the identical set of placeholders.
 
 It is built on [DzusillCore](https://github.com/dzusill/DzusillCore) and works on Paper, Purpur and Folia.
 
@@ -30,7 +32,10 @@ ExcellentEconomy ranks **every** player it has data for, including everyone sitt
 
 ## What it does
 
-- 🙋 **Own stats** — balance, rank, ordinal rank (`3rd`), in four formats each.
+- 🧩 **Three sources, one grammar** — `coins`, `money`, `kills`, `deaths`, `playtime`, `mobs-killed`, `blocks-broken`, `blocks-placed`: swap one word and the whole menu works for another stat.
+- 🎮 **No extra plugin for the vanilla ones** — Minecraft already counts kills, deaths, playtime and blocks per player, offline players included. OberonStats just ranks them.
+- ⏱️ **Durations read like durations** — `6h 59m`, `2d 3h 4m 5s`, `6:59`, or a bare number for sorting.
+- 🙋 **Own stats** — balance, rank, ordinal rank (`3rd`), in several formats each.
 - 👥 **Other players' stats** — `_of_<player>`, or a session target set by a menu button. Offline players included.
 - 🫥 **Blank means blank** — a row worth nothing returns an empty string for its name, value, uuid **and** its rendered line, together, so the whole row collapses.
 - 🏆 **Leaderboard rows** — name, value, uuid, or a single configurable line per rank.
@@ -48,9 +53,11 @@ ExcellentEconomy ranks **every** player it has data for, including everyone sitt
 | Server | Paper / Purpur / Folia **1.21+** |
 | Java | **21+** |
 | OberonCore (DzusillCore) | **1.12.0+** (required) |
-| ExcellentEconomy | **2.8.0+** (required) |
-| nightcore | whatever ExcellentEconomy needs (it already depends on it) |
 | PlaceholderAPI | **required in practice** — the plugin publishes nothing without it |
+| ExcellentEconomy | **2.8.0+** — only for currency tracks |
+| nightcore | whatever ExcellentEconomy needs (it already depends on it) |
+| Vault + an economy plugin | optional — only for the `money` track |
+| Vanilla statistic tracks | **nothing** — the server already has the data |
 
 ---
 

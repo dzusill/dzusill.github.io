@@ -7,7 +7,9 @@ Every placeholder is available under two identifiers — `%oberonstats_…%` and
 
 Throughout this page:
 
-- `<track>` is an ExcellentEconomy **currency id** (`coins`, `gems`, `gold_bars` — underscores are fine).
+- `<track>` is any **track id** — an ExcellentEconomy currency (`coins`, `stardust`), a vanilla statistic
+  (`kills`, `deaths`, `playtime`, `mobs-killed`, `blocks-broken`, `blocks-placed`) or the Vault balance (`money`).
+  Dashes and underscores are both fine. `/oberonstats status` lists yours. See [Stat Sources](/plugins/oberonstats/features/stat-sources/).
 - `<pos>` is a **1-based leaderboard rank**.
 - `<slot>` is a **1-based position on the current page**.
 - `<player>` is a player name, online or offline.
@@ -29,7 +31,24 @@ Throughout this page:
 | `%oberonstats_balance_styled_<track>%` | Currency format with its MiniMessage tags intact |
 | `%oberonstats_balance_total%` | Every allowed track added up, as a plain number |
 
-`value` works as a synonym for `balance` everywhere (`%oberonstats_value_short_coins%`).
+`value` works as a synonym for `balance` everywhere (`%oberonstats_value_short_coins%`), and every one of these works on a count as well as a currency: `%oberonstats_balance_kills%`, `%oberonstats_balance_short_mobs-killed%`.
+
+### Durations
+
+A track whose unit is a duration — `playtime` out of the box — accepts five more formats, usable anywhere a format goes (`balance_`, `top_value_`, `page_value_`):
+
+| Placeholder | Result |
+|---|---|
+| `%oberonstats_balance_playtime%` | `6h 59m` — the two largest units that carry information |
+| `%oberonstats_balance_long_playtime%` | `2d 3h 4m 5s` — every unit |
+| `%oberonstats_balance_short_playtime%` | `6h` — largest unit only |
+| `%oberonstats_balance_clock_playtime%` | `6:59` — hours never roll into days, so `51:04` is possible |
+| `%oberonstats_balance_hours_playtime%` | `7` — a number, for sorting or arithmetic |
+| `%oberonstats_balance_minutes_playtime%` | `419` |
+| `%oberonstats_balance_days_playtime%` | `0.3` |
+| `%oberonstats_balance_raw_playtime%` | `503456` — the raw tick count |
+
+On a track that is **not** a duration these fall back to the plain number, so a menu that reuses one layout for several tracks never breaks.
 
 ### For another player
 
@@ -135,6 +154,21 @@ The viewer's current page is moved with `/oberonstats page …` (see [Paging](/p
 ```
 
 With `Blanking.Text: ""` every unused rank renders as an empty line instead of `Nobody — 0`.
+
+## Copy-paste: one layout, every track
+
+```
+Coins:    %oberonstats_balance_coins%          (%oberonstats_position_ordinal_coins%)
+Money:    %oberonstats_balance_money%          (%oberonstats_position_ordinal_money%)
+Kills:    %oberonstats_balance_kills%          (%oberonstats_position_ordinal_kills%)
+Mobs:     %oberonstats_balance_mobs-killed%    (%oberonstats_position_ordinal_mobs-killed%)
+Deaths:   %oberonstats_balance_deaths%         (%oberonstats_position_ordinal_deaths%)
+Playtime: %oberonstats_balance_playtime%       (%oberonstats_position_ordinal_playtime%)
+Mined:    %oberonstats_balance_blocks-broken%  (%oberonstats_position_ordinal_blocks-broken%)
+Placed:   %oberonstats_balance_blocks-placed%  (%oberonstats_position_ordinal_blocks-placed%)
+```
+
+Add `_of_<player>` to every line and the same screen shows somebody else's stats.
 
 ## Copy-paste: a /stats screen
 

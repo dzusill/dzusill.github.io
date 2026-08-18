@@ -1116,6 +1116,10 @@
             "label": "✨ Features",
             "items": [
               {
+                "label": "Stat Sources",
+                "slug": "plugins/oberonstats/features/stat-sources"
+              },
+              {
                 "label": "Blanking Empty Rows",
                 "slug": "plugins/oberonstats/features/blanking"
               },

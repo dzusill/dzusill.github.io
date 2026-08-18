@@ -39,6 +39,25 @@ Targets:
 Tracks:
   Whitelist: []
 
+Sources:
+  Refresh-Seconds: 300
+  Active-Within-Days: 90
+  Max-Players: 2000
+  Live-Cache-Seconds: 3
+  Vault:
+    Enabled: true
+    Track-Id: money
+    Name: Money
+  Statistics:
+    Enabled: true
+    Tracks:
+      kills:         { Statistic: PLAYER_KILLS, Name: Kills }
+      mobs-killed:   { Statistic: MOB_KILLS,    Name: Mobs Killed }
+      deaths:        { Statistic: DEATHS,       Name: Deaths }
+      playtime:      { Statistic: PLAY_ONE_MINUTE, Unit: TIME, Name: Playtime }
+      blocks-broken: { Aggregate: BLOCKS_MINED, Name: Blocks Broken }
+      blocks-placed: { Aggregate: ITEMS_USED,   Name: Blocks Placed }
+
 Commands:
   Stats:
     Enabled: false
@@ -92,6 +111,28 @@ Tracks:
 Empty means every ExcellentEconomy currency. Listed ids are the only ones answered — anything else returns nothing, so a menu cannot accidentally expose a currency you keep internal.
 
 `Tracks` is an ignored section on merge, so an entry you delete stays deleted after an update.
+
+## Sources
+
+Where the numbers come from. ExcellentEconomy needs nothing here — it ranks its own players. See
+[Stat Sources](/plugins/oberonstats/features/stat-sources/).
+
+| Key | Default | Meaning |
+|---|---|---|
+| `Refresh-Seconds` | `300` | How often the vanilla-statistic and Vault leaderboards are rebuilt. |
+| `Active-Within-Days` | `90` | Skip players who have not logged in for this long. `0` ranks everybody the server remembers. |
+| `Max-Players` | `2000` | Hard cap on how many players are read, most recently seen first. |
+| `Live-Cache-Seconds` | `3` | How long an online player's aggregated statistic (`blocks-broken`) is remembered. |
+| `Vault.Enabled` | `true` | Expose the Vault balance as a track. Needs Vault and an economy plugin. |
+| `Vault.Track-Id` / `Vault.Name` | `money` / `Money` | What that track is called. |
+| `Statistics.Enabled` | `true` | Expose vanilla statistics as tracks. |
+| `Statistics.Tracks.<id>.Statistic` | — | Any name from Bukkit's `Statistic` enum. |
+| `Statistics.Tracks.<id>.Aggregate` | `NONE` | `BLOCKS_MINED` or `ITEMS_USED` — use these instead of `Statistic`, since Minecraft stores them per block/item. |
+| `Statistics.Tracks.<id>.Unit` | `COUNT` | `TIME` renders as `12h 34m` and unlocks the duration formats. |
+| `Statistics.Tracks.<id>.Name` | the id | Display name for `%oberonstats_currency_name_<track>%`. |
+
+`Sources.Statistics.Tracks` is an ignored section on merge, so a track you delete stays deleted after an update.
+A track naming a statistic the server does not know is skipped with a warning rather than breaking the rest.
 
 ## Commands
 
