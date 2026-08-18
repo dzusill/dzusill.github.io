@@ -17,7 +17,23 @@ The desk is complete: categories and the wizard, both queues, ticket chat, [repo
 
 ### Opening the hub
 
-`/ticket` opens their own tickets, newest first, colour-coded by status. Closed ones stay listed — somebody coming back to find out what happened to last week's report is looking for exactly that.
+`/ticket` opens their own tickets — **the same menu staff get**, with the same status, category and sort filters, minus the staff-only controls. "Show me my closed bug reports" is a question a player asks too, and a player with eleven tickets needs the filters more than a staff member with a fresh queue does.
+
+Two things differ from the staff queue:
+
+- The scope is **pinned** to their own tickets, separately from every visible filter, so no amount of clicking can widen it to somebody else's.
+- The **Owner** filter is gone — "unclaimed" and "mine" are questions about who is working a ticket, and every ticket in this list is already theirs. **New ticket** takes its slot.
+
+Closed tickets stay listed. Somebody coming back to find out what happened to last week's report is looking for exactly that, which is why both queues open on **All** by default:
+
+```yaml
+Tickets:
+  Admin-GUI:
+    Default-Scope: ALL          # /tickets and /reports
+    Player-Default-Scope: ALL   # /ticket
+```
+
+Two settings rather than one: staff opening a queue and a player opening their own history are different enough questions to deserve different answers.
 
 ### Opening a ticket
 
@@ -90,7 +106,7 @@ All of it is filtered and sorted **in SQL**, not in memory. The queue is the scr
 They are the same queue with a different filter — same claim machinery, same clicks, same everything. Moving a ticket into a report category (`/tickets category 43 player_report`) simply makes it appear in the other one.
 
 :::tip
-A player without the staff permission who types `/tickets` is sent to **their own hub** rather than refused. "No permission" for guessing a command name teaches nobody anything.
+A player without the staff permission who types `/tickets` is sent to **their own hub** rather than refused — the same hub `/ticket` opens, filters and all. "No permission" for guessing a command name teaches nobody anything, and two commands that both claim to open "your tickets" should not disagree about what that means.
 :::
 
 ---
@@ -127,6 +143,13 @@ Internal notes are excluded **in SQL** when the thread is read for a player, not
 
 The `SYSTEM` lines are the audit trail. They live in the thread rather than in `/oberonstaff log` because that log is teleport-shaped — actor, target player, coordinates — and half of what happens to a ticket has no target player at all. Keeping it in the thread also means staff can read it, and that retention purges it along with everything else about that ticket.
 
+The whole conversation can be read in chat, paged and clickable, with rank prefixes — see **[Conversation](/plugins/oberonstaff/features/conversation/)**:
+
+```
+/ticket thread 43
+/tickets thread 43     staff — includes internal notes
+```
+
 ---
 
 ## Response time, and why claiming is not answering
@@ -134,6 +157,39 @@ The `SYSTEM` lines are the audit trail. They live in the thread rather than in `
 Each ticket records when a staff member **first replied**. Claiming a ticket does not set it, and that is on purpose: claiming a ticket and then ignoring it is not a response, and a measure that counts it would reward exactly the wrong behaviour.
 
 The stamp is written in SQL with an `IS NULL` guard, so two staff replying in the same tick cannot both be recorded as first.
+
+---
+
+## Ratings
+
+When a ticket closes, its owner is offered the chance to rate how it was handled:
+
+```
+How did we do? [Rate ticket #43] (1-5, reason optional)
+```
+
+The click **suggests** the command rather than sending it, so there is room to change the number or add a reason before pressing enter:
+
+```
+/ticket rate 43 5 fixed it fast, thanks!
+```
+
+Anything malformed — missing arguments, a rating that is not a number, or one outside 1–5 — gets the same explanation rather than three different ways of being unhelpful.
+
+A rating does three things:
+
+- writes a line into the ticket's thread, next to everything else that happened to it
+- shows in both queues and in the ticket's detail view, as `★★★★☆` with the comment underneath
+- **tells staff**, with the ticket number clickable straight to its detail view
+
+```
+Ticket #43 rated ★★★★☆ | by Steve [Open]
+   "fixed it fast, thanks!"
+```
+
+That announcement is staff-wide rather than sent to the ticket's followers, and it has its own switch in `/ticket notifications` (**Ratings**) and its own sound (`Staff-Rated`). A rating is feedback on how the team is doing, worth telling every admin — not only whoever happened to touch that one ticket.
+
+Rating is **once only**. A rating that could be changed is one player deciding a staff member's average.
 
 ---
 

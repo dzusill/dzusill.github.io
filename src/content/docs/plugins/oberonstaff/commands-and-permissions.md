@@ -35,10 +35,13 @@ Registered only when the ticket desk is on and the database is open. See [Ticket
 | `/ticket close <#> [reason]` | | `oberonstaff.ticket.close.own` |
 | `/ticket rate <#> <1-5> [comment]` | | `oberonstaff.ticket.use` |
 | `/ticket follow <#>` · `unfollow <#>` | | `oberonstaff.ticket.follow` |
+| `/ticket thread <#> [page]` | `log`, `history` | `oberonstaff.ticket.use` |
 | `/ticket notifications` | `/ticket notify` | `oberonstaff.ticket.use` |
-| `/report <player>` | | `oberonstaff.report.use` |
+| `/report [player]` | | `oberonstaff.report.use` |
 
 Following somebody else's ticket ships **switched off** (`Tickets.Watchers.Allow-Player-Follow`).
+
+`/report` tab-completes the player name, and works with no name at all — the wizard asks who instead. `/ticket thread` prints the [whole conversation](/plugins/oberonstaff/features/conversation/), newest first, with clickable paging.
 
 ## Ticket desk — staff
 
@@ -55,6 +58,8 @@ Following somebody else's ticket ships **switched off** (`Tickets.Watchers.Allow
 | `/tickets close <#> [reason]` · `reopen <#>` | | `oberonstaff.ticket.close` / `.reopen` |
 | `/tickets tp <#>` | | `oberonstaff.ticket.teleport` |
 | `/tickets view <#>` | | `oberonstaff.ticket.admin` |
+| `/tickets thread <#> [page]` | `log`, `history` | `oberonstaff.ticket.admin` |
+| `/tickets punish <#> [action]` | | `oberonstaff.report.punish` |
 | `/tickets stats [player] [window]` | | `oberonstaff.ticket.stats` |
 
 `/tickets stats` opens the [leaderboard](/plugins/oberonstaff/features/statistics/); the window is `today`, `week`, `month` or `all`. Naming a player prints their row in chat instead.
@@ -81,7 +86,7 @@ oberonstaff.report.staff
 Each is a parent of every granular node above. The granular ones exist so that the day you want a trial rank that can claim and reply but not close, it is a permission change rather than a plugin change.
 
 :::note
-A player **without** `oberonstaff.ticket.admin` who types `/tickets` is sent to their own hub instead of being refused.
+A player **without** `oberonstaff.ticket.admin` who types `/tickets` is sent to their own hub instead of being refused — the same menu `/ticket` opens.
 :::
 
 ## Admin command

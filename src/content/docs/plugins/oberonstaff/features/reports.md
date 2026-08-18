@@ -7,11 +7,32 @@ description: "/report captures what was happening at the moment it was filed, me
 
 ---
 
+## Naming the player
+
+Two ways, both valid:
+
+```
+/report xX_Griefer_Xx        names them up front
+/report                      the wizard asks who
+```
+
+`/report` **tab-completes** the name from players online. The list leaves out anybody vanished from you — suggesting a hidden staff member's name would tell the whole server they are online — and leaves out yourself, since reporting yourself is refused anyway.
+
+A name the server has never seen is **still accepted**. It carries no evidence and cannot merge, but "I misspelled the cheater's name" should not become "the server would not let me report them".
+
+Reporting yourself is refused on both paths — typing your own name into the wizard's question is caught the same way as typing it on the command line, including on the second attempt where a misspelled name would otherwise be taken as written. An escape hatch is right for a typo and wrong for a rule.
+
+:::note[Evidence and the two paths]
+Naming the player on the command line freezes the evidence **immediately**. Answering the wizard's question instead freezes it the moment that answer lands — the earliest anything could know who to look at, but a few seconds later than the command-line form. If the timing matters to you, teach staff and players the `/report <player>` form.
+:::
+
+---
+
 ## What a report captures
 
 A player reporting somebody is usually watching them do it. By the time staff open the report, the cheater has moved, the chat has scrolled, and the moment is gone.
 
-So evidence is frozen **when `/report` is typed**, before the wizard even asks the first question:
+So evidence is frozen **as soon as the suspect is known** — for `/report <player>`, before the wizard asks anything at all:
 
 | Evidence | What it is |
 |---|---|
@@ -29,6 +50,31 @@ Reports:
 ```
 
 Staff see it as a panel in the ticket detail menu, grouped by kind. It is staff-only and appears on reports only.
+
+### Proof the player supplies
+
+Separately from what the plugin collects, the wizard asks for proof. That question is a `LINK`, and two independent settings decide how hard it pushes:
+
+```yaml
+- Id: proof
+  Prompt: "Proof? (a link, or type skip)"
+  Type: LINK
+  Optional: true
+  Require-Link: true
+```
+
+| `Optional` | `Require-Link` | What the player can answer |
+|---|---|---|
+| `true` | `true` | a link, or nothing *(shipped default)* |
+| `true` | `false` | anything at all, or nothing |
+| `false` | `true` | a link, and they cannot finish without one |
+| `false` | `false` | something, but it need not be a URL |
+
+**`Require-Link: false` is the one to reach for** if your players screenshot to Discord rather than to an image host. Insisting on a URL there turns a real report into no report — "it's on my discord, same name" is worth keeping.
+
+The type still decides how the answer is drawn for staff, so an answer that happens to be a link stays clickable either way.
+
+Leaving `Require-Link` out means `true`, so a config written before this setting existed keeps asking for a link.
 
 ---
 

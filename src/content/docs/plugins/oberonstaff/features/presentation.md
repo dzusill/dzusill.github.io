@@ -78,6 +78,36 @@ channel. Writing two lines does not silently decide the other two.
 `Sound: { Enabled: false }` is a decision rather than an absence — it silences that one message instead of inheriting
 the category's sound back.
 
+### One entry per ticket action
+
+The shipped file carries an override for every action on the ticket desk, so each can be moved or silenced on its own:
+
+```yaml
+  Overrides:
+    ticket.created:      { Channel: BOTH }        # the number is worth keeping
+    ticket.claimed:      { Channel: ACTION_BAR }  # six claims in a row, six chat lines
+    ticket.replied:      { Channel: CHAT }        # sits next to what you wrote
+    ticket.closed:       { Channel: BOTH }
+    report.punished:     { Channel: CHAT }        # names the console command that ran
+    ticket.teleported:   { Channel: ACTION_BAR }
+```
+
+The reasoning behind the defaults, if you are deciding whether to change them:
+
+- **`BOTH`** for anything carrying a number the player has to keep — an action-bar line alone is gone in three seconds.
+- **`ACTION_BAR`** for repetitive staff actions. Claiming six tickets should not be six lines of chat.
+- **`CHAT`** for anything you will want to scroll back to — a reply you wrote, the exact command a punishment ran.
+
+`ticket.note-added` deliberately has a different sound from `ticket.replied`, so a staff member can hear that a line went in as an internal note rather than as a reply to the player. That is the mistake worth catching by ear.
+
+Delete an entry and it falls back to its category. Delete the lot with `Overrides: {}` for quiet defaults.
+
+:::caution[Do not give a `notify.*` key a sound]
+Those already have one from [`sounds.yml`](/plugins/oberonstaff/features/notifications/#sounds) — the one a player can switch off with `/ticket notifications`. Adding a sound here as well plays two.
+
+The shipped `notify.*` entries set a channel and nothing else, for exactly that reason.
+:::
+
 ## Sounds
 
 Either spelling works: `entity.villager.no` or `ENTITY_VILLAGER_NO`. A name this server does not have is silent, not

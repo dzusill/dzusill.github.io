@@ -736,6 +736,10 @@
                 "slug": "plugins/oberonstaff/features/tickets"
               },
               {
+                "label": "Conversation",
+                "slug": "plugins/oberonstaff/features/conversation"
+              },
+              {
                 "label": "Player Reports",
                 "slug": "plugins/oberonstaff/features/reports"
               },

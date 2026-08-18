@@ -182,6 +182,38 @@ Teleport:
 | `Sound.*` | enderman teleport | Confirmation sound. |
 | `Log-Actions` | `true` | Record teleports — see [Action log](/plugins/oberonstaff/features/action-log/). |
 
+## Tickets
+
+The ticket desk is the largest block in the file. Each part is documented where the feature is explained rather than duplicated here:
+
+| Block | What it decides | |
+|---|---|---|
+| `Tickets.Categories` | what a player can open, and what each one asks | [Ticket Desk](/plugins/oberonstaff/features/tickets/) |
+| `Tickets.Priorities` | the four rungs and their colours | [Ticket Desk](/plugins/oberonstaff/features/tickets/#statuses-and-priorities) |
+| `Tickets.Admin-GUI` | stale and response targets, default sort and scope, `This-Server-Only` | [Ticket Desk](/plugins/oberonstaff/features/tickets/) |
+| `Tickets.Thread` | page size, rank prefixes, who may read a conversation | [Conversation](/plugins/oberonstaff/features/conversation/) |
+| `Tickets.Notifications` | who is told what, and what is held for somebody offline | [Notifications](/plugins/oberonstaff/features/notifications/) |
+| `Tickets.Watchers` | following somebody else's ticket | [Ticket Desk](/plugins/oberonstaff/features/tickets/) |
+| `Tickets.Canned-Replies` | `!macro` expansions for `/tickets reply` | [Ticket Desk](/plugins/oberonstaff/features/tickets/) |
+| `Reports.*` | evidence, duplicates, anticheat, punishments | [Player Reports](/plugins/oberonstaff/features/reports/) |
+
+### Sections you own outright
+
+Every block in `config.yml` is merged with the bundled defaults on load, so a setting added in a later version appears in your file without you having to look for it. Six sections are exempt:
+
+```
+Ranks
+Vanish.Levels
+Tickets.Categories
+Tickets.Canned-Replies
+Reports.Punishments.Actions
+Presentation.Overrides
+```
+
+These are **lists you compose**, not settings with a right answer. What you delete from them stays deleted. Merging them would resurrect a category you removed, a macro you retired or a ban command you deliberately took away — on the next update, quietly.
+
+The trade is that a new shipped category or macro will *not* appear in your file. Check the changelog after an update if you want the new ones.
+
 ## Debug
 
 ```yaml
