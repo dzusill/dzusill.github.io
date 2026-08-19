@@ -12,11 +12,13 @@ description: "/warpadmin has the alias /wadmin. Commands are registered at runti
 | `/warp search [query]` | `warpgui.use` | Search warps by name. |
 | `/warp reload` | `warpgui.reload` | Reload config & messages. |
 | `/setwarp <name> [category]` | `warpgui.setwarp` | Create a warp. |
-| `/delwarp <name>` | `warpgui.delwarp` | Delete a warp. |
+| `/setserverwarp <name>` | `warpgui.serverwarp` | Create an official [server warp](/plugins/warpgui/features/server-warps/). Alias `/setswarp`. |
+| `/delwarp <name>` | `warpgui.delwarp` | Delete a warp. Someone else's needs `warpgui.delwarp.others`; a [server warp](/plugins/warpgui/features/server-warps/) needs `warpgui.serverwarp.delete`. |
 | `/extralocwarp <list\|add\|edit\|remove> <warp> [index]` | `warpgui.locations.*` | Manage [extra locations](/plugins/warpgui/features/extra-locations/). |
 | `/warpadmin setpermission <warp>` | `warpgui.setpermissions` | Toggle a warp's teleport lock. |
 | `/warpadmin sethidden <warp>` | `warpgui.sethidden` | Hide/unhide a warp. |
 | `/warpadmin category <warp> <id\|none>` | `warpgui.category` | Assign a category. |
+| `/warpadmin setserver <warp>` | `warpgui.serverwarp` | Flag a warp as an official [server warp](/plugins/warpgui/features/server-warps/), or unflag it. |
 | `/warpadmin seticon <warp> <material\|oraxen:id>` | `warpgui.edit.material` | Set a warp's icon by name — works from console and reaches [Oraxen](/plugins/warpgui/compatibility/oraxen/) items without holding them. |
 | `/warpadmin import <essentials\|cmi>` | `warpgui.exportwarps` | Import warps. |
 | `/warpadmin reload` | `warpgui.reload` | Reload config & messages. |
@@ -34,7 +36,7 @@ description: "/warpadmin has the alias /wadmin. Commands are registered at runti
 | `warpgui.setwarp.unlimited` | op | Bypass the warp limit. |
 | `warpgui.setwarp.overwrite` | op | Overwrite an existing warp. |
 | `warpgui.delwarp` | op | Delete your own warp. |
-| `warpgui.delwarp.others` | op | Delete anyone's warp. |
+| `warpgui.delwarp.others` | op | Delete anyone's warp — except [server warps](/plugins/warpgui/features/server-warps/). |
 | `warpgui.edit` | op | Open the edit menu. |
 | `warpgui.edit.material` | op | Change a warp's icon. |
 | `warpgui.edit.description` | everyone | Change a warp's description. |
@@ -44,6 +46,8 @@ description: "/warpadmin has the alias /wadmin. Commands are registered at runti
 | `warpgui.setpermissions` | op | Toggle a warp's teleport lock. |
 | `warpgui.sethidden` | op | Hide/unhide a warp. |
 | `warpgui.category` | op | Assign categories via command. |
+| `warpgui.serverwarp` | op | Create [server warps](/plugins/warpgui/features/server-warps/) and flag existing ones. |
+| `warpgui.serverwarp.delete` | op | Delete a server warp. Required even for its creator. |
 | `warpgui.teleport.*` | op | Teleport to every warp, locked ones included. |
 | `warpgui.teleport.<warp>` | — | Teleport to one permission-locked warp. |
 | `warpgui.locations.list/add/edit/remove` | op | Manage extra locations. |

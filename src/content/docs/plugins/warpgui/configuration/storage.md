@@ -49,16 +49,18 @@ Set `enabled: true`, fill in your connection details, and restart. The schema is
 
 ### Upgrading an existing database
 
-2.5.0 adds an `icon` column to `warpgui_warps`, holding the full [warp icon item](/plugins/warpgui/features/editing-warps/#warp-icons). Tables created by an older version are migrated on startup — you'll see this once in the console:
+2.5.0 adds two columns to `warpgui_warps`: `icon`, holding the full [warp icon item](/plugins/warpgui/features/editing-warps/#warp-icons), and `server_warp`, marking [server warps](/plugins/warpgui/features/server-warps/). Tables created by an older version are migrated on startup — you'll see this once in the console:
 
 ```
 [WarpGUI] Added the 'icon' column to warpgui_warps (stores custom warp icon items).
+[WarpGUI] Added the 'server_warp' column to warpgui_warps (marks official server warps).
 ```
 
-No action needed, and no message means the column was already there. To add it by hand instead:
+No action needed, and no message means the columns were already there. To add them by hand instead:
 
 ```sql
 ALTER TABLE warpgui_warps ADD COLUMN icon TEXT;
+ALTER TABLE warpgui_warps ADD COLUMN server_warp INT DEFAULT 0;
 ```
 
 > **Cross-server:** point several servers at the same database to share warps and player data. Changes made on one server are visible to the others.

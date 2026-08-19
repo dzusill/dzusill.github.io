@@ -2321,6 +2321,10 @@
                 "slug": "plugins/warpgui/features/categories"
               },
               {
+                "label": "Server Warps",
+                "slug": "plugins/warpgui/features/server-warps"
+              },
+              {
                 "label": "Extra Locations",
                 "slug": "plugins/warpgui/features/extra-locations"
               },

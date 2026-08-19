@@ -60,3 +60,7 @@ Hitting the cap shows *"You cannot create more than `<n>` warps."*
 Deletes a warp. Requires `warpgui.delwarp`. Ownership is checked by **UUID** (so renaming a player doesn't lose their warps); `warpgui.delwarp.others` lets staff delete anyone's. Deleting also removes the warp from every player's favourites.
 
 You can also delete from the [edit menu](/plugins/warpgui/features/editing-warps/) (double-click **Delete Warp**).
+
+## Server warps
+
+Staff can create official server warps with `/setserverwarp <name>` — they land in their own tab, skip the warp limit and the name blacklist, and need `warpgui.serverwarp`. See [Server Warps](/plugins/warpgui/features/server-warps/).

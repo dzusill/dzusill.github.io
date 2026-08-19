@@ -33,6 +33,36 @@ Settings:
 
 `true` (default) makes **Change Icon** remember the whole held item, so a `/give` item keeps its custom model data, head texture, enchantments and any other component. `false` keeps only the material name, as before 2.5.0. Stored items larger than 8 KB always fall back to the plain material. Full details in [Editing Warps](/plugins/warpgui/features/editing-warps/#warp-icons).
 
+### Default menu
+
+```yaml
+Settings:
+  DefaultMenu: all
+```
+
+Which tab `/warp` and `/warps` open with no arguments:
+
+| Value | Opens |
+|---|---|
+| `all` *(default)* | Every warp. |
+| `categories` | The category list. |
+| `players` | The viewer's own warps ("My Warps"). |
+| `recommended` | Promoted warps — needs `Settings.Topped.Enabled`. |
+| `server` | The [Server Warps](/plugins/warpgui/features/server-warps/) tab — needs `Settings.ServerWarps.Enabled`. |
+
+A value whose menu is switched off falls back to `all`, so the GUI always opens.
+
+### Server warps
+
+```yaml
+Settings:
+  ServerWarps:
+    Enabled: false
+    OnlyInOwnMenu: true
+```
+
+An optional staff-managed tab for the server's own destinations. Full reference in [Server Warps](/plugins/warpgui/features/server-warps/).
+
 ### Topped (Recommended)
 
 ```yaml
@@ -101,6 +131,7 @@ Settings:
   Categories: { Enabled: true }
   Search: { Enabled: true }
   DescriptionEditing: { Enabled: true }
+  ServerWarps: { Enabled: false, OnlyInOwnMenu: true }
   DefaultMenu: all
 ```
 
@@ -111,7 +142,8 @@ Settings:
 | `Categories` | enabled | [Category](/plugins/warpgui/features/categories/) system. |
 | `Search` | enabled | [Search](/plugins/warpgui/features/search/). |
 | `DescriptionEditing` | enabled | Allow editing descriptions. |
-| `DefaultMenu` | `all` | Landing tab: `all` or `categories`. |
+| `ServerWarps` | disabled | Staff-managed [Server Warps](/plugins/warpgui/features/server-warps/) tab. |
+| `DefaultMenu` | `all` | Landing tab — see [Default menu](#default-menu) above. |
 
 ---
 
