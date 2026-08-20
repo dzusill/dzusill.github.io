@@ -192,7 +192,19 @@ Reports:
 
 `Cooldown-Seconds` limits how often one player can file. `Notify-Target: false` keeps the reported player from being told — telling a cheater they have been reported gives them time to log off.
 
-Give `oberonstaff.report.blocked` to anybody who has abused the system; it is a negative node and refuses them outright.
+To stop one player reporting, deny them the command node:
+
+```
+/lp user <player> permission set oberonstaff.report.use false
+```
+
+Set on the user, that beats whatever their group grants.
+
+:::caution[`oberonstaff.report.blocked` is gone]
+It was a **negative** node living under the same prefix every wildcard sweeps. LuckPerms expands `oberonstaff.*` — and `*` — by matching node prefixes rather than by Bukkit's parent/child tree, so an admin group with the wildcard was granted the block as well, and the plugin refused its own operators with "You may not use /report."
+
+The node no longer exists. Denying `oberonstaff.report.use` on the user does the same job and is the mechanism LuckPerms is actually built around.
+:::
 
 ---
 
@@ -210,7 +222,6 @@ Give `oberonstaff.report.blocked` to anybody who has abused the system; it is a 
 | `oberonstaff.report.admin` | op | Open the report queue |
 | `oberonstaff.report.punish` | op | Use the punish button |
 | `oberonstaff.report.use` | true | File reports |
-| `oberonstaff.report.blocked` | — | *Negative.* May not report anybody |
 
 ---
 
