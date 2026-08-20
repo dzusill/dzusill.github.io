@@ -48,9 +48,13 @@ const PLUGINS = [
   { slug: 'dphalanx',      name: 'dPhalanx',      src: '../dPhalanx/docs' },
   { slug: 'dstore',        name: 'dStore',        src: '../dStore/docs' },
   { slug: 'ddialogs',      name: 'DDialogs',      src: '../DDialogs/docs' },
-  // The Oberon suite's own docs are written straight into this site (see IN_PLACE) — OberonStats is
-  // the exception: its docs live with the plugin, so they are migrated like everything else.
+  // The Oberon suite's own docs are written straight into this site (see IN_PLACE) — these four are
+  // the exception: their docs live with the plugin, so they are migrated like everything else.
   { slug: 'oberonstats',   name: 'OberonStats',   src: '../OberonStats/docs' },
+  { slug: 'oberonannounce', name: 'OberonAnnounce', src: '../OberonAnnounce/docs' },
+  { slug: 'oberontools',   name: 'OberonTools',   src: '../OberonTools/docs' },
+  // Sits with the shop plugins rather than the Oberon block: it is the selling half of that economy.
+  { slug: 'oberonsell',    name: 'OberonSell',    src: '../OberonSell/docs' },
 ];
 
 // Plugins whose pages are written directly into src/content/docs/plugins/<slug>/ rather than
