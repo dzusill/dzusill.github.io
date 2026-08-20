@@ -87,8 +87,13 @@ only the player fighting an exempt player escapes the tag.
 
 ## How PvPManager is reached
 
-By reflection, with the tag events registered dynamically. Nothing to pin to a version, nothing that
-breaks when PvPManager updates, and the module simply does not install when it is absent.
+Through its published API — PvPManager ships an artifact on CodeMC, and every reference to it lives
+in one class that is only loaded when the plugin is installed. A server without PvPManager never
+touches those types.
+
+That API is the free build's; the premium build exposes the same `CombatPlayer.get(player)` and
+`isInCombat()`, which is the getter PvPManager's own documentation names as the one to prefer for
+exactly that reason.
 
 Combat state is read from PvPManager itself: its `CombatPlayer` API first, its PlaceholderAPI
 expansion second, and only then a cache of the tag events we observed — aged out by
