@@ -610,6 +610,206 @@
         ]
       },
       {
+        "label": "📣 OberonAnnounce",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/oberonannounce"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/oberonannounce/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonannounce/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/oberonannounce/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Channels",
+                "slug": "plugins/oberonannounce/features/channels"
+              },
+              {
+                "label": "Writing an Announcement",
+                "slug": "plugins/oberonannounce/features/announcements"
+              },
+              {
+                "label": "Schedules",
+                "slug": "plugins/oberonannounce/features/schedules"
+              },
+              {
+                "label": "Audience & World Filtering",
+                "slug": "plugins/oberonannounce/features/audience"
+              },
+              {
+                "label": "Sound",
+                "slug": "plugins/oberonannounce/features/sound"
+              },
+              {
+                "label": "MOTD & Join Delivery",
+                "slug": "plugins/oberonannounce/features/motd-and-join"
+              },
+              {
+                "label": "Player Toggles",
+                "slug": "plugins/oberonannounce/features/player-toggles"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonannounce/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/oberonannounce/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/oberonannounce/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/oberonannounce/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberonannounce/placeholders"
+              },
+              {
+                "label": "Known Limitations",
+                "slug": "plugins/oberonannounce/limitations"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/oberonannounce/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/oberonannounce/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "🪣 OberonTools",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/oberontools"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/oberontools/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/oberontools/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/oberontools/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Defining a Tool",
+                "slug": "plugins/oberontools/features/defining-a-tool"
+              },
+              {
+                "label": "Expiry",
+                "slug": "plugins/oberontools/features/expiry"
+              },
+              {
+                "label": "Radius Tiers",
+                "slug": "plugins/oberontools/features/radius-tiers"
+              },
+              {
+                "label": "Liquid Clear",
+                "slug": "plugins/oberontools/features/liquid-clear"
+              },
+              {
+                "label": "Timber",
+                "slug": "plugins/oberontools/features/timber"
+              },
+              {
+                "label": "Anti-Duplication",
+                "slug": "plugins/oberontools/features/anti-duplication"
+              },
+              {
+                "label": "The Job Queue",
+                "slug": "plugins/oberontools/features/job-queue"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberontools/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/oberontools/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/oberontools/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/oberontools/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberontools/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/oberontools/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/oberontools/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "label": "✉️ OberonMSG",
         "collapsed": true,
         "items": [
@@ -1451,6 +1651,144 @@
               {
                 "label": "Credits",
                 "slug": "plugins/ddonutworth/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "🏷️ OberonSell",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/oberonsell"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/oberonsell/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonsell/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/oberonsell/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Pricing",
+                "slug": "plugins/oberonsell/features/pricing"
+              },
+              {
+                "label": "Readable Item Keys",
+                "slug": "plugins/oberonsell/features/item-keys"
+              },
+              {
+                "label": "Enchantment Worth",
+                "slug": "plugins/oberonsell/features/enchantment-worth"
+              },
+              {
+                "label": "Selling",
+                "slug": "plugins/oberonsell/features/selling"
+              },
+              {
+                "label": "Auto-Sell",
+                "slug": "plugins/oberonsell/features/auto-sell"
+              },
+              {
+                "label": "Worth Lore",
+                "slug": "plugins/oberonsell/features/worth-lore"
+              },
+              {
+                "label": "Sell Multipliers",
+                "slug": "plugins/oberonsell/features/sell-multipliers"
+              },
+              {
+                "label": "The Sell Axe",
+                "slug": "plugins/oberonsell/features/the-sell-axe"
+              },
+              {
+                "label": "Sell History",
+                "slug": "plugins/oberonsell/features/sell-history"
+              },
+              {
+                "label": "Sell Leaderboard",
+                "slug": "plugins/oberonsell/features/sell-leaderboard"
+              },
+              {
+                "label": "Custom Items",
+                "slug": "plugins/oberonsell/features/custom-items"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonsell/configuration/config"
+              },
+              {
+                "label": "prices.yml",
+                "slug": "plugins/oberonsell/configuration/prices"
+              },
+              {
+                "label": "enchantments.yml",
+                "slug": "plugins/oberonsell/configuration/enchantments"
+              },
+              {
+                "label": "Sell Categories",
+                "slug": "plugins/oberonsell/configuration/sell-categories"
+              },
+              {
+                "label": "GUIs",
+                "slug": "plugins/oberonsell/configuration/guis"
+              },
+              {
+                "label": "sellaxe.yml",
+                "slug": "plugins/oberonsell/configuration/sellaxe"
+              },
+              {
+                "label": "Sounds",
+                "slug": "plugins/oberonsell/configuration/sounds"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/oberonsell/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/oberonsell/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/oberonsell/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberonsell/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/oberonsell/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/oberonsell/credits"
               }
             ]
           }

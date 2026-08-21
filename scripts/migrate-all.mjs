@@ -82,8 +82,8 @@ const SIDEBAR_ONLY = process.argv.includes('--sidebar-only');
 // adding a plugin above without touching this still produces a working sidebar.
 const CATEGORIES = [
   { label: '🛠️ Framework', plugins: ['dzusillcore', 'ddialogs'] },
-  { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats'] },
-  { label: '💰 Economy & Shops', plugins: ['drotatingshop', 'ddonutworth', 'dgems', 'dstore', 'dlottery', 'blottery'] },
+  { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonannounce', 'oberontools', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats'] },
+  { label: '💰 Economy & Shops', plugins: ['drotatingshop', 'ddonutworth', 'oberonsell', 'dgems', 'dstore', 'dlottery', 'blottery'] },
   { label: '⚔️ PvP & Combat', plugins: ['dfactions', 'dkilltracker', 'dbloodmoney', 'ddeathpenalty'] },
   { label: '🧭 Teleportation', plugins: ['warpgui', 'dhomegui'] },
   { label: '💬 Chat & Social', plugins: ['dnicks', 'dmentions'] },
@@ -99,7 +99,7 @@ const PLUGIN_EMOJI = {
   dlottery: '🎰', drotatingshop: '🛒', dfactions: '⚔️', dkilltracker: '🗡️',
   ddonutworth: '🍩', ddialogs: '💬', blottery: '🍀', dmentions: '🙋',
   dgems: '💎', dweblink: '🔗', dphalanx: '🌐', dstore: '🧾',
-  oberonstats: '📈',
+  oberonstats: '📈', oberonannounce: '📣', oberontools: '🪣', oberonsell: '🏷️',
 };
 const SECTION_EMOJI = {
   'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',

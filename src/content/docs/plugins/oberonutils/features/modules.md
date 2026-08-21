@@ -11,6 +11,8 @@ modules:
   kill: true
   nightvision: true
   ping: true
+  superjump: true
+  elytra: true
 ```
 
 A disabled module registers **nothing** — no commands, no listeners, no scheduled tasks. It is not
@@ -24,6 +26,8 @@ loaded and quietly skipping work; it does not exist.
 | [Kill](/plugins/oberonutils/features/kill-menu/) | `/kill` `/suicide` | PvPManager |
 | [Night Vision](/plugins/oberonutils/features/night-vision/) | `/nightvision` `/nv` | — |
 | [Ping](/plugins/oberonutils/features/ping/) | `/ping` | PremiumVanish / SuperVanish |
+| [Super Jump](/plugins/oberonutils/features/super-jump/) | `/superjump` `/doublejump` `/sj` `/odj` | EssentialsX, WorldGuard |
+| [Elytra](/plugins/oberonutils/features/elytra/) | — | — |
 
 `/oberonutils` is always registered, regardless of which modules are on.
 

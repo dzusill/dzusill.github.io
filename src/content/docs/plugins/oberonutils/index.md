@@ -15,7 +15,7 @@ vanished staff as online.
 
 Everything here does what those scripts did, and does it once instead of twice.
 
-## Six modules, each switchable
+## Eight modules, each switchable
 
 | Module | What it does |
 |---|---|
