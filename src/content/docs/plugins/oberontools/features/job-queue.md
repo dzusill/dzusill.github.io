@@ -52,7 +52,7 @@ Before each turn the queue checks the owner is still online. An offline owner's 
 
 ## Protection events
 
-With `fire-protection-events: true` (the default), **every secondary block** — every extra log, every leaf, every liquid — fires a real `BlockBreakEvent` attributed to the player, before anything is mutated. Three parts of the result are honoured:
+With `fire-protection-events: true` (the default), **every secondary block** — every area-mined block, extra log, leaf, and liquid — fires a real `BlockBreakEvent` attributed to the player, before anything is mutated. Three parts of the result are honoured:
 
 | Event result | Effect |
 |---|---|
@@ -62,7 +62,7 @@ With `fire-protection-events: true` (the default), **every secondary block** —
 
 That is what makes WorldGuard, GriefPrevention, Towny, land-claim plugins and logging plugins work without OberonTools knowing anything about them. It is also what lets CoreProtect record a fell.
 
-The plugin marks its own synthetic events so its `TIMBER` listener ignores them — one felled log does not recursively start another fell.
+The plugin marks its own synthetic events so the `TIMBER` and `AREA_MINE` listeners ignore them — one secondary break cannot recursively start another job.
 
 ### Turning it off
 
@@ -79,7 +79,7 @@ The setting is worth having because the event is the expensive part of a block o
 
 ## Chunk loading
 
-Neither ability loads chunks. Both the liquid planner and the tree scanner check `isChunkLoaded` and skip anything outside loaded chunks:
+No ability loads chunks. Area mining only touches the eight immediate neighbours at the shipped radius; the liquid planner and tree scanner explicitly skip anything outside loaded chunks:
 
 - A pool that continues into an unloaded chunk is drained up to the boundary.
 - A tree whose trunk crosses into an unloaded chunk is felled up to the boundary.
@@ -89,8 +89,8 @@ In practice a player is standing next to whatever they are working on, so the su
 
 ## Physics and updates
 
-Liquid blocks are set to air **without** a physics update, so a large drain does not cascade neighbour updates through the whole body of water as it goes. Logs and leaves are broken with `breakNaturally`, which produces normal drops and normal updates.
+Liquid blocks apply normal physics so surrounding fluid settles correctly. Area-mined blocks, logs, and leaves use `breakNaturally`, which produces normal drops and updates.
 
 ## What is not queued
 
-The block the player broke or clicked themselves is handled by vanilla, in that tick, as normal. Only the *secondary* work — the rest of the tree, the rest of the cube — goes through the queue. That is why a `TIMBER` completion message reads one log higher than the number of blocks the job actually processed.
+The block the player broke or clicked themselves is handled by vanilla, in that tick, as normal. Only the *secondary* work — the other eight cells in a mining plane, the rest of the tree, or the rest of the cube — goes through the queue. That is why `AREA_MINE` and `TIMBER` completion totals include one more block than their queued summaries.

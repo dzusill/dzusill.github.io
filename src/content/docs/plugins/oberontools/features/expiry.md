@@ -48,9 +48,9 @@ An expired tool **always** stops working. Every activation is refused with `tool
 | `expired-policy` | Behaviour |
 |---|---|
 | `KEEP_DISABLED` | The item stays where it is. It still shows its lore, which will read `Expired`. Nothing it does works. |
-| `REMOVE` | The item is deleted the next time it is looked at by the refresh pass or by `/oberontools refresh`. |
+| `REMOVE` | The item is deleted by the refresh pass, inventory-open refresh, `/oberontools refresh`, or an attempted use after its deadline. |
 
-> **`REMOVE` needs the refresh task to actually run.** Deletion happens during the countdown pass, so it only reaches slots inside `processing.expiry-refresh-scope`. With `expiry-refresh-scope: NONE` the pass never runs and a `REMOVE` tool is never deleted automatically — it behaves like `KEEP_DISABLED` until somebody runs `/oberontools refresh` while holding it. With `HOTBAR` (the shipped value), a dead tool buried in the backpack survives until the player moves it into the hotbar.
+> Periodic redraws intentionally skip the selected main-hand item and the off hand. Changing item lore while held makes the vanilla client replay its re-equip animation. A held countdown therefore stays frozen until the player switches slots or opens an inventory; attempted use still enforces the deadline immediately and removes a `REMOVE` item.
 
 ## Lore placeholders
 
@@ -100,14 +100,14 @@ processing:
 | Scope | Slots scanned |
 |---|---|
 | `NONE` | Nothing. The task is never even scheduled. Countdowns only move when a tool is used or refreshed. |
-| `HELD` | Main hand and off hand |
-| `HOTBAR` | The nine hotbar slots, plus the off hand |
-| `INVENTORY` | Every slot, armour included, plus the off hand |
+| `HELD` | No periodic slot writes; held hands refresh when an inventory opens. |
+| `HOTBAR` | The eight unselected hotbar slots. |
+| `INVENTORY` | Every unselected storage slot. |
 
 Two things keep this cheap:
 
 - **Only items with an expiry stamp are considered.** A permanent tool is skipped before any text is built, so a server whose tools are all `PERMANENT` pays nothing but the scan.
-- **Only stacks whose rendered lore actually changed are rewritten**, and a player's inventory is only re-sent if at least one of their stacks changed. A countdown showing `6d 23h` does not move once a second.
+- **Only stacks whose rendered lore actually changed are rewritten.** There is no full `updateInventory()` resend, and held slots are never mutated by the periodic pass, preventing the hand-bob animation.
 
 Raise the scope to `INVENTORY` only if players complain that a bagged tool shows a stale number, or if you use `REMOVE` and want dead tools cleared out of backpacks too.
 

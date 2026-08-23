@@ -45,7 +45,7 @@ Usually one of:
 - `natural-leaves-only: true` and the leaves are player-placed, so they are persistent and do not count.
 
 **I can't break logs at all while holding the axe.**
-That is the access rule, not a bug. A `TIMBER` tool whose `use-permission` the player lacks, whose world is not allowed, or whose definition is `enabled: false`, **cancels the log break itself**. Only an *expired* tool lets the single block through. See [Timber](/plugins/oberontools/features/timber/#when-the-break-itself-is-cancelled).
+That is the access rule. A `TIMBER` tool whose `use-permission` the player lacks, whose world is not allowed, whose definition is disabled, or whose deadline has passed cancels the log break itself. An expired `REMOVE` axe is also destroyed immediately. See [Timber](/plugins/oberontools/features/timber/#when-the-break-itself-is-cancelled).
 
 **"The connected structure exceeds the safe log limit."**
 The connected same-family group is over `max-logs` and `abort-when-log-limit-reached: true`, so nothing extra was broken. Raise `max-logs`, or set the abort flag to `false` to fell the first `max-logs` blocks anyway.
@@ -60,12 +60,18 @@ It cannot in this build. `PlayerInteractEvent` is cancelled before the hand chec
 
 ## Permissions and radius
 
-**My donator rank still gets 3×3×3.**
+**My donator rank still gets 3×3×3 (or 3×3 on a pickaxe).**
 Have them run `/oberontools inspect` and read the `radius` line — it reports what the check actually returned.
 
 1. Is `max-radius` above `radius`? If they are equal the tool is not upgradable and no nodes exist.
 2. Is the node exactly `oberontools.radius.<tool-id>.<n>`, with the tool's lower-cased id?
 3. Is `n` at or below `max-radius`? A node above the ceiling is never registered and never consulted.
+
+**Do the tiers work on the pickaxe and shovel, or only the bucket?**
+Both. `LIQUID_CLEAR` and `AREA_MINE` share one permission scan; the number resolves to a cube for the bucket and a square for the mining tools. Only `TIMBER` has no tiers.
+
+**My drain bucket worked once and then stopped forever.**
+Fixed. The one-click-per-tick guard used to read the world's *day* clock, which stops dead while `doDaylightCycle` is off — so after the first click every later one compared equal to that frozen value and was silently cancelled. It now reads the server's own tick counter, which always advances. If you are on an older build, restarting the server bought you exactly one more working click; update instead.
 
 **The radius nodes don't tab-complete in LuckPerms.**
 They are registered at enable and on every reload, for upgradable tools only. If the tool has `radius == max-radius`, there is nothing to register. Otherwise check the plugin actually enabled.
@@ -87,10 +93,10 @@ Working as designed. The deadline is stamped onto each item when it is created, 
 ```
 
 **An expired tool with `expired-policy: REMOVE` is still in the inventory.**
-Deletion happens during the countdown pass, which only reaches slots inside `processing.expiry-refresh-scope`. With `NONE` it never runs; with `HOTBAR` a tool in the backpack survives until it is moved. Set `expiry-refresh-scope: INVENTORY`, or have the player run `/oberontools refresh` holding it.
+Deletion happens when an eligible slot is refreshed. Periodic passes skip both held hands to prevent re-equip animation; switch away, open an inventory, attempt to use the expired tool, or run `/oberontools refresh`. With `HOTBAR`, a tool buried in the backpack survives until it is moved; use `INVENTORY` to clear those too.
 
 **The countdown in the lore isn't moving.**
-Check `expiry-refresh-scope` is not `NONE` and that the item is in a slot the scope covers. Permanent tools are skipped entirely — they have no stamp to count down.
+Held countdowns deliberately freeze to stop the tool bobbing every time its lore changes. Switch to another slot or open an inventory to refresh it. Otherwise check that the scope covers the slot; permanent tools have no stamp and are skipped entirely.
 
 **The dates are in the wrong time zone.**
 `%expires_at%` and `/oberontools inspect` both render in the **server's** default time zone. There is no time-zone key in this plugin.

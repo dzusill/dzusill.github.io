@@ -17,6 +17,7 @@ sell-axe:
     - "EFFICIENCY:5"
     - "UNBREAKING:3"
     - "MENDING"
+  show-enchantments: true
   item-flags: []
 
   # Optional. Left out entirely, each of these leaves the item exactly as vanilla would build it.
@@ -27,8 +28,11 @@ sell-axe:
 sell-shulker-contents: true
 
 lore:
-  self-destruct-prefix: "&7Self Destruct: "
-  timer-prefix: "&7"
+  self-destruct-prefix: "<#FF5555>Self Destruct:"
+  timer-prefix: "<#FFAA00>"
+  self-destruct-lines:
+    - "{selfDestructPrefix}"
+    - "{timerPrefix}{time}"
 
 time-format:
   days-format: "%dd "
@@ -45,8 +49,9 @@ time-format:
 | `display-name` | The axe's name. Any colour dialect |
 | `lore` | Static lore lines. The countdown is appended below them |
 | `material` | Any material; an unknown one falls back to `DIAMOND_AXE` |
-| `enchants` | Cosmetic. `ENCHANT` or `ENCHANT:LEVEL`; a bad level enchants at 1 rather than dropping it |
-| `item-flags` | What the tooltip hides. `HIDE_ENCHANTS` is the usual one, so a glint-only axe does not list enchantments |
+| `enchants` | Real, visible enchantments. `ENCHANT`, `ENCHANT:LEVEL` or a namespaced id such as `minecraft:efficiency:5` |
+| `show-enchantments` | Default `true`. Explicitly keeps enchantment names visible, even if an older config still contains `HIDE_ENCHANTS` |
+| `item-flags` | What the tooltip hides. To deliberately use `HIDE_ENCHANTS`, first set `show-enchantments: false` |
 | `custom-model-data` | Optional. For a resource pack. `-1` or absent means none — `0` is a real model, not "off" |
 | `unbreakable` | Optional, default `false` |
 | `glint` | Optional. `true` forces the shine, `false` suppresses it even with real enchantments. Left out entirely, vanilla decides |
@@ -66,13 +71,17 @@ themselves.
 
 ## lore
 
-The countdown line is `self-destruct-prefix` + `timer-prefix` + the formatted time:
+`self-destruct-lines` is the complete appended layout. It accepts any number of lines and three tokens:
+`{selfDestructPrefix}`, `{timerPrefix}` and `{time}`. The shipped two-line form renders as:
 
 ```
-Self Destruct: 6d 23h 58m
+Self Destruct:
+6d 23h 58m
 ```
 
-Set both to `""` for a bare timer.
+The prefix values exist so the label and timer colour can be reused or changed in one place. You may also
+write colours and text directly into each line, add blank lines, reorder everything, or use only
+`"{time}"` for a bare timer. An old file without `self-destruct-lines` keeps its former one-line layout.
 
 ## time-format
 

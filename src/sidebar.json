@@ -712,100 +712,6 @@
         ]
       },
       {
-        "label": "📡 OberonLive",
-        "collapsed": true,
-        "items": [
-          {
-            "label": "📘 Introduction",
-            "slug": "plugins/oberonlive"
-          },
-          {
-            "label": "🚀 Getting Started",
-            "items": [
-              {
-                "label": "Requirements",
-                "slug": "plugins/oberonlive/getting-started/requirements"
-              },
-              {
-                "label": "Installation",
-                "slug": "plugins/oberonlive/getting-started/installation"
-              },
-              {
-                "label": "Quick Start",
-                "slug": "plugins/oberonlive/getting-started/quick-start"
-              }
-            ]
-          },
-          {
-            "label": "✨ Features",
-            "items": [
-              {
-                "label": "Live Announcements",
-                "slug": "plugins/oberonlive/features/live-announcements"
-              },
-              {
-                "label": "Platforms & Link Safety",
-                "slug": "plugins/oberonlive/features/platforms-and-link-safety"
-              },
-              {
-                "label": "Cooldowns & Player Opt-out",
-                "slug": "plugins/oberonlive/features/cooldowns-and-opt-out"
-              },
-              {
-                "label": "Discord Webhooks",
-                "slug": "plugins/oberonlive/features/discord-webhooks"
-              },
-              {
-                "label": "History & Moderation",
-                "slug": "plugins/oberonlive/features/history-and-moderation"
-              }
-            ]
-          },
-          {
-            "label": "⚙️ Configuration",
-            "items": [
-              {
-                "label": "config.yml",
-                "slug": "plugins/oberonlive/configuration/config"
-              },
-              {
-                "label": "messages.yml",
-                "slug": "plugins/oberonlive/configuration/messages"
-              },
-              {
-                "label": "database.yml",
-                "slug": "plugins/oberonlive/configuration/database"
-              },
-              {
-                "label": "Reloading",
-                "slug": "plugins/oberonlive/configuration/reloading"
-              }
-            ]
-          },
-          {
-            "label": "📖 Reference",
-            "items": [
-              {
-                "label": "Commands & Permissions",
-                "slug": "plugins/oberonlive/commands-and-permissions"
-              },
-              {
-                "label": "Placeholders",
-                "slug": "plugins/oberonlive/placeholders"
-              },
-              {
-                "label": "FAQ & Troubleshooting",
-                "slug": "plugins/oberonlive/faq"
-              },
-              {
-                "label": "Credits",
-                "slug": "plugins/oberonlive/credits"
-              }
-            ]
-          }
-        ]
-      },
-      {
         "label": "🪣 OberonTools",
         "collapsed": true,
         "items": [
@@ -840,6 +746,10 @@
               {
                 "label": "Expiry",
                 "slug": "plugins/oberontools/features/expiry"
+              },
+              {
+                "label": "Area Mine",
+                "slug": "plugins/oberontools/features/area-mine"
               },
               {
                 "label": "Radius Tiers",

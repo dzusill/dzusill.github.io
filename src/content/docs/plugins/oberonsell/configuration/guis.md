@@ -83,8 +83,9 @@ See [Migration health](/plugins/oberonsell/configuration/prices/#migration-healt
 
 ### The search icon
 
-Left-click asks for text; right-click clears it. The search **sticks** until it is cleared, so paging and
-sorting keep it, and it **narrows** the category filter rather than replacing it — searching "ore" with
+Left-click asks for text; right-click clears it immediately. The search stays while the GUI is open, so
+paging and sorting keep it, but closing the GUI clears it for the next visit. It **narrows** the category
+filter rather than replacing it — searching "ore" with
 Blocks selected finds ore blocks, not every ore.
 
 Both the name shown on the icon and the raw price key are searched, so `diamond sword`, `diamond_sword` and

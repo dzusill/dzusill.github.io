@@ -38,7 +38,7 @@ The id is used by:
 | Key | Default | |
 |---|---|---|
 | `enabled` | `true` | `false` keeps the definition loaded but refuses every use and unregisters its recipe. Items already handed out stay in inventories. |
-| `behavior` | *required* | `LIQUID_CLEAR` or `TIMBER`. Decides which settings block is required. |
+| `behavior` | *required* | `AREA_MINE`, `LIQUID_CLEAR` or `TIMBER`. Decides which settings block is required. |
 | `use-permission` | `oberontools.use` | Checked before the ability runs. An empty value means no check at all. |
 | `craft-permission` | `oberontools.craft` | Checked in the crafting grid. An empty value means no check at all. |
 | `worlds.whitelist` | `[]` | Empty means every world. Non-empty means **only** these. Case-insensitive. |
@@ -73,7 +73,7 @@ The id is used by:
 | `name` | *required* | [MiniMessage](https://docs.advntr.dev/minimessage/format.html). Parsed at load — a broken tag refuses the whole config. Italics are switched off for you. |
 | `lore` | `[]` | MiniMessage lines. Blank strings are kept as spacing. Supports the [lore placeholders](/plugins/oberontools/placeholders/). |
 | `custom-model-data` | `0` | Any value above `0` is set on the item. `0` explicitly **clears** custom model data. Negative values are rejected. |
-| `enchant-glint` | `false` | Sets the glint override. Both shipped tools use `true`. |
+| `enchant-glint` | `false` | Sets the glint override. The shipped tools use `true`. |
 | `enchants` | `[]` | Real enchantments, `ENCHANT` or `ENCHANT:LEVEL`, by Minecraft name. Cosmetic on a tool whose ability the plugin drives. Read from the registry, so a name this build has never heard of still works. |
 | `item-flags` | `[]` | What the tooltip hides. `HIDE_ENCHANTS` is the usual one, so a glint-only tool does not list enchantments it never uses. |
 | `unbreakable` | `true` | Vanilla durability never applies; `max-uses` is the real budget. |
@@ -133,14 +133,18 @@ itself.
     messages:
       action: ACTION_BAR
       error: CHAT
+      overrides:
+        area-complete: BOTH
+        tool.busy: NONE
 ```
 
 | Key | Default | |
 |---|---|---|
 | `action` | `ACTION_BAR` | Confirmations: blocks drained, logs felled. |
 | `error` | `CHAT` | Refusals: no permission, wrong world, expired, busy, nothing found. |
+| `overrides` | `{}` | Exact message-key channels for this tool only. Short keys imply the `tool.` prefix. |
 
-Each takes `CHAT`, `ACTION_BAR` or `NONE`. `NONE` is genuinely silent — every message a tool produces goes
+Each takes `CHAT`, `ACTION_BAR`, `BOTH` or `NONE`. `NONE` is genuinely silent — every message a tool produces goes
 through one place, so nothing slips past it.
 
 They are split because they are read differently. A confirmation fires on every use and suits the bar,
@@ -151,10 +155,11 @@ Setting `error: NONE` silences *all* refusals, including the ones worth seeing �
 permission", "this tool has expired". A player who cannot tell a refusal from a broken tool will report it
 as broken.
 
-## `liquid-clear:` and `timber:`
+## `area-mine:`, `liquid-clear:` and `timber:`
 
-Required for `LIQUID_CLEAR` and `TIMBER` respectively, and rejected as missing if absent. Both are documented in full on their own pages:
+Required for their matching behavior and rejected as missing if absent. They are documented in full on their own pages:
 
+- [Area Mine](/plugins/oberontools/features/area-mine/)
 - [Liquid Clear](/plugins/oberontools/features/liquid-clear/)
 - [Timber](/plugins/oberontools/features/timber/)
 

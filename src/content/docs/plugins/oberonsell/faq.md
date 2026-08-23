@@ -94,7 +94,7 @@ Two different settings, and it is worth knowing which is which:
 
 - `pricing.rounding.decimals` — how many decimals money is actually **held** to. Changing it changes what
   is paid.
-- `price-format.decimals` — how many are **shown**. Display only.
+- `price-format.decimals` — the maximum shown. Display only; unused trailing zeroes are trimmed.
 
 See [`price-format`](/plugins/oberonsell/configuration/config/#price-format).
 
@@ -151,22 +151,11 @@ deposit and only cleared if it still holds exactly what was paid for, a containe
 duration of a sale, and `anti-dupe.click-cooldown-ms` (250 ms) rate-limits GUI sales per player. If your
 economy plugin is slow, raise that number.
 
-### `/sell auto` shows an odd message
+### I want a sale message only in the action bar, or not at all
 
-The four `auto-sell.*` keys, and `top.empty` for `/selltop`, are **missing from the shipped
-`messages.yml`**. A missing key falls back to the key name in game. Add them yourself:
-
-```yaml
-auto-sell:
-  enabled: "<prefix><white>Auto-sell is now <#00F986>on<white>."
-  disabled: "<prefix><white>Auto-sell is now <red>off<white>."
-  unavailable: "<prefix><red>Auto-sell is disabled on this server."
-  # {money} {price} {amount}
-  sold: "<prefix><white>Auto-sold <#00A3FB>{amount}<white> for <#00FB00>{price}<white>."
-
-top:
-  empty: "<prefix><white>Nobody has sold anything yet."
-```
+Set its exact key under `Presentation.Overrides` with `Channel: ACTION_BAR` or `Channel: NONE`. Use
+`Presentation.Categories.SALE.Channel` to change `/sell`, Sell Axe and auto-sell together. See
+[`Presentation`](/plugins/oberonsell/configuration/config/#presentation).
 
 ### A player's multiplier went down
 

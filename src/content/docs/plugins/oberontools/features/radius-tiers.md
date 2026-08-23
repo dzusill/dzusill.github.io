@@ -1,15 +1,19 @@
 ---
 title: "Radius Tiers"
-description: "One LIQUIDCLEAR tool, several sizes. A permission node widens the cube for the players who hold it, without a second item, a second recipe or a second…"
+description: "One tool, several sizes. A permission node widens the area for the players who hold it, without a second item, a second recipe or a second definition. Both…"
 ---
 
-One `LIQUID_CLEAR` tool, several sizes. A permission node widens the cube for the players who hold it, without a second item, a second recipe or a second definition.
+One tool, several sizes. A permission node widens the area for the players who hold it, without a second item, a second recipe or a second definition. Both `LIQUID_CLEAR` and `AREA_MINE` work this way — a bucket's cube and a pickaxe's square are resolved by the exact same permission scan, and only the shape each one reads the number as differs.
 
 ```yaml
     liquid-clear:
       radius: 1        # what everyone gets: 3x3x3
       max-radius: 3    # the ceiling a permission may reach, never exceeded
       max-blocks: 0    # 0 = derive the cap from the granted radius
+
+    area-mine:
+      radius: 1        # what everyone gets: 3x3
+      max-radius: 3    # the ceiling a permission may reach, never exceeded
 ```
 
 `radius` is the floor and `max-radius` is the ceiling. If they are equal the tool is not upgradable, no nodes exist for it, and the permission check is skipped entirely.
@@ -19,18 +23,20 @@ One `LIQUID_CLEAR` tool, several sizes. A permission node widens the cube for th
 | Node | Effect |
 |---|---|
 | `oberontools.radius.<tool-id>.<n>` | Raise **that one tool** to radius `n` |
-| `oberontools.radius.*.<n>` | Raise **every** radius tool to `n` at once |
+| `oberontools.radius.*.<n>` | Raise **every** radius tool to `n` at once, cube and square alike |
 
-`<n>` is a whole radius, not a multiplier. The cube it produces is `(2n+1)³`:
+`<n>` is a whole radius, not a multiplier. What it produces depends on the tool's behavior:
 
-| Radius | Cube | Blocks |
+| Radius | `LIQUID_CLEAR` cube `(2n+1)³` | `AREA_MINE` square `(2n+1)²` |
 |---|---|---|
-| 1 | 3×3×3 | 27 |
-| 2 | 5×5×5 | 125 |
-| 3 | 7×7×7 | 343 |
-| 4 | 9×9×9 | 729 |
+| 1 | 3×3×3 — 27 blocks | 3×3 — 9 blocks |
+| 2 | 5×5×5 — 125 blocks | 5×5 — 25 blocks |
+| 3 | 7×7×7 — 343 blocks | 7×7 — 49 blocks |
+| 4 | 9×9×9 — 729 blocks | 9×9 — 81 blocks |
 
-`radius` and `max-radius` are both capped at **8** (17×17×17, 4 913 blocks) by validation. Anything larger refuses the config.
+A wildcard grant therefore means different amounts of work per tool — tier 3 is 343 blocks for a bucket and 49 for a pickaxe — because each behavior answers with its own geometry. Nothing about the permission scan itself changes.
+
+`radius` and `max-radius` are both capped at **8** by validation: 17×17×17 (4 913 blocks) for `LIQUID_CLEAR`, 17×17 (289 blocks) for `AREA_MINE`. Anything larger refuses the config.
 
 ## Highest granted tier wins
 
@@ -66,7 +72,22 @@ Confirm what a player actually resolves to by having them run:
 ```
 
 ```
- • radius: 5x5x5 (125 blocks max)
+ • radius: 5x5x5 (up to 125 blocks)
+```
+
+The shipped `pickaxe` and `shovel` follow the identical pattern, resolved as a square instead of a cube — also `radius: 1`, `max-radius: 3`:
+
+```
+lp group donator permission set oberontools.radius.pickaxe.2 true
+lp group elite   permission set oberontools.radius.pickaxe.3 true
+```
+
+- Default players — 3×3, up to 9 blocks
+- `donator` — 5×5, up to 25 blocks
+- `elite` — 7×7, up to 49 blocks
+
+```
+ • radius: 5x5 (up to 25 blocks)
 ```
 
 ## They tab-complete
@@ -75,11 +96,11 @@ Tool ids and ceilings come from `config.yml`, so these nodes cannot be listed in
 
 Registration is scoped exactly to what exists: for each upgradable tool, tiers `radius + 1` through `max-radius`, and nothing else. Rename a tool or lower its ceiling, reload, and the stale tiers are removed from the list in the same pass.
 
-Radius tiers are registered with **`default: false`**, deliberately. A donator tier nobody was granted must not fall through to operators, or every admin would quietly be draining a far larger area than they meant to.
+Radius tiers are registered with **`default: false`**, deliberately. A donator tier nobody was granted must not fall through to operators, or every admin would quietly be draining or mining a far larger area than they meant to.
 
-## The block cap
+## The block cap (`LIQUID_CLEAR` only)
 
-`max-blocks` is the hard limit on how many blocks one activation may change.
+`max-blocks` is the hard limit on how many blocks one activation may change. `AREA_MINE` has no equivalent key: a square is always exactly `(2n+1)²` blocks at whatever radius the player resolved to, so there is nothing separate to cap.
 
 | Value | Behaviour |
 |---|---|
@@ -107,4 +128,4 @@ So selling a bigger bucket costs your server *time*, not *headroom*. The worst t
 
 ## Timber tools have no tiers
 
-Radius tiers apply only to `LIQUID_CLEAR`. `TIMBER` bounds its work with `max-logs`, `max-leaves` and the two search radii, all of which are fixed per definition and cannot be raised by a permission. If you want a bigger axe for a donator rank, define a second `TIMBER` tool with its own `use-permission`.
+`LIQUID_CLEAR` and `AREA_MINE` both get radius tiers. `TIMBER` is the one behavior that does not, and deliberately: it bounds its work with `max-logs`, `max-leaves` and the two search radii, all fixed per definition and not raisable by a permission. A tree is felled whole regardless of how far the search looked, so widening the search radius finds more of the *same* tree rather than giving a donator a bigger one. If you want a bigger axe for a donator rank, define a second `TIMBER` tool with its own `use-permission`.

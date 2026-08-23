@@ -37,7 +37,7 @@ processing:
 | `max-active-jobs-per-player` | `1` | Jobs one player may have queued at once. Range 1–8. |
 | `fire-protection-events` | `true` | Fire a `BlockBreakEvent` for each secondary block, so protection plugins decide. |
 | `expiry-refresh-interval-ticks` | `20` | Ticks between countdown redraws. Range 1–1200. |
-| `expiry-refresh-scope` | `HOTBAR` | `NONE`, `HELD`, `HOTBAR` or `INVENTORY`. |
+| `expiry-refresh-scope` | `HOTBAR` | `NONE`, `HELD`, `HOTBAR` or `INVENTORY`. Periodic redraws always skip both held hands to prevent hand bobbing. |
 
 See [The Job Queue](/plugins/oberontools/features/job-queue/) and [Expiry](/plugins/oberontools/features/expiry/#keeping-the-countdown-ticking).
 
@@ -59,7 +59,7 @@ tools:
 |---|---|---|
 | `<tool-id>` | — | Section key. Lower-cased on load; must match `[a-z0-9._-]+`. |
 | `enabled` | `true` | `false` refuses every use and unregisters the recipe. |
-| `behavior` | *required* | `LIQUID_CLEAR` or `TIMBER`. |
+| `behavior` | *required* | `AREA_MINE`, `LIQUID_CLEAR` or `TIMBER`. |
 | `use-permission` | `oberontools.use` | Empty means no check. A custom node is registered with `default: op`. |
 | `craft-permission` | `oberontools.craft` | Empty means no check. A custom node is registered with `default: op`. |
 | `worlds.whitelist` | `[]` | Empty means everywhere; non-empty means only these. |
@@ -90,7 +90,9 @@ See [Defining a Tool](/plugins/oberontools/features/defining-a-tool/).
 | `name` | *required* | MiniMessage. Validated at load. |
 | `lore` | `[]` | MiniMessage lines; blanks kept as spacing. Supports the [lore placeholders](/plugins/oberontools/placeholders/). |
 | `custom-model-data` | `0` | Above `0` is set; `0` clears it. Negative is rejected. |
-| `enchant-glint` | `false` | Both shipped tools set `true`. |
+| `enchant-glint` | `false` | The shipped tools set `true`. |
+| `enchants` | `[]` | Real enchantments written as `ENCHANT` or `ENCHANT:LEVEL`. |
+| `item-flags` | `[]` | Bukkit item flags such as `HIDE_ENCHANTS`. |
 | `unbreakable` | `true` | Vanilla durability never applies. |
 | `max-uses` | `-1` | `-1` is infinite. `0` and values below `-1` are rejected. |
 | `expires-after` | `PERMANENT` | `PERMANENT`, `never`, `none`, `-1`, or `7d` / `12h30m` / `90s`. |
@@ -99,6 +101,40 @@ See [Defining a Tool](/plugins/oberontools/features/defining-a-tool/).
 Tools are always forced to a maximum stack size of 1.
 
 See [Expiry](/plugins/oberontools/features/expiry/).
+
+### `tools.<id>.messages`
+
+```yaml
+    messages:
+      action: ACTION_BAR
+      error: CHAT
+      overrides:
+        area-complete: BOTH
+        tool.busy: NONE
+```
+
+`action` and `error` accept `CHAT`, `ACTION_BAR`, `BOTH`, or `NONE`. `overrides` routes one key for this tool only; a short key such as `area-complete` is normalized to `tool.area-complete`. Per-tool exact overrides win over global `Presentation.Overrides`, which win over `action`/`error`.
+
+### `tools.<id>.area-mine`
+
+Required when `behavior: AREA_MINE`.
+
+```yaml
+    area-mine:
+      tool: PICKAXE
+      radius: 1
+      max-radius: 3
+```
+
+| Key | Default | |
+|---|---|---|
+| `tool` | *required* | `PICKAXE` or `SHOVEL`; the item material must match. |
+| `radius` | `1` | The square everyone gets. `1` creates the shipped 3×3 plane. Range 1–8. |
+| `max-radius` | same as `radius` | Permission ceiling. Must be ≥ `radius`, ≤ 8. Equal to `radius` means no tiers exist. |
+
+There is no `max-blocks` for this behavior — a square is always exactly `(2 × radius + 1)²` blocks, so there is nothing to cap separately.
+
+See [Area Mine](/plugins/oberontools/features/area-mine/) and [Radius Tiers](/plugins/oberontools/features/radius-tiers/).
 
 ### `tools.<id>.recipe`
 
@@ -213,4 +249,4 @@ Presentation:
       Channel: ACTION_BAR
 ```
 
-Resolution order is override, then category, then plain chat.
+For command messages, resolution order is override, then category, then plain chat. Tool messages may additionally have a more-specific `tools.<id>.messages.overrides` rule.

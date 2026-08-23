@@ -121,7 +121,7 @@ guarantees when you edit a ladder.
 | `{multiplier}` / `{playerMultiplier}` | current multiplier, bare and with an `x` |
 | `{money}` | money sold into this category |
 | `{progressBar}` | the bar, per `multipliers.progress-bar` |
-| `{progressBarCompletedPercentage}` | e.g. `42%` |
+| `{progressBarCompletedPercentage}` | e.g. a threshold-coloured `42%`, per `multipliers.progress-bar` |
 | `{nextProgress}` | money needed for the next tier, or `Max` |
 | `{nextTier}` / `{nextMultiplier}` | the next rung, or `Max` |
 | `{required}` | that tier's requirement — tier icons only |

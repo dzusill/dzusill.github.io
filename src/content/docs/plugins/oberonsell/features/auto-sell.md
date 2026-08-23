@@ -76,6 +76,5 @@ category's [multiplier ladder](/plugins/oberonsell/features/sell-multipliers/).
 `auto-sell.sold` is sent after each sale, with `{money}` / `{price}` (the payout) and `{amount}` (units
 sold). `auto-sell.enabled`, `auto-sell.disabled` and `auto-sell.unavailable` cover the toggle.
 
-> **These four keys are not in the shipped `messages.yml`.** Add them yourself if you want the messages to
-> read properly — a missing key falls back to the key name in game. See
-> [messages.yml](/plugins/oberonsell/configuration/messages/#missing-keys).
+All four keys ship in `messages.yml`. Their chat/action-bar channel — or complete suppression — is
+configured through [`Presentation`](/plugins/oberonsell/configuration/config/#presentation).

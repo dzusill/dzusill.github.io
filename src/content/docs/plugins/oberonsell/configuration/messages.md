@@ -28,6 +28,26 @@ Full syntax reference: [docs.advntr.dev/minimessage](https://docs.advntr.dev/min
 > `{price}` is already formatted by this plugin and by your economy, and may include a currency symbol.
 > Writing your own `$` in front of it is how you end up with `$$10`.
 
+## Chat, action bar and disabling messages
+
+Message text stays here. Its delivery is controlled by the `Presentation` block in
+[`config.yml`](/plugins/oberonsell/configuration/config/#presentation). Set a category once, or override any exact key:
+
+```yaml
+Presentation:
+  Categories:
+    SALE:
+      Channel: BOTH
+  Overrides:
+    items.sold:
+      Channel: ACTION_BAR
+    sellaxe.nothing:
+      Channel: NONE
+```
+
+Channels are `CHAT`, `ACTION_BAR`, `BOTH` and `NONE`. Sale messages ship as `BOTH`; they include the
+payout and item count. Changes are live after `/oberonsell reload`.
+
 ## Keys
 
 ### Worth lore
@@ -44,7 +64,7 @@ There is no separate "total" key. One line carries the sum.
 
 | Key | Tokens |
 |---|---|
-| `items.sold` | `{price}` |
+| `items.sold` | `{price}`, `{amount}` |
 | `items.unsellable` | — |
 | `items.worth` | `{item}`, `{price}` |
 | `items.self_worth` | `{item}`, `{itemAmount}`, `{price}` |
@@ -102,33 +122,15 @@ you add a category.
 
 ### Other
 
-`worth_toggle_on` · `worth_toggle_off` · `history.empty` · `player_not_found` `{name}`
+`worth_toggle_on` · `worth_toggle_off` · `history.empty` · `top.empty` · `player_not_found` `{name}` ·
+`auto-sell.enabled` / `.disabled` `{state}` · `auto-sell.unavailable` · `auto-sell.sold` `{price}`
+`{money}` `{amount}`
 
 ### Framework messages
 
 `no-permission`, `players-only`, `console-only`, `unknown-command`, `invalid-usage` `{usage}`,
 `invalid-number` `{input}`, `player-not-found` `{name}`, `reload-success`, `reload-failed`,
 `command-error`.
-
-## Keys the plugin uses that the shipped file is missing
-
-Five keys are read by the code but are **not present in the shipped `messages.yml`**, so they currently
-render as their own key name in game. Add them by hand:
-
-```yaml
-auto-sell:
-  enabled: "<prefix><white>Auto-sell is now <#00F986>on<white>."
-  disabled: "<prefix><white>Auto-sell is now <red>off<white>."
-  unavailable: "<prefix><red>Auto-sell is disabled on this server."
-  # {money} and {price} are the same payout; {amount} is the units sold
-  sold: "<prefix><white>Auto-sold <#00A3FB>{amount}<white> for <#00FB00>{price}<white>."
-
-top:
-  empty: "<prefix><white>Nobody has sold anything yet."
-```
-
-`auto-sell.*` covers [Auto-Sell](/plugins/oberonsell/features/auto-sell/); `top.empty` is what `/selltop` replies with
-when the [leaderboard](/plugins/oberonsell/features/sell-leaderboard/) is empty.
 
 ## Lists
 

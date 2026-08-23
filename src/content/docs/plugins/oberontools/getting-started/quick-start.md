@@ -13,11 +13,13 @@ Ten minutes from install to a donator-tier bucket.
 
 ```
 Configured tools
+ • pickaxe [area_mine] — enabled
+ • shovel [area_mine] — enabled
  • sponge_bucket [liquid_clear] — enabled
  • lumber_axe [timber] — enabled
 ```
 
-Those two ids are what every command, permission node and recipe key refers to.
+Those four ids are what every command, permission node and recipe key refers to.
 
 ## 2. Hand one out and look at it
 
@@ -33,17 +35,19 @@ sponge_bucket
  • expires: 2026-08-27 14:03
  • remaining: 6d 23h 59m 58s
  • status: Active
- • radius: 3x3x3 (27 blocks max)
+ • radius: 3x3x3 (up to 27 blocks)
 ```
 
 `instance` is the per-item id used by the [anti-duplication lock](/plugins/oberontools/features/anti-duplication/). `expires` was stamped onto **this item** when it was created — see [Expiry](/plugins/oberontools/features/expiry/).
 
 ## 3. Use them
 
+- **pickaxe** — break a pickaxe-mineable block to mine a face-relative 3×3 plane.
+- **shovel** — break a shovel-mineable block to excavate a face-relative 3×3 plane.
 - **sponge_bucket** — right-click a water or lava block. Everything liquid inside the cube around it drains, nearest block first.
 - **lumber_axe** — break one natural log. The connected tree and its leaves come down over the next few ticks.
 
-## 4. Give a donator rank a bigger bucket
+## 4. Give a donator rank bigger tools
 
 The shipped `sponge_bucket` has `radius: 1` and `max-radius: 3`, so tiers 2 and 3 exist and are registered with the server. Grant one:
 
@@ -51,7 +55,21 @@ The shipped `sponge_bucket` has `radius: 1` and `max-radius: 3`, so tiers 2 and 
 lp group donator permission set oberontools.radius.sponge_bucket.2 true
 ```
 
-That group's 3×3×3 becomes 5×5×5 (125 blocks). Nobody else is affected, and no second item is needed. Full rules in [Radius Tiers](/plugins/oberontools/features/radius-tiers/).
+That group's 3×3×3 becomes 5×5×5 (125 blocks). Nobody else is affected, and no second item is needed.
+
+`pickaxe` and `shovel` ship the same `radius: 1`, `max-radius: 3`, resolved as a square rather than a cube:
+
+```
+lp group donator permission set oberontools.radius.pickaxe.2 true
+```
+
+That group's 3×3 becomes 5×5 (25 blocks). To widen every radius tool a rank owns in one grant, use the wildcard:
+
+```
+lp group elite permission set oberontools.radius.*.3 true
+```
+
+Full rules in [Radius Tiers](/plugins/oberontools/features/radius-tiers/).
 
 ## 5. Make your own tool
 

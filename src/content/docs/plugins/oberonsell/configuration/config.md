@@ -69,15 +69,40 @@ price-format:
 | Key | Default | What it does |
 |---|---|---|
 | `grouping` | `us` | `us` → `1,234,567.89`; `eu` → `1.234.567,89` |
-| `decimals` | `2` | Decimals on a plain amount, always shown: at `2`, `1234` reads `1,234.00`. Clamped to `0`–`6` |
+| `decimals` | `2` | Maximum decimals on a plain amount: at `2`, `1234` reads `1,234`, `1234.5` stays `1,234.5`. Clamped to `0`–`6` |
 | `compact-thousands` | `true` | Abbreviate large amounts (`1,500,000` → `1.5M`). Off prints the full number |
-| `compact-thousands-decimals` | `1` | Decimals on an abbreviation: `1` → `1.5M`, `2` → `1.50M`. Clamped to `0`–`6` |
+| `compact-thousands-decimals` | `1` | Maximum decimals on an abbreviation: at `2`, `1.5M` and `1.25M` are both possible. Clamped to `0`–`6` |
 | `compact-*-min-abs` | see above | The amount at which each suffix takes over. `0` disables that tier |
 | `suffix-*` | `K` `M` `B` `T` `Q` | The suffix each tier uses. Display only, never parsed back |
 
 Tiers are tried **largest first**, so `1500000000000` reads `1.5T` rather than `1500B`. A disabled tier
 falls through to the next one down — set `compact-thousands-min-abs: 0` to keep four-figure prices written
 out in full while millions still abbreviate.
+
+## Presentation
+
+Where messages appear. Categories set the common case; `Overrides` changes one exact
+[messages.yml key](/plugins/oberonsell/configuration/messages/), including silencing it completely.
+
+```yaml
+Presentation:
+  Categories:
+    SALE:
+      Channel: BOTH
+    TOGGLE:
+      Channel: CHAT
+    ERROR:
+      Channel: CHAT
+    INFO:
+      Channel: CHAT
+  Overrides:
+    sellaxe.nothing:
+      Channel: NONE
+```
+
+`Channel` is `CHAT`, `ACTION_BAR`, `BOTH` or `NONE`. Shipped sale notifications use `BOTH`, so `/sell`,
+Sell Axe and auto-sell show the payout and item count above the hotbar while keeping a chat record. Every
+individual message can be overridden, and `/oberonsell reload` applies changes immediately.
 
 Trailing zeroes are trimmed on an abbreviation only, so a round million reads `1M` rather than `1.0M`,
 while a plain amount keeps its padding.
@@ -139,6 +164,15 @@ multipliers:
     filled: "▮"
     empty: "▯"
     length: 20
+    filled-format: "{color}{bar}"
+    empty-format: "&8{bar}"
+    percentage-format: "{color}{percentage}%"
+    colors:
+      '0': "#C21807"
+      '25': "#F11800"
+      '50': "&e"
+      '75': "#00F986"
+      '100': "#00FB00"
 ```
 
 | Key | Default | What it does |
@@ -152,6 +186,12 @@ multipliers:
 | `reset.max-bonus` | `0.0` | Ceiling on a category's banked bonus. `0` = no ceiling |
 | `progress-bar.filled` / `.empty` | `▮` / `▯` | Characters for `{progressBar}` |
 | `progress-bar.length` | `20` | Bar width in characters |
+| `progress-bar.filled-format` / `.empty-format` | `{color}{bar}` / `&8{bar}` | Full layout and colour of each bar segment |
+| `progress-bar.percentage-format` | `{color}{percentage}%` | Full layout of `{progressBarCompletedPercentage}` |
+| `progress-bar.colors.<percent>` | five thresholds | Colour selected from the highest threshold the player has reached |
+
+Formats accept `{color}`, `{bar}` and, for the percentage, `{percentage}`. Colours accept `&a`, bare
+`#00F986` or MiniMessage `<green>` syntax. Add, remove or move thresholds anywhere from `0` to `100`.
 
 See [Sell Multipliers](/plugins/oberonsell/features/sell-multipliers/).
 

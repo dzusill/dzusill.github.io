@@ -92,7 +92,7 @@ Access failures are not all treated the same way, and the difference is worth kn
 | Situation | The log you hit | The fell |
 |---|---|---|
 | Everything fine | breaks | runs |
-| Tool **expired** | breaks | refused, with `tool.expired` |
+| Tool **expired** | **cancelled**; a `REMOVE` axe is destroyed | refused, with `tool.expired` |
 | Missing `use-permission` | **cancelled** | refused, with `tool.no-use-permission` |
 | World not allowed | **cancelled** | refused, with `tool.wrong-world` |
 | Definition `enabled: false` | **cancelled** | refused, with `tool.no-use-permission` |

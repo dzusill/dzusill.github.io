@@ -64,6 +64,7 @@ tool:
   broken: "…"
   liquid-none: "…"
   liquid-cleared: "…"
+  area-complete: "…"
   timber-not-natural: "…"
   timber-limit: "…"
   timber-complete: "…"
@@ -80,6 +81,7 @@ tool:
 | `tool.broken` | `%tool%` | The last use was spent and the item was destroyed |
 | `tool.liquid-none` | — | Nothing matching was found in range |
 | `tool.liquid-cleared` | `%blocks%` | A liquid job finished |
+| `tool.area-complete` | `%blocks%` | An area-mining job finished; includes the centre block |
 | `tool.timber-not-natural` | — | The block was not part of a recognised natural tree |
 | `tool.timber-limit` | — | The connected structure exceeded `max-logs` while aborting |
 | `tool.timber-complete` | `%logs%`, `%leaves%` | A fell finished. `%logs%` includes the block the player broke |
@@ -88,7 +90,7 @@ tool:
 
 `tool.locked` ships without a `<prefix>` on purpose — it is routed to the action bar by the shipped `Presentation` block, where a prefix wastes room.
 
-Blanking a key (`liquid-none: ""`) silences it.
+Blanking a key (`liquid-none: ""`) silences its text. To disable delivery explicitly, set that tool's `messages.overrides` key to `NONE`.
 
 ## Tool states
 

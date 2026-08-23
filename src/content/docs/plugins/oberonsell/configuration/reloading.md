@@ -1,14 +1,14 @@
 ---
 title: "Reloading"
-description: "Reloads every config file, recompiles the category patterns, re-reads messages.yml, rebuilds the price"
+description: "Reloads every config file, recompiles every category, re-reads messages.yml and Presentation, reloads"
 ---
 
 ```
 /oberonsell reload
 ```
 
-Reloads every config file, recompiles the category patterns, re-reads `messages.yml`, rebuilds the price
-lookup, and repaints any prices, history or multiplier GUI that is open at the time.
+Reloads every config file, recompiles every category, re-reads `messages.yml` and `Presentation`, reloads
+the price formatter and price lookup, and repaints any prices, history or multiplier GUI open at the time.
 
 Needs `oberonsell.admin`.
 
@@ -19,12 +19,12 @@ rebuilt its slots would be a repaint that ate them.
 
 | Change | Live after reload |
 |---|---|
-| `config.yml` — pricing, rounding, price format, multipliers, blacklisted worlds, disabled game modes, custom-item sources, anti-dupe, auto-sell limits | ✅ |
+| `config.yml` — pricing, rounding, price format, message Presentation, multipliers, blacklisted worlds, disabled game modes, custom-item sources, anti-dupe, auto-sell limits | ✅ |
 | `config.yml` — the eight settings listed below | ❌ needs a restart |
 | `prices.yml` — entries added or removed by hand | ✅ |
 | `enchantments.yml` — enchantment values and their levers | ✅ |
 | `sell/*.yml` — patterns, tier ladders, icons, layouts | ✅ |
-| `gui/*.yml` — titles, icons, slots, filler | ✅ |
+| `gui/*.yml` — titles, icons, slots, filler, including `gui/multipliers.yml` | ✅ |
 | `sounds.yml`, `sellaxe.yml`, `messages.yml` | ✅ |
 | Adding a **new** category file | ✅ if it's already in `multipliers.categories` |
 

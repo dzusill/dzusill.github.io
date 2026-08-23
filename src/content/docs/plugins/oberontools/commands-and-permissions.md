@@ -63,7 +63,7 @@ sponge_bucket
  • expires: 2026-08-27 14:03
  • remaining: 6d 23h 59m 58s
  • status: Active
- • radius: 5x5x5 (125 blocks max)
+ • radius: 5x5x5 (up to 125 blocks)
 ```
 
 | Line | What it tells you |
@@ -73,9 +73,9 @@ sponge_bucket
 | `expires` | The absolute deadline stamped on **this** item, in the server's time zone |
 | `remaining` | Time left, or the permanent / expired wording from `messages.yml` |
 | `status` | `Active`, `Expired` or `Never` |
-| `radius` | Only for `LIQUID_CLEAR`. The cube **this player** resolves to, after their radius nodes, and the block cap that applies at it |
+| `radius` | For `LIQUID_CLEAR` and `AREA_MINE`. The cube or square **this player** resolves to, after their radius nodes, and the block cap that applies at it |
 
-The `radius` line is the fastest way to answer "why is my donator bucket still 3×3×3" — it reports what the permission check actually returned for the player holding the item.
+The `radius` line is the fastest way to answer "why is my donator bucket still 3×3×3", or "why is the donator pickaxe still 3×3" — it reports what the permission check actually returned for the player holding the item. A `TIMBER` tool prints no `radius` line, because it has no tier to resolve.
 
 ## Reading `list`
 

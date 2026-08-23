@@ -48,7 +48,8 @@ Lore is static text on an item. These placeholders are re-evaluated only when th
 
 - **On creation** — crafted, or given
 - **On use** — after a use is spent
-- **By the countdown pass** — every `processing.expiry-refresh-interval-ticks`, within `processing.expiry-refresh-scope`, and only for items that carry an expiry stamp
+- **By the countdown pass** — every `processing.expiry-refresh-interval-ticks`, within `processing.expiry-refresh-scope`, only for items that carry an expiry stamp, and never while the item is in either held hand
+- **When an inventory opens** — both held hands refresh while their tooltip is visible
 - **On `/oberontools refresh`**
 
 A tool with no expiry stamp is skipped by the countdown pass entirely, so `%uses%` on a `PERMANENT` tool only updates when the tool is used — which is exactly when it changes anyway. See [Expiry](/plugins/oberontools/features/expiry/#keeping-the-countdown-ticking).
@@ -72,6 +73,7 @@ Each `messages.yml` key accepts a fixed set. Using a placeholder in a key that d
 | `command.reload-failed` | `%error%` |
 | `tool.no-use-permission` · `tool.no-craft-permission` · `tool.wrong-world` · `tool.expired` · `tool.broken` | `%tool%` |
 | `tool.liquid-cleared` | `%blocks%` |
+| `tool.area-complete` | `%blocks%` |
 | `tool.timber-complete` | `%logs%`, `%leaves%` |
 
 `<prefix>` is available in every message and expands to the `prefix` key. See [messages.yml](/plugins/oberontools/configuration/messages/).
