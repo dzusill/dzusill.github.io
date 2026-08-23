@@ -11,12 +11,12 @@ It is built on [DzusillCore](https://github.com/dzusill/DzusillCore), shipped on
 
 - 📡 **Live announcements** — `/live <link>` publishes a configurable MiniMessage broadcast with a clickable stream URL.
 - 🌐 **Platform-aware validation** — YouTube, Twitch, TikTok and Kick ship by default; owners can define more platforms and hostname rules.
-- 🔒 **Safe links** — HTTPS only, explicit domain ownership, no user-info, fragments, unsafe ports or suffix-spoofed domains.
+- 🔒 **Safe links** — bare and HTTP input is upgraded to HTTPS before explicit domain, user-info, fragment, port and suffix-spoofing checks.
 - ⏱️ **Permission cooldowns** — a default delay plus any number of LuckPerms-managed tiers; the shortest granted tier wins.
 - 🔕 **Player opt-out** — `/live toggle` controls receiving only. A muted streamer can still publish and always sees their own announcement.
 - 💾 **Required storage** — embedded H2 by default or MySQL, with player preference, lifetime count, full history and persistent blocks.
 - 🛡️ **Moderation** — static config blocks and runtime `/olive block` entries for domains or exact URLs.
-- 📨 **Discord Incoming Webhook** — configurable identity, role mention and embed, sent asynchronously with timeout and retry.
+- 📨 **Discord Incoming Webhook** — configurable identity, plain content, role mention and fully switchable embed sections, sent asynchronously with timeout and retry.
 - 🧩 **PlaceholderAPI** — optional placeholders inside broadcasts plus five self-only OberonLive placeholders.
 - 🧵 **Paper and Folia scheduling** — SQL and webhook work stays off the server thread; player delivery uses each entity's scheduler.
 
@@ -35,9 +35,9 @@ See [Requirements](/plugins/oberonlive/getting-started/requirements/) for the co
 ## Announcement flow
 
 ```text
-/live https://twitch.tv/name
+/live twitch.tv/name
   ├─ permission and loaded player state
-  ├─ HTTPS URI + configured platform hostname
+  ├─ normalize to HTTPS + configured platform hostname
   ├─ static and database blocklists
   ├─ permission-derived cooldown + global duplicate window
   └─ one database transaction
@@ -61,4 +61,3 @@ The game broadcast and webhook are queued only after storage succeeds. A Discord
 - [Commands & Permissions](/plugins/oberonlive/commands-and-permissions/)
 - [Configuration](/plugins/oberonlive/configuration/config/)
 - [FAQ & Troubleshooting](/plugins/oberonlive/faq/)
-

@@ -74,9 +74,23 @@ The `values.*` section localizes short values inserted into larger messages: `ye
 | Category | Typical keys |
 |---|---|
 | `TOGGLE` | `toggle-on`, `toggle-off` |
-| `ERROR` | validation, cooldown, pending and failed operations |
+| `ERROR` | usage, permission/parser errors, validation, cooldown, pending and failed operations |
 | `INFO` | successful announcement, reload and block changes |
 
-Lists always remain chat output. Single messages can use the category or an exact `Presentation.Overrides.<key>` rule.
+Every single command response can use `CHAT`, `ACTION_BAR`, `BOTH` or `NONE` and an optional sound through its category or an exact `Presentation.Overrides.<key>` rule. For example:
+
+```yaml
+Presentation:
+  Overrides:
+    invalid-url:
+      Channel: ACTION_BAR
+      Sound:
+        Enabled: true
+        Name: "BLOCK_NOTE_BLOCK_BASS"
+        Volume: 1.0
+        Pitch: 0.8
+```
+
+Enum-style sound names and namespaced registry keys are accepted. Lists always remain chat output so their lines are not immediately overwritten in the action bar; a configured list sound still plays once.
 
 `/olive reload` re-reads this file after the candidate `config.yml` has passed validation.

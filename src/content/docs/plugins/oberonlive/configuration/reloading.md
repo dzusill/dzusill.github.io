@@ -16,7 +16,7 @@ Requires `oberonlive.admin`. A successful reload replaces:
 - static blocklists,
 - chat, action bar, sound and console broadcast settings,
 - history page size, retention and time zone,
-- Discord identity, role, embed, timeout and retry settings.
+- Discord identity, plain content, role, embed section switches, timeout and retry settings.
 
 It also retries loading the database blocklist if startup state was not ready and runs the current retention purge.
 
@@ -37,4 +37,3 @@ Fix every reported problem and run the command again.
 | Command roots | `/live` and `/olive` are registered during enable and are not configurable. |
 
 Do not use Bukkit's broad `/reload` as an update mechanism. Restart the server for jar or dependency changes.
-

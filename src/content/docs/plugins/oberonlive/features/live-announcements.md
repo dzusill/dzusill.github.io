@@ -4,10 +4,10 @@ description: "How /live validates, stores and delivers a clickable stream announ
 ---
 
 ```text
-/live https://youtube.com/live/your-stream
+/live youtube.com/live/your-stream
 ```
 
-The player needs `oberonlive.use`. OberonLive then checks the URL, moderation rules, permission-derived cooldown and global duplicate window before storing the announcement.
+The player needs `oberonlive.use`. A bare or HTTP URL is first upgraded to HTTPS. OberonLive then checks the destination, moderation rules, permission-derived cooldown and global duplicate window before storing the normalized announcement.
 
 ## Recipients
 
@@ -43,7 +43,7 @@ Every line containing `%link%` or `{link}` receives an `open_url` click event fo
 | `%player%` | account name at announcement time |
 | `%display_name%` | current Bukkit display name |
 | `%uuid%` | player's UUID |
-| `%link%` | validated stream URL |
+| `%link%` | validated, HTTPS-normalized stream URL |
 | `%platform%` | configured display name, such as `Twitch` |
 | `%platform_id%` | platform section id, such as `twitch` |
 | `%server%` | configured `server-name` |
@@ -53,7 +53,6 @@ When PlaceholderAPI is installed, each player's copy is also passed through it a
 
 ## Other outputs
 
-The same event can show an action bar and play a sound. Both are disabled by default. Sound names, volume and pitch use the OberonCore sound renderer.
+The same event can show an action bar and play a sound. Both are disabled by default. The sound is played to every receiving online player and to the streamer even when the streamer opted out. It is never played to the console. Bukkit enum names such as `BLOCK_NOTE_BLOCK_CHIME` and registry keys such as `minecraft:block.note_block.chime` are both accepted.
 
 The success message is sent after storage commits. If SQL fails, no broadcast is emitted and the player receives `announcement-failed`.
-

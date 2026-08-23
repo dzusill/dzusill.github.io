@@ -1,6 +1,6 @@
 ---
 title: "Platforms & Link Safety"
-description: "Define streaming platforms and understand the exact HTTPS hostname, port, character, blocklist and duplicate checks applied to every URL."
+description: "Define streaming platforms and understand HTTPS normalization, exact hostname, port, character, blocklist and duplicate checks applied to every URL."
 ---
 
 Every platform is data in `config.yml`:
@@ -37,9 +37,17 @@ OberonLive does not resolve a third-party short URL to discover where it goes. A
 
 ## URL rules
 
-A player URL must:
+A player may enter any of these forms:
 
-- start with HTTPS,
+```text
+twitch.tv/name
+http://twitch.tv/name
+https://twitch.tv/name
+```
+
+All three become `https://twitch.tv/name` before storage, broadcast, history, block comparison and Discord delivery. After that normalization, the URL must:
+
+- use HTTPS; every other explicit scheme is rejected,
 - fit within `url-security.max-length`,
 - contain a hostname owned by exactly one configured platform,
 - use the default port or explicit port 443,
@@ -56,4 +64,3 @@ The normalized duplicate key lower-cases the host, removes the default `:443`, n
 ## Blocklists
 
 `blocked-domains` blocks the named root and every subdomain. `blocked-urls` blocks one normalized URL. Runtime blocks in the database apply the same way and can be managed without editing the file. See [History & Moderation](/plugins/oberonlive/features/history-and-moderation/).
-

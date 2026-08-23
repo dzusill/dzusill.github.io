@@ -17,7 +17,7 @@ description: "Install OberonCore and OberonLive, choose the default H2 database 
 The console banner confirms the hard dependency loaded:
 
 ```text
-OberonLive v1.0.0
+OberonLive v1.1.0
 Powered by OberonCore
 ```
 
@@ -45,12 +45,11 @@ As an operator:
 As a player with `oberonlive.use`:
 
 ```text
-/live https://twitch.tv/your_channel
+/live twitch.tv/your_channel
 ```
 
-Use a full HTTPS URL. `http://`, an unknown shortener and a hostname merely ending in `twitch.tv` are intentionally rejected.
+Bare links and `http://` links are automatically upgraded to `https://` before they are stored and published. Unknown shorteners, unsupported schemes and hostnames merely ending in `twitch.tv` are intentionally rejected.
 
 ## Updating
 
 Stop the server, replace `OberonLive.jar`, and start it again. Keep a backup of the plugin directory before updating. Runtime-safe presentation changes use `/olive reload`; jar, database connection and dependency changes need a restart.
-

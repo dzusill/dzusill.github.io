@@ -11,7 +11,7 @@ The player's stored state or the database blocklist has not loaded. Immediately 
 
 Check all of the following:
 
-- it begins with `https://`,
+- it is a bare link, `http://` or `https://` input (bare and HTTP input is upgraded automatically),
 - the hostname is listed under one platform,
 - a subdomain has a matching `*.domain` rule,
 - it has no fragment such as `#section`, user-info or non-443 port,
@@ -19,6 +19,14 @@ Check all of the following:
 - its length is within `url-security.max-length`.
 
 `https://twitch.tv.attacker.example/name` is not a Twitch hostname and is correctly rejected.
+
+## Why does my configured sound not play?
+
+Enable the correct sound block and use either a Bukkit enum name such as `BLOCK_NOTE_BLOCK_CHIME` or a registry key such as `minecraft:block.note_block.chime`. Broadcast sound is sent to opted-in online recipients and always to the streamer; command-response sounds are controlled separately under `Presentation`. After editing `config.yml`, run `/olive reload` and check `reload-failed` or the console for an invalid sound name, volume or pitch.
+
+## How do I remove parts of the Discord embed?
+
+Set the corresponding `title-enabled`, `description-enabled`, `url-enabled`, `color-enabled`, `timestamp-enabled`, `thumbnail-enabled` or `footer-enabled` value to `false`. Fields use their own `enabled` value. To remove the entire embed, set `embed.enabled: false` and normally enable `discord-webhook.content` as the plain-message fallback.
 
 ## Can I allow another streaming service?
 
@@ -51,4 +59,3 @@ No automatic migration is included. OberonLive uses a new H2/MySQL schema and is
 ## Does OberonLive collect metrics or check for updates?
 
 No. It includes no bStats, telemetry or update checker.
-

@@ -49,11 +49,11 @@ Granting both tier permissions selects five seconds. `oberonlive.cooldown.bypass
 
 ```text
 /olive reload
-/live https://kick.com/your_channel
+/live kick.com/your_channel
 /live toggle
 ```
 
-The toggle changes receiving, not publishing. The sender always sees their own announcement.
+The bare link is upgraded and published as `https://kick.com/your_channel`. The toggle changes receiving, not publishing. The sender always sees their own announcement.
 
 ## 5. Optional Discord mirror
 
@@ -66,7 +66,11 @@ discord-webhook:
   username: "OberonLive"
   avatar-url: ""
   mention-role-id: ""
+  content:
+    enabled: false
+    message: "%player% is live: %link%"
+  embed:
+    enabled: true
 ```
 
 See [Discord Webhooks](/plugins/oberonlive/features/discord-webhooks/) before enabling a role mention.
-
