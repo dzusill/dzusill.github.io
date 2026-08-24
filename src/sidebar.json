@@ -2339,6 +2339,10 @@
                 "slug": "plugins/dfactions/features/wars-and-shields"
               },
               {
+                "label": "Faction Bounties",
+                "slug": "plugins/dfactions/features/bounties"
+              },
+              {
                 "label": "Statistics & Seasons",
                 "slug": "plugins/dfactions/features/statistics"
               },
@@ -2713,6 +2717,100 @@
               {
                 "label": "Credits",
                 "slug": "plugins/ddeathpenalty/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "🔮 dFate",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/dfate"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dfate/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dfate/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/dfate/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "The Choice",
+                "slug": "plugins/dfate/features/the-choice"
+              },
+              {
+                "label": "The Lock",
+                "slug": "plugins/dfate/features/the-lock"
+              },
+              {
+                "label": "Hardcore Death",
+                "slug": "plugins/dfate/features/hardcore-death"
+              },
+              {
+                "label": "Exemptions",
+                "slug": "plugins/dfate/features/exemptions"
+              },
+              {
+                "label": "Dialogs & Fallback",
+                "slug": "plugins/dfate/features/dialogs-and-fallback"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dfate/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/dfate/configuration/messages"
+              },
+              {
+                "label": "database.yml",
+                "slug": "plugins/dfate/configuration/database"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/dfate/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/dfate/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/dfate/placeholders"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/dfate/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/dfate/credits"
               }
             ]
           }

@@ -37,7 +37,9 @@ prestige to expand — see [Leveling & Prestige](/plugins/dfactions/features/pro
 Inside a faction's claim, players who are **not members** are blocked from interfering — **unless
 their faction is in an active [war](/plugins/dfactions/features/wars-and-shields/) with the owner**, which lifts every one of
 these protections between the two belligerents (siege). Members always have full access to their own
-land, and admins with `factions.bypass` are exempt.
+land, and admins with `factions.bypass` are exempt. **Allied factions may build in each other's
+land only when the alliance is mutual** — both factions must have set the other as an ally, so a
+one-sided declaration grants nothing.
 
 - **Blocks** — no breaking or placing.
 - **Containers & openables** — chests, barrels, furnaces, hoppers, shulkers, doors, trapdoors,
@@ -49,6 +51,14 @@ land, and admins with `factions.bypass` are exempt.
   traced back to their shooter).
 - **Potions** — harmful splash and lingering potions thrown by outsiders don't affect protected
   players or animals in the claim.
+- **Liquids** — water and lava cannot flow across a claim boundary into land owned by someone else,
+  so nobody can channel lava in from the next chunk. Flow inside a claim, and out into wilderness,
+  is untouched.
+- **Buckets** — an outsider cannot empty a water or lava bucket into a claim, nor scoop a source
+  block out of one. (A bucket empty is not a block placement, so this is enforced separately.)
+- **Pistons** — a piston may not push or pull blocks across a claim boundary between different
+  owners, in either direction. A piston working entirely inside one claim, or in wilderness, is
+  unaffected.
 - **Home PvP protection** — a player standing in **their own** faction's claim is safe from
   outsiders who aren't at war with them, even a wilderness attacker firing arrows.
 
