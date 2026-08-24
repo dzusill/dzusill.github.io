@@ -15,8 +15,37 @@ modules:
 elytra:
   firework-boost: BLOCK      # BLOCK | COOLDOWN | ALLOW
   boost-cooldown: 8s         # COOLDOWN mode only
+  only-when-tagged: true     # only while PvPManager has the player combat-tagged
   bypass-permission: oberonutils.elytra.firework
 ```
+
+## It only applies in combat
+
+`only-when-tagged` defaults to **true**, and it is what makes this a PvP rule rather than a travel ban. A
+player cannot rocket out of a fight; crossing the map on an elytra is untouched.
+
+It gates whichever mode is set:
+
+| Mode | With `only-when-tagged: true` |
+|---|---|
+| `BLOCK` | The rocket is refused **only** while combat-tagged |
+| `COOLDOWN` | The cooldown is stamped **only** while combat-tagged |
+
+Set it to `false` to enforce everywhere, in combat or not.
+
+> **This needs PvPManager.** Without it nobody is ever tagged, so nothing is ever enforced and the rule
+> looks broken. OberonUtils says so in console at startup rather than leaving you to work it out:
+>
+> ```
+> elytra.only-when-tagged is true but PvPManager is not available, so no player is ever
+> combat-tagged and firework boosting will never be restricted.
+> ```
+
+Combat state is read from PvPManager directly — the same source `/spawn` and `/warp` use — so a player's
+tag here always agrees with what PvPManager itself thinks.
+
+A cooldown stamped in combat keeps running after the tag drops. That is deliberate: it was earned by a boost
+taken during the fight, and cancelling it on untag would make disengaging *remove* the penalty.
 
 ## The three modes
 
@@ -95,9 +124,14 @@ restriction.
 
 ## Not to be confused with `combat.cooldowns`
 
-`combat.cooldowns` can also carry a `FIREWORK_ROCKET` entry, but it is a different feature: it is a blanket
-item cooldown that knows nothing about gliding and, with the shipped `combat.only-when-tagged: true`, applies
-only while PvPManager has the player combat-tagged.
+`combat.cooldowns` can also carry a `FIREWORK_ROCKET` entry, and both features are combat-gated, so the
+difference is easy to miss. It is **gliding** that separates them:
 
-Use `elytra.firework-boost: COOLDOWN` to throttle *boosting*. Use `combat.cooldowns` to throttle a rocket
-everywhere, in combat. Setting both is safe — neither re-stamps over a cooldown the other started.
+| | `elytra.firework-boost: COOLDOWN` | `combat.cooldowns: FIREWORK_ROCKET` |
+|---|---|---|
+| Applies while gliding | yes | yes |
+| Applies on the ground | no | yes |
+| Gated by | `elytra.only-when-tagged` | `combat.only-when-tagged` |
+
+Use the elytra one to throttle *boosting*. Use `combat.cooldowns` to throttle a rocket everywhere. Setting
+both is safe — neither re-stamps over a cooldown the other started, so a player is never charged twice.
