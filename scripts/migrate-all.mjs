@@ -55,6 +55,8 @@ const PLUGINS = [
   { slug: 'oberontools',   name: 'OberonTools',   src: '../OberonTools/docs' },
   // Sits with the shop plugins rather than the Oberon block: it is the selling half of that economy.
   { slug: 'oberonsell',    name: 'OberonSell',    src: '../OberonSell/docs' },
+  // The buying half, and the PerfShop replacement.
+  { slug: 'oberonshop',    name: 'OberonShop',    src: '../OberonShop/docs' },
 ];
 
 // Plugins whose pages are written directly into src/content/docs/plugins/<slug>/ rather than
@@ -83,7 +85,7 @@ const SIDEBAR_ONLY = process.argv.includes('--sidebar-only');
 const CATEGORIES = [
   { label: '🛠️ Framework', plugins: ['dzusillcore', 'ddialogs'] },
   { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonannounce', 'oberontools', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats'] },
-  { label: '💰 Economy & Shops', plugins: ['drotatingshop', 'ddonutworth', 'oberonsell', 'dgems', 'dstore', 'dlottery', 'blottery'] },
+  { label: '💰 Economy & Shops', plugins: ['drotatingshop', 'oberonshop', 'ddonutworth', 'oberonsell', 'dgems', 'dstore', 'dlottery', 'blottery'] },
   { label: '⚔️ PvP & Combat', plugins: ['dfactions', 'dkilltracker', 'dbloodmoney', 'ddeathpenalty'] },
   { label: '🧭 Teleportation', plugins: ['warpgui', 'dhomegui'] },
   { label: '💬 Chat & Social', plugins: ['dnicks', 'dmentions'] },
@@ -100,6 +102,7 @@ const PLUGIN_EMOJI = {
   ddonutworth: '🍩', ddialogs: '💬', blottery: '🍀', dmentions: '🙋',
   dgems: '💎', dweblink: '🔗', dphalanx: '🌐', dstore: '🧾',
   oberonstats: '📈', oberonannounce: '📣', oberontools: '🪣', oberonsell: '🏷️',
+  oberonshop: '🏪',
 };
 const SECTION_EMOJI = {
   'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',

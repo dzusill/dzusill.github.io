@@ -10,7 +10,8 @@ Into `plugins/`:
 - `OberonCore.jar` — the framework, deployed as its own jar
 - `Vault.jar` and a Vault-compatible economy
 - `OberonSell.jar`
-- optionally `ProtocolLib.jar` — packet worth lore and the sign search prompt
+- `ProtocolLib.jar` — **required for [worth lore](/plugins/oberonsell/features/worth-lore/)**, no fallback. Also
+  optionally upgrades the prices-GUI search prompt to a sign, but only worth lore actually needs it
 
 ## 2. Start the server
 

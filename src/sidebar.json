@@ -1531,6 +1531,112 @@
         ]
       },
       {
+        "label": "🏪 OberonShop",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/oberonshop"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/oberonshop/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonshop/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/oberonshop/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Buying",
+                "slug": "plugins/oberonshop/features/buying"
+              },
+              {
+                "label": "Variants",
+                "slug": "plugins/oberonshop/features/variants"
+              },
+              {
+                "label": "Bundles & Perks",
+                "slug": "plugins/oberonshop/features/bundles-and-perks"
+              },
+              {
+                "label": "Currencies",
+                "slug": "plugins/oberonshop/features/currencies"
+              },
+              {
+                "label": "Pricing & Sales",
+                "slug": "plugins/oberonshop/features/pricing-and-sales"
+              },
+              {
+                "label": "Stock & Limits",
+                "slug": "plugins/oberonshop/features/stock-and-limits"
+              },
+              {
+                "label": "Finding Things",
+                "slug": "plugins/oberonshop/features/finding-things"
+              },
+              {
+                "label": "Custom Items",
+                "slug": "plugins/oberonshop/features/custom-items"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonshop/configuration/config"
+              },
+              {
+                "label": "Shop Files",
+                "slug": "plugins/oberonshop/configuration/shops"
+              },
+              {
+                "label": "GUIs",
+                "slug": "plugins/oberonshop/configuration/guis"
+              },
+              {
+                "label": "Messages",
+                "slug": "plugins/oberonshop/configuration/messages"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/oberonshop/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberonshop/placeholders"
+              },
+              {
+                "label": "Migrating from PerfShop",
+                "slug": "plugins/oberonshop/migrating-from-perfshop"
+              },
+              {
+                "label": "FAQ",
+                "slug": "plugins/oberonshop/faq"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "label": "🍩 dDonutWorth",
         "collapsed": true,
         "items": [

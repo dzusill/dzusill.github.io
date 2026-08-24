@@ -26,7 +26,11 @@ worth-lore:
     - "Faction Chest"
 ```
 
-An entry in `inventories` is matched **two ways**, so either style works:
+`inventories` is a **whitelist**: only what it matches gets worth lore. An inventory matching nothing on it
+gets none, and an empty list means no worth lore anywhere. It is not a list of exceptions — it is the whole
+set.
+
+An entry is matched **two ways**, so either style works:
 
 - an **`InventoryType` name** — `CHEST`, `BARREL`, `FURNACE`, `CRAFTING`, `MERCHANT`… Exact, and the robust
   choice: it needs no access to the inventory's title at all.
@@ -49,14 +53,28 @@ Two ways to stop that.
 ```yaml
 worth-lore:
   excluded-inventories:
-    - "Auction House"
-    - "Crate Preview"
-    - "Kit Selector"
+    - "Auction"
+    - "Crate"
+    - "Kit"
+    - "Shop"
+    - "Vault"
+    - "Backpack"
 ```
 
-A fragment is enough — `"Auction"` also catches `Auction House (Page 1/4)`. Ships empty on purpose: an
-entry here silently hides worth, so nothing is guessed for you. Open the GUI, read its title off the
-screen, add it, `/oberonsell reload`.
+A fragment is enough — `"Auction"` also catches `Auction House (Page 1/4)`.
+
+Those six ship as the default because they are the GUI names most servers turn out to have. They are a
+**starting point, not a detected list** — check them against your own server. Two things to watch, because
+both bite quietly:
+
+- A fragment matches anywhere in the title, so a short one is blunt. `"Shop"` also matches `Workshop`;
+  `"Kit"` also matches `Kitchen`. If you have a real container named that way, lengthen the fragment or
+  drop the line.
+- An entry here hides worth with **no message and no error**. If worth lore is missing somewhere you
+  expected it, this list is the first place to look.
+
+To add your own: open the GUI, read its title off the screen, add a distinctive part of it,
+`/oberonsell reload`.
 
 **Or rule them all out at once:**
 
@@ -116,113 +134,73 @@ Per player, persisted, and it takes effect immediately rather than at the next i
 One key, in [messages.yml](/plugins/oberonsell/configuration/messages/):
 
 ```yaml
-worth_lore: "<gray>Worth: <#00FC00>{price}"
+worth_lore: "<gray>Worth: <#00FC00>${price}"
 ```
 
-`{price}` is everything the item is worth — the item itself plus anything it carries. Whether that figure
-covers one item or the whole stack depends on the delivery mode below.
+`{price}` is everything the item is worth — the item itself plus anything it carries — and it always covers
+the **whole stack**: 12 diamonds read one figure, 8 read another.
 
-## Two delivery modes
+## Needs ProtocolLib
 
-```yaml
-worth-lore:
-  mode: auto     # auto | packet | item
-```
-
-### Packet mode — recommended, needs ProtocolLib
-
-Worth lines are added to the **copy of the item sent to the client**. The item on the server is never
-touched. Because the tooltip is per viewer rather than part of the item, one line can show what the whole
-stack is worth:
+Worth lore has exactly one way of working, and it needs [ProtocolLib](https://www.spigotmc.org/resources/1997/):
+the line is added to the **copy of the item sent to the client**. The item on the server is never touched.
 
 ```
 Diamond ×12          Diamond ×8
 Worth: $120          Worth: $80
 ```
 
-…and those two stacks still merge, because on the server they are identical plain diamonds.
+Those two stacks still merge, because on the server they are identical plain diamonds — nothing about them
+differs, only what one particular viewer is shown. That is also why nothing needs stripping on close, on
+quit or at shutdown, nothing is left behind by a crash, and hoppers, other plugins and your save files all
+see items exactly as if this plugin were absent.
 
 The open window is re-sent after every click, drag, pickup and drop. Since 1.17 the client predicts the
 result of an inventory action itself and the server only corrects it when the two disagree — and the
 server's own items carry no lore for it to disagree about, so without that resync a moved or merged stack
 would render with the wrong tooltip, or none.
 
-Everything else that follows from not modifying items comes free: nothing to strip on close, on quit or at
-shutdown, nothing left behind by a crash, no `/oberonsell cleanup`, and hoppers, other plugins and your
-save files all see items exactly as if this plugin were not installed.
+**Without ProtocolLib installed, this is the one feature that does not work.** Nothing else does — selling,
+pricing, every menu and command run exactly the same. The plugin logs why once at startup, and
+`/oberonsell doctor` reports it too. There is no fallback mode to fall back to: install ProtocolLib, or
+turn the feature off explicitly with `worth-lore.enabled: false` to stop asking for it.
 
-Install [ProtocolLib](https://www.spigotmc.org/resources/1997/) and `auto` picks this by itself.
+## Why nothing needs reversing
 
-### Item mode — the fallback
+Most implementations of this feature get it wrong by writing the line into the real item and then having
+to clean it up again afterwards. This one does not, because the line is never written into a real item in
+the first place — only into the copy of the item a packet carries to one viewing client. The server's own
+copy is untouched from the moment the item is created to the moment it is destroyed, so there is nothing to
+strip on close, on quit, at shutdown, or after a crash, and no truncated-lore or duplicated-lore failure
+mode for a hand-typed template to trigger.
 
-Without ProtocolLib the line has to be written into the item, and lore is part of an item's identity. So it
-can only show a **per-item** price: a line carrying the stack total would give a stack of 32 different lore
-from a stack of 16, and Minecraft refuses to merge two stacks whose lore differs — split a stack of
-diamonds and the pieces would not go back together.
+### The one place a real item can still pick up a line
 
-`/worth hand` reports the stack total in this mode. If you would rather have the line itself show the whole
-stack:
-
-```yaml
-worth-lore:
-  show-stack-total: true
-```
-
-That reintroduces exactly the stacking problem described above, which is why it is off by default. In
-packet mode the setting does nothing — the total is always shown, and stacks still merge.
-
-## How it stays reversible
-
-This is the part that most implementations get wrong, so it is worth explaining.
-
-Only the **number** of injected lines is recorded, in the item's persistent data. The item's own lore is
-left exactly as it was, and the extra lines are truncated off the end again on removal. The alternative —
-serialising the original lore and writing it back — loses formatting and hover data on every round trip,
-and is how lore ends up duplicated and mangled.
-
-Lore is removed:
-
-- when the container is closed,
-- after any click or drag, before the item can go anywhere,
-- when a hopper or dispenser pulls an item out,
-- when an item is dropped,
-- when the player disconnects, *before* their inventory is written to disk,
-- on join, catching anything a crash left behind,
-- on plugin shutdown or reload.
-
-After a click the whole view is stripped and re-stamped a tick later rather than guessing where the clicked
-item went. Whatever the click did — swap, shift-click, hotbar swap, a nine-slot drag — the state a tick
-later is clean and then freshly stamped.
-
-### The anvil
-
-An anvil builds its result by copying the left-hand item, **lore included**. In item mode that means the
-result preview arrives carrying the *input's* worth line: combine a $1,000 pickaxe with a Fortune III book
-and the preview would read $1,000 until something else touched it, then jump once you took it out. The
-preview is therefore re-priced as it is prepared — the inherited line is replaced, not added to. In packet
-mode the question never arises, because the item never carries the line in the first place.
-
-## The one gap, and the fix for it
-
-If the server **crashes while a container is open**, the items inside keep their worth line and nothing
-will reopen that container to clean it. For that case:
+A creative client is authoritative over its own inventory: when it moves an item, it hands the server back
+its **own copy** — lore included, since the client rendered that lore itself from the packet it was sent.
+Left alone, the server would store that copy for real, and the next packet would decorate it a second time.
+This is caught and stripped as the item comes back, on every version, so it is not something you need to
+watch for — but if a build ever slips past it (or an item survived from before this fix), a marker on the
+line itself, not the item's own data, is what lets it be found and removed regardless: `/oberonsell cleanup`
+strips it from your inventory, your ender chest, and every container within `radius` blocks (default 8, max
+32) even when nothing else about the item says it is ours.
 
 ```
 /oberonsell cleanup [radius]
 ```
 
-Strips leftover lore from your inventory, your ender chest, and every container within `radius` blocks
-(default 8, max 32).
+### The anvil
+
+An anvil builds its result by copying the left-hand item, lore included — including from a real item that
+picked up a line the way described above. The anvil-result path is re-priced the same way anything else
+carrying a stray line would be, rather than trusting whatever the copy inherited.
 
 ## Performance
 
 An item already carrying the right line is recognised by a stamped fingerprint and returned untouched, so
 the steady state allocates nothing, and a shulker's contents are only summed for boxes that actually
-contain something.
-
-A background sweep re-checks online players' inventories every `worth-lore.refresh-ticks` (20 by default,
-`0` to rely on events alone), because not every server version fires an open event for a player's own
-inventory. On Folia the work is dispatched per player to the thread that owns them.
+contain something. There is nothing running on a timer — the packet hook only ever does work on the
+packets a player's own client actually triggers.
 
 If you would rather not decorate at all:
 
@@ -231,4 +209,4 @@ worth-lore:
   enabled: false
 ```
 
-The listener is then never registered.
+The hook is then never registered.

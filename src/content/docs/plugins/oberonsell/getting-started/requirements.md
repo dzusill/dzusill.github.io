@@ -30,30 +30,35 @@ the plugin logs an error and disables itself rather than pretending to work:
 
 Install Vault plus any Vault-compatible economy (EssentialsX Economy, CMI, and so on) and restart.
 
+## ProtocolLib
+
+**Required for [worth lore](/plugins/oberonsell/features/worth-lore/), nothing else.** Worth lore has exactly one way of
+working — it decorates the copy of an item sent to the client, so the item on the server is never modified
+— and that needs ProtocolLib. There is no fallback to drop back to. Without it installed, worth lore logs
+why and shows nothing; every other part of the plugin — selling, pricing, every menu and command — runs
+exactly the same.
+
+```
+[OberonSell] worth-lore.enabled is true but ProtocolLib is not installed. Worth lore has no fallback and
+needs it — install ProtocolLib, or set worth-lore.enabled: false to stop seeing this.
+```
+
+`/oberonsell doctor` reports the same thing. With ProtocolLib present, startup instead logs:
+
+```
+[OberonSell] Worth lore is sent per player through ProtocolLib; items are never modified.
+```
+
+ProtocolLib also, separately, upgrades the prices-GUI search prompt to a sign you type into rather than
+closing the GUI and typing in chat — see [`search.input`](/plugins/oberonsell/configuration/config/#search). That part
+stays fully optional; only worth lore requires ProtocolLib.
+
 ## Optional
 
 | | What it adds |
 |---|---|
-| **ProtocolLib** | Packet-mode [worth lore](/plugins/oberonsell/features/worth-lore/) and the sign search prompt. See below |
 | **PlaceholderAPI** | All `%oberonsell_*%` [placeholders](/plugins/oberonsell/placeholders/). Without it the plugin works fine — they just aren't registered |
 | **MMOItems / Oraxen / Nexo / ItemsAdder** | Readable price keys for their items. Not dependencies — see below |
-
-### About ProtocolLib
-
-Optional, and worth installing. It buys two things, and the plugin works without it either way:
-
-- **[Worth lore](/plugins/oberonsell/features/worth-lore/) sent per player** instead of written into items. Items are
-  never modified, so a price line can show the total for a whole stack without stopping stacks of
-  different sizes from merging, and there is nothing to strip on close, on quit or after a crash.
-- **A sign to type item searches into**, rather than closing the GUI and typing in chat. See
-  [`search.input`](/plugins/oberonsell/configuration/config/#search).
-
-Which mode is live is logged at startup, so you never have to guess:
-
-```
-[OberonSell] Worth lore is sent per player through ProtocolLib; items are never modified.
-[OberonSell] Item searches are typed into a sign.
-```
 
 ### About custom-item plugins
 

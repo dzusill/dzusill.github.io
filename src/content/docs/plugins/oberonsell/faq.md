@@ -118,13 +118,17 @@ Or disable individual tiers by setting their `compact-*-min-abs` to `0`.
 
 ### Worth lore is stuck on some items in a chest
 
-That happens in **item mode** if the server crashed while the chest was open. Stand near it and run:
+The item on the server is never modified, so under normal play this cannot happen. The one door it can
+come through is a creative client handing back its own, client-rendered copy of an item — caught and
+stripped automatically, but if one ever slips through, or an item survived from before that fix, stand
+near the chest and run:
 
 ```
 /oberonsell cleanup 16
 ```
 
-It cannot happen in packet mode, because the item on the server is never modified. Install ProtocolLib.
+It finds the line by a marker on it, not by anything else about the item, so it works even on an item
+nothing else identifies as ours.
 
 ### A renamed item lost its price
 
@@ -211,5 +215,7 @@ owns each viewer.
 
 ### Which plugins does it need?
 
-OberonCore and a Vault economy. Everything else — PlaceholderAPI, ProtocolLib, MMOItems, Oraxen, Nexo,
-ItemsAdder — is optional, and the custom-item plugins are not even dependencies.
+OberonCore and a Vault economy, always. **ProtocolLib is required too, but only for worth lore** — without
+it, that one feature logs why and shows nothing, while selling, pricing, every menu and command keep
+working exactly the same. Everything else — PlaceholderAPI, MMOItems, Oraxen, Nexo, ItemsAdder — is fully
+optional, and the custom-item plugins are not even dependencies.

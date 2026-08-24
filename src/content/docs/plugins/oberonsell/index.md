@@ -59,7 +59,7 @@ Purpur and Folia.
 | [OberonCore (DzusillCore)](https://github.com/dzusill/DzusillCore) | required (hard dependency) |
 | Vault + economy plugin | **required** — payouts go through it |
 | PlaceholderAPI | optional — for the placeholders |
-| ProtocolLib | optional — packet worth lore and the sign search prompt |
+| ProtocolLib | **required for worth lore** (no fallback); optional beyond that, for the sign search prompt |
 | MMOItems / Oraxen / Nexo / ItemsAdder | optional — recognised with no dependency at all |
 
 See [Requirements](/plugins/oberonsell/getting-started/requirements/).

@@ -20,7 +20,7 @@ rebuilt its slots would be a repaint that ate them.
 | Change | Live after reload |
 |---|---|
 | `config.yml` — pricing, rounding, price format, message Presentation, multipliers, blacklisted worlds, disabled game modes, custom-item sources, anti-dupe, auto-sell limits | ✅ |
-| `config.yml` — the eight settings listed below | ❌ needs a restart |
+| `config.yml` — the five settings listed below | ❌ needs a restart |
 | `prices.yml` — entries added or removed by hand | ✅ |
 | `enchantments.yml` — enchantment values and their levers | ✅ |
 | `sell/*.yml` — patterns, tier ladders, icons, layouts | ✅ |
@@ -36,15 +36,17 @@ already made, so the reload **names them** instead of reporting success:
 
 ```
 [ᴡᴏʀᴛʜ] Reloaded configs and dropped cached prices.
-[ᴡᴏʀᴛʜ] These need a server restart to take effect: worth-lore.mode
+[ᴡᴏʀᴛʜ] These need a server restart to take effect: sellaxe.enabled
 ```
 
-The full list: `worth-lore.enabled`, `worth-lore.mode`, `worth-lore.refresh-ticks`,
-`worth-lore.player-inventory`, `sellaxe.enabled`, `search.input`, `storage.type` and
+The full list: `worth-lore.enabled`, `sellaxe.enabled`, `search.input`, `storage.type` and
 `multipliers.categories`.
 
-Everything else in `config.yml` — including `worth-lore.shulker-totals`, `worth-lore.inventories` and the
-excluded list — is read as it is used and takes effect immediately.
+Everything else in `config.yml` — including `worth-lore.shulker-totals`, `worth-lore.player-inventory`,
+`worth-lore.inventories` and the excluded list — is read as it is used and takes effect immediately.
+`worth-lore.player-inventory` used to be on the restart list too, back when it also decided whether a
+now-removed sweep task got scheduled; the packet hook re-reads it on every packet, so it no longer needs
+one.
 
 > `auto-sell.enabled` is not on that list, but it does gate whether the pickup listener is registered at
 > startup. Turning it **off** at runtime stops auto-sales, because the listener checks it on every pickup;

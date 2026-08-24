@@ -104,8 +104,9 @@ Presentation:
 Sell Axe and auto-sell show the payout and item count above the hotbar while keeping a chat record. Every
 individual message can be overridden, and `/oberonsell reload` applies changes immediately.
 
-Trailing zeroes are trimmed on an abbreviation only, so a round million reads `1M` rather than `1.0M`,
-while a plain amount keeps its padding.
+Trailing zeroes are trimmed on both forms, and `decimals` is a maximum rather than a fixed width: a round
+million reads `1M` rather than `1.0M`, and at `decimals: 2` a plain `1234` reads `1,234` rather than
+`1,234.00` while `1234.5` keeps its one decimal as `1,234.5`. There is no setting to turn this off.
 
 A threshold is read as text rather than a number, so the quadrillions tier survives being written in the
 file. A hand-typed threshold that is not a number falls back to its default rather than breaking every
@@ -116,31 +117,31 @@ price line.
 ```yaml
 worth-lore:
   enabled: true
-  mode: auto
   shulker-totals: true
-  show-stack-total: false
   player-inventory: true
   allow-toggle: true
-  refresh-ticks: 20
   inventories:
     - CHEST
     - BARREL
     - "Faction Chest"
-  excluded-inventories: []
+  excluded-inventories:
+    - "Auction"
+    - "Crate"
+    - "Kit"
+    - "Shop"
+    - "Vault"
+    - "Backpack"
   only-real-containers: false
 ```
 
 | Key | Default | What it does |
 |---|---|---|
-| `enabled` | `true` | Master switch. Off = the listener is never registered |
-| `mode` | `auto` | `auto` \| `packet` \| `item`. `auto` picks packet when ProtocolLib is installed |
+| `enabled` | `true` | Master switch. Needs [ProtocolLib](https://www.spigotmc.org/resources/1997/) — there is no fallback, and nothing else in the plugin needs it |
 | `shulker-totals` | `true` | Count what a container item carries towards its worth — tooltip **and** payout |
-| `show-stack-total` | `false` | Item mode only. Makes the line show the whole stack, at the cost of stacking |
-| `player-inventory` | `true` | Also decorate the player's own inventory while a container is open |
+| `player-inventory` | `true` | Also decorate the player's own inventory while a container is open. Live-reloadable |
 | `allow-toggle` | `true` | Let players use `/toggleworth` |
-| `refresh-ticks` | `20` | How often to re-check online inventories. `0` = events only |
-| `inventories` | (a long list) | Which inventories get lore — an `InventoryType` name, or any part of a title |
-| `excluded-inventories` | empty | Never get lore. Checked first and wins over the list above |
+| `inventories` | (a long list) | **Whitelist.** Only these get lore; anything matching nothing gets none. An `InventoryType` name, or any part of a title |
+| `excluded-inventories` | (six common GUI names) | Never get lore. Checked first and wins over the list above. A starting point to edit, not a detected list |
 | `only-real-containers` | `false` | Decorate only inventories with a real holder, ruling out other plugins' menus wholesale |
 
 See [Worth Lore](/plugins/oberonsell/features/worth-lore/).

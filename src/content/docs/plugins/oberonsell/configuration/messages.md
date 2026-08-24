@@ -7,19 +7,14 @@ Every user-facing string. Nothing is hard-coded.
 
 ## Colours
 
-**This file is MiniMessage only.**
-
 ```yaml
 prefix: "<#00F986>ᴡᴏʀᴛʜ <dark_gray>» <white>"
-worth_lore: "<gray>Worth: <#00FC00>{price}"
+worth_lore: "<gray>Worth: <#00FC00>${price}"
 ```
 
-Legacy codes (`&7`) and bare hex (`#00F986`) are **not** translated here. They do not colour anything —
-they print, and the player sees the markup. Write `<gray>` and `<#00F986>` instead.
-
-That is a real difference from the other files: `gui/*.yml` and `sellaxe.yml` accept all three dialects and
-you can mix them freely, because those strings go through this plugin's own converter. Chat goes through
-the framework's message service, which hands the string straight to MiniMessage.
+All three dialects work here: MiniMessage (`<gray>`, `<#00FC00>`), legacy codes (`&7`), and bare hex
+(`#00FC00`). Mix them freely in the same line — every message, chat and action bar alike, goes through the
+same converter as `gui/*.yml` and `sellaxe.yml` before it reaches a player.
 
 Full syntax reference: [docs.advntr.dev/minimessage](https://docs.advntr.dev/minimessage/format.html).
 
@@ -56,7 +51,7 @@ This becomes an item tooltip line, not a chat message.
 
 | Key | Tokens |
 |---|---|
-| `worth_lore` | `{price}` — the item plus anything it carries; the whole stack in packet mode |
+| `worth_lore` | `{price}` — the item plus anything it carries, whole stack included |
 
 There is no separate "total" key. One line carries the sum.
 
