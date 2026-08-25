@@ -13,7 +13,7 @@ Commands are registered at runtime through DzusillCore's `CommandRegistry` — t
 |---|---|---|
 | `/fate` | `dfate.info` | Your own status, as a dialog screen. |
 | `/fate info [player]` | `dfate.info` (+ `dfate.info.others`) | Status in chat. Works from console and for offline players. |
-| `/fate choose hardcore` | `dfate.choose` | Step up from normal to hardcore. Confirms first. One-way. |
+| `/fate choose <mode>` | `dfate.choose` | Step up from normal to hardcore or lifesteal. Confirms first. One-way. |
 | `/fate set <player> <mode>` | `dfate.admin` | Change anyone's mode. |
 | `/fate reload` | `dfate.admin` | Re-read `config.yml` and `messages.yml`. |
 
@@ -21,7 +21,7 @@ Commands are registered at runtime through DzusillCore's `CommandRegistry` — t
 
 Opens your status as a dialog — mode, hardcore deaths, and how long ago you chose. On a client too old for dialogs it arrives as chat, which is what the text would have been anyway.
 
-Run by a player who has not chosen yet, it replies in chat instead. `/fate` is on the locked player's allow-list, so opening a status screen there would replace the choice screen they are supposed to be answering.
+**Run by a player who has not chosen yet, it reopens the choice screen instead.** There is no status to show them, and this is the command the "you closed the screen" notice tells them to run. It is on the locked player's allow-list for exactly that reason. An already-open screen is left alone, so typing it repeatedly cannot stack dialogs.
 
 ### `/fate info [player]`
 
@@ -31,12 +31,13 @@ When the mode was set by an admin rather than chosen, an extra line says so. "He
 
 ### `/fate choose <mode>`
 
-Only `hardcore` is accepted. `/fate choose normal` is refused — nothing a player can run ever takes them out of hardcore.
+`hardcore` and `lifesteal` are accepted. `/fate choose normal` is refused — nothing a player can run ever takes them back down.
 
 Refused with an explanation when:
 
 - `Choice.Allow-Opt-In-Later: false`,
-- they are already hardcore,
+- the mode is not offered on this server (lifesteal switched off, or its attribute unavailable),
+- they are already in that mode,
 - or they have not answered the join screen yet (a second screen would fight with it).
 
 ### `/fate set <player> <mode>`
@@ -49,6 +50,7 @@ The single escape hatch from a permanent choice.
 
 - Stores the new mode and marks the record as admin-set.
 - If the player is online, releases them from the choice lock (they may have been sitting on the screen) and tells them their mode changed.
+- **Resizes their health bar** to match: a fresh lifesteal run, or the vanilla ten hearts for anyone moved off it. Without this, a player rescued off lifesteal would keep the two-heart bar that got them banned — the mode changed and the punishment stayed. Note the vanilla ten, not `Starting-Hearts`: a server running five-heart lifesteal still owes a rescued player the twenty health the rest of the game assumes.
 - If the new mode is `normal` and `Ban.Unban-On-Set-Normal: true`, dispatches the unban command **and** sweeps the server's own ban list — an earlier fallback ban would otherwise keep a pardoned player locked out.
 - Setting the mode someone already has changes nothing and says so, rather than silently restarting their grace period.
 

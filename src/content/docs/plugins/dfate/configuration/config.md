@@ -14,8 +14,10 @@ Choice:
   Delay-Ticks: 20
   Reask-Seconds: 10
   Confirm-Hardcore: true
+  Confirm-Lifesteal: true
   Allow-Opt-In-Later: true
   Broadcast: true
+  Notify-On-Close: true
 ```
 
 | Key | Default | Meaning |
@@ -25,8 +27,10 @@ Choice:
 | `Delay-Ticks` | `20` | Ticks between the join and the screen. Not cosmetic — a dialog sent while the client loads terrain is dropped. |
 | `Reask-Seconds` | `10` | How often the screen is put back in front of a player who still has not chosen. |
 | `Confirm-Hardcore` | `true` | Show a second "are you certain?" screen before hardcore is committed. |
+| `Confirm-Lifesteal` | `true` | The same for lifesteal, with its own wording naming the heart count. |
 | `Allow-Opt-In-Later` | `true` | Let a normal player run `/fate choose hardcore`. Always one-way. |
 | `Broadcast` | `true` | Announce each choice to the server. |
+| `Notify-On-Close` | `true` | When the screen goes away unanswered, tell the player in chat how to reopen it (`/fate`). |
 
 ## Choice.Lock
 
@@ -55,6 +59,39 @@ Choice:
 | `Invulnerable` | `true` | Immune to damage while the screen is up. The previous flag is restored on release. |
 | `Allowed-Commands` | `fate`, `dfate` | Without the leading slash. **An empty list means no commands at all.** |
 | `Reminder-Cooldown-Seconds` | `3` | Seconds between two "you must choose first" reminders. |
+
+## Lifesteal
+
+```yaml
+Lifesteal:
+  Enabled: true
+  Starting-Hearts: 10
+  Maximum-Hearts: 20
+  Hearts-Lost-Per-Death: 1
+  Escalating-Loss: false
+  Maximum-Loss-Per-Death: 3
+  Ban-At-Hearts: 0
+  Restore-Hearts-On-Ban: true
+  Enforce-Interval-Ticks: 40
+  Announce-Loss: true
+  Broadcast-Loss: false
+```
+
+| Key | Default | Meaning |
+|---|---|---|
+| `Enabled` | `true` | Offer lifesteal as a third option. `false` returns the screen to Hardcore / Normal. |
+| `Starting-Hearts` | `10` | Hearts a run starts with, and returns to after a ban. 10 is vanilla full health. |
+| `Maximum-Hearts` | `20` | Ceiling, so an admin grant cannot push someone past a sane maximum. |
+| `Hearts-Lost-Per-Death` | `1` | Hearts one death costs. |
+| `Escalating-Loss` | `false` | `true` makes each death cost more than the last. Ten hearts then last about four deaths. |
+| `Maximum-Loss-Per-Death` | `3` | Cap on that escalation, as a multiple of the base. Ignored when escalation is off. |
+| `Ban-At-Hearts` | `0` | Hearts at or below which the ban fires. |
+| `Restore-Hearts-On-Ban` | `true` | Give a banned player a full bar back. `false` is permanent elimination. |
+| `Enforce-Interval-Ticks` | `40` | How often the reduced bar is re-asserted. `0` disables — not recommended. |
+| `Announce-Loss` | `true` | Tell the player they lost a heart. |
+| `Broadcast-Loss` | `false` | Tell the whole server. Off by default; on a busy server this is a lot of chat. |
+
+Full detail in [Lifesteal](/plugins/dfate/features/lifesteal/).
 
 ## Ban
 
@@ -129,11 +166,23 @@ Full detail in [Exemptions](/plugins/dfate/features/exemptions/).
 Display:
   Mode-Names:
     HARDCORE: Hardcore
+    LIFESTEAL: Lifesteal
     NORMAL: Normal
     UNCHOSEN: Unchosen
+  Tags:
+    HARDCORE: '<dark_red>[Hardcore]</dark_red> '
+    LIFESTEAL: '<red>[❤ %hearts%]</red> '
+    NORMAL: '<green>[Normal]</green> '
+    UNCHOSEN: ''
 ```
 
-The names shown by `%dfate_mode%`, `/fate` and every admin message. Change them to rename the modes across the whole plugin without touching anything else.
+**`Mode-Names`** are the names shown by `%dfate_mode%`, `/fate` and every admin message. Change them to rename the modes across the whole plugin without touching anything else.
+
+**`Tags`** are the badges behind `%dfate_tag%` — the placeholder you put in a TAB prefix, a scoreboard line or a chat format. Written as MiniMessage; `%dfate_tag%` converts them to colour codes so TAB and friends render them, while `%dfate_tag_mini%` returns them untouched.
+
+`UNCHOSEN` is empty by default, so a player who has not answered the screen carries no badge at all. Fill it in if you would rather mark them.
+
+Tags substitute `%hearts%`, `%max_hearts%`, `%mode%` and `%deaths%`, which is how the lifesteal badge carries a live heart count. See [Placeholders](/plugins/dfate/placeholders/).
 
 ## Debug
 

@@ -62,14 +62,33 @@ Written without the leading slash. **An empty list means no commands at all** �
 
 ## Getting the screen back
 
+Two things bring it back, and they cover different gaps.
+
+**Immediately, in chat.** The moment the screen goes away unanswered, the player is told how to reopen it:
+
+> You closed the screen without choosing. Run **/fate** to open it again.
+
+The command is clickable. `/fate` is on the allow-list, so it works while locked, and running it repeatedly cannot stack dialogs — an already-open screen is left alone.
+
+```yaml
+Choice:
+  Notify-On-Close: true
+```
+
+The message is `choice-closed` in `messages.yml`, and `%command%` resolves to the command name so a rename cannot leave the text pointing at something that no longer exists.
+
+It fires only for a player who is still online and still unchosen. The same internal path runs when an admin settles the mode with `/fate set` and when the player disconnects — neither should produce a "you closed it" message.
+
+**As a backstop, on a timer.**
+
 ```yaml
 Choice:
   Reask-Seconds: 10
 ```
 
-Every 10 seconds, dFate looks at every locked player and puts the screen back in front of anyone whose dialog is gone — closed by a disconnect, or expired by DzusillCore's token sweep. A player whose screen is still open is left alone, so this never stacks two dialogs.
+Every 10 seconds, dFate looks at every locked player and puts the screen back in front of anyone whose dialog is gone. A player whose screen is still open is left alone.
 
-This sweep, not the escape flag, is what actually enforces the choice.
+This sweep, not the escape flag, is what actually enforces the choice — the chat notice just removes the wait for someone who noticed the screen vanish.
 
 ## Release
 

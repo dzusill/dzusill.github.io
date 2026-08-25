@@ -12,7 +12,7 @@ It is built on [DzusillCore](https://github.com/dzusill/DzusillCore) (shipped as
 ## What it does
 
 - 🔁 **A rotating chat channel** — `chat-announcements` fires every `interval-seconds`, picking the next entry in order or at random, and only above a minimum player count.
-- 🖱️ **Clickable lines** — each announcement can end in a call-to-action line that runs a command when clicked, with a hover tooltip.
+- 🖱️ **Clickable lines** — each announcement can end in a call-to-action line that runs a command when clicked, with a hover tooltip. Both the line and the tooltip have a global off switch.
 - 📅 **Real schedules** — beyond the interval channel, an individual announcement can be `INTERVAL`, `ONCE`, `DAILY` or `WEEKLY`, evaluated against a configurable IANA time zone.
 - 🌍 **World filtering** — one global `allow-list` / `deny-list`, plus per-announcement audience rules for permission, game mode and minimum online count.
 - 🔕 **Per-player opt-out** — `/announcements` toggles messages, `/announcements toggle sound` toggles the sound separately, and both survive a restart.

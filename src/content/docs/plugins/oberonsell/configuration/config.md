@@ -81,14 +81,18 @@ out in full while millions still abbreviate.
 
 ## Presentation
 
-Where messages appear. Categories set the common case; `Overrides` changes one exact
-[messages.yml key](/plugins/oberonsell/configuration/messages/), including silencing it completely.
+Where messages appear **and what they sound like**. Categories set the common case; `Overrides` changes one
+exact [messages.yml key](/plugins/oberonsell/configuration/messages/), including silencing it completely.
 
 ```yaml
 Presentation:
   Categories:
     SALE:
       Channel: BOTH
+      Sound:
+        Name: entity.experience_orb.pickup
+        Volume: 1.0
+        Pitch: 1.2
     TOGGLE:
       Channel: CHAT
     ERROR:
@@ -96,6 +100,11 @@ Presentation:
     INFO:
       Channel: CHAT
   Overrides:
+    # One exact key, louder than its category
+    worth_toggle_on:
+      Sound:
+        Name: block.note_block.pling
+        Pitch: 1.5
     sellaxe.nothing:
       Channel: NONE
 ```
@@ -103,6 +112,25 @@ Presentation:
 `Channel` is `CHAT`, `ACTION_BAR`, `BOTH` or `NONE`. Shipped sale notifications use `BOTH`, so `/sell`,
 Sell Axe and auto-sell show the payout and item count above the hotbar while keeping a chat record. Every
 individual message can be overridden, and `/oberonsell reload` applies changes immediately.
+
+### Sound
+
+Optional, and off unless you add it. Every message key can carry one.
+
+| Key | Default | What it does |
+|---|---|---|
+| `Name` | none | `entity.villager.no` or `ENTITY_VILLAGER_NO` — both spellings are accepted |
+| `Volume` | `1.0` | |
+| `Pitch` | `1.0` | |
+| `Enabled` | `true` | `false` silences this one without inheriting its category's sound back |
+
+An override that states only `Sound` keeps its category's `Channel`, and one that states only `Channel`
+keeps its category's `Sound` — a partial override means what it looks like it means. A sound name this
+server version does not have plays nothing; the message still arrives, because a cosmetic typo should not
+cost you the text.
+
+So to give the `/toggleworth` messages a sound, either set one on the whole `TOGGLE` category or name
+`worth_toggle_on` / `worth_toggle_off` individually under `Overrides`.
 
 Trailing zeroes are trimmed on both forms, and `decimals` is a maximum rather than a fixed width: a round
 million reads `1M` rather than `1.0M`, and at `decimals: 2` a plain `1234` reads `1,234` rather than

@@ -107,4 +107,5 @@ dFate does not wipe inventories, reset player data, clear exp or move anyone to 
 ## Related
 
 - [Exemptions](/plugins/dfate/features/exemptions/) — every way a hardcore death is forgiven
+- [Lifesteal](/plugins/dfate/features/lifesteal/) — the same ending, spread over a run of deaths
 - [Commands & Permissions](/plugins/dfate/commands-and-permissions/) — the admin override

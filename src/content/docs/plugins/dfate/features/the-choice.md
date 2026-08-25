@@ -18,17 +18,23 @@ The first time a player joins without a stored mode, dFate shows them a screen w
 │                                         │
 │  ▪ Hardcore — one life. Die and your    │
 │    account is locked for 24h.           │
+│  ▪ Lifesteal — 10 hearts. Every death   │
+│    costs one; run out and you are out.  │
 │  ▪ Normal — the ordinary game.          │
 │                                         │
-│   [ Hardcore ]        [ Normal ]        │
+│            [ Hardcore ]                 │
+│            [ Lifesteal ]                │
+│            [ Normal ]                   │
 └─────────────────────────────────────────┘
 ```
+
+With [Lifesteal](/plugins/dfate/features/lifesteal/) switched off, the screen drops back to two buttons side by side. That is not cosmetic — the two- and three-option screens are different dialog types, and only one of them core's own chat fallback can render. See [Dialogs & Fallback](/plugins/dfate/features/dialogs-and-fallback/).
 
 Every word of that — title, body, both labels and both hover tooltips — comes from `messages.yml`. See [messages.yml](/plugins/dfate/configuration/messages/).
 
 ## The second screen
 
-Picking hardcore does not commit anything yet. A confirmation follows:
+Picking hardcore or lifesteal does not commit anything yet. A confirmation follows:
 
 > **Are you certain?**
 > You are about to choose **Hardcore**. From this moment, a single death locks your account for 24h. You *cannot* undo this yourself.
@@ -40,9 +46,10 @@ Declining puts the original choice screen back. Nothing is stored until the conf
 ```yaml
 Choice:
   Confirm-Hardcore: true
+  Confirm-Lifesteal: true
 ```
 
-Turning it off commits hardcore on the first click. Not recommended — the choice cannot be undone by the player, so the second screen is what stops a misclick from becoming a support ticket.
+Turning one off commits that mode on the first click. Not recommended — neither choice can be undone by the player, so the second screen is what stops a misclick from becoming a support ticket. Lifesteal gets its own wording, naming the heart count rather than instant death.
 
 ## When it appears
 
@@ -79,13 +86,14 @@ Normal picks get their own, quieter line. Both are in `messages.yml`; set `Broad
 
 ## Opting in later
 
-A normal player can move to hardcore on purpose:
+A normal player can move to a harder mode on purpose:
 
 ```
 /fate choose hardcore
+/fate choose lifesteal
 ```
 
-It always shows the confirmation screen first, and it is strictly one-way — `/fate choose normal` is refused. Nothing a player can run ever takes them out of hardcore.
+It always shows the confirmation screen first, and it is strictly one-way — `/fate choose normal` is refused. Nothing a player can run ever takes them back down.
 
 ```yaml
 Choice:

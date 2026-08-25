@@ -1,20 +1,22 @@
 ---
 title: "Exemptions"
-description: "Five ways a hardcore death costs nothing. They are checked in this order, and the first one that matches wins."
+description: "Five ways a death costs nothing. They are checked in this order, and the first one that matches wins."
 ---
 
-Five ways a hardcore death costs nothing. They are checked in this order, and the first one that matches wins.
+Five ways a death costs nothing. They are checked in this order, and the first one that matches wins.
 
 | # | Check | Verdict |
 |---|---|---|
-| 1 | The player never chose, or chose normal | `NOT_HARDCORE` |
+| 1 | The player never chose, or chose normal | `MODE_EXEMPT` |
 | 2 | They hold `dfate.bypass` | `BYPASS_PERMISSION` |
 | 3 | They died in an excluded world | `WORLD_EXEMPT` |
 | 4 | They died to an excluded damage cause | `CAUSE_EXEMPT` |
 | 5 | They are inside the grace period | `GRACE_PERIOD` |
-| — | none of the above | `BAN` |
+| — | none of the above | `COSTS` |
 
-A spared death is **completely** spared: no ban, no broadcast, no `Death.Commands`, and the hardcore death counter does not move. A death that did not cost anything must not inflate the number the player is judged by.
+**The same rules cover hardcore and [lifesteal](/plugins/dfate/features/lifesteal/).** An exemption spares a lifesteal player a heart exactly as it spares a hardcore player a ban — a world where death is free has to be free in both, or the filters would mean two different things depending on which mode read them.
+
+A spared death is **completely** spared: no ban, no heart, no broadcast, no `Death.Commands`, and the death counter does not move. A death that did not cost anything must not inflate the number the player is judged by.
 
 ## 1. The bypass permission
 
@@ -87,10 +89,10 @@ Measured from the moment the mode was chosen, **not** from first join — so a m
 Debug: true
 ```
 
-Every spared hardcore death is then logged with its reason:
+Every spared death in an at-risk mode is then logged with its reason:
 
 ```
-[dFate] [debug] Steve died as hardcore but was spared: WORLD_EXEMPT
+[dFate] [debug] Steve died as LIFESTEAL but was spared: WORLD_EXEMPT
 ```
 
 This is the only way to answer "he died and nothing happened", which is why the verdict is kept rather than collapsed into a yes/no.

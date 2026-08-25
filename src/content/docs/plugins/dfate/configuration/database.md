@@ -42,9 +42,16 @@ CREATE TABLE IF NOT EXISTS dfate_modes (
     hardcore_deaths INT     NOT NULL DEFAULT 0,
     last_death_at   BIGINT  NOT NULL DEFAULT 0,
     chosen_by_admin TINYINT NOT NULL DEFAULT 0,
+    hearts          INT     NOT NULL DEFAULT 0,
     INDEX idx_dfate_mode (mode)
 );
 ```
+
+> **Upgrading from a pre-lifesteal install:** MySQL has no `ADD COLUMN IF NOT EXISTS`, so the `hearts` column has to be added by hand once. PostgreSQL does it itself.
+>
+> ```sql
+> ALTER TABLE dfate_modes ADD COLUMN hearts INT NOT NULL DEFAULT 0;
+> ```
 
 `uuid` is the key, so the mode follows the account through a name change. `name` is kept only so admin output has something readable for an offline player.
 
@@ -79,6 +86,7 @@ There is no built-in importer. `modes.yml` is small and readable, so a short scr
   Hardcore-Deaths: 2
   Last-Death-At: 1690500000000
   Chosen-By-Admin: false
+  Hearts: 8
 ```
 
 maps one-to-one onto the columns above.

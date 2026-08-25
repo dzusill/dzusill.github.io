@@ -19,7 +19,9 @@ description: "Unknown dependency DzusillCore — the core jar is missing from pl
 
 **The screen looks like chat, not a dialog.** Either dDialogs is not installed, or the client is older than 1.21.6 (protocol 771). Both are handled — the chat fallback stores the mode identically. See [Dialogs & Fallback](/plugins/dfate/features/dialogs-and-fallback/).
 
-**A player is frozen with no screen.** Should self-heal within `Reask-Seconds` (default 10) — the sweep puts the screen back for any locked player whose dialog is gone. If it does not, `/fate set <player> normal` releases them immediately.
+**A player is frozen with no screen.** They are told in chat to run `/fate`, and the sweep puts it back within `Reask-Seconds` (default 10) anyway. If neither happens, `/fate set <player> normal` releases them immediately.
+
+**The "you closed the screen" message never appears.** Check `Choice.Notify-On-Close: true`, and that `choice-closed` in `messages.yml` is not empty. It is deliberately silent when the player has already been given a mode — an admin running `/fate set` also closes the screen, and that is not the player closing it.
 
 **They can walk away without answering.** `Choice.Lock.Enabled` is `false`, or `Freeze-Movement` is.
 
@@ -40,6 +42,22 @@ Then check that filter in [Exemptions](/plugins/dfate/features/exemptions/). The
 **They were banned but stayed connected.** Only possible if the ban plugin did not kick them and dFate's own kick was skipped. Check the console for a `SEVERE` line from the ban attempt.
 
 **The death title and broadcast never appear.** `Ban.Delay-Ticks: 0` bans instantly, disconnecting the client before either is drawn. Set it back to `40`.
+
+## Lifesteal
+
+**The bar goes back to full after respawning.** That was a real bug, fixed by hooking Paper's `PlayerPostRespawnEvent` instead of `PlayerRespawnEvent` — the latter fires *before* the player is actually respawned, so setting the attribute there races with the server's own health reset. If you still see it, check `Lifesteal.Enforce-Interval-Ticks` is not `0`; that sweep is what re-asserts the bar against anything else resizing it.
+
+**Hearts come back on their own.** Something is resetting the max-health attribute — a kit plugin, a minigame, a world-reset plugin, or an `/attribute` command. The enforcement sweep corrects it within `Enforce-Interval-Ticks` (default 40 = 2 seconds). Set `Debug: true` to see the corrections logged.
+
+**Lifesteal never appears on the choice screen.** Either `Lifesteal.Enabled: false`, or the max-health attribute could not be resolved on this server version — look for `Could not resolve the max-health attribute` in the startup log. The mode hides itself in that case rather than offering a permanent decision for a mechanic that cannot run.
+
+**A player died on their last heart and was not banned, and kept the empty bar.** Working as intended for a failed ban. The refill is tied to the ban actually landing, not to the death — refilling on the death itself would hand a full bar to a player whose ban failed, so dying on your last heart would cost nothing. Fix `Ban.Command`; the console has a `SEVERE` line.
+
+**Can players craft or earn hearts back?** No. There is no heart item, no revive, no top-up. The only things that change the count are dying, `/fate set`, and the reset after a ban.
+
+**Does the killer steal a heart?** No — despite the name, only the victim loses one. There is no transfer, which also means no alt-farming.
+
+**Upgrading an existing MySQL install.** Add the column by hand once: `ALTER TABLE dfate_modes ADD COLUMN hearts INT NOT NULL DEFAULT 0;`. PostgreSQL does it itself.
 
 ## Modes
 

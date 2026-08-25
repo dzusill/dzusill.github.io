@@ -21,6 +21,10 @@ commands:
   aliases:
     - announce
 
+clickable-messages:
+  enabled: true
+  hover: true
+
 scheduler:
   tick-seconds: 1
   missed-one-time: SKIP
@@ -94,6 +98,29 @@ Extra labels the command answers to, on top of `/announcements` and its built-in
 > **Read once, at server start.** Bukkit builds its command map when a plugin enables, so a label added here does not exist until the next restart. `/announcements reload` deliberately does not pretend otherwise. See [Known Limitations](/plugins/oberonannounce/limitations/#command-aliases-need-a-restart).
 
 An **empty** list means no extra labels: `aliases: []` registers none, and only `/announcements` (plus the built-in `/oberonannounce` and `/oa`) answers. Removing the key entirely is different — that means you never chose, so the `announce` default applies.
+
+## `clickable-messages`
+
+Two switches over every `click:` block in the file at once, without editing a single one of them.
+
+```yaml
+clickable-messages:
+  enabled: true
+  hover: true
+```
+
+| Key | Default | Meaning |
+|---|---|---|
+| `enabled` | `true` | The click line itself. `false` sends the announcement without it — the body lines, action bar, title and sound all still arrive. |
+| `hover` | `true` | The tooltip on that line. `false` keeps the line clickable and keeps running the same command, and shows nothing on hover. |
+
+The two are independent: `enabled: false` hides the line whatever `hover` says, and `hover: false` on its own only drops the tooltip.
+
+Both apply to every announcement, in `chat-announcements` and in `announcements:` alike, and every individual `click:` block stays in the file untouched for whenever the switch goes back on. Both are live on `/announcements reload`.
+
+`hover: false` turns off the tooltip an entry writes for itself as well, not only the built-in `Click to run …` default. There is no per-entry switch — an entry that should not offer a click at all simply omits its `click:` block.
+
+Entry-level `click.text`, `click.command` and `click.hover` are on [Writing an Announcement](/plugins/oberonannounce/features/announcements/#the-click-line).
 
 ## `scheduler`
 

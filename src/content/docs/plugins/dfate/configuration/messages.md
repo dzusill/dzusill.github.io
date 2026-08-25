@@ -26,26 +26,32 @@ prefix: "<dark_gray>[<red>Fate</red>]</dark_gray> "
 |---|---|---|
 | `choice-title` | — | Screen title |
 | `choice-body` | `%player%` `%hardcore%` `%normal%` `%duration%` | Screen body |
-| `choice-hardcore-label` | `%hardcore%` | Left button |
+| `choice-hardcore-label` | `%hardcore%` | Hardcore button |
 | `choice-hardcore-tooltip` | `%hardcore%` `%duration%` | Its hover text |
-| `choice-normal-label` | `%normal%` | Right button |
-| `choice-normal-tooltip` | `%hardcore%` `%normal%` | Its hover text |
+| `choice-lifesteal-label` | `%lifesteal%` | Lifesteal button |
+| `choice-lifesteal-tooltip` | `%lifesteal%` `%starting_hearts%` `%duration%` | Its hover text |
+| `choice-normal-label` | `%normal%` | Normal button |
+| `choice-normal-tooltip` | `%hardcore%` `%lifesteal%` `%normal%` | Its hover text |
 | `choice-confirm-title` | — | "Are you certain?" title |
-| `choice-confirm-body` | `%hardcore%` `%duration%` | Its body |
+| `choice-confirm-body` | `%hardcore%` `%duration%` | Its body, for hardcore |
+| `choice-confirm-lifesteal-body` | `%lifesteal%` `%starting_hearts%` `%duration%` | Its body, for lifesteal |
 | `choice-confirm-yes` | — | Accept button |
 | `choice-confirm-no` | — | Back button |
 
-`%hardcore%` and `%normal%` come from `Display.Mode-Names` in `config.yml`, so renaming the modes there updates the screen too.
+`%hardcore%`, `%lifesteal%` and `%normal%` come from `Display.Mode-Names` in `config.yml`, so renaming the modes there updates the screen too.
 
 ## Choice outcome
 
 | Key | Placeholders |
 |---|---|
 | `choice-chosen-hardcore` | `%player%` `%mode%` `%duration%` |
+| `choice-chosen-lifesteal` | `%player%` `%mode%` `%hearts%` |
 | `choice-chosen-normal` | `%player%` `%mode%` |
 | `choice-broadcast-hardcore` | `%player%` `%mode%` |
+| `choice-broadcast-lifesteal` | `%player%` `%mode%` `%hearts%` |
 | `choice-broadcast-normal` | `%player%` `%mode%` |
 | `choice-locked` | `%player%` |
+| `choice-closed` | `%player%` `%command%` — the command that reopens the screen |
 
 ## Death
 
@@ -56,6 +62,14 @@ prefix: "<dark_gray>[<red>Fate</red>]</dark_gray> "
 | `death-subtitle` | same set |
 | `ban-kick` | `%player%` `%duration%` `%reason%` |
 
+## Lifesteal
+
+| Key | Placeholders |
+|---|---|
+| `lifesteal-lost` | `%player%` `%lost%` `%hearts%` `%max_hearts%` `%cause%` |
+| `lifesteal-broadcast-lost` | same set — off by default, see `Broadcast-Loss` |
+| `lifesteal-eliminated` | same set, sent when the last heart goes |
+
 ## Status
 
 | Key | Placeholders | Where |
@@ -65,6 +79,7 @@ prefix: "<dark_gray>[<red>Fate</red>]</dark_gray> "
 | `info-dialog-button` | — | Its close button |
 | `info-header` | `%player%` | `/fate info` |
 | `info-mode` | `%mode%` | `/fate info` |
+| `info-hearts` | `%hearts%` `%max_hearts%` | `/fate info`, lifesteal players only |
 | `info-deaths` | `%deaths%` | `/fate info` |
 | `info-chosen` | `%chosen%` | `/fate info` — how long ago |
 | `info-unchosen` | `%player%` | `/fate info` on a player who never chose |
@@ -72,7 +87,7 @@ prefix: "<dark_gray>[<red>Fate</red>]</dark_gray> "
 
 ## Opting in
 
-`opt-in-disabled` · `opt-in-only-hardcore` · `opt-in-not-chosen` · `opt-in-already-hardcore` · `opt-in-cancelled`
+`opt-in-disabled` · `opt-in-unavailable` · `opt-in-only-hardcore` · `opt-in-not-chosen` · `opt-in-already-hardcore` · `opt-in-cancelled`
 
 All take `%player%` `%mode%` `%duration%`.
 

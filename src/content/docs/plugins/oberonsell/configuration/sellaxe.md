@@ -55,6 +55,7 @@ time-format:
 | `custom-model-data` | Optional. For a resource pack. `-1` or absent means none — `0` is a real model, not "off" |
 | `unbreakable` | Optional, default `false` |
 | `glint` | Optional. `true` forces the shine, `false` suppresses it even with real enchantments. Left out entirely, vanilla decides |
+| `display-refresh-ticks` | Default `20` (once a second). How often the countdown redraws on the client; `0` updates it only on use or hotbar selection. Needs ProtocolLib — see below |
 
 Every optional key is only written onto the item when you actually set it. That matters because the axe is
 rebuilt and compared against the one in hand on refresh: a key that was always written would make every
@@ -95,6 +96,24 @@ timer wants; set it and the last minute counts down properly instead of sitting 
 visible.
 
 A malformed pattern falls back to the bare number rather than breaking the item.
+
+## A countdown that actually counts down
+
+With [ProtocolLib](https://www.spigotmc.org/resources/1997/) installed, the timer ticks in place while the
+axe sits in an inventory — no clicking, no reselecting.
+
+It works the same way [worth lore](/plugins/oberonsell/features/worth-lore/) does: the countdown is rewritten on the copy
+of the axe inside each outgoing packet, never in the axe itself. Only the expiry instant is stored on the
+item, and both sides compute the remaining time from that. So an axe ticking down is **not** an item being
+rewritten to disk once a second, and there is no stale countdown left behind by a crash.
+
+Rewriting each send is only half of it — a client redraws a slot when a packet arrives and not otherwise —
+so the plugin also asks for a redraw every `display-refresh-ticks`. That costs one inventory resend per
+interval, **only for a player actually holding a running axe**. A server where nobody has one sends
+nothing. Raise the value (or set `0`) if you would rather trade smoothness for packets.
+
+Without ProtocolLib the axe works exactly as before: the countdown updates when the axe is used or
+selected in the hotbar, and the console says so once at startup.
 
 ## Giving one out
 

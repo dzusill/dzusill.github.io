@@ -53,6 +53,8 @@ The command is attached to the finished component **after** your MiniMessage has
 
 The command runs **as the player who clicked**, with their permissions. `/discord`, `/store` and `/vote` are the normal shape. Do not point one at a staff command.
 
+Two switches in `config.yml` cover every `click:` block at once: `clickable-messages.enabled` for the line, `clickable-messages.hover` for the tooltip. Turning the tooltip off there also silences a `hover:` written here. See [`clickable-messages`](/plugins/oberonannounce/configuration/config/#clickable-messages).
+
 ## Action bars
 
 Two spellings:

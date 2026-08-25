@@ -2763,6 +2763,10 @@
                 "slug": "plugins/dfate/features/hardcore-death"
               },
               {
+                "label": "Lifesteal",
+                "slug": "plugins/dfate/features/lifesteal"
+              },
+              {
                 "label": "Exemptions",
                 "slug": "plugins/dfate/features/exemptions"
               },

@@ -116,6 +116,14 @@ PlaceholderAPI is not installed, or was installed after OberonAnnounce started. 
 
 See [Placeholders](/plugins/oberonannounce/placeholders/).
 
+### I set `clickable-messages.hover: false` and the tooltip is still there
+
+1. **Is the running jar new enough to know the key?** An unknown key is ignored in silence — the file loads, nothing complains, and the tooltip stays. `clickable-messages.hover` needs the build that introduced it; `clickable-messages.enabled` needs the one before that. `/version OberonAnnounce` says what is actually running.
+2. **Did you replace the jar and only reload?** A new jar needs a **restart**. `/announcements reload` re-reads the file with the classes already loaded, so a switch that does not exist in those classes cannot start working.
+3. Reloading is enough for a *value* change once the right jar is in place — flipping `hover` back and forth is live.
+
+The same three apply to `clickable-messages.enabled`. See [`clickable-messages`](/plugins/oberonannounce/configuration/config/#clickable-messages).
+
 ### Does the click line let players run commands they should not?
 
 No. The command runs **as the clicking player**, with their permissions, exactly as if they had typed it. Point one at `/discord`, `/store` or `/vote`; do not point one at a staff command and assume the click grants anything.
