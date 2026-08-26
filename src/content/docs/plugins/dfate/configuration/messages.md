@@ -52,6 +52,10 @@ prefix: "<dark_gray>[<red>Fate</red>]</dark_gray> "
 | `choice-broadcast-normal` | `%player%` `%mode%` |
 | `choice-locked` | `%player%` |
 | `choice-closed` | `%player%` `%command%` — the command that reopens the screen |
+| `choice-reminder` | `%player%` `%command%` `%attempt%` `%max%` — chat |
+| `choice-reminder-actionbar` | same set — one short line, no room for a sentence |
+| `choice-reminder-title` | same set — the title line |
+| `choice-reminder-subtitle` | same set — carries the command, since a title has no room for it |
 
 ## Death
 

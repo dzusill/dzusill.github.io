@@ -1,17 +1,19 @@
 ---
 title: "Dialogs & Fallback"
-description: "dFate never talks to dDialogs directly. It builds a DialogSpec — a plain description of a screen — and hands it to DzusillCore's DialogService, which…"
+description: "dFate needs no rendering plugin. It ships its own native dialog backend, so the choice screen draws itself on any server new enough to have the API."
 ---
 
-dFate never talks to dDialogs directly. It builds a `DialogSpec` — a plain description of a screen — and hands it to DzusillCore's `DialogService`, which decides how to render it.
+**dFate needs no rendering plugin.** It ships its own native dialog backend, so the choice screen draws itself on any server new enough to have the API.
+
+It builds a `DialogSpec` — a plain description of a screen — and hands it to DzusillCore's `DialogService`, which decides how to render it.
 
 ```
-dFate                    DzusillCore                    dDialogs
+dFate                    DzusillCore                    dFate's own backend
   DialogSpec  ──────────► DialogService ──── spec ────►  native dialog
-  (title, body,           │                              (1.21.6+ client)
-   two buttons)           │
-                          └─ no backend, or old client
-                             └─ chat fallback: a clickable yes/no prompt
+  (title, body,           │                              (server + client 1.21.6+)
+   three buttons)         │
+                          └─ too old, or no backend
+                             └─ chat fallback: a numbered prompt
 ```
 
 The call site is the same either way. There is no version gate to configure and no branch in the plugin: whether a native dialog is possible is decided per call, per player.
@@ -20,9 +22,29 @@ The call site is the same either way. There is no version gate to configure and 
 
 | Situation | Result |
 |---|---|
-| dDialogs installed, client 1.21.6+ | The native dialog screen. |
-| dDialogs installed, client older (incl. via a proxy) | Chat fallback. Detected through ViaVersion when present. |
-| dDialogs not installed | Chat fallback, for everyone. |
+| Server 1.21.6+, client 1.21.6+ | The native dialog screen, rendered by dFate. |
+| Client older (including behind a translating proxy) | Chat fallback. Detected through ViaVersion when present. |
+| Server older than 1.21.6 | Chat fallback, for everyone. |
+
+## If dDialogs is installed anyway
+
+It wins, and that is deliberate. [dDialogs](https://github.com/dzusill/DDialogs) registers its renderer at service priority `Normal`; dFate registers at `Low` and steps aside.
+
+dDialogs is the dedicated implementation — extra MiniMessage tags, its own dialog registry, YAML-defined menus — and a server running it wants those everywhere, not just outside dFate. Registering any higher would have dFate quietly take over every dialog on the server, including other plugins', which is a much larger change than "dFate stopped needing a dependency".
+
+Neither is required. The startup log says which one answered:
+
+```
+[dFate] Native dialog rendering enabled: dfate-paper-typed (1.21.11, client-gate=viaversion)
+```
+
+## Why the renderer cannot live in DzusillCore
+
+Every typed dialog builder in the Paper API takes a native `net.kyori` component. DzusillCore relocates `net.kyori` into `me.dzusill.core.lib.kyori`, so any call core made to one would be rewritten by the shade relocator and fail at runtime — not a style problem, a hard one.
+
+That is why rendering is an SPI: core defines `DialogBackend`, and an unshaded plugin implements it. dFate is unshaded, so it can call the API directly and parse MiniMessage with the **server's own** instance, which always emits the component format the running server expects.
+
+Everything crossing that boundary is a plain core type — records of `String`, primitives and `java.util` collections. No component, no NBT.
 
 The chat fallback prints the title and body as chat lines and offers two clickable options. It is a worse screen but a working one, and the same handler runs at the end of it — so the mode is stored identically.
 

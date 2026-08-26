@@ -79,16 +79,43 @@ The message is `choice-closed` in `messages.yml`, and `%command%` resolves to th
 
 It fires only for a player who is still online and still unchosen. The same internal path runs when an admin settles the mode with `/fate set` and when the player disconnects — neither should produce a "you closed it" message.
 
-**As a backstop, on a timer.**
+**As a backstop, on a timer — but not forever.**
 
 ```yaml
 Choice:
   Reask-Seconds: 10
+  Max-Reask-Attempts: 3
 ```
 
-Every 10 seconds, dFate looks at every locked player and puts the screen back in front of anyone whose dialog is gone. A player whose screen is still open is left alone.
+Every 10 seconds, dFate looks at every locked player and puts the screen back in front of anyone whose dialog is gone. A player whose screen is still open is left alone, and is not nagged either — reminding someone who is looking at the screen is just noise.
 
-This sweep, not the escape flag, is what actually enforces the choice — the chat notice just removes the wait for someone who noticed the screen vanish.
+After three retries it stops pushing the screen. A dialog that never draws on a client looks exactly like one the player dismissed, so retrying forever would mean a client that cannot render dialogs gets the same failed screen every ten seconds for as long as it stays connected. The reminders keep going; by then the player has been told the command, and the command always works.
+
+`Max-Reask-Attempts: 0` disables retrying entirely and relies on the reminder and the command alone. The first screen on joining is not counted — these are three attempts *after* it.
+
+The player stays locked either way. Retries running out is not permission to play.
+
+## Reminders
+
+Each retry, and every sweep after they run out, sends a reminder on whichever channels are switched on:
+
+```yaml
+Choice:
+  Notify:
+    Chat: true
+    Action-Bar: true
+    Title: false
+```
+
+Any combination; turn all three on to be certain it is seen. They fail differently, which is why all three are switches rather than a decision made for you:
+
+| Channel | Strength | Weakness |
+|---|---|---|
+| Chat | Room for a clickable command | Scrolls away on a busy server; invisible to a player with chat hidden |
+| Action bar | Always on screen | One short line, easy to not read |
+| Title | Impossible to miss | Impossible to ignore politely |
+
+The text lives in `messages.yml` under `choice-reminder`, `choice-reminder-actionbar`, `choice-reminder-title` and `choice-reminder-subtitle` — four keys because a chat sentence does not fit an action bar, and a title has no room for a command (its subtitle carries that).
 
 ## Release
 

@@ -5,7 +5,7 @@ description: "dFate asks every player one question the first time they join — 
 
 **dFate** asks every player one question the first time they join — hardcore, lifesteal or normal — and then holds them to the answer. A hardcore player who dies loses the account for 24 hours; a lifesteal player loses a heart, and the account only once there are none left. The choice is permanent; only an admin can undo it.
 
-It is built on [DzusillCore](https://github.com/dzusill/DzusillCore) and renders the choice through [dDialogs](https://github.com/dzusill/DDialogs) as a real Minecraft dialog screen — with a working chat fallback for every client too old to draw one.
+It is built on [DzusillCore](https://github.com/dzusill/DzusillCore) and renders the choice as a real Minecraft dialog screen **on its own** — no rendering plugin needed — with a working chat fallback for every server or client too old to draw one.
 
 ---
 
@@ -30,7 +30,7 @@ It is built on [DzusillCore](https://github.com/dzusill/DzusillCore) and renders
 | Server | Paper / Purpur / Folia **1.21.x** |
 | Java | **21+** |
 | DzusillCore | **1.12.0+** (required — this is where `DialogService` lives) |
-| dDialogs | optional, strongly recommended (renders the native screen) |
+| dDialogs | **not needed** — dFate renders natively itself; if installed, it takes over |
 | A ban plugin | optional (AdvancedBan, LiteBans, CMI — the server's own ban list is the fallback) |
 | PlaceholderAPI | optional (placeholders) |
 | MySQL / PostgreSQL | optional (cross-server storage) |

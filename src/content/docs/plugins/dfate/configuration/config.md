@@ -18,6 +18,11 @@ Choice:
   Allow-Opt-In-Later: true
   Broadcast: true
   Notify-On-Close: true
+  Max-Reask-Attempts: 3
+  Notify:
+    Chat: true
+    Action-Bar: true
+    Title: false
 ```
 
 | Key | Default | Meaning |
@@ -31,6 +36,10 @@ Choice:
 | `Allow-Opt-In-Later` | `true` | Let a normal player run `/fate choose hardcore`. Always one-way. |
 | `Broadcast` | `true` | Announce each choice to the server. |
 | `Notify-On-Close` | `true` | When the screen goes away unanswered, tell the player in chat how to reopen it (`/fate`). |
+| `Max-Reask-Attempts` | `3` | How many times to push the screen back before giving up on it. The join screen is not counted. `0` never retries. |
+| `Notify.Chat` | `true` | Send the "you must choose" reminder to chat. |
+| `Notify.Action-Bar` | `true` | Send it to the action bar. |
+| `Notify.Title` | `false` | Send it as a title. |
 
 ## Choice.Lock
 

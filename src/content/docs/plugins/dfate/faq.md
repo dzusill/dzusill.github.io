@@ -17,7 +17,11 @@ description: "Unknown dependency DzusillCore — the core jar is missing from pl
 
 **Existing players are not asked.** `Choice.Ask-Existing-Players: false` files them as normal silently. Set it to `true`.
 
-**The screen looks like chat, not a dialog.** Either dDialogs is not installed, or the client is older than 1.21.6 (protocol 771). Both are handled — the chat fallback stores the mode identically. See [Dialogs & Fallback](/plugins/dfate/features/dialogs-and-fallback/).
+**The screen looks like chat, not a dialog.** Either the server is older than 1.21.6, or the client is (protocol 771) — including a client behind a translating proxy. Both are handled; the chat fallback stores the mode identically. The startup log names the renderer that answered. See [Dialogs & Fallback](/plugins/dfate/features/dialogs-and-fallback/).
+
+**Do I need dDialogs?** No. dFate renders the native screen itself. If dDialogs happens to be installed it takes over, because it registers at a higher service priority and is the dedicated implementation.
+
+**The screen stopped reappearing.** After `Choice.Max-Reask-Attempts` retries (default 3) dFate stops pushing it, because a screen that never draws would otherwise be retried forever. The reminders keep coming and `/fate` always works. Raise the setting, or check why the dialog is not rendering.
 
 **A player is frozen with no screen.** They are told in chat to run `/fate`, and the sweep puts it back within `Reask-Seconds` (default 10) anyway. If neither happens, `/fate set <player> normal` releases them immediately.
 
