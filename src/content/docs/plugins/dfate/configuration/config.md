@@ -135,6 +135,7 @@ Death:
   Title: true
   Sound: entity.wither.spawn
   Sound-Global: true
+  Log-Outcomes: false
   Commands: []
 ```
 
@@ -145,6 +146,7 @@ Death:
 | `Sound` | `entity.wither.spawn` | Namespaced sound key. Empty disables it. A bad key is logged, not thrown — it never aborts the ban. |
 | `Sound-Global` | `true` | `true` = everyone hears it, `false` = only the player who died. |
 | `Commands` | `[]` | Console commands run before the ban. Placeholders `%player%` `%uuid%` `%world%` `%cause%` `%duration%` `%deaths%` `%reason%`. |
+| `Log-Outcomes` | `false` | One console line per at-risk death: what it cost, or which filter spared it. Turn on to diagnose "he died and nothing happened", then off again. |
 
 ## Death.Filters
 

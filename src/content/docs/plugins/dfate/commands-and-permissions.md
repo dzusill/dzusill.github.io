@@ -16,6 +16,7 @@ Commands are registered at runtime through DzusillCore's `CommandRegistry` — t
 | `/fate choose <mode>` | `dfate.choose` | Step up from normal to hardcore or lifesteal. Confirms first. One-way. |
 | `/fate set <player> <mode>` | `dfate.admin` | Change anyone's mode. |
 | `/fate reload` | `dfate.admin` | Re-read `config.yml` and `messages.yml`. |
+| `/fate diag [player]` | `dfate.admin` | Why the plugin is doing what it is doing. |
 
 ### `/fate`
 
@@ -55,6 +56,39 @@ The single escape hatch from a permanent choice.
 - Setting the mode someone already has changes nothing and says so, rather than silently restarting their grace period.
 
 Works on offline players. Tab-completes both arguments.
+
+### `/fate diag [player]`
+
+The first thing to run when something looks wrong. Takes a player argument so it works from the console, which is where an admin testing with `/kill` already is.
+
+```
+attribute resolved: true (route: RegistryAccess)
+lifesteal offered: true
+enforce every: 40 ticks
+loss per death: 1 (flat)
+ignored causes: []
+grace period: 0s
+world filter: BLACKLIST []
+player: Steve
+became this mode: 53s ago
+your mode: LIFESTEAL
+stored hearts: 8
+bar reports: 8 hearts (base value)
+current health: 16.0 / 16 (health / base max, in half-hearts)
+max effective: 16.0
+modifiers: 0
+bypass permission: false
+```
+
+Read it as a chain, top to bottom — the first line that disagrees with what you expect is the answer:
+
+- **`attribute resolved: false`** — the mode is not offered at all on this server version. Nothing else matters.
+- **`grace period` vs `became this mode`** — a death inside the grace window costs nothing. Note that `/fate set` restarts that clock, which makes it easy to catch yourself out while testing.
+- **`bypass permission: true`** — that account is exempt. Check LuckPerms and their op state.
+- **`stored hearts` ≠ `bar reports`** — the plugin's count and the server's attribute disagree; something else owns the attribute.
+- **`stored hearts` = `bar reports` but the player sees a full bar** — server and plugin agree and the *client* is stale. Rejoining resyncs it; if it happens repeatedly, that is a bug worth reporting.
+- **`current health` above `max effective`** — the client draws hearts from health, so it shows a full bar whatever the maximum says.
+- **`modifiers` above 0** — something is adding to the maximum on top of the base value.
 
 ## Permissions
 

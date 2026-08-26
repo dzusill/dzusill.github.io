@@ -18,11 +18,16 @@ This is the part that matters, and the part a naive implementation gets wrong.
 
 Max health is an attribute the server stores in player data, so setting it once looks like enough. It is not. A respawn rebuilds the player, and plenty of things put the bar back to twenty: kit plugins, minigames, world resets, a stray `/attribute`, anything that "normalises" a player. A lifesteal player quietly regaining the hearts they lost is the one failure nobody reports as a bug — it just feels generous.
 
-dFate holds the bar down three ways:
+dFate holds the bar down four ways:
 
 1. **On join, after respawn, and on a world change** — the fast path.
 2. **`PlayerPostRespawnEvent`, not `PlayerRespawnEvent`** — the latter fires *before* the player is actually respawned, and the server resets health while building the new entity. Sizing the bar from there is a race, and it is why a shrunken bar could come back full.
 3. **A repeating sweep** that re-asserts the stored count for every online lifesteal player.
+4. **A forced client resync** on every apply, whether or not the value changed.
+
+That last one is not paranoia. The attribute is only sent to the client when it is marked dirty, and it is only marked dirty when the value actually *changes*. After a respawn the new player entity has already inherited the correct base from the old one, so writing it again changes nothing, marks nothing, and sends nothing — while the client has reset itself to a full bar. Server, storage and sweep all agree they are correct, and the player looks at ten hearts with no mechanism able to disagree. The resync nudges the value through a different number and back, which marks it dirty; the dirty set is flushed once per tick, so only the final value reaches the client and there is no flicker.
+
+`/fate diag <player>` prints both numbers side by side when they ever disagree again.
 
 ```yaml
 Lifesteal:

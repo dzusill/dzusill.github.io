@@ -31,13 +31,14 @@ description: "Unknown dependency DzusillCore — the core jar is missing from pl
 
 ## Bans
 
-**A hardcore player died and was not banned.** Turn on `Debug: true` and reproduce. The log names the exact reason:
+**A hardcore player died and was not banned.** Run `/fate diag <player>` — it prints every filter and the player's state in one screen. If you would rather see it happen, set `Death.Log-Outcomes: true` and reproduce; each at-risk death then logs one line naming the filter responsible and its current value:
 
 ```
-[dFate] [debug] Steve died as hardcore but was spared: CAUSE_EXEMPT
+[dFate] Steve died as HARDCORE but was spared: CAUSE_EXEMPT
+        (Death.Filters.Ignored-Causes=[VOID, KILL])
 ```
 
-Then check that filter in [Exemptions](/plugins/dfate/features/exemptions/). The usual culprits are `dfate.bypass` arriving through a `dfate.*` wildcard, and `Ignored-Causes` containing the cause they died to.
+Turn it back off afterwards — on a busy PvP world it is a line per death. The usual culprits are `dfate.bypass` arriving through a `dfate.*` wildcard, `Ignored-Causes` containing the cause they died to, and a grace period that `/fate set` silently restarted while you were testing.
 
 **`No plugin on this server provides /tempban`** — `Ban.Command` names a command nothing registers. Either install your ban plugin or point the setting at the right syntax. With `Fallback-To-Vanilla: true` the ban still lands, on the server's own ban list.
 
@@ -52,6 +53,8 @@ Then check that filter in [Exemptions](/plugins/dfate/features/exemptions/). The
 **The bar goes back to full after respawning.** That was a real bug, fixed by hooking Paper's `PlayerPostRespawnEvent` instead of `PlayerRespawnEvent` — the latter fires *before* the player is actually respawned, so setting the attribute there races with the server's own health reset. If you still see it, check `Lifesteal.Enforce-Interval-Ticks` is not `0`; that sweep is what re-asserts the bar against anything else resizing it.
 
 **Hearts come back on their own.** Something is resetting the max-health attribute — a kit plugin, a minigame, a world-reset plugin, or an `/attribute` command. The enforcement sweep corrects it within `Enforce-Interval-Ticks` (default 40 = 2 seconds). Set `Debug: true` to see the corrections logged.
+
+**The count drops but the player still sees a full bar.** Run `/fate diag <player>`. If `stored hearts` and `bar reports` agree, the server is right and the *client* is stale — dFate forces a resync on every apply for exactly this reason, so rejoining will fix it and a repeat is worth reporting. If they disagree, something else owns the attribute; the `max effective` and `modifiers` lines say what.
 
 **Lifesteal never appears on the choice screen.** Either `Lifesteal.Enabled: false`, or the max-health attribute could not be resolved on this server version — look for `Could not resolve the max-health attribute` in the startup log. The mode hides itself in that case rather than offering a permanent decision for a mechanic that cannot run.
 
