@@ -33,6 +33,11 @@ const PLUGINS = [
   { slug: 'dkilltracker',  name: 'dKillTracker',  src: '../dKillTracker/docs' },
   { slug: 'dfate',         name: 'dFate',         src: '../dFate/docs' },
   { slug: 'toolsnotifier', name: 'ToolsNotifier', src: '../ToolNotifier/docs' },
+  // The dzusill-branded successors to the Oberon originals. Both are listed: the Oberon pages stay
+  // for the servers still running them, and these document the rebuilt plugins, which have since
+  // diverged (dLive gained saved links and the skin face; dAnnounce, its own preset library).
+  { slug: 'dlive',         name: 'dLive',         src: '../dLive/docs' },
+  { slug: 'dannounce',     name: 'dAnnounce',     src: '../dAnnounce/docs' },
   { slug: 'ddeathpenalty', name: 'dDeathPenalty', src: '../DeathPenalty/docs' },
   { slug: 'dlottery',      name: 'dLottery',      src: '../dLottery/docs' },
   // BasicLand.cz build of the same lottery — kept right after the general-purpose one.
@@ -58,6 +63,11 @@ const PLUGINS = [
   { slug: 'oberonsell',    name: 'OberonSell',    src: '../OberonSell/docs' },
   // The buying half, and the PerfShop replacement.
   { slug: 'oberonshop',    name: 'OberonShop',    src: '../OberonShop/docs' },
+  // The dzusill-branded successors to OberonSell and OberonShop, kept beside them for the same
+  // reason as dLive above: the Oberon pages still serve the servers running those builds.
+  { slug: 'dsell',         name: 'dSell',         src: '../dSell/docs' },
+  { slug: 'dshop',         name: 'dShop',         src: '../dShop/docs' },
+  { slug: 'dloyalityrewards', name: 'dLoyalityRewards', src: '../dLoyalityRewards/docs' },
 ];
 
 // Plugins whose pages are written directly into src/content/docs/plugins/<slug>/ rather than
@@ -86,10 +96,10 @@ const SIDEBAR_ONLY = process.argv.includes('--sidebar-only');
 const CATEGORIES = [
   { label: '🛠️ Framework', plugins: ['dzusillcore', 'ddialogs'] },
   { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonannounce', 'oberontools', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats'] },
-  { label: '💰 Economy & Shops', plugins: ['drotatingshop', 'oberonshop', 'ddonutworth', 'oberonsell', 'dgems', 'dstore', 'dlottery', 'blottery'] },
+  { label: '💰 Economy & Shops', plugins: ['dshop', 'drotatingshop', 'oberonshop', 'dsell', 'ddonutworth', 'oberonsell', 'dgems', 'dstore', 'dlottery', 'blottery', 'dloyalityrewards'] },
   { label: '⚔️ PvP & Combat', plugins: ['dfactions', 'dkilltracker', 'dbloodmoney', 'ddeathpenalty', 'dfate'] },
   { label: '🧭 Teleportation', plugins: ['warpgui', 'dhomegui'] },
-  { label: '💬 Chat & Social', plugins: ['dnicks', 'dmentions'] },
+  { label: '💬 Chat & Social', plugins: ['dnicks', 'dmentions', 'dlive', 'dannounce'] },
   { label: '🔗 Web & Integrations', plugins: ['dweblink', 'dphalanx'] },
   { label: '🧰 Tools & Utilities', plugins: ['dstattrack', 'toolsnotifier'] },
 ];
@@ -104,6 +114,7 @@ const PLUGIN_EMOJI = {
   dgems: '💎', dweblink: '🔗', dphalanx: '🌐', dstore: '🧾',
   oberonstats: '📈', oberonannounce: '📣', oberontools: '🪣', oberonsell: '🏷️',
   oberonshop: '🏪',
+  dlive: '📡', dannounce: '📣', dsell: '🏷️', dshop: '🏪', dloyalityrewards: '🎁',
 };
 const SECTION_EMOJI = {
   'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',
