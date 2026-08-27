@@ -38,7 +38,30 @@ Turning off `Choice.Lock.Enabled` makes every one of these fall straight through
 
 On by default, and worth keeping. Being killed by a zombie while reading a screen you cannot close is a poor welcome. On a hardcore pick it is worse than poor: it would ban an account that had not finished being created.
 
-dFate remembers the player's **previous** invulnerability flag rather than assuming `false`, so releasing the lock cannot strip protection another plugin had granted. The flag is also restored when a locked player disconnects — it lives in player data, so leaving it set would send them back into the world permanently immune.
+**It is a cancelled damage event, not the `invulnerable` flag.** That distinction is the whole design, and it was learned the hard way.
+
+`setInvulnerable` writes to **player data**. The lock is **transient in-memory state**. Using the first for the second means anything that cuts between locking and unlocking — a crash, a hard restart, a force-unload, a version whose quit path forgot to restore it — leaves the flag set with nothing able to notice. And because a player who already has a mode is never locked again, the restore path is never reached: they simply stop taking damage from mobs and players, permanently, and no amount of rejoining fixes it.
+
+Cancelling `EntityDamageEvent` instead means transient state gets a transient mechanism. Nothing is written to player data, so if the plugin stops running or the player stops being locked, the protection ceases to exist on its own. It also cannot fight another plugin's invulnerability, because it never touches the flag.
+
+### Cleaning up after the old behaviour
+
+```yaml
+Choice:
+  Lock:
+    Clear-Leftover-Invulnerability: true
+```
+
+A player who was left immortal by an older build is never locked again, so nothing would ever clear it. On join, a player who is **not** being locked and is carrying the flag has it cleared — but only in survival or adventure (creative and spectator are invulnerable by design), and every clear is logged:
+
+```
+[dFate] Cleared a leftover invulnerability flag on Steve — an older build's choice lock
+        could leave it set.
+```
+
+Turn it off if something else on your server sets that flag deliberately, such as a vanish plugin or a lobby guard.
+
+`/fate diag <player>` reports both `locked by choice` and `invulnerable flag`, and flags the combination that should never occur.
 
 ## Reminders
 

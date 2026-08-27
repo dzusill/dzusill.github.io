@@ -52,6 +52,7 @@ Choice:
     Block-Commands: true
     Block-Interaction: true
     Invulnerable: true
+    Clear-Leftover-Invulnerability: true
     Allowed-Commands:
       - fate
       - dfate
@@ -65,7 +66,8 @@ Choice:
 | `Block-Chat` | `true` | Cancel chat messages. |
 | `Block-Commands` | `true` | Cancel every command outside `Allowed-Commands`. |
 | `Block-Interaction` | `true` | Cancel interact, block break/place, item drop, inventory open. |
-| `Invulnerable` | `true` | Immune to damage while the screen is up. The previous flag is restored on release. |
+| `Invulnerable` | `true` | Immune to damage while the screen is up, by cancelling damage — never by the `invulnerable` entity flag, which is saved to player data and could leave a player immortal after a crash. |
+| `Clear-Leftover-Invulnerability` | `true` | Clear that flag from a joining player who is not being locked, cleaning up after the older implementation. Survival and adventure only; every clear is logged. |
 | `Allowed-Commands` | `fate`, `dfate` | Without the leading slash. **An empty list means no commands at all.** |
 | `Reminder-Cooldown-Seconds` | `3` | Seconds between two "you must choose first" reminders. |
 

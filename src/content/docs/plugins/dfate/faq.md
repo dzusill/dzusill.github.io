@@ -29,6 +29,10 @@ description: "Unknown dependency DzusillCore — the core jar is missing from pl
 
 **They can walk away without answering.** `Choice.Lock.Enabled` is `false`, or `Freeze-Movement` is.
 
+**A player takes no damage from mobs or other players.** Almost certainly a leftover `invulnerable` flag from an older build, whose choice lock granted protection with `setInvulnerable` — a flag saved to player data that an unclean shutdown could leave set. Once the player has a mode they are never locked again, so nothing came back to clear it.
+
+Run `/fate diag <player>`: `invulnerable flag: true` together with `locked by choice: false` is that exact state. Current builds clear it on their next join and never set it again — protection is a cancelled damage event now. If it persists, something else on the server owns that flag.
+
 ## Bans
 
 **A hardcore player died and was not banned.** Run `/fate diag <player>` — it prints every filter and the player's state in one screen. If you would rather see it happen, set `Death.Log-Outcomes: true` and reproduce; each at-risk death then logs one line naming the filter responsible and its current value:
