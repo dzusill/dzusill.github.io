@@ -102,6 +102,34 @@ Lifesteal:
 | `Announce-Loss` | `true` | Tell the player they lost a heart. |
 | `Broadcast-Loss` | `false` | Tell the whole server. Off by default; on a busy server this is a lot of chat. |
 
+### Lifesteal.Steal
+
+```yaml
+Lifesteal:
+  Steal:
+    Enabled: true
+    Hearts-Per-Kill: 1
+    Daily-Cap: 5
+    Daily-Cap-Window-Hours: 24
+    Pair-Cooldown-Seconds: 1800
+    Same-IP-Blocks: true
+    Announce: true
+    Broadcast: false
+```
+
+| Key | Default | Meaning |
+|---|---|---|
+| `Enabled` | `true` | A lifesteal killer gains hearts from kills. |
+| `Hearts-Per-Kill` | `1` | Hearts one kill is worth, capped by `Maximum-Hearts`. |
+| `Daily-Cap` | `5` | Hearts one killer may gain per window, whatever the kill count. `0` removes it. |
+| `Daily-Cap-Window-Hours` | `24` | Window length, anchored to the killer's first gain — not to midnight. |
+| `Pair-Cooldown-Seconds` | `1800` | The same killer→victim pair pays at most once per window. Directional. |
+| `Same-IP-Blocks` | `true` | No payout when killer and victim share a connection. |
+| `Announce` | `true` | Tell the killer what they gained, and why a kill paid nothing. |
+| `Broadcast` | `false` | Tell the whole server. Off by default — this fires on every PvP kill. |
+
+> **Only the killer's mode matters.** Killing a normal-mode player pays out even though they lose nothing, so hearts are created rather than moved. These three brakes are the only thing bounding the supply; the daily cap is the one that stops farming across many different victims.
+
 Full detail in [Lifesteal](/plugins/dfate/features/lifesteal/).
 
 ## Ban

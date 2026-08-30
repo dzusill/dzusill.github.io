@@ -18,6 +18,8 @@ Requires **PlaceholderAPI**. The expansion registers itself as `dfate` when PAPI
 | `%dfate_deaths%` | `2` | Deaths this account has taken in an at-risk mode, across bans. |
 | `%dfate_hearts%` | `7` | Hearts left in [lifesteal](/plugins/dfate/features/lifesteal/). `0` in every other mode. |
 | `%dfate_max_hearts%` | `10` | The configured starting hearts, for an "x / y" display. |
+| `%dfate_hearts_gained_today%` | `2` | Hearts taken from kills inside the current window. |
+| `%dfate_steal_remaining%` | `3` | Hearts they may still take before the daily cap stops them. |
 
 ## Server-wide
 

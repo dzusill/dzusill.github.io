@@ -38,7 +38,7 @@ The sweep only writes when the value has actually drifted, so on a server where 
 
 > The sweep compares the attribute's **base value**, not its total. A Health Boost effect or an item modifier stacks on top of the base and is not the player refilling what lifesteal took; enforcing against the total would fight those effects and grind the base down every time one was active.
 
-**Players cannot top themselves up.** There is no heart item, no craft, no revive. The only things that change the count are dying, an admin's `/fate set`, and the reset that follows a ban.
+**Players cannot top themselves up on demand.** There is no heart item, no craft, no revive. The count changes by dying, by killing (see below), by an admin's `/fate set`, and by the reset that follows a ban.
 
 ## What a death costs
 
@@ -74,6 +74,49 @@ Lifesteal:
 **The refill happens when the ban lands, not when the player dies.** That ordering is deliberate: refilling on the death itself would hand a full bar to a player whose ban failed to apply — dying on your last heart would cost nothing and give you ten hearts back. If the ban cannot be issued, the hearts stay spent and the console says why.
 
 Turn `Restore-Hearts-On-Ban` off and a banned player returns at zero, so their next death bans them again — permanent elimination in practice.
+
+## Stealing hearts back
+
+Killing another player gives a lifesteal killer a heart back, up to `Maximum-Hearts` — so a run is recoverable, and can climb past the ten it started with.
+
+```yaml
+Lifesteal:
+  Steal:
+    Enabled: true
+    Hearts-Per-Kill: 1
+    Daily-Cap: 5
+    Daily-Cap-Window-Hours: 24
+    Pair-Cooldown-Seconds: 1800
+    Same-IP-Blocks: true
+```
+
+### Only the killer's mode matters
+
+A lifesteal killer is paid for killing **anyone** — normal, hardcore or lifesteal. The victim's own mode runs on its own track and the two never consult each other: a normal-mode victim loses nothing and still pays out.
+
+That is worth stating plainly, because it decides everything else: **hearts are created, not moved.** Nothing is taken from a normal-mode victim, so the supply grows with every kill. The three brakes below are the only thing bounding it, which makes their values a balance decision rather than a technicality.
+
+### The brakes, and what each actually stops
+
+| Attack | Stopped by |
+|---|---|
+| Kill the same person repeatedly | **Pair cooldown** — one payout per killer→victim pair per 30 min. Directional: two players trading kills are two pairs. |
+| An alt on the same machine | **Same-IP block**. A shared household is a false positive, which is why it can be switched off. |
+| Ten alts on a VPN, or ten friends | **Daily cap, and nothing else.** Without it this is ten hearts in one session. |
+
+The daily cap is the load-bearing one. Its window is anchored to the killer's own first gain rather than to a clock time — a fixed midnight reset would let someone spend a full allowance at 23:59 and another at 00:01.
+
+### Refusals reach the player
+
+A kill that pays nothing says so, for the reasons a player can act on:
+
+> You took a heart from Steve recently. *(24m left)*
+
+Being at the ceiling, on a pair cooldown, out of allowance, or sharing an IP each have their own message. The reasons they cannot act on — stealing switched off, not being on lifesteal, an excluded world — stay silent, because repeating a server setting on every kill is noise.
+
+### Ordering that matters
+
+A killer already at `Maximum-Hearts` is refused **before** the cooldown and cap are consulted. A kill that could never have paid out must not burn the pair's one payout or a slot of the day's allowance.
 
 ## Exemptions apply
 

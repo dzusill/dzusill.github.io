@@ -73,6 +73,12 @@ prefix: "<dark_gray>[<red>Fate</red>]</dark_gray> "
 | `lifesteal-lost` | `%player%` `%lost%` `%hearts%` `%max_hearts%` `%cause%` |
 | `lifesteal-broadcast-lost` | same set — off by default, see `Broadcast-Loss` |
 | `lifesteal-eliminated` | same set, sent when the last heart goes |
+| `steal-gained` | `%player%` `%victim%` `%gained%` `%hearts%` `%max_hearts%` |
+| `steal-broadcast` | same set — off by default, see `Steal.Broadcast` |
+| `steal-at-maximum` | `%max_hearts%` |
+| `steal-pair-cooldown` | `%victim%` `%time%` |
+| `steal-daily-cap` | `%cap%` |
+| `steal-same-ip` | `%victim%` |
 
 ## Status
 

@@ -76,7 +76,8 @@ category-lore: "&7Category: &f{category}"
 | `show-category` / `category-lore` | `{category}` | which sell category the item is in |
 
 This list prices a single item while an inventory tooltip prices the whole stack, which is why the shipped
-`price-lore` says "each" — the two are the same price and should not look like different numbers.
+`price-lore` says "each" — the two are the same price and should not look like different numbers. Set
+`worth-lore.show-stack-total: false` and the tooltip prices one item too, so the two read alike.
 
 Entries whose key names a **block with no item form** are not shown here at all: there is no item to draw.
 See [Migration health](/plugins/dsell/configuration/prices/#migration-health).

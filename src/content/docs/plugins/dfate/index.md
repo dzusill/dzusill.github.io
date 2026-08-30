@@ -12,7 +12,7 @@ It is built on [DzusillCore](https://github.com/dzusill/DzusillCore) and renders
 ## What it does
 
 - 🔮 **One choice, on the first join** — a native dialog screen. No chest GUI, no chat command to remember.
-- ❤️ **Lifesteal** — start with ten hearts, lose one per death, banned at zero. The bar is held down against respawns, kits and anything else that would quietly hand the hearts back.
+- ❤️ **Lifesteal** — start with ten hearts, lose one per death, banned at zero. Kill someone and take a heart back, up to a ceiling, behind a daily cap, a pair cooldown and a same-IP block. The bar is held down against respawns, kits and anything else that would quietly hand the hearts back.
 - 🔒 **Nobody skips it** — the escape key is disabled, the player is frozen and made invulnerable until they answer. Lose the screen and you are told in chat to run `/fate`; a timed sweep puts it back regardless.
 - ⚰️ **Hardcore death costs the account** — a configurable ban command (AdvancedBan syntax by default) plus a broadcast, a title, a sound, and any console commands you want.
 - ♾️ **Permanent by design** — surviving the ban does not clear the mode. Die again, banned again. Nothing a player can run ever walks them back to normal.

@@ -145,6 +145,7 @@ price line.
 ```yaml
 worth-lore:
   enabled: true
+  show-stack-total: true
   shulker-totals: true
   player-inventory: true
   allow-toggle: true
@@ -165,6 +166,7 @@ worth-lore:
 | Key | Default | What it does |
 |---|---|---|
 | `enabled` | `true` | Master switch. Needs [ProtocolLib](https://www.spigotmc.org/resources/1997/) — there is no fallback, and nothing else in the plugin needs it |
+| `show-stack-total` | `true` | Price the whole stack instead of one item. Worth lore is hidden while you carry something so dragging still works — see [Worth Lore](/plugins/dsell/features/worth-lore/) |
 | `shulker-totals` | `true` | Count what a container item carries towards its worth — tooltip **and** payout |
 | `player-inventory` | `true` | Also decorate the player's own inventory while a container is open. Live-reloadable |
 | `allow-toggle` | `true` | Let players use `/toggleworth` |

@@ -137,8 +137,37 @@ One key, in [messages.yml](/plugins/oberonsell/configuration/messages/):
 worth_lore: "<gray>Worth: <#00FC00>${price}"
 ```
 
-`{price}` is everything the item is worth — the item itself plus anything it carries — and it always covers
-the **whole stack**: 12 diamonds read one figure, 8 read another.
+`{price}` is everything the item is worth — the item itself plus anything it carries — and by default it
+covers the **whole stack**: 60 planks at $1 each read $60, one plank reads $1.
+
+## Why the lore disappears while you drag
+
+This is deliberate, and it is what makes the stack total safe.
+
+Since Minecraft 1.17 the client works out for itself whether a stack you are carrying may go into a slot,
+by comparing the two items — **lore included**. A stack total gives 1 plank and 60 planks different lore,
+so left alone the client would call them different items and refuse to:
+
+- spread a carried stack across slots by dragging
+- shift-click a stack onto a matching one
+- double-click to collect everything of that type
+
+It never sends those slots to the server, so nothing on this side could correct it afterwards.
+
+So worth lore is **hidden for as long as you are carrying something**, and returns the moment you put it
+down. While you drag, every stack of a thing looks identical again and all of the above works normally.
+The brief flicker when you pick a stack up is that switch.
+
+## Pricing per item instead
+
+```yaml
+worth-lore:
+  show-stack-total: false
+```
+
+The line then reads what **one** item is worth, whatever the stack size. Every stack carries identical lore
+on its own, so nothing is ever hidden and there is no flicker. `/worth hand` still gives you the total for
+what you are holding.
 
 ## Needs ProtocolLib
 

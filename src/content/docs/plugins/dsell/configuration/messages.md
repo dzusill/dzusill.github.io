@@ -51,7 +51,7 @@ This becomes an item tooltip line, not a chat message.
 
 | Key | Tokens |
 |---|---|
-| `worth_lore` | `{price}` — the item plus anything it carries, whole stack included |
+| `worth_lore` | `{price}` — the item plus anything it carries, whole stack included. `worth-lore.show-stack-total: false` prices one item instead |
 
 There is no separate "total" key. One line carries the sum.
 

@@ -66,7 +66,9 @@ Turn it back off afterwards — on a busy PvP world it is a line per death. The 
 
 **Can players craft or earn hearts back?** No. There is no heart item, no revive, no top-up. The only things that change the count are dying, `/fate set`, and the reset after a ban.
 
-**Does the killer steal a heart?** No — despite the name, only the victim loses one. There is no transfer, which also means no alt-farming.
+**Does the killer steal a heart?** Yes — a lifesteal killer gains one per kill, up to `Maximum-Hearts`. Only the killer's mode matters: killing a normal-mode player pays too, even though that player loses nothing. Hearts are therefore created rather than transferred, and the daily cap, pair cooldown and same-IP block are what bound the supply. See [Lifesteal](/plugins/dfate/features/lifesteal/#stealing-hearts-back).
+
+**I killed someone and got no heart.** Run `/fate diag <player>` — it shows the steal settings and `hearts gained today`. The killer is also told directly for any reason they can act on: at the ceiling, pair on cooldown, out of daily allowance, or sharing an IP with the victim. Silent refusals mean a server setting: stealing disabled, the killer not on lifesteal, or an excluded world.
 
 **Upgrading an existing MySQL install.** Add the column by hand once: `ALTER TABLE dfate_modes ADD COLUMN hearts INT NOT NULL DEFAULT 0;`. PostgreSQL does it itself.
 
