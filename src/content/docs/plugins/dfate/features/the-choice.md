@@ -32,6 +32,36 @@ With [Lifesteal](/plugins/dfate/features/lifesteal/) switched off, the screen dr
 
 Every word of that — title, body, both labels and both hover tooltips — comes from `messages.yml`. See [messages.yml](/plugins/dfate/configuration/messages/).
 
+## The welcome in chat
+
+Alongside the screen, the player gets a multi-line greeting in chat naming all three modes and the command that opens the screen:
+
+```
+──────────────────────────────────────────
+  CHOOSE YOUR FATE
+
+  Welcome, Steve. Before you begin, pick how you
+  want to play. This choice is made once and is permanent.
+
+  ▪ Hardcore  - one life. Die and you are locked out for 24h.
+  ▪ Lifesteal - start with 10 hearts, lose one per death.
+  ▪ Normal    - the ordinary game. Die as often as you like.
+
+  The screen is open now. Lost it? Run /fate
+──────────────────────────────────────────
+```
+
+```yaml
+Choice:
+  Send-Welcome: true
+```
+
+Not a duplicate of the screen. **Chat is the one surface that always arrives** — a dialog that fails to render leaves nothing behind at all, and this is where the command to get it back is guaranteed to reach the player.
+
+It is sent on every join while they still owe an answer, not only their very first connection. Someone who reconnects unchosen is in exactly the same position as someone seeing it for the first time, and tracking "have they been greeted" would mean persisting a flag whose only job is to withhold the instructions from the player who still needs them.
+
+The text is `choice-welcome` in `messages.yml` — a **list**, so each entry is its own chat line and an empty string is a blank line. It does not adapt to your config: if you disable lifesteal, remove its line here too.
+
 ## The second screen
 
 Picking hardcore or lifesteal does not commit anything yet. A confirmation follows:

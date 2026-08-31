@@ -24,6 +24,7 @@ prefix: "<dark_gray>[<red>Fate</red>]</dark_gray> "
 
 | Key | Placeholders | Shown |
 |---|---|---|
+| `choice-welcome` | `%player%` `%command%` `%hardcore%` `%lifesteal%` `%normal%` `%duration%` `%starting_hearts%` | The chat greeting. **A list** — one chat line per entry, empty string for a blank line. Does not adapt to disabled modes. |
 | `choice-title` | — | Screen title |
 | `choice-body` | `%player%` `%hardcore%` `%normal%` `%duration%` | Screen body |
 | `choice-hardcore-label` | `%hardcore%` | Hardcore button |

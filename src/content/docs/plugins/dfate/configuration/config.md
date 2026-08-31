@@ -16,6 +16,7 @@ Choice:
   Confirm-Hardcore: true
   Confirm-Lifesteal: true
   Allow-Opt-In-Later: true
+  Send-Welcome: true
   Broadcast: true
   Notify-On-Close: true
   Max-Reask-Attempts: 3
@@ -34,6 +35,7 @@ Choice:
 | `Confirm-Hardcore` | `true` | Show a second "are you certain?" screen before hardcore is committed. |
 | `Confirm-Lifesteal` | `true` | The same for lifesteal, with its own wording naming the heart count. |
 | `Allow-Opt-In-Later` | `true` | Let a normal player run `/fate choose hardcore`. Always one-way. |
+| `Send-Welcome` | `true` | Send the multi-line `choice-welcome` in chat alongside the screen. Chat always arrives; a dialog that fails to render leaves nothing behind. |
 | `Broadcast` | `true` | Announce each choice to the server. |
 | `Notify-On-Close` | `true` | When the screen goes away unanswered, tell the player in chat how to reopen it (`/fate`). |
 | `Max-Reask-Attempts` | `3` | How many times to push the screen back before giving up on it. The join screen is not counted. `0` never retries. |
