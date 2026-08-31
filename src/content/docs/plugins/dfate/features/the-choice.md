@@ -48,8 +48,11 @@ Alongside the screen, the player gets a multi-line greeting in chat naming all t
   ▪ Normal    - the ordinary game. Die as often as you like.
 
   The screen is open now. Lost it? Run /fate
+  or pick straight away with /fate choose <normal/lifesteal/hardcore>
 ──────────────────────────────────────────
 ```
+
+Both are clickable — `/fate` runs, the second is suggested into the chat box so the mode can be filled in.
 
 ```yaml
 Choice:
@@ -114,9 +117,23 @@ Choice:
 
 Normal picks get their own, quieter line. Both are in `messages.yml`; set `Broadcast: false` to silence them.
 
+## Choosing by command
+
+A player who has not chosen yet can skip the screen entirely:
+
+```
+/fate choose normal
+/fate choose lifesteal
+/fate choose hardcore
+```
+
+All three are open on a first choice, `normal` included — the one-way rule and `Allow-Opt-In-Later` exist to stop someone walking a decision back, and there is no decision yet. An irreversible mode still confirms first; deciding by command makes a permanent choice no less permanent.
+
+This is the path that always works. A dialog can fail to render on an old client or an unusual setup, and the chat welcome carries this line precisely so there is a way in when it does.
+
 ## Opting in later
 
-A normal player can move to a harder mode on purpose:
+A player who has already chosen can move to a harder mode on purpose:
 
 ```
 /fate choose hardcore

@@ -32,14 +32,11 @@ When the mode was set by an admin rather than chosen, an extra line says so. "He
 
 ### `/fate choose <mode>`
 
-`hardcore` and `lifesteal` are accepted. `/fate choose normal` is refused — nothing a player can run ever takes them back down.
+Two different situations behind one command.
 
-Refused with an explanation when:
+**A player who has never chosen** may pick any offered mode, `normal` included. This is their first choice, so neither `Allow-Opt-In-Later` nor the one-way rule applies — those exist to stop someone walking a decision back, and there is no decision yet. It is the route that works when the screen does not: a dialog can fail to render, and then the command is the only way in. An irreversible mode still shows its confirmation.
 
-- `Choice.Allow-Opt-In-Later: false`,
-- the mode is not offered on this server (lifesteal switched off, or its attribute unavailable),
-- they are already in that mode,
-- or they have not answered the join screen yet (a second screen would fight with it).
+**A player who already chose** is opting in later, and the old rules hold: `hardcore` and `lifesteal` only, never back down to `normal`. Refused with an explanation when `Choice.Allow-Opt-In-Later: false`, when they are already in that mode, or when the mode is not offered on this server.
 
 ### `/fate set <player> <mode>`
 
