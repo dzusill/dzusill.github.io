@@ -32,6 +32,59 @@ With [Lifesteal](/plugins/dfate/features/lifesteal/) switched off, the screen dr
 
 Every word of that — title, body, both labels and both hover tooltips — comes from `messages.yml`. See [messages.yml](/plugins/dfate/configuration/messages/).
 
+## Where it is drawn
+
+The same question, on any of three surfaces. One key picks it, server-wide:
+
+```yaml
+Choice:
+  Screen: AUTO
+```
+
+| | What the player gets | When to pick it |
+|---|---|---|
+| `AUTO` | The dialog, dropping to the chat buttons on a client that cannot draw one | The default. Right for almost every server. |
+| `DIALOG` | The dialog and nothing else | When you want to **find out** that your client mix does not match your assumption. |
+| `CHAT` | Clickable `[ Hardcore ] [ Lifesteal ] [ Normal ]` | No client requirement at all. The one to switch to when the others misbehave. |
+| `GUI` | A chest menu, laid out in `gui.yml` | When you want it to look like the rest of your server's menus. |
+
+An unrecognised value falls back to `AUTO`. A typo here must not be the reason nobody can choose.
+
+**The confirmation always follows the picker.** Pick in a chest menu and the second screen is a chest menu; pick in chat and it is two clickable words. Being asked "are you certain?" somewhere other than where you just clicked reads as a second, unrelated question.
+
+### `CHAT`
+
+```
+──────────────────────────────────────────
+  CHOOSE YOUR FATE
+
+  Welcome, Steve. Pick how you want to play.
+  This choice is made once and is permanent.
+
+  [ Hardcore ]  - one life. Locked out for 24h.
+  [ Lifesteal ] - 10 hearts, one lost per death.
+  [ Normal ]    - the ordinary game.
+
+  Click a name above to choose.
+──────────────────────────────────────────
+```
+
+Each button is a click that runs `/fate choose <mode>` — a command that already accepts a first choice. No prompt, no token, no expiry, nothing to lose on the way back. That is what makes this the most robust of the three, and worth remembering when the other two are behaving strangely.
+
+Only the modes actually on offer get a line. With lifesteal switched off, its button is not printed — a button for a mode the server does not have is a button that refuses to work.
+
+The confirmation for an irreversible mode is two more clickable words, running `/fate confirm` and `/fate decline`. Neither takes the mode as an argument, so typing `/fate confirm` out of the blue confirms nothing.
+
+### `GUI`
+
+A chest menu, entirely described by `gui.yml`: title, rows, and the material, slot, name and lore of each mode. Same placeholders as the dialog text.
+
+A mode that is not offered has its slot left empty rather than shown and refused. Nothing configures that — it happens on its own.
+
+Closing the menu while you still owe an answer **reopens it on the next tick**. That is this surface's version of `can_close_with_escape=false`, which a chest inventory has no equivalent of, and escape is the first thing a player does with a menu they did not expect. It counts against `Max-Reask-Attempts` like any other reopen, so a player who genuinely cannot use it is not trapped in a loop.
+
+One thing worth knowing if you are reading the code: [the lock](/plugins/dfate/features/the-lock/) cancels inventory opens for unchosen players, and a locked player is exactly who this menu is for. dFate exempts its own two menus by holder, so the block still applies to every chest, furnace and shulker.
+
 ## The welcome in chat
 
 Alongside the screen, the player gets a multi-line greeting in chat naming all three modes and the command that opens the screen:

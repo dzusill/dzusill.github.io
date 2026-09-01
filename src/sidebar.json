@@ -2822,6 +2822,10 @@
                 "slug": "plugins/dfactions/features/roles-and-relations"
               },
               {
+                "label": "The Plan Board",
+                "slug": "plugins/dfactions/features/notes"
+              },
+              {
                 "label": "The GUI",
                 "slug": "plugins/dfactions/features/gui"
               }
@@ -3245,6 +3249,10 @@
               {
                 "label": "messages.yml",
                 "slug": "plugins/dfate/configuration/messages"
+              },
+              {
+                "label": "gui.yml",
+                "slug": "plugins/dfate/configuration/gui"
               },
               {
                 "label": "database.yml",

@@ -11,6 +11,7 @@ Every setting, in file order. All user-facing text lives in [messages.yml](/plug
 Choice:
   Enabled: true
   Ask-Existing-Players: true
+  Screen: AUTO
   Delay-Ticks: 20
   Reask-Seconds: 10
   Confirm-Hardcore: true
@@ -30,6 +31,7 @@ Choice:
 |---|---|---|
 | `Enabled` | `true` | Master switch. `false` = nobody is asked and nobody is locked; modes already chosen are still enforced. |
 | `Ask-Existing-Players` | `true` | Ask players who joined before dFate was installed. `false` files them as normal, silently. |
+| `Screen` | `AUTO` | Which surface the choice is drawn on: `AUTO`, `DIALOG`, `CHAT` or `GUI`. See below. |
 | `Delay-Ticks` | `20` | Ticks between the join and the screen. Not cosmetic — a dialog sent while the client loads terrain is dropped. |
 | `Reask-Seconds` | `10` | How often the screen is put back in front of a player who still has not chosen. |
 | `Confirm-Hardcore` | `true` | Show a second "are you certain?" screen before hardcore is committed. |
@@ -42,6 +44,21 @@ Choice:
 | `Notify.Chat` | `true` | Send the "you must choose" reminder to chat. |
 | `Notify.Action-Bar` | `true` | Send it to the action bar. |
 | `Notify.Title` | `false` | Send it as a title. |
+
+### `Choice.Screen`
+
+| Value | What the player gets |
+|---|---|
+| `AUTO` | A native dialog, dropping to the clickable chat screen on a client that cannot draw one. |
+| `DIALOG` | A native dialog and nothing else — a client that cannot render it gets only the reminder and the command. |
+| `CHAT` | Clickable `[ Hardcore ] [ Lifesteal ] [ Normal ]` in chat. No client requirement at all. |
+| `GUI` | A chest menu, laid out in [`gui.yml`](/plugins/dfate/configuration/gui/). |
+
+An unrecognised value falls back to `AUTO` rather than refusing to start — a typo here must not be the reason nobody can choose.
+
+The confirmation for an irreversible mode is always drawn in the same medium as the picker. `CHAT` is the only one that needs commands for its answers (`/fate confirm`, `/fate decline`); the other two carry their own buttons.
+
+Full walkthrough of each: [The Choice → Where it is drawn](/plugins/dfate/features/the-choice/#where-it-is-drawn).
 
 ## Choice.Lock
 

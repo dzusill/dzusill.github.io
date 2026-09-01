@@ -41,6 +41,26 @@ prefix: "<dark_gray>[<red>Fate</red>]</dark_gray> "
 
 `%hardcore%`, `%lifesteal%` and `%normal%` come from `Display.Mode-Names` in `config.yml`, so renaming the modes there updates the screen too.
 
+## The chat screen
+
+Only used by `Choice.Screen: CHAT`, and by `AUTO` when a dialog cannot be drawn. All take the same placeholder set as `choice-welcome`, plus `%command%`.
+
+| Key | | |
+|---|---|---|
+| `chat-choice-header` | **list** | The block above the buttons |
+| `chat-choice-hardcore` | string | One clickable button line |
+| `chat-choice-lifesteal` | string | " |
+| `chat-choice-normal` | string | " |
+| `chat-choice-footer` | **list** | The block below them |
+| `chat-confirm` | **list** | "Are you certain?", for hardcore |
+| `chat-confirm-lifesteal` | **list** | The same, for lifesteal. Adds `%mode%`. |
+| `chat-confirm-buttons` | **list** | The clickable yes/no |
+| `chat-confirm-expired` | string | `/fate confirm` with nothing waiting |
+
+Each mode's button is a separate key on purpose: **only the modes actually on offer are sent.** With lifesteal switched off, `chat-choice-lifesteal` is never printed. Moving the buttons into the header block would undo that and print a button that refuses to work.
+
+The buttons are `run_command` clicks on `/%command% choose <mode>`. Keep the command in the click event if you rewrite them — the text around it is yours, but that is what makes the button a button.
+
 ## Choice outcome
 
 | Key | Placeholders |
@@ -110,13 +130,18 @@ All take `%player%` `%mode%` `%duration%`.
 | `admin-set-target` | `%mode%` — sent to the player whose mode changed |
 | `admin-set-unchanged` | `%player%` `%mode%` |
 | `admin-unbanned` | `%player%` |
+| `admin-reset` | `%player%` — confirmation to the admin |
+| `admin-reset-target` | — sent to the player whose fate was erased |
+| `admin-reset-unchosen` | `%player%` — there was nothing to reset |
 | `admin-usage` | list — shown by `/fate` from console |
 
 ## Core keys
 
-`no-permission` · `players-only` · `console-only` · `unknown-command` · `invalid-usage` · `invalid-number` · `player-not-found` · `reload-success` · `reload-failed` · `command-error`
+`no-permission` · `players-only` · `console-only` · `unknown-command` · `invalid-usage` · `invalid-number` · `player-not-found` · `player-ambiguous` · `reload-success` · `reload-failed` · `command-error`
 
-These come from DzusillCore's command layer. Keep them present even if you never look at them.
+These come from DzusillCore's command layer. Keep them present even if you never look at them — a missing key renders as its own name, so `player-ambiguous` printed literally in chat means it was deleted rather than translated.
+
+**`%usage%` already contains the whole command, slash and all** — `/fate set <player> <mode>`. Writing `/%label% %usage%` prints the command twice and leaves `%label%` unresolved, because there is no such placeholder. `%cmd%` is available if you want the command on its own.
 
 ## Example: renaming the modes
 

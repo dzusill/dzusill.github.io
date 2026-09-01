@@ -23,42 +23,53 @@ factions:
     enabled: true
     max-level: 100
     resource-chest: { title: "Faction Resources", rows: 3 }
-    item-xp-default: 0.5
-    item-xp:
-      STONE: 1
-      OAK_LOG: 1
-      IRON_INGOT: 5
-      GOLD_INGOT: 10
-      DIAMOND: 25
-      NETHERITE_INGOT: 100
 ```
 
-Add any Bukkit `Material` to `item-xp` to make it depositable. Items not listed fall back to
-`item-xp-default` (set it to `0` for list-only rewards).
+`item-xp.yml` prices every deposit:
+
+```yaml
+# item-xp.yml
+default: 0               # anything not listed is worth nothing
+items:
+  DIAMOND:          25
+  NETHERITE_INGOT: 100
+  IRON_INGOT:        5
+  GOLD_INGOT:       10
+  STONE:           0.5
+  OAK_LOG:         0.5
+```
+
+The shipped file lists **every survival-obtainable material in 1.21.11**, grouped by value, highest
+first. Creative-only materials — barriers, command blocks, spawners, spawn eggs, structure blocks,
+debug sticks, budding amethyst, infested blocks — are deliberately absent, and `default: 0` means an
+op-spawned stack of them deposits for nothing. Prices follow the vanilla recipe graph: a crafted item
+is worth the sum of its ingredients, so crafting can never mint XP.
+
+Add or reprice any Bukkit `Material` under `items`. To scale the whole economy at once, use
+`factions.leveling.xp-multiplier` in `config.yml` rather than editing hundreds of rows.
 
 ### Enchantment bonus
 
-Enchanted items are worth more. On top of an item's base `item-xp`, each enchantment adds
+Enchanted items are worth more. On top of an item's base value in `item-xp.yml`, each enchantment adds
 `value × enchant-level`, so a Sharpness V + Unbreaking III sword deposits for far more than a plain
 one. Enchanted books count their **stored** enchantments, so a valuable book is worth depositing
 even when `ENCHANTED_BOOK` has no base value.
 
 ```yaml
-factions:
-  leveling:
-    enchant-xp:
-      enabled: true
-      default: 2.0          # per-level value for any enchant not listed below
-      values:               # keyed by the modern namespaced enchant key
-        sharpness: 3.0
-        unbreaking: 2.0
-        looting: 10.0
-        fortune: 15.0
-        silk_touch: 15.0
-        mending: 25.0
+# item-xp.yml
+enchant-xp:
+  enabled: true
+  default: 2.0            # per-level value for any enchant not listed below
+  values:                 # keyed by the modern namespaced enchant key
+    sharpness: 3.0
+    unbreaking: 2.0
+    looting: 10.0
+    fortune: 15.0
+    silk_touch: 15.0
+    mending: 25.0
 ```
 
-Per item: `bonus = Σ (value × level)` over its enchantments, added to the base `item-xp`, then
+Per item: `bonus = Σ (value × level)` over its enchantments, added to the item's base value, then
 multiplied by the stack amount. A diamond sword with base `10`, Sharpness V (`3.0×5`) and Unbreaking
 III (`2.0×3`) deposits for `10 + 15 + 6 = 31` XP. Set `enchant-xp.enabled: false` to ignore
 enchantments.

@@ -1,9 +1,9 @@
 ---
 title: "Commands & Permissions"
-description: "One command, four subcommands. Aliases: /dfate."
+description: "One command and its subcommands. Aliases: /dfate."
 ---
 
-One command, four subcommands. Aliases: `/dfate`.
+One command and its subcommands. Aliases: `/dfate`.
 
 Commands are registered at runtime through DzusillCore's `CommandRegistry` — there is no `commands:` block in `plugin.yml`, so nothing to clash with another plugin's `plugin.yml` entry.
 
@@ -14,7 +14,9 @@ Commands are registered at runtime through DzusillCore's `CommandRegistry` — t
 | `/fate` | `dfate.info` | Your own status, as a dialog screen. |
 | `/fate info [player]` | `dfate.info` (+ `dfate.info.others`) | Status in chat. Works from console and for offline players. |
 | `/fate choose <mode>` | `dfate.choose` | Step up from normal to hardcore or lifesteal. Confirms first. One-way. |
+| `/fate confirm` / `/fate decline` | `dfate.choose` | Answers a confirmation drawn in chat. Only used by `Choice.Screen: CHAT`. |
 | `/fate set <player> <mode>` | `dfate.admin` | Change anyone's mode. |
+| `/fate reset <player>` | `dfate.admin` | Erase their choice so they are asked again. |
 | `/fate reload` | `dfate.admin` | Re-read `config.yml` and `messages.yml`. |
 | `/fate diag [player]` | `dfate.admin` | Why the plugin is doing what it is doing. |
 
@@ -54,6 +56,31 @@ The single escape hatch from a permanent choice.
 
 Works on offline players. Tab-completes both arguments.
 
+### `/fate reset <player>`
+
+Un-asks the question.
+
+```
+/fate reset Steve
+```
+
+The difference from `/fate set Steve normal` is the whole reason both exist. Setting someone to normal **answers** for them; reset **erases the answer**, so the choice screen comes back and the next decision is theirs again. That is what you want for a player who misclicked in their first minute, and for a season wipe.
+
+- Erases the record entirely — mode, hardcore death count, lifesteal hearts, the admin-set flag.
+- **Clears the ban unconditionally**, unlike `/fate set`, which honours `Ban.Unban-On-Set-Normal`. There is no mode left to justify a ban, and a reset player who stays locked out cannot answer the screen the reset just queued for them.
+- If they are online: puts the health bar back to vanilla ten hearts, tells them, re-locks them and shows the screen straight away — without waiting for `Ask-Existing-Players` or `Choice.Enabled`, which are join-time filters and would otherwise quietly refuse the command an admin just typed.
+- Resetting someone who never chose says so rather than doing nothing in silence.
+
+The death count going with the record is deliberate. A fresh run that inherited its predecessor's deaths would ban on the first mistake.
+
+Works on offline players.
+
+### `/fate confirm` and `/fate decline`
+
+Only reachable with `Choice.Screen: CHAT`, where they are what the clickable `[ I accept my fate ]` and `[ Take me back ]` answers run. A dialog and a chest menu carry their own buttons and never need these.
+
+Neither takes an argument, and that is the safety property rather than an omission: what is being confirmed lives in the plugin, not in the command, so typing `/fate confirm` with nothing waiting confirms nothing. There is no string a player can send that grants them a mode they were never offered.
+
 ### `/fate diag [player]`
 
 The first thing to run when something looks wrong. Takes a player argument so it works from the console, which is where an admin testing with `/kill` already is.
@@ -91,10 +118,10 @@ Read it as a chain, top to bottom — the first line that disagrees with what yo
 
 | Node | Default | Grants |
 |---|---|---|
-| `dfate.admin` | op | `/fate set`, `/fate reload` |
+| `dfate.admin` | op | `/fate set`, `/fate reset`, `/fate reload`, `/fate diag` |
 | `dfate.info` | everyone | `/fate`, `/fate info` on yourself |
 | `dfate.info.others` | op | `/fate info <player>` |
-| `dfate.choose` | everyone | `/fate choose hardcore` |
+| `dfate.choose` | everyone | `/fate choose`, `/fate confirm`, `/fate decline` |
 | `dfate.bypass` | **nobody** | Hardcore deaths never cost the holder their account |
 
 ### About `dfate.bypass`

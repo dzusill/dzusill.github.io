@@ -84,6 +84,17 @@ Blocked by default, each switchable in `restrictions`:
 A relation counts if **either** side records it — requiring both to agree would let two factions
 arrange a defeat by having only one of them drop the alliance first.
 
+### Funding from an enemy beacon
+
+Right-clicking another faction's beacon starts a funding prompt for that faction — an enemy HQ being
+the natural place to put money on their head (`interface.beacon-funding`, on by default). Members
+clicking their own beacon still get the faction menu, and the beacon stays locked either way.
+
+A player with **no faction** is refused outright here and simply gets the usual "only members can use
+the beacon" message: with no faction of their own they have no enemies, so a bounty prompt on a
+stranger's block is noise rather than an offer. This entry point only; funding from the browser and
+from `/f bounty add` still follows `access.allow-factionless`.
+
 ## Commands
 
 | Command | Who | Purpose |
@@ -92,14 +103,26 @@ arrange a defeat by having only one of them drop the alliance first.
 | `/f bounty add <faction> <amount>` | Players | Fund a bounty |
 | `/f bounty info <faction>` | Players | Pool, claimable share, funders, expiry |
 | `/f bounty top` | Players | The richest pools on the server |
-| `/bounty` | Players | Standalone alias for the above |
+| `/fbounty` | Players | Standalone alias for the above (aliases `/fbounties`, `/factionbounty`) |
 | `/fa bounty add\|remove\|reset <faction> [amount]` | Staff | Adjust a pool without charging or paying anyone |
 | `/fa bounty history` | Staff | The full audit trail |
 
 Permissions: `factions.cmd.bounty`, `.add`, `.info`, `.top`, and `factions.admin.bounty`.
 
-Already running another bounty plugin? Delete the `bounty:` entry from `plugin.yml` — `/f bounty`
-keeps working.
+The standalone command is registered at runtime, not from `plugin.yml`, so it is fully configurable:
+
+```yaml
+factions:
+  bounties:
+    command:
+      enabled: true
+      name: fbounty
+      aliases: [fbounties, factionbounty]
+```
+
+It defaults to `/fbounty` precisely so it cannot shadow the `/bounty` a separate player-bounty plugin
+ships. Set `name: bounty` to claim the short name yourself, or `enabled: false` to register nothing
+at all — `/f bounty` keeps working either way.
 
 ## Interface
 
@@ -141,7 +164,7 @@ All optional; the feature works fully without any of them except the economy.
 | Integration | What it adds |
 |---|---|
 | Vault | Required for money to move |
-| PlaceholderAPI | `%dfactions_faction_bounty%`, `%dfactions_bounty_<faction>%`, `%dfactions_bounty_top_<n>%`, `%dfactions_bounty_top_<n>_amount%`, `%dfactions_bounty_count%`, `%dfactions_bounty_total%` |
+| PlaceholderAPI | The full bounty family — own faction, any named faction, the board, server totals, the viewer as a funder, where they are standing, the config values and the latest log line. The same keys work in `gui.yml` lore and the message files as `{key}`. See the [placeholder reference](/plugins/dfactions/placeholders/#bounties). |
 | dDialogs | A `faction_bounties` data source a dialog can list |
 | Discord | Bounty set, claimed and refunded pushed to the bridge |
 

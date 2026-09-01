@@ -41,8 +41,8 @@ prestige to raise the cap. See
 [Leveling & Prestige](/plugins/dfactions/features/progression/).
 
 **How do we earn XP?**
-Deposit items into the Resource Chest via `/f resources`. XP per item is set in
-`factions.leveling.item-xp`.
+Deposit items into the Resource Chest via `/f resources`. XP per item is set in `item-xp.yml`,
+which ships with every survival-obtainable 1.21.11 material already priced.
 
 **A war declaration was rejected. Why?**
 Common causes: wars disabled, either side already at war, too few members, factions outside

@@ -3,6 +3,8 @@ title: "Dialogs & Fallback"
 description: "dFate needs no rendering plugin. It ships its own native dialog backend, so the choice screen draws itself on any server new enough to have the API."
 ---
 
+> This page is about the **dialog** surface. It applies when `Choice.Screen` is `AUTO` or `DIALOG`, which is the default. `CHAT` and `GUI` bypass all of it — see [The Choice](/plugins/dfate/features/the-choice/#where-it-is-drawn).
+
 **dFate needs no rendering plugin.** It ships its own native dialog backend, so the choice screen draws itself on any server new enough to have the API.
 
 It builds a `DialogSpec` — a plain description of a screen — and hands it to DzusillCore's `DialogService`, which decides how to render it.
@@ -25,6 +27,19 @@ The call site is the same either way. There is no version gate to configure and 
 | Server 1.21.6+, client 1.21.6+ | The native dialog screen, rendered by dFate. |
 | Client older (including behind a translating proxy) | Chat fallback. Detected through ViaVersion when present. |
 | Server older than 1.21.6 | Chat fallback, for everyone. |
+
+## When nothing can serve the spec
+
+A backend can decline a spec outright — an old server, an unusual proxy, a client that turns out not to render what it advertised. What happens then depends on which of the two dialog settings you chose, and it is the only thing that separates them:
+
+| | Result |
+|---|---|
+| `Choice.Screen: AUTO` | Falls through to dFate's own **clickable chat screen** — all three modes, no client requirement. |
+| `Choice.Screen: DIALOG` | Draws nothing. The player keeps the lock, the reminder and `/fate choose`. |
+
+`AUTO`'s floor used to be core's two-button `confirm()`, which is guaranteed to resolve anywhere but can only carry two options — so a server offering lifesteal was quietly hiding it from exactly the players who could not see the real screen. The chat screen carries every offered mode and has no such ceiling.
+
+`DIALOG` drawing nothing is the point of it existing. It is a worse experience for a player who did nothing wrong, and it is how you find out that your client mix does not match the setting you picked. If that trade is not what you want, use `AUTO`.
 
 ## If dDialogs is installed anyway
 
