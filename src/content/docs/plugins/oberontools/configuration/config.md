@@ -122,6 +122,7 @@ Required when `behavior: AREA_MINE`.
 ```yaml
     area-mine:
       tool: PICKAXE
+      vertical-anchor: FLOOR
       radius: 1
       max-radius: 3
 ```
@@ -129,6 +130,7 @@ Required when `behavior: AREA_MINE`.
 | Key | Default | |
 |---|---|---|
 | `tool` | *required* | `PICKAXE` or `SHOVEL`; the item material must match. |
+| `vertical-anchor` | `FLOOR` | `FLOOR` keeps the bottom row one block below what you mined at every radius; `CENTERED` centres the square on it. Wall faces only. |
 | `radius` | `1` | The square everyone gets. `1` creates the shipped 3×3 plane. Range 1–8. |
 | `max-radius` | same as `radius` | Permission ceiling. Must be ≥ `radius`, ≤ 8. Equal to `radius` means no tiers exist. |
 
