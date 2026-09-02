@@ -2011,6 +2011,136 @@
         ]
       },
       {
+        "label": "🔨 dAuctionFeed",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/dauctionfeed"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dauctionfeed/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dauctionfeed/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/dauctionfeed/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Restocks",
+                "slug": "plugins/dauctionfeed/features/restocks"
+              },
+              {
+                "label": "Tiers",
+                "slug": "plugins/dauctionfeed/features/tiers"
+              },
+              {
+                "label": "The Item Pool",
+                "slug": "plugins/dauctionfeed/features/item-pool"
+              },
+              {
+                "label": "How a Price Is Built",
+                "slug": "plugins/dauctionfeed/features/pricing"
+              },
+              {
+                "label": "The Price Floor",
+                "slug": "plugins/dauctionfeed/features/price-floor"
+              },
+              {
+                "label": "Market Pricing",
+                "slug": "plugins/dauctionfeed/features/market-pricing"
+              },
+              {
+                "label": "Sellers & the Money Sink",
+                "slug": "plugins/dauctionfeed/features/sellers-and-money-sink"
+              },
+              {
+                "label": "Purchase Limits",
+                "slug": "plugins/dauctionfeed/features/purchase-limits"
+              },
+              {
+                "label": "Item Markers",
+                "slug": "plugins/dauctionfeed/features/item-markers"
+              },
+              {
+                "label": "Announcements",
+                "slug": "plugins/dauctionfeed/features/announcements"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dauctionfeed/configuration/config"
+              },
+              {
+                "label": "tiers.yml",
+                "slug": "plugins/dauctionfeed/configuration/tiers"
+              },
+              {
+                "label": "items.yml",
+                "slug": "plugins/dauctionfeed/configuration/items"
+              },
+              {
+                "label": "Default Prices (1.21)",
+                "slug": "plugins/dauctionfeed/configuration/default-prices"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/dauctionfeed/configuration/messages"
+              },
+              {
+                "label": "data.yml",
+                "slug": "plugins/dauctionfeed/configuration/data"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/dauctionfeed/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/dauctionfeed/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/dauctionfeed/placeholders"
+              },
+              {
+                "label": "How It Talks to AxAuctions",
+                "slug": "plugins/dauctionfeed/axauctions-integration"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/dauctionfeed/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/dauctionfeed/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "label": "🏷️ OberonSell",
         "collapsed": true,
         "items": [

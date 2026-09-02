@@ -46,6 +46,9 @@ const PLUGINS = [
   { slug: 'drotatingshop', name: 'DRotatingShop', src: '../DRotatingShop/docs' },
   // Sits right after the shop it derives its sell prices from.
   { slug: 'ddonutworth',   name: 'dDonutWorth',   src: '../dDonutWorth/docs' },
+  // Feeds DRotatingShop's price catalogue back into the AxAuctions auction house as server-owned
+  // listings, so it sits with the shops rather than in Miscellaneous.
+  { slug: 'dauctionfeed',  name: 'dAuctionFeed',  src: '../dAuctionFeed/docs' },
   { slug: 'dgems',         name: 'dGems',         src: '../dGems/docs' },
   // dFactions source lives in docs-site/ (the plugin repo's docs/ holds a separate Jekyll site).
   { slug: 'dfactions',     name: 'dFactions',     src: '../dFactions/docs-site' },
@@ -96,7 +99,7 @@ const SIDEBAR_ONLY = process.argv.includes('--sidebar-only');
 const CATEGORIES = [
   { label: '🛠️ Framework', plugins: ['dzusillcore', 'ddialogs'] },
   { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonannounce', 'oberontools', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats'] },
-  { label: '💰 Economy & Shops', plugins: ['dshop', 'drotatingshop', 'oberonshop', 'dsell', 'ddonutworth', 'oberonsell', 'dgems', 'dstore', 'dlottery', 'blottery', 'dloyalityrewards'] },
+  { label: '💰 Economy & Shops', plugins: ['dshop', 'drotatingshop', 'oberonshop', 'dsell', 'ddonutworth', 'dauctionfeed', 'oberonsell', 'dgems', 'dstore', 'dlottery', 'blottery', 'dloyalityrewards'] },
   { label: '⚔️ PvP & Combat', plugins: ['dfactions', 'dkilltracker', 'dbloodmoney', 'ddeathpenalty', 'dfate'] },
   { label: '🧭 Teleportation', plugins: ['warpgui', 'dhomegui'] },
   { label: '💬 Chat & Social', plugins: ['dnicks', 'dmentions', 'dlive', 'dannounce'] },
@@ -110,7 +113,7 @@ const PLUGIN_EMOJI = {
   dzusillcore: '🛠️', dstattrack: '📊', warpgui: '🧭', dhomegui: '🏠',
   dnicks: '🎨', dbloodmoney: '💰', toolsnotifier: '🔔', ddeathpenalty: '💀',
   dlottery: '🎰', drotatingshop: '🛒', dfactions: '⚔️', dkilltracker: '🗡️', dfate: '🔮',
-  ddonutworth: '🍩', ddialogs: '💬', blottery: '🍀', dmentions: '🙋',
+  ddonutworth: '🍩', ddialogs: '💬', blottery: '🍀', dmentions: '🙋', dauctionfeed: '🔨',
   dgems: '💎', dweblink: '🔗', dphalanx: '🌐', dstore: '🧾',
   oberonstats: '📈', oberonannounce: '📣', oberontools: '🪣', oberonsell: '🏷️',
   oberonshop: '🏪',
