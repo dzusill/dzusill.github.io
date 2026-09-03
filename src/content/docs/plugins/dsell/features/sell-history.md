@@ -63,6 +63,21 @@ entry-lore:
 
 `{when}` is deliberately coarse — an absolute timestamp reads badly on an item tooltip.
 
+## How the count is written
+
+`{amount}` is formatted, not printed raw. `price-format.count-format` in `config.yml` picks the style, and
+it applies to every count on screen — here, the `Sold N items` messages, and the item track of `/selltop`:
+
+```yaml
+price-format:
+  count-format: grouped     # 1,000,000  (the default)
+  # count-format: compact   # 1.1M
+  # count-format: plain     # 1000000
+```
+
+Separate from `compact-thousands`, which is about money only. See
+[config.yml → Item counts](/plugins/dsell/configuration/config/#item-counts).
+
 ## Lifetime totals
 
 Everything a player has ever earned from selling is tracked separately and exposed as

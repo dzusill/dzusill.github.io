@@ -47,6 +47,7 @@ Every one of these is player-only except `/setworth` and `/delworth` with an exp
 | `/oberonsell doctor` | `oberonsell.admin` | Config, hooks, storage and price-table health |
 | `/oberonsell migrate <prices\|playerdata>` | `oberonsell.admin` | Move data between backends |
 | `/oberonsell resetmultiplier <player> [category\|all]` | `oberonsell.admin` | Reset a sell ladder, banking what was earned |
+| `/oberonsell resethistory <player>` | `oberonsell.admin` | Clear a player's sell history. Online or offline |
 
 `/oberonsell` also answers to `/ow` and `/worthadmin`. `/delworth` also answers to `/removeworth`.
 
@@ -103,6 +104,23 @@ The backstop for a crash while a container was open. See [Worth Lore](/plugins/o
 
 Works on an offline player. Refused outright when `multipliers.reset.enabled: false`. See
 [Sell Multipliers](/plugins/oberonsell/features/sell-multipliers/#resetting-a-players-ladder).
+
+### /oberonsell resethistory
+
+```
+/oberonsell resethistory <player>
+/oberonsell clearhistory <player>     the same command
+```
+
+Empties one player's [`/sellhistory`](/plugins/oberonsell/features/sell-history/). Works on an offline player — the record is
+loaded, cleared and written back whether or not they are connected.
+
+**History only.** Lifetime totals behind `/selltop` and the multiplier ladders are untouched; they live in
+the same record but are a different feature, and clearing a transaction log is not the same as taking away
+what someone earned. Use `/oberonsell resetmultiplier` for the ladder.
+
+A player with nothing to clear is reported as such rather than answered with a success message, so a
+mistyped name is visible.
 
 ### /oberonsell doctor
 

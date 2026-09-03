@@ -10,11 +10,17 @@ board that every member can open and read.
 Open it with `/f notes` (aliases `/f note`, `/f board`), or from the **Plan Board** button in the
 main `/f` menu. It is on by default; turn it off with `enabled: false` in `notes.yml`.
 
+> **Upgrading?** The plugin never overwrites a `gui.yml` you already have, so the Plan Board button
+> is merged into it on the first boot after updating — you will see a line in the console saying what
+> was added. Your own entries are untouched, and a slot you already use is never taken. If you later
+> delete the button, it stays deleted.
+
 ## Writing a note
 
-Minecraft has no way for a plugin to open the book *writing* screen, so writing really does mean
-holding a book and quill. Pressing **Write a Note** hands you one, and signing it pins the note to
-the board.
+Minecraft has no way for a plugin to open the book *writing* screen — the client opens it itself
+when you use a writable book you are holding, and no packet can force it. So writing really does mean
+holding a book and quill: pressing **Write a Note** puts one straight into your hand, and one
+right-click opens the page. Signing it pins the note to the board.
 
 The draft book is a loan, not an item you keep:
 
@@ -22,14 +28,28 @@ The draft book is a loan, not an item you keep:
 |---|---|
 | You try to drop it | Refused |
 | You try to store it in any chest, ender chest or team chest | Refused |
+| You open any container | Taken back |
+| You run any command | Taken back, before the command runs |
+| You scroll to another hotbar slot | Taken back |
 | You die holding it | It does not drop |
 | You log out holding it | Taken back |
+| It somehow reaches another player | Destroyed on sight |
+| You close the writing screen without signing | Taken back — nothing is saved |
 | You leave it unfinished for `draft-timeout-minutes` (10 by default) | Taken back |
 | Your inventory is full when you press Write | Refused, with a message — never dropped on the floor |
 
-You can only hold one draft at a time. The signature is never actually applied: on success the note
-is stored and the book taken back, and if the note is refused you keep a still-writable book with
-every word you typed, so a rejected word costs you an edit rather than the whole page.
+The book exists only for the moment you are writing in it. Running a command is what closes the last
+real gap: an auction, shop or kit plugin reads the item straight out of your hand without ever moving
+it through an inventory slot, so the draft is taken back **before** any command runs — it cannot be
+sold, traded or stored.
+
+You can only hold one draft at a time, and whatever you were holding is put back in your hand once
+the book is gone. Only a **signed** book becomes a note: close the screen without signing and the
+book is handed straight back, so nothing is left in your inventory to carry around or duplicate.
+
+The signature is never actually applied: on success the note is stored and the book taken back, and
+if the note is refused you keep a still-writable book with every word you typed, so a rejected word
+costs you an edit rather than the whole page.
 
 ## Reading and removing
 
@@ -64,6 +84,29 @@ vanilla ceilings has no effect, because the client refuses to write that much in
 
 A board is **wiped when the faction disbands** and **moves to the surviving faction on a merge**: the
 members who wrote those plans are joining the survivor, so their plans go with them.
+
+## Layout
+
+Every square on the board is yours to move, in `gui.yml`:
+
+```yaml
+gui:
+  menus:
+    notes:
+      size: 54
+      title: "<gold>Plan Board"
+      border-material: GRAY_STAINED_GLASS_PANE
+      entry-slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25]
+      items:
+        write:         { slot: 49, material: WRITABLE_BOOK, name: "<green><bold>Write a Note</bold></green>" }
+        previous-page: { slot: 45, material: ARROW, name: "<yellow>« Previous" }
+        next-page:     { slot: 50, material: ARROW, name: "<yellow>Next »" }
+        close:         { slot: 53, material: STRUCTURE_VOID, name: "<red>Close" }
+```
+
+`entry-slots` is where notes are painted, in order, and it also decides how many fit on a page —
+leave it out to use the whole inner area. Slots outside the inventory are ignored. Anything you omit
+keeps its built-in default, and `/fa reload` applies the change without a restart.
 
 ## Anti-swear
 

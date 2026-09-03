@@ -36,9 +36,11 @@ When the mode was set by an admin rather than chosen, an extra line says so. "He
 
 Two different situations behind one command.
 
-**A player who has never chosen** may pick any offered mode, `normal` included. This is their first choice, so neither `Allow-Opt-In-Later` nor the one-way rule applies — those exist to stop someone walking a decision back, and there is no decision yet. It is the route that works when the screen does not: a dialog can fail to render, and then the command is the only way in. An irreversible mode still shows its confirmation.
+**A player who has never chosen** may pick any offered mode, `normal` included. This is their first choice, so neither `Allow-Opt-In-Later` nor the one-way rule applies — those exist to stop someone walking a decision back, and there is no decision yet. It is the route that works when the screen does not: a dialog can fail to render, and then the command is the only way in. An irreversible mode still confirms.
 
 **A player who already chose** is opting in later, and the old rules hold: `hardcore` and `lifesteal` only, never back down to `normal`. Refused with an explanation when `Choice.Allow-Opt-In-Later: false`, when they are already in that mode, or when the mode is not offered on this server.
+
+**Both confirm in chat, always** — clickable `[ I accept my fate ]` / `[ Take me back ]`, or `/fate confirm` / `/fate decline` typed out — whatever `Choice.Screen` is set to. Typing a command answers in chat because that is where you are already looking; only pressing a mode button on a shown dialog or GUI confirms on that same screen. See [The Choice → Where it is drawn](/plugins/dfate/features/the-choice/#where-it-is-drawn).
 
 ### `/fate set <player> <mode>`
 

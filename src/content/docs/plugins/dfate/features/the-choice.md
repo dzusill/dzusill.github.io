@@ -50,7 +50,9 @@ Choice:
 
 An unrecognised value falls back to `AUTO`. A typo here must not be the reason nobody can choose.
 
-**The confirmation always follows the picker.** Pick in a chest menu and the second screen is a chest menu; pick in chat and it is two clickable words. Being asked "are you certain?" somewhere other than where you just clicked reads as a second, unrelated question.
+**The confirmation stays where the pick happened — not where the picker was configured.** Press a mode button on a dialog or a chest menu and the "are you certain?" opens on that same dialog or menu. Type `/fate choose <mode>` — the first choice or an opt-in alike — and the confirmation is always in chat instead, whatever `Choice.Screen` says: clickable `[ I accept my fate ]` / `[ Take me back ]`, or type it out with `/fate confirm` / `/fate decline`.
+
+That split is deliberate, not an inconsistency. A screen answers itself — press a button, the next question opens where you are already looking. A command has no screen to answer on: you are looking at chat, having just typed something, and a dialog or chest menu popping open in reply would be a bigger interruption than the command was meant to save you from. `Choice.Screen: CHAT` never notices the difference, because there the picker is chat already.
 
 ### `CHAT`
 
@@ -193,7 +195,7 @@ A player who has already chosen can move to a harder mode on purpose:
 /fate choose lifesteal
 ```
 
-It always shows the confirmation screen first, and it is strictly one-way — `/fate choose normal` is refused. Nothing a player can run ever takes them back down.
+It always confirms first — in chat, since this is always typed rather than clicked; see [Where it is drawn](#where-it-is-drawn) — and it is strictly one-way: `/fate choose normal` is refused. Nothing a player can run ever takes them back down.
 
 ```yaml
 Choice:

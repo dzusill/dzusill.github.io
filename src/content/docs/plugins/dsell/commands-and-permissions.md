@@ -47,8 +47,9 @@ Every one of these is player-only except `/setworth` and `/delworth` with an exp
 | `/dsell doctor` | `dsell.admin` | Config, hooks, storage and price-table health |
 | `/dsell migrate <prices\|playerdata>` | `dsell.admin` | Move data between backends |
 | `/dsell resetmultiplier <player> [category\|all]` | `dsell.admin` | Reset a sell ladder, banking what was earned |
+| `/dsell resethistory <player>` | `dsell.admin` | Clear a player's sell history. Online or offline |
 
-`/dsell` also answers to `/ow` and `/worthadmin`. `/delworth` also answers to `/removeworth`.
+`/dsell` also answers to `/dsa` and `/worthadmin`. `/delworth` also answers to `/removeworth`.
 
 ### /setworth
 
@@ -103,6 +104,23 @@ The backstop for a crash while a container was open. See [Worth Lore](/plugins/d
 
 Works on an offline player. Refused outright when `multipliers.reset.enabled: false`. See
 [Sell Multipliers](/plugins/dsell/features/sell-multipliers/#resetting-a-players-ladder).
+
+### /dsell resethistory
+
+```
+/dsell resethistory <player>
+/dsell clearhistory <player>     the same command
+```
+
+Empties one player's [`/sellhistory`](/plugins/dsell/features/sell-history/). Works on an offline player — the record is
+loaded, cleared and written back whether or not they are connected.
+
+**History only.** Lifetime totals behind `/selltop` and the multiplier ladders are untouched; they live in
+the same record but are a different feature, and clearing a transaction log is not the same as taking away
+what someone earned. Use `/dsell resetmultiplier` for the ladder.
+
+A player with nothing to clear is reported as such rather than answered with a success message, so a
+mistyped name is visible.
 
 ### /dsell doctor
 

@@ -712,6 +712,144 @@
         ]
       },
       {
+        "label": "💵 OberonDonations",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/oberondonations"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/oberondonations/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/oberondonations/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/oberondonations/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Purchase Tracking",
+                "slug": "plugins/oberondonations/features/purchase-tracking"
+              },
+              {
+                "label": "Announcements",
+                "slug": "plugins/oberondonations/features/announcements"
+              },
+              {
+                "label": "The Donor's Head in Chat",
+                "slug": "plugins/oberondonations/features/player-heads"
+              },
+              {
+                "label": "Currencies",
+                "slug": "plugins/oberondonations/features/currencies"
+              },
+              {
+                "label": "Hype Train",
+                "slug": "plugins/oberondonations/features/hype-train"
+              },
+              {
+                "label": "GG Wave",
+                "slug": "plugins/oberondonations/features/gg-wave"
+              },
+              {
+                "label": "Community Goals",
+                "slug": "plugins/oberondonations/features/community-goals"
+              },
+              {
+                "label": "Donation Boards",
+                "slug": "plugins/oberondonations/features/donation-boards"
+              },
+              {
+                "label": "Discord Webhooks",
+                "slug": "plugins/oberondonations/features/discord-webhooks"
+              },
+              {
+                "label": "Migrating from PerfDonation",
+                "slug": "plugins/oberondonations/features/migrating-from-perfdonation"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberondonations/configuration/config"
+              },
+              {
+                "label": "announcements.yml",
+                "slug": "plugins/oberondonations/configuration/announcements-yml"
+              },
+              {
+                "label": "webhooks.yml",
+                "slug": "plugins/oberondonations/configuration/webhooks-yml"
+              },
+              {
+                "label": "goals.yml",
+                "slug": "plugins/oberondonations/configuration/goals-yml"
+              },
+              {
+                "label": "hype.yml",
+                "slug": "plugins/oberondonations/configuration/hype-yml"
+              },
+              {
+                "label": "ggwave.yml",
+                "slug": "plugins/oberondonations/configuration/ggwave-yml"
+              },
+              {
+                "label": "boards.yml",
+                "slug": "plugins/oberondonations/configuration/boards-yml"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/oberondonations/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/oberondonations/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/oberondonations/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberondonations/placeholders"
+              },
+              {
+                "label": "Known Limitations",
+                "slug": "plugins/oberondonations/limitations"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/oberondonations/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/oberondonations/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "label": "🪣 OberonTools",
         "collapsed": true,
         "items": [

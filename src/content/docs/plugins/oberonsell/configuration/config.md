@@ -64,6 +64,7 @@ price-format:
   suffix-billions: B
   suffix-trillions: T
   suffix-quadrillions: Q
+  count-format: grouped
 ```
 
 | Key | Default | What it does |
@@ -74,10 +75,35 @@ price-format:
 | `compact-thousands-decimals` | `1` | Maximum decimals on an abbreviation: at `2`, `1.5M` and `1.25M` are both possible. Clamped to `0`–`6` |
 | `compact-*-min-abs` | see above | The amount at which each suffix takes over. `0` disables that tier |
 | `suffix-*` | `K` `M` `B` `T` `Q` | The suffix each tier uses. Display only, never parsed back |
+| `count-format` | `grouped` | How an item **count** is written: `grouped` → `1,000,000`, `compact` → `1.1M`, `plain` → `1000000` |
 
 Tiers are tried **largest first**, so `1500000000000` reads `1.5T` rather than `1500B`. A disabled tier
 falls through to the next one down — set `compact-thousands-min-abs: 0` to keep four-figure prices written
 out in full while millions still abbreviate.
+
+### Item counts
+
+Everything above prices money. `count-format` prices *quantities* — the numbers in
+[`/sellhistory`](/plugins/oberonsell/features/sell-history/), the `{amount}` and `{items}` tokens in the sold and summary
+messages, and the item track of [`/selltop`](/plugins/oberonsell/features/sell-leaderboard/).
+
+It is a **separate setting from `compact-thousands` on purpose.** Abbreviating six-figure prices is not the
+same wish as reading `Sold 1.1M items`, and an owner who wants short counts should get them whether or not
+prices abbreviate. The two never have to agree.
+
+```yaml
+count-format: grouped     # 1,000,000   (1.000.000 when grouping is 'eu')
+count-format: compact     # 1.1M
+count-format: plain       # 1000000
+```
+
+`compact` reuses `compact-thousands-decimals` and the `suffix-*` values, so a count and a price abbreviate
+the same way — set `compact-thousands-decimals: 2` and a count reads `1.15M`. Below the thousands mark
+there is nothing to abbreviate and a count is written out. Anything unrecognised falls back to `grouped`
+rather than breaking every line that reports a count.
+
+`%oberonsell_top_items_1%` follows this setting like every other count; the `_short` placeholder forms ask
+for an abbreviation by name and stay compact regardless.
 
 ## Presentation
 

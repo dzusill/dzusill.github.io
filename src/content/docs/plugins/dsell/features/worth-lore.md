@@ -37,6 +37,19 @@ An entry is matched **two ways**, so either style works:
 - **any part of the title** — for custom GUIs from other plugins, e.g. `"Faction Chest"` also matching
   `Faction Chest: 1`.
 
+**Colour is ignored on both sides**, so you can write what you see on screen. A title is compared after its
+colour codes are removed — legacy `&a`, section signs, `#RRGGBB`, MiniMessage tags, and Spigot's
+`&x&f&f&0&0&0&0` hex — and so is your entry. This matters more than it sounds:
+
+- A gradient title carries a colour code **between every single letter**, so `Crate` appears nowhere in the
+  raw string. Matching on the raw text found nothing, which is the usual reason an entry that looks
+  obviously right does nothing at all.
+- Reading a title off the screen gives you `🎁 Crate Keys`, but the real title is `§6🎁 §eCrate §7Keys` —
+  the code between the emoji and the first word is invisible to you and fatal to a raw comparison.
+
+Runs of whitespace are collapsed too, so two titles that read identically on screen compare identically
+here. Capitalisation never matters.
+
 `player-inventory: true` also decorates the player's own inventory while a container is open.
 
 ## Keeping it out of other plugins' GUIs
@@ -74,7 +87,12 @@ both bite quietly:
   expected it, this list is the first place to look.
 
 To add your own: open the GUI, read its title off the screen, add a distinctive part of it,
-`/dsell reload`.
+`/dsell reload`. Copy it including any emoji and don't worry about its colours — both sides are stripped
+before they are compared.
+
+> If nothing you add to either list has any effect, check the console for a startup warning about
+> inventory titles. On a server where the title cannot be read at all, every by-title entry silently
+> matches nothing and only `InventoryType` entries work.
 
 **Or rule them all out at once:**
 

@@ -164,7 +164,7 @@ All optional; the feature works fully without any of them except the economy.
 | Integration | What it adds |
 |---|---|
 | Vault | Required for money to move |
-| PlaceholderAPI | The full bounty family — own faction, any named faction, the board, server totals, the viewer as a funder, where they are standing, the config values and the latest log line. The same keys work in `gui.yml` lore and the message files as `{key}`. See the [placeholder reference](/plugins/dfactions/placeholders/#bounties). |
+| PlaceholderAPI | The full bounty family — own faction, any named faction, the board, server totals, the viewer as a funder, where they are standing, the config values and the latest log line. The same keys work in `gui.yml` lore and the message files as `{key}`. See the [placeholder reference](/plugins/dfactions/../docs/integrations/placeholders/#bounties). |
 | dDialogs | A `faction_bounties` data source a dialog can list |
 | Discord | Bounty set, claimed and refunded pushed to the bridge |
 
