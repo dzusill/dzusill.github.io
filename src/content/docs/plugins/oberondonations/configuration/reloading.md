@@ -9,7 +9,7 @@ description: "Use this, not a generic server /reload — it does several things 
 
 Use this, not a generic server `/reload` — it does several things specific to this plugin that a bare Bukkit reload cannot:
 
-1. **Every configuration file is re-read** — `config.yml`, `announcements.yml`, `webhooks.yml`, `goals.yml`, `hype.yml`, `ggwave.yml`, `boards.yml`, `messages.yml`.
+1. **Every configuration file is re-read** — `config.yml`, `announcements.yml`, `packages.yml`, `webhooks.yml`, `goals.yml`, `hype.yml`, `ggwave.yml`, `boards.yml`, `messages.yml`.
 2. **`announcements.yml`'s one-time purchase-line migration runs again if needed** — the exact legacy `{player}` purchase line is rewritten to `{player_head}` automatically; see the [FAQ](/plugins/oberondonations/faq/#i-upgraded-and-the-purchase-chat-line-still-says-player-not-player_head). This is the one deliberate exception to `events:` otherwise never being touched by an update.
 3. **The live Tebex API client is re-pointed** at whatever `store.tebex-secret` now is — a changed credential does not need a restart.
 4. **The webhook listener is rebound.** It only ever binds once at server start with whatever port and secret were true then; without an explicit rebind on reload, turning `webhook.port` on (or changing `webhook.tebex-secret`) and reloading would report success while no listener is actually running — a Tebex "Send Test" or a real delivery would then go nowhere with no error on either side. `/donations reload` calls the same start routine reload uses at boot, which safely stops any previous listener first, so this is exactly a clean rebind, not a leak.

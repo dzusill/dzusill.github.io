@@ -104,13 +104,15 @@ Built-in event keys: `purchase`, `gg-start`, `gg-end`, `gg-cancelled`, `hype-sta
 
 | Group | Placeholders |
 |---|---|
-| Purchase | `{player}` `{player_head}` `{product}` `{packages}` `{store}` `{open_url}` `{player_uuid}` `{player_uuid_compact}` |
+| Purchase | `{player}` `{player_head}` `{product}` `{packages}` `{package_icon}` `{store}` `{open_url}` `{player_uuid}` `{player_uuid_compact}` |
 | Money | `{amount}` `{amount_plain}` `{amount_raw}` `{currency}` `{currency_symbol}` — see [Currencies](/plugins/oberondonations/features/currencies/) |
 | Goals | `{goal_name}` `{goal_percent}` `{goal_current}` `{goal_target}` `{goal_bar}` |
 | Hype Train | `{hype_level}` `{hype_percent}` `{hype_total}` `{hype_donors}` `{hype_seconds_left}` `{hype_top_name}` `{hype_top_amount}` `{hype_top_1_name}` … `{level_name}` |
 | GG Wave | `{gg_word}` `{gg_seconds}` `{gg_participants}` `{gg_winner}` `{gg_winners}` |
 
 `{player_head}` is documented separately in [The Donor's Head in Chat](/plugins/oberondonations/features/player-heads/) — it can carry a real image, not just text, and only ever renders inside `chat`.
+
+`{product}` / `{packages}` show whatever [packages.yml](/plugins/oberondonations/configuration/packages-yml/) calls each package, falling back to the store's own name; `{package_icon}` is that package's icon on its own. A package may also override this whole event for itself — see [Package Display Names](/plugins/oberondonations/features/package-display-names/).
 
 All text is [MiniMessage](https://docs.advntr.dev/minimessage/format.html): `<#C21807>`, `<bold>`, `<click:open_url:'...'>`, `<hover:show_text:'...'>`, gradients.
 

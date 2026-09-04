@@ -36,6 +36,8 @@ goals:
 
 Add as many keys under `goals:` as you like — each runs independently, with its own type, currency, target and milestones. `%goal% %percent% %target%` are substituted in milestone `commands`.
 
+`packages:` accepts a [packages.yml](/plugins/oberondonations/configuration/packages-yml/) key (`nebula`), that package's display name, or the raw store id or name — all four mean the same package. Writing the key is the one that survives renaming the package on the store.
+
 ## See also
 
 - [Community Goals](/plugins/oberondonations/features/community-goals/)

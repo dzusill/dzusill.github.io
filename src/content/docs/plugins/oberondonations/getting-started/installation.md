@@ -44,6 +44,7 @@ This runs a fake purchase through the exact same pipeline a real one uses (annou
 plugins/OberonDonations/
 ├── config.yml           # store connection, currency formatting, webhook, purchase consent
 ├── announcements.yml    # the eight presentation channels, per event
+├── packages.yml         # what each store package is called in game
 ├── webhooks.yml         # Discord embeds
 ├── goals.yml            # community goals
 ├── hype.yml             # the Hype Train ladder

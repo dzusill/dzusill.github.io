@@ -31,12 +31,14 @@ Everything is registered at runtime through OberonCore's command framework — t
 | `/donations setsecret <tebex\|craftingstore\|custom\|tebex-webhook> <key>` | Store an API key or webhook secret without editing `config.yml` by hand |
 | `/donations reload` | Reload every configuration file, including rebinding the webhook listener if `webhook.port` changed |
 | `/donations doctor` | A full health report — configured stores, webhook bind state, recent sync results, everything a support request would otherwise need asked |
+| `/donations packages` | Every package your store has ever sent — id, name, how often it sold, and whether `packages.yml` names it |
+| `/donations packages stubs` | Appends the unnamed ones to `packages.yml`, ready to edit. Existing entries are never touched |
 
 **Testing**
 
 | Command | Does |
 |---|---|
-| `/donations trigger <player\|uuid> [amount] [product]` | Simulates a purchase and runs it through the full announcement pipeline. **Announces only — it never delivers a package.** Accepts a real UUID for a player who has never joined this server, so the donor head can be tested for them too |
+| `/donations trigger <player\|uuid> [amount] [product]` | Simulates a purchase and runs it through the full announcement pipeline. **Announces only — it never delivers a package.** Accepts a real UUID for a player who has never joined this server, so the donor head can be tested for them too, and a `packages.yml` key as the product, so that package's real display name and announcement fire |
 | `/donations seedtest [count] [days] [currencies]` | Generates believable fake donation history for testing leaderboards, goals and boards against real-looking data |
 | `/donations cleartest` | Removes every row `seedtest` generated, and nothing else — scoped to `provider = 'test'`, so real imported or live purchases are never touched |
 

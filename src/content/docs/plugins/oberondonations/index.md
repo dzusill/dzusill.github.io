@@ -13,6 +13,7 @@ It is built on [DzusillCore](https://github.com/dzusill/DzusillCore) (shipped as
 
 - 💳 **Read-only purchase tracking** — polls the Tebex Plugin API (and optionally an inbound webhook for instant announcements), records every completed payment, and never once calls a delivery endpoint. Package delivery stays Tebex's own plugin's job, permanently.
 - 🖼️ **The donor's face in chat** — `{player_head}` draws the donor's real skin as an 8×8 block of coloured squares beside the announcement, or as Minecraft's native one-character inline head. No resource pack, no image trick — read straight from the skin texture.
+- 🏷️ **Your own name for every package** — a store package called `Nebula Rank (Monthly) - OberonSMP` reads as a gold-gradient **⭐ Nebula Rank** in game, in Discord and on the leaderboards, and can bring its own announcement and embed with it. `/donations packages` finds what your store sends and writes the entries for you.
 - 📣 **Eight independent presentation channels** per event — chat, action bar, title, boss bar, sound, particles, firework and dispatched commands — each with its own on/off switch and a shared default, overridable per event.
 - 🚂 **Hype Train** — a burst of purchases in a rolling window starts a train that climbs a ladder of levels, each with its own console and per-donor rewards, extending its timer as more purchases land.
 - 🎉 **GG Wave** — a qualifying purchase opens a short window; anyone who types the trigger word enters, and the wave pays everyone or a random subset when it closes.
@@ -87,6 +88,7 @@ A replay of imported history runs the exact same fan-out, except it never re-fir
 - [Installation](/plugins/oberondonations/getting-started/installation/)
 - [Quick Start](/plugins/oberondonations/getting-started/quick-start/)
 - [Announcements](/plugins/oberondonations/features/announcements/)
+- [Package Display Names](/plugins/oberondonations/features/package-display-names/)
 - [The Donor's Head in Chat](/plugins/oberondonations/features/player-heads/)
 - [Hype Train](/plugins/oberondonations/features/hype-train/)
 - [GG Wave](/plugins/oberondonations/features/gg-wave/)

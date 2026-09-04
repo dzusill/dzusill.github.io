@@ -748,6 +748,10 @@
                 "slug": "plugins/oberondonations/features/announcements"
               },
               {
+                "label": "Package Display Names",
+                "slug": "plugins/oberondonations/features/package-display-names"
+              },
+              {
                 "label": "The Donor's Head in Chat",
                 "slug": "plugins/oberondonations/features/player-heads"
               },
@@ -791,6 +795,10 @@
               {
                 "label": "announcements.yml",
                 "slug": "plugins/oberondonations/configuration/announcements-yml"
+              },
+              {
+                "label": "packages.yml",
+                "slug": "plugins/oberondonations/configuration/packages-yml"
               },
               {
                 "label": "webhooks.yml",
@@ -946,6 +954,125 @@
               {
                 "label": "Credits",
                 "slug": "plugins/oberontools/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "🪂 OberonSupplyDrops",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "OberonSupplyDrops",
+            "slug": "plugins/oberonsupplydrops"
+          },
+          {
+            "label": "🚀 Getting started",
+            "items": [
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonsupplydrops/getting-started/installation"
+              },
+              {
+                "label": "Quick start",
+                "slug": "plugins/oberonsupplydrops/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "The drop lifecycle",
+                "slug": "plugins/oberonsupplydrops/features/drop-lifecycle"
+              },
+              {
+                "label": "Tiers and loot",
+                "slug": "plugins/oberonsupplydrops/features/tiers-and-loot"
+              },
+              {
+                "label": "Scheduling and placement",
+                "slug": "plugins/oberonsupplydrops/features/scheduling-and-zones"
+              },
+              {
+                "label": "WorldGuard regions",
+                "slug": "plugins/oberonsupplydrops/features/regions"
+              },
+              {
+                "label": "The visual layer",
+                "slug": "plugins/oberonsupplydrops/features/effects"
+              },
+              {
+                "label": "Notifications",
+                "slug": "plugins/oberonsupplydrops/features/notifications"
+              },
+              {
+                "label": "Statistics and the leaderboard",
+                "slug": "plugins/oberonsupplydrops/features/statistics"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonsupplydrops/configuration/config"
+              },
+              {
+                "label": "tiers.yml",
+                "slug": "plugins/oberonsupplydrops/configuration/tiers"
+              },
+              {
+                "label": "zones.yml",
+                "slug": "plugins/oberonsupplydrops/configuration/zones"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/oberonsupplydrops/configuration/messages"
+              },
+              {
+                "label": "sounds.yml",
+                "slug": "plugins/oberonsupplydrops/configuration/sounds"
+              },
+              {
+                "label": "database.yml",
+                "slug": "plugins/oberonsupplydrops/configuration/database"
+              },
+              {
+                "label": "Menus",
+                "slug": "plugins/oberonsupplydrops/configuration/guis"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands",
+                "slug": "plugins/oberonsupplydrops/reference/commands"
+              },
+              {
+                "label": "Permissions",
+                "slug": "plugins/oberonsupplydrops/reference/permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberonsupplydrops/reference/placeholders"
+              },
+              {
+                "label": "Troubleshooting",
+                "slug": "plugins/oberonsupplydrops/reference/troubleshooting"
+              }
+            ]
+          },
+          {
+            "label": "🛠️ Development",
+            "items": [
+              {
+                "label": "Testing",
+                "slug": "plugins/oberonsupplydrops/developing/testing"
               }
             ]
           }

@@ -63,6 +63,7 @@ const PLUGINS = [
   { slug: 'oberonannounce', name: 'OberonAnnounce', src: '../OberonAnnounce/docs' },
   { slug: 'oberondonations', name: 'OberonDonations', src: '../OberonDonations/docs' },
   { slug: 'oberontools',   name: 'OberonTools',   src: '../OberonTools/docs' },
+  { slug: 'oberonsupplydrops', name: 'OberonSupplyDrops', src: '../OberonSupplyDrops/docs' },
   // Sits with the shop plugins rather than the Oberon block: it is the selling half of that economy.
   { slug: 'oberonsell',    name: 'OberonSell',    src: '../OberonSell/docs' },
   // The buying half, and the PerfShop replacement.
@@ -99,7 +100,7 @@ const SIDEBAR_ONLY = process.argv.includes('--sidebar-only');
 // adding a plugin above without touching this still produces a working sidebar.
 const CATEGORIES = [
   { label: '🛠️ Framework', plugins: ['dzusillcore', 'ddialogs'] },
-  { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonannounce', 'oberondonations', 'oberontools', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats'] },
+  { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonannounce', 'oberondonations', 'oberontools', 'oberonsupplydrops', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats'] },
   { label: '💰 Economy & Shops', plugins: ['dshop', 'drotatingshop', 'oberonshop', 'dsell', 'ddonutworth', 'dauctionfeed', 'oberonsell', 'dgems', 'dstore', 'dlottery', 'blottery', 'dloyalityrewards'] },
   { label: '⚔️ PvP & Combat', plugins: ['dfactions', 'dkilltracker', 'dbloodmoney', 'ddeathpenalty', 'dfate'] },
   { label: '🧭 Teleportation', plugins: ['warpgui', 'dhomegui'] },
@@ -117,7 +118,7 @@ const PLUGIN_EMOJI = {
   ddonutworth: '🍩', ddialogs: '💬', blottery: '🍀', dmentions: '🙋', dauctionfeed: '🔨',
   dgems: '💎', dweblink: '🔗', dphalanx: '🌐', dstore: '🧾',
   oberonstats: '📈', oberonannounce: '📣', oberondonations: '💵', oberontools: '🪣', oberonsell: '🏷️',
-  oberonshop: '🏪',
+  oberonshop: '🏪', oberonsupplydrops: '🪂',
   dlive: '📡', dannounce: '📣', dsell: '🏷️', dshop: '🏪', dloyalityrewards: '🎁',
 };
 const SECTION_EMOJI = {
@@ -125,6 +126,7 @@ const SECTION_EMOJI = {
   'core concepts': '🧠', 'messages & colors': '💬', 'commands': '⌨️', 'guis': '🖼️',
   'events': '📡', 'integrations': '🔌', 'nms & multi-version': '🧬', 'storage': '🗃️',
   'database': '🗄️', 'utilities': '🧰', 'testing': '🧪', 'credits': '❤️',
+  'development': '🛠️',
 };
 const sectionEmoji = (label) => SECTION_EMOJI[label.toLowerCase()] ?? '📂';
 const introEmoji = (label) => (/^(introduction|overview)$/i.test(label) ? '📘 ' : '');

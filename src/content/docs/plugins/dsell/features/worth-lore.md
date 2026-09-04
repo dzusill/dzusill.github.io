@@ -94,17 +94,37 @@ before they are compared.
 > inventory titles. On a server where the title cannot be read at all, every by-title entry silently
 > matches nothing and only `InventoryType` entries work.
 
-**Or rule them all out at once:**
+**Or state the rule instead of listing the exceptions.** This is the one most servers actually want:
 
 ```yaml
 worth-lore:
+  inventories:
+    - NATIVE
+  excluded-inventories: []
   only-real-containers: true
 ```
 
-Decorates only inventories backed by a real container, entity or player. Another plugin's menu normally
-has no holder at all, so this catches every one of them with nothing to maintain. Off by default because
-a few storage plugins — player vaults, backpacks — also build holder-less inventories, and those hold
-real items whose worth is worth showing.
+Every vanilla container gets worth lore. Every plugin GUI gets none. Neither list needs maintaining, and a
+plugin installed tomorrow is already handled.
+
+`only-real-containers` decides by what the inventory **is**, never by what it is called:
+
+| Counts as real | Refused |
+|---|---|
+| A placed block — chest, double chest, barrel, shulker, hopper, dropper, dispenser, furnace, brewing stand, bookshelf… | Any inventory a plugin created |
+| A player's own inventory or ender chest | …including one that sets a holder of its own |
+| An entity — chest minecart, horse, villager trade | …including one that passes the viewer as its holder |
+| A vanilla workstation — crafting table, anvil, enchanting table, grindstone, stonecutter, loom, cartography table, smithing table, beacon | |
+
+`NATIVE` in `inventories` is a single entry standing for every vanilla `InventoryType`, so the whitelist
+never has to be updated when Minecraft adds one.
+
+The one gap: a menu built on a **vanilla workstation type** it does not own — `createInventory(null, ANVIL,
+"Crate")` — is indistinguishable from the real thing, since real ones have no holder either. Those are rare,
+and `excluded-inventories` still covers them.
+
+Off by default because a few storage plugins — player vaults, backpacks — build their inventories exactly
+the way any other GUI does, and those hold real items whose worth is worth showing.
 
 This plugin's **own** menus need neither: they are skipped automatically, so the prices GUI's arrows,
 cauldron and hopper never pick up a worth line. The sell GUI is the one exception, and only for the slots
