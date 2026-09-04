@@ -39,6 +39,14 @@ The section key is a token you invent. That is what lets **one entry cover sever
 
 It also means a goal written as `packages: [nebula]` keeps counting the right thing after somebody edits the store, which a goal written against a raw store name does not.
 
+## If your store names already carry colour
+
+A store may name its packages in MiniMessage — a gradient written one tag per letter — so the name that arrives is markup, not words. That keeps working untouched: the markup is parsed with the rest of the chat line, so those packages render coloured whether or not you name them here.
+
+What changes is that you can claim one **by the word it reads as**. `match: ['Aether']` matches a package the store calls `<#A0F0FF><bold>A<#91E9FF><bold>e…`; the markup never has to be pasted into a config file. The same applies to `goals.yml` and the hype/GG filters.
+
+`/donations packages` shows these by their readable name, marked `(styled in store)`.
+
 ## Colour is written once
 
 `display-name` is MiniMessage, because chat can render it. Discord and the console cannot, and would print the tags as text — so the tags are **stripped automatically** on the way there rather than being maintained as a second spelling of every name. An emoji is not a tag and survives everywhere.

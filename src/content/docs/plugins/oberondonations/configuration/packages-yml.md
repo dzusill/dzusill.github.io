@@ -45,6 +45,27 @@ packages:
 
 MiniMessage is written **once**. Anywhere that cannot render a tag — Discord, the console — the tags are stripped automatically, so `<gradient:…>Nebula Rank</gradient>` arrives there as `Nebula Rank`. An emoji is not a tag and survives.
 
+## If your store names are already coloured
+
+Some stores put MiniMessage into the package name itself — a gradient spelled out one tag per letter, so the "name" that arrives is markup rather than words:
+
+```
+<#A0F0FF><bold>A<#91E9FF><bold>e<#82E3FF><bold>t<#73DCFF><bold>h<#64D6FF><bold>e<#55CFFF><bold>r
+```
+
+Two things follow, and neither needs anything from you:
+
+- **It already renders.** That markup is parsed along with the rest of the chat line, so the package shows up coloured exactly as the store intended, with or without an entry here.
+- **You can claim it by the readable word.** `match: ['Aether']` matches that package. You never have to paste the markup into this file — matching compares both the exact store spelling and what it reads as with the tags removed.
+
+`/donations packages` lists these by their readable name and marks them `(styled in store)`; `/donations packages stubs` writes **both** spellings into `match:`, because [community goals](/plugins/oberondonations/configuration/goals-yml/) count in SQL against the exact stored name and would otherwise quietly count nothing.
+
+If you would rather tidy them up, one `<gradient>` replaces the whole per-letter chain and renders the same:
+
+```yaml
+    display-name: '<gradient:#A0F0FF:#55CFFF><bold>Aether</bold></gradient>'
+```
+
 ## Matching
 
 `goals.yml` → `packages:`, and the hype/GG `eligible-packages` / `ignored-packages`, accept **any** of these for the entry above:
@@ -55,6 +76,7 @@ MiniMessage is written **once**. Anywhere that cannot render a tag — Discord, 
 | `Nebula Rank` | the display name, colour ignored |
 | `6086671` | the raw store id |
 | `Nebula Rank (Lifetime)` | any raw name in `match` |
+| `Aether` | a store name that is itself MiniMessage, read with its tags removed |
 
 Case-insensitive. A file written against raw store ids before any of this existed keeps counting exactly what it did.
 

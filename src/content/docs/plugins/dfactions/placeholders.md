@@ -89,6 +89,118 @@ Faction-side equivalents use the `fstat_` prefix — `%dfactions_fstat_networth%
 These read live in-memory state, so a scoreboard refreshing every tick costs no database work.
 See [Control Zones](/plugins/dfactions/features/control-zones/).
 
+## Bounties
+
+The whole bounty family resolves only while bounties are enabled. It reads a cached snapshot, so
+these are as cheap as the control-zone keys above. See [Bounties](/plugins/dfactions/features/bounties/).
+
+The same keys work in `gui.yml` lore and in the message files as `{key}` — without the
+`%dfactions_` wrapper.
+
+### Server totals
+
+| Placeholder | Shows |
+|---|---|
+| `%dfactions_bounty_count%` | Factions with a bounty on them |
+| `%dfactions_bounty_total%` | Every pool added together |
+| `%dfactions_bounty_claimable_total%` | How much of that is past its holding period |
+| `%dfactions_bounty_average%` | Average pool size |
+| `%dfactions_bounty_funders_total%` | Distinct players who have funded anything |
+| `%dfactions_bounty_paid_total%` | Lifetime paid out |
+| `%dfactions_bounty_refunded_total%` | Lifetime refunded |
+| `%dfactions_bounty_settled_count%` | Bounties that have been claimed |
+| `%dfactions_bounty_highest_faction%` | Faction at the top of the board |
+| `%dfactions_bounty_highest_amount%` | That faction's pool |
+
+### The viewer's own faction
+
+`%dfactions_faction_bounty%` is the pool on the viewer's faction, and
+`%dfactions_faction_bounty_<field>%` any [entry field](#entry-fields) — for example
+`%dfactions_faction_bounty_expires_in%`.
+
+### The board
+
+| Placeholder | Shows |
+|---|---|
+| `%dfactions_bounty_top_<rank>%` | Faction name at that rank, starting at 1 |
+| `%dfactions_bounty_top_<rank>_<field>%` | Any [entry field](#entry-fields) at that rank |
+
+`%dfactions_bounty_top_1_amount%`, `%dfactions_bounty_top_3_funders%`, and so on.
+
+### Funders
+
+| Placeholder | Shows |
+|---|---|
+| `%dfactions_bounty_funder_top_<rank>%` | Funder name at that rank |
+| `%dfactions_bounty_funder_top_<rank>_<field>%` | Any [funder field](#funder-fields) |
+| `%dfactions_bounty_my_<field>%` | The same fields, for the viewer |
+
+`%dfactions_bounty_my_rank%` is where the viewer sits among funders;
+`%dfactions_bounty_my_top_target%` is the faction they have staked the most on.
+
+### Where the viewer is standing, and who they are at war with
+
+| Placeholder | Shows |
+|---|---|
+| `%dfactions_bounty_here%` / `%dfactions_bounty_here_<field>%` | The bounty on the faction owning the chunk under the viewer |
+| `%dfactions_bounty_target%` / `%dfactions_bounty_target_<field>%` | The bounty on the viewer's current war opponent |
+
+Both take any [entry field](#entry-fields); the bare form is the pool total. These are what turn a
+bounty into something a player notices while walking around rather than only on a board.
+
+### A named faction
+
+| Placeholder | Shows |
+|---|---|
+| `%dfactions_bounty_faction_<name>%` | That faction's pool |
+| `%dfactions_bounty_faction_<name>_<field>%` | Any [entry field](#entry-fields) |
+
+A faction name containing underscores still works: the field suffix is matched first, and whatever
+is left is the name.
+
+> `%dfactions_bounty_<name>%` is a legacy short form kept for compatibility. It cannot carry a
+> field, and a faction named after one of the keys above is unreachable through it — which is why
+> the `bounty_faction_` form exists. Prefer it.
+
+### The log
+
+| Placeholder | Shows |
+|---|---|
+| `%dfactions_bounty_last_action%` / `_last_action_<field>%` | The most recent bounty event |
+| `%dfactions_bounty_last_claim%` / `_last_claim_<field>%` | The most recent claim |
+
+Log fields: `action` (the bare form), `faction`, `amount`, `by` (`system` when the server did it),
+`ago`.
+
+### Configured limits
+
+`%dfactions_bounty_enabled%`, `_min_amount%`, `_max_amount%`, `_max_pool%`, `_holding_hours%`,
+`_expiry_days%` — useful for a GUI that explains the rules without hardcoding them.
+
+### Entry fields
+
+Every placeholder above that takes a `<field>` accepts:
+
+`total` (or `amount`), `faction` (or `name`), `claimable`, `held`, `funders`, `top_funder`,
+`top_funder_amount`, `rank`, `level`, `members`, `online`, `active`, `age`, `last_funded_ago`,
+`expires_in`, `next_claim_in`.
+
+### Funder fields
+
+`name`, `amount` (or `funded_total`, `staked`), `claimable_total`, `held_total`, `funded_count`
+(or `pools`), `top_target`, `top_target_amount`, `rank`.
+
+### Raw numbers
+
+Append `_exact` to any money placeholder for the unformatted number —
+`%dfactions_bounty_total_exact%` gives `1234.5` where `%dfactions_bounty_total%` gives the display
+form. Use it wherever something else is going to do the maths.
+
+### When there is nothing
+
+A missing bounty is not an error: money keys resolve to a formatted zero, counts to `0`, names to
+`None`, and time keys to `never`.
+
 ## Example — scoreboard
 
 ```
