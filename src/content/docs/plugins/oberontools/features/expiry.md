@@ -1,9 +1,9 @@
 ---
 title: "Expiry"
-description: "A tool can be a rental. expires-after gives every copy a deadline, %expiry% shows the countdown in its lore, and expired-policy decides what the dead item…"
+description: "A tool can be a rental. expires-after gives every copy a deadline, %expiresat% shows that deadline in its lore, and expired-policy decides what the dead…"
 ---
 
-A tool can be a rental. `expires-after` gives every copy a deadline, `%expiry%` shows the countdown in its lore, and `expired-policy` decides what the dead item does afterwards.
+A tool can be a rental. `expires-after` gives every copy a deadline, `%expires_at%` shows that deadline in its lore, and `expired-policy` decides what the dead item does afterwards.
 
 ```yaml
     item:
@@ -72,6 +72,12 @@ expiry:
 ```
 
 `%expires_at%` is rendered in the **server's** time zone, using a `java.time` pattern. Units below one second are dropped from `%expiry%`, and anything under a second reads `0s`.
+
+> **`%expiry%` goes stale outside a player's inventory.** The countdown is redrawn by a task that walks online players' inventories and nothing else, so the moment a tool goes into a chest, an ender chest or an auction listing, its text freezes at whatever it said on the way in. A listing can sit there reading `6d 23h` while the tool has two days left, and the buyer has no way to tell.
+>
+> Nothing is paused by this — the deadline is an absolute timestamp stamped into the item at creation and it is never rewritten, so where the item sits has no bearing on when it dies. It is only the *displayed* number that stops keeping up.
+>
+> This is why the shipped tools use `%expires_at%`. A date cannot go stale, so it stays right in a chest, on an auction house, and across restarts. Use `%expiry%` where the tool is expected to live in a player's hands.
 
 Used in lore:
 

@@ -14,7 +14,7 @@ Available in `tools.<id>.item.name` and every line of `tools.<id>.item.lore`. Th
 | `%tool_id%` | The tool's id | — |
 | `%uses%` | Uses left on this item | `∞` |
 | `%max_uses%` | The definition's `max-uses` | `∞` |
-| `%expiry%` | Time left, as `6d 23h 4m 12s` | `expiry.permanent`, or `expiry.expired` once past |
+| `%expiry%` | Time left, as `6d 23h 4m 12s`. Only redrawn while an online player holds the item, so it goes stale in chests and auction listings — see [Expiry](/plugins/oberontools/features/expiry/#lore-placeholders) | `expiry.permanent`, or `expiry.expired` once past |
 | `%expires_at%` | The stamped deadline, formatted with `expiry.date-format` | `expiry.permanent` |
 | `%expiry_status%` | One word: `expiry.active` / `expiry.expired` / `expiry.permanent` | `expiry.permanent` |
 
