@@ -5,8 +5,10 @@ description: "Donation board rendering. See Donation Boards for what each render
 
 Donation board rendering. See [Donation Boards](/plugins/oberondonations/features/donation-boards/) for what each renderer and section actually does — this page is the file laid out in full.
 
+`default-renderer` is read when a board is **created** — `/donations board create` takes no renderer argument, so set this first, then create the board.
+
 ```yaml
-default-renderer: TEXT_DISPLAY   # TEXT_DISPLAY | HEAD | NPC
+default-renderer: TEXT_DISPLAY   # TEXT_DISPLAY | HEAD | NPC (NPC needs Citizens)
 default-spacing: 2.2
 default-render-radius: -1
 

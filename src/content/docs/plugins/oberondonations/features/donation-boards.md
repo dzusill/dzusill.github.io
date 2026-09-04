@@ -17,9 +17,9 @@ Set per board (falls back to `boards.yml` → `default-renderer` when not specif
 |---|---|---|
 | `TEXT_DISPLAY` | Native floating text, nothing else | Nothing — works everywhere, including Folia |
 | `HEAD` | A player head on an armour stand, plus the text | Nothing extra |
-| `NPC` | A full-body character through an NPC plugin, plus the text | FancyNpcs, ZNPCsPlus or Citizens |
+| `NPC` | A full-body character, plus the text | **Citizens** |
 
-See [Known Limitations](/plugins/oberondonations/limitations/#real-gaps-being-honest-about-them) — `NPC` boards with `npc.type: skin` have only been verified end-to-end on Citizens; test yours before relying on it.
+**`NPC` needs Citizens specifically.** FancyNpcs and ZNPCsPlus are detected but have no adapter; a board asking for `NPC` on a server running only those logs one line and renders native text. For a donor's face without installing anything, use `HEAD` — it works everywhere. See [Known Limitations](/plugins/oberondonations/limitations/).
 
 ## What a board shows
 
@@ -36,7 +36,7 @@ Placeholders: `{board} {metric} {period} {rank} {player} {value}`. `rank-lines` 
 
 ## NPC skin resolution (NPC renderer, `npc.type: skin` only)
 
-`npc.skin-backend: auto` tries FancyNpcs, then ZNPCsPlus, then Citizens, in that order. Beyond that:
+`npc.skin-backend: auto` tries FancyNpcs, then ZNPCsPlus, then Citizens, in that order — but only Citizens actually spawns a body, so set `citizens` explicitly if you have several installed. Beyond that:
 
 - `skinsrestorer-integration` — use SkinsRestorer's own skin data when present, instead of resolving one directly.
 - `mojang-username-skin-lookup` (with a hard kill switch, `mojang-username-skin-lookup-disabled`) and `sessionserver-skin-fallback` — how a real skin is found when neither of the above applies. `async-profile-skin-lookup` keeps this off the main thread.

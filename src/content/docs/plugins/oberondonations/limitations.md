@@ -15,7 +15,14 @@ Documented plainly rather than left to be discovered.
 
 - **CraftingStore support is unverified against live documentation and ships disabled** (`store.craftingstore-key: ''`). The adapter is written and is just as structurally read-only as the Tebex one, but its exact JSON field names have never been confirmed against a real CraftingStore account. If you enable it and a value comes through wrong or missing, that is the reason — check the actual payload against what the adapter expects before reporting it as a bug elsewhere.
 - **`update-checker.enabled` in `config.yml` does nothing.** It is parsed and kept so an existing file round-trips; this build never contacts a remote service to check for a newer version.
-- **Donation board NPCs need testing per skin backend.** Setting `npc.type: skin` renders a full body through whichever of FancyNpcs, ZNPCsPlus or Citizens is installed (`npc.skin-backend: auto` tries them in that order) — but this has only been verified end-to-end on Citizens. If you run FancyNpcs or ZNPCsPlus, confirm the board actually shows a skinned body and not native placeholder text before relying on it; a board asking for a renderer whose plugin is missing falls back to `TEXT_DISPLAY` automatically, which always works.
+- **The `NPC` renderer spawns a body on Citizens only.** FancyNpcs and ZNPCsPlus are detected, but there is no adapter for either — their APIs have no reflective entry point stable enough across versions to bind against blind. A board asking for `NPC` on a server running only those logs one line and renders native text instead:
+
+  ```
+  [OberonDonations] FancyNpcs is installed but OberonDonations has no verified adapter for it yet;
+  boards render with native text displays.
+  ```
+
+  If you want a body, install Citizens and set `npc.skin-backend: citizens`. If you want a **face** without any NPC plugin, use the `HEAD` renderer — a player skull wearing the donor's real skin on an invisible armour stand — which needs nothing installed and always works.
 - **`/donations trigger <name>` cannot show a head for a name your server has never seen**, on an `online-mode: false` backend behind a proxy. Bukkit synthesises an offline UUID for an unknown name without ever asking Mojang — there genuinely is no skin to fetch. Pass the player's real UUID instead of their name to test the head for someone who is not currently online; a player who has actually joined through the proxy is cached with their real UUID and works by name. See [The Donor's Head in Chat](/plugins/oberondonations/features/player-heads/).
 - **`{player_head}` cannot appear outside chat.** Action bars, boss bars and titles have no way to embed an image or a native object component in vanilla Minecraft; those channels always fall back to the plain name, even with the head style enabled.
 
