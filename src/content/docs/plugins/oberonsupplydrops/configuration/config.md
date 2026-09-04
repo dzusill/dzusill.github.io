@@ -104,6 +104,10 @@ Beam text and hologram lines live in `messages.yml`; only their geometry is here
 | `reveal-coordinates` | `true` | Off leaves only the beam, the boss bar and `/supplydrop locate` |
 | `proximity-bar.enabled` | `true` | Live action-bar countdown for players near a crate |
 | `proximity-bar.radius` | `150` | How close a player must be to see it |
+| `routing.<event>` | follows the switches | Send one event to `CHAT`, `ACTION_BAR`, `BOTH` or `NONE` |
+
+Routable events: `inbound`, `landed`, `unlocked`, `first-open`, `emptied`, `expired`. See
+[Notifications](/plugins/oberonsupplydrops/features/notifications/#routing-one-event-somewhere-else).
 
 ## stats
 

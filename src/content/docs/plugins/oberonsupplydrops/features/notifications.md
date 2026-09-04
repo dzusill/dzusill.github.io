@@ -21,6 +21,42 @@ notifications:
 Only players holding `oberonsupplydrops.notify` receive any of it. That node is deliberately separate
 from the commands, so staff can mute drops without losing access to them.
 
+## Routing one event somewhere else
+
+The switches above are the default. `routing` overrides them for a single event:
+
+```yaml
+notifications:
+  routing:
+    inbound: ACTION_BAR
+    landed: BOTH
+    unlocked: CHAT
+    first-open: CHAT
+    emptied: NONE
+    expired: NONE
+```
+
+| Value | Sends to |
+|---|---|
+| `CHAT` | Chat only |
+| `ACTION_BAR` | Action bar only |
+| `BOTH` | Both, each with its own text |
+| `NONE` | Neither |
+
+Six events can be routed: `inbound`, `landed`, `unlocked`, `first-open`, `emptied`, `expired`. Any
+you leave out follows the `chat` and `action-bar` switches, so a server that never touches this
+section behaves exactly as it did before the setting existed.
+
+**Routing also picks the wording.** Chat and the action bar carry different text on purpose — a chat
+line can afford a tier name and coordinates, an action bar is one short row. Sending an event to
+`ACTION_BAR` therefore uses its `action-bar.*` message rather than the `drop.*` one. The three events
+with no short wording of their own (`first-open`, `emptied`, `expired`) reuse their chat line.
+
+`title` and `sound` are separate switches and are not affected by routing.
+
+A value that is not one of the four is reported in the console with the key, the fallback used, and
+the options — the announcement still goes out.
+
 ## The three announcements
 
 Inbound, landed and unlocked. Each is sent to every enabled channel:
