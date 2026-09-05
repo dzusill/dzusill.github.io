@@ -82,8 +82,33 @@ who ran for it are still arriving.
 | `beam.*` | on, height 40, step 1.0, every 10 ticks | Vertical marker beam, coloured per tier |
 | `impact.*` | on, `EXPLOSION`, 1 | Landing burst |
 | `hologram.enabled` / `offset` | `true` / `1.8` | Floating text above the crate |
+| `hologram.provider` | `AUTO` | `BUILT_IN`, `FANCY_HOLOGRAMS` or `AUTO` |
+| `hologram.fancy.*` | see below | Every FancyHolograms property, ignored by the built-in renderer |
 
 Beam text and hologram lines live in `messages.yml`; only their geometry is here.
+
+### hologram.fancy
+
+Applies only when FancyHolograms is drawing. Any tier may override any of these keys under its own
+`hologram` block, key by key. Full reference, including which values each key accepts and what the
+`ITEM` and `BLOCK` types cost you: [Holograms](/plugins/oberonsupplydrops/features/holograms/).
+
+| Key | Default | Meaning |
+|---|---|---|
+| `type` | `TEXT` | `TEXT`, `ITEM` or `BLOCK`. Only `TEXT` can show the countdown |
+| `billboard` | `CENTER` | `FIXED`, `VERTICAL`, `HORIZONTAL`, `CENTER` |
+| `scale` | `1.0` | One number, or `[x, y, z]` |
+| `translation` | `[0, 0, 0]` | Offset on top of `offset` |
+| `shadow-radius` / `shadow-strength` | `0.0` / `1.0` | Shadow cast on the ground |
+| `interpolation-duration` | `0` | Ticks to smooth a change over |
+| `visibility` | `ALL` | Leave it on `ALL` — the other two cannot work for a generated name |
+| `visibility-distance` | `-1` | `-1` keeps FancyHolograms' default |
+| `brightness.enabled` / `.block` / `.sky` | `false` / `15` / `15` | Light the hologram itself |
+| `text.background` | `transparent` | `transparent`, `#RRGGBB` or `#AARRGGBB` |
+| `text.alignment` | `CENTER` | `LEFT`, `CENTER`, `RIGHT` |
+| `text.shadow` / `text.see-through` | `false` / `false` | |
+| `item.material` | `NETHERITE_INGOT` | `ITEM` holograms only |
+| `block.material` | `crate` | `BLOCK` holograms only; `crate` follows the tier's crate block |
 
 ## bossbar
 

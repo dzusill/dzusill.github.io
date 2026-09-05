@@ -67,6 +67,42 @@ Three dials, in the order worth trying:
 - Look for a warning in the console at the moment the drop spawned. These are guarded: a failure to
   spawn a display leaves the event running without it rather than taking the drop down.
 
+## FancyHolograms is installed but nothing looks different
+
+The console names the backend at startup:
+
+```
+[INFO] Crate holograms: FancyHolograms 2.11.0.
+[INFO] Crate holograms: built-in text displays.
+```
+
+If it says built-in with FancyHolograms installed, the warning above it says why — either
+`effects.hologram.provider` is `BUILT_IN`, or FancyHolograms is present but its API could not be used
+(this needs **2.4.0 or newer**; the packages moved before that).
+
+## `/hologram list` says there are no holograms
+
+Expected. That command lists only *persistent* holograms, and crate holograms are deliberately not
+persistent — a persistent one would be written to FancyHolograms' storage and restored forever, one
+per drop. Turn on `general.debug` to watch them instead:
+
+```
+[holograms] created osd_a57cad15… for tier 'legendary' (TEXT, billboard CENTER, scale 1.3) at -4, -60, 23
+[holograms] removed osd_a57cad15…
+```
+
+## The hologram shows no countdown
+
+`effects.hologram.fancy.type` is `ITEM` or `BLOCK`. Only a `TEXT` hologram can carry `{time}`; the
+boss bar and the proximity action bar are the countdown for the other two.
+
+## A per-tier hologram override does nothing
+
+- It only applies under FancyHolograms — the built-in renderer ignores the whole `fancy` block.
+- `tiers.yml` is never default-merged, so the shipped example never appears in a file you already
+  have. Add the `hologram` block by hand.
+- Unreadable values are named in the console with the ones that would have worked.
+
 ## A crate is stuck in the world
 
 It should not happen — crate positions are written down as they land and swept on the next startup,

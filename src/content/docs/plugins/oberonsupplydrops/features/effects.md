@@ -79,8 +79,12 @@ block is damaged and nothing is hurt.
 
 ## The hologram
 
-Floating text above the crate, rendered with a vanilla text display. It swaps between two line lists
-as the crate unlocks:
+Floating text above the crate. Two backends can draw it — a vanilla text display this plugin owns,
+or FancyHolograms, which adds scale, billboard, background, brightness, item and block holograms and
+per-tier overrides. Picking between them, and every property the second one adds, is its own page:
+**[Holograms](/plugins/oberonsupplydrops/features/holograms/)**.
+
+Either way the text is the same two line lists, swapped as the crate unlocks:
 
 ```yaml
 # messages.yml

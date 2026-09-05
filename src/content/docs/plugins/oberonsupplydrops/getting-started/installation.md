@@ -10,10 +10,14 @@ description: "OberonCore is a separate plugin jar and must already be in plugins
 | Server software | Paper 1.21+ (built and tested against Paper 26.2) |
 | Java | 21 or newer |
 | Required dependency | **OberonCore** |
-| Optional dependency | PlaceholderAPI |
+| Optional dependencies | PlaceholderAPI, WorldGuard, FancyHolograms 2.4.0+ |
 
 OberonCore is a separate plugin jar and must already be in `plugins/`. It is not shaded into this
 plugin, so the two are updated independently.
+
+None of the optional plugins is needed to run: PlaceholderAPI adds the placeholders, WorldGuard adds
+[region filtering](/plugins/oberonsupplydrops/features/regions/) for landing sites, and FancyHolograms adds a richer
+[hologram backend](/plugins/oberonsupplydrops/features/holograms/). Each is picked up when present and ignored when not.
 
 ## Steps
 

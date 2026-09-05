@@ -1004,6 +1004,10 @@
                 "slug": "plugins/oberonsupplydrops/features/effects"
               },
               {
+                "label": "Holograms",
+                "slug": "plugins/oberonsupplydrops/features/holograms"
+              },
+              {
                 "label": "Notifications",
                 "slug": "plugins/oberonsupplydrops/features/notifications"
               },

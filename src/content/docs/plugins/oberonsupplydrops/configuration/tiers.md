@@ -38,6 +38,7 @@ tiers:
 | `unlock-seconds` | `-1` | `-1` keeps the global countdown |
 | `sounds` | none | Event name → alias from `sounds.yml` |
 | `commands` | none | Run as console for the first opener; `{player}` is their name |
+| `hologram` | none | Per-tier overrides of `effects.hologram.fancy` — see below |
 
 Overridable sound events: `announce`, `descent`, `land`, `unlock`, `open`, `loot`, `close`. An event
 with no override uses the alias of the same name.
@@ -58,6 +59,24 @@ with no override uses the alias of the same name.
 
 `loot.rolls` is how many pool entries a crate gets: a number, or a `"2-3"` range. It is clamped to the
 pool size at load, so the preview menu's arithmetic stays honest.
+
+## Per-tier holograms
+
+Applies only when FancyHolograms is the hologram backend. Any key from `effects.hologram.fancy` can
+be restated here, and the merge is **key by key** — a tier that sets only `scale` keeps every other
+global value, including nested ones.
+
+```yaml
+  legendary:
+    hologram:
+      scale: 1.3
+      brightness:
+        enabled: true
+        block: 15
+        sky: 15
+```
+
+The full key reference is in [Holograms](/plugins/oberonsupplydrops/features/holograms/).
 
 ## Choosing the crate block
 
