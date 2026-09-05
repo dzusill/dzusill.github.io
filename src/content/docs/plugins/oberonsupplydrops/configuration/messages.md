@@ -44,10 +44,67 @@ cannot accidentally leak the position through a message it forgot to edit.
 | Token | Where |
 |---|---|
 | `{tier}` | Everywhere — the tier's `display-name`, already coloured |
+| `{tier_colour}` | The tier's `colour` as an opening tag, e.g. `<#F11800>` |
+| `{tier_name}` | The tier's name with all formatting stripped |
 | `{time}` | Formatted countdown, e.g. `2m 30s` |
 | `{seconds}` | The same as a bare number |
 | `{world}`, `{x}`, `{y}`, `{z}` | The crate's position |
 | `{player}` | The first player to open the crate |
+
+## Carrying the tier's colour into the sentence
+
+Put `{tier_colour}` after `{tier}` and the tier's colour continues into the words that follow, until
+the next colour tag takes over:
+
+```yaml
+inbound: "<prefix><white>A {tier}{tier_colour} supply drop is inbound — impact in <#00F986>{seconds}s."
+```
+
+`Stellar` renders in its gradient, then **supply drop is inbound** continues in the tier's solid
+colour, and `{seconds}` switches to green.
+
+**Why `{tier}` alone cannot do this.** A `display-name` written as a gradient closes its own tag:
+
+```yaml
+display-name: "<gradient:#22D3EE:#1FBED6>Stellar</gradient>"
+```
+
+The styling stops dead at the last letter of the name, so anything after it falls back to plain. An
+unclosed name like `<#AAAAAA><bold>Common` *would* bleed on its own — which is exactly why this used
+to look inconsistent between tiers. `{tier_colour}` makes it the same either way.
+
+It uses the tier's solid `colour` rather than re-opening the gradient, deliberately: a gradient
+stretched across a whole sentence reads worse than one on the name alone.
+
+### Titles
+
+The same token colours the on-screen headline, so a legendary drop reads differently from a common
+one at a glance:
+
+```yaml
+title:
+  inbound: "{tier_colour}<bold>SUPPLY DROP"
+```
+
+Swap it for a fixed tag like `<#C21807>` to go back to one brand colour for every tier.
+
+## Unknown placeholders are reported
+
+A placeholder a message never receives is not an error — it reaches the player as the literal text
+`{distance}`. So every template is checked against what its message actually supplies, and anything
+unknown is named on startup:
+
+```
+[WARN] messages.yml: drop.landed uses {distance}, which nothing fills in for that message —
+       it will reach players as literal text. Available here: time, z, y, x, tier, tier_name,
+       seconds, world, tier_colour
+```
+
+`{distance}` is the usual one: it is real, but only for `action-bar.nearby-locked`,
+`action-bar.nearby-open` and `command.locate` — the three messages that have both a crate and a
+player to measure between.
+
+The message still sends. This only reports, in case the token is deliberate.
 
 ## Hologram lines
 

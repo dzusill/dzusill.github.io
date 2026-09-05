@@ -33,7 +33,7 @@ tiers:
 |---|---|---|
 | `weight` | `1` | Relative chance of being picked; `0` rejects the tier |
 | `display-name` | the id | MiniMessage name in chat, title, hologram and boss bar |
-| `colour` | `#FFFFFF` | `#RRGGBB` for the beam and particles |
+| `colour` | `#FFFFFF` | `#RRGGBB` for the beam, the particles and `{tier_colour}` |
 | `crate-material` | `crate.default-material` | Must be a block **with real storage** — see below |
 | `unlock-seconds` | `-1` | `-1` keeps the global countdown |
 | `sounds` | none | Event name → alias from `sounds.yml` |
@@ -111,6 +111,8 @@ An odd choice of block costs the decoration, never the loot.
 Every problem is reported to the console with the tier and key, and then skipped:
 
 - an unknown material → that entry is dropped
+- a `colour` that is not `#RRGGBB` → falls back to white, warning logged (it has to be valid: the
+  beam parses it as RGB and `{tier_colour}` pastes it into messages as a tag)
 - a `crate-material` that is not a block → falls back, warning logged
 - a `crate-material` with no storage → falls back, warning logged
 - a tier with no usable loot → that tier is dropped
