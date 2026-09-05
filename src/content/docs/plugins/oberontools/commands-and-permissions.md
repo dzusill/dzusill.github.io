@@ -11,6 +11,7 @@ Main command: `/oberontools`, aliases `/otools` and `/ot`.
 | `/oberontools list` | `oberontools.admin` | Every configured tool, its behaviour and whether it is enabled |
 | `/oberontools give <player> <tool> [amount] [duration]` | `oberontools.admin` | Create tools directly into an online player's inventory |
 | `/oberontools inspect` | `oberontools.admin` | Everything the held tool knows about itself. Player only |
+| `/oberontools radius [tool] [radius\|auto]` | — | See and narrow your own tool widths. Player only |
 | `/oberontools refresh` | `oberontools.admin` | Rewrite the held tool from the current config. Player only |
 | `/oberontools reload` | `oberontools.admin` | Re-read config and messages, rebuild recipes and permission nodes |
 
@@ -63,6 +64,7 @@ sponge_bucket
  • expires: 2026-08-27 14:03
  • remaining: 6d 23h 59m 58s
  • status: Active
+ • permitted: 7x7x7 (up to 343 blocks)
  • radius: 5x5x5 (up to 125 blocks)
 ```
 
@@ -73,9 +75,29 @@ sponge_bucket
 | `expires` | The absolute deadline stamped on **this** item, in the server's time zone |
 | `remaining` | Time left, or the permanent / expired wording from `messages.yml` |
 | `status` | `Active`, `Expired` or `Never` |
-| `radius` | For `LIQUID_CLEAR` and `AREA_MINE`. The cube or square **this player** resolves to, after their radius nodes, and the block cap that applies at it |
+| `permitted` | The widest **this player's permissions** allow on this tool right now |
+| `radius` | What they actually get, after any width they picked with `/oberontools radius`. Equal to `permitted` unless they narrowed it themselves |
 
-The `radius` line is the fastest way to answer "why is my donator bucket still 3×3×3", or "why is the donator pickaxe still 3×3" — it reports what the permission check actually returned for the player holding the item. A `TIMBER` tool prints no `radius` line, because it has no tier to resolve.
+These two lines together are the fastest way to answer "why is my donator bucket still 3×3×3". If `permitted` is also small the grant never landed; if `permitted` is wide and `radius` is not, the player narrowed it themselves and `/oberontools radius <tool> auto` puts it back. A `TIMBER` tool prints neither line, because it has no tier to resolve.
+
+## Choosing your own width
+
+```
+/oberontools radius
+```
+
+```
+Your tool widths
+ • pickaxe: 7x7 (up to 49 blocks) — you may pick 1, 2, 3
+ • sponge_bucket: 3x3x3 (up to 27 blocks) — you may pick 1
+```
+
+```
+/oberontools radius pickaxe 1     narrow to 3x3 and keep it there
+/oberontools radius pickaxe auto  follow the rank again, whatever it is worth today
+```
+
+No permission node of its own, because the command **cannot widen anything**. See [Radius Tiers](/plugins/oberontools/features/radius-tiers/#letting-a-donor-choose).
 
 ## Reading `list`
 

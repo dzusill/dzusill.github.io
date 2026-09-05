@@ -61,11 +61,20 @@ It cannot in this build. `PlayerInteractEvent` is cancelled before the hand chec
 ## Permissions and radius
 
 **My donator rank still gets 3×3×3 (or 3×3 on a pickaxe).**
-Have them run `/oberontools inspect` and read the `radius` line — it reports what the check actually returned.
+Have them run `/oberontools inspect` and read the two width lines. `permitted` is what their ranks reach; `radius` is what they actually get.
+
+- **`permitted` is also small** — the grant is not landing. Check the three points below.
+- **`permitted` is wide but `radius` is not** — they narrowed it themselves with `/oberontools radius`. `/oberontools radius <tool> auto` puts it back.
 
 1. Is `max-radius` above `radius`? If they are equal the tool is not upgradable and no nodes exist.
 2. Is the node exactly `oberontools.radius.<tool-id>.<n>`, with the tool's lower-cased id?
 3. Is `n` at or below `max-radius`? A node above the ceiling is never registered and never consulted.
+
+**Can a player pick their own width?**
+Yes, within what their ranks already allow: `/oberontools radius <tool> <n>` narrows it, `auto` follows the rank again. The command has no permission node because it cannot widen anything — a tier the player was never granted is refused, and the ceiling is recomputed from permissions on every click regardless of what they picked.
+
+**A player traded a donator tool to someone without the rank. Do they get the big radius?**
+No. Width is never written to the item; it is resolved from whoever is swinging it, on every click. A tier-3 pickaxe in a default player's hand mines 3×3, and mines 7×7 again the moment the owner takes it back. The same applies when a rank expires — the next swing is already narrower, with no reissue or reload.
 
 **Do the tiers work on the pickaxe and shovel, or only the bucket?**
 Both. `LIQUID_CLEAR` and `AREA_MINE` share one permission scan; the number resolves to a cube for the bucket and a square for the mining tools. Only `TIMBER` has no tiers.

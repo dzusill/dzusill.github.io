@@ -72,6 +72,7 @@ Confirm what a player actually resolves to by having them run:
 ```
 
 ```
+ • permitted: 5x5x5 (up to 125 blocks)
  • radius: 5x5x5 (up to 125 blocks)
 ```
 
@@ -89,6 +90,37 @@ lp group elite   permission set oberontools.radius.pickaxe.3 true
 ```
  • radius: 5x5 (up to 25 blocks)
 ```
+
+## Letting a donor choose
+
+A wide tool is not always the tool you want. A `donator` on tier 3 digging a 1-wide corridor is fighting their own pickaxe, so they can narrow it themselves:
+
+```
+/oberontools radius                    what every tool of yours is set to
+/oberontools radius pickaxe 1          narrow it to 3x3
+/oberontools radius pickaxe auto       track the rank again
+```
+
+The pick is per player and per tool, so a narrow pickaxe and a wide bucket live side by side. It is written to `radius-preferences.yml` and survives a restart. A player who never runs the command has no pick stored and behaves exactly as before: their tool sits at whatever tier their ranks reach.
+
+### It can only ever narrow
+
+The command has no permission node because it does not need one. A pick is not a grant:
+
+- Asking for a tier you were never given is **refused**, and nothing is stored.
+- The ceiling is recomputed from permissions on **every single click**, then the pick is clamped against it. A pick above that ceiling collapses to the ceiling.
+- Nothing about width is written to the item. Hand a tier-3 pickaxe to a player whose rank tops out at tier 1 and they mine 3×3 with it — not because we cleared anything, but because their permissions are what is asked on their swing.
+
+That last point is what makes a donor tool safe to trade, sell or lose. The width belongs to the hand, never to the item:
+
+| Situation | What the next swing does |
+|---|---|
+| Donor picked 3×3, still `elite` | 3×3 — their own choice stands |
+| Donor picked 7×7, rank expires to nothing | 3×3 — the stored 7 is capped by what they now hold |
+| `elite` gives their pickaxe to a default player | 3×3 for that player, 7×7 again in the owner's hand |
+| Default player is granted `elite` tomorrow | 7×7 immediately, no reissue, no reload |
+
+A pick above the ceiling falls back to the **ceiling**, not to the tool default: a player entitled to 5×5 who once asked for 11×11 still gets their 5×5.
 
 ## They tab-complete
 
