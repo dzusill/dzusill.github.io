@@ -149,25 +149,65 @@ in either direction, so switching `storage.type` is reversible.
 
 ## Permissions
 
+One node per feature, so a rank can carry individual features.
+
 | Node | Default | Grants |
 |---|---|---|
-| `oberonsell.use` | everyone | Basic use |
 | `oberonsell.worth` | everyone | `/worth`, `/worth hand`, `/worth <material>` |
 | `oberonsell.gui` | everyone | The prices GUI |
-| `oberonsell.sell` | everyone | `/sell`, `/sell hand`, `/sell all`, `/sellall` |
+| `oberonsell.sell` | everyone | `/sell`, `/sell hand` |
+| **`oberonsell.sellall`** | **nobody** | `/sellall` and `/sell all` |
 | `oberonsell.sellgui` | everyone | `/sellgui` |
-| `oberonsell.autosell` | everyone | `/sell auto`, and being auto-sold for |
 | `oberonsell.history` | everyone | Own sell history |
 | `oberonsell.history.others` | op | Anyone's sell history |
 | `oberonsell.selltop` | everyone | `/selltop` |
 | `oberonsell.multipliers` | everyone | Multiplier pages |
 | `oberonsell.toggleworth` | everyone | `/toggleworth` |
+| **`oberonsell.autosell`** | **nobody** | `/sell auto`, and being auto-sold for |
+| **`oberonsell.sellaxe.use`** | **nobody** | Swinging a sell axe at a container |
 | `oberonsell.setworth` | op | `/setworth`, `/delworth` |
-| `oberonsell.sellaxe` | op | `/sellaxe` |
-| `oberonsell.admin` | op | `/oberonsell` |
+| `oberonsell.sellaxe` | op | `/sellaxe` — handing axes out |
+| `oberonsell.admin` | op | `/oberonsell` and its subcommands |
+| `oberonsell.admin.reset` | op | `resethistory`, `resetmultiplier` |
+| `oberonsell.*` | op | All of the above |
 
 `oberonsell.autosell` is checked on every pickup as well as on the toggle, so revoking it stops an
 already-opted-in player from being auto-sold for.
+
+### Rank perks
+
+The three nodes in bold ship **off**. They are the ones servers hand out to a rank:
+
+```bash
+lp group donator permission set oberonsell.sellall true
+lp group donator permission set oberonsell.autosell true
+lp group donator permission set oberonsell.sellaxe.use true
+```
+
+To give them to everyone instead — which is how the plugin behaved before 1.1 — point the same three
+lines at `default`:
+
+```bash
+lp group default permission set oberonsell.sellall true
+lp group default permission set oberonsell.autosell true
+lp group default permission set oberonsell.sellaxe.use true
+```
+
+Nothing else changed default, so no rank loses anything it already had.
+
+### Two pairs that look like one node
+
+**`oberonsell.sell` and `oberonsell.sellall`.** Selling the item in your hand and emptying a whole
+inventory in one keystroke are separate privileges. They shared a node until 1.1, which made Sell All
+impossible to sell as a perk — granting it granted plain selling with it.
+
+`oberonsell.sellall` covers **both spellings**, `/sellall` and `/sell all`. The node describes the
+feature, not the command; gating only one of two words for the same action is not a gate.
+
+**`oberonsell.sellaxe` and `oberonsell.sellaxe.use`.** The first is who may *hand out* axes; the second
+is who may *swing* one. Both are needed, because an axe is an item: gating only the command leaves the
+axe working for whoever it is dropped, traded or stored for. A player without the second node gets a
+refusal message rather than an axe that silently does nothing.
 
 ### The multiplier node
 

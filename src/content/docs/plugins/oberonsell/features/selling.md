@@ -39,6 +39,11 @@ Sells the stack you are holding.
 
 Sells everything sellable and leaves everything else alone.
 
+Both forms need `oberonsell.sellall`, which is **off by default** — it is the node servers hand to a
+rank. The node describes the feature, not the spelling: `/sell all` is the same thing typed differently
+and would otherwise be a free bypass of the perk. See
+[Rank perks](/plugins/oberonsell/commands-and-permissions/#rank-perks).
+
 ## As you pick things up
 
 ```

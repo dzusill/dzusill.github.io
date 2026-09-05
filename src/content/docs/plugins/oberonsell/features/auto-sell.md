@@ -17,7 +17,7 @@ and restarts.
 | | |
 |---|---|
 | Config | `auto-sell.enabled: true` (the default) |
-| Permission | `oberonsell.autosell` — granted to everyone by default |
+| Permission | `oberonsell.autosell` — **off by default**, a rank perk. See [Permissions](/plugins/oberonsell/commands-and-permissions/#rank-perks) |
 | Player | opted in with `/sell auto` |
 
 All three have to hold. With `auto-sell.enabled: false` the pickup listener is never registered at all, and

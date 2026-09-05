@@ -39,6 +39,18 @@ On the **item**, in its persistent data — not in a plugin-side registry keyed 
 The countdown line is rebuilt from that instant on each refresh rather than edited in place, so no amount
 of re-rendering can stack up duplicate lore.
 
+## Two permissions, not one
+
+`oberonsell.sellaxe` is who may **hand out** axes. `oberonsell.sellaxe.use` — off by default — is who
+may **swing** one.
+
+Both are needed precisely because of the section above: an axe lives on the item, so it can be traded,
+dropped or left in a chest. Gating only the command would leave the axe working for whoever ends up
+holding it, and a rank perk that survives being handed to a friend is not a perk.
+
+A player without the second node gets a refusal message (`sellaxe.no_permission`) rather than an axe
+that does nothing, which reads as a broken plugin.
+
 ## Interaction with the rest of the plugin
 
 - **Worth lore is stripped first**, so a decorated chest sells for exactly the same amount as an
