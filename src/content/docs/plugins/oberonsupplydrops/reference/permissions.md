@@ -11,7 +11,7 @@ description: "It is deliberately not part of use. Staff who run drops all day ca
 | `oberonsupplydrops.locate` | everyone | `/supplydrop locate` |
 | `oberonsupplydrops.top` | everyone | `/supplydrop top` |
 | `oberonsupplydrops.notify` | everyone | Receives drop announcements, titles and the boss bar |
-| `oberonsupplydrops.admin` | operator | `spawn`, `clear`, `zone`, `reload`, and coordinates in `/supplydrop active` |
+| `oberonsupplydrops.admin` | operator | `spawn`, `open`, `clear`, `zone`, `reload`, and coordinates in `/supplydrop active` |
 
 ## Why `notify` is separate
 
@@ -28,5 +28,6 @@ Each player-facing subcommand has its own node, so a rank can lose the leaderboa
 preview, or vice versa.
 
 The staff subcommands all share `oberonsupplydrops.admin`. They are destructive in the same way —
-`spawn` puts a block in the world, `clear` takes several out, `zone` and `reload` change what the
-scheduler does next — so splitting them further would be more configuration than protection.
+`spawn` puts a block in the world, `open` hands out its loot early, `clear` takes several out, `zone`
+and `reload` change what the scheduler does next — so splitting them further would be more
+configuration than protection.

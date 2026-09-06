@@ -39,6 +39,7 @@ that wants the hunt to be completely player-driven.
 | Command | Does |
 |---|---|
 | `/supplydrop spawn [tier] [here]` | Force a drop |
+| `/supplydrop open` | Open every active drop now, skipping its countdown (alias `unlock`) |
 | `/supplydrop clear` | Remove every active drop and everything it placed |
 | `/supplydrop zone add <name> [radius]` | Create a drop zone where you stand |
 | `/supplydrop zone remove <name>` | Delete a zone |
@@ -47,6 +48,13 @@ that wants the hunt to be completely player-driven.
 
 `spawn` with no arguments rolls a tier and searches for a site exactly as the scheduler would, which
 is the version worth running before an event. `here` puts the crate at your feet and skips the search.
+
+`open` is the companion to it: `spawn` forces a crate into the world, `open` forces it open. Together
+they check a tier's loot in two commands instead of two minutes of standing around. A crate still
+falling is landed on the way through, so one command is always enough, and everything the normal
+unlock does still happens — the announcement, the sound, the boss bar clearing. A drop opened this
+way is indistinguishable from one that waited, and still despawns on its own after
+`phases.despawn-seconds`.
 
 `reload` leaves a drop that is already in flight alone: its deadlines are absolute and its crate is
 already in the world, so it finishes under the rules it started with. Only the schedule is
