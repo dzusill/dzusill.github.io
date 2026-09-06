@@ -27,6 +27,14 @@ In order:
 
 That is the feature. Rows worth `Blanking.Min-Value` or less are removed. `%oberonstats_top_size_<track>%` tells you how many real rows there are. Set `Hide-Zero-Rows: false` to see everything ExcellentEconomy ranked.
 
+### How do I keep staff off the leaderboards?
+
+Give them `oberonstats.exempt`. They vanish from every leaderboard placeholder on every track, while their own value placeholders keep answering. Rename the node with `Leaderboard.Exempt-Permission`, or set it to `""` to rank everybody. An **offline** holder is only recognised through Vault, so a permission plugin that answers Vault lookups (LuckPerms does) is what keeps them hidden after they log off — see [Leaderboards → Hidden players](/plugins/oberonstats/features/leaderboards/#hidden-players).
+
+### A hidden staff member is still on the board
+
+`/oberonstats why <player> <track>` says whether the exemption is being seen at all. If it only takes effect while they are online, nothing on the server can answer a permission question about an offline player — install a permission plugin with a Vault hook. `/oberonstats status` prints the node in use and how many players have been resolved.
+
 ### A player's balance is blank the first time and correct the second
 
 They are neither online nor on the leaderboard, so the value needs a database lookup — which cannot run on the server thread. The first request starts it and returns blank; the answer is cached for `Targets.Cache-TTL-Seconds` and appears on the next redraw.

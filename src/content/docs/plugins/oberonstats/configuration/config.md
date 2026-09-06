@@ -92,6 +92,7 @@ See [Blanking Empty Rows](/plugins/oberonstats/features/blanking/).
 | `Page-Size` | `10` | Rows on one page of `%oberonstats_page_*%`. |
 | `List-Separator` | `"\n"` | Joins rows in `top_list` / `page_list`. |
 | `List-Max` | `100` | Hard cap on rows in one list placeholder. |
+| `Exempt-Permission` | `"oberonstats.exempt"` | Holders are left out of every ranking; their own value placeholders still answer. `""` ranks everybody. Offline holders need a permission plugin that answers Vault lookups. |
 
 ## Targets
 
@@ -140,3 +141,40 @@ A track naming a statistic the server does not know is skipped with a warning ra
 |---|---|---|
 | `Stats.Enabled` | `false` | Whether OberonStats registers `/stats`. Off so your menu plugin keeps its own. |
 | `Stats.Run` | `""` | Command run after `/stats [player]` sets the target. `%player%` is substituted. |
+
+## Presentation
+
+Where each message goes and what it sounds like. A category styles a whole kind of message at once; an override
+names a single key from [`messages.yml`](/plugins/oberonstats/configuration/messages/) and beats its category.
+
+| Key | Default | Meaning |
+|---|---|---|
+| `Categories.<CATEGORY>.Channel` | `BOTH` for `ERROR`, `CHAT` for `INFO` | `CHAT`, `ACTION_BAR` or `BOTH`. |
+| `Categories.<CATEGORY>.Sound.Enabled` | `true` for `ERROR`, `false` for `INFO` | Silences the kind without deleting the settings. |
+| `Categories.<CATEGORY>.Sound.Name` | `ENTITY_VILLAGER_NO` | `ENTITY_VILLAGER_NO` or `entity.villager.no` — either spelling is accepted. |
+| `Categories.<CATEGORY>.Sound.Volume` / `.Pitch` | `0.7` / `1.0` | Ordinary Bukkit ranges. |
+| `Overrides.<message-key>` | `{}` | The same `Channel` and `Sound` keys for one message, beating its category. |
+
+`ERROR` covers every refusal the framework sends — no permission, wrong usage, unknown subcommand, player not
+found — so one block governs all of them at once. `INFO` covers everything else.
+
+```yaml
+Presentation:
+  Categories:
+    ERROR:
+      Channel: BOTH
+      Sound:
+        Enabled: true
+        Name: ENTITY_VILLAGER_NO
+        Volume: 0.7
+        Pitch: 1.0
+    INFO:
+      Channel: CHAT
+      Sound:
+        Enabled: false
+  Overrides:
+    no-permission:
+      Channel: ACTION_BAR
+      Sound:
+        Name: BLOCK_NOTE_BLOCK_BASS
+```

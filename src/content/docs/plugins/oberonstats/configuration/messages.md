@@ -32,8 +32,9 @@ command:
 
 | Key | Available |
 |---|---|
-| `command.status` | `%providers%`, `%tracks%`, `%blank%`, `%min_value%`, `%hide_rows%`, `%hide_value%`, `%page_size%`, `%max_position%`, `%cache%` |
+| `command.status` | `%providers%`, `%tracks%`, `%blank%`, `%min_value%`, `%hide_rows%`, `%hide_value%`, `%page_size%`, `%max_position%`, `%exempt%`, `%cache%` |
 | `command.unknown-track` | `%track%` |
+| `command.board.notes` | `%blanked%`, `%duplicates%`, `%exempt%`, `%ordered%` |
 | `command.dump.header` | `%player%`, `%track%` |
 | `command.dump.line` | `%placeholder%`, `%value%` |
 | `command.target.set` | `%player%` |

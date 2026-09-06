@@ -47,7 +47,18 @@ If your leaderboard looks stale, lower EE's interval; OberonStats has nothing to
 
 ## Hidden players
 
-Anyone with `coinsengine.hidefromtops` is excluded by ExcellentEconomy before OberonStats ever sees the list, so staff stay out of your menus with no extra configuration.
+Give a player `oberonstats.exempt` and they are left out of **every** leaderboard placeholder — `top_*`, `page_*`, the lists, `top_size` and their own rank — on every track, whatever the source. Their own value placeholders still answer, so a stats screen shows them their real number; only the ranking hides them.
+
+```yaml
+Leaderboard:
+  Exempt-Permission: "oberonstats.exempt"   # "" ranks everybody
+```
+
+An **offline** staff member can only be recognised through Vault, so a permission plugin that answers Vault lookups (LuckPerms does) is what makes the hiding survive them logging off. Without one, only players who have been online since the last restart are hidden. The lookup never happens inside a placeholder — it runs off the request thread and the answer is remembered — so a slow permission database costs no lag.
+
+`/oberonstats board <track>` counts hidden rows on its own line, and `/oberonstats why <player>` says outright when the permission is what is keeping somebody off the board.
+
+ExcellentEconomy has its own node for the same idea: anyone with `coinsengine.hidefromtops` is excluded by EE before OberonStats ever sees the list. Use either; `oberonstats.exempt` is the one that covers vanilla statistics and Vault money as well.
 
 ## Guard rails
 

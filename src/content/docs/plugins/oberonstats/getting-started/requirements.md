@@ -1,6 +1,6 @@
 ---
 title: "Requirements"
-description: "ExcellentEconomy is declared as a hard dependency, so it must be installed even if you only want the vanilla"
+description: "Everything but the framework is optional. ExcellentEconomy, PlaceholderAPI and Vault are declared as soft"
 ---
 
 | Requirement | Version | Why |
@@ -14,8 +14,13 @@ description: "ExcellentEconomy is declared as a hard dependency, so it must be i
 | Vault + an economy plugin | any | Only for the `money` track |
 | Vanilla statistic tracks | — | Nothing to install: kills, deaths, playtime and blocks come from the server's own data |
 
-ExcellentEconomy is declared as a hard dependency, so it must be installed even if you only want the vanilla
-statistic tracks. Vault is optional — without it the `money` track is skipped and everything else works.
+Everything but the framework is optional. ExcellentEconomy, PlaceholderAPI and Vault are declared as soft
+dependencies, so the plugin loads without them: the vanilla statistic tracks work with no economy plugin installed
+at all, and dropping Vault only costs you the `money` track.
+
+The framework jar is the one thing OberonStats cannot start without — its main class extends `CorePlugin`. It ships
+under two names, `OberonCore` on the Oberon network and `DzusillCore` everywhere else, and Bukkit has no way to say
+"either of these", so both are listed as soft dependencies purely for load order. Install exactly one of them.
 
 ## ExcellentEconomy settings that matter
 

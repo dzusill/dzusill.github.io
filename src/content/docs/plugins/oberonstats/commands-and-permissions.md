@@ -26,8 +26,11 @@ Omit `[track]` and the first available currency is used.
 |---|---|---|
 | `oberonstats.admin` | op | `reload`, `status`, `dump` |
 | `oberonstats.use` | true | `target`, `page`, `/stats` — the parts a menu button drives |
+| `oberonstats.exempt` | false | Keeps the holder out of every leaderboard placeholder. Grants nothing else — their own stats placeholders answer exactly as before |
 
 `oberonstats.use` defaults to everyone on purpose: menu buttons run these commands as the player who clicked them, so locking the node breaks the menu for normal players.
+
+`oberonstats.exempt` is the staff node: give it to a rank and those players stop appearing in `top_*`, `page_*`, the lists, `top_size` and the ranks, on every track. Rename it with `Leaderboard.Exempt-Permission` if your setup already has a node for this, or set that to `""` to rank everybody. See [Leaderboards → Hidden players](/plugins/oberonstats/features/leaderboards/#hidden-players) for how offline staff are recognised.
 
 ## Diagnosing a menu with `dump`
 
