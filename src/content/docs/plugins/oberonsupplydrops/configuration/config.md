@@ -81,6 +81,7 @@ who ran for it are still arriving.
 | `trail.*` | on, `CAMPFIRE_COSY_SMOKE`, 4 | Particle trail behind the falling crate |
 | `beam.*` | on, height 40, step 1.0, every 10 ticks | Vertical marker beam, coloured per tier |
 | `impact.*` | on, `EXPLOSION`, 1 | Landing burst |
+| `crate.scatter-loot` | `true` | Spread loot across random slots instead of stacking it from slot 0 |
 | `hologram.enabled` / `offset` | `true` / `1.8` | Floating text above the crate |
 | `hologram.provider` | `AUTO` | `BUILT_IN`, `FANCY_HOLOGRAMS` or `AUTO` |
 | `hologram.fancy.*` | see below | Every FancyHolograms property, ignored by the built-in renderer |

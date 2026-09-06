@@ -60,6 +60,41 @@ with no override uses the alias of the same name.
 `loot.rolls` is how many pool entries a crate gets: a number, or a `"2-3"` range. It is clamped to the
 pool size at load, so the preview menu's arithmetic stays honest.
 
+### The trap: weights that cannot matter
+
+The pool is drawn **without repeats**. So once `rolls` reaches the pool size, every entry is drawn
+every time and the weights decide nothing:
+
+```yaml
+      rolls: "2-3"        # clamped to 2 — the pool only has two entries
+      pool:
+        - material: BOW
+          weight: 10      # looks like 10%
+        - material: DIAMOND_BLOCK
+          weight: 90      # looks like 90%
+```
+
+Both land in **100%** of crates. The config reads as though it expresses rarity, the drops look
+perfectly normal, and nothing is wrong except that the numbers do nothing. This is reported at
+startup:
+
+```
+[WARN] tier 'stellar': loot.rolls draws 2 of 2 pool entries, and the pool is drawn without repeats —
+       so every entry lands in every crate and the weights change nothing.
+```
+
+Two ways out, and they give different crates:
+
+| Want | Do |
+|---|---|
+| 10% bow **or** 90% diamond block, never both | `rolls: 1` — the weights become the percentages |
+| Diamond block always, plus a 10% bow on top | Move both to `guaranteed`, give the bow `chance: 0.10` |
+
+### `chance` does nothing in a pool
+
+`chance` gates a **guaranteed** entry. On a pool entry it parses and is then ignored — a pool entry's
+odds come from its weight. That is also reported at startup rather than left to be discovered.
+
 ## Per-tier holograms
 
 Applies only when FancyHolograms is the hologram backend. Any key from `effects.hologram.fancy` can

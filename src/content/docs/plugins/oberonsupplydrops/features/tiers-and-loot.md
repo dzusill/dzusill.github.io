@@ -58,6 +58,21 @@ independent coin flip instead.
 sword never appears three times in one crate, however the dice fall. Asking for more rolls than the
 pool holds simply gives the whole pool.
 
+That last sentence is also the trap: draw the whole pool and the weights stop meaning anything,
+because everything is drawn anyway. Two entries weighted 10 and 90 with `rolls: 2` both appear in
+100% of crates. The plugin warns about it at startup; the fix and the alternative are in
+[tiers.yml](/plugins/oberonsupplydrops/configuration/tiers/#the-trap-weights-that-cannot-matter).
+
+**Choosing between the two.** `guaranteed` + `chance` is an independent coin flip per item — use it
+for "this appears in 5% of crates". The pool is a competition — use it for "each crate gets two of
+these five". A `chance` written on a pool entry is ignored, and reported.
+
+## Where the loot sits
+
+Rolled stacks are scattered across random slots rather than stacked from the top-left corner, so a
+crate reads as something that fell out of the sky rather than as a tidy storage chest. Set
+`crate.scatter-loot: false` to go back to filling from slot 0.
+
 ## A loot entry
 
 | Key | Meaning |
