@@ -23,18 +23,18 @@ Requires PlaceholderAPI. The expansion registers itself when the plugin enables 
 | `%oberonsupplydrops_next%` | Time until the next scheduled drop, e.g. `3h 4m 2s` |
 | `%oberonsupplydrops_next_seconds%` | The same as a bare number, for progress bars |
 
-Countdowns read `3h 4m 2s` — largest unit first, and a zero unit is dropped only when it sits at
-either **end**:
+Countdowns read `3h 4m 2s` — largest unit first. A zero unit is dropped only when nothing bigger is
+left; below the largest unit everything is printed, zero or not:
 
 | Remaining | Shows |
 |---|---|
-| 5h 0m 42s | `5h 0m 42s` — the zero is kept, it has units on both sides |
+| 5h 0m 42s | `5h 0m 42s` — the zero minutes stay |
+| exactly 1h | `1h 0m 0s` |
 | 52m 42s | `52m 42s` — no `0h` in front |
-| exactly 1h | `1h` — no trailing `0m 0s` |
-| 1d 0h 0m 5s | `1d 0h 0m 5s` |
+| 30s | `30s` — no `0h 0m` in front |
 
-An interior zero stays because a countdown that jumped from `5h 1m 42s` to `5h 42s` looks like it
-lost a column mid-tick.
+That keeps the width stable across a tick: a countdown that jumped from `5h 1m 42s` to `5h 42s`
+would look like it lost a column.
 
 It is the same formatter the rest of the Oberon plugins use, so a scoreboard mixing several of them
 reads consistently.
