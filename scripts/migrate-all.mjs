@@ -77,6 +77,8 @@ const PLUGINS = [
   // entries above stay, because the client still runs those jars under those names.
   { slug: 'dsupplydrops',  name: 'dSupplyDrops',  src: '../dSupplyDrops/docs' },
   { slug: 'ddonations',    name: 'dDonations',    src: '../dDonations/docs' },
+  // dTickets keeps its internal planning documents in plans/, not docs/, so they are not published.
+  { slug: 'dtickets',      name: 'dTickets',      src: '../dTickets/docs' },
 ];
 
 // Plugins whose pages are written directly into src/content/docs/plugins/<slug>/ rather than
@@ -110,7 +112,7 @@ const CATEGORIES = [
   { label: '🧭 Teleportation', plugins: ['warpgui', 'dhomegui'] },
   { label: '💬 Chat & Social', plugins: ['dnicks', 'dmentions', 'dlive', 'dannounce'] },
   { label: '🔗 Web & Integrations', plugins: ['dweblink', 'dphalanx'] },
-  { label: '🧰 Tools & Utilities', plugins: ['dstattrack', 'toolsnotifier'] },
+  { label: '🧰 Tools & Utilities', plugins: ['dtickets', 'dstattrack', 'toolsnotifier'] },
 ];
 const MISC_LABEL = '📦 Miscellaneous';
 

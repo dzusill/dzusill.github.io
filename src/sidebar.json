@@ -4747,6 +4747,112 @@
     "collapsed": true,
     "items": [
       {
+        "label": "🎫 dTickets",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "dTickets",
+            "slug": "plugins/dtickets"
+          },
+          {
+            "label": "🚀 Getting started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dtickets/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dtickets/getting-started/installation"
+              },
+              {
+                "label": "Quick start",
+                "slug": "plugins/dtickets/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Tickets",
+                "slug": "plugins/dtickets/features/tickets"
+              },
+              {
+                "label": "Player reports",
+                "slug": "plugins/dtickets/features/reports"
+              },
+              {
+                "label": "Ticket chat",
+                "slug": "plugins/dtickets/features/ticket-chat"
+              },
+              {
+                "label": "Evidence",
+                "slug": "plugins/dtickets/features/evidence"
+              },
+              {
+                "label": "Punishments",
+                "slug": "plugins/dtickets/features/punishments"
+              },
+              {
+                "label": "Notifications",
+                "slug": "plugins/dtickets/features/notifications"
+              },
+              {
+                "label": "Vanish awareness",
+                "slug": "plugins/dtickets/features/vanish"
+              },
+              {
+                "label": "Statistics",
+                "slug": "plugins/dtickets/features/statistics"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dtickets/configuration/config"
+              },
+              {
+                "label": "menus.yml",
+                "slug": "plugins/dtickets/configuration/menus"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/dtickets/configuration/messages"
+              },
+              {
+                "label": "Database",
+                "slug": "plugins/dtickets/configuration/database"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/dtickets/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands and permissions",
+                "slug": "plugins/dtickets/reference/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/dtickets/reference/placeholders"
+              },
+              {
+                "label": "Troubleshooting",
+                "slug": "plugins/dtickets/reference/troubleshooting"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "label": "📊 dStattrack",
         "collapsed": true,
         "items": [
