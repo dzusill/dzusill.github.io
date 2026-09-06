@@ -2548,6 +2548,152 @@
         ]
       },
       {
+        "label": "💵 dDonations",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/ddonations"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/ddonations/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/ddonations/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/ddonations/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Purchase Tracking",
+                "slug": "plugins/ddonations/features/purchase-tracking"
+              },
+              {
+                "label": "Announcements",
+                "slug": "plugins/ddonations/features/announcements"
+              },
+              {
+                "label": "Package Display Names",
+                "slug": "plugins/ddonations/features/package-display-names"
+              },
+              {
+                "label": "The Donor's Head in Chat",
+                "slug": "plugins/ddonations/features/player-heads"
+              },
+              {
+                "label": "Currencies",
+                "slug": "plugins/ddonations/features/currencies"
+              },
+              {
+                "label": "Hype Train",
+                "slug": "plugins/ddonations/features/hype-train"
+              },
+              {
+                "label": "GG Wave",
+                "slug": "plugins/ddonations/features/gg-wave"
+              },
+              {
+                "label": "Community Goals",
+                "slug": "plugins/ddonations/features/community-goals"
+              },
+              {
+                "label": "Donation Boards",
+                "slug": "plugins/ddonations/features/donation-boards"
+              },
+              {
+                "label": "Discord Webhooks",
+                "slug": "plugins/ddonations/features/discord-webhooks"
+              },
+              {
+                "label": "Migrating from PerfDonation",
+                "slug": "plugins/ddonations/features/migrating-from-perfdonation"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/ddonations/configuration/config"
+              },
+              {
+                "label": "announcements.yml",
+                "slug": "plugins/ddonations/configuration/announcements-yml"
+              },
+              {
+                "label": "packages.yml",
+                "slug": "plugins/ddonations/configuration/packages-yml"
+              },
+              {
+                "label": "webhooks.yml",
+                "slug": "plugins/ddonations/configuration/webhooks-yml"
+              },
+              {
+                "label": "goals.yml",
+                "slug": "plugins/ddonations/configuration/goals-yml"
+              },
+              {
+                "label": "hype.yml",
+                "slug": "plugins/ddonations/configuration/hype-yml"
+              },
+              {
+                "label": "ggwave.yml",
+                "slug": "plugins/ddonations/configuration/ggwave-yml"
+              },
+              {
+                "label": "boards.yml",
+                "slug": "plugins/ddonations/configuration/boards-yml"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/ddonations/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/ddonations/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/ddonations/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/ddonations/placeholders"
+              },
+              {
+                "label": "Known Limitations",
+                "slug": "plugins/ddonations/limitations"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/ddonations/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/ddonations/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "label": "💎 dGems",
         "collapsed": true,
         "items": [
@@ -3681,6 +3827,129 @@
               {
                 "label": "Credits",
                 "slug": "plugins/dfate/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "🪂 dSupplyDrops",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "dSupplyDrops",
+            "slug": "plugins/dsupplydrops"
+          },
+          {
+            "label": "🚀 Getting started",
+            "items": [
+              {
+                "label": "Installation",
+                "slug": "plugins/dsupplydrops/getting-started/installation"
+              },
+              {
+                "label": "Quick start",
+                "slug": "plugins/dsupplydrops/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "The drop lifecycle",
+                "slug": "plugins/dsupplydrops/features/drop-lifecycle"
+              },
+              {
+                "label": "Tiers and loot",
+                "slug": "plugins/dsupplydrops/features/tiers-and-loot"
+              },
+              {
+                "label": "Scheduling and placement",
+                "slug": "plugins/dsupplydrops/features/scheduling-and-zones"
+              },
+              {
+                "label": "WorldGuard regions",
+                "slug": "plugins/dsupplydrops/features/regions"
+              },
+              {
+                "label": "The visual layer",
+                "slug": "plugins/dsupplydrops/features/effects"
+              },
+              {
+                "label": "Holograms",
+                "slug": "plugins/dsupplydrops/features/holograms"
+              },
+              {
+                "label": "Notifications",
+                "slug": "plugins/dsupplydrops/features/notifications"
+              },
+              {
+                "label": "Statistics and the leaderboard",
+                "slug": "plugins/dsupplydrops/features/statistics"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dsupplydrops/configuration/config"
+              },
+              {
+                "label": "tiers.yml",
+                "slug": "plugins/dsupplydrops/configuration/tiers"
+              },
+              {
+                "label": "zones.yml",
+                "slug": "plugins/dsupplydrops/configuration/zones"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/dsupplydrops/configuration/messages"
+              },
+              {
+                "label": "sounds.yml",
+                "slug": "plugins/dsupplydrops/configuration/sounds"
+              },
+              {
+                "label": "database.yml",
+                "slug": "plugins/dsupplydrops/configuration/database"
+              },
+              {
+                "label": "Menus",
+                "slug": "plugins/dsupplydrops/configuration/guis"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands",
+                "slug": "plugins/dsupplydrops/reference/commands"
+              },
+              {
+                "label": "Permissions",
+                "slug": "plugins/dsupplydrops/reference/permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/dsupplydrops/reference/placeholders"
+              },
+              {
+                "label": "Troubleshooting",
+                "slug": "plugins/dsupplydrops/reference/troubleshooting"
+              }
+            ]
+          },
+          {
+            "label": "🛠️ Development",
+            "items": [
+              {
+                "label": "Testing",
+                "slug": "plugins/dsupplydrops/developing/testing"
               }
             ]
           }

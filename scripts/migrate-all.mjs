@@ -73,6 +73,10 @@ const PLUGINS = [
   { slug: 'dsell',         name: 'dSell',         src: '../dSell/docs' },
   { slug: 'dshop',         name: 'dShop',         src: '../dShop/docs' },
   { slug: 'dloyalityrewards', name: 'dLoyalityRewards', src: '../dLoyalityRewards/docs' },
+  // The public twins of the Oberon builds. Separate repos, separate docs trees; the Oberon
+  // entries above stay, because the client still runs those jars under those names.
+  { slug: 'dsupplydrops',  name: 'dSupplyDrops',  src: '../dSupplyDrops/docs' },
+  { slug: 'ddonations',    name: 'dDonations',    src: '../dDonations/docs' },
 ];
 
 // Plugins whose pages are written directly into src/content/docs/plugins/<slug>/ rather than
@@ -101,8 +105,8 @@ const SIDEBAR_ONLY = process.argv.includes('--sidebar-only');
 const CATEGORIES = [
   { label: '🛠️ Framework', plugins: ['dzusillcore', 'ddialogs'] },
   { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonannounce', 'oberondonations', 'oberontools', 'oberonsupplydrops', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats'] },
-  { label: '💰 Economy & Shops', plugins: ['dshop', 'drotatingshop', 'oberonshop', 'dsell', 'ddonutworth', 'dauctionfeed', 'oberonsell', 'dgems', 'dstore', 'dlottery', 'blottery', 'dloyalityrewards'] },
-  { label: '⚔️ PvP & Combat', plugins: ['dfactions', 'dkilltracker', 'dbloodmoney', 'ddeathpenalty', 'dfate'] },
+  { label: '💰 Economy & Shops', plugins: ['dshop', 'drotatingshop', 'oberonshop', 'dsell', 'ddonutworth', 'dauctionfeed', 'oberonsell', 'ddonations', 'dgems', 'dstore', 'dlottery', 'blottery', 'dloyalityrewards'] },
+  { label: '⚔️ PvP & Combat', plugins: ['dfactions', 'dkilltracker', 'dbloodmoney', 'ddeathpenalty', 'dfate', 'dsupplydrops'] },
   { label: '🧭 Teleportation', plugins: ['warpgui', 'dhomegui'] },
   { label: '💬 Chat & Social', plugins: ['dnicks', 'dmentions', 'dlive', 'dannounce'] },
   { label: '🔗 Web & Integrations', plugins: ['dweblink', 'dphalanx'] },
@@ -120,6 +124,7 @@ const PLUGIN_EMOJI = {
   oberonstats: '📈', oberonannounce: '📣', oberondonations: '💵', oberontools: '🪣', oberonsell: '🏷️',
   oberonshop: '🏪', oberonsupplydrops: '🪂',
   dlive: '📡', dannounce: '📣', dsell: '🏷️', dshop: '🏪', dloyalityrewards: '🎁',
+  dsupplydrops: '🪂', ddonations: '💵', dtickets: '🎫',
 };
 const SECTION_EMOJI = {
   'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',
