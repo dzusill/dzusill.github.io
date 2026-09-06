@@ -23,9 +23,21 @@ Requires PlaceholderAPI. The expansion registers itself when the plugin enables 
 | `%oberonsupplydrops_next%` | Time until the next scheduled drop, e.g. `3h 4m 2s` |
 | `%oberonsupplydrops_next_seconds%` | The same as a bare number, for progress bars |
 
-Countdowns show every non-zero unit, largest first, and leave the zero ones out — `1h 5m`, not
-`1h 5m 0s`. It is the same formatter the rest of the Oberon plugins use, so a scoreboard mixing
-several of them reads consistently.
+Countdowns read `3h 4m 2s` — largest unit first, and a zero unit is dropped only when it sits at
+either **end**:
+
+| Remaining | Shows |
+|---|---|
+| 5h 0m 42s | `5h 0m 42s` — the zero is kept, it has units on both sides |
+| 52m 42s | `52m 42s` — no `0h` in front |
+| exactly 1h | `1h` — no trailing `0m 0s` |
+| 1d 0h 0m 5s | `1d 0h 0m 5s` |
+
+An interior zero stays because a countdown that jumped from `5h 1m 42s` to `5h 42s` looks like it
+lost a column mid-tick.
+
+It is the same formatter the rest of the Oberon plugins use, so a scoreboard mixing several of them
+reads consistently.
 
 ## Leaderboard
 

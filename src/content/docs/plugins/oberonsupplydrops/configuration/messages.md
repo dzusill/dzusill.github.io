@@ -46,7 +46,7 @@ cannot accidentally leak the position through a message it forgot to edit.
 | `{tier}` | Everywhere — the tier's `display-name`, already coloured |
 | `{tier_colour}` | The tier's `colour` as an opening tag, e.g. `<#F11800>` |
 | `{tier_name}` | The tier's name with all formatting stripped |
-| `{time}` | Formatted countdown, e.g. `3h 4m 2s` — every non-zero unit, largest first |
+| `{time}` | Formatted countdown, e.g. `3h 4m 2s` — see [Placeholders](/plugins/oberonsupplydrops/reference/placeholders/#server-state) |
 | `{seconds}` | The same as a bare number |
 | `{world}`, `{x}`, `{y}`, `{z}` | The crate's position |
 | `{player}` | The first player to open the crate |
