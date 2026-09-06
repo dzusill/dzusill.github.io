@@ -20,8 +20,12 @@ Requires PlaceholderAPI. The expansion registers itself when the plugin enables 
 | Placeholder | Value |
 |---|---|
 | `%oberonsupplydrops_active%` | How many drops are on the map |
-| `%oberonsupplydrops_next%` | Time until the next scheduled drop, e.g. `12m 30s` |
+| `%oberonsupplydrops_next%` | Time until the next scheduled drop, e.g. `3h 4m 2s` |
 | `%oberonsupplydrops_next_seconds%` | The same as a bare number, for progress bars |
+
+Countdowns show every non-zero unit, largest first, and leave the zero ones out — `1h 5m`, not
+`1h 5m 0s`. It is the same formatter the rest of the Oberon plugins use, so a scoreboard mixing
+several of them reads consistently.
 
 ## Leaderboard
 
