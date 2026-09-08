@@ -47,6 +47,7 @@ cannot accidentally leak the position through a message it forgot to edit.
 | `{tier_colour}` | The tier's `colour` as an opening tag, e.g. `<#F11800>` |
 | `{tier_name}` | The tier's name with all formatting stripped |
 | `{time}` | Formatted countdown, e.g. `3h 4m 2s` — see [Placeholders](/plugins/oberonsupplydrops/reference/placeholders/#server-state) |
+| `{time_long}` | The same countdown spelled out, e.g. `3 hours 4 minutes 2 seconds` |
 | `{seconds}` | The same as a bare number |
 | `{world}`, `{x}`, `{y}`, `{z}` | The crate's position |
 | `{player}` | The first player to open the crate |
@@ -62,6 +63,21 @@ inbound: "<prefix><white>A {tier}{tier_colour} supply drop is inbound — impact
 
 `Stellar` renders in its gradient, then **supply drop is inbound** continues in the tier's solid
 colour, and `{seconds}` switches to green.
+
+## Picking a countdown form
+
+`{time}`, `{time_long}` and `{seconds}` are always supplied together, so any line that takes one
+takes all three. They describe the same moment and trim the same units — `1h 0m 32s` and
+`1 hour 0 minutes 32 seconds` never disagree.
+
+Reach for `{time}` where a countdown is scanned rather than read — the boss bar, the hologram, an
+action bar. Reach for `{time_long}` where the line is a sentence:
+
+```yaml
+still-locked: "<prefix><white>You can't open this for another <#00F986>{time_long}<white>."
+```
+
+That reads as something a person said; `another 5s` reads as a stopwatch.
 
 **Why `{tier}` alone cannot do this.** A `display-name` written as a gradient closes its own tag:
 

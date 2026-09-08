@@ -39,6 +39,11 @@ would look like it lost a column.
 It is the same formatter the rest of the Oberon plugins use, so a scoreboard mixing several of them
 reads consistently.
 
+The `{time_long}` message token spells the same countdown out — `5 hours 0 minutes 42 seconds` — and
+trims exactly these units, so the two forms can never disagree about one moment. See
+[Messages](/plugins/oberonsupplydrops/configuration/messages/#picking-a-countdown-form) for when to use which. There is no
+spelled-out PAPI placeholder; scoreboards want the short form.
+
 ## Leaderboard
 
 `N` is the position, starting at 1.

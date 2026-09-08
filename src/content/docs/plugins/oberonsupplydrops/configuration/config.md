@@ -50,6 +50,12 @@ See [WorldGuard regions](/plugins/oberonsupplydrops/features/regions/) for the o
 | `fixed.days` | `[]` | Empty means every day |
 | `min-online-players` | `1` | Below this, a scheduled drop is skipped |
 | `max-active` | `2` | Simultaneous crates across all worlds |
+| `retry-seconds` | `120` | Retry a cycle that could not spawn, instead of forfeiting the interval; `0` waits out the whole interval |
+
+A cycle is declined when `min-online-players` is not met, `max-active` is already reached, or no
+usable landing site was found. Without `retry-seconds` that costs the entire interval — at a
+four-hour interval, being one player short for a single second means a four-hour wait. The reason is
+logged once, then again only when it changes.
 
 ## phases
 
@@ -69,6 +75,7 @@ See [WorldGuard regions](/plugins/oberonsupplydrops/features/regions/) for the o
 |---|---|---|
 | `default-material` | `CHEST` | Fallback for a tier that names none |
 | `protect` | `true` | Break, explosion, piston, burn, liquid and hopper protection |
+| `scatter-loot` | `true` | Spread loot across random slots instead of stacking it from slot 0 |
 
 Leave `protect` on. Off, a hopper under an open crate drains it into a private chest while the people
 who ran for it are still arriving.
@@ -81,7 +88,6 @@ who ran for it are still arriving.
 | `trail.*` | on, `CAMPFIRE_COSY_SMOKE`, 4 | Particle trail behind the falling crate |
 | `beam.*` | on, height 40, step 1.0, every 10 ticks | Vertical marker beam, coloured per tier |
 | `impact.*` | on, `EXPLOSION`, 1 | Landing burst |
-| `crate.scatter-loot` | `true` | Spread loot across random slots instead of stacking it from slot 0 |
 | `hologram.enabled` / `offset` | `true` / `1.8` | Floating text above the crate |
 | `hologram.provider` | `AUTO` | `BUILT_IN`, `FANCY_HOLOGRAMS` or `AUTO` |
 | `hologram.fancy.*` | see below | Every FancyHolograms property, ignored by the built-in renderer |

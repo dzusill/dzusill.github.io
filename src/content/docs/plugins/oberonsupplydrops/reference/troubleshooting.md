@@ -29,6 +29,32 @@ Work down this list — it is ordered by how often each one is the answer.
 If `/supplydrop spawn` works but the schedule never fires, it is one of the two gates: player count
 or `max-active`.
 
+## The countdown reaches zero and no drop comes
+
+The placeholder is not lying — the cycle fired and was declined. The console names the reason:
+
+```
+[INFO] No supply drop this cycle: fewer than 5 players are online
+       (schedule.min-online-players). Retrying rather than waiting out the whole interval;
+       this is logged once until the reason changes.
+```
+
+It is logged **once** per run of identical reasons, so a quiet night does not fill the log. If the
+line is missing entirely, the server is on a build older than 1.1, where every decline was
+`debug`-only and this looked like nothing happening at all.
+
+The two that catch people out:
+
+- **`schedule.min-online-players`.** Being one player short for the single second the cycle fires is
+  enough.
+- **A WorldGuard whitelist closer to spawn than `placement.min-distance`.** A site has to satisfy
+  both, so if the whitelisted region sits inside the minimum distance, *no* site can ever qualify and
+  every cycle fails with no usable landing site.
+
+A declined cycle is retried after `schedule.retry-seconds` (120 by default) rather than forfeiting
+the whole interval, so the countdown restarting at two minutes instead of four hours is the fix
+working, not a second bug.
+
 ## Every site is rejected
 
 The debug log names the rule. The common ones:

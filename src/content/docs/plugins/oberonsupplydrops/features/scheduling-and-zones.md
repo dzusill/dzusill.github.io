@@ -42,11 +42,21 @@ early, and no time fires twice on the autumn night.
 ```yaml
   min-online-players: 1
   max-active: 2
+  retry-seconds: 120
 ```
 
-A scheduled drop below the player threshold is skipped and the next one is scheduled normally —
-events should not fire into an empty server. `max-active` caps how many crates can exist at once
-across all worlds, so a busy schedule cannot flood the map.
+A scheduled drop below the player threshold is skipped — events should not fire into an empty
+server. `max-active` caps how many crates can exist at once across all worlds, so a busy schedule
+cannot flood the map.
+
+A declined cycle no longer forfeits the whole interval. Whichever gate turned it away — the player
+threshold, the active cap, or no usable landing site — the cycle retries after `retry-seconds`, so a
+server that fills up two minutes later gets its drop two minutes later instead of at the next
+interval. At a four-hour interval, being one player short for a single second used to cost four
+hours. Set it to `0` to wait out the full interval as builds before this behaviour did.
+
+The reason a cycle was declined is logged once, and again only when it changes, so a quiet server
+retrying every two minutes does not fill the console.
 
 ## Where crates land
 

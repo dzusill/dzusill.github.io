@@ -97,3 +97,19 @@ Crate positions are written to `active-drops.yml` as they land, and every entity
 plugin creates is tagged with its own persistent-data key. On the next startup both lists are swept:
 tagged leftovers are removed, and anything untagged is left alone. A player's chest that happens to
 stand where a crate once did is never touched.
+
+A crate that is still within its lifetime is **brought back** rather than swept. The saved drops are
+rebuilt first, then the sweep runs, then their effects are drawn — that order matters, since the
+sweep removes every tagged entity in the world and cannot tell last session's stale hologram from a
+fresh one. A restart mid-countdown therefore returns a crate that still knows when it unlocks, not
+one stuck at zero.
+
+The file is rewritten whenever the state changes — as a crate lands and its deadlines are set, as it
+unlocks, and the moment someone claims the first open. That last one matters: without it a crash
+between the claim and the next save would let a second player claim the same crate after the restart
+and collect the tier's commands twice.
+
+A saved drop the restore declines — its tier deleted from `tiers.yml`, its crate broken during the
+downtime, or its despawn time already passed — is swept as a leftover instead, as is a position from
+an older build that stored only coordinates. The crate's *contents* are never saved anywhere: the
+block keeps them itself, which is what makes restoring possible rather than a duplication problem.

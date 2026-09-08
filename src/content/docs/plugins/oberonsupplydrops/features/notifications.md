@@ -88,7 +88,8 @@ action-bar:
   nearby-open: "{tier} <dark_gray>» <#00A3FB>{distance}m <dark_gray>| <#00F986><bold>OPEN <#7E7E7E>({time} left)"
 ```
 
-Tokens: `{tier}`, `{distance}` in blocks, `{time}`, plus `{world}`, `{x}`, `{y}`, `{z}`.
+Tokens: `{tier}`, `{distance}` in blocks, `{time}` / `{time_long}` / `{seconds}`, plus `{world}`,
+`{x}`, `{y}`, `{z}`.
 
 This is the half the boss bar cannot cover. The bar carries the server-wide countdown to everyone;
 this carries what only the people nearby need — how far away the crate is and how long they have
