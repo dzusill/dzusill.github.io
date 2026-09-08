@@ -53,7 +53,8 @@ worth-lore:
 | `allow-toggle` | `true` | Let players use `/toggleworth` |
 | `refresh-ticks` | `20` | How often to re-check online inventories. `0` = events only |
 | `inventories` | (a long list) | Which inventories get lore — an `InventoryType` name, or any part of a title |
-| `excluded-inventories` | empty | Never get lore. Checked first and wins over the list above |
+| `excluded-inventories` | empty | Never get lore. Weighed against the list above, most specific entry winning |
+| `menus-need-title-match` | `true` | A chest-shaped window with no holder is another plugin's menu: decorate it only when a title entry names it |
 | `only-real-containers` | `false` | Decorate only inventories with a real holder, ruling out other plugins' menus wholesale |
 
 See [Worth Lore](/plugins/ddonutworth/features/worth-lore/).

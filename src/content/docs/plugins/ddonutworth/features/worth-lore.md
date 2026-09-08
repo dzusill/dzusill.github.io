@@ -33,18 +33,36 @@ An entry in `inventories` is matched **two ways**, so either style works:
 - **any part of the title** — for custom GUIs from other plugins, e.g. `"Faction Chest"` also matching
   `Faction Chest: 1`.
 
+Titles are matched leniently, because the title on screen is rarely the string you would type. Colours are
+ignored — a gradient title carries a colour code *between every letter*, so `"Faction"` appears nowhere in
+its raw form — and small-capital and lookalike letters fold to ordinary ones. Write `"Bounties"` and it
+matches a GUI titled `ʙᴏᴜɴᴛɪᴇꜱ`, whichever of the several lookalike letters that
+server happened to use.
+
 `player-inventory: true` also decorates the player's own inventory while a container is open.
 
 ## Keeping it out of other plugins' GUIs
 
 Other plugins build their menus as chest inventories. So the `CHEST` entry above — which every server
-wants — necessarily lets their crate previews, kit selectors and auction houses in too, and worth lines
-appear on their buttons.
+wants — would let their crate previews, kit selectors, bounty boards and auction houses in too, and worth
+lines would appear on their buttons.
 
-Two ways to stop that.
+**That is handled for you, and on by default:**
 
-**Name the GUI.** Checked before the allow list and wins over it, matched the same two ways (an
-`InventoryType` name, or any fragment of the title):
+```yaml
+worth-lore:
+  menus-need-title-match: true
+```
+
+A chest-shaped window with no block, entity or player behind it is another plugin's menu, and one of those
+is only decorated when an `inventories` entry matches its **title**. Real chests, barrels, anvils and
+crafting tables are untouched by the rule, and so is any GUI whose plugin gives its inventory a holder.
+
+This is why `"Faction Chest"` is in the list above: a holder-less GUI that *does* hold real items — a
+backpack, a player vault, a faction chest — earns its worth lines by being named.
+
+**Name a GUI to exclude it.** Still there for the cases the rule above cannot see: a menu that does have a
+holder, or a real container you would rather not price.
 
 ```yaml
 worth-lore:
@@ -54,9 +72,10 @@ worth-lore:
     - "Kit Selector"
 ```
 
-A fragment is enough — `"Auction"` also catches `Auction House (Page 1/4)`. Ships empty on purpose: an
-entry here silently hides worth, so nothing is guessed for you. Open the GUI, read its title off the
-screen, add it, `/ddonutworth reload`.
+A fragment is enough — `"Auction"` also catches `Auction House (Page 1/4)`. The two lists are weighed
+against each other, **most specific entry winning**: a title beats a type name, and a longer title beats a
+shorter one. So excluding `"Faction"` hides every faction menu while an allowed `"Faction Chest"` keeps its
+worth lines. A tie goes to the exclusion.
 
 **Or rule them all out at once:**
 
@@ -65,12 +84,11 @@ worth-lore:
   only-real-containers: true
 ```
 
-Decorates only inventories backed by a real container, entity or player. Another plugin's menu normally
-has no holder at all, so this catches every one of them with nothing to maintain. Off by default because
-a few storage plugins — player vaults, backpacks — also build holder-less inventories, and those hold
-real items whose worth is worth showing.
+Decorates only inventories backed by a real container, entity or player, with no title escape hatch at all.
+Off by default, because it also rules out the backpacks and player vaults `menus-need-title-match` lets you
+keep by name.
 
-This plugin's **own** menus need neither: they are skipped automatically, so the prices GUI's arrows,
+This plugin's **own** menus need none of this: they are skipped automatically, so the prices GUI's arrows,
 cauldron and hopper never pick up a worth line. The sell GUI is the one exception, and only for the slots
 you drop items into.
 
