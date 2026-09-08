@@ -59,6 +59,19 @@ worth-lore:
 
 See [Worth Lore](/plugins/ddonutworth/features/worth-lore/).
 
+## selling
+
+```yaml
+selling:
+  return-emptied-containers: true
+```
+
+| Key | Default | What it does |
+|---|---|---|
+| `return-emptied-containers` | `true` | A container with items in it is sold for its contents and handed back emptied; an empty one is sold as itself. Needs `worth-lore.shulker-totals` |
+
+See [Selling](/plugins/ddonutworth/features/selling/#selling-a-full-container).
+
 ## multipliers
 
 ```yaml

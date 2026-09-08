@@ -99,15 +99,20 @@ worth-lore:
   shulker-totals: true
 ```
 
-A packed shulker box shows **one** figure: the box plus everything inside it.
+A packed shulker box shows **one** figure covering everything the sale would hand over.
 
 ```
 Shulker Box
 Diamond ×3
-Worth: $6,700          ← $2,500 for the box, $4,200 of diamonds
+Worth: $4,200          ← the diamonds; the box itself comes back
 ```
 
 One number rather than two, because two lines left the player doing the addition themselves.
+
+The figure follows [`selling.return-emptied-containers`](/plugins/ddonutworth/features/selling/#selling-a-full-container), which is on
+by default: a container with something in it is sold for its contents and handed back, so its own price is
+not part of the deal. Turn that off and the same box reads `$6,700` — `$2,500` for the box and `$4,200` of
+diamonds — because then the box goes with them.
 
 This is not limited to shulkers. Any container stored as an item counts its contents the same way — a
 chest, barrel, hopper or dispenser given with items in it — and so do bundles. Contents are read from the

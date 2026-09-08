@@ -45,6 +45,32 @@ not — so a mis-drop never costs an item. Which slots accept items is up to you
 
 Right-click a container. See [The Sell Axe](/plugins/ddonutworth/features/the-sell-axe/).
 
+## Selling a full container
+
+```yaml
+selling:
+  return-emptied-containers: true
+```
+
+Selling a shulker box that has something in it sells the **contents** and hands the box itself back,
+emptied. Empty twenty boxes into the sell GUI and you get the money and your twenty boxes.
+
+An **empty** container has nothing to unpack, so it is sold as the item it is, for its own price. That is
+the whole rule: full box → contents sold, box back; empty box → box sold.
+
+- Each item inside is priced and credited **on its own** — the diamonds in a box earn your ores multiplier,
+  not whatever the box is filed under.
+- Contents nothing will pay for stay inside the box that comes back, so a shulker of ores and rubbish
+  returns with the rubbish still in it.
+- A box inside a box is unpacked in turn and left, empty, in its parent.
+- The box goes back where its full self came from: the same inventory slot, the same hand. If it truly
+  cannot fit anywhere it is dropped at your feet rather than deleted.
+- This applies to every route — the sell GUI, `/sell hand`, `/sellall` and the sell axe.
+
+Set it to `false` for the old behaviour: the box and everything in it are sold together and the box is
+gone. It also needs `worth-lore.shulker-totals`, since with contents left out of an item's worth there is
+nothing to sell them for.
+
 ## What a payout is
 
 ```
