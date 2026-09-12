@@ -91,6 +91,22 @@ the front door:
 A crate that would have landed next to an existing chest is placed as a barrel instead, since a
 barrel cannot merge with anything.
 
+## A crate takes nothing in
+
+Items can only come **out** of a crate. Placing, shift-clicking, hotbar-swapping or dragging anything
+into one is refused.
+
+Not a restriction for its own sake — it closes a way to lose your gear. A crate is an ordinary
+container, so without this a player could drop their own things into it, and every close path clears
+the inventory before removing the block. The item was deleted, silently and permanently, the moment
+the crate despawned.
+
+Spilling the crate's contents on removal would not have fixed it: an unclaimed crate would then
+litter the map with its entire loot table, and a deposit made in the same tick as the despawn would
+still be lost. Nothing can be lost if nothing can be put in.
+
+Taking is untouched, including shift-clicking a stack straight out of the crate.
+
 ## After a crash
 
 Crate positions are written to `active-drops.yml` as they land, and every entity and container the

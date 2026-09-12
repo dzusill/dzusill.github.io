@@ -29,6 +29,18 @@ Work down this list — it is ordered by how often each one is the answer.
 If `/supplydrop spawn` works but the schedule never fires, it is one of the two gates: player count
 or `max-active`.
 
+## "Placement is set to ZONES but no drop zone is defined"
+
+Exactly what it says: `placement.mode` is `ZONES` and `zones.yml` is empty, so there is nowhere to
+put a crate. Stand where the drops should land and run:
+
+```
+/supplydrop zone add <name> <radius>
+```
+
+Older builds reported this as *"Drops are not enabled in world"*, which blamed the wrong file — the
+world was always fine.
+
 ## The countdown reaches zero and no drop comes
 
 The placeholder is not lying — the cycle fired and was declined. The console names the reason:
@@ -142,6 +154,14 @@ If one does survive:
 
 removes every crate the plugin currently knows about. For a leftover from an older run, break it: a
 crate the plugin has forgotten is no longer protected, so it behaves like an ordinary container.
+
+## An item put into a crate vanished
+
+Fixed — items can no longer be put into a crate at all, so there is nothing to lose. Before that,
+a crate cleared its inventory as it despawned and took anything a player had left in there with it.
+
+If a player reports this on an older build, the item is gone and cannot be recovered; update and it
+cannot happen again.
 
 ## Players can open a crate before the countdown ends
 
