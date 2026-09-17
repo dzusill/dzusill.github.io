@@ -21,8 +21,34 @@ placement:
 
 | List | Effect |
 |---|---|
-| `whitelist` | A site must be inside at least one of these. **Empty means anywhere is allowed.** |
+| `whitelist` | A site must be inside at least one of these, **and the search samples inside them**. Empty means anywhere is allowed. |
 | `blacklist` | A site inside any of these is rejected. |
+
+## A whitelist drives the search, not just filters it
+
+With a whitelist set, every candidate site is drawn from **inside** the whitelisted regions'
+footprints. It is not sampled from the ring around spawn and then checked.
+
+That distinction is the difference between working and not. The default ring (500–2000 blocks
+around spawn) covers about 11.8 million columns. A PvP arena 200 blocks a side is 40,000 of them —
+0.34%. Throwing 24 darts at the ring and keeping only the ones that land in the arena finds a legal
+site in under 8% of cycles, so almost every drop is skipped with *no usable landing site*, and the
+config reads as perfectly sensible the whole time. Sampling inside the arena finds one on the first
+try.
+
+Two consequences:
+
+- **`placement.min-distance` and `placement.radius` do not apply** while a whitelist is set. A
+  whitelist is you saying "here"; making "here" also be 500 blocks from spawn would silently rule
+  out an arena next to spawn. Use the blacklist for spawn protection — it still applies.
+- **Several whitelisted regions are chosen in proportion to their area**, so one large and one tiny
+  region do not each get half the drops.
+
+A polygon region is sampled from its bounding box; a candidate that falls in a corner outside the
+actual polygon is rejected as before and costs one attempt, never a wrong site.
+
+This only applies in `RANDOM` mode. In `ZONES` mode the zone already says where to look, and a
+whitelist there is a filter on top of it.
 
 ## The blacklist wins
 

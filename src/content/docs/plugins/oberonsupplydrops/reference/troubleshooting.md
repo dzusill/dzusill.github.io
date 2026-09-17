@@ -59,9 +59,13 @@ The two that catch people out:
 
 - **`schedule.min-online-players`.** Being one player short for the single second the cycle fires is
   enough.
-- **A WorldGuard whitelist closer to spawn than `placement.min-distance`.** A site has to satisfy
-  both, so if the whitelisted region sits inside the minimum distance, *no* site can ever qualify and
-  every cycle fails with no usable landing site.
+- **`placement.mode: ZONES` with an empty `zones.yml`.** Nothing to sample from, so every cycle is
+  declined and the countdown resets to `retry-seconds` forever. The reason line says so; either add a
+  zone or switch back to `RANDOM`.
+- **A WorldGuard whitelist on a build older than 1.1.** Those sampled the ring around spawn and then
+  rejected anything outside the region — a 200-block arena is 0.34% of the default ring, so almost
+  every cycle ran out of attempts. Since 1.1 the whitelist drives the search itself; see
+  [WorldGuard regions](/plugins/oberonsupplydrops/features/regions/#a-whitelist-drives-the-search-not-just-filters-it).
 
 A declined cycle is retried after `schedule.retry-seconds` (120 by default) rather than forfeiting
 the whole interval, so the countdown restarting at two minutes instead of four hours is the fix
