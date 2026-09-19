@@ -95,7 +95,7 @@ Choice:
 ```yaml
 Lifesteal:
   Enabled: true
-  Starting-Hearts: 10
+  Starting-Hearts: 11
   Maximum-Hearts: 20
   Hearts-Lost-Per-Death: 1
   Escalating-Loss: false
@@ -110,10 +110,10 @@ Lifesteal:
 | Key | Default | Meaning |
 |---|---|---|
 | `Enabled` | `true` | Offer lifesteal as a third option. `false` returns the screen to Hardcore / Normal. |
-| `Starting-Hearts` | `10` | Hearts a run starts with, and returns to after a ban. 10 is vanilla full health. |
+| `Starting-Hearts` | `11` | Hearts a run starts with, and returns to after a ban. One above the vanilla ten, so the mode carries a small advantage; set it to `10` for the classic balance. |
 | `Maximum-Hearts` | `20` | Ceiling, so an admin grant cannot push someone past a sane maximum. |
 | `Hearts-Lost-Per-Death` | `1` | Hearts one death costs. |
-| `Escalating-Loss` | `false` | `true` makes each death cost more than the last. Ten hearts then last about four deaths. |
+| `Escalating-Loss` | `false` | `true` makes each death cost more than the last. Eleven hearts then last five deaths. |
 | `Maximum-Loss-Per-Death` | `3` | Cap on that escalation, as a multiple of the base. Ignored when escalation is off. |
 | `Ban-At-Hearts` | `0` | Hearts at or below which the ban fires. |
 | `Restore-Hearts-On-Ban` | `true` | Give a banned player a full bar back. `false` is permanent elimination. |

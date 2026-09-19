@@ -1,15 +1,17 @@
 ---
 title: "Lifesteal"
-description: "The graduated version of hardcore. A lifesteal player starts with ten hearts and loses one every time they die. The ban only arrives once there are none…"
+description: "The graduated version of hardcore. A lifesteal player starts with eleven hearts and loses one every time they die. The ban only arrives once there are none…"
 ---
 
-The graduated version of hardcore. A lifesteal player starts with ten hearts and loses one every time they die. The ban only arrives once there are none left — same ending, reached over a run of deaths rather than one.
+The graduated version of hardcore. A lifesteal player starts with eleven hearts and loses one every time they die. The ban only arrives once there are none left — same ending, reached over a run of deaths rather than one.
+
+Eleven, not ten: `Starting-Hearts` ships one heart above vanilla, so picking the only mode whose hearts can be taken away buys a small head start rather than nothing but a downside. Set it to `10` for the classic balance.
 
 ```
-death #1  ❤❤❤❤❤❤❤❤❤♡   9 left
-death #2  ❤❤❤❤❤❤❤❤♡♡   8 left
+death #1  ❤❤❤❤❤❤❤❤❤❤♡  10 left
+death #2  ❤❤❤❤❤❤❤❤❤♡♡   9 left
    ...
-death #10 ♡♡♡♡♡♡♡♡♡♡   banned for 24h, back with a full bar
+death #11 ♡♡♡♡♡♡♡♡♡♡♡   banned for 24h, back with a full bar
 ```
 
 ## The bar stays down
@@ -44,18 +46,18 @@ The sweep only writes when the value has actually drifted, so on a server where 
 
 ```yaml
 Lifesteal:
-  Starting-Hearts: 10
+  Starting-Hearts: 11
   Hearts-Lost-Per-Death: 1
   Escalating-Loss: false
   Maximum-Loss-Per-Death: 3
 ```
 
-**Flat (default).** Every death costs one heart. Ten hearts is ten deaths. This is what Lifesteal means on every other server, which is why it is the default.
+**Flat (default).** Every death costs one heart. Eleven hearts is eleven deaths. This is what Lifesteal means on every other server, which is why it is the default.
 
-**Escalating.** The first death costs `Hearts-Lost-Per-Death`, the second twice that, the third three times, capped at `Maximum-Loss-Per-Death` multiples. Ten hearts then last about four deaths — a very different game, so switch it on deliberately.
+**Escalating.** The first death costs `Hearts-Lost-Per-Death`, the second twice that, the third three times, capped at `Maximum-Loss-Per-Death` multiples. Eleven hearts then last five deaths — a very different game, so switch it on deliberately.
 
 ```
-flat:        1  1  1  1  1  1  1  1  1  1     → 10 deaths
+flat:        1  1  1  1  1  1  1  1  1  1  1  → 11 deaths
 escalating:  1  2  3  3  3                    → 5 deaths (cap 3)
 ```
 
@@ -71,13 +73,13 @@ Lifesteal:
   Restore-Hearts-On-Ban: true
 ```
 
-**The refill happens when the ban lands, not when the player dies.** That ordering is deliberate: refilling on the death itself would hand a full bar to a player whose ban failed to apply — dying on your last heart would cost nothing and give you ten hearts back. If the ban cannot be issued, the hearts stay spent and the console says why.
+**The refill happens when the ban lands, not when the player dies.** That ordering is deliberate: refilling on the death itself would hand a full bar to a player whose ban failed to apply — dying on your last heart would cost nothing and give you the whole bar back. If the ban cannot be issued, the hearts stay spent and the console says why.
 
 Turn `Restore-Hearts-On-Ban` off and a banned player returns at zero, so their next death bans them again — permanent elimination in practice.
 
 ## Stealing hearts back
 
-Killing another player gives a lifesteal killer a heart back, up to `Maximum-Hearts` — so a run is recoverable, and can climb past the ten it started with.
+Killing another player gives a lifesteal killer a heart back, up to `Maximum-Hearts` — so a run is recoverable, and can climb past the eleven it started with.
 
 ```yaml
 Lifesteal:
