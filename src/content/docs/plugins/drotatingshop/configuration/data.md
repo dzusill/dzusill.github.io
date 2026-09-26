@@ -1,12 +1,13 @@
 ---
 title: "data.yml"
-description: "plugins/dRotatingShop/data.yml holds runtime state — the current rotation, live stock, per-player purchases, and the one-time seed flag. It is written…"
+description: "plugins/dRotatingShop/data.yml holds runtime state — the current rotation, live stock, per-player purchases, and the one-time seed flags. It is written…"
 ---
 
-`plugins/dRotatingShop/data.yml` holds **runtime state** — the current rotation, live stock, per-player purchases, and the one-time seed flag. It is written automatically and **should not be edited by hand**.
+`plugins/dRotatingShop/data.yml` holds **runtime state** — the current rotation, live stock, per-player purchases, and the one-time seed flags. It is written automatically and **should not be edited by hand**.
 
 ```yaml
 seeded: true                       # the first-run price seed has happened
+seed-names-repaired: true          # seeded names from older builds have been re-cased
 rotation:
   started-at: 1700000000000        # epoch millis of the current rotation (drives the open window too)
   active-items:                    # ids on sale this rotation
@@ -25,6 +26,7 @@ player-purchases:                  # per-player buys this rotation (cleared each
 ## What uses it
 
 - **`seeded`** records that the one-time [price seed](/plugins/drotatingshop/configuration/default-prices/) ran, so it never re-seeds automatically. (`/dshop seed` ignores this flag.)
+- **`seed-names-repaired`** records that display names mis-cased by older builds (`Enchanted Book (lure Ii)`) were fixed in `items.yml`, so that pass runs once. See [Default Prices](/plugins/drotatingshop/configuration/default-prices/#enchanted-books).
 - **`started-at`** drives the countdown, the [open window](/plugins/drotatingshop/features/opening-hours/), and the restart-resume: on boot dRotatingShop continues the same rotation with the time it had left. See [Rotations](/plugins/drotatingshop/features/rotations/).
 - **`active-items`** is re-shown after a restart (ids are resolved back against the current pool).
 - **`stock-remaining`** and **`player-purchases`** restore live [stock and limits](/plugins/drotatingshop/features/stock-and-limits/) exactly as they were.

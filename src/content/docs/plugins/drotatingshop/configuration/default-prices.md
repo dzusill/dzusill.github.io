@@ -30,7 +30,7 @@ For each entry, the seeder writes an [items.yml](/plugins/drotatingshop/configur
 | items.yml field | Source |
 |---|---|
 | `material` | the entry **key** (e.g. `jungle_log` → `JUNGLE_LOG`) |
-| `display-name` | `name`, title-cased |
+| `display-name` | `name`, title-cased (a roman-numeral level is uppercased whole: `ii` → `II`) |
 | `price` | `unit_buy` |
 | `stock` | `seed.default-stock` from [config.yml](/plugins/drotatingshop/configuration/config/) (default `64`) |
 | `per-player-limit` | `seed.default-per-player-limit` (default `8`) |
@@ -53,7 +53,7 @@ enchanted_book_fortune_3:
 ```yaml
 # seeded into items.yml
 enchanted_book_fortune_3:
-  display-name: "Enchanted Book (Fortune Iii)"
+  display-name: "Enchanted Book (Fortune III)"
   material: ENCHANTED_BOOK
   enchantments:
     fortune: 3
@@ -63,6 +63,8 @@ enchanted_book_fortune_3:
 The name is split at the **last** underscore, so `enchanted_book_bane_of_arthropods_5` reads as Bane of Arthropods V. It must be the enchantment's **registry** name — `binding_curse`, not `curse_of_binding` — or the entry is skipped like an unknown material.
 
 > Books were skipped entirely before this, because `enchanted_book_fortune_3` matches no Bukkit material. If your `items.yml` was seeded on an older build, run `/dshop seed` to add them; existing ids are never overwritten.
+
+> Older builds also mis-cased these names — `Enchanted Book (lure Ii)` instead of `Enchanted Book (Lure II)`, and a lowercase `(extended)` on potions. The first start after updating fixes them in `items.yml` once, but only names still exactly as they were seeded; any name you've edited is left alone.
 
 After the first seed, the live pool is [items.yml](/plugins/drotatingshop/configuration/items/) — edit prices there. `prices_1_21.yml` is only consulted by the seed.
 
