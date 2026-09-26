@@ -26,7 +26,7 @@ Hold something: what one of it is worth, and — on a stack of more than one —
 ```
 /sell          a menu to drop items into — close it to sell
 /sell hand     sell the stack in your hand
-/sellall       sell everything sellable in your inventory
+/sellall       sell everything sellable in your inventory — it shows the total and asks first
 /sell auto     toggle selling items as you pick them up
 ```
 

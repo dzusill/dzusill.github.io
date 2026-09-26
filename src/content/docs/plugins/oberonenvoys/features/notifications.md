@@ -4,7 +4,7 @@ description: "Four channels, each switchable independently. All the text lives i
 ---
 
 Four channels, each switchable independently. All the text lives in
-[messages.yml](/plugins/oberonsupplydrops/configuration/messages/).
+[messages.yml](/plugins/oberonenvoys/configuration/messages/).
 
 ```yaml
 notifications:
@@ -18,7 +18,7 @@ notifications:
     radius: 150
 ```
 
-Only players holding `oberonsupplydrops.notify` receive any of it. That node is deliberately separate
+Only players holding `oberonenvoys.notify` receive any of it. That node is deliberately separate
 from the commands, so staff can mute drops without losing access to them.
 
 ## Routing one event somewhere else
@@ -49,8 +49,10 @@ section behaves exactly as it did before the setting existed.
 
 **Routing also picks the wording.** Chat and the action bar carry different text on purpose — a chat
 line can afford a tier name and coordinates, an action bar is one short row. Sending an event to
-`ACTION_BAR` therefore uses its `action-bar.*` message rather than the `drop.*` one. The three events
-with no short wording of their own (`first-open`, `emptied`, `expired`) reuse their chat line.
+`ACTION_BAR` therefore uses its `action-bar.*` message rather than the `drop.*` one — every one of
+the six events has its own, and none ever borrows its chat line. That matters if you type your brand
+into each chat line by hand instead of using `<prefix>`: it stays in chat and never reaches the
+action bar.
 
 `title` and `sound` are separate switches and are not affected by routing.
 
@@ -66,10 +68,18 @@ Inbound, landed and unlocked. Each is sent to every enabled channel:
 | Chat | `drop.inbound`, `drop.landed`, `drop.unlocked` (and their `-located` variants) |
 | Title | `title.inbound` + `title.inbound-subtitle`, and the same for landed and unlocked |
 | Action bar | `action-bar.inbound`, `action-bar.landed`, `action-bar.unlocked` |
-| Sound | The `announce`, `land` and `unlock` [aliases](/plugins/oberonsupplydrops/configuration/sounds/) |
+| Sound | The `announce`, `land` and `unlock` [aliases](/plugins/oberonenvoys/configuration/sounds/) |
 
 Announcement sounds play at each listener's own position rather than at the crate — a sound everyone
 is meant to hear must not fade with distance from a drop nobody has reached yet.
+
+First-open, emptied and expired have a chat line and an action-bar line, no title and no sound:
+
+| Event | Chat | Action bar | Extra token |
+|---|---|---|---|
+| first-open | `drop.first-open` | `action-bar.first-open` | `{player}` |
+| emptied | `drop.emptied` | `action-bar.emptied` | — |
+| expired | `drop.expired` | `action-bar.expired` | — |
 
 ## The proximity action bar
 
@@ -121,8 +131,8 @@ picked up on the next tick.
 ```
 
 Switches every announcement to its variant without a position, and hides coordinates from
-`/supplydrop active` for non-staff. The beam, the boss bar, the proximity action bar and
-`/supplydrop locate` still work, so the drop is a hunt rather than a guess.
+`/envoy active` for non-staff. The beam, the boss bar, the proximity action bar and
+`/envoy locate` still work, so the drop is a hunt rather than a guess.
 
 ## Turning it down
 
@@ -131,7 +141,7 @@ Switches every announcement to its variant without a position, and hides coordin
 | No chat spam, keep the show | `chat: false` |
 | Nothing on screen but the bar | `title: false`, `action-bar: false` |
 | Silence | `sound: false`, or `enabled: false` in `sounds.yml` |
-| Nothing at all for a rank | Revoke `oberonsupplydrops.notify` |
+| Nothing at all for a rank | Revoke `oberonenvoys.notify` |
 
 The beam, hologram and crate are world state and stay visible regardless — they are not
 notifications.

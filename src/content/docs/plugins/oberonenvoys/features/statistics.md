@@ -25,8 +25,8 @@ puts something back. Comparing totals is the only version that is right for all 
 ## In game
 
 ```
-/supplydrop top      the leaderboard menu
-/supplydrop stats    your own totals
+/envoy top      the leaderboard menu
+/envoy stats    your own totals
 ```
 
 The menu is styled from `gui/top.yml` and shows the viewer's own row in the bottom row, ranked or
@@ -62,4 +62,4 @@ unaffected — nothing in the event lifecycle depends on storage being there.
 
 ## Placeholders
 
-See [Placeholders](/plugins/oberonsupplydrops/reference/placeholders/) for the full list.
+See [Placeholders](/plugins/oberonenvoys/reference/placeholders/) for the full list.

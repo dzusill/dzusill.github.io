@@ -67,4 +67,4 @@ Blocking clears the result slot, so the rename simply does not happen.
 
 Cooldown, flood and duplicate detection apply to **chat only**. A rate limit on sign text or an anvil rename would mean nothing.
 
-The word filter and the caps check apply everywhere.
+The word filter and the caps check apply everywhere. The [repeated-characters check](/plugins/oberonchat/features/anti-spam/) applies to chat and the watched commands by default — signs, books and anvils are off, because they often use `======` as dividers; `Repeated-Characters.Sources` turns each one on or off.

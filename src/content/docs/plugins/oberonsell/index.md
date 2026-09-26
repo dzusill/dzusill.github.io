@@ -35,7 +35,8 @@ Purpur and Folia.
 - ✨ **Enchantments are worth money** — an Efficiency V, Unbreaking III pickaxe sells for the pickaxe price
   plus what those enchantments are worth. See [Enchantment Worth](/plugins/oberonsell/features/enchantment-worth/).
 - 🛒 **Five ways to sell** — `/sell` (menu), `/sell hand`, `/sellall`, a sell axe, and
-  [auto-sell on pickup](/plugins/oberonsell/features/auto-sell/).
+  [auto-sell on pickup](/plugins/oberonsell/features/auto-sell/). `/sellall` shows the total and asks before it sells, and
+  leaves worn armour and the offhand alone. See [Selling](/plugins/oberonsell/features/selling/#your-whole-inventory).
 - 🔒 **Paid before items are taken** — the deposit lands first and a refused deposit aborts the sale, so an
   economy plugin can never eat an inventory. Per-container locks and a click cooldown stop a double payout.
 - 🪄 **`/setworth` on anything** — vanilla, enchanted, custom-model-data, or a sword from MMOItems, Oraxen,

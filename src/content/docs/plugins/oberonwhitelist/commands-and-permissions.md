@@ -120,6 +120,10 @@ Puts a player in that group. When several match, the highest `priority` wins.
 
 Not needed if your LuckPerms group names already match your group names — see [Groups & Ranks](/plugins/oberonwhitelist/features/groups/).
 
+## On the proxy
+
+The Velocity jar has its own admin command, `/oberonwhitelistproxy` (`/obwp`, `/owp`), with `reload`, `check`, `simulate` and `groups`. It reads the same permission nodes — but a proxy has no operators, so `oberonwhitelist.admin` and `oberonwhitelist.bypass` have to be granted there through LuckPerms. See [Velocity Proxy](/plugins/oberonwhitelist/features/velocity-proxy/#obwp).
+
 ## Who is never filtered
 
-The console, command blocks and RCON never pass through the whitelist. It applies to players only.
+The console, command blocks and RCON never pass through the whitelist. It applies to players only. On the proxy, the proxy console is never filtered either.

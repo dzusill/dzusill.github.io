@@ -29,6 +29,12 @@ sounds:
 | `rank_up` | a category tier is unlocked |
 | `error` | nothing sellable, a blacklisted world, an expired axe |
 | `category_click` | a category is clicked on the multiplier page |
+| `sellall-open` | the sell-all confirmation opens |
+| `sellall-confirm` | Confirm is clicked and the sell-all goes ahead |
+| `sellall-cancel` | the sell-all confirmation is cancelled or closed without selling |
+
+The three `sellall-*` names are what [`gui/sellall-confirm.yml`](/plugins/oberonsell/configuration/guis/#guisellall-confirmyml--sell-all-confirmation)
+ships with; that file decides which name each moment plays, so they can be pointed anywhere.
 
 ## Sound names
 

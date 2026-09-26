@@ -39,7 +39,16 @@ spam:
   duplicate: "<prefix><red>You already said that."
   flood: "<prefix><red>You are sending messages too fast."
   too-long: "<prefix><red>That message is too long <gray>(%length%/%max%)</gray>."
+  repeated: "<prefix><red>Don't stretch it — at most <gray>%max%</gray> of the same character in a row."
+  collapsed: "<prefix><gray>No need to stretch it — cut down to <white>%max%</white> in a row."
+  repeat-warned: "<prefix><yellow>Easy on the stretching — <gray>%max%</gray> in a row is plenty."
 ```
+
+The last three belong to the [repeated-characters check](/plugins/oberonchat/features/anti-spam/#repeated-characters),
+one per `Action`: blocked, shortened, warned. In those, `%max%` is `Max-Repeats` — how many in a row are allowed.
+
+> The stretched character itself is deliberately not a placeholder. Messages are parsed as MiniMessage, so a player
+> holding down `<` would be writing markup into their own feedback.
 
 ## Staff alert
 
@@ -59,7 +68,7 @@ staff:
     anvil: "<dark_gray> — renamed in an anvil"
 ```
 
-`%reason%` is `word:<the rule>` or `spam:flood` and so on.
+`%reason%` is `word:<the rule>`, `caps`, `spam:flood`, `spam:repeated` and so on.
 
 ### Saying where it was typed
 

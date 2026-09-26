@@ -18,7 +18,7 @@ discarded.
 
 ## worlds
 
-A list. A world that is not on it is never used, and `/supplydrop spawn` in it is refused.
+A list. A world that is not on it is never used, and `/envoy spawn` in it is refused.
 
 ## placement
 
@@ -36,7 +36,7 @@ A list. A world that is not on it is never used, and `/supplydrop spawn` in it i
 | `regions.whitelist` | `[]` | A site must be in one of these; empty allows anywhere |
 | `regions.blacklist` | `[]` | A site in any of these is rejected — **wins over the whitelist** |
 
-See [WorldGuard regions](/plugins/oberonsupplydrops/features/regions/) for the overlap rules.
+See [WorldGuard regions](/plugins/oberonenvoys/features/regions/) for the overlap rules.
 
 ## schedule
 
@@ -98,7 +98,7 @@ Beam text and hologram lines live in `messages.yml`; only their geometry is here
 
 Applies only when FancyHolograms is drawing. Any tier may override any of these keys under its own
 `hologram` block, key by key. Full reference, including which values each key accepts and what the
-`ITEM` and `BLOCK` types cost you: [Holograms](/plugins/oberonsupplydrops/features/holograms/).
+`ITEM` and `BLOCK` types cost you: [Holograms](/plugins/oberonenvoys/features/holograms/).
 
 | Key | Default | Meaning |
 |---|---|---|
@@ -133,13 +133,13 @@ Applies only when FancyHolograms is drawing. Any tier may override any of these 
 | `title` | `true` | On-screen titles |
 | `action-bar` | `true` | Action-bar line for the three announcements |
 | `sound` | `true` | Announcement sounds |
-| `reveal-coordinates` | `true` | Off leaves only the beam, the boss bar and `/supplydrop locate` |
+| `reveal-coordinates` | `true` | Off leaves only the beam, the boss bar and `/envoy locate` |
 | `proximity-bar.enabled` | `true` | Live action-bar countdown for players near a crate |
 | `proximity-bar.radius` | `150` | How close a player must be to see it |
 | `routing.<event>` | follows the switches | Send one event to `CHAT`, `ACTION_BAR`, `BOTH` or `NONE` |
 
 Routable events: `inbound`, `landed`, `unlocked`, `first-open`, `emptied`, `expired`. See
-[Notifications](/plugins/oberonsupplydrops/features/notifications/#routing-one-event-somewhere-else).
+[Notifications](/plugins/oberonenvoys/features/notifications/#routing-one-event-somewhere-else).
 
 ## stats
 
@@ -152,8 +152,8 @@ Routable events: `inbound`, `landed`, `unlocked`, `first-open`, `emptied`, `expi
 
 | Key | Default | Meaning |
 |---|---|---|
-| `locate-enabled` | `true` | Allow `/supplydrop locate` |
-| `aliases` | `[ drops ]` | Extra names for the root command |
+| `locate-enabled` | `true` | Allow `/envoy locate` |
+| `aliases` | `[ envoys ]` | Extra names for the root command. `/supplydrop` and `/drops` work regardless, hidden from tab |
 
 Changing aliases takes a restart: the server's command map is written at startup. A reload says so
 rather than pretending otherwise.

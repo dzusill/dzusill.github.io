@@ -13,7 +13,9 @@ the price formatter and price lookup, and repaints any prices, history or multip
 Needs `oberonsell.admin`.
 
 An open **sell** menu is deliberately left alone: it holds items a player has put in, and a repaint that
-rebuilt its slots would be a repaint that ate them.
+rebuilt its slots would be a repaint that ate them. So is an open **sell-all confirmation**: its summary is
+what the next click sells at, and a repaint would change it without a word. The next one opened uses the
+reloaded files, and `sell-all.*` in `config.yml` applies from the next `/sellall`.
 
 ## What a reload picks up
 

@@ -155,6 +155,19 @@ deposit and only cleared if it still holds exactly what was paid for, a containe
 duration of a sale, and `anti-dupe.click-cooldown-ms` (250 ms) rate-limits GUI sales per player. If your
 economy plugin is slow, raise that number.
 
+### `/sellall` asks for confirmation — can it just sell?
+
+Yes. For everyone: `sell-all.confirm.enabled: false` in [config.yml](/plugins/oberonsell/configuration/config/#sell-all). For
+one rank: grant `oberonsell.sellall.noconfirm`. That node is not part of `oberonsell.*`, so ops are still
+asked — but a LuckPerms `*` grants it. See
+[Skipping the confirmation](/plugins/oberonsell/commands-and-permissions/#skipping-the-sell-all-confirmation).
+
+### `/sellall` left my armour / offhand behind
+
+On purpose: worn armour and the offhand are gear in use, so a sell-all does not take them. Switch
+`sell-all.slots.armor` or `sell-all.slots.offhand` on in [config.yml](/plugins/oberonsell/configuration/config/#sell-all) if
+your server wants them sold.
+
 ### I want a sale message only in the action bar, or not at all
 
 Set its exact key under `Presentation.Overrides` with `Channel: ACTION_BAR` or `Channel: NONE`. Use

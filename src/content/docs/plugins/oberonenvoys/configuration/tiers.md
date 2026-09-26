@@ -3,7 +3,7 @@ title: "tiers.yml"
 description: "Rarity tiers and their loot tables. See Tiers and loot for how the"
 ---
 
-Rarity tiers and their loot tables. See [Tiers and loot](/plugins/oberonsupplydrops/features/tiers-and-loot/) for how the
+Rarity tiers and their loot tables. See [Tiers and loot](/plugins/oberonenvoys/features/tiers-and-loot/) for how the
 rolls work; this page is the key reference.
 
 `tiers` is never default-merged. A tier you delete stays deleted, and the shipped examples are not
@@ -111,7 +111,7 @@ global value, including nested ones.
         sky: 15
 ```
 
-The full key reference is in [Holograms](/plugins/oberonsupplydrops/features/holograms/).
+The full key reference is in [Holograms](/plugins/oberonenvoys/features/holograms/).
 
 ## Choosing the crate block
 

@@ -41,6 +41,8 @@ Registered only when the ticket desk is on and the database is open. See [Ticket
 
 Following somebody else's ticket ships **switched off** (`Tickets.Watchers.Allow-Player-Follow`).
 
+`/ticket notifications` is refused for everyone — and drops out of tab completion and the usage list — while `Tickets.Notifications.Player-Settings` is `false`. See [Notifications](/plugins/oberonstaff/features/notifications/#locking-everyone-to-the-defaults).
+
 `/report` tab-completes the player name, and works with no name at all — the wizard asks who instead. `/ticket thread` prints the [whole conversation](/plugins/oberonstaff/features/conversation/), newest first, with clickable paging.
 
 ## Ticket desk — staff
@@ -230,6 +232,8 @@ Every command's player arguments tab-complete — with vanished players stripped
 | `create` | the categories you may open |
 | `stats` | `today` `week` `month` `all` |
 | `notifications` | the switch names, then `on` / `off` |
+
+`notifications` itself is not offered at all while `Tickets.Notifications.Player-Settings` is `false`, on either command. That is decided as you type rather than at startup, so `/oberonstaff reload` takes it away and brings it back.
 
 Ticket **numbers** are deliberately not completed. Tab completion runs on the main thread on every keystroke, and the only way to know which numbers you may name is to ask the database — so suggesting them would put a query in the hot path of typing. Numbers are read off the queue or off a clickable line in chat, which is where they already come from.
 

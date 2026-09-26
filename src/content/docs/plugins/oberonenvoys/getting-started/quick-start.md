@@ -13,7 +13,7 @@ worlds:
   - "world"
 ```
 
-A world that is not listed is never used, and `/supplydrop spawn` in it is refused.
+A world that is not listed is never used, and `/envoy spawn` in it is refused.
 
 ## 2. Decide where crates land
 
@@ -67,23 +67,23 @@ arrive together, short enough that nobody loses interest.
 ## 5. Try it
 
 ```
-/supplydrop spawn
+/envoy spawn
 ```
 
 Forces a drop immediately, exactly as the scheduler would make it. Add a tier name to force a
 specific one, or `here` to put it at your feet:
 
 ```
-/supplydrop spawn legendary
-/supplydrop spawn legendary here
+/envoy spawn legendary
+/envoy spawn legendary here
 ```
 
-Then `/supplydrop preview` to see what players see before they commit to the run.
+Then `/envoy preview` to see what players see before they commit to the run.
 
 ## 6. Make the loot yours
 
 `tiers.yml` ships a working three-tier example. Change the item lists, keep the shape. See
-[Tiers and loot](/plugins/oberonsupplydrops/features/tiers-and-loot/).
+[Tiers and loot](/plugins/oberonenvoys/features/tiers-and-loot/).
 
 ## Common first adjustments
 
@@ -92,5 +92,5 @@ Then `/supplydrop preview` to see what players see before they commit to the run
 | Drops nobody can find in time | Lower `placement.radius`, or raise `phases.unlock-seconds` |
 | A harder hunt | `notifications.reveal-coordinates: false` |
 | Less chat noise | `notifications.chat: false` — the boss bar and beam still show |
-| Drops only in one area | `placement.mode: ZONES`, then `/supplydrop zone add <name> <radius>` |
+| Drops only in one area | `placement.mode: ZONES`, then `/envoy zone add <name> <radius>` |
 | No falling-crate show | `phases.descent.enabled: false` |

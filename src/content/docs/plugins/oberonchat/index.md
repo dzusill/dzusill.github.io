@@ -36,7 +36,7 @@ Most word filters compare what a player typed against a list. That fails the mom
 |---|---|
 | Server | Paper, Purpur or Folia **1.21.x** |
 | Java | **21** |
-| DzusillCore | **1.5.0** or newer — required |
+| OberonCore (DzusillCore) | **1.11.0** or newer — required |
 | PlaceholderAPI | optional |
 
 See [Requirements](/plugins/oberonchat/getting-started/requirements/).

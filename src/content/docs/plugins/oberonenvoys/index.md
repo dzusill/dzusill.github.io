@@ -1,9 +1,9 @@
 ---
-title: "OberonSupplyDrops"
-description: "Scheduled supply drop events for Paper, built on OberonCore."
+title: "OberonEnvoys"
+description: "Scheduled envoy events for Paper, built on OberonCore."
 ---
 
-Scheduled supply drop events for Paper, built on OberonCore.
+Scheduled envoy events for Paper, built on OberonCore.
 
 A crate falls from the sky on a schedule you control. The whole server sees it coming, a countdown
 runs while everyone races for it, and then it opens — to everybody at once. There is no owner and no
@@ -30,8 +30,8 @@ them.
 
 ## Where to start
 
-New install: [Installation](/plugins/oberonsupplydrops/getting-started/installation/), then
-[Quick start](/plugins/oberonsupplydrops/getting-started/quick-start/).
+New install: [Installation](/plugins/oberonenvoys/getting-started/installation/), then
+[Quick start](/plugins/oberonenvoys/getting-started/quick-start/).
 
-Tuning an existing one: [The drop lifecycle](/plugins/oberonsupplydrops/features/drop-lifecycle/) explains what each timing
+Tuning an existing one: [The drop lifecycle](/plugins/oberonenvoys/features/drop-lifecycle/) explains what each timing
 actually controls.

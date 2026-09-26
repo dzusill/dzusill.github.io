@@ -80,9 +80,9 @@ Create one from where you stand — reading coordinates off a map is exactly the
 from using the feature:
 
 ```
-/supplydrop zone add northern-wastes 400
-/supplydrop zone list
-/supplydrop zone remove northern-wastes
+/envoy zone add northern-wastes 400
+/envoy zone list
+/envoy zone remove northern-wastes
 ```
 
 A zone can restrict which tiers may land in it:
@@ -119,9 +119,9 @@ Turn on `general.debug` to see exactly why each candidate was rejected.
 ## Forcing one
 
 ```
-/supplydrop spawn                     roll a tier and search for a site, as the scheduler would
-/supplydrop spawn legendary           the same, with the tier chosen
-/supplydrop spawn legendary here      at your feet, skipping the search entirely
+/envoy spawn                     roll a tier and search for a site, as the scheduler would
+/envoy spawn legendary           the same, with the tier chosen
+/envoy spawn legendary here      at your feet, skipping the search entirely
 ```
 
 `here` skips validation on purpose: somebody standing where they want the crate has already made the

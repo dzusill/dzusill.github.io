@@ -96,9 +96,9 @@ Menu plugins usually claim a few command names of their own (`/menu`, `/links`) 
 
 ## Clickable chat messages
 
-The same reasoning covers `run_command` click events in chat, and Velocity's clickable-message callback.
+The same reasoning covers `run_command` click events in chat: the command runs as the player, so it belongs in `execute-only` unless their rank already grants it.
 
-`/velocity:callback` ships in the default `execute-only` list. Leave it there — removing it breaks every clickable message the proxy sends.
+Velocity's clickable-message callback, `/velocity:callback`, is the exception. The proxy answers it itself and it never reaches this server, so what keeps clickable proxy messages working is the entry in the **proxy** config — see [Velocity Proxy](/plugins/oberonwhitelist/features/velocity-proxy/#clickable-messages-velocitycallback). The same line in this config's default `execute-only` does no harm.
 
 ## Checking one button
 

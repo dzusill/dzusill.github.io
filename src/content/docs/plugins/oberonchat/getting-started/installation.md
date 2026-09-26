@@ -9,7 +9,7 @@ description: "Drop DzusillCore.jar and OberonChat.jar into plugins/ and restart.
 
 ```
 plugins/
-├── DzusillCore.jar     # 1.5.0 or newer — the framework
+├── OberonCore.jar      # 1.11.0 or newer — the framework (DzusillCore, built for Oberon)
 └── OberonChat.jar
 ```
 

@@ -1,11 +1,11 @@
 ---
 title: "Anti-Spam & Caps"
-description: "Cooldown, near-duplicate detection, flood window, message length and the caps check — each switchable on its own, each with its own weight."
+description: "Cooldown, near-duplicate detection, flood window, message length, the caps check and repeated characters — each switchable on its own."
 ---
 
-Five checks, all independent. Switch any of them off and the rest keep working.
+Six checks, all independent. Switch any of them off and the rest keep working.
 
-Anti-spam applies to **chat only** — a rate limit on a sign or an anvil rename would mean nothing. The caps check applies everywhere.
+Anti-spam applies to **chat only** — a rate limit on a sign or an anvil rename would mean nothing. The caps check applies everywhere. Repeated characters apply to chat and commands.
 
 ## Cooldown
 
@@ -100,6 +100,72 @@ The old Skript version did this by looping over every online player for every me
 
 `LOWERCASE` keeps the conversation flowing while taking the shouting out of it, and tends to annoy people less than an outright block.
 
+## Repeated characters
+
+`Hiiiiiii`, `!!!!!!!`, the same emoji six times. At most five of one character may stand in a row; the sixth is a hit.
+
+```yaml
+Repeated-Characters:
+  Enabled: true
+  Max-Repeats: 5
+  Ignore-Digits: true
+  Ignore-Characters: ""
+  Ignore-Player-Names: true
+  Ignore-Urls: true
+  Action: BLOCK
+  Alert-Staff: false
+  Record-Violation: false
+  Weight: 1
+  Sources:
+    Chat: true
+    Commands: true
+    Signs: false
+    Books: false
+    Anvil: false
+```
+
+| Message | Result |
+|---|---|
+| `Hiiiii` | passes — five is the most allowed |
+| `Hiiiiii` | blocked |
+| `HiIiIiI` | blocked — upper and lower case are the same letter |
+| `!!!!!!`, `??????`, 😂😂😂😂😂😂 | blocked — punctuation, symbols and emoji count too |
+| `1000000` | passes — digits never count, and they end a run |
+| `a a a a a a` | passes — a space ends a run |
+| `Hi&ai&ai&ai&ai&ai` | blocked — colour codes are read out first, and every player sees `Hiiiiii` |
+
+### What it leaves alone
+
+- **Digits.** A price like `1000000` is not spam. `Ignore-Digits: false` counts them like anything else.
+- **Player names.** A word that is an online player's name is skipped, with or without an `@` or a comma around it — somebody is bound to be called `xXxXxXx`.
+- **Links.** A word starting `http://`, `https://` or `www.` is skipped. One that merely *contains* `www.` is not a link: `awwwwwww.` is still a hit.
+- **Characters you list.** `Ignore-Characters: ".=-"` allows `......` and `======`. Keep the quotes. A listed character never counts and still ends a run, so `aaa.aaa` is two runs of three.
+- **The censor character.** A long word the filter starred out is a run of `*` the player never typed, so it is never taken for spam.
+
+Invisible characters — zero-width spaces, joiners, skin-tone modifiers — are passed over *without* ending a run. Otherwise one zero-width space between every letter would hide any stretch while looking exactly the same in chat.
+
+### Three actions
+
+| `Action` | What happens |
+|---|---|
+| `BLOCK` | message is never sent |
+| `COLLAPSE` | every run is cut down to `Max-Repeats` and the message is sent — `Hiiiiiiii` arrives as `Hiiiii` |
+| `WARN` | message is sent as typed, the player is asked to stop |
+
+### Spam, not abuse
+
+By default a stretched message is stopped and the player is told why — and that is all. **No staff alert and nothing recorded**: no entry in `/oberonchat history`, no points towards a punishment. `Alert-Staff` and `Record-Violation` switch either one on; `Weight` only counts with `Record-Violation`.
+
+A stretch never cancels anything else in the same message. `darn itttttttt`, with `darn` set to `WARN`, is blocked for the stretch — and staff still hear about `darn`, under `word:darn` rather than the stretch.
+
+### Where it applies
+
+Chat and commands. Signs, books and anvils are off because people decorate them with `======` and `------` on purpose.
+
+`Commands` means the commands listed under `Sources.Commands`, and a source switched off at the top of the file is never read at all, whatever `Repeated-Characters.Sources` says. Unlike the top-level `Sources`, these apply on `/oberonchat reload`.
+
+> It runs **before** the anti-spam checks. Those remember every message they let through, so a block that came afterwards would still start the cooldown — and the corrected `Hi` would be refused for coming too soon.
+
 ## Bypass permissions
 
 | Node | Skips |
@@ -107,12 +173,13 @@ The old Skript version did this by looping over every online player for every me
 | `oberonchat.bypass.spam` | cooldown, flood and duplicate |
 | `oberonchat.bypass.length` | the length limit |
 | `oberonchat.bypass.caps` | the caps check |
+| `oberonchat.bypass.repeat` | the repeated-characters check |
 | `oberonchat.bypass.filter` | the word filter |
 
 A bypassed check **never runs** — it is not merely ignored on the way out. Staff with a spam bypass never see a wait, and their messages still land in the history the other checks read.
 
 ## One complaint per message
 
-If a message trips both the word filter and the caps check, the player is told about the **first** one only — word filter before caps. Two complaints about one message reads like a malfunction.
+If a message trips more than one check and still goes through, the player is told about the **first** one only — word filter, then caps, then repeated characters. Two complaints about one message reads like a malfunction. If one of them stops the message, that is the one they hear about: it is why nothing was sent.
 
 Both weights still count towards the violation total.

@@ -16,9 +16,9 @@ keep in sync and no conflict with another plugin's `/sell` unless it also regist
 | `/worth gui` | `list`, `prices` | `oberonsell.gui` | The price list, spelled out |
 | `/sell` | | `oberonsell.sell` | Open the drop-items-in-here menu |
 | `/sell hand` | | `oberonsell.sell` | Sell the held stack |
-| `/sell all` | `inventory`, `everything` | `oberonsell.sell` | Sell your whole inventory |
+| `/sell all` | `inventory`, `everything` | `oberonsell.sellall` | Sell your whole inventory, after a [confirmation](/plugins/oberonsell/features/selling/#the-confirmation) |
 | `/sell auto` | `autosell` | `oberonsell.autosell` | Toggle selling items as you pick them up |
-| `/sellall` | | `oberonsell.sell` | Shorthand for `/sell all` |
+| `/sellall` | | `oberonsell.sellall` | Shorthand for `/sell all` |
 | `/sellgui` | `/sellmenu` | `oberonsell.sellgui` | Drop-items-in-here menu |
 | `/sellhistory [player]` | `/worthhistory` | `oberonsell.history` | What you have sold |
 | `/selltop [money\|items] [page]` | `/sellleaderboard` | `oberonsell.selltop` | The all-time sell leaderboard |
@@ -157,6 +157,7 @@ One node per feature, so a rank can carry individual features.
 | `oberonsell.gui` | everyone | The prices GUI |
 | `oberonsell.sell` | everyone | `/sell`, `/sell hand` |
 | **`oberonsell.sellall`** | **nobody** | `/sellall` and `/sell all` |
+| `oberonsell.sellall.noconfirm` | nobody | Sell-all without the confirmation menu. Not granted by `oberonsell.*` — see [below](#skipping-the-sell-all-confirmation) |
 | `oberonsell.sellgui` | everyone | `/sellgui` |
 | `oberonsell.history` | everyone | Own sell history |
 | `oberonsell.history.others` | op | Anyone's sell history |
@@ -169,7 +170,7 @@ One node per feature, so a rank can carry individual features.
 | `oberonsell.sellaxe` | op | `/sellaxe` — handing axes out |
 | `oberonsell.admin` | op | `/oberonsell` and its subcommands |
 | `oberonsell.admin.reset` | op | `resethistory`, `resetmultiplier` |
-| `oberonsell.*` | op | All of the above |
+| `oberonsell.*` | op | All of the above except `oberonsell.sellall.noconfirm` |
 
 `oberonsell.autosell` is checked on every pickup as well as on the toggle, so revoking it stops an
 already-opted-in player from being auto-sold for.
@@ -194,6 +195,30 @@ lp group default permission set oberonsell.sellaxe.use true
 ```
 
 Nothing else changed default, so no rank loses anything it already had.
+
+### Skipping the sell-all confirmation
+
+`/sellall` and `/sell all` open a [confirmation menu](/plugins/oberonsell/features/selling/#the-confirmation) before selling
+anything. A player with `oberonsell.sellall.noconfirm` skips it and sells straight away:
+
+```bash
+lp group vip permission set oberonsell.sellall.noconfirm true
+```
+
+It ships off, and it is deliberately **not** a child of `oberonsell.*` in `plugin.yml` — so an op, who holds
+`oberonsell.*` by default, is still asked. An admin can lose a stack to a sell-all as easily as anyone, so
+skipping the question has to be granted by name.
+
+> **LuckPerms wildcards still match it.** LuckPerms resolves wildcards itself rather than through
+> `plugin.yml`'s children, so a group holding `*` — and, with LuckPerms' default `apply-wildcards: true`,
+> a group given `oberonsell.*` in LuckPerms — has this node like any other and is never asked. To keep the
+> confirmation for such a group, set the node to false on it explicitly:
+>
+> ```bash
+> lp group admin permission set oberonsell.sellall.noconfirm false
+> ```
+
+To stop asking everyone instead, set [`sell-all.confirm.enabled: false`](/plugins/oberonsell/configuration/config/#sell-all).
 
 ### Two pairs that look like one node
 

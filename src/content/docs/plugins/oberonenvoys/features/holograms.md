@@ -4,7 +4,7 @@ description: "The floating label above a crate. Two backends draw it, and the te
 ---
 
 The floating label above a crate. Two backends draw it, and the text comes from the same place
-either way — `hologram.locked` and `hologram.open` in [messages.yml](/plugins/oberonsupplydrops/configuration/messages/).
+either way — `hologram.locked` and `hologram.open` in [messages.yml](/plugins/oberonenvoys/configuration/messages/).
 
 ## Choosing a backend
 
@@ -137,7 +137,7 @@ Both are accepted for completeness. To hide drops from players, turn holograms o
 
 ## Per-tier overrides
 
-Any tier in [tiers.yml](/plugins/oberonsupplydrops/configuration/tiers/) may override any of those keys under its own
+Any tier in [tiers.yml](/plugins/oberonenvoys/configuration/tiers/) may override any of those keys under its own
 `hologram` block. The merge is **key by key**: a tier that sets only `scale` keeps every other global
 value.
 

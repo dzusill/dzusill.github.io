@@ -23,7 +23,7 @@ been wrong for a week:
 | `TierParserTest` | That a typo costs one entry, not the whole file |
 | `StatsServiceTest` | Claim vs item counting, leaderboard order, ranks |
 | `DropLifecycleTest` | The full lifecycle on a mock server, including protection and the open claim race |
-| `OberonSupplyDropsEnableTest` | The plugin boots, every shipped config parses, commands register |
+| `OberonEnvoysEnableTest` | The plugin boots, every shipped config parses, commands register |
 
 Two design decisions exist to make this possible:
 
@@ -53,7 +53,7 @@ that no listener throws.
 
 ## Adding a test
 
-Lifecycle tests belong in `me.dzusill.oberonsupplydrops.drop` — `tick(long)` is package-private, and
+Lifecycle tests belong in `me.dzusill.oberonenvoys.drop` — `tick(long)` is package-private, and
 that is where the seam is meant to be used.
 
 Anything that only decides *what* should happen (rolls, schedules, placement rules) should be

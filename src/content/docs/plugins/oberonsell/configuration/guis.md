@@ -1,9 +1,9 @@
 ---
 title: "GUIs"
-description: "Five files under gui/. The first four share a shape: a title, and an items section of named icons."
+description: "Six files under gui/. All but one share a shape: a title, and an items section of named icons."
 ---
 
-Five files under `gui/`. The first four share a shape: a `title`, and an `items` section of named icons.
+Six files under `gui/`. All but one share a shape: a `title`, and an `items` section of named icons.
 `sell-top.yml` is its own thing and is documented at the bottom.
 
 Every icon takes the same keys:
@@ -178,6 +178,89 @@ Anything unsellable is handed straight back — into the inventory if there is r
 feet if not.
 
 Leave `collect_slots` out entirely and the whole menu is usable.
+
+---
+
+## gui/sellall-confirm.yml — sell-all confirmation
+
+What `/sellall` and `/sell all` show before selling anything, while
+[`sell-all.confirm.enabled`](/plugins/oberonsell/configuration/config/#sell-all) is `true`. Nothing is sold until `confirm` is clicked;
+`cancel`, or closing the menu, sells nothing. See [Selling](/plugins/oberonsell/features/selling/#the-confirmation).
+
+```yaml
+title: "ᴄᴏɴғɪʀᴍ sᴇʟʟ ᴀʟʟ"
+rows: 3
+fill-material: "BLACK_STAINED_GLASS_PANE"
+open-sound: sellall-open
+close-sound: sellall-cancel
+
+top-items:
+  count: 5
+  line: "&8▪ &f{amount}x {item} &7- #00F986{price}"
+  more: "&7...and {more} more"
+
+items:
+  summary:
+    name: "#00F986sᴇʟʟ ᴀʟʟ"
+    lore:
+      - "&7You get: #00F986{price}"
+      - "&7Items: &f{amount} &7({items} kinds)"
+      - "&7Multiplier: &f{multiplier}"
+      - ""
+      - "&7Most valuable:"
+      - "{topItems}"
+    material: "CHEST"
+    slot: 13
+  confirm:
+    material: "LIME_STAINED_GLASS_PANE"
+    slot: 15
+    sound: sellall-confirm
+  cancel:
+    material: "RED_STAINED_GLASS_PANE"
+    slot: 11
+    sound: sellall-cancel
+```
+
+Three rows: cancel, summary and confirm across the middle, glass everywhere else.
+
+| Icon | Does |
+|---|---|
+| `summary` | shows the sale. Not a button — clicking it does nothing |
+| `confirm` | sells, then closes the menu. Plays its `sound` |
+| `cancel` | closes the menu and sells nothing. Plays its `sound` |
+
+Any other entry is placed as a decorative icon, and can quote the sale too.
+
+Every icon's `name` and `lore` take these tokens:
+
+| Token | |
+|---|---|
+| `{price}` | what the sale pays, the player's multipliers included |
+| `{amount}` | how many items it takes |
+| `{items}` | how many different kinds of item |
+| `{multiplier}` | the sale's multipliers overall — payout over list price, e.g. `1.5x` |
+| `{topItems}` | on a lore line of its own: one line per kind, most valuable first |
+
+`{topItems}` is not replaced inside a line — the line holding it is repeated once per kind, drawn from
+`top-items`:
+
+| Key | Default | |
+|---|---|---|
+| `top-items.count` | `5` | how many kinds are listed; `0` lists none |
+| `top-items.line` | `&8▪ &f{amount}x {item} &7- #00F986{price}` | one kind: its `{item}` name, `{amount}` and `{price}` |
+| `top-items.more` | `&7...and {more} more` | added when more kinds are sold than listed; blank for none |
+
+| Sound key | Default | Played when |
+|---|---|---|
+| `open-sound` | `sellall-open` | the menu opens |
+| `close-sound` | `sellall-cancel` | the menu is closed without a click on it — Escape, or another menu opening over it |
+
+The title takes no tokens: it is drawn once, as the menu opens, and could not follow the figures if they
+changed.
+
+**The summary is what the next click sells.** If the player's inventory changes while the menu is open, a
+click on `confirm` redraws every icon with the new figures, sends `sellall.changed` and sells nothing; the
+next click sells at what is on screen. Which slots are counted is [`sell-all.slots`](/plugins/oberonsell/configuration/config/#sell-all).
 
 ---
 

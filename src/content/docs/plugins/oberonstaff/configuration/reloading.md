@@ -24,6 +24,7 @@ If that number is lower than you expect, an entry in `Ranks` is missing its `Per
 - Whether the action log is written
 - Every message
 - **The whole ticket desk**: categories, priorities, timings, canned replies, follower rules, notification defaults, punishment actions, report settings, and `This-Server-Only`
+- **`Tickets.Notifications.Player-Settings`**, both ways — the refusal, the tab completion and the usage line all follow it on the next keystroke
 - `menus.yml` and `sounds.yml` — a menu picks up its new layout the next time it is opened
 
 ## Needs a restart
@@ -40,7 +41,7 @@ That includes switching one off to make room for EssentialsX — edit, then rest
 
 - **Who currently has staff chat mode or `/tptoggle` on.** Those are player choices, not config.
 - **`/back` locations.** They live in memory and survive a reload.
-- **Notification switches players set for themselves.** Changing a default under `Tickets.Notifications.Defaults` moves everybody who never opened `/ticket notifications`, and leaves alone everybody who did — which is what changing a default should mean.
+- **Notification switches players set for themselves.** Changing a default under `Tickets.Notifications.Defaults` moves everybody who never opened `/ticket notifications`, and leaves alone everybody who did — which is what changing a default should mean. `Player-Settings: false` does not clear them either: it sets them aside, and they come back when it is `true` again.
 - **A wizard somebody is halfway through.** They finish the questions they were asked, even if you just edited that category.
 - **Open menus.** Close and reopen to see a new layout.
 

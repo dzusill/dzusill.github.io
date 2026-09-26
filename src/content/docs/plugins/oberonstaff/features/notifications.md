@@ -42,7 +42,7 @@ Any MiniMessage `<click:>` and `<hover:>` works here. Player-typed text inside a
 
 ## What a player can switch off
 
-`/ticket notifications` opens a menu of switches. Each is per-player and stored in the database, so it survives restarts and name changes.
+`/ticket notifications` opens a menu of switches. Each is per-player and stored in the database, so it survives restarts and name changes — unless the owner has [locked everyone to the defaults](#locking-everyone-to-the-defaults).
 
 | Switch | Default | What it controls |
 |---|---|---|
@@ -74,6 +74,7 @@ This is for teams with specialists. Give a build team `oberonstaff.ticket.notify
 Tickets:
   Notifications:
     Enabled: true
+    Player-Settings: true      # false locks everyone to these — see below
     Announce: BROADCAST        # or STAFF_CHAT, or BOTH
     Defaults:
       Reply: true
@@ -85,6 +86,7 @@ Tickets:
       New-Ticket: true
       New-Report: true
       Stale-Warning: true
+      Rated: true
       Own-Categories-Only: false
 ```
 
@@ -92,6 +94,36 @@ Tickets:
 Change one of these and reload, and it moves **everybody who never opened the menu**. Anyone who set that switch for themselves keeps their choice.
 
 The plugin records "this player has chosen" separately from the value, which is what makes that possible — otherwise a first login would be indistinguishable from somebody asking to be left alone.
+:::
+
+---
+
+## Locking everyone to the defaults
+
+For a server that wants its staff alerted about every ticket, with no way to opt out:
+
+```yaml
+Tickets:
+  Notifications:
+    Player-Settings: false
+```
+
+One switch, for players and staff alike. With it off:
+
+- **Everybody gets the `Defaults` above**, whatever they chose before. With the shipped `New-Ticket`, `New-Report` and `Rated` on, every staff member is told about every new ticket and rating, and every report they may open — including anyone who had muted them. *My categories only* falls back to its default too, so nobody is narrowed to their own categories.
+- **`/ticket notifications` and `/tickets notifications` are refused**, the menu and the `<switch> [on|off]` form alike:
+
+  > Notification settings are managed by the server.
+
+  That line is `notify.disabled` in `messages.yml`.
+- **The subcommand disappears** from tab completion and from the `/ticket` usage list.
+
+Nothing is deleted. Choices people made earlier are ignored, not cleared, and nothing is written while the lock is on — set `Player-Settings` back to `true` and everybody gets back exactly what they had picked.
+
+It applies on `/oberonstaff reload`, tab completion included. No restart.
+
+:::note
+The usage line is dropped by what it says — any line that shows `/ticket notifications` or `/ticket notify` — so it also disappears from a `messages.yml` written before this switch existed. If you reworded that line, keep the command in it.
 :::
 
 ---
@@ -149,7 +181,7 @@ Ticket-Closed: BLOCK_NOTE_BLOCK_BELL
 | `Wizard-Step` | A wizard answer was accepted |
 | `Error` | An answer was rejected, or an action refused |
 
-A sound name this server does not know plays nothing rather than erroring, so a typo costs you a sound and not a working ticket desk. Players can silence all of them with `/ticket notifications`.
+A sound name this server does not know plays nothing rather than erroring, so a typo costs you a sound and not a working ticket desk. Players can silence all of them with `/ticket notifications` — unless `Player-Settings` is off, when `Defaults.Sounds` decides for everyone.
 
 ---
 

@@ -104,11 +104,11 @@ regions:
   nothing or block everything.
 - The check runs **last** among the cheap placement rules, so a candidate that fails on height or
   surface never reaches WorldGuard's region index.
-- Rules are read once per spawn attempt, so `/supplydrop reload` takes effect on the next drop with
+- Rules are read once per spawn attempt, so `/envoy reload` takes effect on the next drop with
   nothing to restart.
 - If every whitelisted region is also blacklisted, no site can ever be accepted. That is detected and
   logged as a warning on load rather than silently producing a server where drops never appear.
-- `/supplydrop spawn ... here` bypasses this, like every other placement rule. Somebody standing
+- `/envoy spawn ... here` bypasses this, like every other placement rule. Somebody standing
   where they want the crate has already made the decision.
 
 ## Zones versus regions
@@ -117,7 +117,7 @@ They solve different halves of the same problem and work together:
 
 | | Does |
 |---|---|
-| [Drop zones](/plugins/oberonsupplydrops/features/scheduling-and-zones/) | Chooses **where to look** — the search area a candidate is sampled from |
+| [Drop zones](/plugins/oberonenvoys/features/scheduling-and-zones/) | Chooses **where to look** — the search area a candidate is sampled from |
 | Region rules | Decides **whether a candidate is acceptable** once found |
 
 Zones need no other plugin and are created in game. Region rules reuse the areas you have already
@@ -130,7 +130,7 @@ it and every attempt lands somewhere usable.
 Turn on `general.debug` and force a drop:
 
 ```
-/supplydrop spawn
+/envoy spawn
 ```
 
 Every rejected candidate is logged with its reason, `blocked by the region rules` among them.

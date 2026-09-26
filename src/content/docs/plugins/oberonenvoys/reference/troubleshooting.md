@@ -10,7 +10,7 @@ general:
   debug: true
 ```
 
-Then `/supplydrop reload` and `/supplydrop spawn`. Every rejected landing site is logged with the
+Then `/envoy reload` and `/envoy spawn`. Every rejected landing site is logged with the
 reason it was discarded, and every phase transition is logged as it happens.
 
 ## No drops ever spawn
@@ -19,14 +19,14 @@ Work down this list — it is ordered by how often each one is the answer.
 
 | Check | How |
 |---|---|
-| Is a tier defined? | `/supplydrop preview`. An empty menu means `tiers.yml` has nothing usable — the console said so at startup |
+| Is a tier defined? | `/envoy preview`. An empty menu means `tiers.yml` has nothing usable — the console said so at startup |
 | Is the world enabled? | `worlds` in `config.yml` must contain the world's exact name |
 | Are enough players online? | `schedule.min-online-players` defaults to 1, so an empty server gets nothing |
-| Is a schedule enabled? | `/supplydrop next`. "No drop is scheduled" means both `interval.enabled` and `fixed.enabled` are off |
-| Is the limit already reached? | `/supplydrop active`. `max-active` caps simultaneous crates |
-| Can a site be found? | `/supplydrop spawn` with debug on — the log names every rejection |
+| Is a schedule enabled? | `/envoy next`. "No drop is scheduled" means both `interval.enabled` and `fixed.enabled` are off |
+| Is the limit already reached? | `/envoy active`. `max-active` caps simultaneous crates |
+| Can a site be found? | `/envoy spawn` with debug on — the log names every rejection |
 
-If `/supplydrop spawn` works but the schedule never fires, it is one of the two gates: player count
+If `/envoy spawn` works but the schedule never fires, it is one of the two gates: player count
 or `max-active`.
 
 ## "Placement is set to ZONES but no drop zone is defined"
@@ -35,7 +35,7 @@ Exactly what it says: `placement.mode` is `ZONES` and `zones.yml` is empty, so t
 put a crate. Stand where the drops should land and run:
 
 ```
-/supplydrop zone add <name> <radius>
+/envoy zone add <name> <radius>
 ```
 
 Older builds reported this as *"Drops are not enabled in world"*, which blamed the wrong file — the
@@ -46,7 +46,7 @@ world was always fine.
 The placeholder is not lying — the cycle fired and was declined. The console names the reason:
 
 ```
-[INFO] No supply drop this cycle: fewer than 5 players are online
+[INFO] No envoy this cycle: fewer than 5 players are online
        (schedule.min-online-players). Retrying rather than waiting out the whole interval;
        this is logged once until the reason changes.
 ```
@@ -65,7 +65,7 @@ The two that catch people out:
 - **A WorldGuard whitelist on a build older than 1.1.** Those sampled the ring around spawn and then
   rejected anything outside the region — a 200-block arena is 0.34% of the default ring, so almost
   every cycle ran out of attempts. Since 1.1 the whitelist drives the search itself; see
-  [WorldGuard regions](/plugins/oberonsupplydrops/features/regions/#a-whitelist-drives-the-search-not-just-filters-it).
+  [WorldGuard regions](/plugins/oberonenvoys/features/regions/#a-whitelist-drives-the-search-not-just-filters-it).
 
 A declined cycle is retried after `schedule.retry-seconds` (120 by default) rather than forfeiting
 the whole interval, so the countdown restarting at two minutes instead of four hours is the fix
@@ -78,10 +78,10 @@ The debug log names the rule. The common ones:
 | Reason | Fix |
 |---|---|
 | `y … is outside the … band` | Widen `min-y`/`max-y`. A superflat or a heavily terraformed world often sits outside the default 45–200 |
-| `surface is WATER` | Expected on an ocean-heavy map — raise `max-attempts`, or use [drop zones](/plugins/oberonsupplydrops/features/scheduling-and-zones/) over land |
+| `surface is WATER` | Expected on an ocean-heavy map — raise `max-attempts`, or use [drop zones](/plugins/oberonenvoys/features/scheduling-and-zones/) over land |
 | `outside the world border` | `radius` is larger than the border |
 | `no sky access` | Nether or a roofed world — set `require-sky-access: false` |
-| `blocked by the region rules` | See [WorldGuard regions](/plugins/oberonsupplydrops/features/regions/); check the blacklist is not swallowing the whitelist |
+| `blocked by the region rules` | See [WorldGuard regions](/plugins/oberonenvoys/features/regions/); check the blacklist is not swallowing the whitelist |
 | `within … blocks of an active drop` | `min-distance-between-drops` is large relative to `radius` |
 
 `min-distance` larger than `radius` makes the search band empty and nothing will ever be accepted.
@@ -92,12 +92,12 @@ Three dials, in the order worth trying:
 
 1. Lower `placement.radius`. A 5,000-block radius with a two-minute countdown means nobody arrives.
 2. Raise `phases.unlock-seconds`.
-3. Switch to [drop zones](/plugins/oberonsupplydrops/features/scheduling-and-zones/) around the areas people actually play
+3. Switch to [drop zones](/plugins/oberonenvoys/features/scheduling-and-zones/) around the areas people actually play
    in.
 
 ## Nobody sees the announcements
 
-- The `oberonsupplydrops.notify` permission is what gates every announcement, the title and the boss
+- The `oberonenvoys.notify` permission is what gates every announcement, the title and the boss
   bar. It defaults to everyone, so a permission plugin has usually negated it.
 - Check the channel switches under `notifications` in `config.yml`.
 - An empty message in `messages.yml` is treated as "hide this".
@@ -153,7 +153,7 @@ and every entity is tagged.
 If one does survive:
 
 ```
-/supplydrop clear
+/envoy clear
 ```
 
 removes every crate the plugin currently knows about. For a leftover from an older run, break it: a
@@ -194,7 +194,7 @@ PlaceholderAPI has to be installed, and the expansion registers itself at startu
 
 ## A config change did nothing
 
-- `/supplydrop reload` re-reads every file.
+- `/envoy reload` re-reads every file.
 - Command aliases are the exception: the server's command map is written at startup, so those need a
   restart.
 - A drop already in flight keeps the timings it started with. Only the schedule is recomputed.

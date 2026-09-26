@@ -5,13 +5,13 @@ description: "It is deliberately not part of use. Staff who run drops all day ca
 
 | Node | Default | Grants |
 |---|---|---|
-| `oberonsupplydrops.use` | everyone | `/supplydrop`, `/supplydrop active`, `/supplydrop stats` |
-| `oberonsupplydrops.preview` | everyone | `/supplydrop preview` |
-| `oberonsupplydrops.next` | everyone | `/supplydrop next` |
-| `oberonsupplydrops.locate` | everyone | `/supplydrop locate` |
-| `oberonsupplydrops.top` | everyone | `/supplydrop top` |
-| `oberonsupplydrops.notify` | everyone | Receives drop announcements, titles and the boss bar |
-| `oberonsupplydrops.admin` | operator | `spawn`, `open`, `clear`, `zone`, `reload`, and coordinates in `/supplydrop active` |
+| `oberonenvoys.use` | everyone | `/envoy`, `/envoy active`, `/envoy stats` |
+| `oberonenvoys.preview` | everyone | `/envoy preview` |
+| `oberonenvoys.next` | everyone | `/envoy next` |
+| `oberonenvoys.locate` | everyone | `/envoy locate` |
+| `oberonenvoys.top` | everyone | `/envoy top` |
+| `oberonenvoys.notify` | everyone | Receives drop announcements, titles and the boss bar |
+| `oberonenvoys.admin` | operator | `spawn`, `open`, `clear`, `zone`, `reload`, and coordinates in `/envoy active` |
 
 ## Why `notify` is separate
 
@@ -27,7 +27,7 @@ hologram and the crate itself are world state and stay visible to everyone.
 Each player-facing subcommand has its own node, so a rank can lose the leaderboard while keeping the
 preview, or vice versa.
 
-The staff subcommands all share `oberonsupplydrops.admin`. They are destructive in the same way —
+The staff subcommands all share `oberonenvoys.admin`. They are destructive in the same way —
 `spawn` puts a block in the world, `open` hands out its loot early, `clear` takes several out, `zone`
 and `reload` change what the scheduler does next — so splitting them further would be more
 configuration than protection.

@@ -12,6 +12,10 @@ const sidebar = JSON.parse(
 export default defineConfig({
   // dzusill.github.io is a user/org site -> served at the domain root (no `base`).
   site: 'https://dzusill.github.io',
+  // OberonSupplyDrops was renamed OberonEnvoys in 2.0 — old links should still land on its docs.
+  redirects: {
+    '/plugins/oberonsupplydrops': '/plugins/oberonenvoys/',
+  },
   integrations: [
     starlight({
       title: 'dzusill plugins',

@@ -68,6 +68,8 @@ There is no separate "total" key. One line carries the sum.
 | `sell.gui_summary` | `{price}`, `{amount}`, `{items}` |
 | `sell.gui_nothing` | — |
 | `sell.nothing` / `sell.hand_empty` | — |
+| `sellall.changed` | `{price}`, `{amount}`, `{items}` — the new figures, after Confirm was clicked on a sell-all whose inventory had changed. Nothing was sold |
+| `sellall.cancelled` | `{price}`, `{amount}`, `{items}` — what the cancelled sell-all would have been |
 | `world_blacklist` | — |
 | `gamemode_blocked` | `{gamemode}` |
 | `no_economy` | — |
@@ -126,6 +128,14 @@ you add a category.
 `no-permission`, `players-only`, `console-only`, `unknown-command`, `invalid-usage` `{usage}`,
 `invalid-number` `{input}`, `player-not-found` `{name}`, `reload-success`, `reload-failed`,
 `command-error`.
+
+## Empty messages
+
+An empty message is sent as an empty line — a blank line in chat, not silence. To silence a key, give it
+`Channel: NONE` under [`Presentation.Overrides`](#chat-action-bar-and-disabling-messages).
+
+The two sell-all confirmation keys, `sellall.changed` and `sellall.cancelled`, are the exception: set either
+to `""` and nothing at all is sent.
 
 ## Lists
 

@@ -110,9 +110,17 @@ Two caveats worth knowing. A command that *runs* obviously reveals itself. And a
 
 ## Does it work on a proxy network?
 
-It runs on the backend and filters what players type there.
+Yes, in two halves. `OberonWhitelist.jar` on each backend filters what players type there. Commands the proxy answers itself — Velocity's `/server`, `/velocity` and `/velocity:callback`, a proxy plugin's `/geyser` — never reach a backend, so they are covered by `OberonWhitelistProxy.jar` on Velocity, with the same ranks and the same error.
 
-Proxy-level commands (Velocity's `/server`, `/glist`) never reach a backend, so they cannot be filtered here — use the proxy's own permissions. `/velocity:callback` ships in `execute-only` because clickable messages need it.
+LuckPerms has to run on the proxy as well, on the same storage — see [Velocity Proxy](/plugins/oberonwhitelist/features/velocity-proxy/).
+
+## I promoted someone and their proxy commands are still not in tab
+
+A known limit, and a short-lived one. The new rank applies to running proxy commands at once, but the proxy cannot send a player a new command tree — it only filters the one a backend sends. Their tab list catches up at their next server switch, or straight away if you run `/obw reload` on the backend, which resends every online player's tree.
+
+## Staff with the bypass see no proxy commands at all
+
+Check `velocity.toml` for `announce-proxy-commands = false`. With it off, Velocity never adds its commands to anyone's tab list, so there is nothing to show even to the bypass. It is a stopgap for before the proxy jar is installed — set it back to `true`.
 
 ## What about console and command blocks?
 

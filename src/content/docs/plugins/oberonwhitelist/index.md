@@ -53,12 +53,19 @@ A player buys `/fly` and the permission goes on them, not on a rank. Rather than
 
 → [Per-Player Perks](/plugins/oberonwhitelist/features/permission-grants/)
 
+## Proxy commands are covered too
+
+Velocity answers `/server`, `/velocity` and its plugins' commands itself, so they never reach the backend — and it adds them to tab completion after the backend has filtered it. A companion jar on the proxy applies the same ranks and the same error to exactly those commands.
+
+→ [Velocity Proxy](/plugins/oberonwhitelist/features/velocity-proxy/)
+
 ## Requirements
 
 * **Paper** 1.21 or newer (Folia supported)
 * **Java** 21 or newer
-* **OberonCore / DzusillCore** 1.11.0 or newer — install this first
+* **OberonCore / DzusillCore** 1.12.1 or newer — install this first
 * *Optional:* LuckPerms, to resolve ranks from primary groups
+* *Optional:* Velocity 3.3+ with LuckPerms, for the proxy jar
 
 → [Requirements](/plugins/oberonwhitelist/getting-started/requirements/)
 
@@ -68,5 +75,6 @@ A player buys `/fly` and the permission goes on them, not on a rank. Rather than
 * [Quick Start](/plugins/oberonwhitelist/getting-started/quick-start/)
 * [Migrating from PerfCommandWhitelist](/plugins/oberonwhitelist/getting-started/migrating/)
 * [Menu & Dialog Plugins](/plugins/oberonwhitelist/features/menu-plugins/)
+* [Velocity Proxy](/plugins/oberonwhitelist/features/velocity-proxy/)
 * [Commands & Permissions](/plugins/oberonwhitelist/commands-and-permissions/)
 * [config.yml](/plugins/oberonwhitelist/configuration/config/)

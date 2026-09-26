@@ -46,7 +46,7 @@ cannot accidentally leak the position through a message it forgot to edit.
 | `{tier}` | Everywhere — the tier's `display-name`, already coloured |
 | `{tier_colour}` | The tier's `colour` as an opening tag, e.g. `<#F11800>` |
 | `{tier_name}` | The tier's name with all formatting stripped |
-| `{time}` | Formatted countdown, e.g. `3h 4m 2s` — see [Placeholders](/plugins/oberonsupplydrops/reference/placeholders/#server-state) |
+| `{time}` | Formatted countdown, e.g. `3h 4m 2s` — see [Placeholders](/plugins/oberonenvoys/reference/placeholders/#server-state) |
 | `{time_long}` | The same countdown spelled out, e.g. `3 hours 4 minutes 2 seconds` |
 | `{seconds}` | The same as a bare number |
 | `{world}`, `{x}`, `{y}`, `{z}` | The crate's position |
@@ -58,10 +58,10 @@ Put `{tier_colour}` after `{tier}` and the tier's colour continues into the word
 the next colour tag takes over:
 
 ```yaml
-inbound: "<prefix><white>A {tier}{tier_colour} supply drop is inbound — impact in <#00F986>{seconds}s."
+inbound: "<prefix><white>A {tier}{tier_colour} envoy is inbound — impact in <#00F986>{seconds}s."
 ```
 
-`Stellar` renders in its gradient, then **supply drop is inbound** continues in the tier's solid
+`Stellar` renders in its gradient, then **envoy is inbound** continues in the tier's solid
 colour, and `{seconds}` switches to green.
 
 ## Picking a countdown form
@@ -99,7 +99,7 @@ one at a glance:
 
 ```yaml
 title:
-  inbound: "{tier_colour}<bold>SUPPLY DROP"
+  inbound: "{tier_colour}<bold>ENVOY"
 ```
 
 Swap it for a fixed tag like `<#C21807>` to go back to one brand colour for every tier.

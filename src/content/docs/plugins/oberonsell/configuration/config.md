@@ -279,6 +279,42 @@ auto-sell:
 left on the ground rather than sold. Players opt in individually with `/sell auto`, and need
 `oberonsell.autosell`. See [Auto-Sell](/plugins/oberonsell/features/auto-sell/).
 
+## sell-all
+
+```yaml
+sell-all:
+  confirm:
+    enabled: true
+  slots:
+    hotbar: true
+    main: true
+    armor: false
+    offhand: false
+```
+
+How `/sellall` and `/sell all` behave.
+
+| Key | Default | What it does |
+|---|---|---|
+| `confirm.enabled` | `true` | Show a confirmation menu first. `false` sells straight away, as before 1.1 |
+| `slots.hotbar` | `true` | Take the hotbar, slots 0–8 |
+| `slots.main` | `true` | Take the main inventory, slots 9–35 |
+| `slots.armor` | `false` | Take the armour being worn, slots 36–39 |
+| `slots.offhand` | `false` | Take the offhand, slot 40 |
+
+**The confirmation** shows what the sale pays, how many items it takes and the most valuable of them, and
+sells nothing until **Confirm** is clicked; **Cancel** or closing the menu sells nothing. Its layout is
+[`gui/sellall-confirm.yml`](/plugins/oberonsell/configuration/guis/#guisellall-confirmyml--sell-all-confirmation). Players with
+`oberonsell.sellall.noconfirm` are never asked, whatever this is set to — see
+[Skipping the confirmation](/plugins/oberonsell/commands-and-permissions/#skipping-the-sell-all-confirmation).
+
+**The slots**: anything outside the chosen ones is never sold, priced or touched, whatever it is worth. Worn
+armour and the offhand ship off because they are gear in use, not loot: before 1.1 a sell-all walked every
+slot, and a priced chestplate or an offhand totem went with the cobblestone.
+
+Both are read on every sell-all, so a reload applies to the next one. See
+[Selling](/plugins/oberonsell/features/selling/#your-whole-inventory).
+
 ## anti-dupe
 
 ```yaml

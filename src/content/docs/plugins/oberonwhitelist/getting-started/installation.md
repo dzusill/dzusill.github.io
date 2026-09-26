@@ -7,7 +7,7 @@ description: "Drop in both jars, start the server, and check the startup warning
 
 ```
 plugins/
-  OberonCore.jar          ← 1.11.0 or newer, and it goes in first
+  OberonCore.jar          ← 1.12.1 or newer, and it goes in first
   OberonWhitelist.jar
 ```
 
@@ -71,3 +71,9 @@ It reads your menu plugin's config and tells you which of its commands need to b
 Staff with `oberonwhitelist.bypass` skip the whitelist entirely and keep unfiltered tab completion. It is also how you avoid locking yourself out while you are still setting the ranks up.
 
 → [Quick Start](/plugins/oberonwhitelist/getting-started/quick-start/)
+
+## 7. If players connect through Velocity
+
+Commands the proxy answers itself — `/server`, `/velocity`, `/velocity:callback`, a proxy plugin's `/geyser` — never reach this server, so this jar cannot filter them. `OberonWhitelistProxy.jar` on the proxy covers exactly those, with the same ranks and the same error.
+
+→ [Velocity Proxy](/plugins/oberonwhitelist/features/velocity-proxy/)

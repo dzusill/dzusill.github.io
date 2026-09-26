@@ -61,7 +61,7 @@ pool holds simply gives the whole pool.
 That last sentence is also the trap: draw the whole pool and the weights stop meaning anything,
 because everything is drawn anyway. Two entries weighted 10 and 90 with `rolls: 2` both appear in
 100% of crates. The plugin warns about it at startup; the fix and the alternative are in
-[tiers.yml](/plugins/oberonsupplydrops/configuration/tiers/#the-trap-weights-that-cannot-matter).
+[tiers.yml](/plugins/oberonenvoys/configuration/tiers/#the-trap-weights-that-cannot-matter).
 
 **Choosing between the two.** `guaranteed` + `chance` is an independent coin flip per item — use it
 for "this appears in 5% of crates". The pool is a competition — use it for "each crate gets two of
@@ -109,5 +109,5 @@ stop feeling like a roll after the third one.
 
 A mistake costs exactly what it touches, never more. An unknown material costs that entry; a tier
 with no usable loot costs that tier; the rest of the file still loads, and the console names the file
-and the key. A server that refuses to run supply drops because of one typo is worse than one that
+and the key. A server that refuses to run envoys because of one typo is worse than one that
 runs them with a line missing and says so.

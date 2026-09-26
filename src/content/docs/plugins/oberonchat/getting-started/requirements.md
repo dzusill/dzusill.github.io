@@ -16,14 +16,14 @@ Folia is supported (`folia-supported: true`).
 
 ## DzusillCore
 
-**Required.** OberonChat is a plugin *on* the framework, not a copy of it — `DzusillCore.jar` must sit in `plugins/` next to it.
+**Required.** OberonChat is a plugin *on* the framework, not a copy of it — the core jar must sit in `plugins/` next to it. On the Oberon network it ships as `OberonCore.jar`, the same framework built under the network's name.
 
 | | |
 |---|---|
-| Minimum version | **1.5.0** |
+| Minimum version | **1.11.0** (OberonCore 1.14.4 recommended) |
 | Download | [github.com/dzusill/DzusillCore](https://github.com/dzusill/DzusillCore) |
 
-1.5.0 is the version that added the embedded H2 backend OberonChat stores its violation history in. If DzusillCore is missing, the server refuses to enable OberonChat and logs `Unknown/missing dependency: DzusillCore`.
+1.11.0 is the version OberonChat is built against. If the core is missing, the server refuses to enable OberonChat and logs `Unknown/missing dependency: OberonCore`.
 
 ## Optional
 

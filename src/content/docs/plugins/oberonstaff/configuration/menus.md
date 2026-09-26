@@ -390,6 +390,8 @@ Notifications:
 
 `Enabled` / `Disabled`, not `On` / `Off`: a bare `On:` or `Off:` as a YAML **key** parses as a boolean, so the key becomes `true` and nothing ever finds it.
 
+The *My categories only* switch's block is `own-categories`, the name the command takes. Up to 1.6.0 the shipped file called it `categories`, which nothing ever read. From 1.7.0 an `own-categories` block is added to your file on the next start; a leftover `categories:` block does nothing and can be deleted — move any edits you made there across.
+
 ### Click sounds
 
 ```yaml

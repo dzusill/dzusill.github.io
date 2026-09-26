@@ -41,9 +41,9 @@ Reading coordinates off a map and typing them into YAML is exactly the step that
 using zones, so there is a command for it:
 
 ```
-/supplydrop zone add northern-wastes 400
-/supplydrop zone list
-/supplydrop zone remove northern-wastes
+/envoy zone add northern-wastes 400
+/envoy zone list
+/envoy zone remove northern-wastes
 ```
 
 `add` uses your current position and world. Edit the file afterwards to set a weight or restrict

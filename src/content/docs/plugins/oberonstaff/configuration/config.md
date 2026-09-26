@@ -193,7 +193,7 @@ The ticket desk is the largest block in the file. Each part is documented where 
 | `Tickets.Wizard` | dialog or chat | [below](#how-the-wizard-asks) |
 | `Tickets.Admin-GUI` | stale and response targets, default sort and scope, `This-Server-Only` | [Ticket Desk](/plugins/oberonstaff/features/tickets/) |
 | `Tickets.Thread` | page size, rank prefixes, who may read a conversation | [Conversation](/plugins/oberonstaff/features/conversation/) |
-| `Tickets.Notifications` | who is told what, and what is held for somebody offline | [Notifications](/plugins/oberonstaff/features/notifications/) |
+| `Tickets.Notifications` | who is told what, what is held for somebody offline, and whether anybody may change it (`Player-Settings`) | [Notifications](/plugins/oberonstaff/features/notifications/) |
 | `Tickets.Watchers` | following somebody else's ticket | [Ticket Desk](/plugins/oberonstaff/features/tickets/) |
 | `Tickets.Canned-Replies` | `!macro` expansions for `/tickets reply` | [Ticket Desk](/plugins/oberonstaff/features/tickets/) |
 | `Reports.*` | evidence, duplicates, anticheat, punishments | [Player Reports](/plugins/oberonstaff/features/reports/) |

@@ -960,23 +960,23 @@
         ]
       },
       {
-        "label": "🪂 OberonSupplyDrops",
+        "label": "🪂 OberonEnvoys",
         "collapsed": true,
         "items": [
           {
-            "label": "OberonSupplyDrops",
-            "slug": "plugins/oberonsupplydrops"
+            "label": "OberonEnvoys",
+            "slug": "plugins/oberonenvoys"
           },
           {
             "label": "🚀 Getting started",
             "items": [
               {
                 "label": "Installation",
-                "slug": "plugins/oberonsupplydrops/getting-started/installation"
+                "slug": "plugins/oberonenvoys/getting-started/installation"
               },
               {
                 "label": "Quick start",
-                "slug": "plugins/oberonsupplydrops/getting-started/quick-start"
+                "slug": "plugins/oberonenvoys/getting-started/quick-start"
               }
             ]
           },
@@ -985,35 +985,35 @@
             "items": [
               {
                 "label": "The drop lifecycle",
-                "slug": "plugins/oberonsupplydrops/features/drop-lifecycle"
+                "slug": "plugins/oberonenvoys/features/drop-lifecycle"
               },
               {
                 "label": "Tiers and loot",
-                "slug": "plugins/oberonsupplydrops/features/tiers-and-loot"
+                "slug": "plugins/oberonenvoys/features/tiers-and-loot"
               },
               {
                 "label": "Scheduling and placement",
-                "slug": "plugins/oberonsupplydrops/features/scheduling-and-zones"
+                "slug": "plugins/oberonenvoys/features/scheduling-and-zones"
               },
               {
                 "label": "WorldGuard regions",
-                "slug": "plugins/oberonsupplydrops/features/regions"
+                "slug": "plugins/oberonenvoys/features/regions"
               },
               {
                 "label": "The visual layer",
-                "slug": "plugins/oberonsupplydrops/features/effects"
+                "slug": "plugins/oberonenvoys/features/effects"
               },
               {
                 "label": "Holograms",
-                "slug": "plugins/oberonsupplydrops/features/holograms"
+                "slug": "plugins/oberonenvoys/features/holograms"
               },
               {
                 "label": "Notifications",
-                "slug": "plugins/oberonsupplydrops/features/notifications"
+                "slug": "plugins/oberonenvoys/features/notifications"
               },
               {
                 "label": "Statistics and the leaderboard",
-                "slug": "plugins/oberonsupplydrops/features/statistics"
+                "slug": "plugins/oberonenvoys/features/statistics"
               }
             ]
           },
@@ -1022,31 +1022,31 @@
             "items": [
               {
                 "label": "config.yml",
-                "slug": "plugins/oberonsupplydrops/configuration/config"
+                "slug": "plugins/oberonenvoys/configuration/config"
               },
               {
                 "label": "tiers.yml",
-                "slug": "plugins/oberonsupplydrops/configuration/tiers"
+                "slug": "plugins/oberonenvoys/configuration/tiers"
               },
               {
                 "label": "zones.yml",
-                "slug": "plugins/oberonsupplydrops/configuration/zones"
+                "slug": "plugins/oberonenvoys/configuration/zones"
               },
               {
                 "label": "messages.yml",
-                "slug": "plugins/oberonsupplydrops/configuration/messages"
+                "slug": "plugins/oberonenvoys/configuration/messages"
               },
               {
                 "label": "sounds.yml",
-                "slug": "plugins/oberonsupplydrops/configuration/sounds"
+                "slug": "plugins/oberonenvoys/configuration/sounds"
               },
               {
                 "label": "database.yml",
-                "slug": "plugins/oberonsupplydrops/configuration/database"
+                "slug": "plugins/oberonenvoys/configuration/database"
               },
               {
                 "label": "Menus",
-                "slug": "plugins/oberonsupplydrops/configuration/guis"
+                "slug": "plugins/oberonenvoys/configuration/guis"
               }
             ]
           },
@@ -1055,19 +1055,19 @@
             "items": [
               {
                 "label": "Commands",
-                "slug": "plugins/oberonsupplydrops/reference/commands"
+                "slug": "plugins/oberonenvoys/reference/commands"
               },
               {
                 "label": "Permissions",
-                "slug": "plugins/oberonsupplydrops/reference/permissions"
+                "slug": "plugins/oberonenvoys/reference/permissions"
               },
               {
                 "label": "Placeholders",
-                "slug": "plugins/oberonsupplydrops/reference/placeholders"
+                "slug": "plugins/oberonenvoys/reference/placeholders"
               },
               {
                 "label": "Troubleshooting",
-                "slug": "plugins/oberonsupplydrops/reference/troubleshooting"
+                "slug": "plugins/oberonenvoys/reference/troubleshooting"
               }
             ]
           },
@@ -1076,7 +1076,7 @@
             "items": [
               {
                 "label": "Testing",
-                "slug": "plugins/oberonsupplydrops/developing/testing"
+                "slug": "plugins/oberonenvoys/developing/testing"
               }
             ]
           }
@@ -1357,6 +1357,10 @@
               {
                 "label": "Per-Player Perks",
                 "slug": "plugins/oberonwhitelist/features/permission-grants"
+              },
+              {
+                "label": "Velocity Proxy",
+                "slug": "plugins/oberonwhitelist/features/velocity-proxy"
               }
             ]
           },

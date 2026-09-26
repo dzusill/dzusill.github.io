@@ -66,7 +66,8 @@ To stop recording entirely, use `stats.enabled: false` in `config.yml` instead.
 oberonsupplydrops_claims(uuid, name, tier, claims, items, updated_at)
 ```
 
-One row per player per tier, primary key `(uuid, tier)`.
+One row per player per tier, primary key `(uuid, tier)`. The table still carries the plugin's name from
+before 2.0 on purpose — renaming it would leave existing statistics behind in the old table.
 
 That grain is why the whole table is read into memory once at startup: it is bounded by how many
 people have ever opened a crate, and holding it is what lets the leaderboard and every placeholder

@@ -1,6 +1,6 @@
 ---
 title: "Commands & Permissions"
-description: "Base command /oberonchat, aliases /ochat and /oc. Four subcommands, four bypass nodes."
+description: "Base command /oberonchat, aliases /ochat and /oc. Five subcommands, five bypass nodes."
 ---
 
 Base command `/oberonchat`, aliases `/ochat` and `/oc`.
@@ -48,7 +48,8 @@ This is how you verify a rule without a second account and without anybody swear
 | `oberonchat.bypass.caps` | false | Skip the caps check. |
 | `oberonchat.bypass.spam` | false | Skip cooldown, flood and duplicate. |
 | `oberonchat.bypass.length` | false | Skip the message length limit. |
-| `oberonchat.bypass.*` | false | All four bypasses. |
+| `oberonchat.bypass.repeat` | false | Skip the repeated-characters check (`Hiiiiiii`). |
+| `oberonchat.bypass.*` | false | All five bypasses. |
 | `oberonchat.*` | op | Everything above. |
 
 A bypassed check **never runs** — it is not merely ignored afterwards. Staff with a spam bypass never see a wait.
@@ -63,7 +64,9 @@ with automatic punishment shipped off, alerts are how anything reaches your team
 /lp group admin permission set oberonchat.admin true
 ```
 
-Bypasses are deliberately `false` by default, including for ops. Grant them narrowly:
+Bypasses are `false` by default, but **ops hold every one of them** — `oberonchat.*` is granted to ops and carries
+`oberonchat.bypass.*`. So test the filter from a non-op account, or with `/oberonchat check`, which ignores
+bypasses; typing `Hiiiiiii` as op proves nothing. Grant them to groups narrowly:
 
 ```
 /lp group admin permission set oberonchat.bypass.spam true

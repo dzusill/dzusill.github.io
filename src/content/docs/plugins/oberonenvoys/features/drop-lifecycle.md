@@ -71,7 +71,7 @@ The drop ends in one of three ways:
 |---|---|
 | Emptied | The last item is taken, and `phases.despawn-when-empty` is on |
 | Expired | `phases.despawn-seconds` passes with loot still inside |
-| Cleared | Staff ran `/supplydrop clear`, or the plugin shut down |
+| Cleared | Staff ran `/envoy clear`, or the plugin shut down |
 
 Everything the drop created is removed: the crate block, its remaining contents, the hologram, the
 beam and the boss bar.

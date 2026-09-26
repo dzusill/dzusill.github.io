@@ -7,12 +7,12 @@ Two layout files, both restylable without a rebuild.
 
 ## gui/preview.yml
 
-`/supplydrop preview` — one icon per tier, showing the real chance of that tier and everything it can
+`/envoy preview` — one icon per tier, showing the real chance of that tier and everything it can
 contain.
 
 ```yaml
 rows: 3
-title: "<#C21807>◆ <b><gradient:#C21807:#F11800>Supply Drops</gradient></b>"
+title: "<#C21807>◆ <b><gradient:#C21807:#F11800>Envoys</gradient></b>"
 filler:
   item: "BLACK_STAINED_GLASS_PANE"
   name: " "
@@ -44,7 +44,7 @@ and which sums to 100% across the pool.
 
 ## gui/top.yml
 
-`/supplydrop top` — the claim leaderboard.
+`/envoy top` — the claim leaderboard.
 
 ```yaml
 rows: 6

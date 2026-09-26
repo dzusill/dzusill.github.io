@@ -37,7 +37,46 @@ Sells the stack you are holding.
 /sell all       (aliases: inventory, everything)
 ```
 
-Sells everything sellable and leaves everything else alone.
+Sells everything sellable in the hotbar and the main inventory, and leaves everything else alone — **after
+asking**.
+
+### The confirmation
+
+A sell-all is the one sale that takes things you never pointed at, so by default it opens a small menu
+first:
+
+- a **summary** — what the sale pays (your multipliers included), how many items, how many kinds, and the
+  five most valuable kinds with what each fetches
+- **Confirm** — sells exactly that, in one payout, and closes the menu
+- **Cancel** — closes the menu and sells nothing. Pressing Escape does the same
+
+Nothing is sold, taken or rewritten until Confirm is clicked, so cancelling leaves every item exactly as it
+was. While the menu is open your own inventory is frozen: clicks, shift-clicks, drops and drags in it are
+refused, because it is the very thing being priced.
+
+**If the inventory changes anyway** — you pick something up, or another plugin takes something — the next
+click on Confirm does not sell. It redraws the summary with the new figures and tells you so
+(`sellall.changed`); the click after that sells at the figures now on screen. You are never paid a sum you
+were not shown. A double click, or a burst of clicks, is one confirmation: the menu sells once and the
+[`anti-dupe`](/plugins/oberonsell/configuration/config/#anti-dupe) cooldown applies to its button as it does to the sell
+menu's.
+
+Turn it off for everyone with [`sell-all.confirm.enabled: false`](/plugins/oberonsell/configuration/config/#sell-all), or
+for one rank with `oberonsell.sellall.noconfirm` — see
+[Skipping the confirmation](/plugins/oberonsell/commands-and-permissions/#skipping-the-sell-all-confirmation). The menu's
+look, slots and sounds are [`gui/sellall-confirm.yml`](/plugins/oberonsell/configuration/guis/#guisellall-confirmyml--sell-all-confirmation).
+
+With nothing sellable in the inventory there is nothing to confirm: you get `sell.nothing` instead of a
+menu.
+
+### Which slots
+
+**Worn armour and the offhand are not sold** — they are gear in use, not loot, and a sell-all used to take a
+priced chestplate or a totem along with the cobblestone. Which parts of the inventory count is
+[`sell-all.slots`](/plugins/oberonsell/configuration/config/#sell-all); switch `armor` or `offhand` on to include them. The
+confirmation's summary covers the same slots the sale takes, so what it shows is what goes.
+
+### Permission
 
 Both forms need `oberonsell.sellall`, which is **off by default** — it is the node servers hand to a
 rank. The node describes the feature, not the spelling: `/sell all` is the same thing typed differently
@@ -84,11 +123,14 @@ just valued. Each slot is re-read after the payout and cleared only when it stil
 was swapped out mid-sale is left alone rather than destroyed.
 
 **Two locks stop a double payout.** One per container, so two players clicking the same chest cannot both
-sell from it; and a per-player cooldown on GUI sales, `anti-dupe.click-cooldown-ms` (250 ms by default), so
-a player spamming the confirm button cannot start the second sale before the first has removed its items.
+sell from it — a sell-all holds the same lock on the player's own inventory; and a per-player cooldown on
+GUI sales, `anti-dupe.click-cooldown-ms` (250 ms by default), so a player spamming the confirm button cannot
+start the second sale before the first has removed its items.
 
 **Worth lore is stripped first.** An item that picked up a `Worth: $x` line while sitting in a chest is
-valued as its plain self, so a decorated chest sells for exactly the same amount as an undecorated one.
+valued as its plain self, so a decorated chest sells for exactly the same amount as an undecorated one. A
+sell-all strips only the slots it is about to sell, immediately before selling them; the rest of the
+inventory is not rewritten.
 
 **Nothing unpaid-for disappears.** Whatever the payout would not cover comes back to the caller — the
 unpriced items on a normal sale, and every item on a refusal. The sell GUI, which empties its slots before
@@ -133,6 +175,8 @@ Every string is in [messages.yml](/plugins/oberonsell/configuration/messages/):
 | `sell.hand_empty` | `/sell hand` with an empty hand |
 | `items.unsellable` | the held item has no price |
 | `sell.gui_summary` / `sell.gui_nothing` | closing the sell GUI |
+| `sellall.changed` | Confirm clicked after the inventory changed; nothing sold — `{price}`, `{amount}`, `{items}` |
+| `sellall.cancelled` | the sell-all confirmation cancelled or closed. `""` says nothing |
 | `world_blacklist` | selling in a blacklisted world |
 | `gamemode_blocked` | selling in a disabled game mode — `{gamemode}` |
 | `no_economy` | the economy refused the deposit, or none is available |

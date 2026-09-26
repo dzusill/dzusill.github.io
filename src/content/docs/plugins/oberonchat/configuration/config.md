@@ -84,6 +84,46 @@ Caps:
 | `Ignore-Player-Names` | `true` | Skip words that are an online player's name. |
 | `Action` | `BLOCK` | `BLOCK`, `LOWERCASE` or `WARN`. |
 
+## Repeated-Characters
+
+`Hiiiiiii`, `!!!!!!!`, one emoji six times. See [Anti-Spam & Caps](/plugins/oberonchat/features/anti-spam/#repeated-characters).
+
+```yaml
+Repeated-Characters:
+  Enabled: true
+  Max-Repeats: 5
+  Ignore-Digits: true
+  Ignore-Characters: ""
+  Ignore-Player-Names: true
+  Ignore-Urls: true
+  Action: BLOCK
+  Alert-Staff: false
+  Record-Violation: false
+  Weight: 1
+  Sources:
+    Chat: true
+    Commands: true
+    Signs: false
+    Books: false
+    Anvil: false
+```
+
+| Key | Default | What it does |
+|---|---|---|
+| `Max-Repeats` | `5` | Most of one character allowed in a row; one more is a hit. Upper and lower case count as the same letter. |
+| `Ignore-Digits` | `true` | Digits never count and end a run, so `1000000` passes. |
+| `Ignore-Characters` | `""` | Characters that never count, e.g. `".=-"` for `......` and `======`. Keep the quotes. |
+| `Ignore-Player-Names` | `true` | Skip words that are an online player's name. |
+| `Ignore-Urls` | `true` | Skip words starting `http://`, `https://` or `www.`. |
+| `Action` | `BLOCK` | `BLOCK`, `COLLAPSE` (cut every run down to `Max-Repeats` and send it) or `WARN`. |
+| `Alert-Staff` | `false` | Tell staff about a hit. |
+| `Record-Violation` | `false` | Put a hit in the player's history and add `Weight` to their total. |
+| `Weight` | `1` | Points per hit — only counted with `Record-Violation`. |
+| `Sources` | chat, commands | Where it applies. Unlike the top-level `Sources`, this one applies on reload. |
+
+**Off the record by default.** A stretched message is spam, not abuse: the player is told, and that is the whole
+consequence.
+
 ## Spam
 
 Four independent checks, chat only. See [Anti-Spam & Caps](/plugins/oberonchat/features/anti-spam/).
@@ -121,6 +161,12 @@ Who sees them: anyone with `oberonchat.alerts` who has not silenced their own wi
 
 **All four actions by default.** With automatic punishment shipped off, these alerts are the only thing that tells
 staff anything — a `WARN` word nobody hears about might as well not be on the list. Drop `WARN` if it is too noisy.
+
+`On-Actions` is for the word filter. Caps and spam hits always alert; repeated characters have a switch of their
+own, `Repeated-Characters.Alert-Staff`, and ship quiet.
+
+> Before 1.9.0 this list was not honoured — every flagged message alerted, whatever it said. If you trimmed it on an
+> older version, the trim takes effect now.
 
 `Channels` takes the same four keys as [`Feedback`](#four-channels) and decides *where* the alert lands. Chat only
 by default; `Action-Bar` and `Sound` are the two worth turning on if your moderators are usually mid-task and not
@@ -212,7 +258,7 @@ Keys are nested exactly like `messages.yml`:
 |---|---|
 | `filter` | `blocked` `censored` `warned` |
 | `caps` | `blocked` `lowercased` `warned` |
-| `spam` | `cooldown` `duplicate` `flood` `too-long` |
+| `spam` | `cooldown` `duplicate` `flood` `too-long` `repeated` `collapsed` `repeat-warned` |
 
 > Write them **nested**, not as `filter.blocked:`. A dot inside a config key is read by Bukkit as a path separator,
 > so a dotted key silently never loads.
