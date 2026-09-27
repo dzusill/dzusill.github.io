@@ -52,7 +52,8 @@ whoever was nearest wins.
 
 ## 3. Open
 
-The countdown ends and the crate becomes an ordinary container.
+The countdown ends and the crate becomes an ordinary container. The boss bar stays up, now counting
+down to the despawn, until the crate is gone (`bossbar.keep-while-open`).
 
 **There is no owner.** Anyone can open it, anyone can take from it, and nobody is refused. The first
 player to open it is recorded and announced — that is a line in chat and a row on the leaderboard, not

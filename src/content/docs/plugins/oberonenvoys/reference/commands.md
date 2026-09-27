@@ -41,7 +41,8 @@ that wants the hunt to be completely player-driven.
 
 | Command | Does |
 |---|---|
-| `/envoy spawn [tier] [here]` | Force a drop |
+| `/envoy force [tier]` | Run a whole cycle now — as many crates as `schedule.drops-per-cycle` rolls |
+| `/envoy spawn [tier] [here]` | Force a single drop |
 | `/envoy open` | Open every active drop now, skipping its countdown (alias `unlock`) |
 | `/envoy clear` | Remove every active drop and everything it placed |
 | `/envoy zone add <name> [radius]` | Create a drop zone where you stand |
@@ -55,7 +56,7 @@ is the version worth running before an event. `here` puts the crate at your feet
 `open` is the companion to it: `spawn` forces a crate into the world, `open` forces it open. Together
 they check a tier's loot in two commands instead of two minutes of standing around. A crate still
 falling is landed on the way through, so one command is always enough, and everything the normal
-unlock does still happens — the announcement, the sound, the boss bar clearing. A drop opened this
+unlock does still happens — the announcement, the sound, the boss bar switching to its open line. A drop opened this
 way is indistinguishable from one that waited, and still despawns on its own after
 `phases.despawn-seconds`.
 

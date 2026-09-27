@@ -37,6 +37,23 @@ Times are local to `general.timezone`. Daylight-saving changes are handled by th
 adding a duration, so a time inside the spring-forward gap shifts forward instead of firing an hour
 early, and no time fires twice on the autumn night.
 
+### How many per cycle
+
+```yaml
+  drops-per-cycle: "2-4"
+```
+
+How many crates fall each time the timer runs out: one number, or a range rolled fresh every cycle.
+Each crate gets its own tier roll and its own landing site, and they keep
+`placement.min-distance-between-drops` from each other as well as from anything already down.
+
+`max-active` still has the last word. A cycle stops at the limit, and crates still out from the cycle
+before count against it; the console says how many of the rolled crates it dropped and why it
+stopped, and `/envoy debug` flags a range whose top is above `max-active`.
+
+Every crate announces itself, so three at once is three sets of chat lines —
+[routing](/plugins/oberonenvoys/features/notifications/) can move the noisier events to the action bar.
+
 ### Gates
 
 ```yaml
@@ -119,7 +136,9 @@ Turn on `general.debug` to see exactly why each candidate was rejected.
 ## Forcing one
 
 ```
-/envoy spawn                     roll a tier and search for a site, as the scheduler would
+/envoy force                     run a whole cycle now — as many crates as drops-per-cycle rolls
+/envoy force legendary           the same, every crate of the cycle legendary
+/envoy spawn                     one crate: roll a tier and search for a site, as the scheduler would
 /envoy spawn legendary           the same, with the tier chosen
 /envoy spawn legendary here      at your feet, skipping the search entirely
 ```

@@ -21,7 +21,7 @@ hex also work, and can be mixed in one line.
 | `drop.*` | The event itself — inbound, landed, unlocked, first open, emptied, expired, locked, protected |
 | `title.*` | On-screen titles and subtitles for the three announcements |
 | `action-bar.*` | Action-bar lines, when `notifications.action-bar` is on |
-| `bossbar.locked` | The countdown bar's text |
+| `bossbar.locked` / `bossbar.open` | The boss bar while the crate is locked, then after it opens |
 | `hologram.locked` / `hologram.open` | The floating text above the crate, as a list of lines |
 | `command.*` | Every command reply |
 

@@ -49,6 +49,7 @@ See [WorldGuard regions](/plugins/oberonenvoys/features/regions/) for the overla
 | `fixed.times` | `18:00`, `21:00` | 24-hour local times |
 | `fixed.days` | `[]` | Empty means every day |
 | `min-online-players` | `1` | Below this, a scheduled drop is skipped |
+| `drops-per-cycle` | `1` | Crates per cycle: a number, or a range like `"2-4"` rolled fresh each cycle. Capped by `max-active` |
 | `max-active` | `2` | Simultaneous crates across all worlds |
 | `retry-seconds` | `120` | Retry a cycle that could not spawn, instead of forfeiting the interval; `0` waits out the whole interval |
 
@@ -124,6 +125,7 @@ Applies only when FancyHolograms is drawing. Any tier may override any of these 
 | `enabled` | `true` |
 | `color` | `RED` |
 | `style` | `SEGMENTED_10` |
+| `keep-while-open` | `true` — the bar stays up after the unlock until the crate is looted or recovered |
 
 ## notifications
 
@@ -133,7 +135,7 @@ Applies only when FancyHolograms is drawing. Any tier may override any of these 
 | `title` | `true` | On-screen titles |
 | `action-bar` | `true` | Action-bar line for the three announcements |
 | `sound` | `true` | Announcement sounds |
-| `reveal-coordinates` | `true` | Off leaves only the beam, the boss bar and `/envoy locate` |
+| `reveal-coordinates` | `true` | Off leaves only the beam, the boss bar and `/envoy locate` — take `{x}`/`{z}` out of `bossbar.*` too, which carries them as shipped |
 | `proximity-bar.enabled` | `true` | Live action-bar countdown for players near a crate |
 | `proximity-bar.radius` | `150` | How close a player must be to see it |
 | `routing.<event>` | follows the switches | Send one event to `CHAT`, `ACTION_BAR`, `BOTH` or `NONE` |

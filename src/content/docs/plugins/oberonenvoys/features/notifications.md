@@ -118,11 +118,17 @@ bossbar:
   enabled: true
   color: RED
   style: SEGMENTED_10
+  keep-while-open: true
 ```
 
-Shown while a crate is locked, and removed the moment it opens — after that the countdown is over and
-the bar has nothing left to say. Text comes from `bossbar.locked`. Players who join mid-countdown are
-picked up on the next tick.
+One bar per crate, from the moment it lands until it is gone. While the crate is locked it counts down
+to the unlock, with the text from `bossbar.locked`. When it opens the bar stays up on `bossbar.open`
+and drains over `phases.despawn-seconds`, until the crate is looted empty or recovered — players are
+still running for it, and the bar is where they read the coordinates. Both lines carry the tier, the
+time and the coordinates as shipped.
+
+`keep-while-open: false` takes the bar down the moment the crate opens, as builds before 2.1 did.
+Players who join mid-countdown are picked up on the next tick.
 
 ## Hiding coordinates
 
@@ -132,7 +138,8 @@ picked up on the next tick.
 
 Switches every announcement to its variant without a position, and hides coordinates from
 `/envoy active` for non-staff. The beam, the boss bar, the proximity action bar and
-`/envoy locate` still work, so the drop is a hunt rather than a guess.
+`/envoy locate` still work, so the drop is a hunt rather than a guess. The boss bar lines carry
+`{x}` and `{z}` as shipped — take them out of `bossbar.locked` and `bossbar.open` as well.
 
 ## Turning it down
 

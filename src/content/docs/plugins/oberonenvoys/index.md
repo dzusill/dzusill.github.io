@@ -12,8 +12,8 @@ them.
 
 ## What it does
 
-- **A repeating, self-running event.** Interval-based, calendar-based, or both. Staff can force one
-  at any time.
+- **A repeating, self-running event.** Interval-based, calendar-based, or both, dropping one crate
+  per cycle or a rolled handful. Staff can force one at any time.
 - **Weighted rarity tiers.** As many as you like, each with its own colour, crate block, countdown,
   sounds and loot table.
 - **Loot that is worth fighting over.** Guaranteed staples plus a weighted pool, ranged stack sizes,
