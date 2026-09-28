@@ -43,6 +43,8 @@ kept that way.
 | `/oberonutils reload` | `oberonutils.admin` | Reread every config |
 | `/oberonutils migrate [path]` | `oberonutils.admin` | Import Skript data |
 | `/oberonutils hooks` | `oberonutils.admin` | Show which integrations connected |
+| `/oberonutils pearlcatch debug` | `oberonutils.admin` | Report your own [pearl catch](/plugins/oberonutils/features/pearl-catch/) attempts in chat |
+| `/oberonutils pearlcatch status` | `oberonutils.admin` | Show the pearl catch settings in force |
 
 ## Permission nodes
 

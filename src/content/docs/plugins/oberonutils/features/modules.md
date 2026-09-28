@@ -13,10 +13,14 @@ modules:
   ping: true
   superjump: true
   elytra: true
+  pearlcatch: false
 ```
 
 A disabled module registers **nothing** — no commands, no listeners, no scheduled tasks. It is not
 loaded and quietly skipping work; it does not exist.
+
+Pearl Catch is the one that ships **off**: it changes how pearls play, so it waits for the owner to
+switch it on.
 
 | Module | Commands | Optional integrations |
 |---|---|---|
@@ -28,6 +32,7 @@ loaded and quietly skipping work; it does not exist.
 | [Ping](/plugins/oberonutils/features/ping/) | `/ping` | PremiumVanish / SuperVanish |
 | [Super Jump](/plugins/oberonutils/features/super-jump/) | `/superjump` `/doublejump` `/sj` `/odj` | EssentialsX, WorldGuard |
 | [Elytra](/plugins/oberonutils/features/elytra/) | — | — |
+| [Pearl Catch](/plugins/oberonutils/features/pearl-catch/) | `/oberonutils pearlcatch` | — (Paper only, not Folia) |
 
 `/oberonutils` is always registered, regardless of which modules are on.
 

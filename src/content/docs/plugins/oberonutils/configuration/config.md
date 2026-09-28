@@ -19,6 +19,9 @@ modules:
   kill: true
   nightvision: true
   ping: true
+  superjump: true
+  elytra: true
+  pearlcatch: false     # improvement
 ```
 
 A disabled module registers no commands, no listeners and no tasks. Turning one on or off needs a
@@ -255,6 +258,29 @@ ping:
 ```
 
 `samples` above 1 averages the last N readings instead of showing one spiky sample.
+
+## Pearl catch
+
+```yaml
+pearlcatch:
+  hitbox: 0.6
+  min-age-ticks: 5
+  count-overlap: false
+  disabled-worlds: []
+```
+
+Read only while `modules.pearlcatch` is on. All four apply with `/oberonutils reload`.
+
+| Key | Default | Meaning |
+|---|---|---|
+| `hitbox` | `0.6` | How wide a pearl counts, in blocks, when it meets its thrower's own wind charge. Keep it 0.6–0.8. |
+| `min-age-ticks` | `5` | No catch before this tick — what stops the catch at the thrower's face. |
+| `count-overlap` | `false` | Whether a pearl already inside the box at the start of a tick counts. |
+| `disabled-worlds` | `[]` | Worlds left entirely to vanilla. |
+
+Out-of-range values are corrected with one console line: `hitbox` to 0–4, `min-age-ticks` to 0–100.
+What each value does in play, with measured catch rates:
+[Pearl Catch](/plugins/oberonutils/features/pearl-catch/).
 
 ## Hooks
 

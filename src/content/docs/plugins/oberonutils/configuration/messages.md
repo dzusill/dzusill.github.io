@@ -90,7 +90,9 @@ usage:
   ping: "<red>Usage: <white>/ping [player]"
   kothcooldown: "<red>Usage: <white>/kothcooldown [player]"
   keyall: "<red>Usage: <white>/keyall <time|next|force|reset>"
-  oberonutils: "<red>Usage: <white>/oberonutils <reload|migrate|hooks>"
+  superjump: "<red>Usage: <white>/superjump <toggle|status>"
+  oberonutils: "<red>Usage: <white>/oberonutils <reload|migrate|hooks|pearlcatch>"
+  pearlcatch: "<red>Usage: <white>/oberonutils pearlcatch <debug|status>"
   destinations: "<red>Destinations: <white>%warps%"
 ```
 
@@ -111,7 +113,11 @@ Presentation:
 Delete a key and that command falls back to the shared `general.usage`, with `%usage%` filled in —
 so a command always says something, even if you strip the section out entirely.
 
-All ten are in the `ERROR` category, so by default they inherit the error channel and sound.
+All of them are in the `ERROR` category, so by default they inherit the error channel and sound.
+
+The [pearl catch](/plugins/oberonutils/features/pearl-catch/) debug reports under `pearlcatch:` are
+`INFO`, pinned to chat without a sound in `Overrides` — several arrive at once and they are too long for
+the action bar.
 
 `usage.warp` is only reached when `teleport.no-args-action` is `USAGE`; the default sends `/warp`
 with no arguments to the warps menu instead. See

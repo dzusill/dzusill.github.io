@@ -125,7 +125,7 @@ does not exist. See [Teleports & Warps](/plugins/oberonutils/features/teleport/)
 
 ## Can each command have its own usage message?
 
-Yes — `usage.warp`, `usage.setwarp`, `usage.keyall` and so on, ten in total. Each is an ordinary
+Yes — `usage.warp`, `usage.setwarp`, `usage.keyall` and so on, one per command. Each is an ordinary
 message, so each can be worded differently and routed to chat or the action bar with its own sound.
 Delete one and that command falls back to the shared `general.usage`.
 
@@ -140,3 +140,22 @@ See [Messages & Sounds](/plugins/oberonutils/configuration/messages/).
 
 Yes. Everything that schedules a task or moves a player goes through OberonCore's platform
 scheduler, so the same jar is correct on Paper and Folia.
+
+The one exception is [Pearl Catch](/plugins/oberonutils/features/pearl-catch/): it works between the
+start and the end of the server's tick, which Folia does not have. On Folia it stays off and says so in
+console.
+
+## Isn't fixing pearl catches "not vanilla"?
+
+Nothing about a pearl or a wind charge changes — same speed, same damage, same teleport, same rules for
+everything else they hit. What the module removes is an accident of the order the server happens to
+move entities in, which decided whether the same two clicks caught at your face or not at all. With the
+module on, the result depends on the player's timing and aim, and nothing else. It is the same fix the
+InstantPearlCatch server mod applies.
+
+## Pearl catches still miss at flat angles
+
+Turn on `/oberonutils pearlcatch debug` and throw the way you normally do. Each miss says which `hitbox`
+would have caught it. Up to `0.8` every combo plays as before; from `1.0` up, a pearl followed by its
+wind charge a tick later starts getting caught early. See
+[Pearl Catch](/plugins/oberonutils/features/pearl-catch/).

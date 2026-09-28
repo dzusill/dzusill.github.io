@@ -468,6 +468,18 @@
               {
                 "label": "Combat",
                 "slug": "plugins/oberonutils/features/combat"
+              },
+              {
+                "label": "Super Jump",
+                "slug": "plugins/oberonutils/features/super-jump"
+              },
+              {
+                "label": "Elytra",
+                "slug": "plugins/oberonutils/features/elytra"
+              },
+              {
+                "label": "Pearl Catch",
+                "slug": "plugins/oberonutils/features/pearl-catch"
               }
             ]
           },

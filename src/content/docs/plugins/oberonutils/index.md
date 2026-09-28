@@ -15,7 +15,7 @@ vanished staff as online.
 
 Everything here does what those scripts did, and does it once instead of twice.
 
-## Eight modules, each switchable
+## Nine modules, each switchable
 
 | Module | What it does |
 |---|---|
@@ -25,6 +25,9 @@ Everything here does what those scripts did, and does it once instead of twice.
 | **Night Vision** | A permanent toggle that actually stays on |
 | **Ping** | `/ping`, with vanished players properly hidden |
 | **Combat** | Crystal and anchor cooldowns, plus a PvPManager tag fix |
+| **Super Jump** | A mid-air second jump on a double-tap |
+| **Elytra** | Firework boosting refused or throttled mid-glide |
+| **Pearl Catch** | Ender pearl + wind charge catches that no longer depend on which was thrown first |
 
 Turn any of them off in `config.yml` and it registers nothing at all — no commands, no listeners,
 no tasks.
