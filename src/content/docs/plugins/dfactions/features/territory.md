@@ -19,6 +19,28 @@ according to the faction's flags, and forms the battlefield for raids and wars.
 Area claims (fill / square / circle modes) are capped per command by
 `factions.land.max-per-command` (default 200).
 
+## Territory stays connected
+
+A faction's land is one connected shape per world, not claims scattered across the map:
+
+```yaml
+factions:
+  land:
+    require-connected-claims: true
+```
+
+- Every claim must **share an edge** with a chunk the faction already owns in that world.
+  Diagonals do not count, so corner-touching chunks are not connected.
+- The **first claim in a world is exempt**, so a faction with an overworld base can still start
+  one in the nether or the end.
+- **Unclaiming is checked too.** A chunk whose removal would break the remaining land into
+  islands is refused — pull the territory back from its edges instead. `/f unclaim all` still
+  works, since it removes everything anyway.
+- Admin claims (`/fa claim`) bypass the rule.
+
+Set it to `false` to restore the older behaviour, where any chunk bordering wilderness could be
+claimed no matter how far it was from the faction's land.
+
 ## Claim capacity is prestige-gated
 
 The number of chunks a faction may hold comes from its **prestige rank**:
