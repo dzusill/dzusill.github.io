@@ -1095,6 +1095,117 @@
         ]
       },
       {
+        "label": "⌛ OberonAfk",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "OberonAfk",
+            "slug": "plugins/oberonafk"
+          },
+          {
+            "label": "🚀 Getting started",
+            "items": [
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonafk/getting-started/installation"
+              },
+              {
+                "label": "Quick start",
+                "slug": "plugins/oberonafk/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Zones and rewards",
+                "slug": "plugins/oberonafk/features/zones-and-rewards"
+              },
+              {
+                "label": "Delivery and the claim storage",
+                "slug": "plugins/oberonafk/features/delivery-and-storage"
+              },
+              {
+                "label": "The /afk teleport",
+                "slug": "plugins/oberonafk/features/teleport"
+              },
+              {
+                "label": "Notifications and formatting",
+                "slug": "plugins/oberonafk/features/notifications"
+              },
+              {
+                "label": "Statistics and history",
+                "slug": "plugins/oberonafk/features/statistics"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonafk/configuration/config"
+              },
+              {
+                "label": "zones.yml",
+                "slug": "plugins/oberonafk/configuration/zones"
+              },
+              {
+                "label": "rewards.yml",
+                "slug": "plugins/oberonafk/configuration/rewards"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/oberonafk/configuration/messages"
+              },
+              {
+                "label": "sounds.yml",
+                "slug": "plugins/oberonafk/configuration/sounds"
+              },
+              {
+                "label": "gui.yml",
+                "slug": "plugins/oberonafk/configuration/gui"
+              },
+              {
+                "label": "database.yml and data.yml",
+                "slug": "plugins/oberonafk/configuration/database"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands",
+                "slug": "plugins/oberonafk/reference/commands"
+              },
+              {
+                "label": "Permissions",
+                "slug": "plugins/oberonafk/reference/permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberonafk/reference/placeholders"
+              },
+              {
+                "label": "Troubleshooting",
+                "slug": "plugins/oberonafk/reference/troubleshooting"
+              }
+            ]
+          },
+          {
+            "label": "🛠️ Development",
+            "items": [
+              {
+                "label": "Testing",
+                "slug": "plugins/oberonafk/developing/testing"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "label": "✉️ OberonMSG",
         "collapsed": true,
         "items": [

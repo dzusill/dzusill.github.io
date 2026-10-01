@@ -64,6 +64,7 @@ const PLUGINS = [
   { slug: 'oberondonations', name: 'OberonDonations', src: '../OberonDonations/docs' },
   { slug: 'oberontools',   name: 'OberonTools',   src: '../OberonTools/docs' },
   { slug: 'oberonenvoys',  name: 'OberonEnvoys',  src: '../OberonEnvoys/docs' },
+  { slug: 'oberonafk',     name: 'OberonAfk',     src: '../OberonAfk/docs' },
   // Sits with the shop plugins rather than the Oberon block: it is the selling half of that economy.
   { slug: 'oberonsell',    name: 'OberonSell',    src: '../OberonSell/docs' },
   // The buying half, and the PerfShop replacement.
@@ -106,7 +107,7 @@ const SIDEBAR_ONLY = process.argv.includes('--sidebar-only');
 // adding a plugin above without touching this still produces a working sidebar.
 const CATEGORIES = [
   { label: '🛠️ Framework', plugins: ['dzusillcore', 'ddialogs'] },
-  { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonannounce', 'oberondonations', 'oberontools', 'oberonenvoys', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats'] },
+  { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonannounce', 'oberondonations', 'oberontools', 'oberonenvoys', 'oberonafk', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats'] },
   { label: '💰 Economy & Shops', plugins: ['dshop', 'drotatingshop', 'oberonshop', 'dsell', 'ddonutworth', 'dauctionfeed', 'oberonsell', 'ddonations', 'dgems', 'dstore', 'dlottery', 'blottery', 'dloyalityrewards'] },
   { label: '⚔️ PvP & Combat', plugins: ['dfactions', 'dkilltracker', 'dbloodmoney', 'ddeathpenalty', 'dfate', 'dsupplydrops'] },
   { label: '🧭 Teleportation', plugins: ['warpgui', 'dhomegui'] },
@@ -124,7 +125,7 @@ const PLUGIN_EMOJI = {
   ddonutworth: '🍩', ddialogs: '💬', blottery: '🍀', dmentions: '🙋', dauctionfeed: '🔨',
   dgems: '💎', dweblink: '🔗', dphalanx: '🌐', dstore: '🧾',
   oberonstats: '📈', oberonannounce: '📣', oberondonations: '💵', oberontools: '🪣', oberonsell: '🏷️',
-  oberonshop: '🏪', oberonenvoys: '🪂',
+  oberonshop: '🏪', oberonenvoys: '🪂', oberonafk: '⌛',
   dlive: '📡', dannounce: '📣', dsell: '🏷️', dshop: '🏪', dloyalityrewards: '🎁',
   dsupplydrops: '🪂', ddonations: '💵', dtickets: '🎫',
 };
