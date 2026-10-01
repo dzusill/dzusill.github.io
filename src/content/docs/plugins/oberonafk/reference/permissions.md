@@ -11,6 +11,8 @@ description: "oberonafk.admin also grants oberonafk.stats.others and oberonafk.t
 | `oberonafk.teleport.instant` | op | Skips the `/afk` warm-up |
 | `oberonafk.stats` | everyone | Your own `/afk stats` |
 | `oberonafk.stats.others` | op | `/afk stats <player>` |
+| `oberonafk.top` | everyone | `/afk top` and `/afk top page` |
+| `oberonafk.top.exempt` | nobody | Left out of every leaderboard. Not given by `oberonafk.admin` or op — grant it on purpose |
 | `oberonafk.admin` | op | Every staff subcommand — `stats server`, `history`, `zone`, `reward`, `storage`, `reload` |
 
 `oberonafk.admin` also grants `oberonafk.stats.others` and `oberonafk.teleport.instant`.

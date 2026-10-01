@@ -77,6 +77,12 @@ Labels for how a reward ended up, shown in `/afk history` and `/afk reward give`
 always names commands the server really has. Each line is shown only to players who may use that command;
 an empty line hides it.
 
+## top
+
+`header` (`{track}` `{page}` `{pages}` `{total}`), `line` (`{pos}` `{ordinal}` `{name}` `{value}`), `self`
+(`{pos}` `{ordinal}` `{value}`), `self-unranked`, `empty`, `unknown-track` (`{track}` `{tracks}`),
+`page-set` (empty — `/afk top page` is silent; `{track}` `{page}` `{pages}`), `disabled`.
+
 ## stats and history
 
 `stats.summary` (a list; `{player}` `{drops}` `{time}` `{last}`), `stats.last-ago` (`{time}`),

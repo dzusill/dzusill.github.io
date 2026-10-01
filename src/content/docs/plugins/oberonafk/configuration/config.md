@@ -81,6 +81,30 @@ How every time players read is written — countdown and durations, in templates
 shown by default. Full description and examples:
 [Notifications and formatting](/plugins/oberonafk/features/notifications/#time-formatting).
 
+## leaderboard
+
+See [Leaderboard](/plugins/oberonafk/features/leaderboard/) for how it behaves.
+
+| Key | Default | Meaning |
+|---|---|---|
+| `enabled` | `true` | Off: every board is empty and `/afk top` says so |
+| `refresh-seconds` | `60` | How often the snapshot is rebuilt (at least 5) |
+| `max-position` | `100` | Highest rank a placeholder may ask for |
+| `page-size` | `10` | Rows per page of the `page_` placeholders and `/afk top` |
+| `list-separator` | `"\n"` | Joins rows in `top_list` / `page_list` |
+| `list-max` | `100` | Cap on rows in one list placeholder |
+| `min-value` | `0` | At or below this a value is nothing and never ranked (seconds for `time`) |
+| `blank-text` | `""` | What nothing renders as |
+| `hide-zero-value` | `false` | Whether a player's own zero blanks too |
+| `unranked-position` | `""` | What `position_` shows for somebody not on the board |
+| `exempt-permission` | `oberonafk.top.exempt` | Holders are left out of every board. `""` ranks everybody |
+| `exempt-players` | empty | Names or UUIDs also left out |
+| `line-format` | `<gray>#%pos% <white>%name% <dark_gray>- <gold>%value%` | Behind `top_line` / `page_line`: `%pos%` `%ordinal%` `%name%` `%value%` `%value_short%` `%value_raw%` `%uuid%` `%track%` |
+| `ordinal.one/two/three/default` | `st` `nd` `rd` `th` | Suffixes; `11th`–`13th` are handled |
+| `track-names.time/drops/drops-reward` | `AFK time`, `AFK rewards`, `{reward}` | How tracks are named; `{reward}` is the reward's display text |
+
+The leaderboard's extra time formats (`long`, `short`, `clock`) are styles under `time-format`.
+
 ## commands
 
 Read once at startup; changing anything here needs a restart.

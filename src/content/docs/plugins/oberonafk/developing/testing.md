@@ -11,7 +11,7 @@ Two layers, because they prove different things.
 mvn test
 ```
 
-MockBukkit, JUnit 5 and Mockito — 71 tests, covering the parts where a bug is invisible until it has
+MockBukkit, JUnit 5 and Mockito — 83 tests, covering the parts where a bug is invisible until it has
 been wrong for a week:
 
 | Suite | Tests | Proves |
@@ -20,6 +20,8 @@ been wrong for a week:
 | `ZoneTimerTest` | 14 | The timer pays at the interval, restarts on leaving, death and a game-mode change, ignores creative, and delivers to inventory, storage, the cap and the console |
 | `ClaimStorageTest` | 9 | A stack is claimed once and only once, partial and full inventories, stored items survive a relog, the menu cannot be used as a chest, a reload to fewer rows cannot open an open menu's lower rows, a clear during a join is not undone |
 | `TeleportTest` | 9 | The warm-up completes, is cancelled by moving and by damage, is refused in combat, and nobody is ever teleported without asking |
+| `SnapshotTest` | 5 | Ranking highest first with ties by name, exempt and worthless players left out with no holes, a track per reward before anybody has it, the floor |
+| `LeaderboardPlaceholdersTest` | 7 | Every leaderboard placeholder against three real players: rows, formats, blanking, typos staying visible, positions, `_of_`, exempt staff, paging per viewer, `/afk top` |
 | `StatsPersistenceTest` | 2 | Totals and history reach the database and a relog adds to the stored totals instead of replacing them |
 | `RewardsConfigTest` | 4 | A broken reward switches off only itself, a captured item switches its reward on, a reward you deleted stays deleted |
 | `ConfigurabilityTest` | 5 | Message categories and sounds, titles for any message, help from `messages.yml`, slot syntax, the menu layout following `gui.yml` |

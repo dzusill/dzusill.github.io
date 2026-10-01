@@ -1137,6 +1137,10 @@
               {
                 "label": "Statistics and history",
                 "slug": "plugins/oberonafk/features/statistics"
+              },
+              {
+                "label": "Leaderboard",
+                "slug": "plugins/oberonafk/features/leaderboard"
               }
             ]
           },

@@ -28,6 +28,8 @@ in a personal claim storage that is opened with `/afkrewards`.
   how times are written (seconds included), and the whole claim menu layout.
 - **Statistics you can audit.** Per-player totals, a full drop history, and a staff report that sets
   every reward's real share next to the share its weight promises.
+- **Leaderboards** for time AFKed, rewards received and each single reward, in the same placeholder shape
+  as OberonStats — ranks, blanking, paging, `_of_<player>`, hidden staff — plus `/afk top` in chat.
 - **PlaceholderAPI output** for a scoreboard, tab list or hologram.
 
 ## Where to start

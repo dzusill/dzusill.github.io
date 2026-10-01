@@ -28,6 +28,8 @@ Below, `/afk` stands for whichever root you use.
 | `/afkrewards` | Opens the claim storage |
 | `/afk claim` / `/afk rewards` | The same, from the other root |
 | `/afk stats [player]` | Rewards received, time in zones, last reward and a count per reward |
+| `/afk top [track] [page]` | A leaderboard page in chat, with your own place (`/afk leaderboard` too) |
+| `/afk top page <next\|prev\|first\|last\|all\|reset\|n> [track]` | Moves your page for the `page_` placeholders — for menu buttons |
 | `/afk help` | The commands you may use |
 
 Viewing someone else's stats needs `oberonafk.stats.others`.

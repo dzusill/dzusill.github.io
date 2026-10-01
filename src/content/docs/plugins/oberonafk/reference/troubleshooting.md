@@ -70,6 +70,14 @@ check can flag it. OberonAfk changes no permissions, so exempt the zone yourself
 `vulcan.bypass.*` to players inside the region, with a context for the WorldGuard region in your
 permissions plugin.
 
+## The leaderboard is empty or behind
+
+- It is rebuilt every `leaderboard.refresh-seconds` (60). `/afk reload` rebuilds it at once.
+- Only values above `leaderboard.min-value` are ranked, and exempt players (`oberonafk.top.exempt`,
+  `exempt-players`) never are — check that staff testing it are not exempt.
+- A typo in a placeholder (`%oberonafk_top_name_1_tiem%`) stays visible as raw text; an empty rank renders
+  `blank-text`. `/afk top nonsense` lists the tracks that exist.
+
 ## Item plugin rewards fail
 
 `hook:` rewards reach MMOItems, ItemsAdder, Oraxen and ExecutableItems by reflection. A plugin whose API
