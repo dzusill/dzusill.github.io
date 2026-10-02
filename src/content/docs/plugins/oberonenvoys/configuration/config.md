@@ -138,6 +138,7 @@ Applies only when FancyHolograms is drawing. Any tier may override any of these 
 | `reveal-coordinates` | `true` | Off leaves only the beam, the boss bar and `/envoy locate` — take `{x}`/`{z}` out of `bossbar.*` too, which carries them as shipped |
 | `proximity-bar.enabled` | `true` | Live action-bar countdown for players near a crate |
 | `proximity-bar.radius` | `150` | How close a player must be to see it |
+| `proximity-bar.skip-regions` | `[ ]` | WorldGuard regions whose players never get the bar, so another action bar there (an AFK zone's countdown) stays readable |
 | `routing.<event>` | follows the switches | Send one event to `CHAT`, `ACTION_BAR`, `BOTH` or `NONE` |
 
 Routable events: `inbound`, `landed`, `unlocked`, `first-open`, `emptied`, `expired`. See

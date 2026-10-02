@@ -89,6 +89,7 @@ A live countdown for players close enough to be running for the crate.
   proximity-bar:
     enabled: true
     radius: 150
+    skip-regions: [ ]
 ```
 
 ```yaml
@@ -103,10 +104,21 @@ Tokens: `{tier}`, `{distance}` in blocks, `{time}` / `{time_long}` / `{seconds}`
 
 This is the half the boss bar cannot cover. The bar carries the server-wide countdown to everyone;
 this carries what only the people nearby need — how far away the crate is and how long they have
-left. It refreshes twice a second, on the same tick that drives everything else.
+left. It is redrawn every `refresh-ticks` ticks (every tick by default).
 
 A player standing between two crates sees **one** line, for the nearest. Two drops fighting over the
 same row would make both unreadable.
+
+**Other action bars.** Because the line is redrawn every tick, it wipes any other action-bar text a
+player in range would be reading — an AFK zone's countdown, another plugin's bar. List the regions
+where that matters under `skip-regions` (WorldGuard region ids, case-insensitive) and their players
+never get this line; the one-off announcements (inbound, landed, …) are unaffected. Without
+WorldGuard the list does nothing.
+
+```yaml
+  proximity-bar:
+    skip-regions: [ "afk" ]
+```
 
 Set `radius` to roughly how far out a player can still act on the information. Beyond a couple of
 hundred blocks a distance readout stops being a decision and starts being noise.
