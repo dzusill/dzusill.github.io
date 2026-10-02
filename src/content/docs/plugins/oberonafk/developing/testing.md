@@ -28,7 +28,7 @@ been wrong for a week:
 | `TimeFormatTest` | 4 | The default countdown and duration formats, templates, units set to `never`, partial configuration |
 | `DurationsTest` | 2 | Every interval shape, and that a huge number is refused instead of throwing or wrapping around |
 | `MessagesResolveTest` | 4 | Every message key the code sends resolves through Bukkit's own YAML parser |
-| `OberonAfkEnableTest` | 10 | The plugin boots, every shipped file parses into what was agreed, commands and aliases register |
+| `OberonAFKEnableTest` | 10 | The plugin boots, every shipped file parses into what was agreed, commands and aliases register |
 | `ItemCodecTest` | 1 | A stored item survives the round trip with its amount and name |
 
 Three design decisions exist to make this possible:

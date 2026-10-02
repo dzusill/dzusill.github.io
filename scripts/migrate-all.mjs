@@ -64,7 +64,7 @@ const PLUGINS = [
   { slug: 'oberondonations', name: 'OberonDonations', src: '../OberonDonations/docs' },
   { slug: 'oberontools',   name: 'OberonTools',   src: '../OberonTools/docs' },
   { slug: 'oberonenvoys',  name: 'OberonEnvoys',  src: '../OberonEnvoys/docs' },
-  { slug: 'oberonafk',     name: 'OberonAfk',     src: '../OberonAfk/docs' },
+  { slug: 'oberonafk',     name: 'OberonAFK',     src: '../OberonAfk/docs' },
   // Sits with the shop plugins rather than the Oberon block: it is the selling half of that economy.
   { slug: 'oberonsell',    name: 'OberonSell',    src: '../OberonSell/docs' },
   // The buying half, and the PerfShop replacement.

@@ -28,5 +28,5 @@ thing that can silently stop a player's rewards.
 
 ## Anti-cheat
 
-OberonAfk sets no permissions, so it does not grant any anti-cheat bypass. See
+OberonAFK sets no permissions, so it does not grant any anti-cheat bypass. See
 [Players get kicked while AFK](/plugins/oberonafk/reference/troubleshooting/#players-get-kicked-while-afk).

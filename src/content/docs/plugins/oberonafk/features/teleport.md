@@ -57,7 +57,7 @@ combat.
 ## Taking over /afk
 
 EssentialsX also has an `/afk` — it toggles the AFK status. `commands.main.take-over` in
-[`config.yml`](/plugins/oberonafk/configuration/config/#commands) (on by default) makes OberonAfk answer `/afk` even so,
+[`config.yml`](/plugins/oberonafk/configuration/config/#commands) (on by default) makes OberonAFK answer `/afk` even so,
 which means Essentials' own `/afk` is no longer reachable by that name. Turn it off, or rename the
 command (`commands.main.name`), to keep both; Essentials' automatic AFK marking is not affected either
 way.

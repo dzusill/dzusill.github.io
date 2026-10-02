@@ -66,7 +66,7 @@ starts, the console says the region could not be checked rather than reporting i
 ## Players get kicked while AFK
 
 Standing still for hours is exactly what an anti-cheat does not expect, and a "no input" or "autoclick"
-check can flag it. OberonAfk changes no permissions, so exempt the zone yourself — for example grant
+check can flag it. OberonAFK changes no permissions, so exempt the zone yourself — for example grant
 `vulcan.bypass.*` to players inside the region, with a context for the WorldGuard region in your
 permissions plugin.
 

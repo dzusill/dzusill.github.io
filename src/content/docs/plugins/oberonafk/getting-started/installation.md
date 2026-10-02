@@ -15,22 +15,22 @@ description: "OberonCore is a separate plugin jar and must already be in plugins
 
 OberonCore is a separate plugin jar and must already be in `plugins/`. It is not shaded into this
 plugin, so the two are updated independently. If the core on the server is older than the one this
-plugin was built against, OberonAfk refuses to enable and says which jar the core classes came from —
+plugin was built against, OberonAFK refuses to enable and says which jar the core classes came from —
 a server with both `DzusillCore` and `OberonCore` installed can end up using the older one.
 
 None of the optional plugins is needed to run:
 
 - PlaceholderAPI adds the [placeholders](/plugins/oberonafk/reference/placeholders/).
 - PvPManager lets [`/afk`](/plugins/oberonafk/features/teleport/) refuse a player who is combat-tagged.
-- EssentialsX is only listed so OberonAfk loads after it; see [taking over `/afk`](/plugins/oberonafk/features/teleport/#taking-over-afk).
+- EssentialsX is only listed so OberonAFK loads after it; see [taking over `/afk`](/plugins/oberonafk/features/teleport/#taking-over-afk).
 - The four item plugins make [`hook:` rewards](/plugins/oberonafk/configuration/rewards/#item-rewards) available.
 
 Each is picked up when present and ignored when not.
 
 ## Steps
 
-1. Drop `OberonAfk.jar` into `plugins/`.
-2. Start the server. The default configuration is written to `plugins/OberonAfk/` and an example zone
+1. Drop `OberonAFK.jar` into `plugins/`.
+2. Start the server. The default configuration is written to `plugins/OberonAFK/` and an example zone
    with a ready-made reward table is loaded.
 3. Create the region in WorldGuard (`/rg define afk`) in the world named in `zones.yml`, or edit the
    shipped zone to point at a region you already have.

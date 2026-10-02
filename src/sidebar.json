@@ -1095,11 +1095,11 @@
         ]
       },
       {
-        "label": "⌛ OberonAfk",
+        "label": "⌛ OberonAFK",
         "collapsed": true,
         "items": [
           {
-            "label": "OberonAfk",
+            "label": "OberonAFK",
             "slug": "plugins/oberonafk"
           },
           {

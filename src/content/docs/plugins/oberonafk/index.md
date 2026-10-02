@@ -1,5 +1,5 @@
 ---
-title: "OberonAfk"
+title: "OberonAFK"
 description: "AFK zone rewards for Paper, built on OberonCore."
 ---
 

@@ -70,7 +70,7 @@ rest from its category.
 
 ## Titles for any message
 
-The core can route a message to chat or the action bar but has no title channel, so OberonAfk adds one.
+The core can route a message to chat or the action bar but has no title channel, so OberonAFK adds one.
 Give any message key a title and subtitle under `titles` in `config.yml`, nested like `messages.yml`:
 
 ```yaml
