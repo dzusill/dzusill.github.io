@@ -43,6 +43,22 @@ factions:
 Bank transactions also appear in the **Activity log** GUI, formatted with the acting player's name,
 a friendly action label ("Bank Withdraw"), and a grouped amount (`$10,000.00`).
 
+### Deposit & withdrawal announcements
+
+When a member deposits or withdraws (command or GUI), the faction's other online members see who
+moved how much and the new balance. Each player can mute it with `/f notify bank off`; offline
+members are not queued. In `notifications.yml`:
+
+```yaml
+economy:
+  bank:
+    notify-deposits: true
+    notify-withdrawals: true
+    notify-min-amount: 0   # only announce amounts of at least this much; 0 = every amount
+```
+
+Transfers between factions are not announced.
+
 ## Tax
 
 **Enabled by default.** Periodically deducts a fraction of each faction's bank — a money sink.
@@ -88,6 +104,12 @@ individual warps with a password:
 /f warp                      # open the warp GUI (click to teleport)
 /f warp password <name> ...  # protect a warp (officer+)
 ```
+
+Warps can only be set inside your own claimed land, and a warp whose chunk you have since lost
+(unclaimed, or overclaimed in a war) cannot be used until you claim it back — the warp itself is
+kept. Admins in `/fa bypass` mode are exempt; `factions.warp.require-own-claim: false` turns the
+rule off. When a warp is created or moved, the rest of the faction is told, with a
+click-to-teleport button (`member.notify-warp-set` in `notifications.yml`).
 
 See [Commands & Permissions](/plugins/dfactions/commands-and-permissions/#home-warps--storage) for the full
 command set (icons, descriptions, GUI).

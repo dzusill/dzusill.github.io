@@ -75,6 +75,11 @@ channel a message is in — see [Messages & Languages](/plugins/dfactions/config
 | `/f warp` (GUI) / `warp <name> [pass]` / `warp set` / `warp delete` / `warp list` / `warp password` / `warp icon` / `warp desc` | `factions.cmd.warp` / `.setwarp` / `.warp.password` |
 | `/f chest` | `factions.cmd.chest` |
 
+Warps must sit inside your own claimed land (`factions.warp.require-own-claim`, default `true`):
+`/f warp set` refuses anywhere else, and `/f warp <name>` refuses a warp whose chunk you have
+since lost — the warp is kept and works again once re-claimed. New and moved warps are announced to
+the faction. A team chest has one editor at a time; anyone else is told who has it open.
+
 `/f home` and `/f warp <name>` are rate-limited by `factions.<home\|warp>.cooldown-seconds`
 (default `5`) and require the player to stand still for `factions.<home\|warp>.warmup-seconds`
 (default `10`) before the teleport completes — moving to another block, taking damage, or
@@ -123,7 +128,7 @@ See [Statistics & Seasons](/plugins/dfactions/features/statistics/).
 | `/f flag [set <flag> <value>]` | `factions.cmd.flag[.set]` |
 | `/f audit` | `factions.cmd.audit` |
 | `/f fly` | `factions.cmd.fly` |
-| `/f notify` | `factions.cmd.notify` |
+| `/f notify [status\|invites\|territory\|tax\|bank\|motd\|all] [on\|off]` | `factions.cmd.notify` |
 | `/f help` | — |
 
 ## Admin (`/fa`)
@@ -143,6 +148,7 @@ All require `factions.admin` (or the specific child node).
 | `/fa audit [faction]` | `factions.cmd.audit` |
 | `/fa level` / `/fa xp` / `/fa prestige` `<faction> <set\|add\|remove> <n>` | `factions.cmd.level.other` / `.xp.other` / `.prestige.other` |
 | `/fa money <faction> <set\|add\|remove> <amount>` | `factions.cmd.money.other` |
+| `/fa chest <faction> [chest]` — look into a team chest (read-only; editable with `.edit`) | `factions.cmd.chest.other` / `.chest.other.edit` |
 | `/fa stats <faction> <field> <set\|add\|remove> <n>` | `factions.cmd.stats.other` |
 | `/fa stats debug` | `factions.cmd.stats.debug` |
 | `/fa stats reset <player> [field...] confirm` | `factions.cmd.stats.reset` |

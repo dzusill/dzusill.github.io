@@ -105,12 +105,16 @@ chat line is always sent, so `warmup-title.enabled: false` only hides the title.
 ```yaml
 factions:
   home: { cooldown-seconds: 5, warmup-seconds: 10 }
-  warp: { cooldown-seconds: 5, warmup-seconds: 10 }
+  warp: { cooldown-seconds: 5, warmup-seconds: 10, require-own-claim: true }
   teleport:
     warmup-title: { enabled: true }
 ```
 
 Bypass permissions: `factions.teleport.cooldown.bypass`, `factions.teleport.warmup.bypass`.
+
+`warp.require-own-claim` keeps warps on the faction's own land: `/f warp set` refuses anywhere else,
+and a warp whose chunk the faction has since lost cannot be used until it is claimed back. Admins
+in `/fa bypass` mode are exempt; `false` lets warps go anywhere.
 
 ## Broadcasts
 
