@@ -6,6 +6,9 @@ description: "A second account parked in the AFK zone doubles everything the zon
 A second account parked in the AFK zone doubles everything the zone pays. The alt guard stops that:
 of the accounts that belong together, only one collects at a time.
 
+Setting it up step by step, from checking the proxy to testing it with two accounts:
+[Setting up the alt guard](/plugins/oberonafk/getting-started/alt-guard-setup/).
+
 ## What happens
 
 Accounts that are **linked** (see below) share one place in the AFK zones — all zones together, not one

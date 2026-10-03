@@ -37,6 +37,8 @@ Each is picked up when present and ignored when not.
 4. Stand in it and run `/afk zone list`. The zone should read **active**.
 5. Stand where `/afk` should land players and run `/afk zone setspawn afk`.
 6. Replace the example commands in `rewards.yml` with the ones your economy and crates plugins use.
+7. Behind Velocity or BungeeCord, check that the proxy forwards player addresses, or the alt guard sees
+   every player as one: [Setting up the alt guard](/plugins/oberonafk/getting-started/alt-guard-setup/).
 
 ## Storage
 

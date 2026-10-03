@@ -1112,6 +1112,10 @@
               {
                 "label": "Quick start",
                 "slug": "plugins/oberonafk/getting-started/quick-start"
+              },
+              {
+                "label": "Setting up the alt guard",
+                "slug": "plugins/oberonafk/getting-started/alt-guard-setup"
               }
             ]
           },
