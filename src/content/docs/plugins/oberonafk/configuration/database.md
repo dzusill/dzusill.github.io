@@ -27,7 +27,10 @@ plugin folder. Switch to MySQL or PostgreSQL only if you already run one.
 
 The schema is applied at startup from a bundled `schema-<type>.sql`; every statement is
 `CREATE … IF NOT EXISTS`, so starting against an existing database is safe. The tables are
-`oberonafk_storage`, `oberonafk_history` and `oberonafk_players`.
+`oberonafk_storage`, `oberonafk_history`, `oberonafk_players`, `oberonafk_exempt` and
+`oberonafk_addresses`. The last belongs to the [alt guard](/plugins/oberonafk/features/alt-guard/): an account, a keyed
+hash of an address it connected from, and when. Never the address itself. Rows older than
+`alt-guard.remember` are deleted.
 
 Zone and reward ids are stored in 64-character columns, so longer ids are refused when the files load.
 
@@ -41,6 +44,9 @@ Written by the plugin itself, and the only file it writes:
 - **`items`** — items captured with `/afk reward capture <name>`, one line of text each, used from
   `rewards.yml` as `item: { saved: <name> }`.
 - **`spawns`** — teleport points set with `/afk zone setspawn <zone>`.
+- **`alt-guard.key`** — the secret the [alt guard](/plugins/oberonafk/features/alt-guard/) hashes addresses with
+  before they reach the database, made on first start. Keep it private. Deleting it makes the plugin forget
+  every link between accounts.
 
 It is a plain YAML file that no merge ever touches, which is why captured items and points do not live in
 `rewards.yml` and `zones.yml`: re-saving a hand-edited file through the core's comment-preserving config

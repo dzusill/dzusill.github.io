@@ -8,7 +8,7 @@ the most general.
 
 ## The zone notices
 
-Seven events tell the player something about their zone. Each has its **own switches** for chat,
+Nine events tell the player something about their zone. Each has its **own switches** for chat,
 action bar, title and sound in `notifications` in [`config.yml`](/plugins/oberonafk/configuration/config/#notifications),
 and four texts in `notice.<event>` in [`messages.yml`](/plugins/oberonafk/configuration/messages/#notice) (`chat`,
 `action-bar`, `title`, `subtitle`).
@@ -22,6 +22,8 @@ and four texts in `notice.<event>` in [`messages.yml`](/plugins/oberonafk/config
 | `storage-full` | The storage was full, so an item was not given | `{reward}` |
 | `nothing` | The interval ended but the zone's `chance` said no | `{zone}` `{interval}` |
 | `teleport` | `/afk` finished teleporting | `{zone}` |
+| `alt-blocked` | Another of the player's accounts collects, so this one does not ([alt guard](/plugins/oberonafk/features/alt-guard/)) | `{zone}` `{interval}` |
+| `alt-unblocked` | That account stopped, so this one collects now, from zero | `{zone}` `{interval}` |
 
 A reward that partly overflowed shows both the `reward` and the `storage` notice. A reward the full
 storage rejected shows `storage-full` instead of `reward` — saying "+16 Diamonds" for diamonds that
@@ -34,7 +36,8 @@ Leave any of the four texts empty (`""`) and that part is simply not sent.
 
 While a player is collecting time, the action bar reads `Next AFK reward in 24:31`. The text is the
 top-level `countdown` key in `messages.yml`; `countdown.enabled` in `config.yml` switches it off for
-everyone, and `countdown: false` on a zone switches it off for that zone.
+everyone, and `countdown: false` on a zone switches it off for that zone. While the
+[alt guard](/plugins/oberonafk/features/alt-guard/) holds a player back, `countdown-blocked` takes its place.
 
 The countdown never covers a notice. After any other action-bar message (entering, a reward, items
 stored) it waits `countdown.hold-seconds` (4 by default) so that message can be read. The remaining time

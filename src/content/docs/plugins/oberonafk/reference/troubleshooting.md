@@ -23,6 +23,7 @@ Work down this list — ordered by how often each one is the answer.
 | Is the zone active? | `/afk zone list`. `region missing` — no such region in that world; `table missing` — no such table; `disabled` — `enabled: false` or an unreadable `interval` |
 | Is the world right? | `world` in `zones.yml` must be the exact name of the world the region is in |
 | Is the player in an eligible game mode? | `game-modes` in `config.yml`. Creative and spectator collect nothing |
+| Does another of their accounts collect? | The [alt guard](/plugins/oberonafk/features/alt-guard/) lets one linked account collect; the player was told so, and staff with `oberonafk.altguard.notify` got an alert |
 | Is the player really inside? | `/afk zone info <zone>` shows how many are inside. The region's vertical extent counts too |
 | Did the timer keep resetting? | Leaving the region, dying and changing game mode all start it over |
 | Is anything switched on in the table? | `/afk reward list` — a switched-off reward says why |
@@ -62,6 +63,16 @@ starts, the console says the region could not be checked rather than reporting i
 - An item that cannot be read is hidden and the console says so, but it **stays in the database**: it
   may be readable again once the plugin it depends on is fixed.
 - With `database.yml` `enabled: false` the storage empties on every restart.
+
+## Only one player on a connection collects
+
+That is the [alt guard](/plugins/oberonafk/features/alt-guard/). For two people who really share a connection, give one
+of them `oberonafk.altguard.bypass`.
+
+If **everybody** but one is held back, the server sees every player at one address: a proxy that does not
+forward addresses. The console warns once 5 players are online from one address. Turn on forwarding
+(Velocity modern forwarding, BungeeCord `ip_forward`, Floodgate for Bedrock), or until then add the proxy's
+address to `alt-guard.ignore-addresses` and `/afk reload`.
 
 ## Players get kicked while AFK
 

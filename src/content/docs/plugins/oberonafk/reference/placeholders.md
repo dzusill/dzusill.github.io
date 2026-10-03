@@ -21,8 +21,8 @@ Every value is answered from memory. A scoreboard that refreshes twice a second 
 touch the database.
 
 Totals are those of **online** players; an offline player's placeholders read `0`. `%oberonafk_next%` and
-`%oberonafk_next_seconds%` count down only while the player is eligible: in a zone and in an allowed game
-mode.
+`%oberonafk_next_seconds%` count down only while the player is eligible: in a zone, in an allowed game
+mode, and not held back by the [alt guard](/plugins/oberonafk/features/alt-guard/).
 
 Unknown placeholders return nothing, so PlaceholderAPI leaves the text as written.
 

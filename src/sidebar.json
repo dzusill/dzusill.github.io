@@ -1123,6 +1123,10 @@
                 "slug": "plugins/oberonafk/features/zones-and-rewards"
               },
               {
+                "label": "One account per player (alt guard)",
+                "slug": "plugins/oberonafk/features/alt-guard"
+              },
+              {
                 "label": "Delivery and the claim storage",
                 "slug": "plugins/oberonafk/features/delivery-and-storage"
               },

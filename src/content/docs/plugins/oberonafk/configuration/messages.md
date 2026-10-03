@@ -42,11 +42,26 @@ Four texts per [zone event](/plugins/oberonafk/features/notifications/#the-zone-
 | `storage-full` | `{reward}` |
 | `nothing` | `{zone}` `{interval}` |
 | `teleport` | `{zone}` |
+| `alt-blocked` | `{zone}` `{interval}` |
+| `alt-unblocked` | `{zone}` `{interval}` |
 
 ## countdown
 
 The live action-bar line. `{time}` (written by [`time-format.countdown`](/plugins/oberonafk/configuration/config/#time-format)),
 `{seconds}`, `{zone}`.
+
+`countdown-blocked` takes its place while another of the player's accounts collects
+([alt guard](/plugins/oberonafk/features/alt-guard/)). `{zone}`. Empty: the action bar stays blank.
+
+## alt-guard
+
+What staff with `oberonafk.altguard.notify` read when an account is held back. `{player}` is the account
+held back, `{other}` the one collecting, `{zone}` where `{player}` stands.
+
+| Key | Sent when |
+|---|---|
+| `alt-guard.staff-alert.same-address` | Both accounts are online from the same address |
+| `alt-guard.staff-alert.remembered` | They used the same address within `alt-guard.remember` |
 
 ## delivery
 

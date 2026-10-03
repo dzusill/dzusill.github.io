@@ -22,9 +22,11 @@ the entire map into an AFK zone.
 
 Every player has their own countdown, and it only advances while they are:
 
-- inside a zone, and
+- inside a zone,
 - in a game mode listed under `game-modes` in [`config.yml`](/plugins/oberonafk/configuration/config/)
-  (`SURVIVAL` and `ADVENTURE` by default).
+  (`SURVIVAL` and `ADVENTURE` by default), and
+- not held back because another of their accounts collects already — see
+  [One account per player](/plugins/oberonafk/features/alt-guard/).
 
 It starts again from zero when the player **leaves** the zone, **dies**, **logs out** or **changes
 game mode**. Nothing about it is persisted — a restart simply restarts everybody's interval.

@@ -65,6 +65,8 @@ alias from [`sounds.yml`](/plugins/oberonafk/configuration/sounds/), `""` for si
 | `storage-full` | chat · sound `error` |
 | `nothing` | nothing, silent |
 | `teleport` | chat · sound `teleport` |
+| `alt-blocked` | chat · sound `error` — another of the player's accounts already collects |
+| `alt-unblocked` | chat · sound `enter` — that account stopped, this one collects now |
 
 `notifications.title-times` sets the default `fade-in`, `stay` and `fade-out` for every title, in ticks
 (20 is one second).
@@ -74,6 +76,22 @@ alias from [`sounds.yml`](/plugins/oberonafk/configuration/sounds/), `""` for si
 | Key | Default | Meaning |
 |---|---|---|
 | `history.page-size` | `10` | Lines per page of `/afk history` (1-50) |
+
+## alt-guard
+
+Of accounts that connect from the same address, now or within `remember`, only `max-accounts` collect.
+How it decides, what it stores and what it cannot catch:
+[One account per player](/plugins/oberonafk/features/alt-guard/).
+
+| Key | Default | Meaning |
+|---|---|---|
+| `alt-guard.enabled` | `true` | Off: every account collects |
+| `alt-guard.max-accounts` | `1` | How many linked accounts collect at once |
+| `alt-guard.ignore-addresses` | loopback and private networks | Addresses or CIDR ranges that link nobody |
+| `alt-guard.remember` | `30d` | How long a shared address keeps accounts linked. `0` stores nothing |
+| `alt-guard.staff-alert.enabled` | `true` | Tell players with `oberonafk.altguard.notify` when an account is held back |
+| `alt-guard.staff-alert.cooldown` | `5m` | Alerts about one account wait this long |
+| `alt-guard.staff-alert.console` | `true` | Also write the alert to the console |
 
 ## time-format
 

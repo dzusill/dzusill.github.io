@@ -20,6 +20,9 @@ in a personal claim storage that is opened with `/afkrewards`.
   commands (money, stardust, crate keys — whatever your other plugins give out) or an item: plain,
   custom-built, captured from your hand, or taken from MMOItems, ItemsAdder, Oraxen or
   ExecutableItems.
+- **One account per player.** Accounts that connect from the same address, now or within the last 30
+  days, share one place: an alt parked in the zone collects nothing while the main account does. The
+  database keeps only keyed hashes of addresses, never the addresses.
 - **Nothing is lost to a full inventory.** Items that do not fit go to a claim storage that survives
   restarts, and can only be taken *out* of — it is not an extra chest.
 - **A manual teleport.** `/afk` takes a player to the zone after a short warm-up that movement and
