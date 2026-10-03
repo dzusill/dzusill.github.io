@@ -21,6 +21,7 @@ modules:
   ping: true
   superjump: true
   elytra: true
+  commands: true        # your own commands, defined in commands.yml
   pearlcatch: false     # improvement
 ```
 

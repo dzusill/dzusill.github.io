@@ -478,6 +478,10 @@
                 "slug": "plugins/oberonutils/features/elytra"
               },
               {
+                "label": "Custom Commands",
+                "slug": "plugins/oberonutils/features/custom-commands"
+              },
+              {
                 "label": "Pearl Catch",
                 "slug": "plugins/oberonutils/features/pearl-catch"
               }

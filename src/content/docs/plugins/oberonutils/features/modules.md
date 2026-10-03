@@ -13,6 +13,7 @@ modules:
   ping: true
   superjump: true
   elytra: true
+  commands: true
   pearlcatch: false
 ```
 
@@ -32,6 +33,7 @@ switch it on.
 | [Ping](/plugins/oberonutils/features/ping/) | `/ping` | PremiumVanish / SuperVanish |
 | [Super Jump](/plugins/oberonutils/features/super-jump/) | `/superjump` `/doublejump` `/sj` `/odj` | EssentialsX, WorldGuard |
 | [Elytra](/plugins/oberonutils/features/elytra/) | — | — |
+| [Custom Commands](/plugins/oberonutils/features/custom-commands/) | whatever you define in `commands.yml` | PlaceholderAPI |
 | [Pearl Catch](/plugins/oberonutils/features/pearl-catch/) | `/oberonutils pearlcatch` | — (Paper only, not Folia) |
 
 `/oberonutils` is always registered, regardless of which modules are on.

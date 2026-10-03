@@ -46,6 +46,9 @@ kept that way.
 | `/oberonutils pearlcatch debug` | `oberonutils.admin` | Report your own [pearl catch](/plugins/oberonutils/features/pearl-catch/) attempts in chat |
 | `/oberonutils pearlcatch status` | `oberonutils.admin` | Show the pearl catch settings in force |
 
+Commands you define yourself in `commands.yml`, with their own optional permissions, are covered on
+[Custom Commands](/plugins/oberonutils/features/custom-commands/).
+
 ## Permission nodes
 
 Nodes carried over from the Skript setup, unchanged — nothing in your permissions plugin needs
