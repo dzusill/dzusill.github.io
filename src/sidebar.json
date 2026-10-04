@@ -1057,6 +1057,10 @@
                 "slug": "plugins/oberonenvoys/configuration/sounds"
               },
               {
+                "label": "discord.yml",
+                "slug": "plugins/oberonenvoys/configuration/discord"
+              },
+              {
                 "label": "database.yml",
                 "slug": "plugins/oberonenvoys/configuration/database"
               },

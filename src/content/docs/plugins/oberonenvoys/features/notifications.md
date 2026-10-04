@@ -164,3 +164,9 @@ Switches every announcement to its variant without a position, and hides coordin
 
 The beam, hologram and crate are world state and stay visible regardless — they are not
 notifications.
+
+## Discord
+
+The same stages can also be posted to a Discord channel through a webhook: spawn, land, unlock and
+looted, each naming the envoy type. It is separate from everything above, so it does not depend on
+`oberonenvoys.notify` or the chat and action-bar switches. See [discord.yml](/plugins/oberonenvoys/configuration/discord/).
