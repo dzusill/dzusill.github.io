@@ -1226,6 +1226,137 @@
         ]
       },
       {
+        "label": "🥊 OberonCombat",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "OberonCombat",
+            "slug": "plugins/oberoncombat"
+          },
+          {
+            "label": "🚀 Getting started",
+            "items": [
+              {
+                "label": "Installation",
+                "slug": "plugins/oberoncombat/getting-started/installation"
+              },
+              {
+                "label": "Quick start",
+                "slug": "plugins/oberoncombat/getting-started/quick-start"
+              },
+              {
+                "label": "Moving from PvPManager",
+                "slug": "plugins/oberoncombat/getting-started/migrating-from-pvpmanager"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "The combat tag",
+                "slug": "plugins/oberoncombat/features/combat-tag"
+              },
+              {
+                "label": "Exclusions",
+                "slug": "plugins/oberoncombat/features/exclusions"
+              },
+              {
+                "label": "PvP kills: lightning, money and experience",
+                "slug": "plugins/oberoncombat/features/kills"
+              },
+              {
+                "label": "Combat log",
+                "slug": "plugins/oberoncombat/features/combat-log"
+              },
+              {
+                "label": "Command blacklist",
+                "slug": "plugins/oberoncombat/features/command-blacklist"
+              },
+              {
+                "label": "Item cooldowns",
+                "slug": "plugins/oberoncombat/features/item-cooldowns"
+              },
+              {
+                "label": "Soup PvP and /soup",
+                "slug": "plugins/oberoncombat/features/soup"
+              },
+              {
+                "label": "The safe-zone barrier",
+                "slug": "plugins/oberoncombat/features/barrier"
+              },
+              {
+                "label": "PvP toggle",
+                "slug": "plugins/oberoncombat/features/pvp-toggle"
+              },
+              {
+                "label": "Restrictions and tag effects",
+                "slug": "plugins/oberoncombat/features/restrictions"
+              },
+              {
+                "label": "Commands on events",
+                "slug": "plugins/oberoncombat/features/event-commands"
+              },
+              {
+                "label": "Kill-abuse guard",
+                "slug": "plugins/oberoncombat/features/kill-abuse"
+              },
+              {
+                "label": "Duels-Shyam",
+                "slug": "plugins/oberoncombat/features/duels"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberoncombat/configuration/config"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/oberoncombat/configuration/messages"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands",
+                "slug": "plugins/oberoncombat/reference/commands"
+              },
+              {
+                "label": "Permissions",
+                "slug": "plugins/oberoncombat/reference/permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberoncombat/reference/placeholders"
+              },
+              {
+                "label": "Developer API",
+                "slug": "plugins/oberoncombat/reference/api"
+              },
+              {
+                "label": "Troubleshooting",
+                "slug": "plugins/oberoncombat/reference/troubleshooting"
+              }
+            ]
+          },
+          {
+            "label": "🛠️ Development",
+            "items": [
+              {
+                "label": "Testing",
+                "slug": "plugins/oberoncombat/developing/testing"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "label": "✉️ OberonMSG",
         "collapsed": true,
         "items": [

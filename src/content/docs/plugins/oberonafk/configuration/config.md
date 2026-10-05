@@ -45,7 +45,7 @@ A zone can switch the countdown off for itself with `countdown: false` in
 | `teleport.warmup-seconds` | `3` | Time the player must stand still. `0` is instant |
 | `teleport.cancel-on-move` | `true` | Moving to another block cancels the warm-up |
 | `teleport.cancel-on-damage` | `true` | Taking damage cancels it |
-| `teleport.block-in-combat` | `true` | Refuse while PvPManager has the player combat-tagged |
+| `teleport.block-in-combat` | `true` | Refuse while OberonCombat (or PvPManager) has the player combat-tagged |
 | `teleport.combat-fallback-seconds` | `15` | Only used when PvPManager's API and PlaceholderAPI both cannot answer: how long an observed tag counts |
 
 See [The /afk teleport](/plugins/oberonafk/features/teleport/).

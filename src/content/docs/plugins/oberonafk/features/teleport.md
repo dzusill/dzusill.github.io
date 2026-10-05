@@ -43,15 +43,17 @@ With more than one point, one is picked at random every time. A bare `/afk` goes
 
 ## Combat
 
-With [PvPManager](https://www.spigotmc.org/resources/pvpmanager.845/) installed (`teleport.block-in-combat`,
-on by default), `/afk` is refused while the player is combat-tagged. The state is read in this order:
+With OberonCombat installed (`teleport.block-in-combat`, on by default), `/afk` is refused while the player is
+combat-tagged. OberonCombat's own combat tag is the answer, read through the `CombatService` it registers with Bukkit.
+
+With [PvPManager](https://www.spigotmc.org/resources/pvpmanager.845/) installed instead, the state is read in this order:
 
 1. PvPManager's own live state — the source of truth.
 2. PlaceholderAPI's `%pvpmanager_in_combat%`, if the first cannot be reached.
 3. The tag events observed here, aged out after `teleport.combat-fallback-seconds`.
 
 A cache of tags this plugin saw itself is only used as a last resort, so one missed untag can never
-keep a player "in combat" after PvPManager has let them go. Without PvPManager nobody counts as in
+keep a player "in combat" after PvPManager has let them go. Without OberonCombat or PvPManager nobody counts as in
 combat.
 
 ## Taking over /afk
