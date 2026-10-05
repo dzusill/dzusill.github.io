@@ -36,6 +36,14 @@ A mob hit them with `combat.pve-tag` on, or damage another player was responsibl
 `combat.attribution-window` of a hit. `/oberoncombat debug` turns on the event trace; `/oberoncombat debug <player>` shows who their
 enemies are.
 
+## Soups seem to multiply in the inventory
+
+Mushroom stew, rabbit stew, beetroot soup and suspicious stew **stack to one**. EssentialsX's `/give <player> mushroom_stew` with no amount
+gives a full stack of 64 in a single slot, which vanilla does not allow. The moment such a stack is dropped (a death) and picked up
+again, the game spreads it into one stew per free slot: it looks like duplication but is the same number of soups. OberonCombat takes
+exactly one soup per use and never adds any; this is covered by a test that spams every kind of click. Give soups with an amount
+(`/give <player> mushroom_stew 1`) or the vanilla `/minecraft:give`.
+
 ## Soup slows the player down
 
 A flicker for a tick is expected; a lasting slowdown is not. Check `soup.eat-state-fix: reset` and report the server and client
