@@ -88,7 +88,8 @@ See [PvP kills](/plugins/oberoncombat/features/kills/).
 |---|---|---|
 | `soup.enabled` | `true` | |
 | `soup.when` | `always` | `always`, `in-combat`, `out-of-combat` |
-| `soup.triggers` | `[right-click, left-click]` | |
+| `soup.triggers` | `[right-click, left-click]` | Left click is a click in the air |
+| `soup.left-click-on-block` | `false` | `true`: a left click on a block uses the soup too (the block still breaks) |
 | `soup.require-permission` | `false` | Ask for `oberoncombat.soup` |
 | `soup.use-at-full-health` | `false` | `false`: a player at full health cannot use a soup. A soup can override it |
 | `soup.bowl` | `remove` | `remove` or `keep` |
@@ -115,7 +116,7 @@ See [Soup PvP](/plugins/oberoncombat/features/soup/).
 | `barrier.push-back.force` | `1.2` | 0.1 to 4 |
 | `barrier.push-back.vertical` | `0.3` | 0 to 1 |
 | `barrier.push-back.stop-gliding` | `true` | |
-| `barrier.vulnerable` | `false` | Fighters can hit each other inside a `pvp: deny` region |
+| `barrier.vulnerable` | `true` | Fighters can hit each other inside a `pvp: deny` region |
 | `barrier.message-cooldown` | `1s` | |
 | `barrier.block-teleports` | `[ender_pearl, consumable_effect]` | Teleport causes refused into a region |
 | `barrier.index-refresh` | `30s` | How often the region list is read |
@@ -163,6 +164,16 @@ See [PvP toggle](/plugins/oberoncombat/features/pvp-toggle/).
 
 `enabled` (`false`), `max-kills` (`5`), `time-limit` (`5m`), `warn-before` (`true`), `commands` (`[]`). See
 [Kill-abuse guard](/plugins/oberoncombat/features/kill-abuse/).
+
+## placeholders
+
+| Key | Default | |
+|---|---|---|
+| `placeholders.combat-prefix` | empty | `%..._combat_prefix%` while tagged |
+| `placeholders.pvp-status-prefix-on` / `-off` | `&4PvP On ` / `&2PvP Off ` | `%..._pvp_status_prefix%` |
+| `placeholders.heart-symbol` | `❤` | `%..._current_enemy_hearts%` |
+
+See [Placeholders](/plugins/oberoncombat/reference/placeholders/).
 
 ## integrations
 

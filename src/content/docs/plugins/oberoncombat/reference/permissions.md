@@ -11,10 +11,12 @@ description: "Nobody has these by default, not even ops."
 | `oberoncombat.command.untag` | op | `/untag` on yourself |
 | `oberoncombat.command.untag.others` | op | `/untag <player>` and `/untag all` |
 | `oberoncombat.command.soup` | everyone | `/soup` |
-| `oberoncombat.command.pvp` | everyone | `/pvp` on yourself |
+| `oberoncombat.command.pvp` | **op** | `/pvp` on yourself. Not given to everyone, as in PvPManager: grant it to the ranks that may switch PvP off |
 | `oberoncombat.command.pvp.others` | op | `/pvp <player>` |
 | `oberoncombat.command.pvpstatus` | everyone | `/pvpstatus` on yourself |
 | `oberoncombat.command.pvpstatus.others` | op | `/pvpstatus <player>` |
+| `oberoncombat.command.pvpinfo` | op | `/pvpinfo` on yourself |
+| `oberoncombat.command.pvpinfo.others` | op | `/pvpinfo <player>` |
 | `oberoncombat.soup` | everyone | The soup effect, when `soup.require-permission` is on |
 
 ## Exemptions
@@ -35,7 +37,7 @@ Nobody has these by default, **not even ops**.
 | `oberoncombat.exempt.pvpcooldown` | the `/pvp` cooldown |
 | `oberoncombat.exempt` | **all of the above** |
 
-`oberoncombat.*` grants the admin and `.others` nodes and `/soup`, but **not** the exemptions: an admin group with
+`oberoncombat.*` grants the admin, `/pvp`, `/pvpinfo` and `.others` nodes and `/soup`, but **not** the exemptions: an admin group with
 `oberoncombat.*` is still tagged. Grant `oberoncombat.exempt` on purpose.
 
 ## PvPManager equivalents
@@ -48,3 +50,9 @@ Nobody has these by default, **not even ops**.
 | `pvpmanager.command.tag`, `.tag.others` | `oberoncombat.command.tag`, `.tag.others` |
 | `pvpmanager.command.untag` | `oberoncombat.command.untag`, `.untag.others` |
 | `pvpmanager.admin` | `oberoncombat.admin` |
+| `pvpmanager.command.pvp` | `oberoncombat.command.pvp` |
+| `pvpmanager.command.pvpinfo` | `oberoncombat.command.pvpinfo` |
+| `pvpmanager.exempt.disableactions` | `oberoncombat.exempt.tageffects` |
+| `pvpmanager.exempt.nopvetag` | `oberoncombat.exempt.pve` |
+| `pvpmanager.exempt.killabuse` | `oberoncombat.exempt.killabuse` |
+| `pvpmanager.exempt.pvptogglecooldown` | `oberoncombat.exempt.pvpcooldown` |

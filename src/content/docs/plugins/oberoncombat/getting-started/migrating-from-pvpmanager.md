@@ -57,6 +57,7 @@ across:
 | `Anti Border Hopping.Barrier` | `barrier.*` |
 | `Combat Log Punishments` | `combat-log.*` |
 | PvP toggle | `pvp-toggle.*` |
+| `Anti Border Hopping.Vulnerable` | `barrier.vulnerable` (on by default) |
 | `Anti Kill Abuse` (`Max Kills`, `Time Limit`, `Warn Before`, `Commands on Abuse`) | `kill-abuse.*` (`max-kills`, `time-limit`, `warn-before`, `commands`) |
 | Fly / game mode / god mode on tag | `tag-effects.*` |
 
@@ -74,8 +75,12 @@ durations). While OberonCombat is installed, OberonUtils' whole `combat:` sectio
 
 ## 5. Placeholders
 
-`%pvpmanager_combat_timeleft%`-style names keep working while `integrations.papi-alias-pvpmanager` is on (the default). See
-[Placeholders](/plugins/oberoncombat/reference/placeholders/).
+Every placeholder on PvPManager's wiki keeps working under `%pvpmanager_…%` while `integrations.papi-alias-pvpmanager` is on (the
+default); those for features OberonCombat does not have return `false` or `0`. See [Placeholders](/plugins/oberoncombat/reference/placeholders/). Colour
+codes (`&c`, `&#RRGGBB`) in `messages.yml` work as they are, and `/pmr reload` and `/pvpinfo` exist.
+
+**`/pvp` needs a permission, as in PvPManager.** Grant `oberoncombat.command.pvp` to the ranks that may switch PvP off, once
+`pvp-toggle.enabled` is on.
 
 ## 6. What is not carried over
 

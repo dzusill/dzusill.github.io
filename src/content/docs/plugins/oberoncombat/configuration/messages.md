@@ -1,9 +1,10 @@
 ---
 title: "messages.yml"
-description: "Every text the plugin sends, with where it shows and what it sounds like beside it. The format is"
+description: "Every text the plugin sends, with where it shows and what it sounds like beside it. Both MiniMessage and PvPManager's colour codes work, so old texts can be…"
 ---
 
-Every text the plugin sends, with where it shows and what it sounds like beside it. The format is
+Every text the plugin sends, with where it shows and what it sounds like beside it. Both MiniMessage and PvPManager's colour codes work, so old texts can be pasted in as they are: `&c`, `&l` and `&#C21807` next to `<red>`, `<bold>` and `<#C21807>`.
+The format is
 [MiniMessage](https://docs.advntr.dev/minimessage/format.html): `<gray>`, `<#C21807>`, `<bold>`,
 `<gradient:#C21807:#F11800>`. Tokens work as `%name%` or `{name}`; the ones each message understands are listed above it in
 the file and in the tables below. `/oberoncombat reload` re-reads it.
@@ -59,6 +60,7 @@ The framework keys at the top of the file (`no-permission`, `players-only`, `inv
 | `attack-denied-you`, `attack-denied-other` | a refused hit | `%player%` |
 | `pvp-force-enabled-worldguard` | PvP forced on in a region | |
 | `pvp-status-self`, `pvp-status-other`, `pvp-set-other`, `pvp-set-by-admin` | `/pvp`, `/pvpstatus` | `%player%`, `%state%` |
+| `pvpinfo` | `/pvpinfo` | `%player%`, `%pvp%`, `%tagged%`, `%timeleft%`, `%enemies%`, `%exempt%`, `%cooldown%` |
 | `kill-abuse-warning` | the last allowed kill | `%victim%` |
 | `blocked-ender-pearl`, `-chorus-fruit`, `-teleport`, `-eat`, `-totem`, `-place-blocks`, `-break-blocks`, `-open-inventory`, `-portal`, `-riptide` | a [restriction](/plugins/oberoncombat/features/restrictions/) | |
 

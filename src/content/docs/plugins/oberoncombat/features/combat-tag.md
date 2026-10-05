@@ -85,7 +85,7 @@ or the void. The credit goes to the most recent enemy, except for `/kill` and su
 
 ## The countdown
 
-The `combat-timer` message is shown once a second while tagged. It uses the action bar at the lowest priority, so a money
+The `combat-timer` message is shown the moment a player is tagged or renewed (a hit, a pearl, a barrier attempt), then refreshed once a second while tagged. It uses the action bar at the lowest priority, so a money
 message or any other notice keeps the slot until its hold ends.
 
 | Token | Meaning |

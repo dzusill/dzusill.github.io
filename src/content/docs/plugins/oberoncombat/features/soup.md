@@ -12,6 +12,7 @@ soup:
   enabled: true
   when: always                      # always | in-combat | out-of-combat
   triggers: [right-click, left-click]
+  left-click-on-block: false
   require-permission: false
   use-at-full-health: false
   bowl: remove                      # remove | keep
@@ -55,8 +56,11 @@ stew, rabbit stew, beetroot soup and suspicious stew. Add any other item the sam
 
 ## Clicking
 
-- **Right-click** and **left-click** (in the air or on a block) can each be switched off in `triggers`. Minecraft reports a
-  swing at a player as a left-click in the air, so with left-click on, hitting someone with a soup in hand uses the soup.
+- **Right-click** and **left-click** can each be switched off in `triggers`. Left-click is a click **in the air**: Minecraft reports
+  a swing at a player that way, so with left-click on, hitting someone with a soup in hand uses the soup.
+- **Mining is not a soup click.** A left click on a block breaks it, with a soup in your hand like with anything else: the soup is
+  not used and the block is not protected from breaking. `left-click-on-block: true` makes it a soup click too (the soup is used,
+  the block still breaks). A right click on a block uses the soup and leaves the block alone.
 - A right-click on something that opens (a chest, a door, a button) belongs to the block, unless the player sneaks.
 - **One soup per player per tick**, so the off-hand event of the same click cannot eat a second one.
 - **Full health.** With `use-at-full-health: false` (the default) a player at full health cannot use a soup: the soup stays in

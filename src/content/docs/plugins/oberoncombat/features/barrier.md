@@ -63,7 +63,7 @@ barrier:
   vulnerable: true
 ```
 
-Off by default. When on, two combat-tagged players who are **fighting each other** can still hurt each other inside a
+On by default, as `Vulnerable` is in PvPManager's config (set `false` to keep a safe zone safe for everyone). When on, two combat-tagged players who are **fighting each other** can still hurt each other inside a
 `pvp: deny` region, even though WorldGuard refuses PvP there. Nobody else can hit them, and a bystander in the region stays
 safe. A fighter whose [PvP is off](/plugins/oberoncombat/features/pvp-toggle/) stays safe, and a hit a duel plugin refused stays refused (a guard such as
 Duels-Shyam's is asked). **It cannot tell WorldGuard's refusal from any other plugin's**: for two fighters inside a
