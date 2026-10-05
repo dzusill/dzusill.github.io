@@ -119,7 +119,34 @@ A crate that is still within its lifetime is **brought back** rather than swept.
 rebuilt first, then the sweep runs, then their effects are drawn — that order matters, since the
 sweep removes every tagged entity in the world and cannot tell last session's stale hologram from a
 fresh one. A restart mid-countdown therefore returns a crate that still knows when it unlocks, not
-one stuck at zero.
+one stuck at zero. A restored crate is protected and gated exactly like one that landed this session:
+it cannot be broken, it refuses opening until it unlocks, and it closes when it is emptied. Each drop
+keeps its id across restarts, so `/envoy move` or `/envoy clear` straight after a restart still takes
+the crate with it.
+
+An envoy that was **still falling** is saved from the moment it is announced. After a restart or a
+`/reload` it falls again for the time it had left and lands on schedule — if its moment passed while
+the server was down, it lands on the first tick. It is never silently dropped after it has been
+announced. The falling crate and the built-in hologram labels are removed when the plugin shuts down,
+so a reload cannot leave one hanging in the sky.
+
+### Crates nothing remembers
+
+Whatever strands a crate — a crash between placing it and writing it down, a save file from an older
+build — the outcome used to be a shulker box standing in the world for good. Two sweeps now close
+that, and both go by the plugin's own tag, so nothing of a player's is ever touched:
+
+- **Every chunk that loads**, and every loaded chunk at startup, is checked for a tagged container
+  that no live drop owns. It is cleared and removed, with a line in the console.
+- **Every 15 seconds**, a tagged display entity that no live drop is tracking is removed.
+
+A saved drop whose **world is not loaded yet** when the plugin enables — a hub world loaded by a
+world manager, say — is kept in `active-drops.yml` and picked up the moment that world loads, rather
+than forgotten.
+
+An envoy that throws while advancing is removed and logged, so one broken drop cannot stop the others
+or the schedule. A visual that throws (a hologram plugin misbehaving) is logged once and the countdown
+carries on without it.
 
 The file is rewritten whenever the state changes — as a crate lands and its deadlines are set, as it
 unlocks, and the moment someone claims the first open. That last one matters: without it a crash

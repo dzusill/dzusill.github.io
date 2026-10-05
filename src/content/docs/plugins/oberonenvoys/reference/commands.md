@@ -51,7 +51,10 @@ that wants the hunt to be completely player-driven.
 | `/envoy reload` | Re-read every configuration file |
 
 `spawn` with no arguments rolls a tier and searches for a site exactly as the scheduler would, which
-is the version worth running before an event. `here` puts the crate at your feet and skips the search.
+is the version worth running before an event. `here` puts the crate on the ground under your feet and
+skips the search. Flying above a barrier roof (or any air) does not leave the crate floating: it
+comes to rest on the first solid block below, ignoring `placement.see-through-materials`, the same
+way `/envoy move` does. A second `here` on a block another envoy already occupies is refused.
 
 `open` is the companion to it: `spawn` forces a crate into the world, `open` forces it open. Together
 they check a tier's loot in two commands instead of two minutes of standing around. A crate still

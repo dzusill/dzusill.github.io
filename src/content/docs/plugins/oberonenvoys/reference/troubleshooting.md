@@ -148,9 +148,13 @@ boss bar and the proximity action bar are the countdown for the other two.
 ## A crate is stuck in the world
 
 It should not happen — crate positions are written down as they land and swept on the next startup,
-and every entity is tagged.
+every entity is tagged, and a tagged crate that no live drop owns is removed the next time its chunk
+loads (the console says `Removed an orphaned envoy crate at …`). A falling crate that hangs in the
+sky is reaped within 15 seconds.
 
-If one does survive:
+A shulker box you cannot get rid of that is *not* tagged is not ours: it is an ordinary block.
+
+If a tagged one does survive:
 
 ```
 /envoy clear
