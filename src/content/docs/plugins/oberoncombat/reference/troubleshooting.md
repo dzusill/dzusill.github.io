@@ -13,6 +13,20 @@ OberonCombat replaces PvPManager and refuses to run beside it. Remove `PvPManage
 Install OberonCore 1.14.4 or newer. If an older OberonCore or DzusillCore jar is also in `plugins/`, remove it: two cores side by
 side can serve this plugin classes from the older one.
 
+## Nothing is stolen, and nobody is punished for combat logging
+
+Check the console at startup for the Duels-Shyam line: `Hooked into Duels-Shyam … (N arena world(s): […])`. A fighter standing in an
+**arena world** counts as in a duel: no money, no lightning, no combat-log punishment. Duels-Shyam ships an `example.yml` arena whose
+world is the **main world**; read as an arena world it made every player on the server count as dueling. OberonCombat now leaves the main
+world out of the automatic list (and says so in the console). If you list worlds by hand in `integrations.duels-shyam.arena-worlds`, keep the
+main world out of the list unless duels really are fought in it.
+
+## Money steal moves the wrong money
+
+`/oberoncombat status` shows what is paid (`Money steal pays through:`). With ExcellentEconomy installed, `money-steal.economy: auto` pays
+its currency directly. If it says `Vault: EssentialsX Economy`, Vault is not answering with the economy your players use: set
+`money-steal.economy: excellenteconomy` and `money-steal.currency` to the currency id.
+
 ## Nothing is stolen on a kill
 
 `/oberoncombat status` shows whether Vault is found. Money needs Vault **and** an economy plugin registered with it

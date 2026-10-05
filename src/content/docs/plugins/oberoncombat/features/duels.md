@@ -17,6 +17,9 @@ ShyamDuels 2.0, which is not supported.
 - **PvP is always on** for fighters, whatever their [`/pvp`](/plugins/oberoncombat/features/pvp-toggle/) says.
 - A fighter still counts as in a duel for **five seconds** after the session closes, and while standing in an arena world,
   because Duels may close the session before the death event reaches OberonCombat.
+- **The main world is never an arena world by itself.** Duels ships an example arena in it; counting it would make everyone on the server
+  "in a duel" (no money, no combat log). The console warns when an arena file names it. Duels fought in the main world must be listed
+  by hand.
 
 ## Setting up
 

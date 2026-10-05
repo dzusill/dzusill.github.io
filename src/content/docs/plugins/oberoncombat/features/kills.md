@@ -30,6 +30,8 @@ excluded for `kill-effect`.
 ```yaml
 money-steal:
   enabled: true
+  economy: auto              # auto | vault | excellenteconomy
+  currency: money            # the ExcellentEconomy currency id
   percent: 5.0
   decimals: 2
   rounding: floor            # floor | half-up | ceiling
@@ -44,14 +46,27 @@ money-steal:
 ```
 
 The killer receives `percent` percent of the **victim's balance at the moment of death**, on **every** kill: no cap, no
-cooldown by default. It is paid through Vault, so any economy Vault knows works (ExcellentEconomy included).
+cooldown by default.
+
+### Which economy is paid
+
+| `money-steal.economy` | Pays |
+|---|---|
+| `auto` (default) | ExcellentEconomy's `money-steal.currency` when ExcellentEconomy is installed and has that currency; otherwise Vault |
+| `excellenteconomy` | always that ExcellentEconomy currency |
+| `vault` | always Vault |
+
+**Why not only Vault:** ExcellentEconomy answers Vault only when its own `Integration.Vault.Enabled` is on. With it off, Vault answers
+with another economy such as EssentialsX, and money steal would move balances nobody uses (so "money steal does nothing"). The console
+says at startup what is paid (`Money steal pays in ExcellentEconomy's 'money' currency.`) and `/oberoncombat status` shows
+`Money steal pays through:`. A reload (`/oberoncombat reload`) picks a changed economy or currency up.
 
 - The victim is charged first and the killer paid second. If the payment fails the victim is **refunded**, so money is
   never created or lost between the two.
 - `rounding: floor` means a fraction of a cent is never invented.
 - `anti-farm` withholds the money (only the money) when the same killer kills the same victim again within
   `per-pair-cooldown`. For a limit that also runs commands, use the [kill-abuse guard](/plugins/oberoncombat/features/kill-abuse/).
-- Nothing is stolen without Vault and an economy; the console warns once.
+- Nothing is stolen when the chosen economy is not there; the console says so (and lists ExcellentEconomy's currencies if the name is wrong).
 - `oberoncombat.exempt.moneysteal` protects a victim. Excluded places (`money-steal`) protect both sides.
 
 ### The two messages

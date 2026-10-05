@@ -69,6 +69,8 @@ See [Command blacklist](/plugins/oberoncombat/features/command-blacklist/).
 |---|---|---|
 | `kill-effects.lightning` | `true` | A harmless lightning strike at the victim |
 | `money-steal.enabled` | `true` | |
+| `money-steal.economy` | `auto` | `auto`, `vault`, `excellenteconomy` |
+| `money-steal.currency` | `money` | The ExcellentEconomy currency id |
 | `money-steal.percent` | `5.0` | Percent of the victim's balance, on every kill |
 | `money-steal.decimals` | `2` | |
 | `money-steal.rounding` | `floor` | `floor`, `half-up`, `ceiling` |
