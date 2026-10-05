@@ -69,7 +69,7 @@ See [Command blacklist](/plugins/oberoncombat/features/command-blacklist/).
 |---|---|---|
 | `kill-effects.lightning` | `true` | A harmless lightning strike at the victim |
 | `money-steal.enabled` | `true` | |
-| `money-steal.economy` | `auto` | `auto`, `vault`, `excellenteconomy` |
+| `money-steal.economy` | `auto` | `auto` (Vault when installed), `vault`, `excellenteconomy` |
 | `money-steal.currency` | `money` | The ExcellentEconomy currency id |
 | `money-steal.percent` | `5.0` | Percent of the victim's balance, on every kill |
 | `money-steal.decimals` | `2` | |
@@ -137,6 +137,7 @@ See [The barrier](/plugins/oberoncombat/features/barrier/).
 | `combat-log.kick-reasons` | `[]` | Only kicks whose reason contains one of these (empty: every kick) |
 | `combat-log.release-enemies` | `true` | |
 | `combat-log.money-penalty` | `0` | Percent of the leaver's balance, paid to nobody |
+| `combat-log.death-message` | `true` | `false`: no death line in chat for a combat log (the vanilla one and OberonKills') |
 
 See [Combat log](/plugins/oberoncombat/features/combat-log/).
 

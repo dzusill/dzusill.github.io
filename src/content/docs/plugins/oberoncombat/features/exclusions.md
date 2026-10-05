@@ -32,8 +32,9 @@ exclusions:
 - **Worlds** are matched by glob (`Arenas*`, `world_*`), case-insensitive.
 - **Regions** are matched by **exact id**, never by substring: a region called `spawn_pvp` is not `spawn`.
 - Region ids need WorldGuard. Without it, only worlds are checked and the console says so at startup.
-- A mistake is reported by key name and skipped: a profile named under `global` or `features` that does not exist, or a
-  feature name that is not one of those below.
+- `global` and `features` list **profile names**. A name that is no profile is used as a **WorldGuard region id** (so a list copied from PvPManager,
+  `money-steal: [spawn, tourny]`, still works), and the console notes it in case it was a typo.
+- A feature name that is not one of those below is reported by key name and skipped.
 
 ## Features
 

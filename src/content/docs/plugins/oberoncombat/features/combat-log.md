@@ -17,6 +17,7 @@ combat-log:
   kick-reasons: []
   release-enemies: true
   money-penalty: 0
+  death-message: true
 ```
 
 ## What happens
@@ -27,6 +28,18 @@ combat-log:
 4. The player is killed. For the moment of that death they carry the metadata `oberoncombat_combat_log`, so OberonKills can
    print its combat-log line.
 5. The death is **not** a PvP kill: no lightning, no money or experience for the enemy.
+
+## The messages a combat log produces
+
+Two different lines can reach chat, from two different places:
+
+| Line | From | Switched off by |
+|---|---|---|
+| `combat-log-broadcast` (empty by default) | OberonCombat, to everyone else online | leaving every key of it empty in `messages.yml` (nothing is sent) |
+| the **death message**: `X died`, or OberonKills' `X logged out in the middle of a fight` | the game / OberonKills, because the player is killed | `combat-log.death-message: false` |
+
+If chat still shows a line for a combat log although `combat-log-broadcast` is empty, it is the death message. `death-message: false` removes
+it for combat-log deaths only; every other death keeps its line.
 
 ## What is not punished
 

@@ -21,11 +21,21 @@ world is the **main world**; read as an arena world it made every player on the 
 world out of the automatic list (and says so in the console). If you list worlds by hand in `integrations.duels-shyam.arena-worlds`, keep the
 main world out of the list unless duels really are fought in it.
 
+## A combat log still shows a line in chat
+
+`combat-log-broadcast` empty sends nothing. The line you see is the **death message** (vanilla `X died`, or OberonKills' combat-log line).
+Set `combat-log.death-message: false` to remove it for combat logs. See [Combat log](/plugins/oberoncombat/features/combat-log/#the-messages-a-combat-log-produces).
+
 ## Money steal moves the wrong money
 
-`/oberoncombat status` shows what is paid (`Money steal pays through:`). With ExcellentEconomy installed, `money-steal.economy: auto` pays
-its currency directly. If it says `Vault: EssentialsX Economy`, Vault is not answering with the economy your players use: set
-`money-steal.economy: excellenteconomy` and `money-steal.currency` to the currency id.
+`/oberoncombat status` shows what is paid (`Money steal pays through:`). `auto` pays through Vault, like PvPManager did. If that is
+`Vault: EssentialsX Economy` but your players' money is in ExcellentEconomy, set `money-steal.economy: excellenteconomy` and
+`money-steal.currency` to the currency id. If it is ExcellentEconomy but you test with EssentialsX's `/eco give`, give the money in
+ExcellentEconomy instead (`/eco` of ExcellentEconomy), or set `economy: vault`. A victim with **no balance in the economy that is paid**
+loses nothing and sees no message.
+
+Also check, in this order: the victim does not hold `oberoncombat.exempt.moneysteal` (`/pvpinfo <player>`); neither player stands in a region
+listed under `exclusions.features.money-steal` (by default `spawn`: money is not stolen **at spawn**); the fight is not a duel.
 
 ## Nothing is stolen on a kill
 

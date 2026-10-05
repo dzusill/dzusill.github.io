@@ -52,14 +52,14 @@ cooldown by default.
 
 | `money-steal.economy` | Pays |
 |---|---|
-| `auto` (default) | ExcellentEconomy's `money-steal.currency` when ExcellentEconomy is installed and has that currency; otherwise Vault |
-| `excellenteconomy` | always that ExcellentEconomy currency |
+| `auto` (default) | what PvPManager did: Vault when it is installed; ExcellentEconomy's `money-steal.currency` only when there is no Vault |
 | `vault` | always Vault |
+| `excellenteconomy` | always that ExcellentEconomy currency |
 
-**Why not only Vault:** ExcellentEconomy answers Vault only when its own `Integration.Vault.Enabled` is on. With it off, Vault answers
-with another economy such as EssentialsX, and money steal would move balances nobody uses (so "money steal does nothing"). The console
-says at startup what is paid (`Money steal pays in ExcellentEconomy's 'money' currency.`) and `/oberoncombat status` shows
-`Money steal pays through:`. A reload (`/oberoncombat reload`) picks a changed economy or currency up.
+**Which one is yours:** Vault is the economy behind EssentialsX's `/eco`, `/pay` and `/bal`, **unless** ExcellentEconomy's own
+`Integration.Vault.Enabled` is on, in which case it is ExcellentEconomy. If your players' money is in ExcellentEconomy while Vault answers
+with EssentialsX, set `economy: excellenteconomy`. Test with the money you use: `/eco give` fills EssentialsX balances, not ExcellentEconomy's.
+The console says at startup what is paid and `/oberoncombat status` shows `Money steal pays through:`; a reload picks a change up.
 
 - The victim is charged first and the killer paid second. If the payment fails the victim is **refunded**, so money is
   never created or lost between the two.
