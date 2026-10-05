@@ -90,6 +90,7 @@ See [PvP kills](/plugins/oberoncombat/features/kills/).
 | `soup.when` | `always` | `always`, `in-combat`, `out-of-combat` |
 | `soup.triggers` | `[right-click, left-click]` | |
 | `soup.require-permission` | `false` | Ask for `oberoncombat.soup` |
+| `soup.use-at-full-health` | `false` | `false`: a player at full health cannot use a soup. A soup can override it |
 | `soup.bowl` | `remove` | `remove` or `keep` |
 | `soup.eat-state-fix` | `reset` | `reset` or `off` |
 | `soup.refill.enabled` | `true` | `/soup` |

@@ -52,6 +52,7 @@ The framework keys at the top of the file (`no-permission`, `players-only`, `inv
 | `combat-log-penalty` | the leaver, at their next join | `%amount%` |
 | `barrier-blocked` | touching the barrier | |
 | `soup-used` | after a soup | `%hearts%` |
+| `soup-full-health` | a soup refused at full health | |
 | `soup-refilled`, `soup-refill-nothing`, `-full`, `-cooldown`, `-in-combat`, `-disabled` | `/soup` | `%count%`, `%time%` |
 | `cooldown-item` | an item on cooldown | `%item%`, `%time%` |
 | `pvp-enabled`, `pvp-disabled`, `pvp-cooldown`, `pvp-toggle-in-combat`, `pvp-toggle-disabled` | `/pvp` | `%time%` |

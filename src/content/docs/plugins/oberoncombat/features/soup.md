@@ -13,6 +13,7 @@ soup:
   when: always                      # always | in-combat | out-of-combat
   triggers: [right-click, left-click]
   require-permission: false
+  use-at-full-health: false
   bowl: remove                      # remove | keep
   eat-state-fix: reset              # reset | off
   refill:
@@ -47,6 +48,7 @@ Each entry under `soup.soups` is an item name and what it does:
 | `effects` | potion effects: `{type, duration, amplifier}`. Durations are `3s`, `1m`; amplifier 0 is level I |
 | `vanilla-effects` | for suspicious stew: keep the effects the stew already carries and add yours on top |
 | `bowl` | per-soup override of the global `bowl` setting |
+| `use-at-full-health` | per-soup override of the global `soup.use-at-full-health` |
 
 An effect with a name that is not a potion effect is reported in the console and skipped. The shipped soups are mushroom
 stew, rabbit stew, beetroot soup and suspicious stew. Add any other item the same way.
@@ -57,6 +59,9 @@ stew, rabbit stew, beetroot soup and suspicious stew. Add any other item the sam
   swing at a player as a left-click in the air, so with left-click on, hitting someone with a soup in hand uses the soup.
 - A right-click on something that opens (a chest, a door, a button) belongs to the block, unless the player sneaks.
 - **One soup per player per tick**, so the off-hand event of the same click cannot eat a second one.
+- **Full health.** With `use-at-full-health: false` (the default) a player at full health cannot use a soup: the soup stays in
+  their hand, vanilla does not start eating it either, and they see `soup-full-health`. Set it to `true` to let soups be used up
+  anyway, or override it for a single soup (a soup that is mostly effects, say). Being one half heart short is enough to use it.
 - `when: in-combat` or `out-of-combat` limits the effect to tagged or untagged players.
 - `require-permission: true` asks for `oberoncombat.soup` (granted to everyone by default).
 - Excluded places (`soup`) switch it off.
