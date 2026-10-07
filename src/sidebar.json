@@ -1944,6 +1944,100 @@
             ]
           }
         ]
+      },
+      {
+        "label": "📦 OberonEnder",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/oberonender"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/oberonender/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonender/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/oberonender/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Permission-Sized Chests",
+                "slug": "plugins/oberonender/features/permission-sizes"
+              },
+              {
+                "label": "Retrieval Inventory",
+                "slug": "plugins/oberonender/features/retrieval-inventory"
+              },
+              {
+                "label": "Safe Storage",
+                "slug": "plugins/oberonender/features/safe-storage"
+              },
+              {
+                "label": "Sounds",
+                "slug": "plugins/oberonender/features/sounds"
+              },
+              {
+                "label": "Converters",
+                "slug": "plugins/oberonender/features/converters"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonender/configuration/config"
+              },
+              {
+                "label": "Messages & Language",
+                "slug": "plugins/oberonender/configuration/messages"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/oberonender/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/oberonender/commands-and-permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberonender/placeholders"
+              },
+              {
+                "label": "Integrations",
+                "slug": "plugins/oberonender/integrations"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/oberonender/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/oberonender/credits"
+              }
+            ]
+          }
+        ]
       }
     ]
   },

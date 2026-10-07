@@ -1,0 +1,16 @@
+---
+title: "Placeholders"
+description: "Requires PlaceholderAPI. The identifier is papi-identifier in config.yml (default oberonender)."
+---
+
+Requires PlaceholderAPI. The identifier is `papi-identifier` in [config.yml](/plugins/oberonender/configuration/config/) (default `oberonender`).
+
+| Placeholder | Returns |
+|---|---|
+| `%oberonender_rows%` | rows of the player's chest (0–6) |
+| `%oberonender_size%` | slots of the player's chest (rows × 9) |
+| `%oberonender_slots%` | same as `size` |
+
+The value follows the player's `enderchest.size.<rows>` permission, or `default-rows`.
+
+Placeholders return nothing when there is no player (console, offline).
