@@ -23,7 +23,7 @@ main world out of the list unless duels really are fought in it.
 
 ## A combat log still shows a line in chat
 
-`combat-log-broadcast` empty sends nothing. The line you see is the **death message** (vanilla `X died`, or OberonKills' combat-log line).
+With `combat-log.broadcast: false` (the default) OberonCombat announces nothing. The line you see is the **death message** (vanilla `X died`, or OberonKills' combat-log line).
 Set `combat-log.death-message: false` to remove it for combat logs. See [Combat log](/plugins/oberoncombat/features/combat-log/#the-messages-a-combat-log-produces).
 
 ## Money steal moves the wrong money

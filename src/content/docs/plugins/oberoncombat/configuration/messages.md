@@ -50,6 +50,7 @@ The framework keys at the top of the file (`no-permission`, `players-only`, `inv
 | `kill-money-lost` | the victim, after respawn | `%amount%`, `%amount_raw%`, `%percent%`, `%killer%`, `%balance%` |
 | `exp-won`, `exp-stolen` | experience steal | `%exp%`, `%victim%` / `%killer%` |
 | `combat-log-broadcast` | everyone, on a combat log (empty by default) | `%player%`, `%enemy%` |
+| `combat-log-broadcast` | everyone else, on a combat log, only with `combat-log.broadcast: true` | `%player%`, `%enemy%` |
 | `combat-log-penalty` | the leaver, at their next join | `%amount%` |
 | `barrier-blocked` | touching the barrier | |
 | `soup-used` | after a soup | `%hearts%` |

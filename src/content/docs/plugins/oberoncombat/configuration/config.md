@@ -137,6 +137,7 @@ See [The barrier](/plugins/oberoncombat/features/barrier/).
 | `combat-log.kick-reasons` | `[]` | Only kicks whose reason contains one of these (empty: every kick) |
 | `combat-log.release-enemies` | `true` | |
 | `combat-log.money-penalty` | `0` | Percent of the leaver's balance, paid to nobody |
+| `combat-log.broadcast` | `false` | `true`: send `combat-log-broadcast` to everyone else when someone combat logs |
 | `combat-log.death-message` | `true` | `false`: no death line in chat for a combat log (the vanilla one and OberonKills') |
 
 See [Combat log](/plugins/oberoncombat/features/combat-log/).
