@@ -20,6 +20,7 @@ The weapon in the killer's hand at the moment of the blow.
 | `mace-smash` | a mace, brought down from a fall |
 | `item` | anything else held — a pickaxe, a stick, a cake |
 | `unarmed` | bare hands |
+| `combat-log` | not a weapon: they left in the middle of a fight — see [Combat logging](#combat-logging) |
 | `default` | anything the above did not cover |
 
 Splitting these is the point. AxKills reads the same for all of them.
@@ -39,6 +40,24 @@ The move the mace exists for, and it gets its own key.
 Telling it from a mace swing is only possible by whether the attacker was **falling** — and fall distance resets the
 instant they land, which is a fraction of a second after the hit. So it is read at the moment of the blow and
 remembered, not guessed at when the player dies.
+
+## Combat logging
+
+When [OberonCombat](/plugins/oberoncombat/) kills a player for leaving in the middle of a fight, the death is reported
+with the `combat-log` key:
+
+```yaml
+Messages:
+  Pvp:
+    combat-log:
+      - "<#C21807><victim></#C21807> <gray>logged out in the middle of a fight</gray>"
+```
+
+Nobody killed them, so there is no `<item>` and no `<distance>`. `<killer>` is the player they were fighting, and empty
+when that is not known.
+
+A config written before the key existed gets that line built in, rather than the generic "was killed by", which would
+read wrongly. The two plugins share only a piece of player metadata, so neither needs the other installed.
 
 ## Mob keys
 

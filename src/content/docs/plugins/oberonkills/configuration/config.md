@@ -67,6 +67,32 @@ Mob-Names:
 The same two settings, for the mob that killed somebody. Without this the message shows the config key —
 `cave-spider` — which is not a name anyone wants broadcast. A name tag wins, exactly as a custom item name does.
 
+## Invisible-Killer
+
+```yaml
+Invisible-Killer:
+  Enabled: true
+  Invisibility: true
+  Vanished: false
+  Name:
+    - "&k????????"
+  Staff-Name: "<hidden> <gray>(<real>)</gray>"
+  Staff-Permission: "oberonkills.seehidden"
+  Hide-Item: false
+```
+
+| Key | Default | Does |
+|---|---|---|
+| `Enabled` | `true` | Conceal a killer nobody could see. |
+| `Invisibility` | `true` | The invisibility potion, or invisibility another plugin set, counts. |
+| `Vanished` | `false` | Vanished staff count too (PremiumVanish / SuperVanish). |
+| `Name` | `&k????????` | What everybody sees instead of the name. One line or a list, picked at random. Never the real name. |
+| `Staff-Name` | `<hidden> <gray>(<real>)</gray>` | What staff see: `<hidden>` the stand-in, `<real>` the real name. |
+| `Staff-Permission` | `oberonkills.seehidden` | Who counts as staff. |
+| `Hide-Item` | `false` | Leave the weapon out too. |
+
+Full explanation on [Invisible killers](/plugins/oberonkills/features/invisible-killer/).
+
 ## Messages
 
 The main section, and the reason the file exists.

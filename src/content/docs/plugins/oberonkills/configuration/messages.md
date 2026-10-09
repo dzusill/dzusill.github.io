@@ -25,6 +25,8 @@ command:
   preview:
     header: "…%category% %key%"
     none: "…%category% %key%"
+    hidden-public: "…"            # labels for "preview pvp <key> hidden"
+    hidden-staff: "…"
 ```
 
 | Placeholder | Is |
@@ -42,6 +44,10 @@ Any message key can be a list, and renders as several lines.
 
 `/oberonkills preview` prints the header from this file, then the death message from `config.yml` rendered with
 stand-in names. The second line is the one you are checking; the header is just context.
+
+With `hidden`, a PvP preview shows the line as it goes out for an
+[invisible killer](/plugins/oberonkills/features/invisible-killer/): `hidden-public` labels what everybody sees,
+`hidden-staff` what staff see.
 
 ## DzusillCore built-ins
 

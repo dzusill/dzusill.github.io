@@ -24,6 +24,8 @@ smash** — the move the weapon exists for.
 - 📏 **Distance** — `<distance>` in bow, crossbow and trident kills.
 - 🔍 **Hover** — the killer's actual item, enchantments and all.
 - 🎖️ **Rank prefixes** — optional.
+- 👻 **Invisible killers** — kill while invisible and nobody is told who did it, except staff.
+- 🏃 **Combat logging** — leaving mid-fight gets its own line, with OberonCombat.
 - 👀 **Preview** — check your wording without asking anyone to die.
 
 ---
@@ -59,5 +61,6 @@ See [Requirements](/plugins/oberonkills/getting-started/requirements/).
 - [Weapons & causes](/plugins/oberonkills/features/weapons/)
 - [Item names](/plugins/oberonkills/features/item-names/)
 - [Writing messages](/plugins/oberonkills/features/message-sets/)
+- [Invisible killers](/plugins/oberonkills/features/invisible-killer/)
 - [Commands & Permissions](/plugins/oberonkills/commands-and-permissions/)
 - [FAQ & Troubleshooting](/plugins/oberonkills/faq/)

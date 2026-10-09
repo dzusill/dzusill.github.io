@@ -1713,6 +1713,10 @@
               {
                 "label": "Rank Prefixes",
                 "slug": "plugins/oberonkills/features/ranks"
+              },
+              {
+                "label": "Invisible Killers",
+                "slug": "plugins/oberonkills/features/invisible-killer"
               }
             ]
           },

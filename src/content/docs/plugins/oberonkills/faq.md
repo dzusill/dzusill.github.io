@@ -118,6 +118,18 @@ No. `<victim>` and `<killer>` are inserted as literal text. Somebody called `<re
 
 Rank prefixes **are** parsed, because those come from your config rather than from a player.
 
+## An invisible kill never reaches Discord
+
+Expected. A kill by an [invisible killer](/plugins/oberonkills/features/invisible-killer/) is sent to each player
+separately — staff get a different line than everyone else — so there is no broadcast for a Discord bridge to read.
+The victim's death screen is blank for the same reason. Ordinary kills are unaffected.
+
+## Why not just `&k` the killer's real name?
+
+Because `&k` only scrambles how a name is drawn. The real name still reaches every client as text — the chat log
+keeps it, mods read it, a Discord bridge posts it — and the scrambled characters keep its length. `Name` is whatever
+you write, never the name itself.
+
 ## Does it count kills?
 
 No — it describes them. If you want counts, leaderboards and milestone rewards, that is
