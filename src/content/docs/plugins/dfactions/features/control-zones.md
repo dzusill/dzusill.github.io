@@ -180,7 +180,7 @@ factions:
     # --- Announcements (each individually switchable) ---
     announce:
       spawn: false          # the boss bar already carries the coordinates
-      spawn-title: true
+      spawn-title: false   # big on-screen title; the boss bar already shows the coordinates
       capture: true
       lose: true
       contest: true

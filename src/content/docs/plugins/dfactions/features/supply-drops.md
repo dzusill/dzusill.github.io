@@ -22,6 +22,7 @@ factions:
     min-distance: 500         # min distance from spawn
     marker-material: CHEST    # block placed to mark the drop
     announce-landing: false   # chat broadcast; off because the boss bar shows the coordinates
+    announce-title: false     # big on-screen title; off because the boss bar shows the coordinates
     loot:                     # list of items; each rolled independently
       - material: DIAMOND
         amount: 8
