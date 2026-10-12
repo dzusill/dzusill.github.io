@@ -126,6 +126,13 @@ Applies only when FancyHolograms is drawing. Any tier may override any of these 
 | `color` | `RED` |
 | `style` | `SEGMENTED_10` |
 | `keep-while-open` | `true` — the bar stays up after the unlock until the crate is looted or recovered |
+| `group-by` | `DROP` — one bar per crate. `TIER`: one per tier. `ALL`: one for everything. See [shared bars](/plugins/oberonenvoys/features/notifications/#shared-bars) |
+| `group.display` | `CYCLE` — the crate detail rotates. `JOIN`: every crate on one line |
+| `group.cycle-seconds` | `4` — how long each crate stays on a cycling bar |
+| `group.join-max` | `3` — crates written out under `JOIN` before "+N more" |
+| `group.order` | `UNLOCK` — soonest countdown first. `LANDED`: oldest first |
+| `group.progress` | `SHOWN` — follows the crate on the bar. `FIRST`: the first in order. `FULL`: always full |
+| `toggle.enabled` | `true` — players may hide the bars with `/envoy bossbar` |
 
 ## notifications
 

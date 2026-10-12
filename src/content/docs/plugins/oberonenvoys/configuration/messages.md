@@ -22,6 +22,7 @@ hex also work, and can be mixed in one line.
 | `title.*` | On-screen titles and subtitles for the three announcements |
 | `action-bar.*` | Action-bar lines, when `notifications.action-bar` is on |
 | `bossbar.locked` / `bossbar.open` | The boss bar while the crate is locked, then after it opens |
+| `bossbar.group.*` | A bar shared by several crates: `title` (CYCLE), `title-join` (JOIN), `entry-locked` / `entry-open` (one crate on it), `separator`, `overflow`, `all-label` |
 | `hologram.locked` / `hologram.open` | The floating text above the crate, as a list of lines |
 | `command.*` | Every command reply |
 

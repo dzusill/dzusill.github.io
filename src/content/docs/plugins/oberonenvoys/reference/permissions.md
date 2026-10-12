@@ -11,6 +11,7 @@ description: "It is deliberately not part of use. Staff who run drops all day ca
 | `oberonenvoys.locate` | everyone | `/envoy locate` |
 | `oberonenvoys.top` | everyone | `/envoy top` |
 | `oberonenvoys.notify` | everyone | Receives drop announcements, titles and the boss bar |
+| `oberonenvoys.bossbar` | everyone | `/envoy bossbar` — hide or show the boss bars for yourself |
 | `oberonenvoys.admin` | operator | `force`, `spawn`, `open`, `clear`, `zone`, `reload`, and coordinates in `/envoy active` |
 
 ## Why `notify` is separate

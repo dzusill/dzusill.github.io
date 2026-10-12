@@ -133,7 +133,7 @@ bossbar:
   keep-while-open: true
 ```
 
-One bar per crate, from the moment it lands until it is gone. While the crate is locked it counts down
+By default one bar per crate (see [shared bars](#shared-bars)), from the moment it lands until it is gone. While the crate is locked it counts down
 to the unlock, with the text from `bossbar.locked`. When it opens the bar stays up on `bossbar.open`
 and drains over `phases.despawn-seconds`, until the crate is looted empty or recovered — players are
 still running for it, and the bar is where they read the coordinates. Both lines carry the tier, the
@@ -141,6 +141,57 @@ time and the coordinates as shipped.
 
 `keep-while-open: false` takes the bar down the moment the crate opens, as builds before 2.1 did.
 Players who join mid-countdown are picked up on the next tick.
+
+### Shared bars
+
+With `schedule.drops-per-cycle` above 1, one bar per crate stacks up on screen. `group-by` lets
+crates share a bar instead:
+
+```yaml
+bossbar:
+  group-by: ALL        # DROP | TIER | ALL
+  group:
+    display: CYCLE     # CYCLE | JOIN
+    cycle-seconds: 4
+    join-max: 3
+    order: UNLOCK      # UNLOCK | LANDED
+    progress: SHOWN    # SHOWN | FIRST | FULL
+```
+
+| `group-by` | Bars |
+|---|---|
+| `DROP` | One per crate — the default, and how it always worked |
+| `TIER` | One per tier: every crate of the same tier shares it |
+| `ALL` | One for every crate on the server |
+
+A bar holding a single crate shows that crate's own `bossbar.locked` / `bossbar.open` line, so
+`TIER` and `ALL` look exactly like `DROP` while only one envoy is out.
+
+A shared bar shows its crates in one of two ways:
+
+- **`CYCLE`** keeps the count on the bar and moves the crate detail — locked or open, time,
+  coordinates — on to the next crate every `cycle-seconds`. It never runs off the bar, however many
+  crates there are. Text: `bossbar.group.title`.
+- **`JOIN`** writes every crate on one line, separated by `bossbar.group.separator`. Past
+  `join-max` the rest collapse into `bossbar.group.overflow` ("+2 more"). The client clips a long
+  title, so keep `join-max` low. Text: `bossbar.group.title-join`.
+
+`order` decides which crate comes first: `UNLOCK` puts the one whose countdown ends soonest first
+(the unlock while locked, the despawn once open), `LANDED` the oldest. `progress` decides how full a
+shared bar is: `SHOWN` follows the crate currently on it, `FIRST` always the first in order (it
+drains steadily instead of jumping), `FULL` leaves it full and lets the text carry the timers.
+
+Every option can be changed with `/envoy reload` while crates are out; the bars rearrange on the
+next tick.
+
+### Hiding the bars
+
+`/envoy bossbar` hides the envoy boss bars for the player who runs it, and shows them again the next
+time. `/envoy bossbar off` and `/envoy bossbar on` set it directly. The choice is stored on the player
+and survives restarts.
+
+`bossbar.toggle.enabled: false` turns the command off and shows the bars to everyone again. Choices
+already made are kept, and apply again if the toggle is turned back on.
 
 ## Hiding coordinates
 
