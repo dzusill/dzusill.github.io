@@ -5229,6 +5229,96 @@
         ]
       },
       {
+        "label": "🕵️ dSusMenu",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "dSusMenu",
+            "slug": "plugins/dsusmenu"
+          },
+          {
+            "label": "🚀 Getting started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dsusmenu/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dsusmenu/getting-started/installation"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "The /sus list",
+                "slug": "plugins/dsusmenu/features/the-list"
+              },
+              {
+                "label": "Score, levels and cases",
+                "slug": "plugins/dsusmenu/features/score-and-cases"
+              },
+              {
+                "label": "Staff actions",
+                "slug": "plugins/dsusmenu/features/actions"
+              },
+              {
+                "label": "Client detection",
+                "slug": "plugins/dsusmenu/features/client-detection"
+              },
+              {
+                "label": "Discord",
+                "slug": "plugins/dsusmenu/features/discord"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dsusmenu/configuration/config"
+              },
+              {
+                "label": "score.yml",
+                "slug": "plugins/dsusmenu/configuration/score"
+              },
+              {
+                "label": "clients.yml and reasons.yml",
+                "slug": "plugins/dsusmenu/configuration/clients-and-reasons"
+              },
+              {
+                "label": "Menus (gui/*.yml)",
+                "slug": "plugins/dsusmenu/configuration/menus"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/dsusmenu/configuration/messages"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands",
+                "slug": "plugins/dsusmenu/reference/commands"
+              },
+              {
+                "label": "Permissions",
+                "slug": "plugins/dsusmenu/reference/permissions"
+              },
+              {
+                "label": "Troubleshooting",
+                "slug": "plugins/dsusmenu/reference/troubleshooting"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "label": "📊 dStattrack",
         "collapsed": true,
         "items": [

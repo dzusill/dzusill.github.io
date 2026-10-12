@@ -48,7 +48,7 @@ Everything is keyed by **tenant** (your server community), so one API + one bot 
 |---|---|
 | Server | Paper **1.21.x** |
 | Java | **21** |
-| [DzusillCore](https://github.com/dzusill/DzusillCore) | **1.1.0+** (installed separately) |
+| [DzusillCore](https://github.com/dzusill/DzusillCore) | **1.14.4+** (installed separately; one core jar per server) |
 | [dWebLink](/plugins/dweblink/) | required — dPhalanx reuses its account links |
 | A running **Phalanx** API + Discord bot | required |
 | **LuckPerms** | optional — enables rank in chat / stats |

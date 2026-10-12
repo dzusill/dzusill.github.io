@@ -65,6 +65,10 @@ ban-role-sync:
 
 faction:
   placeholder: "%pvpindex_faction_name%"   # any faction plugin's PAPI placeholder
+
+anticheat-bridge:                     # dSusMenu ↔ Discord anti-cheat bridge
+  enabled: true                       # false: events dropped, Discord actions refused (with a reply)
+  outbox-size: 500                    # events held while the API is down; beyond it new ones are dropped
 ```
 
 Notes:
@@ -73,6 +77,7 @@ Notes:
 - `remote-console.enabled` and `ban-role-sync.enabled` are **off** by default. Remote console also requires the API flag; ban-role also requires `bannedRoleId` in the database.
 - Ticket categories (and their wizard questions) are fetched from the website at startup and on `/dphalanx reload`. The last successful fetch is cached to `plugins/dPhalanx/ticket-categories.yml`, and that cache is loaded *before* the network call — so `/ticket create` keeps working with the last-known-good categories even if the website is unreachable when the server boots. The cache is never overwritten with an empty list.
 - `faction.placeholder` works with **any** faction plugin — set it to whatever placeholder that plugin exposes (requires PlaceholderAPI).
+- `anticheat-bridge` only matters with **dSusMenu** installed. Events go to `POST /api/v1/anticheat/events` through a bounded in-memory outbox on its own thread (never the main thread), one at a time and in order. While the API is unreachable (network errors, `5xx`, `408`, `425`, `429`) the whole outbox pauses and retries with exponential backoff (1s, 2s, 4s … capped at 30s) for as long as the outage lasts, so nothing is lost to a restart of the website; a delivery is given up only on any other `4xx` (the first one of each event type is logged by name) or when it is still undelivered an hour after it was queued. Replies to Freeze/Kick/Ban go ahead of waiting events in a slot of their own (64), not counted in `outbox-size`. The outage start and end, and one summary line of failures and full-outbox drops, are logged at most once a minute. `enabled` and `outbox-size` both apply on `/dphalanx reload`. Contract: dSusMenu `docs/BRIDGE_CONTRACT.md`.
 
 ---
 

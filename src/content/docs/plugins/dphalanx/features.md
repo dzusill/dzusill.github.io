@@ -59,6 +59,12 @@ When a linked player is **banned in Minecraft**, dPhalanx grants them a configur
 
 Detection: **AdvancedBan** is hooked automatically (via its Bukkit punishment events); **vanilla/EssentialsX** bans are caught via a command fallback that reads the server ban list. (LiteBans support is a small follow-up — ask if you use it.) Off by default.
 
+## 🕵️ Anti-cheat bridge (dSusMenu)
+
+With **dSusMenu** installed, dPhalanx carries its anti-cheat traffic to and from Discord. dSusMenu finds the bridge through the Bukkit ServicesManager (`me.dzusill.dphalanx.bridge.PhalanxBridge`) and publishes case levels, client detections, punishments, staff actions, case status changes, case exports and system errors; dPhalanx posts each to the API (`POST /api/v1/anticheat/events`), which routes it to the anti-cheat Discord channels. Delivery is asynchronous, bounded and retried (see [`anticheat-bridge`](/plugins/dphalanx/configuration/)), so an API outage never slows the server.
+
+The **Freeze / Kick / Ban** buttons on a Discord alert come back as a `sus.action` WebSocket event. dPhalanx runs each request at most once (de-duplicated by request id; a redelivered request gets its earlier answer posted again instead of running twice), hands it to dSusMenu on the main thread, and reports the outcome to `POST /api/v1/anticheat/actions/{requestId}/result`. A request that arrives after its `expiresAt` is skipped without an answer — the website has already replied that it expired. If dSusMenu is not running it answers "dSusMenu is not running" itself, so the Discord button never hangs. dSusMenu re-checks the staff member's Minecraft permission before acting.
+
 ## 🎖️ Rank → role sync
 
 Already handled by [dWebLink](/plugins/dweblink/) + the API's rank-role mapping — a player's LuckPerms group grants the mapped Discord role. dPhalanx doesn't duplicate it.

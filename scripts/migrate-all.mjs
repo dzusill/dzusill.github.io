@@ -84,6 +84,9 @@ const PLUGINS = [
   { slug: 'ddonations',    name: 'dDonations',    src: '../dDonations/docs' },
   // dTickets keeps its internal planning documents in plans/, not docs/, so they are not published.
   { slug: 'dtickets',      name: 'dTickets',      src: '../dTickets/docs' },
+  // Anti-cheat investigation for Phalanx. Its docs/ holds the internal plan and bridge contract, so the
+  // published pages live in docs-site/ (as with dFactions and OberonCombat).
+  { slug: 'dsusmenu',      name: 'dSusMenu',      src: '../dSusMenu/docs-site' },
 ];
 
 // Plugins whose pages are written directly into src/content/docs/plugins/<slug>/ rather than
@@ -117,7 +120,7 @@ const CATEGORIES = [
   { label: '🧭 Teleportation', plugins: ['warpgui', 'dhomegui'] },
   { label: '💬 Chat & Social', plugins: ['dnicks', 'dmentions', 'dlive', 'dannounce'] },
   { label: '🔗 Web & Integrations', plugins: ['dweblink', 'dphalanx'] },
-  { label: '🧰 Tools & Utilities', plugins: ['dtickets', 'dstattrack', 'toolsnotifier'] },
+  { label: '🧰 Tools & Utilities', plugins: ['dtickets', 'dsusmenu', 'dstattrack', 'toolsnotifier'] },
 ];
 const MISC_LABEL = '📦 Miscellaneous';
 
@@ -131,7 +134,7 @@ const PLUGIN_EMOJI = {
   oberonstats: '📈', oberonannounce: '📣', oberondonations: '💵', oberontools: '🪣', oberonsell: '🏷️',
   oberonshop: '🏪', oberonenvoys: '🪂', oberonafk: '⌛', oberoncombat: '🥊', oberonender: '📦',
   dlive: '📡', dannounce: '📣', dsell: '🏷️', dshop: '🏪', dloyalityrewards: '🎁',
-  dsupplydrops: '🪂', ddonations: '💵', dtickets: '🎫',
+  dsupplydrops: '🪂', ddonations: '💵', dtickets: '🎫', dsusmenu: '🕵️',
 };
 const SECTION_EMOJI = {
   'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',

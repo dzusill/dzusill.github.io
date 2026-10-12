@@ -11,11 +11,12 @@ dPhalanx is a client to your **Phalanx** stack — it does not run standalone. Y
 |---|---|
 | Server software | Paper **1.21.x** |
 | Java | **21** |
-| [DzusillCore](https://github.com/dzusill/DzusillCore) | **1.1.0+** — installed as a separate jar in `plugins/` |
+| [DzusillCore](https://github.com/dzusill/DzusillCore) | **1.14.4+** — installed as a separate jar in `plugins/` (or its OberonCore build, with dPhalanx built `-Poberon`). Keep only **one** core jar on the server |
 | [dWebLink](/plugins/dweblink/) | required — handles account linking; dPhalanx reuses those links |
 | **LuckPerms** | optional — adds the player's rank/prefix to chat and `/stats` |
 | A faction plugin | optional — adds the faction name to chat/stats via a configurable PlaceholderAPI placeholder (default `%pvpindex_faction_name%`) |
 | A ban plugin | optional — AdvancedBan is hooked automatically for the "banned role" feature; vanilla/EssentialsX bans work via a command fallback |
+| dSusMenu | optional — anti-cheat alerts and Discord Freeze/Kick/Ban buttons through dPhalanx's anti-cheat bridge |
 
 ## Web / API side (Phalanx)
 
