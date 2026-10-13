@@ -41,6 +41,20 @@ Where a player lands, in order:
 With more than one point, one is picked at random every time. A bare `/afk` goes to the zone marked
 `teleport.default: true`, or the first enabled zone if none is.
 
+## Spreading out
+
+Players who land on the same point do not stack on one spot. Around every point lies a grid of slots
+`teleport.spread.step` apart (0.5 blocks by default), reaching `teleport.spread.radius` from it (1.5, so a
+7 x 7 grid). The first player lands on the point itself, the next on the nearest slot nobody stands on: the
+eight around the centre first, then the next ring out. When every slot is taken, the one with the fewest
+players.
+
+A slot is used only when a player fits there: the blocks the body would be in are open and the floor
+holds, and nothing harmful (lava, fire, magma, cactus ...) is in the way. Blocks of the same kind as at
+the point always count as fine, so a point on a carpet or a slab spreads over the same floor. A point
+with no room around it keeps everyone on the point. Players on another floor (two blocks or more above
+or below) do not take a slot. `teleport.spread.step: 0` turns spreading off.
+
 ## Combat
 
 With OberonCombat installed (`teleport.block-in-combat`, on by default), `/afk` is refused while the player is

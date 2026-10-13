@@ -20,6 +20,7 @@ been wrong for a week:
 | `ZoneTimerTest` | 14 | The timer pays at the interval, restarts on leaving, death and a game-mode change, ignores creative, and delivers to inventory, storage, the cap and the console |
 | `ClaimStorageTest` | 9 | A stack is claimed once and only once, partial and full inventories, stored items survive a relog, the menu cannot be used as a chest, a reload to fewer rows cannot open an open menu's lower rows, a clear during a join is not undone |
 | `TeleportTest` | 9 | The warm-up completes, is cancelled by moving and by damage, is refused in combat, and nobody is ever teleported without asking |
+| `SpawnSpreadTest` | 10 | Players landing on one point fill the grid around it nearest first, a full grid shares the least crowded slot, nobody lands in a wall or over a hole, step `0` turns it off |
 | `SnapshotTest` | 5 | Ranking highest first with ties by name, exempt and worthless players left out with no holes, a track per reward before anybody has it, the floor |
 | `LeaderboardPlaceholdersTest` | 7 | Every leaderboard placeholder against three real players: rows, formats, blanking, typos staying visible, positions, `_of_`, exempt staff, paging per viewer, `/afk top` |
 | `StatsPersistenceTest` | 2 | Totals and history reach the database and a relog adds to the stored totals instead of replacing them |

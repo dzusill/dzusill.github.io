@@ -46,6 +46,8 @@ A zone can switch the countdown off for itself with `countdown: false` in
 | `teleport.cancel-on-move` | `true` | Moving to another block cancels the warm-up |
 | `teleport.cancel-on-damage` | `true` | Taking damage cancels it |
 | `teleport.block-in-combat` | `true` | Refuse while OberonCombat (or PvPManager) has the player combat-tagged |
+| `teleport.spread.step` | `0.5` | Blocks between two landing slots around a point. `0` lands everyone on the point itself |
+| `teleport.spread.radius` | `1.5` | How far from the point a landing slot may be |
 | `teleport.combat-fallback-seconds` | `15` | Only used when PvPManager's API and PlaceholderAPI both cannot answer: how long an observed tag counts |
 
 See [The /afk teleport](/plugins/oberonafk/features/teleport/).
