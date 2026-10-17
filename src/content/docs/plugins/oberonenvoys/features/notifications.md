@@ -193,6 +193,21 @@ and survives restarts.
 `bossbar.toggle.enabled: false` turns the command off and shows the bars to everyone again. Choices
 already made are kept, and apply again if the toggle is turned back on.
 
+### Stacked or cycling, per player
+
+Shared bars are not everyone's taste, so each player can pick for themselves:
+
+- `/envoy bossbar stack` — one bar per envoy, the way the bars looked before they were shared
+  (`group-by: DROP`, just for that player).
+- `/envoy bossbar cycle` — shared bars that cycle through the envoys. It keeps your `group-by` if it
+  already shares bars; on a `DROP` server it shares one bar across every envoy.
+
+A player who never picks sees what `group-by` and `group.display` say. Picking either also shows the
+bars again if the player had hidden them. The choice is stored on the player and survives restarts.
+
+`bossbar.toggle.layouts: false` turns both off and puts everyone back on your layout; choices already
+made are kept. It is separate from `toggle.enabled`, so you can allow one without the other.
+
 ## Hiding coordinates
 
 ```yaml

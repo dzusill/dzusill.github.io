@@ -133,6 +133,7 @@ Applies only when FancyHolograms is drawing. Any tier may override any of these 
 | `group.order` | `UNLOCK` — soonest countdown first. `LANDED`: oldest first |
 | `group.progress` | `SHOWN` — follows the crate on the bar. `FIRST`: the first in order. `FULL`: always full |
 | `toggle.enabled` | `true` — players may hide the bars with `/envoy bossbar` |
+| `toggle.layouts` | `true` — players may pick `/envoy bossbar stack` (a bar per envoy) or `cycle` (shared, cycling) for themselves |
 
 ## notifications
 

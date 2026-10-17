@@ -134,3 +134,27 @@ Keep them short. A hologram is read at a glance from thirty blocks away, usually
 
 Set a message to an empty string to hide it. An empty title and subtitle together skip the title
 entirely rather than flashing a blank one.
+
+## Sending one message somewhere else
+
+`Presentation` in `config.yml` decides where a kind of message goes (chat, action bar or both) and
+what it sounds like. `Presentation.Overrides` does the same for a single message, and it names that
+message by its **full path in `messages.yml`, every section on the way included**:
+
+```yaml
+Presentation:
+  Overrides:
+    command.bossbar.hidden:     # not bossbar.hidden — the message sits under command: > bossbar:
+      Channel: ACTION_BAR
+      Sound:
+        Name: ENTITY_EXPERIENCE_ORB_PICKUP
+```
+
+An override that names no message does nothing, so the plugin says so on startup and on
+`/envoy reload`, with the key it most likely meant:
+
+```
+[WARN] config.yml: Presentation.Overrides.bossbar.hidden names no message in messages.yml, so it
+       does nothing. The key is the message's full path, sections included. Did you mean
+       command.bossbar.hidden?
+```

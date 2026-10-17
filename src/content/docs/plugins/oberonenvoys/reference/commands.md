@@ -30,6 +30,7 @@ Commands are registered at runtime through OberonCore's command registry, so `pl
 | `/envoy top` | The claim leaderboard |
 | `/envoy stats` | Your own crate and item totals |
 | `/envoy bossbar [on\|off]` | Hide or show the envoy boss bars for yourself; no argument flips it |
+| `/envoy bossbar stack\|cycle` | One bar per envoy, or shared bars that cycle — just for yourself |
 
 `/envoy active` hides coordinates when `notifications.reveal-coordinates` is off — a player who
 cannot be told where a crate landed must not be able to ask a second time and get the answer anyway.
