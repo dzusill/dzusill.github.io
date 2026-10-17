@@ -3,7 +3,7 @@ title: "score.yml"
 description: "How flags turn into a score and a level. See Score, levels and cases for the idea. Changes apply with /sus reload, and every player is rescored straight away."
 ---
 
-How flags turn into a score and a level. See [Score, levels and cases](/plugins/oberonsusmenu/features/score-and-cases/) for the idea. Changes apply with `/sus reload`, and every player is rescored straight away.
+How flags turn into a score and a level. See [Score, levels and cases](/plugins/oberonsentry/features/score-and-cases/) for the idea. Changes apply with `/sus reload`, and every player is rescored straight away.
 
 ```
 points per flag = category weight × check multiplier

@@ -17,7 +17,7 @@ The default bindings live in `gui/main.yml` under `clicks`. You can change any o
 | Shift + right | Spectate |
 | Q (drop) | Flag history |
 
-The available actions are `TELEPORT`, `ACTIONS`, `PROFILE`, `HISTORY`, `SPECTATE`, `FREEZE` (toggles) and `NONE`. Middle-click only works in creative mode, which is why Q is used instead. Profile and history need `oberonsusmenu.view`, on top of `oberonsusmenu.open`.
+The available actions are `TELEPORT`, `ACTIONS`, `PROFILE`, `HISTORY`, `SPECTATE`, `FREEZE` (toggles) and `NONE`. Middle-click only works in creative mode, which is why Q is used instead. Profile and history need `oberonsentry.view`, on top of `oberonsentry.open`.
 
 ## Window, sort, search
 

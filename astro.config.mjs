@@ -15,6 +15,7 @@ export default defineConfig({
   // OberonSupplyDrops was renamed OberonEnvoys in 2.0 — old links should still land on its docs.
   redirects: {
     '/plugins/oberonsupplydrops': '/plugins/oberonenvoys/',
+    '/plugins/oberonsusmenu': '/plugins/oberonsentry/',
   },
   integrations: [
     starlight({

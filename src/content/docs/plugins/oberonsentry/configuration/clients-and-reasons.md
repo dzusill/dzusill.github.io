@@ -5,7 +5,7 @@ description: "The rules for client detection. Each rule under rules: has:"
 
 ## clients.yml
 
-The rules for [client detection](/plugins/oberonsusmenu/features/client-detection/). Each rule under `rules:` has:
+The rules for [client detection](/plugins/oberonsentry/features/client-detection/). Each rule under `rules:` has:
 
 | Key | What it does |
 | --- | --- |

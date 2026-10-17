@@ -1577,23 +1577,23 @@
         ]
       },
       {
-        "label": "🕵️ OberonSusMenu",
+        "label": "🕵️ OberonSentry",
         "collapsed": true,
         "items": [
           {
-            "label": "OberonSusMenu",
-            "slug": "plugins/oberonsusmenu"
+            "label": "OberonSentry",
+            "slug": "plugins/oberonsentry"
           },
           {
             "label": "🚀 Getting started",
             "items": [
               {
                 "label": "Requirements",
-                "slug": "plugins/oberonsusmenu/getting-started/requirements"
+                "slug": "plugins/oberonsentry/getting-started/requirements"
               },
               {
                 "label": "Installation",
-                "slug": "plugins/oberonsusmenu/getting-started/installation"
+                "slug": "plugins/oberonsentry/getting-started/installation"
               }
             ]
           },
@@ -1602,23 +1602,23 @@
             "items": [
               {
                 "label": "The /sus list",
-                "slug": "plugins/oberonsusmenu/features/the-list"
+                "slug": "plugins/oberonsentry/features/the-list"
               },
               {
                 "label": "Score, levels and cases",
-                "slug": "plugins/oberonsusmenu/features/score-and-cases"
+                "slug": "plugins/oberonsentry/features/score-and-cases"
               },
               {
                 "label": "Staff actions",
-                "slug": "plugins/oberonsusmenu/features/actions"
+                "slug": "plugins/oberonsentry/features/actions"
               },
               {
                 "label": "Client detection",
-                "slug": "plugins/oberonsusmenu/features/client-detection"
+                "slug": "plugins/oberonsentry/features/client-detection"
               },
               {
                 "label": "Discord",
-                "slug": "plugins/oberonsusmenu/features/discord"
+                "slug": "plugins/oberonsentry/features/discord"
               }
             ]
           },
@@ -1627,23 +1627,23 @@
             "items": [
               {
                 "label": "config.yml",
-                "slug": "plugins/oberonsusmenu/configuration/config"
+                "slug": "plugins/oberonsentry/configuration/config"
               },
               {
                 "label": "score.yml",
-                "slug": "plugins/oberonsusmenu/configuration/score"
+                "slug": "plugins/oberonsentry/configuration/score"
               },
               {
                 "label": "clients.yml and reasons.yml",
-                "slug": "plugins/oberonsusmenu/configuration/clients-and-reasons"
+                "slug": "plugins/oberonsentry/configuration/clients-and-reasons"
               },
               {
                 "label": "Menus (gui/*.yml)",
-                "slug": "plugins/oberonsusmenu/configuration/menus"
+                "slug": "plugins/oberonsentry/configuration/menus"
               },
               {
                 "label": "messages.yml",
-                "slug": "plugins/oberonsusmenu/configuration/messages"
+                "slug": "plugins/oberonsentry/configuration/messages"
               }
             ]
           },
@@ -1652,15 +1652,15 @@
             "items": [
               {
                 "label": "Commands",
-                "slug": "plugins/oberonsusmenu/reference/commands"
+                "slug": "plugins/oberonsentry/reference/commands"
               },
               {
                 "label": "Permissions",
-                "slug": "plugins/oberonsusmenu/reference/permissions"
+                "slug": "plugins/oberonsentry/reference/permissions"
               },
               {
                 "label": "Troubleshooting",
-                "slug": "plugins/oberonsusmenu/reference/troubleshooting"
+                "slug": "plugins/oberonsentry/reference/troubleshooting"
               }
             ]
           }

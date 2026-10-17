@@ -1,9 +1,9 @@
 ---
 title: "Menus (gui/*.yml)"
-description: "Every menu is one file in plugins/OberonSusMenu/gui/. You can change its title, size, items, texts, slots and sounds, and /sus reload applies the changes."
+description: "Every menu is one file in plugins/OberonSentry/gui/. You can change its title, size, items, texts, slots and sounds, and /sus reload applies the changes."
 ---
 
-Every menu is one file in `plugins/OberonSusMenu/gui/`. You can change its title, size, items, texts, slots and sounds, and `/sus reload` applies the changes.
+Every menu is one file in `plugins/OberonSentry/gui/`. You can change its title, size, items, texts, slots and sounds, and `/sus reload` applies the changes.
 
 | File | Menu |
 | --- | --- |

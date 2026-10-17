@@ -23,10 +23,10 @@ description: "/sus reload applies every change except command and storage, which
 | `freeze.invulnerable` | `true` | Frozen players take no damage |
 | `freeze.remind-every` | `3s` | How often the "frozen" title is shown again |
 | `freeze.quit-commands` | `[]` | Console commands when a frozen player logs out. `{player} {uuid} {staff}`, e.g. `'tempban -s {player} 7d Logged out while frozen'` |
-| `freeze.quit-alert` | `true` | Tell staff with `oberonsusmenu.alerts` when a frozen player logs out |
+| `freeze.quit-alert` | `true` | Tell staff with `oberonsentry.alerts` when a frozen player logs out |
 | `spectate.first-person` | `false` | Look through the target's eyes instead of floating next to them |
 | `evidence.enabled` / `before` / `after` | `true` / `10s` / `5s` | The movement timeline around a flag that opens or raises a case |
-| `client-scan.enabled` | `true` | [Client detection](/plugins/oberonsusmenu/features/client-detection/) on join |
+| `client-scan.enabled` | `true` | [Client detection](/plugins/oberonsentry/features/client-detection/) on join |
 | `client-scan.delay-ticks` | `40` | How long after the join to evaluate (channels keep registering) |
 | `privacy.ip-logging` | `false` | Store a salted hash of the IP (never the address) |
 | `privacy.ip-salt` | `change-me` | Set your own random value before you turn IP logging on |
@@ -35,17 +35,17 @@ description: "/sus reload applies every change except command and storage, which
 
 ## vanish
 
-Used by teleport and spectate. See [Staff actions](/plugins/oberonsusmenu/features/actions/#vanish).
+Used by teleport and spectate. See [Staff actions](/plugins/oberonsentry/features/actions/#vanish).
 
 | Key | Default | What it does |
 | --- | --- | --- |
 | `vanish.premiumvanish` | `true` | Use PremiumVanish, through its API, when it is installed |
 | `vanish.enable-command` / `disable-command` | `''` | Without PremiumVanish: another vanish plugin's commands, run as the staff member (no slash). Empty = none |
-| `vanish.fallback-hide` | `false` | When nothing above vanished the staff member, hide them from everyone without `oberonsusmenu.see-vanished`. `false` = no vanish at all |
+| `vanish.fallback-hide` | `false` | When nothing above vanished the staff member, hide them from everyone without `oberonsentry.see-vanished`. `false` = no vanish at all |
 
 ## punishments
 
-Kick, mute and ban through LiteBans. See [Staff actions](/plugins/oberonsusmenu/features/actions/#kick-mute-ban).
+Kick, mute and ban through LiteBans. See [Staff actions](/plugins/oberonsentry/features/actions/#kick-mute-ban).
 
 | Key | Default | What it does |
 | --- | --- | --- |
@@ -63,7 +63,7 @@ Command placeholders: `{silent} {player} {uuid} {reason} {duration} {staff}`. An
 
 ## discord
 
-Off until you set a webhook. Setup and events are on [Discord](/plugins/oberonsusmenu/features/discord/).
+Off until you set a webhook. Setup and events are on [Discord](/plugins/oberonsentry/features/discord/).
 
 | Key | Default | What it does |
 | --- | --- | --- |
@@ -71,10 +71,10 @@ Off until you set a webhook. Setup and events are on [Discord](/plugins/oberonsu
 | `discord.webhook-url` | `''` | The default webhook. Empty = Discord off |
 | `discord.alerts-webhook-url` | `''` | `case-high`, `case-critical`, `vulcan-punishment`, `client-detection`. Empty = `webhook-url` |
 | `discord.actions-webhook-url` | `''` | `freeze`, `unfreeze`, `frozen-logout`, `kick`, `mute`, `ban`, `case-status`. Empty = `webhook-url` |
-| `discord.username` / `avatar-url` | `OberonSusMenu` / `''` | Name and picture the messages are posted with. Empty avatar = the webhook's own |
+| `discord.username` / `avatar-url` | `OberonSentry` / `''` | Name and picture the messages are posted with. Empty avatar = the webhook's own |
 | `discord.role-ping.role-id` | `''` | Role mentioned by events with `ping-role: true` (`case-critical`). Empty = no ping |
 | `discord.colors.*` | `default`, `none`, `low`, `medium`, `high`, `critical` | Embed colour per risk level, for events with `color: risk` |
-| `discord.footer` | `OberonSusMenu` | Footer of every embed. Empty = none |
+| `discord.footer` | `OberonSentry` | Footer of every embed. Empty = none |
 | `discord.timestamp` | `true` | Show the time of the event under the embed |
 | `discord.queue-size` | `100` | Messages waiting to be sent. When Discord is down and this is full, new ones are dropped |
 | `discord.events.<event>` | | `enabled`, `title`, `description`, `color`, `fields`, `ping-role` per event |

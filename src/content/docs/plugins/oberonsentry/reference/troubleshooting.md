@@ -9,7 +9,7 @@ description: "The list is empty."
 - The default status filter hides dismissed players.
 
 **`/sus` says I don't have permission, but `/sus alerts` works.**
-That is intended: the list needs `oberonsusmenu.open`, and every sub-command only needs its own node.
+That is intended: the list needs `oberonsentry.open`, and every sub-command only needs its own node.
 
 **A ban was "not applied".**
 LiteBans refused it. You may lack its permission (the command runs as you), or the player is exempt or already punished. Check the console and LiteBans' own message.

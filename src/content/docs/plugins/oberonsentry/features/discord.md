@@ -1,16 +1,16 @@
 ---
 title: "Discord"
-description: "OberonSusMenu posts to Discord through a webhook. It only sends; nothing comes back from Discord, so there are no buttons and no bot to install. Every embed…"
+description: "OberonSentry posts to Discord through a webhook. It only sends; nothing comes back from Discord, so there are no buttons and no bot to install. Every embed…"
 ---
 
-OberonSusMenu posts to Discord through a **webhook**. It only sends; nothing comes back from Discord, so there are no buttons and no bot to install. Every embed about a case carries `/sus case <id>`, which staff type in game to open that player.
+OberonSentry posts to Discord through a **webhook**. It only sends; nothing comes back from Discord, so there are no buttons and no bot to install. Every embed about a case carries `/sus case <id>`, which staff type in game to open that player.
 
 If Discord is down, the game is never affected. Messages wait in a queue on their own thread and are sent once Discord answers again.
 
 ## Setup (server owner)
 
 1. In Discord, open the channel's settings: **Edit Channel → Integrations → Webhooks → New Webhook**. Give it a name and a picture if you like, then click **Copy Webhook URL**.
-2. In `plugins/OberonSusMenu/config.yml`, paste it and switch Discord on:
+2. In `plugins/OberonSentry/config.yml`, paste it and switch Discord on:
    ```yaml
    discord:
      enabled: true
@@ -25,7 +25,7 @@ If Discord is down, the game is never affected. Messages wait in a queue on thei
    ```
 5. Run `/sus reload`. The console says `Discord webhook is on.`, and `/sus health` shows the webhook state, messages sent and dropped, and the last success.
 
-**Keep the URL secret.** Whoever has it can post into the channel. OberonSusMenu never writes it to the console. If it leaks, delete the webhook in Discord and create a new one.
+**Keep the URL secret.** Whoever has it can post into the channel. OberonSentry never writes it to the console. If it leaks, delete the webhook in Discord and create a new one.
 
 ## What gets posted
 
@@ -48,9 +48,9 @@ Each event has its own section under `discord.events.<event>`: `enabled`, `title
 
 ```yaml
 discord:
-  username: 'OberonSusMenu'   # name the messages are posted with
+  username: 'OberonSentry'   # name the messages are posted with
   avatar-url: ''              # picture; empty = the webhook's own
-  footer: 'OberonSusMenu'     # empty = no footer
+  footer: 'OberonSentry'     # empty = no footer
   timestamp: true
   events:
     case-high:
@@ -70,7 +70,7 @@ Titles, descriptions and fields may use Discord markdown. Placeholder values are
 
 To switch an event off, set `enabled: false`. A deleted section comes back on restart with the shipped layout.
 
-All placeholders are listed under [`discord`](/plugins/oberonsusmenu/configuration/config/#discord).
+All placeholders are listed under [`discord`](/plugins/oberonsentry/configuration/config/#discord).
 
 ## Safety
 

@@ -3,12 +3,12 @@ title: "Installation"
 description: "Set debug.fake-flags: true in config.yml, run /sus reload, then:"
 ---
 
-1. Put **OberonCore** (1.14.4 or newer) and **OberonSusMenu.jar** into `plugins/`. Add Vulcan, LiteBans, PremiumVanish, ViaVersion and Floodgate if you use them.
-2. Restart the server. OberonSusMenu creates `plugins/OberonSusMenu/` with:
+1. Put **OberonCore** (1.14.4 or newer) and **OberonSentry.jar** into `plugins/`. Add Vulcan, LiteBans, PremiumVanish, ViaVersion and Floodgate if you use them.
+2. Restart the server. OberonSentry creates `plugins/OberonSentry/` with:
    - `config.yml`, `score.yml`, `clients.yml`, `reasons.yml`, `messages.yml`, `database.yml`
    - `gui/` with one file per menu
 3. Check the console. You should see `Listening to Vulcan flags.` If Vulcan is missing you get a warning instead, and only client detections are recorded.
-4. Give staff their permissions (see [Permissions](/plugins/oberonsusmenu/reference/permissions/)). Every node defaults to op. Punishments run as the staff member, so LiteBans checks its own permissions too.
+4. Give staff their permissions (see [Permissions](/plugins/oberonsentry/reference/permissions/)). Every node defaults to op. Punishments run as the staff member, so LiteBans checks its own permissions too.
 5. Type `/sus`.
 
 ## Trying it without a cheater
@@ -20,7 +20,7 @@ Set `debug.fake-flags: true` in `config.yml`, run `/sus reload`, then:
 /sus debug <player> Aim combat 10
 ```
 
-Repeat these a few times. The player appears in `/sus`, their score rises, and from MEDIUM a case opens and staff with `oberonsusmenu.alerts` get a silent alert. Turn `fake-flags` off again afterwards.
+Repeat these a few times. The player appears in `/sus`, their score rises, and from MEDIUM a case opens and staff with `oberonsentry.alerts` get a silent alert. Turn `fake-flags` off again afterwards.
 
 ## Updating
 
@@ -28,4 +28,4 @@ Replace the jar and restart. New config keys are added to your files automatical
 
 ## Discord
 
-Discord is off until you paste a webhook URL into `config.yml`. It takes about a minute; see [Discord](/plugins/oberonsusmenu/features/discord/).
+Discord is off until you paste a webhook URL into `config.yml`. It takes about a minute; see [Discord](/plugins/oberonsentry/features/discord/).

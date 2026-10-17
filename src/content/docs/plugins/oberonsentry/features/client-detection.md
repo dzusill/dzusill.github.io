@@ -1,15 +1,15 @@
 ---
 title: "Client detection"
-description: "A short moment after a player joins (client-scan.delay-ticks, 2 s), OberonSusMenu looks at what their client reported:"
+description: "A short moment after a player joins (client-scan.delay-ticks, 2 s), OberonSentry looks at what their client reported:"
 ---
 
-A short moment after a player joins (`client-scan.delay-ticks`, 2 s), OberonSusMenu looks at what their client reported:
+A short moment after a player joins (`client-scan.delay-ticks`, 2 s), OberonSentry looks at what their client reported:
 
 - the **client brand** (`vanilla`, `fabric`, `lunarclient`, `meteor-client`, …),
 - the **plugin channels** its mods registered,
 - the **protocol version** (the real one through ViaVersion).
 
-These are matched against the rules in [`clients.yml`](/plugins/oberonsusmenu/configuration/clients-and-reasons/). Each rule has a **confidence** (CONFIRMED, SUSPICIOUS or INCONCLUSIVE) and an **action**:
+These are matched against the rules in [`clients.yml`](/plugins/oberonsentry/configuration/clients-and-reasons/). Each rule has a **confidence** (CONFIRMED, SUSPICIOUS or INCONCLUSIVE) and an **action**:
 
 | Action | Effect |
 | --- | --- |
@@ -25,7 +25,7 @@ Out of the box:
 - Common clients (vanilla, Fabric, Quilt, Lunar, Feather, Badlion, LabyMod, OptiFine) are not recorded at all.
 - An unknown brand, or no brand at all, is only logged.
 
-Notable detections (confirmed or suspicious, or a FLAG or KICK rule) are posted to Discord as `client-detection`. Staff with `oberonsusmenu.bypass.clientscan` are skipped.
+Notable detections (confirmed or suspicious, or a FLAG or KICK rule) are posted to Discord as `client-detection`. Staff with `oberonsentry.bypass.clientscan` are skipped.
 
 ## What it can't do
 
@@ -37,4 +37,4 @@ All of this is what the client **says about itself**. A hacked client can send `
 
 ## Bedrock players
 
-Players joining through Geyser and Floodgate are scanned like everyone else, and also marked "Bedrock" in the list, the profile and on Discord, so a rule that matches one reads in context. See [The /sus list](/plugins/oberonsusmenu/features/the-list/#bedrock-players).
+Players joining through Geyser and Floodgate are scanned like everyone else, and also marked "Bedrock" in the list, the profile and on Discord, so a rule that matches one reads in context. See [The /sus list](/plugins/oberonsentry/features/the-list/#bedrock-players).

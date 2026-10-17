@@ -12,7 +12,7 @@ points = category weight × check multiplier × (0.5 if the check is experimenta
 ```
 
 - **Category weights:** combat counts double by default.
-- **Check multipliers:** Reach, Hitbox and Kill Aura weigh more; Auto Clicker weighs less. All of it is set in [`score.yml`](/plugins/oberonsusmenu/configuration/score/).
+- **Check multipliers:** Reach, Hitbox and Kill Aura weigh more; Auto Clicker weighs less. All of it is set in [`score.yml`](/plugins/oberonsentry/configuration/score/).
 - **Burst cap:** only the first 5 flags of one check per minute count. A single check spamming hundreds of flags cannot open a case on its own. The extra flags still show up in the flag count.
 - **Half-life:** points halve every 30 minutes and stop counting after 4 hours.
 - **Diversity bonus:** each additional category flagged within those 4 hours adds 25%. Combat and movement together is a stronger signal than one check firing twice as often.
@@ -41,8 +41,8 @@ A player has at most **one active case**. It opens automatically at MEDIUM. Staf
 
 A case keeps the **highest level it reached**, which is the level that was announced. Each level is announced only once per case:
 
-- **Silent alert** in game for staff with `oberonsusmenu.alerts`. The line has the risk, score, check and case number, plus `[PROFILE]` and `[ACTIONS]` buttons. The suspect sees nothing. Staff turn alerts on or off with `/sus alerts`. Two alerts about the same player are at least `alerts.min-interval` apart, unless the second one is for a higher level.
-- **Discord alert** from HIGH (see [Discord](/plugins/oberonsusmenu/features/discord/)). A case that jumps from MEDIUM straight to CRITICAL only posts the CRITICAL one.
+- **Silent alert** in game for staff with `oberonsentry.alerts`. The line has the risk, score, check and case number, plus `[PROFILE]` and `[ACTIONS]` buttons. The suspect sees nothing. Staff turn alerts on or off with `/sus alerts`. Two alerts about the same player are at least `alerts.min-interval` apart, unless the second one is for a higher level.
+- **Discord alert** from HIGH (see [Discord](/plugins/oberonsentry/features/discord/)). A case that jumps from MEDIUM straight to CRITICAL only posts the CRITICAL one.
 - **Evidence timeline** from MEDIUM. Movement speed, rotation changes, air time, distance to the attacked entity and ping are recorded from 10 s before to 5 s after the flag, and stored with the case.
 
 A punishment by Vulcan counts as CRITICAL evidence. It is announced like a level change, posted to Discord as `vulcan-punishment`, and remembered across restarts.
@@ -61,8 +61,8 @@ Every case has a number, shown in the alert, the profile and every Discord embed
 - The last notes and audit entries
 - First and last join, and playtime
 
-The IP is never stored. If you turn on `privacy.ip-logging`, a salted hash is stored instead, and only staff with `oberonsusmenu.view.ip` can see it.
+The IP is never stored. If you turn on `privacy.ip-logging`, a salted hash is stored instead, and only staff with `oberonsentry.view.ip` can see it.
 
 ## Export
 
-**Export** in the actions menu (or `/sus export <player>`) writes a markdown report of the current or latest case to `plugins/OberonSusMenu/exports/`. It covers the case, the score breakdown, every flag from the window that opened it, the evidence summaries, notes and the audit log.
+**Export** in the actions menu (or `/sus export <player>`) writes a markdown report of the current or latest case to `plugins/OberonSentry/exports/`. It covers the case, the score breakdown, every flag from the window that opened it, the evidence summaries, notes and the audit log.

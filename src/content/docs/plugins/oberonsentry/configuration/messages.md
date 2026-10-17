@@ -1,9 +1,9 @@
 ---
 title: "messages.yml"
-description: "Every chat line OberonSusMenu sends is in messages.yml, in English, in MiniMessage with {placeholders}. <prefix> is replaced by prefix: at the top of the…"
+description: "Every chat line OberonSentry sends is in messages.yml, in English, in MiniMessage with {placeholders}. <prefix> is replaced by prefix: at the top of the…"
 ---
 
-Every chat line OberonSusMenu sends is in `messages.yml`, in English, in [MiniMessage](https://docs.advntr.dev/minimessage/format.html) with `{placeholders}`. `<prefix>` is replaced by `prefix:` at the top of the file. `/sus reload` applies changes, and new keys from updates are added to your file automatically.
+Every chat line OberonSentry sends is in `messages.yml`, in English, in [MiniMessage](https://docs.advntr.dev/minimessage/format.html) with `{placeholders}`. `<prefix>` is replaced by `prefix:` at the top of the file. `/sus reload` applies changes, and new keys from updates are added to your file automatically.
 
 | Section | What it holds |
 | --- | --- |
@@ -27,4 +27,4 @@ alerts:
 
 The freeze title and subtitle are `freeze.title` and `freeze.subtitle`. A kicked cheat client sees its rule's `reason` from `clients.yml`.
 
-Discord embeds are not here: their text lives in `config.yml` under [`discord.events`](/plugins/oberonsusmenu/configuration/config/#discord).
+Discord embeds are not here: their text lives in `config.yml` under [`discord.events`](/plugins/oberonsentry/configuration/config/#discord).
