@@ -8,7 +8,7 @@ description: "/sus reload applies every change except command and storage, which
 | Key | Default | What it does |
 | --- | --- | --- |
 | `time-zone` | `system` | Time zone for dates in menus and exports, e.g. `Europe/Bratislava` |
-| `command.name` / `aliases` | `sus` / `[suspicious]` | The command (restart) |
+| `command.name` / `aliases` | `sus` / `[suspicious, sentry]` | The command (restart) |
 | `command.enabled` | `true` | `false` = no command at all; alerts and Discord still work (restart) |
 | `list.default-window` | `24h` | Window the list opens with |
 | `list.windows` | `[1h, 6h, 24h, 7d]` | Windows of the clock button. The largest is also how long flag counts stay in memory |

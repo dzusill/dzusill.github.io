@@ -1,9 +1,9 @@
 ---
 title: "Commands"
-description: "The main command is /sus (alias /suspicious). Both can be changed in config.yml under command. Player names are completed from online players and current…"
+description: "The main command is /sus (aliases /suspicious and /sentry). All three can be changed in config.yml under command. Player names are completed from online…"
 ---
 
-The main command is `/sus` (alias `/suspicious`). Both can be changed in `config.yml` under `command`. Player names are completed from online players and current suspects. Offline players are found by their stored profile.
+The main command is `/sus` (aliases `/suspicious` and `/sentry`). All three can be changed in `config.yml` under `command`. Player names are completed from online players and current suspects. Offline players are found by their stored profile.
 
 | Command | Permission | What it does |
 | --- | --- | --- |
