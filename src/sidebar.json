@@ -1507,6 +1507,10 @@
                 "slug": "plugins/oberonstaff/features/teleports"
               },
               {
+                "label": "Voice Mutes",
+                "slug": "plugins/oberonstaff/features/voice-mute"
+              },
+              {
                 "label": "Action Bar & Sounds",
                 "slug": "plugins/oberonstaff/features/presentation"
               },
@@ -1567,6 +1571,96 @@
               {
                 "label": "Credits",
                 "slug": "plugins/oberonstaff/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "🕵️ OberonSusMenu",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "OberonSusMenu",
+            "slug": "plugins/oberonsusmenu"
+          },
+          {
+            "label": "🚀 Getting started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/oberonsusmenu/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonsusmenu/getting-started/installation"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "The /sus list",
+                "slug": "plugins/oberonsusmenu/features/the-list"
+              },
+              {
+                "label": "Score, levels and cases",
+                "slug": "plugins/oberonsusmenu/features/score-and-cases"
+              },
+              {
+                "label": "Staff actions",
+                "slug": "plugins/oberonsusmenu/features/actions"
+              },
+              {
+                "label": "Client detection",
+                "slug": "plugins/oberonsusmenu/features/client-detection"
+              },
+              {
+                "label": "Discord",
+                "slug": "plugins/oberonsusmenu/features/discord"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonsusmenu/configuration/config"
+              },
+              {
+                "label": "score.yml",
+                "slug": "plugins/oberonsusmenu/configuration/score"
+              },
+              {
+                "label": "clients.yml and reasons.yml",
+                "slug": "plugins/oberonsusmenu/configuration/clients-and-reasons"
+              },
+              {
+                "label": "Menus (gui/*.yml)",
+                "slug": "plugins/oberonsusmenu/configuration/menus"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/oberonsusmenu/configuration/messages"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands",
+                "slug": "plugins/oberonsusmenu/reference/commands"
+              },
+              {
+                "label": "Permissions",
+                "slug": "plugins/oberonsusmenu/reference/permissions"
+              },
+              {
+                "label": "Troubleshooting",
+                "slug": "plugins/oberonsusmenu/reference/troubleshooting"
               }
             ]
           }

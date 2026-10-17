@@ -12,7 +12,7 @@ steps in this order, on a quiet server, and keep the old jars and configs until 
 |---|---|---|
 | OberonCore | 1.14.4 or newer | nothing, the same jar |
 | **OberonCombat** | 1.0.0 | new |
-| OberonKills | **1.6.0** | combat-log death message; nothing else |
+| OberonKills | **1.6.0** | combat-log death message; from **1.8.0** also the names it hides stay hidden in the money and exp steal and the combat tag |
 | OberonUtils | the build that carries `OberonCombatHook` | teleports, `/suicide` and the elytra rule ask OberonCombat; its own combat module stays off |
 | OberonAfk | the build that carries `OberonCombatCheck` | `/afk` is refused while OberonCombat has the player tagged. **Without it `/afk` works in combat once PvPManager is gone** |
 | OberonTools | the build that carries `OberonCombatLink` | drill, axe and bucket abilities are withheld in combat when `combat.block-tools` is on. **Without it they work in combat once PvPManager is gone** |

@@ -3,21 +3,47 @@ title: "config.yml"
 description: "Every switch, threshold, weight and punishment tier, section by section, with what each one actually changes."
 ---
 
-`plugins/OberonChat/config.yml`. Reload with `/oberonchat reload` — except `Sources`, which needs a restart.
+`plugins/OberonChat/config.yml`. Reload with `/oberonchat reload` — except `Sources`, `Chat-Event` and `Channel-Plugins`, which need a restart.
 
 ## Top level
 
 ```yaml
 Debug: false
 Chat-Event: AUTO
+Channel-Plugins: [DonutTeams]
 ```
 
 | Key | Default | What it does |
 |---|---|---|
 | `Debug` | `false` | Extra console logging for working out why something was or wasn't caught. |
 | `Chat-Event` | `AUTO` | `AUTO` uses the modern event on Paper, the legacy one elsewhere. `MODERN` / `LEGACY` force it. Only one is ever listened to. |
+| `Channel-Plugins` | `[DonutTeams]` | Plugins that run a chat channel of their own on the chat event. While one is installed, the filter reads chat ahead of it. New in 1.10.0. |
 
 Set `LEGACY` if chat filtering does nothing and your chat plugin is an older one that fires only the deprecated event.
+
+### Channel-Plugins
+
+Some plugins run a chat channel on the chat event itself — a team chat you toggle on and then just type into. **DonutTeams** is the case this exists for. With its team chat on, DonutTeams takes the message at the lowest priority of the old-style chat event, cancels it and sends it to the team itself. That meant two things:
+
+1. Paper runs the old-style event before the modern one and carries the cancel over, so OberonChat never saw the message at all.
+2. DonutTeams ignores the cancelled flag, so even a filter that got there first and blocked the message could not stop it reaching the team.
+
+Team chat was an unfiltered channel. With a plugin from this list **installed**, OberonChat:
+
+- reads chat on the legacy event — whatever `Chat-Event` says — so it runs ahead of that plugin;
+- puts that plugin's chat handler **behind** the filter: a blocked message never reaches the team, a censored one reaches it censored.
+
+Nothing in the other plugin is patched — its handler is taken off the event and registered again behind ours through Bukkit's public API, and put back exactly as it was when OberonChat disables. A listed plugin that is not installed changes nothing; `Chat-Event` then applies as usual.
+
+The console says which it found at startup:
+
+```
+[OberonChat] Chat is read on the legacy chat event, ahead of DonutTeams, so a chat channel that plugin runs is filtered too.
+```
+
+Names are matched case-insensitively. Add another plugin that behaves the same way, or set `Channel-Plugins: []` to switch it off. **Restart required** — it decides which listeners are registered.
+
+> Commands such as `/tc <message>` were already covered — list them under `Sources.Commands.List`. This is only about the toggled mode, where the player types with no command at all.
 
 ## Sources
 

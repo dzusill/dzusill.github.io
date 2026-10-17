@@ -43,7 +43,7 @@ Sources:
 
 Turning signs on with a reload does nothing; the listener does not exist yet. The upside of doing it this way is that a source you turned off costs nothing at runtime — not even an event call.
 
-**`Chat-Event`** likewise, for the same reason.
+**`Chat-Event`** and **`Channel-Plugins`** likewise, for the same reason.
 
 **`database.yml`.** The backend is chosen at startup.
 

@@ -10,14 +10,15 @@ description: "Staff chat with rank-coloured names, the full teleport suite with 
 ## What it does
 
 - 💬 **Staff chat** — `/staffchat` sends one line, or with no arguments switches the mode on. Rank-coloured names, every gradient in the config.
-- 🧭 **Teleport suite** — `/tp`, `/tpo`, `/tphere`, `/tpohere`, `/s`, `/back`, `/tptoggle`.
+- 🧭 **Teleport suite** — `/tp`, `/tpo`, `/tphere`, `/tpohere`, `/s`, `/back`, `/tptoggle` — and `/tp x y z` to coordinates, read like vanilla's.
 - 🎫 **Ticket desk** — players open tickets through a guided wizard, staff work them from a paged queue, both sides talk inside the ticket. [Read more](/plugins/oberonstaff/features/tickets/)
 - 🚨 **Player reports** — `/report` freezes the evidence at the moment it is filed, merges duplicates about the same player, and gives staff a punish button that can only run what you configured. [Read more](/plugins/oberonstaff/features/reports/)
 - 🔔 **Notifications** — clickable updates for whoever follows a ticket, held and replayed for anyone who was offline, and switchable per player. [Read more](/plugins/oberonstaff/features/notifications/)
 - 📊 **Staff statistics** — handled, response time, rating and reopen rate, computed from the tickets themselves. [Read more](/plugins/oberonstaff/features/statistics/)
 - 👻 **Vanish** — PremiumVanish and SuperVanish through their real API, with the level ladder honoured in teleports, messages **and tab completion**.
 - 🎨 **Ranks in config** — restyle a rank or add one without touching code.
-- 📜 **Action log** — optional record of who teleported to whom and when.
+- 🎙️ **Voice mutes** — `/vcmute`, `/vcunmute`, `/vccheck` for Simple Voice Chat: temporary or permanent, `-s` for silent, worded like LiteBans. [Read more](/plugins/oberonstaff/features/voice-mute/)
+- 📜 **Action log** — optional record of who teleported to whom and when — and of every voice mute.
 - 🖼️ **Menus in config** — every ticket menu's size, slots and icons live in [`menus.yml`](/plugins/oberonstaff/configuration/menus/).
 - 🔧 **Everything renameable** — command names, aliases and permissions all come from the config.
 
@@ -44,6 +45,7 @@ description: "Staff chat with rank-coloured names, the full teleport suite with 
 | DzusillCore | **1.5.0** or newer — required |
 | PremiumVanish / SuperVanish | optional |
 | PlaceholderAPI | optional |
+| Simple Voice Chat | optional — for voice mutes |
 
 See [Requirements](/plugins/oberonstaff/getting-started/requirements/).
 
@@ -56,5 +58,6 @@ See [Requirements](/plugins/oberonstaff/getting-started/requirements/).
 - [Staff chat](/plugins/oberonstaff/features/staff-chat/)
 - [Teleports](/plugins/oberonstaff/features/teleports/)
 - [Vanish](/plugins/oberonstaff/features/vanish/)
+- [Voice Mutes](/plugins/oberonstaff/features/voice-mute/)
 - [Commands & Permissions](/plugins/oberonstaff/commands-and-permissions/)
 - [FAQ & Troubleshooting](/plugins/oberonstaff/faq/)

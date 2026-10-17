@@ -46,6 +46,7 @@ Other vanish plugins (Essentials vanish, CMI) are not detected. If you use one, 
 | | What it adds |
 |---|---|
 | **PlaceholderAPI** | The `%oberonstaff_*%` [placeholders](/plugins/oberonstaff/placeholders/). |
+| **Simple Voice Chat** | [Voice mutes](/plugins/oberonstaff/features/voice-mute/) — `/vcmute`, `/vcunmute`, `/vccheck`. Plugin name `voicechat`, tested against the 2.6.x API. Without it the commands still exist and say voice chat is not installed. |
 | **MySQL / PostgreSQL** | Shared preferences and action log across a network. Without it, both live in an H2 file inside the plugin folder. |
 | **A permissions plugin** | Effectively required — every command defaults to `op`, and the rank display is driven by permission nodes. |
 
@@ -53,3 +54,4 @@ Other vanish plugins (Essentials vanish, CMI) are not detected. If you use one, 
 
 - **EssentialsX.** OberonStaff provides its own `/tp` family and `/back`. If you already run Essentials, switch off the overlapping commands in `config.yml` rather than letting load order decide which wins — see [Commands & Permissions](/plugins/oberonstaff/commands-and-permissions/).
 - **A chat plugin.** Staff chat is delivered directly, not through your chat formatter.
+- **A punishment plugin for voice chat.** Simple Voice Chat has no mute command of its own; OberonStaff's [voice mutes](/plugins/oberonstaff/features/voice-mute/) talk to it directly, and need nothing beyond `voicechat` itself.

@@ -16,8 +16,8 @@ layout, scoreboard or hologram written for PvPManager needs no edit. `/papi info
 | `%oberoncombat_timeleft_ms%`, `%pvpmanager_combat_timeleft_ms%` | milliseconds left; `0` when not tagged |
 | `%oberoncombat_timeleft_formatted%` | the same as `20s`; `0s` when not tagged |
 | `%oberoncombat_combat_prefix%` | `placeholders.combat-prefix` while tagged, empty otherwise (a nametag prefix for TAB) |
-| `%oberoncombat_enemies%` | the names of everyone the player is fighting, comma separated |
-| `%oberoncombat_current_enemy%` | the player they hit or were hit by last, empty if none |
+| `%oberoncombat_enemies%` | the names of everyone the player is fighting, comma separated; an invisible one is a stand-in, as above |
+| `%oberoncombat_current_enemy%` | the player they hit or were hit by last, empty if none; an invisible one is a stand-in in `&` codes, with OberonKills ([hidden names](/plugins/oberoncombat/features/kills/#hidden-names)) |
 | `%oberoncombat_current_enemy_health%` | that player's health, one decimal at most; `0` if none |
 | `%oberoncombat_current_enemy_hearts%` | that player's health as hearts: `placeholders.heart-symbol` once per heart, rounded up |
 | `%oberoncombat_player_health%` | the player's own health, one decimal at most |

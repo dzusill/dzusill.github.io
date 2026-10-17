@@ -29,6 +29,7 @@ The plugin still works, and loses two things:
 
 1. **Staff chat mode and `/tptoggle` reset on restart** — they live in memory only.
 2. **No action log.** `/oberonstaff log` says so.
+3. **No voice mutes.** `/vcmute` says it needs the database.
 
 Everything else — teleports, the vanish ladder, ranks, staff chat itself — is unaffected.
 
@@ -50,7 +51,7 @@ Restart after changing this — the backend is chosen at startup. PostgreSQL wor
 
 ## The tables
 
-Two, created automatically on first start.
+Created automatically on first start.
 
 **Preferences** — staff chat mode and teleport blocking, keyed by UUID so a rename never loses them:
 
@@ -67,6 +68,8 @@ CREATE TABLE IF NOT EXISTS oberonstaff_preferences (
 `pref_key` is `staffchat` or `tptoggle`.
 
 **Actions** — the teleport log. Schema and details on [Action log](/plugins/oberonstaff/features/action-log/).
+
+**Voice mutes** — `oberonstaff_voice_mutes`, one row per mute, never deleted. Details on [Voice Mutes](/plugins/oberonstaff/features/voice-mute/#storage).
 
 ## When preferences load and save
 

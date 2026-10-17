@@ -1,6 +1,6 @@
 ---
 title: "Commands & Permissions"
-description: "Seven player commands and one admin command — every name and permission comes from the config."
+description: "Seven player commands, three voice mute commands and one admin command — every name and permission comes from the config."
 ---
 
 Every name, alias and permission below is the **default**. All of them live in `config.yml` under `Commands` and can be changed or switched off. Changing them needs a restart.
@@ -11,6 +11,7 @@ Every name, alias and permission below is the **default**. All of them live in `
 |---|---|---|
 | `/staffchat [message]` | `/sc` | `oberonstaff.staffchat` |
 | `/tp <player> [player]` | | `oberonstaff.teleport` |
+| `/tp [player] <x> <y> <z> [yaw pitch]` | | `oberonstaff.teleport` + `.coords` |
 | `/tpo <player> [player]` | | `oberonstaff.teleport.override` |
 | `/tphere <player>` | `/s` | `oberonstaff.teleport` |
 | `/tpohere <player>` | | `oberonstaff.teleport.override` |
@@ -20,6 +21,20 @@ Every name, alias and permission below is the **default**. All of them live in `
 `/staffchat` with no arguments toggles the mode. With arguments it sends one line.
 
 The `o` variants reach players who have `/tptoggle` on. So does holding `oberonstaff.teleport.override` on the plain commands.
+
+`/tp` also takes coordinates, read like vanilla's (`~`, `~5`). Going there yourself needs `oberonstaff.teleport.coords` on top of `oberonstaff.teleport`; sending somebody else needs `oberonstaff.teleport.coords.others`. See [Teleports → Coordinates](/plugins/oberonstaff/features/teleports/#coordinates).
+
+## Voice mutes
+
+For Simple Voice Chat. Registered whenever `Voice-Mute.Enabled` is on — without voice chat or the database they say which is missing. See [Voice Mutes](/plugins/oberonstaff/features/voice-mute/).
+
+| Command | Default alias | Default permission |
+|---|---|---|
+| `/vcmute [-s] <player> [duration] [reason]` | | `oberonstaff.vcmute.temp` |
+| `/vcunmute [-s] <player> [reason]` | | `oberonstaff.vcunmute` |
+| `/vccheck <player>` | | `oberonstaff.vccheck` |
+
+No duration is permanent, and needs `oberonstaff.vcmute` — the command's own node, `.temp`, only allows mutes with a duration, capped by `Voice-Mute.Temp-Max-Duration`. `-s` can go anywhere and needs `oberonstaff.vcmute.silent`.
 
 ## Ticket desk — players
 
@@ -120,8 +135,19 @@ Vanish: PremiumVanish (enabled: yes, 6 level(s))
 | `oberonstaff.staffchat` | op | Send **and receive** staff chat. |
 | `oberonstaff.teleport` | op | `/tp` and `/tphere`. |
 | `oberonstaff.teleport.override` | op | `/tpo`, `/tpohere`, and reaching players with `/tptoggle` on. |
+| `oberonstaff.teleport.coords` | op | `/tp <x> <y> <z>` — yourself to coordinates. Needs `oberonstaff.teleport` as well. |
+| `oberonstaff.teleport.coords.others` | op | `/tp <player> <x> <y> <z>` — somebody else. Includes `.coords`. |
 | `oberonstaff.tptoggle` | op | `/tptoggle`. |
 | `oberonstaff.back` | op | `/back`. |
+| `oberonstaff.vcmute` | op | Voice mute permanently or for any length. Includes `.temp`. |
+| `oberonstaff.vcmute.temp` | op | Voice mute with a duration only, at most `Voice-Mute.Temp-Max-Duration`. |
+| `oberonstaff.vcunmute` | op | `/vcunmute`. |
+| `oberonstaff.vcmute.silent` | op | `-s` on `/vcmute` and `/vcunmute`. |
+| `oberonstaff.vcmute.notify` | op | Hear public voice mutes when `Broadcast-To: NOTIFY`. |
+| `oberonstaff.vcmute.notify.silent` | op | Hear voice mutes and unmutes made with `-s`. |
+| `oberonstaff.vcmute.exempt` | op | Cannot be voice muted (checked while online). |
+| `oberonstaff.vcmute.override` | op | Replace a voice mute already in force. |
+| `oberonstaff.vccheck` | op | `/vccheck`. |
 | `oberonstaff.*` | op | Everything above. |
 
 ## Partial names
@@ -183,8 +209,14 @@ PremiumVanish's own `pv.see.*` nodes decide who can see whom. That plugin owns t
 /lp group mod permission set oberonstaff.teleport true
 /lp group mod permission set oberonstaff.tptoggle true
 /lp group mod permission set oberonstaff.back true
+/lp group mod permission set oberonstaff.teleport.coords true
+/lp group mod permission set oberonstaff.vcmute.temp true
+/lp group mod permission set oberonstaff.vcunmute true
+/lp group mod permission set oberonstaff.vccheck true
 
 /lp group admin permission set oberonstaff.teleport.override true
+/lp group admin permission set oberonstaff.teleport.coords.others true
+/lp group admin permission set oberonstaff.vcmute true
 /lp group admin permission set oberonstaff.admin true
 ```
 

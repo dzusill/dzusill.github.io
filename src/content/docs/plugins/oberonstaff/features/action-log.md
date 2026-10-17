@@ -36,8 +36,13 @@ Last 3 staff teleport(s):
 | `tp-other` | the actor moved one player to another |
 | `tphere` | the actor brought the target to them |
 | `back` | the player returned to their previous location |
+| `tp-coords` | the actor sent themselves or somebody else to coordinates |
+| `vcmute 1d` · `vcmute` | a [voice mute](/plugins/oberonstaff/features/voice-mute/), temporary (with its length) or permanent |
+| `vcunmute` | a voice mute lifted |
 
 Coordinates are where the **target** ended up.
+
+A voice mute aimed at somebody offline has nowhere to record, so it shows world `-` and zero coordinates.
 
 ## What is stored
 

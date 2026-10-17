@@ -92,7 +92,7 @@ message or any other notice keeps the slot until its hold ends.
 |---|---|
 | `%time%` | seconds left |
 | `%bar%` | a bar that empties as the tag runs out |
-| `%enemies%` | the names of the players being fought |
+| `%enemies%` | the names of the players being fought; an invisible one is a stand-in, with OberonKills ([hidden names](/plugins/oberoncombat/features/kills/#hidden-names)) |
 
 The bar is `combat.timer.bar-symbol` repeated `bar-length` times, coloured `bar-full` and `bar-empty`.
 

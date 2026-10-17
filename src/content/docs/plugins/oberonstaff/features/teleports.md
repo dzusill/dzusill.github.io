@@ -9,6 +9,8 @@ description: "The full suite, what the override variants actually do, /tptoggle,
 |---|---|---|
 | `/tp <player>` | you go to them | only with the override permission |
 | `/tp <a> <b>` | moves `a` to `b` | same |
+| `/tp <x> <y> <z> [yaw pitch]` | you go to coordinates | — |
+| `/tp <player> <x> <y> <z> [yaw pitch]` | sends `player` to coordinates | only with the override permission |
 | `/tpo <player>` `/tpo <a> <b>` | same, but always | **yes** |
 | `/tphere <player>` (`/s`) | brings them to you | only with the override permission |
 | `/tpohere <player>` | same, but always | **yes** |
@@ -39,6 +41,37 @@ If they have `/tptoggle` on and you are not overriding, the teleport is refused 
 ### Both players, not just one
 
 `/tp <a> <b>` checks **both**. The old script only checked `a`, which meant the destination's vanish was ignored — and that is a way to probe whether a hidden staff member is online, by watching whether the teleport succeeds.
+
+## Coordinates
+
+New in **1.8.0**. Before it, staff typed `/minecraft:tp` for every coordinate, because OberonStaff holds `/tp` and took player names only — and a vanilla teleport is one the action log never sees.
+
+```
+/tp 100 64 -250
+/tp ~ ~10 ~
+/tp 0 80 0 90 0
+/tp Steve 100 64 -250
+/tp Steve ~ ~ ~20
+```
+
+They read like vanilla's:
+
+- `~` is the moved player's own value, and `~5` is relative to it — relative to the player **being moved**, not to you.
+- A whole number for `x` or `z` is the **middle of the block**, so `/tp 100 64 100` does not leave somebody on the edge of two blocks. `100.0` lands exactly on the edge, as typed.
+- `yaw` and `pitch` are optional — leave them out and the player keeps facing where they were. Pitch is clamped to ±90.
+- The world is always the moved player's current world.
+- Anything past vanilla's limits (±30,000,000 across, ±20,000,000 up) is refused with the value that was wrong.
+
+Whether the first word is a player or an `x` depends on how many follow — three or five numbers are coordinates, a name and three or five numbers send that player. A player whose name is a number is still reachable with `/tp <name>`.
+
+| Permission | Lets you |
+|---|---|
+| `oberonstaff.teleport.coords` | `/tp <x> <y> <z>` — yourself. On top of the command's own `oberonstaff.teleport`. |
+| `oberonstaff.teleport.coords.others` | `/tp <player> <x> <y> <z>` — somebody else. Includes the self form. |
+
+Moving **somebody else** goes through the same vanish and `/tptoggle` check as `/tp <a> <b>`, and `/tpo` overrides it the same way. Every coordinate teleport is written to the [action log](/plugins/oberonstaff/features/action-log/) as `tp-coords`.
+
+Tab completion offers `~` wherever a coordinate may go, to those holding `oberonstaff.teleport.coords`.
 
 ## `/tptoggle`
 

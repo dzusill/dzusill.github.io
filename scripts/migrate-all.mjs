@@ -87,6 +87,9 @@ const PLUGINS = [
   // Anti-cheat investigation for Phalanx. Its docs/ holds the internal plan and bridge contract, so the
   // published pages live in docs-site/ (as with dFactions and OberonCombat).
   { slug: 'dsusmenu',      name: 'dSusMenu',      src: '../dSusMenu/docs-site' },
+  // dSusMenu's OSMP build: OberonCore, LiteBans, PremiumVanish and a Discord webhook instead of dPhalanx. Its
+  // docs/ are three flat reference files with no SUMMARY.md, so the published pages live in docs-site/ (as with dSusMenu).
+  { slug: 'oberonsusmenu', name: 'OberonSusMenu', src: '../OberonSusMenu/docs-site' },
 ];
 
 // Plugins whose pages are written directly into src/content/docs/plugins/<slug>/ rather than
@@ -114,7 +117,7 @@ const SIDEBAR_ONLY = process.argv.includes('--sidebar-only');
 // adding a plugin above without touching this still produces a working sidebar.
 const CATEGORIES = [
   { label: '🛠️ Framework', plugins: ['dzusillcore', 'ddialogs'] },
-  { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonannounce', 'oberondonations', 'oberontools', 'oberonenvoys', 'oberonafk', 'oberoncombat', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats', 'oberonender'] },
+  { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonannounce', 'oberondonations', 'oberontools', 'oberonenvoys', 'oberonafk', 'oberoncombat', 'oberonmsg', 'oberonstaff', 'oberonsusmenu', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats', 'oberonender'] },
   { label: '💰 Economy & Shops', plugins: ['dshop', 'drotatingshop', 'oberonshop', 'dsell', 'ddonutworth', 'dauctionfeed', 'oberonsell', 'ddonations', 'dgems', 'dstore', 'dlottery', 'blottery', 'dloyalityrewards'] },
   { label: '⚔️ PvP & Combat', plugins: ['dfactions', 'dkilltracker', 'dbloodmoney', 'ddeathpenalty', 'dfate', 'dsupplydrops'] },
   { label: '🧭 Teleportation', plugins: ['warpgui', 'dhomegui'] },
@@ -134,7 +137,7 @@ const PLUGIN_EMOJI = {
   oberonstats: '📈', oberonannounce: '📣', oberondonations: '💵', oberontools: '🪣', oberonsell: '🏷️',
   oberonshop: '🏪', oberonenvoys: '🪂', oberonafk: '⌛', oberoncombat: '🥊', oberonender: '📦',
   dlive: '📡', dannounce: '📣', dsell: '🏷️', dshop: '🏪', dloyalityrewards: '🎁',
-  dsupplydrops: '🪂', ddonations: '💵', dtickets: '🎫', dsusmenu: '🕵️',
+  dsupplydrops: '🪂', ddonations: '💵', dtickets: '🎫', dsusmenu: '🕵️', oberonsusmenu: '🕵️',
 };
 const SECTION_EMOJI = {
   'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',

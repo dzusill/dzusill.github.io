@@ -1,6 +1,6 @@
 ---
 title: "config.yml"
-description: "Commands, staff chat, ranks, the vanish ladder and teleport settings — section by section."
+description: "Commands, staff chat, ranks, the vanish ladder, teleport and voice mute settings — section by section."
 ---
 
 `plugins/OberonStaff/config.yml`. Reload with `/oberonstaff reload` — except the `Commands` section, which needs a restart.
@@ -26,6 +26,7 @@ Commands:
     Aliases: [ s ]
     Permission: "oberonstaff.teleport"
   # tpo, tpohere, tptoggle, back likewise
+  # vcmute, vcunmute, vccheck too — see Voice-Mute below
 ```
 
 | Key | Does |
@@ -181,6 +182,57 @@ Teleport:
 | `Back.Record-Deaths` | `true` | Let `/back` return to where the player died. |
 | `Sound.*` | enderman teleport | Confirmation sound. |
 | `Log-Actions` | `true` | Record teleports — see [Action log](/plugins/oberonstaff/features/action-log/). |
+
+Teleporting to coordinates (`/tp x y z`) has no settings of its own — only the two permissions on [Teleports → Coordinates](/plugins/oberonstaff/features/teleports/#coordinates).
+
+## Voice-Mute
+
+`/vcmute`, `/vcunmute` and `/vccheck` for Simple Voice Chat. Added to an existing config on update. Full explanation on [Voice Mutes](/plugins/oberonstaff/features/voice-mute/).
+
+```yaml
+Voice-Mute:
+  Enabled: true
+  Default-Reason: "N/A"
+  Temp-Max-Duration: "0"
+  Broadcast-To: ALL
+  Notice:
+    Action-Bar: true
+    Interval-Seconds: 5
+  History-Lines: 5
+  Date-Format: "yyyy-MM-dd HH:mm"
+```
+
+| Key | Default | Does |
+|---|---|---|
+| `Enabled` | `true` | `false`: no commands and no voice chat hook — the names stay free for another plugin. **Restart required.** |
+| `Default-Reason` | `N/A` | Written when staff give no reason. LiteBans uses `N/A` too. |
+| `Temp-Max-Duration` | `"0"` | The longest mute somebody with only `oberonstaff.vcmute.temp` may give, like `1d` or `12h`. `"0"` is no limit. Holders of `oberonstaff.vcmute` are never limited. |
+| `Broadcast-To` | `ALL` | Who sees a mute made without `-s`: `ALL` everyone online, `NOTIFY` holders of `oberonstaff.vcmute.notify` only. The staff member and the console always see it. |
+| `Notice.Action-Bar` | `true` | The "you are voice muted" reminder goes above the hotbar. `false` sends it to chat. |
+| `Notice.Interval-Seconds` | `5` | At most this often while a muted player keeps talking. `-1` never reminds. |
+| `History-Lines` | `5` | Past mutes `/vccheck` lists, newest first. `0` hides the history. |
+| `Date-Format` | `yyyy-MM-dd HH:mm` | How `%expires%` and `%created%` are written (Java `DateTimeFormatter`). |
+
+The three commands sit under `Commands` like every other:
+
+```yaml
+Commands:
+  vcmute:
+    Enabled: true
+    Name: vcmute
+    Aliases: []
+    Permission: "oberonstaff.vcmute.temp"
+  vcunmute:
+    Name: vcunmute
+    Permission: "oberonstaff.vcunmute"
+  vccheck:
+    Name: vccheck
+    Permission: "oberonstaff.vccheck"
+```
+
+`Permission` there is only who may type the command at all. Whether a mute may be permanent, silent or replace another is decided by the fixed `oberonstaff.vcmute.*` nodes — see [Voice Mutes → Permissions](/plugins/oberonstaff/features/voice-mute/#permissions).
+
+Everything here reloads with `/oberonstaff reload` except `Enabled` and the command names.
 
 ## Tickets
 

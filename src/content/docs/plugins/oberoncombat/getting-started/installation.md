@@ -10,7 +10,7 @@ description: "Everything optional degrades cleanly: the plugin says once at star
 | Server | Paper 26.2 (Folia is supported) |
 | Java | 25 |
 | Required | **OberonCore 1.14.4 or newer** |
-| Optional | WorldGuard (exclusions by region, the barrier), Vault with an economy (money steal), PlaceholderAPI, OberonKills 1.6.0+, Duels-Shyam 1.0.4 |
+| Optional | WorldGuard (exclusions by region, the barrier), Vault with an economy (money steal), PlaceholderAPI, OberonKills 1.6.0+ (1.8.0+ for hidden names), Duels-Shyam 1.0.4 |
 
 Everything optional degrades cleanly: the plugin says once at startup what it did not find, and the feature that needs
 it stays off. Without WorldGuard exclusions work on worlds only and there is no barrier. Without Vault nothing is

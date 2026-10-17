@@ -78,6 +78,9 @@ The console says at startup what is paid and `/oberoncombat status` shows `Money
 
 The victim's notice waits because nobody reads an action bar on the death screen.
 
+`%killer%` and `%victim%` follow OberonKills: a player its death message hid is a stand-in here too. See
+[OberonKills](#oberonkills).
+
 ## Experience steal
 
 ```yaml
@@ -97,3 +100,26 @@ with vanilla's formulas, not the unreliable running score), and the victim's own
 
 OberonKills prints the death message. For a combat-log death it reads the player metadata `oberoncombat_combat_log` during
 the death event and uses its own combat-log line. Install OberonKills 1.6.0 or newer.
+
+### Hidden names
+
+OberonKills can keep a name out of the death message: an invisible killer (`Invisible-Killer`) and, where its
+`Hidden-Victim` is turned on, the victim. OberonCombat then names them the same way, so the "stolen by" straight after
+the death does not give the name back:
+
+| Where | Token | Shows |
+|---|---|---|
+| `kill-money-lost`, `exp-stolen` (to the victim) | `%killer%` | the stand-in the death message used for the killer |
+| `kill-money-gained`, `exp-won` (to the killer) | `%victim%` | the stand-in the death message used for the victim |
+| `combat-tagged`, `combat-timer` and the boss bar, `/pvpinfo` | `%enemy%`, `%enemies%` | a stand-in for an enemy who is invisible right now |
+| `%oberoncombat_current_enemy%`, `%oberoncombat_enemies%` | — | the same, in `&` codes for a scoreboard |
+
+- Holders of OberonKills' staff permission (`oberonkills.seehidden` by default) see the stand-in and the real name.
+- Nobody is hidden from themselves: the killer's own `%killer%` and the victim's own `%victim%` stay their names.
+- Console commands (`on-kill`, `on-respawn`, `kill-abuse`) always get the real names: they are for rewards and records,
+  not for players to read.
+- A killer who was invisible only when the blow landed is still hidden: the death's own decision is used, not whether
+  they can be seen by the time the money moves.
+
+Needs OberonKills 1.8.0 or newer. The two share nothing but player metadata (`oberonkills_death` on the victim during
+the death, `oberonkills_hidden` on every player while hidden), so without OberonKills every name is shown as before.

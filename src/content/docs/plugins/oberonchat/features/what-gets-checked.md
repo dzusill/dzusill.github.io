@@ -29,6 +29,10 @@ Chat-Event: LEGACY
 
 `AUTO` (the default) picks the modern event on Paper and the legacy one elsewhere. Only one is ever listened to, so nothing is ever checked twice.
 
+### Team chats on the chat event
+
+A team chat you toggle on and then just type into — DonutTeams' — takes the message off public chat before OberonChat would see it. Plugins like that are listed in [`Channel-Plugins`](/plugins/oberonchat/configuration/config/#channel-plugins) (`[DonutTeams]` by default): while one is installed, chat is read on the legacy event ahead of it, and its handler only gets a message that passed, censored where the filter starred something out.
+
 ## Commands
 
 ```yaml

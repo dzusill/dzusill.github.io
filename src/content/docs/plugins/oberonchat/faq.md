@@ -55,6 +55,20 @@ Chat-Event: LEGACY
 
 and restart. `AUTO` picks the modern event on Paper, and if your chat plugin never fires that one, nothing is ever checked.
 
+## Team chat isn't filtered
+
+Since **1.10.0** it is, for plugins named in `Channel-Plugins` in `config.yml` — `[DonutTeams]` by default.
+
+A team chat you toggle on and then just type into takes the message off the chat event before OberonChat would see it, and sends it on even when it was blocked. With the plugin listed, OberonChat reads chat ahead of it and its handler only ever gets a message that passed — censored if the filter starred something out. Check the console at startup for:
+
+```
+Chat is read on the legacy chat event, ahead of DonutTeams, ...
+```
+
+No such line means the plugin's name in `plugins/` does not match the list — check the spelling with `/plugins`. A different team or party plugin that does the same thing can be added to the list; restart after changing it.
+
+The command form (`/tc <message>`) is a command, not chat — make sure it is in `Sources.Commands.List`. See [Channel-Plugins](/plugins/oberonchat/configuration/config/#channel-plugins).
+
 ## The censored message shows uncensored
 
 OberonChat rewrites the message at the **lowest** event priority, before other plugins see it. A chat plugin that reads the message even earlier, or that rebuilds it from its own copy, will show the original. Tell us which plugin and we will look at it.

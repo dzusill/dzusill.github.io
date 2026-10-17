@@ -39,7 +39,7 @@ A test walks every key in the shipped file through Bukkit's own YAML parser and 
 
 ## Teleports
 
-`%player%` — the target. `%target%` — the destination player, for the two-argument form.
+`%player%` — the target. `%target%` — the destination player, for the two-argument form. `%x%` `%y%` `%z%` `%world%` — where a coordinate teleport landed.
 
 ```yaml
 teleport:
@@ -49,7 +49,14 @@ teleport:
   to: "<prefix><gray>You teleported to <#C21807>%player%</#C21807>."
   other: "<prefix><gray>You teleported <#C21807>%player%</#C21807> to <#C21807>%target%</#C21807>."
   here: "<prefix><gray>You teleported <#C21807>%player%</#C21807> to you."
+  coords: <gray>You teleported to <#C21807>%x%, %y%, %z%</#C21807>.
+  coords-other: <gray>You teleported <#C21807>%player%</#C21807> to <#C21807>%x%, %y%, %z%</#C21807>.
+  bad-coordinate: "<red>'<white>%value%</white>' is not a coordinate. Use a number, ~ or ~5."
+  no-coords-permission: <red>You can't teleport to coordinates.
+  usage: "<red>Usage: <white>/%cmd% player [player]</white> <gray>or</gray> <white>/%cmd% [player] x y z [yaw pitch]</white>"
 ```
+
+The last five came with [coordinates](/plugins/oberonstaff/features/teleports/#coordinates) in 1.8.0 and are added to an existing file on update. `%value%` in `bad-coordinate` is the one word that was not a number.
 
 ### Keep these two identical
 
@@ -104,6 +111,52 @@ command:
 ```
 
 Any message key can be a list, and renders as several lines.
+
+## Voice mutes
+
+The `voice-mute` section, new in 1.9.0 and added to an existing file on update. Worded like LiteBans, so a [voice mute](/plugins/oberonstaff/features/voice-mute/) reads like every other punishment on the server.
+
+| Placeholder | Is |
+|---|---|
+| `%executor%` | who did it — `Console` from the console |
+| `%player%` | who it was done to |
+| `%reason%` | the reason, or `Voice-Mute.Default-Reason` |
+| `%duration%` | the length in words, as typed: `30 days` |
+| `%remaining%` | time left: `2 days 3 hours` |
+| `%expires%` · `%created%` | when it ends / was made, in `Voice-Mute.Date-Format` |
+
+For a permanent mute, `%duration%`, `%remaining%` and `%expires%` all read as the `voice-mute.permanent` word.
+
+```yaml
+voice-mute:
+  silent-prefix: '<gray>Silent</gray> <dark_gray>»</dark_gray> '
+  broadcast:
+    permanent: '<#C21807>%executor%</#C21807> <gray>voice muted</gray> <#C21807>%player%</#C21807> <gray>for</gray> <white>%reason%</white><gray>.</gray>'
+    temporary: '… <gray>for</gray> <white>%duration%</white> <gray>for</gray> <white>%reason%</white><gray>.</gray>'
+    unmuted: '<#C21807>%executor%</#C21807> <gray>voice unmuted</gray> <#C21807>%player%</#C21807><gray>.</gray>'
+  notice:
+    permanent: '<red>You are voice muted. <gray>(permanent)'
+    temporary: '<red>You are voice muted. <gray>(%remaining% remaining)'
+  permanent: permanent
+  unit:
+    day: day|days
+    # second, minute, hour, week, month, year likewise
+```
+
+| Key | When |
+|---|---|
+| `silent-prefix` | put in front of any broadcast made with `-s` |
+| `broadcast.permanent` / `.temporary` / `.unmuted` | the server-wide (or staff-only) line |
+| `target.permanent` / `.temporary` / `.unmuted` | to the player it happened to, if online |
+| `notice.permanent` / `.temporary` | the reminder while a muted player talks |
+| `replaced` · `already-muted` · `not-muted` · `exempt` | outcomes |
+| `silent-denied` · `permanent-denied` · `too-long` (`%max%`) · `bad-duration` (`%input%`) · `never-joined` | refusals |
+| `missing` · `no-database` · `failed` | voice chat or the database not available, or the write failed |
+| `usage.vcmute` / `.vcunmute` / `.vccheck` | the bare command |
+| `check.*` | `/vccheck` output; `check.state.removed` takes `%by%` and `%why%` |
+| `unit.second` … `unit.year` | `singular\|plural` words for `%duration%`, `%remaining%` and `%max%` |
+
+`silent-prefix` is the only thing that tells staff a line was silent. Blank it and a `-s` mute looks exactly like a public one to the staff who hear it — which is how somebody ends up repeating it in public chat.
 
 ## Gradients
 
