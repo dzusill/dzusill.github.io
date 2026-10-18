@@ -23,9 +23,11 @@ The available actions are `TELEPORT`, `ACTIONS`, `PROFILE`, `HISTORY`, `SPECTATE
 
 - **Clock button:** cycles the window through `list.windows` (1h, 6h, 24h, 7d by default). Right-click goes back.
 - **Sort:** newest flag, most flags in the window, score, risk, or name.
-- **Search:** type part of a name in chat.
+- **Search:** type part of a name in a text box on screen (clients 1.21.6 and newer; older and Bedrock clients type it in chat, or set `list.search-input: CHAT`). Empty search shows everyone again. Right-click clears it.
 - **Online / everyone:** shows only players who are online right now, or everyone. Set the default with `list.online-only-by-default`.
 - **Alerts:** turns your own silent alerts on or off, the same as `/sus alerts`.
+
+Sort, window, filters and search stay while you move between the menus. Every time `/sus` is opened by command they start again from the defaults in `config.yml` (`list.reset-filters-on-open`), so a changed default applies at once.
 
 ## Filters
 

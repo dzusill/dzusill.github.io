@@ -17,7 +17,7 @@ You are teleported next to the player. With `teleport.vanish-first: true` you ar
 
 ## Spectate
 
-Switches you to spectator mode next to the player, vanished. With `spectate.first-person` you look through their eyes instead. `/sus spectate stop` (or clicking again) takes you back to where you were, in your old game mode and vanish state.
+Switches you to spectator mode next to the player, vanished. With `spectate.first-person` you look through their eyes instead, whatever game mode you were in; the view switches as soon as their character has loaded for you. `/sus spectate stop` (or clicking again) takes you back to where you were, in your old game mode and vanish state.
 
 The session survives a crash. If you log out while spectating, or the server stops, your position and game mode are put back first.
 

@@ -11,6 +11,7 @@ Every chat line OberonSentry sends is in `messages.yml`, in English, in [MiniMes
 | `platforms` | How `{platform}` reads: `java` and `bedrock` |
 | `categories`, `statuses`, `states`, `sorts` | Names shown in menus |
 | `menus`, `filters`, `prompts`, `confirm` | Menu texts, chat prompts, confirmation questions |
+| `search-dialog` | Title, label and buttons of the search box |
 | `alerts` | `alerts.level`: the silent alert line, with clickable `[PROFILE]` / `[ACTIONS]` |
 | `actions`, `cases` | Results of actions and case changes |
 | `freeze`, `spectate` | What frozen players and spectating staff see |

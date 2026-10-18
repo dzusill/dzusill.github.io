@@ -12,6 +12,7 @@ The main command is `/sus` (aliases `/suspicious` and `/sentry`). All three can 
 | `/sus profile <player>` | `oberonsentry.view` | Profile |
 | `/sus history <player>` | `oberonsentry.view` | Flag history |
 | `/sus actions <player>` | `oberonsentry.open` | The actions menu |
+| `/sus search [text]` | `oberonsentry.open` | Search the list for part of a name (what the search box runs). Empty clears the search |
 | `/sus case <id>` | `oberonsentry.view` | Who case #id is about and its state. In game it also opens their profile. The id is in every Discord embed |
 | `/sus freeze <player> [reason]` | `oberonsentry.action.freeze` | Freeze |
 | `/sus unfreeze <player>` | `oberonsentry.action.freeze` | Unfreeze |

@@ -15,6 +15,8 @@ description: "/sus reload applies every change except command and storage, which
 | `list.default-sort` | `NEWEST` | `NEWEST`, `MOST_FLAGS`, `SCORE`, `RISK` or `NAME` |
 | `list.refresh-debounce` | `1s` | Open lists redraw at most this often |
 | `list.online-only-by-default` | `false` | Start with only online players |
+| `list.reset-filters-on-open` | `true` | Every `/sus` by command starts from the defaults above. `false` = each staff member keeps their sort, window, filters and search until a restart |
+| `list.search-input` | `DIALOG` | `DIALOG` = search box on screen (1.21.6+ clients, others get chat), `CHAT` = always in chat |
 | `alerts.enabled` | `true` | Silent in-game alerts |
 | `alerts.min-interval` | `10s` | Minimum time between two alerts about one player (a higher level always alerts) |
 | `teleport.vanish-first` | `true` | Vanish before teleporting |
@@ -24,7 +26,7 @@ description: "/sus reload applies every change except command and storage, which
 | `freeze.remind-every` | `3s` | How often the "frozen" title is shown again |
 | `freeze.quit-commands` | `[]` | Console commands when a frozen player logs out. `{player} {uuid} {staff}`, e.g. `'tempban -s {player} 7d Logged out while frozen'` |
 | `freeze.quit-alert` | `true` | Tell staff with `oberonsentry.alerts` when a frozen player logs out |
-| `spectate.first-person` | `false` | Look through the target's eyes instead of floating next to them |
+| `spectate.first-person` | `false` | Look through the target's eyes instead of floating next to them, from any game mode |
 | `evidence.enabled` / `before` / `after` | `true` / `10s` / `5s` | The movement timeline around a flag that opens or raises a case |
 | `client-scan.enabled` | `true` | [Client detection](/plugins/oberonsentry/features/client-detection/) on join |
 | `client-scan.delay-ticks` | `40` | How long after the join to evaluate (channels keep registering) |
