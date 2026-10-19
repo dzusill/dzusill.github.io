@@ -49,9 +49,8 @@ needs it — install ProtocolLib, or set worth-lore.enabled: false to stop seein
 [OberonSell] Worth lore is sent per player through ProtocolLib; items are never modified.
 ```
 
-ProtocolLib also, separately, upgrades the prices-GUI search prompt to a sign you type into rather than
-closing the GUI and typing in chat — see [`search.input`](/plugins/oberonsell/configuration/config/#search). That part
-stays fully optional; only worth lore requires ProtocolLib.
+The prices-GUI search prompt (sign or dialog, see [`search.input`](/plugins/oberonsell/configuration/config/#search))
+does not need ProtocolLib since 1.2.0 — it uses Paper's own API. Only worth lore requires ProtocolLib.
 
 ## Optional
 

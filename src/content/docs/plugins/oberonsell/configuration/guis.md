@@ -127,8 +127,8 @@ Only the **first** sign line is read back — leave it blank for the player to t
 instructions below it. Sign text is drawn by the client and takes legacy `&` codes only; the `#RRGGBB`
 colours the rest of this file accepts do not work there.
 
-Whether the prompt is a sign or the chat box is [`search.input` in config.yml](/plugins/oberonsell/configuration/config/#search). Both
-behave identically from here.
+Whether the prompt is a dialog, a sign or the chat box is [`search.input` in config.yml](/plugins/oberonsell/configuration/config/#search).
+All three behave identically from here; `sign_lines` is used only by the sign.
 
 > Upgrading from a version without this button? A GUI file's `items` section is never merged, so a deleted
 > icon stays deleted — which means yours has no `search` entry. The button still appears, at slot 47 with

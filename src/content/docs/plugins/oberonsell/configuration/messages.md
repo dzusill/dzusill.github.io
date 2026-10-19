@@ -88,7 +88,7 @@ There is no separate "total" key. One line carries the sum.
 
 ### Search
 
-`search.chat_prompt` · `search.applied` `{search}` · `search.cleared`
+`search.chat_prompt` · `search.applied` `{search}` · `search.cleared` · `search.dialog_title` · `search.dialog_label` (the dialog window, so no `<prefix>`)
 
 ### GUI labels
 

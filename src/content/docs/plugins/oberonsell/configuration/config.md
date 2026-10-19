@@ -354,20 +354,23 @@ How the Item Prices GUI asks for a search term.
 
 | Value | Behaviour |
 |---|---|
-| `sign` | opens a sign the player types into; the GUI comes straight back. Needs ProtocolLib |
+| `dialog` | a native text box (Java 1.21.6+). Players who cannot see one — Bedrock, older clients through ViaVersion — get the sign instead, then chat |
+| `auto` | the same as `dialog` |
+| `sign` | opens a sign the player types into; the GUI comes straight back. Needs Paper 1.21.5+ |
 | `chat` | closes the GUI and reads the player's next chat line. Works everywhere |
 
-Without ProtocolLib, `sign` behaves as `chat` — the button always works. Which one is live is logged at
-startup:
+Which one is live is logged at startup:
 
 ```
-[OberonSell] Item searches are typed into a sign.
-[OberonSell] Item searches are typed into chat. Install ProtocolLib to type them into a sign instead.
+[OberonSell] Item searches use: sign.
+[OberonSell] Item searches use: dialog (sign for Bedrock and older clients).
 ```
 
-The sign is not a real block: it is drawn for that one player and taken back the instant they are done.
-Nothing is placed and nobody else sees it. It is drawn with packets though, which is version-dependent by
-nature — if a Minecraft update ever breaks it, set this to `chat` and the search keeps working.
+The sign is not a real block: it is drawn for that one player, **buried under the ground where they cannot
+see it**, and taken back the instant they are done. Nothing is placed and nobody else sees it. It goes
+through Paper's own client-side sign API, so it needs no ProtocolLib. The dialog is drawn by OberonSell
+itself (no extra plugin); its title and label are `search.dialog_title` / `search.dialog_label` in
+`messages.yml`. Changing `search.input` needs a restart.
 
 See [GUIs](/plugins/oberonsell/configuration/guis/) for the icon and its wording.
 
