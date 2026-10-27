@@ -101,6 +101,7 @@ const PLUGINS = [
 // rest written straight into the site. Migrating it would delete the other 17.
 const IN_PLACE = [
   'oberonchat', 'oberonkills', 'oberonmob', 'oberonmsg', 'oberonstaff', 'oberonwhitelist', 'oberonutils',
+  'oberonantixray',
   'ddialogs',
 ];
 
@@ -117,7 +118,7 @@ const SIDEBAR_ONLY = process.argv.includes('--sidebar-only');
 // adding a plugin above without touching this still produces a working sidebar.
 const CATEGORIES = [
   { label: '🛠️ Framework', plugins: ['dzusillcore', 'ddialogs'] },
-  { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonannounce', 'oberondonations', 'oberontools', 'oberonenvoys', 'oberonafk', 'oberoncombat', 'oberonmsg', 'oberonstaff', 'oberonsentry', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats', 'oberonender'] },
+  { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonannounce', 'oberondonations', 'oberontools', 'oberonenvoys', 'oberonafk', 'oberoncombat', 'oberonmsg', 'oberonstaff', 'oberonsentry', 'oberonantixray', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats', 'oberonender'] },
   { label: '💰 Economy & Shops', plugins: ['dshop', 'drotatingshop', 'oberonshop', 'dsell', 'ddonutworth', 'dauctionfeed', 'oberonsell', 'ddonations', 'dgems', 'dstore', 'dlottery', 'blottery', 'dloyalityrewards'] },
   { label: '⚔️ PvP & Combat', plugins: ['dfactions', 'dkilltracker', 'dbloodmoney', 'ddeathpenalty', 'dfate', 'dsupplydrops'] },
   { label: '🧭 Teleportation', plugins: ['warpgui', 'dhomegui'] },
@@ -138,6 +139,7 @@ const PLUGIN_EMOJI = {
   oberonshop: '🏪', oberonenvoys: '🪂', oberonafk: '⌛', oberoncombat: '🥊', oberonender: '📦',
   dlive: '📡', dannounce: '📣', dsell: '🏷️', dshop: '🏪', dloyalityrewards: '🎁',
   dsupplydrops: '🪂', ddonations: '💵', dtickets: '🎫', dsusmenu: '🕵️', oberonsentry: '🕵️',
+  oberonantixray: '⛏️',
 };
 const SECTION_EMOJI = {
   'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',

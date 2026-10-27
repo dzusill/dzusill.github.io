@@ -1667,6 +1667,28 @@
         ]
       },
       {
+        "label": "⛏️ OberonAntiXray",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/oberonantixray"
+          },
+          {
+            "label": "Installation",
+            "slug": "plugins/oberonantixray/installation"
+          },
+          {
+            "label": "Configuration",
+            "slug": "plugins/oberonantixray/configuration"
+          },
+          {
+            "label": "Changelog & testing",
+            "slug": "plugins/oberonantixray/changelog"
+          }
+        ]
+      },
+      {
         "label": "🔒 OberonWhitelist",
         "collapsed": true,
         "items": [
