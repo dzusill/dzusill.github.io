@@ -167,7 +167,9 @@ GUI:
   # ... one block per tab/button
 ```
 
-Positional placeholders like `{0}/{1}` are page numbers; `{2}` is usually the category/warp/query name. Every string is MiniMessage. Tab buttons with `Slot: -1` auto-fill the free bottom-row slots in order.
+Positional placeholders like `{0}/{1}` are page numbers; `{2}` is usually the category/warp/query name. Every string is MiniMessage.
+
+`Slot: -1` means "you decide" and is the default for both navigation and the edit menu: tab buttons auto-fill the free bottom-row slots in order, and the edit-menu icons are drawn as one centred block of whatever that player can see. Any value from 0 to 44 pins that one button and the rest arrange themselves around it.
 
 ### Text prompts
 

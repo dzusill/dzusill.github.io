@@ -18,7 +18,9 @@ Right-click a warp in **My Warps** to open its edit menu. Each button is permiss
 | **Recommend My Warp** | Promote the warp ([paid](/plugins/warpgui/features/recommended-warps/)). | `warpgui.edit.top` |
 | **Delete Warp** | Double-click to permanently delete. | `warpgui.delwarp` |
 
-Slots, icons, names and lore for every button are configurable under `GUI:` in [config.yml](/plugins/warpgui/configuration/config/).
+Icons, names and lore for every button are configurable under `GUI:` in [config.yml](/plugins/warpgui/configuration/config/).
+
+The buttons arrange themselves: whatever you can actually see is drawn as one centred block, so a button hidden by a permission or a switched-off feature leaves no gap behind. Give any button a `Slot` from 0 to 44 to pin it to that exact position instead — the rest are then centred around it.
 
 ## Warp icons
 
