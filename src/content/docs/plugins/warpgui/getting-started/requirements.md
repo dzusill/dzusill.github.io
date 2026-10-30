@@ -7,9 +7,9 @@ description: "All of these are soft dependencies — WarpGUI loads without them 
 
 | Requirement | Version | Notes |
 |---|---|---|
-| Server software | Paper **1.21** | Spigot works; Paper recommended. |
-| Java | **21** | Required by 1.21. |
-| [DzusillCore](https://github.com/dzusill/DzusillCore) | 1.12.0 or newer | **Hard dependency** — WarpGUI won't enable without it. 2.5.0 is built against 1.12.0; update the core jar alongside the plugin. |
+| Server software | Paper **1.21 – 26.3** | Spigot works; Paper recommended. One jar covers the whole range. |
+| Java | **21**, or **25** on Paper 26.1+ | Set by the server version, not by the plugin. |
+| [DzusillCore](https://github.com/dzusill/DzusillCore) | 1.14.5 or newer | **Hard dependency** — WarpGUI won't enable without it. Update the core jar alongside the plugin; on Paper 26.x 1.14.5 is the minimum, older cores break player-head icons there. |
 
 ## Optional integrations
 

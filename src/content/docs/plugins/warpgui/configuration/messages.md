@@ -31,7 +31,9 @@ prefix: "<red><bold>Server</bold></red> <dark_gray><bold>»</bold></dark_gray> "
 
 ## Sounds
 
-The `Sounds:` section maps events to `SOUND/volume/pitch`:
+The `Sounds:` section maps events to `SOUND/volume/pitch`. Both spellings of a sound work — the enum-style
+`ENTITY_PLAYER_LEVELUP` and the key `entity.player.levelup` — and a name this server does not have is simply
+silent, never an error:
 
 ```yaml
 Sounds:

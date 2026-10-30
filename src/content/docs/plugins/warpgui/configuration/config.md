@@ -168,3 +168,18 @@ GUI:
 ```
 
 Positional placeholders like `{0}/{1}` are page numbers; `{2}` is usually the category/warp/query name. Every string is MiniMessage. Tab buttons with `Slot: -1` auto-fill the free bottom-row slots in order.
+
+### Text prompts
+
+Searching, editing a description, setting a cost and adding someone to a whitelist all ask for a line of text. On **1.21.6+** that is a real input box; on anything older, or for a client that can't show one, the player is asked in chat instead and only the question from [messages.yml](/plugins/warpgui/configuration/messages/) appears.
+
+```yaml
+GUI:
+  SearchPromptTitle: '<green>Search Warps</green>'
+  SearchPromptDefault: 'name...'          # what the field starts with
+  SetCostPromptTitle: '<gold>Teleport cost</gold>'
+  WhitelistPromptTitle: '<blue>Add to whitelist</blue>'
+  EditDescriptionDisplayName: '<dark_gray>Edit Description - <gold>{0}</gold></dark_gray>'
+```
+
+The cost and description fields start with the warp's current value, so editing is a tweak rather than a retype. These titles are the box's own, not chat lines, so `<prefix>` has no meaning in them — and old `&a`-style codes still work.

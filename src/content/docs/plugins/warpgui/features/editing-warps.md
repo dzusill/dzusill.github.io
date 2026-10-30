@@ -10,7 +10,7 @@ Right-click a warp in **My Warps** to open its edit menu. Each button is permiss
 | Button | What it does | Permission |
 |---|---|---|
 | **Change Icon** | Sets the warp's icon to the item in your main hand. | `warpgui.edit.material` |
-| **Edit Description** | Prompts you to type a new description in chat (max length `Settings.DescriptionMaxLength`, default 30). | `warpgui.edit.description` |
+| **Edit Description** | Opens an input box prefilled with the current description; `\|` starts a new line (max length per line `Settings.DescriptionMaxLength`, default 30). | `warpgui.edit.description` |
 | **Choose Category** | Opens a category picker. | `warpgui.edit.category` |
 | **Rate** | Opens the 1–5 star [rating](/plugins/warpgui/features/favorites-and-ratings/) menu. | — |
 | **Toggle Hidden** | Hide the warp from others (still yours). | `warpgui.sethidden` |
