@@ -23,6 +23,7 @@ The main command is `/sus` (alias `/suspicious`). Both can be changed in `config
 | `/sus export <player>` | `dsusmenu.export` | Markdown report to `exports/` (and Discord) |
 | `/sus alerts` | `dsusmenu.alerts` | Turn your silent alerts on or off |
 | `/sus health` | `dsusmenu.admin` | Flags per minute, dropped flags, database queue and errors, Discord state, average processing times |
+| `/sus accuracy [window]` | `dsusmenu.admin` | The checks staff dismiss most and what the [fight guard](/plugins/dsusmenu/features/fight-guard/) stopped. Default window 7 days |
 | `/sus reload` | `dsusmenu.admin` | Reload every file except `database.yml`, `command` and `storage` |
 | `/sus debug <player> <check> <category> [vl]` | `dsusmenu.admin` | A test flag. Only works with `debug.fake-flags: true` |
 

@@ -28,6 +28,20 @@ description: "/sus reload applies every change except command and storage, which
 | `vanish.toggle-command` | `vanish` | SimpleVanish's toggle command |
 | `vanish.placeholder` | `%simplevanish_vanished%` | Placeholder that tells whether someone is vanished |
 | `vanish.fallback-hide` | `true` | If the vanish plugin didn't vanish you, hide you from everyone without `dsusmenu.see-vanished` |
+| `fight-guard.mode` | `OBSERVE` | `DISABLED`, `OBSERVE` or `ENFORCE`. See [Fight guard](/plugins/dsusmenu/features/fight-guard/) |
+| `fight-guard.flag-filter.enabled` | `true` | Ignore flags from a struggling connection or server |
+| `fight-guard.flag-filter.categories` | `[combat]` | Categories the filter looks at |
+| `fight-guard.flag-filter.never-filter` | `[]` | Checks never ignored, e.g. `Reach` or `Reach (A)` |
+| `fight-guard.flag-filter.max-ping` | `300` | Ping from which flags are ignored |
+| `fight-guard.flag-filter.ping-jump` | `120` | Ping this far above the player's recent average is a lag spike. `0` = off |
+| `fight-guard.flag-filter.min-tps` | `18.0` | TPS below which flags are ignored. `0` = off |
+| `fight-guard.flag-filter.abuse-limit` / `abuse-window` | `30` / `1m` | Ignored flags one player can use up per window |
+| `fight-guard.punish-gate.enabled` | `true` | Hold Vulcan's punishments on weak evidence |
+| `fight-guard.punish-gate.categories` | `[combat]` | Categories whose punishments can be held |
+| `fight-guard.punish-gate.always-punish` | `[]` | Checks never held |
+| `fight-guard.punish-gate.min-risk` / `min-checks` | `HIGH` / `2` | Risk and number of different checks that let a punishment through |
+| `fight-guard.punish-gate.solo-risk` | `CRITICAL` | Risk that lets a punishment through on any evidence |
+| `fight-guard.punish-gate.notify-every` | `1m` | Staff hear about one player's held punishments at most this often |
 | `punishments.run-as-staff` | `true` | In game, run AdvancedBan commands as the staff member |
 | `punishments.console-reason` | `{reason} (by {staff})` | Reason format when the console runs them (Discord) |
 | `punishments.commands.*` | AdvancedBan's | `kick`, `ban`, `tempban`, `mute`, `tempmute`. Placeholders: `{player} {uuid} {reason} {duration} {staff}`. Empty = action disabled (kick: done natively) |

@@ -5381,6 +5381,10 @@
                 "slug": "plugins/dsusmenu/features/actions"
               },
               {
+                "label": "Fight guard",
+                "slug": "plugins/dsusmenu/features/fight-guard"
+              },
+              {
                 "label": "Client detection",
                 "slug": "plugins/dsusmenu/features/client-detection"
               },
