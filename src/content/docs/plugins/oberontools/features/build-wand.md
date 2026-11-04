@@ -1,16 +1,16 @@
 ---
 title: "Build Wand"
-description: "behavior: BUILDWAND copies a block the player places into a square around it. The shipped Andromeda Builder's Wand (id wand, a blaze rod) sits in the off…"
+description: "behavior: BUILDWAND copies a block the player places into a square around it. The shipped Andromeda Builder's Wand (id wand, a breeze rod) sits in the off…"
 ---
 
-`behavior: BUILD_WAND` copies a block the player places into a square around it. The shipped **Andromeda Builder's Wand** (id `wand`, a blaze rod) sits in the **off hand**; the player builds with the **main hand** as usual, and every extra block is paid for out of their inventory.
+`behavior: BUILD_WAND` copies a block the player places into a square around it. The shipped **Andromeda Builder's Wand** (id `wand`, a breeze rod) sits in the **off hand**; the player builds with the **main hand** as usual, and every extra block is paid for out of their inventory.
 
 ```yaml
 tools:
   wand:
     behavior: BUILD_WAND
     item:
-      material: BLAZE_ROD
+      material: BREEZE_ROD
       expires-after: 7d
       expired-policy: REMOVE
     recipe:
@@ -146,7 +146,7 @@ Without Vulcan nothing is loaded; the hook is installed only when the plugin man
 
 ## Tools are not ingredients or fuel
 
-A wand is a blaze rod, which the crafting grid turns into blaze powder and furnaces and brewing stands burn as fuel. OberonTools closes both routes for **every** tool, not only the wand: a tool in any crafting grid empties the result slot (and the craft is cancelled if another plugin puts it back), and a tool in a furnace or brewing stand fuel slot is never burned.
+A wand is a breeze rod, which the crafting grid and the crafter block turn into wind charges (a blaze rod would make blaze powder or brewing fuel). OberonTools closes these routes for **every** tool, whatever material it is configured on: a tool in any crafting grid empties the result slot (and the craft is cancelled if another plugin puts it back), a crafter holding a tool does not craft, and a tool in a furnace or brewing stand fuel slot is never burned.
 
 ## Adding the wand to an existing config
 
@@ -163,7 +163,7 @@ tools:
       whitelist: []
       blacklist: []
     item:
-      material: BLAZE_ROD
+      material: BREEZE_ROD
       name: "<gradient:#1F4277:#1C3B6B>Andromeda Builder's Wand</gradient>"
       lore:
         - "<#7e7e7e>Places a %size% Area"

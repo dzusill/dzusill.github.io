@@ -83,7 +83,7 @@ The id is used by:
 
 Every tool item is forced to a **maximum stack size of 1**, so two of them can never merge into a stack and share one use counter.
 
-A tool can never be spent as something else. A tool in a crafting grid empties the result slot (and the craft is cancelled if another plugin restores it), and a tool in a furnace or brewing stand fuel slot is never burned. That matters for a blaze-rod wand, and applies to every tool.
+A tool can never be spent as something else. A tool in a crafting grid empties the result slot (and the craft is cancelled if another plugin restores it), a crafter block holding a tool does not craft, and a tool in a furnace or brewing stand fuel slot is never burned. That matters for a breeze-rod wand (wind charges), and applies to every tool on any material.
 
 ### Uses
 

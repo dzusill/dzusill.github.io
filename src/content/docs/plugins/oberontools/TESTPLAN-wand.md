@@ -38,7 +38,7 @@ with open space in front of both.
 | 13a | Place a carpet / rail on a wall-adjacent floor edge, a flower on stone | copies only where they survive (floor under the carpet, soil under the flower); no floating carpet |
 | 13b | Place a slab next to seagrass in an ocean | the slab replacing seagrass is waterlogged |
 | 13c | Place at the world border | nothing appears outside the border |
-| 13d | Wand in a crafting grid, a furnace fuel slot, a brewing stand fuel slot | no blaze powder result; it never burns |
+| 13d | Wand in a crafting grid, a crafter block, a furnace fuel slot, a brewing stand fuel slot | no wind charge result; the crafter does not fire; it never burns |
 | 13e | With Vulcan: bridge normally with the wand in the off hand but no blocks to copy (e.g. merged slabs) | Vulcan still flags real Scaffold/FastPlace |
 
 ## Protection and rules

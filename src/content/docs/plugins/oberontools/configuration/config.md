@@ -157,7 +157,7 @@ Required when `behavior: BUILD_WAND`.
 | `max-radius` | same as `radius` | Permission ceiling. Must be ≥ `radius`, ≤ 8. Equal to `radius` means no tiers exist. |
 | `require-support` | `true` | Each extra block needs a solid block behind it (below it on a floor). `false` also places into thin air. |
 
-A square has at most `(2 × radius + 1)² − 1` extra blocks; there is no `max-blocks`. The shipped `wand` is a `BLAZE_ROD` with `expires-after: 7d`, `expired-policy: REMOVE`, `recipe.enabled: false` and the lore `Places a %size% Area`.
+A square has at most `(2 × radius + 1)² − 1` extra blocks; there is no `max-blocks`. The shipped `wand` is a `BREEZE_ROD` with `expires-after: 7d`, `expired-policy: REMOVE`, `recipe.enabled: false` and the lore `Places a %size% Area`.
 
 See [Build Wand](/plugins/oberontools/features/build-wand/) and [Radius Tiers](/plugins/oberontools/features/radius-tiers/).
 

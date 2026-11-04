@@ -56,7 +56,7 @@ After any of these the tool is unfrozen and usable again immediately. Work alrea
 
 ## Tools cannot be spent as something else
 
-Separately from the job lock, a tool is never consumed as a vanilla item. A tool in any crafting grid empties the result slot and the craft is cancelled if another plugin restores it, and a tool in a furnace or brewing stand fuel slot is never burned. The wand, a blaze rod, would otherwise make blaze powder or fuel.
+Separately from the job lock, a tool is never consumed as a vanilla item. A tool in any crafting grid empties the result slot and the craft is cancelled if another plugin restores it, a crafter block holding a tool does not craft, and a tool in a furnace or brewing stand fuel slot is never burned. The wand, a breeze rod, would otherwise make wind charges.
 
 The wand also pays for its blocks only **after** each one stands, so a placement a protection plugin refuses takes nothing from the inventory and has nothing to refund.
 
