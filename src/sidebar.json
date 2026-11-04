@@ -914,6 +914,10 @@
                 "slug": "plugins/oberontools/features/area-mine"
               },
               {
+                "label": "Build Wand",
+                "slug": "plugins/oberontools/features/build-wand"
+              },
+              {
                 "label": "Radius Tiers",
                 "slug": "plugins/oberontools/features/radius-tiers"
               },

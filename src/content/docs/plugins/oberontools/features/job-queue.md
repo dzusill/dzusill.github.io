@@ -16,7 +16,7 @@ processing:
 |---|---|---|
 | `max-block-attempts-per-tick` | `96` | Total block operations attempted per tick, across the whole server. Range 1–4096. |
 | `max-active-jobs-per-player` | `1` | How many jobs one player may have queued at once. Range 1–8. |
-| `fire-protection-events` | `true` | Whether each secondary block announces itself as a `BlockBreakEvent`. |
+| `fire-protection-events` | `true` | Whether each secondary block announces itself as a `BlockBreakEvent` (a `BlockPlaceEvent` for the builder's wand). |
 
 ## How a tick is spent
 
@@ -60,9 +60,11 @@ With `fire-protection-events: true` (the default), **every secondary block** —
 | `setDropItems(false)` | The block is removed without drops |
 | `setExpToDrop(n)` | An experience orb of `n` is spawned at the block |
 
+The [builder's wand](/plugins/oberontools/features/build-wand/) queues its extra blocks through the same budget, and each one fires a synthetic `BlockPlaceEvent` instead, as the player and with the block behind it as the clicked block. A cancelled event, or `canBuild` false, leaves the block unplaced and takes nothing from the inventory.
+
 That is what makes WorldGuard, GriefPrevention, Towny, land-claim plugins and logging plugins work without OberonTools knowing anything about them. It is also what lets CoreProtect record a fell.
 
-The plugin marks its own synthetic events so the `TIMBER` and `AREA_MINE` listeners ignore them — one secondary break cannot recursively start another job.
+The plugin marks its own synthetic events so the `TIMBER`, `AREA_MINE` and `BUILD_WAND` listeners ignore them — one secondary break or place cannot recursively start another job.
 
 ### Turning it off
 
@@ -71,7 +73,7 @@ processing:
   fire-protection-events: false
 ```
 
-This skips the event entirely: every block is allowed, every block drops normally, and no experience is granted from the event path.
+This skips the event entirely: every block is allowed, every block drops normally, and no experience is granted from the event path. Wand squares are placed without asking any protection plugin.
 
 > **This disables every protection plugin for secondary blocks at once**, including logging. The block the player broke themselves is still protected — that is a normal vanilla event OberonTools never sees. Only the *extra* blocks become unprotected. On any server with claims, leave it `true`.
 
@@ -79,7 +81,7 @@ The setting is worth having because the event is the expensive part of a block o
 
 ## Chunk loading
 
-No ability loads chunks. Area mining only touches the eight immediate neighbours at the shipped radius; the liquid planner and tree scanner explicitly skip anything outside loaded chunks:
+No ability loads chunks. The wand skips any square block in an unloaded chunk. Area mining only touches the eight immediate neighbours at the shipped radius; the liquid planner and tree scanner explicitly skip anything outside loaded chunks:
 
 - A pool that continues into an unloaded chunk is drained up to the boundary.
 - A tree whose trunk crosses into an unloaded chunk is felled up to the boundary.
@@ -93,4 +95,4 @@ Liquid blocks apply normal physics so surrounding fluid settles correctly. Area-
 
 ## What is not queued
 
-The block the player broke or clicked themselves is handled by vanilla, in that tick, as normal. Only the *secondary* work — the other eight cells in a mining plane, the rest of the tree, or the rest of the cube — goes through the queue. That is why `AREA_MINE` and `TIMBER` completion totals include one more block than their queued summaries.
+The block the player broke, clicked or placed themselves is handled by vanilla, in that tick, as normal. Only the *secondary* work — the other eight cells in a mining plane, the rest of the tree, or the rest of the cube — goes through the queue. That is why `AREA_MINE`, `TIMBER` and `BUILD_WAND` completion totals include one more block than their queued summaries.

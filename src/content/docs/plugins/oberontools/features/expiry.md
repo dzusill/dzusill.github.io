@@ -50,6 +50,8 @@ An expired tool **always** stops working. Every activation is refused with `tool
 | `KEEP_DISABLED` | The item stays where it is. It still shows its lore, which will read `Expired`. Nothing it does works. |
 | `REMOVE` | The item is deleted by the refresh pass, inventory-open refresh, `/oberontools refresh`, or an attempted use after its deadline. |
 
+The shipped Andromeda tools, the [Builder's Wand](/plugins/oberontools/features/build-wand/) included, use `expires-after: 7d` with `REMOVE`. The wand lives in the **off hand**, so it is deleted when its owner tries to place with it after the deadline, or when an inventory open or `/oberontools refresh` reaches it.
+
 > Periodic redraws intentionally skip the selected main-hand item and the off hand. Changing item lore while held makes the vanilla client replay its re-equip animation. A held countdown therefore stays frozen until the player switches slots or opens an inventory; attempted use still enforces the deadline immediately and removes a `REMOVE` item.
 
 ## Lore placeholders
@@ -112,8 +114,10 @@ processing:
 
 Two things keep this cheap:
 
-- **Only items with an expiry stamp are considered.** A permanent tool is skipped before any text is built, so a server whose tools are all `PERMANENT` pays nothing but the scan.
+- **Only items with an expiry stamp are considered** by the countdown. A permanent tool is skipped before any text is built, so a server whose tools are all `PERMANENT` pays nothing but the scan.
 - **Only stacks whose rendered lore actually changed are rewritten.** There is no full `updateInventory()` resend, and held slots are never mutated by the periodic pass, preventing the hand-bob animation.
+
+The `%size%` width placeholder is a separate pass with its own rules: it ignores the scope, reaches both hands and writes only when the holder's width changed. See [Placeholders](/plugins/oberontools/placeholders/#size). It also keeps the refresh task running when `expiry-refresh-scope` is `NONE` or `HELD`, as long as any tool's lore uses `%size%`.
 
 Raise the scope to `INVENTORY` only if players complain that a bagged tool shows a stale number, or if you use `REMOVE` and want dead tools cleared out of backpacks too.
 

@@ -12,20 +12,24 @@ Main command: `/oberontools`, aliases `/otools` and `/ot`.
 | `/oberontools give <player> <tool> [amount] [duration]` | `oberontools.admin` | Create tools directly into an online player's inventory |
 | `/oberontools inspect` | `oberontools.admin` | Everything the held tool knows about itself. Player only |
 | `/oberontools radius [tool] [radius\|auto]` | — | See and narrow your own tool widths. Player only |
+| `/radius [radius\|auto]` | — | Cycle the width of the tool you hold, or pick one. Player only |
+| `/drill`, `/excavator`, `/bucket`, `/wand` `radius [radius\|auto]` | — | The same, for one named tool, held or not. Player only |
 | `/oberontools refresh` | `oberontools.admin` | Rewrite the held tool from the current config. Player only |
 | `/oberontools reload` | `oberontools.admin` | Re-read config and messages, rebuild recipes and permission nodes |
 
 `<tool>` tab-completes from the configured ids. `[amount]` is 1–64. Anything that does not fit in the target's inventory is dropped at their feet.
 
+`/radius` and the four shortcuts are registered with the server at startup and have fixed labels. A label another plugin already owns is not taken; OberonTools logs `Command name clash: …` and `/oberontools:<name>` still reaches it. A shortcut exists only for a tool that is configured and enabled. If your server runs a command whitelist (for example OberonWhitelist in strict mode), allow `/radius`, `/drill`, `/excavator`, `/bucket` and `/wand` for players.
+
 ## Permissions
 
 | Node | Default | Grants |
 |---|---|---|
-| `oberontools.use` | `true` | The default `use-permission` on both shipped tools |
-| `oberontools.craft` | `true` | The default `craft-permission` on both shipped tools |
+| `oberontools.use` | `true` | The default `use-permission` on every shipped tool |
+| `oberontools.craft` | `true` | The default `craft-permission` on every shipped tool |
 | `oberontools.admin` | `op` | Every subcommand |
 | `oberontools.radius.<tool-id>.<n>` | `false` | Raise that tool's radius to `n` |
-| `oberontools.radius.*.<n>` | `false` | Raise every radius tool to `n` |
+| `oberontools.radius.*.<n>` | `false` | Raise every radius tool to `n`, the wand included |
 
 `oberontools.use` and `oberontools.craft` default to everyone because they are what the shipped tools reference — locking them would make a crafted tool inert for normal players. Restrict a specific tool by giving it its own `use-permission` instead.
 
@@ -78,9 +82,20 @@ sponge_bucket
 | `permitted` | The widest **this player's permissions** allow on this tool right now |
 | `radius` | What they actually get, after any width they picked with `/oberontools radius`. Equal to `permitted` unless they narrowed it themselves |
 
-These two lines together are the fastest way to answer "why is my donator bucket still 3×3×3". If `permitted` is also small the grant never landed; if `permitted` is wide and `radius` is not, the player narrowed it themselves and `/oberontools radius <tool> auto` puts it back. A `TIMBER` tool prints neither line, because it has no tier to resolve.
+These two lines together are the fastest way to answer "why is my donator bucket still 3×3×3". If `permitted` is also small the grant never landed; if `permitted` is wide and `radius` is not, the player narrowed it themselves and `/oberontools radius <tool> auto` puts it back. A `TIMBER` tool prints neither line, because it has no tier to resolve. A `BUILD_WAND` prints its square as `5x5 (up to 24 extra blocks)`, since the centre block is the player's own.
 
 ## Choosing your own width
+
+The quickest way is `/radius` with the tool in hand: it steps to the next width you may use and wraps back to the narrowest. See [Radius Tiers](/plugins/oberontools/features/radius-tiers/#cycling-with-radius) for what counts as held, the per-tool shortcuts and `auto`.
+
+```
+/radius                  next width
+/radius 2                pick radius 2
+/radius auto             follow the rank
+/wand radius             cycle the wand without holding it
+```
+
+The long form lists every tool of yours and sets one by name:
 
 ```
 /oberontools radius
@@ -97,7 +112,7 @@ Your tool widths
 /oberontools radius pickaxe auto  follow the rank again, whatever it is worth today
 ```
 
-No permission node of its own, because the command **cannot widen anything**. See [Radius Tiers](/plugins/oberontools/features/radius-tiers/#letting-a-donor-choose).
+No permission node of its own, because none of these commands **can widen anything**. See [Radius Tiers](/plugins/oberontools/features/radius-tiers/#letting-a-donor-choose).
 
 ## Reading `list`
 

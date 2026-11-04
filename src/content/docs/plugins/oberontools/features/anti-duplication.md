@@ -13,6 +13,8 @@ Every tool item gets a random UUID written into its persistent data when it is c
 
 Locks are keyed by **owner plus instance id**, so a player holding three sponge buckets has only the one that is actually working frozen. The other two behave normally.
 
+The [builder's wand](/plugins/oberontools/features/build-wand/) takes this lock too while its square is placing. It sits in the off hand, so the `F` swap block is what keeps it in place until the square has drained.
+
 `/oberontools inspect` prints it:
 
 ```
@@ -51,6 +53,12 @@ Three events drop every queued job the player owns and release their locks:
 | World change | The remaining blocks are in a world the owner has left. |
 
 After any of these the tool is unfrozen and usable again immediately. Work already done stays done; work not yet done is abandoned.
+
+## Tools cannot be spent as something else
+
+Separately from the job lock, a tool is never consumed as a vanilla item. A tool in any crafting grid empties the result slot and the craft is cancelled if another plugin restores it, and a tool in a furnace or brewing stand fuel slot is never burned. The wand, a blaze rod, would otherwise make blaze powder or fuel.
+
+The wand also pays for its blocks only **after** each one stands, so a placement a protection plugin refuses takes nothing from the inventory and has nothing to refund.
 
 ## Overlapping jobs cannot double-drop
 

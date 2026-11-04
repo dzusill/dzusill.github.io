@@ -17,6 +17,7 @@ Available in `tools.<id>.item.name` and every line of `tools.<id>.item.lore`. Th
 | `%expiry%` | Time left, as `6d 23h 4m 12s`. Only redrawn while an online player holds the item, so it goes stale in chests and auction listings — see [Expiry](/plugins/oberontools/features/expiry/#lore-placeholders) | `expiry.permanent`, or `expiry.expired` once past |
 | `%expires_at%` | The stamped deadline, formatted with `expiry.date-format` | `expiry.permanent` |
 | `%expiry_status%` | One word: `expiry.active` / `expiry.expired` / `expiry.permanent` | `expiry.permanent` |
+| `%size%` | The **holder's** current width: `3x3`, `5x5`, … for `AREA_MINE` and `BUILD_WAND`, `3x3x3`, `5x5x5`, … for `LIQUID_CLEAR`. Blank on a `TIMBER` tool | — |
 
 The three expiry values take their wording from `messages.yml`, not from Java:
 
@@ -42,6 +43,22 @@ Example:
 
 `%uses%` never renders below `0`, and `%expiry%` renders `0s` for anything under a second.
 
+### `%size%`
+
+`%size%` is the effective radius of whoever carries the item: the ceiling their permissions reach, with any width they picked through `/radius` applied. Two players holding the same drill see different numbers on their own copy.
+
+```yaml
+      lore:
+        - "<#7e7e7e>Mines a %size% Area"
+```
+
+- It is redrawn right after `/radius` or a `/<tool> radius` change, and within one `processing.expiry-refresh-interval-ticks` after a rank or permission change.
+- That scan covers the whole inventory and **both hands**, at any `expiry-refresh-scope`, because the item you are looking at is usually the one in your hand.
+- The item stores the radius its lore was drawn with and is rewritten only when that differs from the holder's, so an unchanged width writes nothing.
+- In a chest, an ender chest or an auction listing it keeps the **last holder's** width, the same way `%expiry%` goes stale there. Use a fixed size in the lore for items that live in shops.
+
+Configs on `config-version: 1` have their untouched shipped lines (`Mines a 3x3 Area`, and the bucket's `a 3x3x3 cube around it.`) rewritten to `%size%` on the next start; lines you reworded are left alone. See [config.yml](/plugins/oberontools/configuration/config/#header).
+
 ### When lore is re-rendered
 
 Lore is static text on an item. These placeholders are re-evaluated only when the item is rewritten:
@@ -49,12 +66,14 @@ Lore is static text on an item. These placeholders are re-evaluated only when th
 - **On creation** — crafted, or given
 - **On use** — after a use is spent
 - **By the countdown pass** — every `processing.expiry-refresh-interval-ticks`, within `processing.expiry-refresh-scope`, only for items that carry an expiry stamp, and never while the item is in either held hand
+- **By the size pass** — the same interval, but across the whole inventory and both hands, only for lore that uses `%size%`, and only when the holder's width no longer matches the one drawn
+- **On `/radius`** — the holder's tools redraw immediately
 - **When an inventory opens** — both held hands refresh while their tooltip is visible
 - **On `/oberontools refresh`**
 
 A tool with no expiry stamp is skipped by the countdown pass entirely, so `%uses%` on a `PERMANENT` tool only updates when the tool is used — which is exactly when it changes anyway. See [Expiry](/plugins/oberontools/features/expiry/#keeping-the-countdown-ticking).
 
-Note that the radius a player's permissions grant is **not** available as a lore placeholder. Lore is rendered per item, not per viewer, and one item can be held by players on different tiers. Use `/oberontools inspect` to read the effective radius, or write the numbers into the lore by hand per tool.
+The width a player gets is available as `%size%`, rendered for the holder. Lore is still one text per item, not per viewer, so a second player looking at someone else's item (a trade window, an item frame) sees the holder's number. `/oberontools inspect` remains the authoritative read.
 
 ## Message strings
 
@@ -74,6 +93,16 @@ Each `messages.yml` key accepts a fixed set. Using a placeholder in a key that d
 | `tool.no-use-permission` · `tool.no-craft-permission` · `tool.wrong-world` · `tool.expired` · `tool.broken` | `%tool%` |
 | `tool.liquid-cleared` | `%blocks%` |
 | `tool.area-complete` | `%blocks%` |
+| `tool.wand-complete` | `%blocks%` |
+| `tool.wand-no-blocks` · `tool.wand-unsupported` | — |
+| `command.radius-header` · `command.radius-none` | — |
+| `command.radius-line` | `%tool%`, `%tier%`, `%choices%` |
+| `command.radius-set` · `command.radius-auto` | `%tool%`, `%tier%` |
+| `command.radius-denied` | `%tool%`, `%requested%`, `%choices%` |
+| `command.radius-fixed` | `%tool%` |
+| `command.radius-cycled` | `%tool%`, `%size%`, `%tier%` |
+| `command.radius-only-one` | `%tool%`, `%size%` |
+| `command.tool-shortcut-usage` | `%label%` |
 | `tool.timber-complete` | `%logs%`, `%leaves%` |
 
 `<prefix>` is available in every message and expands to the `prefix` key. See [messages.yml](/plugins/oberontools/configuration/messages/).

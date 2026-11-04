@@ -9,6 +9,7 @@ description: "OberonTools uses no database, no economy and no PlaceholderAPI. It
 | Java | **25+** | Compile target |
 | OberonCore (DzusillCore) | **1.12.0+** | The framework OberonTools is built on — a separate jar in `plugins/`, declared as a hard `depend` |
 | WorldEdit / WorldGuard | any | Optional `softdepend`. Nothing is called directly; they see the same `BlockBreakEvent` every other listener does |
+| Vulcan | any | Optional `softdepend`. When present, its FastPlace, AirPlace and Scaffold flags are suppressed only while a [builder's wand](/plugins/oberontools/features/build-wand/#vulcan) job runs |
 | Folia | — | **Not supported.** `folia-supported: false` |
 
 OberonTools uses no database, no economy and no PlaceholderAPI. It writes nothing outside its own config folder.

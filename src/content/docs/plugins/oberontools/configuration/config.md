@@ -11,13 +11,13 @@ Validation is **all or nothing**. A config with a single bad value is refused as
 
 ```yaml
 # OberonTools 1.0
-config-version: 1
+config-version: 2
 debug: false
 ```
 
 | Key | Default | |
 |---|---|---|
-| `config-version` | `1` | Schema stamp. Read but not acted on by this build. |
+| `config-version` | `2` | Schema stamp, bumped by the plugin itself; leave it alone. A file below `2` is migrated on start: the untouched shipped lore lines `- "<#7e7e7e>Mines a 3x3 Area"` and `- "<gray>a <white>3x3x3</white> cube around it.</gray>"` are rewritten in place to use `%size%`, and the console logs `Updated config.yml to config-version 2`. Each rule matches one shipped line exactly, so lore you reworded is left untouched. A file with no `config-version` counts as `1`. The migration runs before the merge, edits only those lines and keeps comments, ordering and line endings. |
 | `debug` | `false` | Parsed and stored, but **nothing in this build reads it**. Setting it to `true` changes no output. |
 
 ## Processing
@@ -37,7 +37,7 @@ processing:
 | `max-active-jobs-per-player` | `1` | Jobs one player may have queued at once. Range 1–8. |
 | `fire-protection-events` | `true` | Fire a `BlockBreakEvent` for each secondary block, so protection plugins decide. |
 | `expiry-refresh-interval-ticks` | `20` | Ticks between countdown redraws. Range 1–1200. |
-| `expiry-refresh-scope` | `HOTBAR` | `NONE`, `HELD`, `HOTBAR` or `INVENTORY`. Periodic redraws always skip both held hands to prevent hand bobbing. |
+| `expiry-refresh-scope` | `HOTBAR` | `NONE`, `HELD`, `HOTBAR` or `INVENTORY`. Periodic countdown redraws always skip both held hands to prevent hand bobbing. `%size%` lore is checked on the same interval across the whole inventory and both hands at any scope. |
 
 See [The Job Queue](/plugins/oberontools/features/job-queue/) and [Expiry](/plugins/oberontools/features/expiry/#keeping-the-countdown-ticking).
 
@@ -59,13 +59,13 @@ tools:
 |---|---|---|
 | `<tool-id>` | — | Section key. Lower-cased on load; must match `[a-z0-9._-]+`. |
 | `enabled` | `true` | `false` refuses every use and unregisters the recipe. |
-| `behavior` | *required* | `AREA_MINE`, `LIQUID_CLEAR` or `TIMBER`. |
+| `behavior` | *required* | `AREA_MINE`, `BUILD_WAND`, `LIQUID_CLEAR` or `TIMBER`. |
 | `use-permission` | `oberontools.use` | Empty means no check. A custom node is registered with `default: op`. |
 | `craft-permission` | `oberontools.craft` | Empty means no check. A custom node is registered with `default: op`. |
 | `worlds.whitelist` | `[]` | Empty means everywhere; non-empty means only these. |
 | `worlds.blacklist` | `[]` | Never usable here. Applied before the whitelist. |
 
-> **`tools` is never merged on update.** Every other section gets new keys added automatically when you update the plugin; the tool list is deliberately left alone so a tool you deleted stays deleted. The trade-off is that new *example* tools from an update will not appear either — copy them out of the jar's bundled `config.yml`.
+> **`tools` is never merged on update.** Every other section gets new keys added automatically when you update the plugin; the tool list is deliberately left alone so a tool you deleted stays deleted. The trade-off is that new *example* tools from an update will not appear either — copy them out of the jar's bundled `config.yml`. The [Build Wand](/plugins/oberontools/features/build-wand/#adding-the-wand-to-an-existing-config) is exactly this case: a server updating from a version without it must add the `wand` block itself.
 
 See [Defining a Tool](/plugins/oberontools/features/defining-a-tool/).
 
@@ -86,9 +86,9 @@ See [Defining a Tool](/plugins/oberontools/features/defining-a-tool/).
 
 | Key | Default | |
 |---|---|---|
-| `material` | *required* | Must be a usable item material; air and non-item blocks are rejected. |
+| `material` | *required* | Must be a usable item material; air and non-item blocks are rejected. `BUILD_WAND` also rejects any placeable block. |
 | `name` | *required* | MiniMessage. Validated at load. |
-| `lore` | `[]` | MiniMessage lines; blanks kept as spacing. Supports the [lore placeholders](/plugins/oberontools/placeholders/). |
+| `lore` | `[]` | MiniMessage lines; blanks kept as spacing. Supports the [lore placeholders](/plugins/oberontools/placeholders/), including `%size%`. |
 | `custom-model-data` | `0` | Above `0` is set; `0` clears it. Negative is rejected. |
 | `enchant-glint` | `false` | The shipped tools set `true`. |
 | `enchants` | `[]` | Real enchantments written as `ENCHANT` or `ENCHANT:LEVEL`. |
@@ -137,6 +137,29 @@ Required when `behavior: AREA_MINE`.
 There is no `max-blocks` for this behavior — a square is always exactly `(2 × radius + 1)²` blocks, so there is nothing to cap separately.
 
 See [Area Mine](/plugins/oberontools/features/area-mine/) and [Radius Tiers](/plugins/oberontools/features/radius-tiers/).
+
+### `tools.<id>.build-wand`
+
+Required when `behavior: BUILD_WAND`.
+
+```yaml
+    build-wand:
+      blacklist: []
+      radius: 1
+      max-radius: 3
+      require-support: true
+```
+
+| Key | Default | |
+|---|---|---|
+| `blacklist` | `[]` | Block materials the wand never copies. Chests, doors, beds, fences, walls, panes, redstone and customised items are refused regardless. |
+| `radius` | `1` | The square everyone gets. `1` is 3×3. Range 1–8. |
+| `max-radius` | same as `radius` | Permission ceiling. Must be ≥ `radius`, ≤ 8. Equal to `radius` means no tiers exist. |
+| `require-support` | `true` | Each extra block needs a solid block behind it (below it on a floor). `false` also places into thin air. |
+
+A square has at most `(2 × radius + 1)² − 1` extra blocks; there is no `max-blocks`. The shipped `wand` is a `BLAZE_ROD` with `expires-after: 7d`, `expired-policy: REMOVE`, `recipe.enabled: false` and the lore `Places a %size% Area`.
+
+See [Build Wand](/plugins/oberontools/features/build-wand/) and [Radius Tiers](/plugins/oberontools/features/radius-tiers/).
 
 ### `tools.<id>.recipe`
 
@@ -240,7 +263,7 @@ Presentation:
 
 The DzusillCore message-presentation block. Every message OberonTools sends belongs to a category, and each category can be routed to `CHAT`, `ACTION_BAR`, `BOTH` or `NONE`. `Overrides` does the same for a single message key.
 
-OberonTools categorises `tool.locked` as `TOGGLE` — which is why the lock warning lands on the action bar with the shipped settings — and puts the refusal messages (`command.not-holding`, `command.unknown`, `command.reload-failed`, `tool.no-use-permission`, `tool.no-craft-permission`, `tool.wrong-world`, `tool.timber-limit`, `tool.expired`, `command.invalid-duration`) in `ERROR`. Everything else is `INFO`, which is plain chat.
+OberonTools categorises `tool.locked` as `TOGGLE` — which is why the lock warning lands on the action bar with the shipped settings — and puts the refusal messages (`command.not-holding`, `command.unknown`, `command.reload-failed`, `tool.no-use-permission`, `tool.no-craft-permission`, `tool.wrong-world`, `tool.timber-limit`, `tool.expired`, `tool.in-combat`, `command.invalid-duration`, `command.radius-denied`, `command.radius-fixed`, `command.radius-none`) in `ERROR`. Everything else is `INFO`, which is plain chat.
 
 Overriding one key:
 

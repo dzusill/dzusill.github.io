@@ -1,9 +1,9 @@
 ---
 title: "messages.yml"
-description: "Every string OberonTools sends, plus the wording of the three expiry lore placeholders. Item names and lore are not here — those live in config.yml, per tool."
+description: "Every string OberonTools sends, plus the wording of the three expiry lore placeholders. Item names and lore, including the %size% placeholder, are not here…"
 ---
 
-Every string OberonTools sends, plus the wording of the three expiry lore placeholders. Item names and lore are **not** here — those live in `config.yml`, per tool.
+Every string OberonTools sends, plus the wording of the three expiry lore placeholders. Item names and lore, including the `%size%` placeholder, are **not** here — those live in `config.yml`, per tool.
 
 All values are [MiniMessage](https://docs.advntr.dev/minimessage/format.html). `<prefix>` expands to the `prefix` key.
 
@@ -19,10 +19,21 @@ command:
     - "<prefix><gray>/oberontools list</gray>"
     - "<prefix><gray>/oberontools give <player> <tool> [amount] [duration]</gray>"
     - "<prefix><gray>/oberontools inspect</gray>"
+    - "<prefix><gray>/oberontools radius [tool] [radius|auto]</gray>"
     - "<prefix><gray>/oberontools refresh</gray>"
     - "<prefix><gray>/oberontools reload</gray>"
   inspect-header: "<prefix><gold><bold>%tool%</bold></gold>"
   inspect-line: "<dark_gray> • </dark_gray><gray>%key%:</gray> <white>%value%</white>"
+  radius-header: "…"
+  radius-line: "…"
+  radius-set: "…"
+  radius-auto: "…"
+  radius-denied: "…"
+  radius-fixed: "…"
+  radius-none: "…"
+  radius-cycled: "<prefix><green><white>%tool%</white> now reaches <white>%size%</white>.</green>"
+  radius-only-one: "…"
+  tool-shortcut-usage: "<prefix><gray>/%label% radius [radius|auto]</gray>"
   invalid-duration: "…"
   list-header: "…"
   list-line: "…"
@@ -40,6 +51,14 @@ command:
 | `command.usage` | — (a list; each entry is one line) |
 | `command.inspect-header` | `%tool%` |
 | `command.inspect-line` | `%key%`, `%value%` |
+| `command.radius-header` · `command.radius-none` | — |
+| `command.radius-line` | `%tool%`, `%tier%`, `%choices%` |
+| `command.radius-set` · `command.radius-auto` | `%tool%`, `%tier%` |
+| `command.radius-denied` | `%tool%`, `%requested%`, `%choices%` |
+| `command.radius-fixed` | `%tool%` |
+| `command.radius-cycled` | `%tool%`, `%size%`, `%tier%` |
+| `command.radius-only-one` | `%tool%`, `%size%` |
+| `command.tool-shortcut-usage` | `%label%` |
 | `command.invalid-duration` | `%input%` |
 | `command.list-header` | — |
 | `command.list-line` | `%id%`, `%behavior%`, `%state%` |
@@ -52,6 +71,8 @@ command:
 | `command.reload-failed` | `%error%` |
 
 `command.given` goes to the sender, `command.received` to the recipient.
+
+`command.radius-cycled` and `command.radius-only-one` are what `/radius` and `/drill|excavator|bucket|wand radius` answer when no number is given. They travel the tool's own `messages.action` channel (the action bar by default), so a player cycling widths does not fill chat. `command.radius-fixed` answers a tool with no adjustable width, the lumber axe. `command.tool-shortcut-usage` is the reply to a bare `/drill`, `/excavator`, `/bucket` or `/wand`.
 
 ## Tool feedback
 
@@ -69,6 +90,10 @@ tool:
   timber-limit: "…"
   timber-complete: "…"
   expired: "…"
+  in-combat: "…"
+  wand-complete: "<prefix><gold>Placed <white>%blocks%</white> blocks.</gold>"
+  wand-no-blocks: "<prefix><gray>You have no more of that block to place.</gray>"
+  wand-unsupported: "<prefix><gray>The wand cannot copy that block.</gray>"
   locked: "<red>That tool is still working; wait for it to finish.</red>"
 ```
 
@@ -86,9 +111,13 @@ tool:
 | `tool.timber-limit` | — | The connected structure exceeded `max-logs` while aborting |
 | `tool.timber-complete` | `%logs%`, `%leaves%` | A fell finished. `%logs%` includes the block the player broke |
 | `tool.expired` | `%tool%` | The item's stamped deadline has passed |
+| `tool.in-combat` | `%tool%` | `combat.notify` is on and a combat-tagged player's ability was withheld |
+| `tool.wand-complete` | `%blocks%` | A wand square finished placing; includes the centre block |
+| `tool.wand-no-blocks` | — | The player has nothing left to pay the extra blocks with |
+| `tool.wand-unsupported` | — | The placed block is one the wand will not copy |
 | `tool.locked` | — | An inventory action was blocked by the [job lock](/plugins/oberontools/features/anti-duplication/) |
 
-`tool.locked` ships without a `<prefix>` on purpose — it is routed to the action bar by the shipped `Presentation` block, where a prefix wastes room.
+The three `tool.wand-*` lines are sent on the wand's `messages.action` channel, so a refusal never spams chat while building. `tool.locked` ships without a `<prefix>` on purpose — it is routed to the action bar by the shipped `Presentation` block, where a prefix wastes room.
 
 Blanking a key (`liquid-none: ""`) silences its text. To disable delivery explicitly, set that tool's `messages.overrides` key to `NONE`.
 

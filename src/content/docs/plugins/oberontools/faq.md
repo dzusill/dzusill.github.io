@@ -17,6 +17,9 @@ No. `folia-supported: false`. The job queue is one global queue on one repeating
 **Does it work on Spigot?**
 No. It targets `api-version: '26.2'` and uses Paper's runtime command registration, Adventure text and MiniMessage.
 
+**Do I need Vulcan?**
+No. It is a soft dependency. When it is installed, OberonTools cancels Vulcan's FastPlace, AirPlace and Scaffold flags for a player only while that player's builder's-wand square is placing. See [Build Wand](/plugins/oberontools/features/build-wand/#vulcan).
+
 **Do I need WorldGuard?**
 No. It is a soft dependency only, so it loads first if present. OberonTools calls nothing in it — protection works because every secondary block fires a normal `BlockBreakEvent`.
 
@@ -76,8 +79,8 @@ Yes, within what their ranks already allow: `/oberontools radius <tool> <n>` nar
 **A player traded a donator tool to someone without the rank. Do they get the big radius?**
 No. Width is never written to the item; it is resolved from whoever is swinging it, on every click. A tier-3 pickaxe in a default player's hand mines 3×3, and mines 7×7 again the moment the owner takes it back. The same applies when a rank expires — the next swing is already narrower, with no reissue or reload.
 
-**Do the tiers work on the pickaxe and shovel, or only the bucket?**
-Both. `LIQUID_CLEAR` and `AREA_MINE` share one permission scan; the number resolves to a cube for the bucket and a square for the mining tools. Only `TIMBER` has no tiers.
+**Do the tiers work on the pickaxe, shovel and wand, or only the bucket?**
+All of them. `LIQUID_CLEAR`, `AREA_MINE` and `BUILD_WAND` share one permission scan; the number resolves to a cube for the bucket and a square for the mining tools and the wand. `oberontools.radius.*.<n>` raises the wand too. Only `TIMBER` has no tiers.
 
 **My drain bucket worked once and then stopped forever.**
 Fixed. The one-click-per-tick guard used to read the world's *day* clock, which stops dead while `doDaylightCycle` is off — so after the first click every later one compared equal to that frozen value and was silently cancelled. It now reads the server's own tick counter, which always advances. If you are on an older build, restarting the server bought you exactly one more working click; update instead.
@@ -85,11 +88,51 @@ Fixed. The one-click-per-tick guard used to read the world's *day* clock, which 
 **The radius nodes don't tab-complete in LuckPerms.**
 They are registered at enable and on every reload, for upgradable tools only. If the tool has `radius == max-radius`, there is nothing to register. Otherwise check the plugin actually enabled.
 
+**How do players switch between 3x3 and 5x5 quickly?**
+`/radius` with the tool in hand steps to the next width they may use and wraps back to the smallest. `/drill radius`, `/excavator radius`, `/bucket radius` and `/wand radius` do the same without holding the tool, and all of them accept a number or `auto`. See [Radius Tiers](/plugins/oberontools/features/radius-tiers/#cycling-with-radius).
+
+**`/radius` says "has no adjustable width".**
+The held tool is the lumber axe, which has no radius. It also has no shortcut command.
+
+**`/radius` or `/wand` is "unknown" or does nothing.**
+Check the console for `Command name clash: …`: another plugin owns that label, and OberonTools never takes a name by force (`/oberontools:radius` still works). A shortcut is registered only for a tool that is configured and enabled, at startup, so a tool added later needs a restart. If a command whitelist plugin (OberonWhitelist in strict mode, for example) is installed, allow the new labels for players.
+
+**The lore still says "Mines a 3x3 Area" after I got a higher tier.**
+Either the line was customised (the `config-version` 2 migration only rewrites the untouched shipped lines, so change it to `%size%` yourself), or the item is outside the holder's inventory. The width is redrawn within one `processing.expiry-refresh-interval-ticks`, and an item in a chest or on an auction listing keeps the last holder's number.
+
 **I granted tier 3 but denied tier 2 and the player got tier 1.**
 That would be the failure mode if the scan walked upwards — it does not. It walks down from `max-radius` and stops at the first node held, so a denied middle tier cannot mask a higher one. If you are seeing tier 1, the tier 3 node is not actually resolving; check it with your permission plugin's own lookup.
 
 **I made a custom `use-permission` and now nobody can use the tool.**
 A permission name OberonTools has never seen is registered with `default: op`. Grant it explicitly to the groups that should have it.
+
+---
+
+## Builder's wand
+
+**I placed a block with the wand and nothing extra appeared.**
+Work down this list:
+
+1. Is the wand in the **off hand**, and the block placed with the **main hand**?
+2. Does the inventory still hold more of that exact item? Only storage slots count, and the stack must be identical (a named stack never matches).
+3. Is it a block the wand copies? Chests, signs, doors, beds, fences, walls, panes, redstone and customised items are refused, with `The wand cannot copy that block.` on the action bar. A slab merging into a double slab is silent.
+4. Was the square blocked? It skips occupied spots, spots with no solid block behind them (`require-support`), spots a plant or carpet could not survive on, entities, the world border and any protection plugin's denial.
+5. Is the player in combat with `combat.block-tools: true`, in a blacklisted world, or holding an expired wand?
+
+**The square floats beyond the edge of the floor.**
+It should not with the default `require-support: true`. If it does, check that value was not changed to `false`.
+
+**The wand placed fewer blocks than the stack held.**
+The nearest blocks to the centre are placed first, and a skipped spot costs nothing, so the extras are only as many as there were valid spots.
+
+**Can the wand be crafted, burned or smelted?**
+No. It is give/crate-only (`recipe.enabled: false`), and no tool can be used as a crafting ingredient or as furnace or brewing-stand fuel.
+
+**Vulcan still flags a builder.**
+Only the wand's own squares are exempt, for the duration of the job plus a 10-tick grace. A player bridging by hand, with no square being placed, is judged as normal.
+
+**The wand is not in my `config.yml` after updating.**
+`tools` is never merged on update. Paste the block from [Build Wand](/plugins/oberontools/features/build-wand/#adding-the-wand-to-an-existing-config) into your `tools:` section, reload and give yourself one.
 
 ---
 

@@ -38,7 +38,7 @@ The id is used by:
 | Key | Default | |
 |---|---|---|
 | `enabled` | `true` | `false` keeps the definition loaded but refuses every use and unregisters its recipe. Items already handed out stay in inventories. |
-| `behavior` | *required* | `AREA_MINE`, `LIQUID_CLEAR` or `TIMBER`. Decides which settings block is required. |
+| `behavior` | *required* | `AREA_MINE`, `BUILD_WAND`, `LIQUID_CLEAR` or `TIMBER`. Decides which settings block is required. |
 | `use-permission` | `oberontools.use` | Checked before the ability runs. An empty value means no check at all. |
 | `craft-permission` | `oberontools.craft` | Checked in the crafting grid. An empty value means no check at all. |
 | `worlds.whitelist` | `[]` | Empty means every world. Non-empty means **only** these. Case-insensitive. |
@@ -69,9 +69,9 @@ The id is used by:
 
 | Key | Default | |
 |---|---|---|
-| `material` | *required* | Any obtainable item material. Blocks that are not items, and air, are rejected. |
+| `material` | *required* | Any obtainable item material. Blocks that are not items, and air, are rejected. `BUILD_WAND` additionally rejects any placeable block. |
 | `name` | *required* | [MiniMessage](https://docs.advntr.dev/minimessage/format.html). Parsed at load — a broken tag refuses the whole config. Italics are switched off for you. |
-| `lore` | `[]` | MiniMessage lines. Blank strings are kept as spacing. Supports the [lore placeholders](/plugins/oberontools/placeholders/). |
+| `lore` | `[]` | MiniMessage lines. Blank strings are kept as spacing. Supports the [lore placeholders](/plugins/oberontools/placeholders/), including `%size%` for the holder's current width. |
 | `custom-model-data` | `0` | Any value above `0` is set on the item. `0` explicitly **clears** custom model data. Negative values are rejected. |
 | `enchant-glint` | `false` | Sets the glint override. The shipped tools use `true`. |
 | `enchants` | `[]` | Real enchantments, `ENCHANT` or `ENCHANT:LEVEL`, by Minecraft name. Cosmetic on a tool whose ability the plugin drives. Read from the registry, so a name this build has never heard of still works. |
@@ -83,9 +83,11 @@ The id is used by:
 
 Every tool item is forced to a **maximum stack size of 1**, so two of them can never merge into a stack and share one use counter.
 
+A tool can never be spent as something else. A tool in a crafting grid empties the result slot (and the craft is cancelled if another plugin restores it), and a tool in a furnace or brewing stand fuel slot is never burned. That matters for a blaze-rod wand, and applies to every tool.
+
 ### Uses
 
-Uses live in the item's persistent data, not the config. One use is spent per successful activation — a right-click that actually queued liquid to clear, or a log break that actually started a fell. A refused activation (no permission, wrong world, nothing in range, queue busy) costs nothing.
+Uses live in the item's persistent data, not the config. One use is spent per successful activation — a right-click that actually queued liquid to clear, a log break that actually started a fell, or a wand placement that actually queued a square. A refused activation (no permission, wrong world, nothing in range, queue busy) costs nothing.
 
 When the last use is spent the item is destroyed and `entity.item.break` plays. If it happened to be sitting in a stack larger than one, the stack shrinks by one instead.
 
@@ -155,11 +157,12 @@ Setting `error: NONE` silences *all* refusals, including the ones worth seeing �
 permission", "this tool has expired". A player who cannot tell a refusal from a broken tool will report it
 as broken.
 
-## `area-mine:`, `liquid-clear:` and `timber:`
+## `area-mine:`, `build-wand:`, `liquid-clear:` and `timber:`
 
 Required for their matching behavior and rejected as missing if absent. They are documented in full on their own pages:
 
 - [Area Mine](/plugins/oberontools/features/area-mine/)
+- [Build Wand](/plugins/oberontools/features/build-wand/)
 - [Liquid Clear](/plugins/oberontools/features/liquid-clear/)
 - [Timber](/plugins/oberontools/features/timber/)
 

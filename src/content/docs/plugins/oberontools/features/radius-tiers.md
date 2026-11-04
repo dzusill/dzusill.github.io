@@ -1,9 +1,9 @@
 ---
 title: "Radius Tiers"
-description: "One tool, several sizes. A permission node widens the area for the players who hold it, without a second item, a second recipe or a second definition. Both…"
+description: "One tool, several sizes. A permission node widens the area for the players who hold it, without a second item, a second recipe or a second definition.…"
 ---
 
-One tool, several sizes. A permission node widens the area for the players who hold it, without a second item, a second recipe or a second definition. Both `LIQUID_CLEAR` and `AREA_MINE` work this way — a bucket's cube and a pickaxe's square are resolved by the exact same permission scan, and only the shape each one reads the number as differs.
+One tool, several sizes. A permission node widens the area for the players who hold it, without a second item, a second recipe or a second definition. `LIQUID_CLEAR`, `AREA_MINE` and `BUILD_WAND` work this way — a bucket's cube and a pickaxe's or wand's square are resolved by the exact same permission scan, and only the shape each one reads the number as differs.
 
 ```yaml
     liquid-clear:
@@ -12,6 +12,10 @@ One tool, several sizes. A permission node widens the area for the players who h
       max-blocks: 0    # 0 = derive the cap from the granted radius
 
     area-mine:
+      radius: 1        # what everyone gets: 3x3
+      max-radius: 3    # the ceiling a permission may reach, never exceeded
+
+    build-wand:
       radius: 1        # what everyone gets: 3x3
       max-radius: 3    # the ceiling a permission may reach, never exceeded
 ```
@@ -27,16 +31,16 @@ One tool, several sizes. A permission node widens the area for the players who h
 
 `<n>` is a whole radius, not a multiplier. What it produces depends on the tool's behavior:
 
-| Radius | `LIQUID_CLEAR` cube `(2n+1)³` | `AREA_MINE` square `(2n+1)²` |
+| Radius | `LIQUID_CLEAR` cube `(2n+1)³` | `AREA_MINE` / `BUILD_WAND` square `(2n+1)²` |
 |---|---|---|
 | 1 | 3×3×3 — 27 blocks | 3×3 — 9 blocks |
 | 2 | 5×5×5 — 125 blocks | 5×5 — 25 blocks |
 | 3 | 7×7×7 — 343 blocks | 7×7 — 49 blocks |
 | 4 | 9×9×9 — 729 blocks | 9×9 — 81 blocks |
 
-A wildcard grant therefore means different amounts of work per tool — tier 3 is 343 blocks for a bucket and 49 for a pickaxe — because each behavior answers with its own geometry. Nothing about the permission scan itself changes.
+A wildcard grant (`oberontools.radius.*.<n>`) reaches the wand as well as the pickaxe and bucket, and means different amounts of work per tool — tier 3 is 343 blocks for a bucket and 49 for a pickaxe — because each behavior answers with its own geometry. Nothing about the permission scan itself changes.
 
-`radius` and `max-radius` are both capped at **8** by validation: 17×17×17 (4 913 blocks) for `LIQUID_CLEAR`, 17×17 (289 blocks) for `AREA_MINE`. Anything larger refuses the config.
+`radius` and `max-radius` are both capped at **8** by validation: 17×17×17 (4 913 blocks) for `LIQUID_CLEAR`, 17×17 (289 blocks) for `AREA_MINE` and `BUILD_WAND`. Anything larger refuses the config.
 
 ## Highest granted tier wins
 
@@ -76,7 +80,7 @@ Confirm what a player actually resolves to by having them run:
  • radius: 5x5x5 (up to 125 blocks)
 ```
 
-The shipped `pickaxe` and `shovel` follow the identical pattern, resolved as a square instead of a cube — also `radius: 1`, `max-radius: 3`:
+The shipped `pickaxe`, `shovel` and `wand` follow the identical pattern, resolved as a square instead of a cube — also `radius: 1`, `max-radius: 3`:
 
 ```
 lp group donator permission set oberontools.radius.pickaxe.2 true
@@ -91,6 +95,8 @@ lp group elite   permission set oberontools.radius.pickaxe.3 true
  • radius: 5x5 (up to 25 blocks)
 ```
 
+The wand is the same with `wand` as the id (`oberontools.radius.wand.2`); its lines read `up to 24 extra blocks`, because the centre block is the player's own.
+
 ## Letting a donor choose
 
 A wide tool is not always the tool you want. A `donator` on tier 3 digging a 1-wide corridor is fighting their own pickaxe, so they can narrow it themselves:
@@ -102,6 +108,36 @@ A wide tool is not always the tool you want. A `donator` on tier 3 digging a 1-w
 ```
 
 The pick is per player and per tool, so a narrow pickaxe and a wide bucket live side by side. It is written to `radius-preferences.yml` and survives a restart. A player who never runs the command has no pick stored and behaves exactly as before: their tool sits at whatever tier their ranks reach.
+
+### Cycling with `/radius`
+
+Players do not need to type the tool or a number. `/radius` with no argument steps the tool they are **holding** to the next width they may use, wraps from the widest back to the narrowest, and reports it on the action bar:
+
+```
+/radius                  3x3 -> 5x5 -> 7x7 -> 3x3 ...
+/radius 2                pick radius 2 (5x5) directly
+/radius auto             follow the rank again
+```
+
+Which tool counts as held:
+
+1. The **main hand**, if it holds a tool with an adjustable width (drill, excavator, bucket, wand).
+2. Otherwise the **off hand**, but only for the two tools that work from there: the builder's wand and the sponge bucket. A drill in the off hand is just being carried and is never cycled by surprise.
+
+Each tool also has its own shortcut, for when the player is not holding it:
+
+| Command | Tool id |
+|---|---|
+| `/drill radius [radius\|auto]` | `pickaxe` |
+| `/excavator radius [radius\|auto]` | `shovel` |
+| `/bucket radius [radius\|auto]` | `sponge_bucket` |
+| `/wand radius [radius\|auto]` | `wand` |
+
+`width` works as an alias of `radius` on these. Landing on the widest tier stores `auto` rather than the number, so a player who cycled up to their top width keeps following their rank. A player with only one width gets `command.radius-only-one` instead of a change.
+
+The lumber axe has no adjustable width: `/radius` with it in hand answers `command.radius-fixed`, and it has no shortcut. The labels are fixed (they are not configurable) and a shortcut is registered at startup only for a tool that exists and is enabled in `config.yml`. A label another plugin already owns is **not** taken; the console logs `Command name clash: …` and `/oberontools:<name>` still reaches this plugin. WorldEdit registers `//wand`, not `/wand`, so it does not clash.
+
+Neither `/radius` nor the shortcuts have a permission node. They go through the same clamp as `/oberontools radius`, and tab completion lists only the tiers the player holds.
 
 ### It can only ever narrow
 
@@ -122,6 +158,20 @@ That last point is what makes a donor tool safe to trade, sell or lose. The widt
 
 A pick above the ceiling falls back to the **ceiling**, not to the tool default: a player entitled to 5×5 who once asked for 11×11 still gets their 5×5.
 
+## `%size%` in lore
+
+A tool's lore can show the width it currently has for **whoever holds it**:
+
+```yaml
+      lore:
+        - "<#7e7e7e>Mines a %size% Area"        # 3x3, 5x5, 7x7 ...
+        - "<gray>a <white>%size%</white> cube around it.</gray>"   # sponge bucket: 3x3x3, 5x5x5 ...
+```
+
+It is the holder's effective radius: their permission ceiling with their own pick applied. It is redrawn after `/radius`, and within one `processing.expiry-refresh-interval-ticks` after a rank or permission change, in the whole inventory and **both hands**, whatever `expiry-refresh-scope` is set to. The item remembers the width it was drawn with and is only rewritten when that no longer matches, so an unchanged width costs one data lookup and writes nothing. A held item that does change replays the client's re-equip animation once, which is the change being shown.
+
+Like `%expiry%`, it goes stale outside a player's inventory: in a chest, an ender chest or an auction listing it keeps showing the **last holder's** width. A `TIMBER` tool renders `%size%` as blank. Write a fixed size into the lore instead if you want one that never moves. See [Placeholders](/plugins/oberontools/placeholders/).
+
 ## They tab-complete
 
 Tool ids and ceilings come from `config.yml`, so these nodes cannot be listed in `plugin.yml` the way a fixed node can. OberonTools registers them with the server at enable, and again on every reload, which is what puts them into LuckPerms' tab-completion and permission browser instead of leaving you to type them blind. It is also what gives `oberontools.radius.<tool>.*` something to expand to — a trailing wildcard only covers children the server has been told about.
@@ -132,7 +182,7 @@ Radius tiers are registered with **`default: false`**, deliberately. A donator t
 
 ## The block cap (`LIQUID_CLEAR` only)
 
-`max-blocks` is the hard limit on how many blocks one activation may change. `AREA_MINE` has no equivalent key: a square is always exactly `(2n+1)²` blocks at whatever radius the player resolved to, so there is nothing separate to cap.
+`max-blocks` is the hard limit on how many blocks one activation may change. `AREA_MINE` and `BUILD_WAND` have no equivalent key: a square is always exactly `(2n+1)²` blocks at whatever radius the player resolved to, so there is nothing separate to cap.
 
 | Value | Behaviour |
 |---|---|
@@ -160,4 +210,4 @@ So selling a bigger bucket costs your server *time*, not *headroom*. The worst t
 
 ## Timber tools have no tiers
 
-`LIQUID_CLEAR` and `AREA_MINE` both get radius tiers. `TIMBER` is the one behavior that does not, and deliberately: it bounds its work with `max-logs`, `max-leaves` and the two search radii, all fixed per definition and not raisable by a permission. A tree is felled whole regardless of how far the search looked, so widening the search radius finds more of the *same* tree rather than giving a donator a bigger one. If you want a bigger axe for a donator rank, define a second `TIMBER` tool with its own `use-permission`.
+`LIQUID_CLEAR`, `AREA_MINE` and `BUILD_WAND` all get radius tiers. `TIMBER` is the one behavior that does not, and deliberately: it bounds its work with `max-logs`, `max-leaves` and the two search radii, all fixed per definition and not raisable by a permission. A tree is felled whole regardless of how far the search looked, so widening the search radius finds more of the *same* tree rather than giving a donator a bigger one. If you want a bigger axe for a donator rank, define a second `TIMBER` tool with its own `use-permission`.
