@@ -79,6 +79,8 @@ The width a player gets is available as `%size%`, rendered for the holder. Lore 
 
 Each `messages.yml` key accepts a fixed set. Using a placeholder in a key that does not supply it leaves the literal text visible.
 
+Wherever `%tool%` appears it is the tool's display name (`item.name`, colours included); `%tool_id%` is the config id, and is available alongside every `%tool%` except `command.unknown`. `%tier%` is worded by [`command.radius-tier`](/plugins/oberontools/configuration/messages/).
+
 | Key | Placeholders |
 |---|---|
 | `command.inspect-header` | `%tool%` |
@@ -97,11 +99,12 @@ Each `messages.yml` key accepts a fixed set. Using a placeholder in a key that d
 | `tool.wand-no-blocks` · `tool.wand-unsupported` | — |
 | `command.radius-header` · `command.radius-none` | — |
 | `command.radius-line` | `%tool%`, `%tier%`, `%choices%` |
-| `command.radius-set` · `command.radius-auto` | `%tool%`, `%tier%` |
+| `command.radius-set` · `command.radius-auto` | `%tool%`, `%size%`, `%tier%` |
 | `command.radius-denied` | `%tool%`, `%requested%`, `%choices%` |
 | `command.radius-fixed` | `%tool%` |
 | `command.radius-cycled` | `%tool%`, `%size%`, `%tier%` |
-| `command.radius-only-one` | `%tool%`, `%size%` |
+| `command.radius-only-one` | `%tool%`, `%size%`, `%tier%` |
+| `command.radius-tier` | `%size%`, `%blocks%` — the wording of `%tier%` everywhere |
 | `command.tool-shortcut-usage` | `%label%` |
 | `tool.timber-complete` | `%logs%`, `%leaves%` |
 

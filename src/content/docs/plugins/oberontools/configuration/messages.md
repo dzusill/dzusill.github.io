@@ -53,11 +53,12 @@ command:
 | `command.inspect-line` | `%key%`, `%value%` |
 | `command.radius-header` · `command.radius-none` | — |
 | `command.radius-line` | `%tool%`, `%tier%`, `%choices%` |
-| `command.radius-set` · `command.radius-auto` | `%tool%`, `%tier%` |
+| `command.radius-set` · `command.radius-auto` | `%tool%`, `%size%`, `%tier%` |
 | `command.radius-denied` | `%tool%`, `%requested%`, `%choices%` |
 | `command.radius-fixed` | `%tool%` |
 | `command.radius-cycled` | `%tool%`, `%size%`, `%tier%` |
-| `command.radius-only-one` | `%tool%`, `%size%` |
+| `command.radius-only-one` | `%tool%`, `%size%`, `%tier%` |
+| `command.radius-tier` | `%size%`, `%blocks%` — the wording of `%tier%` everywhere |
 | `command.tool-shortcut-usage` | `%label%` |
 | `command.invalid-duration` | `%input%` |
 | `command.list-header` | — |
@@ -72,7 +73,22 @@ command:
 
 `command.given` goes to the sender, `command.received` to the recipient.
 
-`command.radius-cycled` and `command.radius-only-one` are what `/radius` and `/drill|excavator|bucket|wand radius` answer when no number is given. They travel the tool's own `messages.action` channel (the action bar by default), so a player cycling widths does not fill chat. `command.radius-fixed` answers a tool with no adjustable width, the lumber axe. `command.tool-shortcut-usage` is the reply to a bare `/drill`, `/excavator`, `/bucket` or `/wand`.
+Every `%tool%` is the tool's **display name**, `tools.<id>.item.name` from `config.yml`, colours included, so a line reads "Andromeda Builder's Wand" rather than `wand`. `%tool_id%` gives the config id where you prefer it. `command.unknown` has only what was typed, so its `%tool%` is that.
+
+`%tier%` is worded by `command.radius-tier`. The shipped `"%size%"` reads `5x5`; `"%size% (up to %blocks% blocks)"` gives the longer form. `/oberontools inspect` keeps the long form regardless, since it is a staff diagnostic.
+
+`command.radius-cycled` and `command.radius-only-one` are what `/radius` and `/drill|excavator|bucket|wand radius` answer when no number is given. They are `TOGGLE` messages, so the shipped `Presentation` block puts them on the action bar. They do **not** follow the tool's `messages.action` channel: a drill set to `action: NONE` to hide "Mined 9 blocks" still answers `/drill radius`. A `Presentation.Overrides` entry changes their channel or adds a sound:
+
+```yaml
+Presentation:
+  Overrides:
+    command.radius-cycled:
+      Channel: ACTION_BAR
+      Sound:
+        Name: ui.button.click
+        Volume: 0.6
+        Pitch: 1.4
+``` `command.radius-fixed` answers a tool with no adjustable width, the lumber axe. `command.tool-shortcut-usage` is the reply to a bare `/drill`, `/excavator`, `/bucket` or `/wand`.
 
 ## Tool feedback
 
@@ -117,7 +133,7 @@ tool:
 | `tool.wand-unsupported` | — | The placed block is one the wand will not copy |
 | `tool.locked` | — | An inventory action was blocked by the [job lock](/plugins/oberontools/features/anti-duplication/) |
 
-The three `tool.wand-*` lines are sent on the wand's `messages.action` channel, so a refusal never spams chat while building. `tool.locked` ships without a `<prefix>` on purpose — it is routed to the action bar by the shipped `Presentation` block, where a prefix wastes room.
+The three `tool.wand-*` lines are sent on the wand's `messages.action` channel, so a refusal never spams chat while building. A `Sound` set on any tool message under `Presentation.Overrides` plays whichever channel the tool sends it on, except `NONE`. `tool.locked` ships without a `<prefix>` on purpose — it is routed to the action bar by the shipped `Presentation` block, where a prefix wastes room.
 
 Blanking a key (`liquid-none: ""`) silences its text. To disable delivery explicitly, set that tool's `messages.overrides` key to `NONE`.
 
