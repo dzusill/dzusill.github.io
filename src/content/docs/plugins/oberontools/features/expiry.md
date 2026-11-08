@@ -17,7 +17,7 @@ A tool can be a rental. `expires-after` gives every copy a deadline, `%expires_a
 
 So:
 
-- A `7d` bucket crafted on Monday dies the following Monday. A `7d` bucket crafted on Friday dies the following Friday. They are different items with different deadlines, even though they came from the same definition.
+- A `7d` bucket crafted on Monday and carried all week dies the following Monday (time it spends [stored](#paused-while-stored) does not count). A `7d` bucket crafted on Friday dies the following Friday. They are different items with different deadlines, even though they came from the same definition.
 - Changing `expires-after: 7d` to `30d` and reloading **does not extend a single tool already in circulation.** It only changes what the next crafted or given tool gets stamped with.
 - Changing it to `PERMANENT` does not rescue existing tools either. They keep the deadline they were born with.
 - `/oberontools refresh` re-renders an item from the current config but deliberately **preserves** the stamp. There is no supported way to extend a tool that already exists.
@@ -27,6 +27,27 @@ This is intentional. A rental period that silently changes retroactively is not 
 ```
 /oberontools give Steve sponge_bucket 1 30d
 ```
+
+## Paused while stored
+
+With `processing.freeze-in-containers: true` (the default) a tool only uses up its time while a player **carries** it. Everywhere else its countdown is paused:
+
+| Where | Paused when |
+|---|---|
+| A chest, double chest, barrel, shulker box, hopper, dispenser, minecart or boat with a chest, donkey or llama | The click, drag or close that left it there |
+| The ender chest, `/ec` included | The same |
+| On the ground | It is dropped |
+| An auction listing | Just before one of `processing.freeze-on-commands` runs (`ah sell` and friends), while it is still in the hand |
+
+The time left is stored on the item instead of the date, so it survives restarts, chunk unloads and the auction house's own database. While paused, `%expires_at%` reads `expiry.frozen` ("Paused (6d 23h left)") and `%expiry_status%` reads `expiry.paused`.
+
+It starts again from where it stopped the moment the tool is back in a player's inventory: on the click that takes it out of a container, or within one `expiry-refresh-interval-ticks` for routes that fire no inventory event (picking it up, buying it on the auction house, another plugin handing it over). A tool frozen by an auction command is left paused for 30 seconds before the scan restarts it, so the auction plugin can take it out of the hand first; if the sale did not happen, the countdown simply resumes.
+
+A plugin's menu (the auction house GUI, a shop) is never touched: the items there are the plugin's own display copies. Item frames and armour stands are not storage, and a tool in an offline player's inventory keeps counting down, as it always did.
+
+A tool that had already run out before this existed, or before it was stored, is not revived: freezing only ever pauses time that is left.
+
+`false` restores the old rule below: the date is fixed when the tool is made and passes wherever it is.
 
 ## Writing a duration
 
@@ -48,7 +69,7 @@ An expired tool **always** stops working. Every activation is refused with `tool
 | `expired-policy` | Behaviour |
 |---|---|
 | `KEEP_DISABLED` | The item stays where it is. It still shows its lore, which will read `Expired`. Nothing it does works. |
-| `REMOVE` | The item is deleted by the refresh pass, inventory-open refresh, `/oberontools refresh`, or an attempted use after its deadline. |
+| `REMOVE` | The item is deleted by the refresh pass, inventory-open refresh, `/oberontools refresh`, or an attempted use after its deadline. Every one of these tells the player with `tool.expired` and the item-break sound; the refresh paths used to delete it silently. |
 
 The shipped Andromeda tools, the [Builder's Wand](/plugins/oberontools/features/build-wand/) included, use `expires-after: 7d` with `REMOVE`. The wand lives in the **off hand**, so it is deleted when its owner tries to place with it after the deadline, or when an inventory open or `/oberontools refresh` reaches it.
 

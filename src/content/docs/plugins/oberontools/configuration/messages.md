@@ -154,8 +154,12 @@ expiry:
   permanent: "<green>Never</green>"
   expired: "<red>Expired</red>"
   active: "<green>Active</green>"
+  frozen: "<aqua>Paused</aqua> <gray>(%remaining% left)</gray>"
+  paused: "<aqua>Paused</aqua>"
   date-format: "yyyy-MM-dd HH:mm"
 ```
+
+`frozen` replaces `%expires_at%` and `paused` replaces `%expiry_status%` while a stored tool's countdown is [paused](/plugins/oberontools/features/expiry/#paused-while-stored); `%remaining%` in `frozen` is the time it still has. `%expiry%` shows that time too.
 
 These are what the `%expiry%`, `%expires_at%` and `%expiry_status%` lore placeholders render for the permanent and expired cases, and what `/oberontools inspect` prints. `date-format` is a `java.time` pattern applied in the server's own time zone; an empty value falls back to `yyyy-MM-dd HH:mm`.
 

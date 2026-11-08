@@ -36,6 +36,8 @@ processing:
 | `max-block-attempts-per-tick` | `96` | Block operations per tick, shared by every job on the server. Range 1–4096. |
 | `max-active-jobs-per-player` | `1` | Jobs one player may have queued at once. Range 1–8. |
 | `fire-protection-events` | `true` | Fire a `BlockBreakEvent` for each secondary block, so protection plugins decide. |
+| `freeze-in-containers` | `true` | Pause a tool's countdown while it is stored (container, ender chest, ground, auction listing) and resume it when a player carries it again. See [Expiry](/plugins/oberontools/features/expiry/#paused-while-stored). |
+| `freeze-on-commands` | `ah sell`, `auction sell`, `auctionhouse sell`, `axah sell`, `axauctions sell` | Commands that take the held item to list it. The held tool is paused just before one runs. Matched at the start of the typed command, with or without a `plugin:` prefix. |
 | `expiry-refresh-interval-ticks` | `20` | Ticks between countdown redraws. Range 1–1200. |
 | `expiry-refresh-scope` | `HOTBAR` | `NONE`, `HELD`, `HOTBAR` or `INVENTORY`. Periodic countdown redraws always skip both held hands to prevent hand bobbing. `%size%` lore is checked on the same interval across the whole inventory and both hands at any scope. |
 

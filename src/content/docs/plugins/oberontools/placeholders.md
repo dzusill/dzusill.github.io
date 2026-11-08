@@ -14,9 +14,9 @@ Available in `tools.<id>.item.name` and every line of `tools.<id>.item.lore`. Th
 | `%tool_id%` | The tool's id | — |
 | `%uses%` | Uses left on this item | `∞` |
 | `%max_uses%` | The definition's `max-uses` | `∞` |
-| `%expiry%` | Time left, as `6d 23h 4m 12s`. Only redrawn while an online player holds the item, so it goes stale in chests and auction listings — see [Expiry](/plugins/oberontools/features/expiry/#lore-placeholders) | `expiry.permanent`, or `expiry.expired` once past |
-| `%expires_at%` | The stamped deadline, formatted with `expiry.date-format` | `expiry.permanent` |
-| `%expiry_status%` | One word: `expiry.active` / `expiry.expired` / `expiry.permanent` | `expiry.permanent` |
+| `%expiry%` | Time left, as `6d 23h 4m 12s`. Only redrawn while an online player holds the item. While the tool is [paused in storage](/plugins/oberontools/features/expiry/#paused-while-stored) it is the time it still has | `expiry.permanent`, or `expiry.expired` once past |
+| `%expires_at%` | The stamped deadline, formatted with `expiry.date-format`; `expiry.frozen` ("Paused (… left)") while paused in storage | `expiry.permanent` |
+| `%expiry_status%` | One word: `expiry.active` / `expiry.expired` / `expiry.permanent`, or `expiry.paused` while stored | `expiry.permanent` |
 | `%size%` | The **holder's** current width: `3x3`, `5x5`, … for `AREA_MINE` and `BUILD_WAND`, `3x3x3`, `5x5x5`, … for `LIQUID_CLEAR`. Blank on a `TIMBER` tool | — |
 
 The three expiry values take their wording from `messages.yml`, not from Java:
