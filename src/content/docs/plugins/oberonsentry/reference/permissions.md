@@ -25,6 +25,8 @@ Every node defaults to **op**, except the two marked *false*. `oberonsentry.*` g
 | `oberonsentry.view.ip` | See the stored IP hash, only with IP logging on (*false*) |
 | `oberonsentry.bypass.clientscan` | Skip client detection on join (*false*) |
 
+> **LiteBans decides punishments.** With `punishments.run-as-staff: true` and LiteBans installed, the Warn, Kick, Mute and Ban buttons and actions follow LiteBans' own nodes (`litebans.warn`, `litebans.kick`, `litebans.mute`/`litebans.tempmute`, `litebans.ban`/`litebans.tempban`), not `oberonsentry.action.warn/kick/mute/ban`. Ban shows with either ban node and offers only the durations allowed (`permanent` needs `litebans.ban`). The nodes are set in `punishments.permissions`. With `run-as-staff: false` or without LiteBans the `oberonsentry.action.*` nodes apply.
+
 Sub-commands only need their own node. For example, `/sus alerts` works with just `oberonsentry.alerts`.
 
 ## LiteBans

@@ -57,7 +57,7 @@ Being kicked or banned is not a logout. A confirmed ban ends the freeze.
 2. Pick a reason from [`reasons.yml`](/plugins/oberonsentry/configuration/clients-and-reasons/#reasonsyml) or type your own.
 3. Confirm.
 
-Kick, mute and ban run **LiteBans'** commands (`punishments.commands`). They run as you (`punishments.run-as-staff`), so LiteBans records you as the executor and checks your LiteBans rights. With `run-as-staff: false` the console runs them and your name goes into the reason (`punishments.console-reason`). Durations are sent as one number and unit: `1d12h` becomes `36h`.
+Kick, mute and ban run **LiteBans'** commands (`punishments.commands`). They run as you (`punishments.run-as-staff`), so LiteBans records you as the executor and checks your LiteBans rights. Those LiteBans rights are also what OberonSentry checks then: the Warn, Kick, Mute and Ban buttons show for `litebans.warn`, `litebans.kick`, `litebans.mute`/`litebans.tempmute` and `litebans.ban`/`litebans.tempban` (set in `punishments.permissions`), and the duration list offers `permanent` only with `litebans.ban` and the timed ones only with `litebans.tempban`. With `run-as-staff: false` the console runs them and your name goes into the reason (`punishments.console-reason`), and the `oberonsentry.action.*` nodes decide instead. Durations are sent as one number and unit: `1d12h` becomes `36h`.
 
 With `punishments.silent: true` (the default) every command gets LiteBans' **`-s`**, so only staff see the punishment broadcast. The flag is only added while LiteBans is installed; vanilla `/ban` would read `-s` as a player name.
 

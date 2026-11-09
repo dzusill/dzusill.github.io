@@ -52,6 +52,7 @@ Kick, mute and ban through LiteBans. See [Staff actions](/plugins/oberonsentry/f
 | Key | Default | What it does |
 | --- | --- | --- |
 | `punishments.run-as-staff` | `true` | Run the command as the staff member, so LiteBans records them and checks their rights. `false` = the console runs it |
+| `punishments.permissions.<type>` | `litebans.<type>` | While run-as-staff is on and LiteBans is installed, this node (not `oberonsentry.action.*`) decides who sees and may use Warn/Kick/Mute/Ban; Ban/Mute offer only the durations allowed. Empty = the `oberonsentry.action` node |
 | `punishments.console-reason` | `{reason} (by {staff})` | Reason format when the console runs the command |
 | `punishments.silent` | `true` | `{silent}` becomes LiteBans' `-s`, so only staff see the broadcast. Only added while LiteBans is installed |
 | `punishments.commands.kick` | `kick {silent} {player} {reason}` | Without LiteBans, kick is always a plain kick |

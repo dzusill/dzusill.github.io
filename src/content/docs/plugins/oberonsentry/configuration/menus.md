@@ -37,7 +37,7 @@ Every item (button, entry, template, filler) takes:
 | `slot` | Where it goes (buttons) |
 | `material` | Any material; `PLAYER_HEAD` shows the player's skin |
 | `name`, `lore` | MiniMessage text with placeholders. A lore line that is exactly `{options}` expands to the list of options (sort, window, filters) |
-| `permission` | The button is hidden from staff without it. The action checks it again anyway |
+| `permission` | The button is hidden from staff without it. The action checks it again anyway. With `punishments.run-as-staff` and LiteBans, `oberonsentry.action.warn/kick/mute/ban` on the punishment buttons resolve to the LiteBans nodes from `punishments.permissions` |
 | `glow` | Enchantment glint |
 | `custom-model-data` | For resource packs |
 | `enabled` | `false` = not drawn |
