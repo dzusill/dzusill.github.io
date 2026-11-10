@@ -1403,6 +1403,10 @@
               {
                 "label": "Arena regen",
                 "slug": "plugins/oberonkits/features/arena-regen"
+              },
+              {
+                "label": "Admin GUI",
+                "slug": "plugins/oberonkits/features/admin-gui"
               }
             ]
           },

@@ -17,11 +17,12 @@ runtime through OberonCore, so `plugin.yml` has no `commands:` block.
 
 ## Admin
 
-All need `oberonkits.admin`. `/oberonkits` is an alias of `/okits`.
+`/oberonkits` is an alias of `/okits`. Everything below needs `oberonkits.admin`, except `/okits gui`.
 
 | Command | Does |
 |---|---|
-| `/okits` | Help |
+| `/okits gui` | Opens the [admin GUI](/plugins/oberonkits/features/admin-gui/). Needs only `oberonkits.gui.view` |
+| `/okits` | Help (for a player with only `oberonkits.gui.view`: opens the GUI) |
 | `/okits reload` | Re-reads every file; replies with the number of profiles and warnings |
 | `/okits list` | Profiles, their worlds, mode and kits; marks disabled ones |
 | `/okits give <player> [kit]` | Gives a kit now (random if none named). Never spends a Stardust use |

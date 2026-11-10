@@ -52,5 +52,9 @@ kit-received:
 | `not-in-kit-world` | `/kits` outside a kit world |
 | `drop-blocked` | Dropping an item where `prevent-drop` is on |
 | `admin.*` | Replies to `/okits` and its help lines |
+| `admin.gui.saved` / `unchanged` / `rejected` / `note` | The result of an admin GUI change (`%what%`, `%reason%`, `%note%`) |
+| `admin.gui.no-permission` | A locked GUI button was clicked (`%permission%`) |
+| `admin.gui.prompt` / `prompt-cancelled` | The question asked in chat (`%what%`, `%current%`, `%hint%`) |
+| `admin.gui.contents-saved` / `contents-failed` / `contents-empty` | Saving kit items from the inventory (`%kit%`, `%amount%`) |
 
 The last block holds OberonCore's framework messages (no permission, usage, unknown player...).

@@ -25,6 +25,8 @@ kits you already have keep working and are edited the way you edit them today.
   warns the players first and can move them out of the arena while it is rebuilt.
 - **Guards against wiping survival inventories.** If a kit world shares its Multiverse-Inventories
   inventory with a world that has no kit profile, that profile is switched off and the console says why.
+- **An in-game admin GUI.** `/okits gui` changes profiles, kits, prices, rules and the regen timer
+  without SFTP access, with a permission per part and a change log. Console commands stay file-only.
 - **Everything is configurable.** Every text and where it appears (chat, action bar, title, sound),
   the whole menu layout, every reset step and every death rule. `/okits reload` applies it without a
   restart.

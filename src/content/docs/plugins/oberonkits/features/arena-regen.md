@@ -34,7 +34,7 @@ regen:
 |---|---|---|
 | `enabled` | `false` | Switches the timer on |
 | `every` | `30m` | Time between two regens: `90s`, `30m`, `1h`. Minimum 10 s |
-| `commands` | `[]` | Console commands, run in order. `%profile%` and `%world%` are replaced. A leading `/` is ignored |
+| `commands` | `[]` | Console commands, run in order. `%profile%` and `%world%` (the first loaded world of the profile) are replaced. A leading `/` is ignored. Can only be changed in the file, never in the admin GUI |
 | `warnings` | `[60s, 10s]` | When players in the world are warned (`regen-warning` message) |
 | `players` | `stay` | `stay` — nothing happens to them; `move` — they are moved to `move-to` while the arena is rebuilt |
 | `move-to` | `""` | `world,x,y,z` or `world,x,y,z,yaw,pitch`, best outside the rebuilt area |

@@ -30,6 +30,15 @@ server with Essentials (`/createkit`).
 ExcellentEconomy is not installed, or the currency `id` in `config.yml` does not match the one in
 ExcellentEconomy.
 
+**The admin GUI says "Not saved".**
+The reason follows it: the value could not be read, or the change would break a rule a reload checks
+(a survival world, a shared inventory, regen on without a command). Nothing was written. Who changed what
+is in `plugins/OberonKits/logs/gui-changes.log`.
+
+**The regen commands are greyed out in the GUI.**
+On purpose: console commands can only be changed in `profiles.yml`. See
+[Admin GUI](/plugins/oberonkits/features/admin-gui/#what-it-never-changes).
+
 **The arena regen does nothing.**
 Check `regen.enabled: true`, that `commands` is not empty, and run `/okits regen <profile>`. The console logs
 every regen and each command's own output. Test the command by hand from the console first.

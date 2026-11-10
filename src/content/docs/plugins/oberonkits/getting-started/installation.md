@@ -48,7 +48,8 @@ PostgreSQL in [`database.yml`](/plugins/oberonkits/configuration/database/) only
 `config.yml`, `messages.yml` and `menus.yml` are merged on load: keys added by a new version appear with
 their defaults and your own values stay.
 
-`profiles.yml` is never merged — it is yours. When a new version adds a profile key (as 1.1.0 added
+`profiles.yml` is never merged — it is yours. The only thing that writes it is the
+[admin GUI](/plugins/oberonkits/features/admin-gui/), one key per change. When a new version adds a profile key (as 1.1.0 added
 `regen`), the default comes from `defaults` in `config.yml`, so the profile works without changes; add
 the key to the profile only to set it differently.
 

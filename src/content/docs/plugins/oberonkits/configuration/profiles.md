@@ -7,7 +7,8 @@ One entry under `profiles:` per group of kit worlds. A profile sets its `worlds`
 from `defaults` in [config.yml](/plugins/oberonkits/configuration/config/) it wants different. Keys it leaves out keep the default, including
 sibling keys: overriding `choose.timeout` keeps the default `choose.timeout-action`.
 
-This file is never rewritten or merged by the plugin.
+The plugin never merges keys into this file. The [admin GUI](/plugins/oberonkits/features/admin-gui/) writes it, one key
+per change, keeping comments above keys.
 
 ## worlds
 
