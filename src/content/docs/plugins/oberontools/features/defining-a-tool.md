@@ -74,7 +74,7 @@ The id is used by:
 | `lore` | `[]` | MiniMessage lines. Blank strings are kept as spacing. Supports the [lore placeholders](/plugins/oberontools/placeholders/), including `%size%` for the holder's current width. |
 | `custom-model-data` | `0` | Any value above `0` is set on the item. `0` explicitly **clears** custom model data. Negative values are rejected. |
 | `enchant-glint` | `false` | Sets the glint override. The shipped tools use `true`. |
-| `enchants` | `[]` | Real enchantments, `ENCHANT` or `ENCHANT:LEVEL`, by Minecraft name. Cosmetic on a tool whose ability the plugin drives. Read from the registry, so a name this build has never heard of still works. |
+| `enchants` | `[]` | Real enchantments, `ENCHANT` or `ENCHANT:LEVEL`, by Minecraft name. Read from the registry, so a name this build has never heard of still works. A refresh raises these to the configured level and takes off only an enchantment the config itself once added; one a player put on with an anvil (Silk Touch, Fortune) stays, and the drill and excavator break their whole square with it. |
 | `item-flags` | `[]` | What the tooltip hides. `HIDE_ENCHANTS` is the usual one, so a glint-only tool does not list enchantments it never uses. |
 | `unbreakable` | `true` | Vanilla durability never applies; `max-uses` is the real budget. |
 | `max-uses` | `-1` | `-1` is infinite. `0` and anything below `-1` are rejected. |
