@@ -1361,6 +1361,100 @@
         ]
       },
       {
+        "label": "🎒 OberonKits",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "OberonKits",
+            "slug": "plugins/oberonkits"
+          },
+          {
+            "label": "🚀 Getting started",
+            "items": [
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonkits/getting-started/installation"
+              },
+              {
+                "label": "Quick start",
+                "slug": "plugins/oberonkits/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "Kit worlds and when a kit is given",
+                "slug": "plugins/oberonkits/features/kit-worlds"
+              },
+              {
+                "label": "The kit menu",
+                "slug": "plugins/oberonkits/features/kit-menu"
+              },
+              {
+                "label": "Stardust kits",
+                "slug": "plugins/oberonkits/features/stardust-kits"
+              },
+              {
+                "label": "Deaths and killer XP",
+                "slug": "plugins/oberonkits/features/deaths"
+              },
+              {
+                "label": "Arena regen",
+                "slug": "plugins/oberonkits/features/arena-regen"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonkits/configuration/config"
+              },
+              {
+                "label": "profiles.yml",
+                "slug": "plugins/oberonkits/configuration/profiles"
+              },
+              {
+                "label": "menus.yml",
+                "slug": "plugins/oberonkits/configuration/menus"
+              },
+              {
+                "label": "messages.yml",
+                "slug": "plugins/oberonkits/configuration/messages"
+              },
+              {
+                "label": "database.yml",
+                "slug": "plugins/oberonkits/configuration/database"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands",
+                "slug": "plugins/oberonkits/reference/commands"
+              },
+              {
+                "label": "Permissions",
+                "slug": "plugins/oberonkits/reference/permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberonkits/reference/placeholders"
+              },
+              {
+                "label": "Troubleshooting",
+                "slug": "plugins/oberonkits/reference/troubleshooting"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "label": "✉️ OberonMSG",
         "collapsed": true,
         "items": [
