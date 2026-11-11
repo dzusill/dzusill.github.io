@@ -39,6 +39,14 @@ is in `plugins/OberonKits/logs/gui-changes.log`.
 On purpose: console commands can only be changed in `profiles.yml`. See
 [Admin GUI](/plugins/oberonkits/features/admin-gui/#what-it-never-changes).
 
+**Players in the kit world cannot place blocks, throw things or hit each other.**
+OberonKits never blocks building, and blocks damage only while a player is choosing a kit (at most
+`choose.timeout`). Look for another plugin that protects that world. With Duels-Shyam, an arena whose
+bounds cover the kit world (created for the [arena regen](/plugins/oberonkits/features/arena-regen/)) stops players
+outside a duel from building and fighting while `protect-arena-bounds: true` in its `config.yml`. Set it to `false`, or make
+sure the arena's bounds do not cover the area players fight in. Also check the WorldGuard `pvp`,
+`block-place` and `block-break` flags and Multiverse's `pvp` for the world.
+
 **The arena regen does nothing.**
 Check `regen.enabled: true`, that `commands` is not empty, and run `/okits regen <profile>`. The console logs
 every regen and each command's own output. Test the command by hand from the console first.

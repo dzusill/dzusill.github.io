@@ -25,6 +25,9 @@ regen:
 1. In the duels plugin, create the FFA arena and save its schematic. The arena name goes into the command.
 2. Keep that arena out of the duels queue (disabled in the duels plugin), so nobody is sent into it for a
    duel. Check that `sduels arena regen` still works on a disabled arena.
+   Duels-Shyam also protects its arenas' bounds (`protect-arena-bounds: true` in its `config.yml`), which
+   stops players outside a duel from building, throwing and hitting there. Set it to `false` before players
+   use the kit world.
 3. Set the command and `enabled: true` in the profile, then `/okits reload`.
 4. `/okits regen ffa` runs it once at once to test.
 

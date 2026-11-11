@@ -52,5 +52,10 @@ economy:
       format: "%amount% Stardust"
 ```
 
+In `format`, `%amount%` is the full number (`3000`) and `%amount_short%` the short form: `950`, `3K`,
+`1.5K`, `1.25M`, `2B` (at most two decimals, never rounded up). `format: "%amount_short% Stardust"` shows
+`3K Stardust` everywhere a price appears: kit menu, purchase confirm, messages. Prices typed in the admin
+GUI may use the same short form (`3k`, `1.5m`).
+
 A kit without `currency` uses `default-currency`. A kit naming a currency that is not listed is skipped,
 and the console says so.
