@@ -67,6 +67,8 @@ const PLUGINS = [
   { slug: 'oberonafk',     name: 'OberonAFK',     src: '../OberonAfk/docs' },
   { slug: 'oberonender',   name: 'OberonEnder',   src: '../VariableEnderChests/docs' },
   { slug: 'oberonkits',    name: 'OberonKits',    src: '../OberonKits/docs' },
+  // FFA killstreaks, daily kills, passes and leaderboards; builds on OberonKits' FFA arena.
+  { slug: 'oberonffa',     name: 'OberonFFA',     src: '../OberonFFA/docs' },
   // The combat tag that replaced PvPManager. Its docs/ holds internal status notes, so the published pages
   // live in docs-site/ (as with dFactions).
   { slug: 'oberoncombat',  name: 'OberonCombat',  src: '../OberonCombat/docs-site' },
@@ -119,7 +121,7 @@ const SIDEBAR_ONLY = process.argv.includes('--sidebar-only');
 // adding a plugin above without touching this still produces a working sidebar.
 const CATEGORIES = [
   { label: '🛠️ Framework', plugins: ['dzusillcore', 'ddialogs'] },
-  { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonannounce', 'oberondonations', 'oberontools', 'oberonenvoys', 'oberonafk', 'oberoncombat', 'oberonkits', 'oberonmsg', 'oberonstaff', 'oberonsentry', 'oberonantixray', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats', 'oberonender'] },
+  { label: '🌙 Oberon Suite', plugins: ['oberonutils', 'oberonchat', 'oberonannounce', 'oberondonations', 'oberontools', 'oberonenvoys', 'oberonafk', 'oberoncombat', 'oberonffa', 'oberonkits', 'oberonmsg', 'oberonstaff', 'oberonsentry', 'oberonantixray', 'oberonwhitelist', 'oberonkills', 'oberonmob', 'oberonstats', 'oberonender'] },
   { label: '💰 Economy & Shops', plugins: ['dshop', 'drotatingshop', 'oberonshop', 'dsell', 'ddonutworth', 'dauctionfeed', 'oberonsell', 'ddonations', 'dgems', 'dstore', 'dlottery', 'blottery', 'dloyalityrewards'] },
   { label: '⚔️ PvP & Combat', plugins: ['dfactions', 'dkilltracker', 'dbloodmoney', 'ddeathpenalty', 'dfate', 'dsupplydrops'] },
   { label: '🧭 Teleportation', plugins: ['warpgui', 'dhomegui'] },

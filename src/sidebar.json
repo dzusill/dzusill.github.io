@@ -1361,6 +1361,100 @@
         ]
       },
       {
+        "label": "📦 OberonFFA",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "OberonFFA",
+            "slug": "plugins/oberonffa"
+          },
+          {
+            "label": "🚀 Getting started",
+            "items": [
+              {
+                "label": "Installation",
+                "slug": "plugins/oberonffa/getting-started/installation"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "When a kill counts (anti-abuse)",
+                "slug": "plugins/oberonffa/features/anti-abuse"
+              },
+              {
+                "label": "Killstreaks and the shutdown bonus",
+                "slug": "plugins/oberonffa/features/streaks"
+              },
+              {
+                "label": "Daily first kills and passes",
+                "slug": "plugins/oberonffa/features/daily-and-passes"
+              },
+              {
+                "label": "Leaderboards and top payouts",
+                "slug": "plugins/oberonffa/features/leaderboards"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/oberonffa/configuration/config"
+              },
+              {
+                "label": "rewards.yml",
+                "slug": "plugins/oberonffa/configuration/rewards"
+              },
+              {
+                "label": "streaks.yml",
+                "slug": "plugins/oberonffa/configuration/streaks"
+              },
+              {
+                "label": "passes.yml",
+                "slug": "plugins/oberonffa/configuration/passes"
+              },
+              {
+                "label": "gui.yml",
+                "slug": "plugins/oberonffa/configuration/gui"
+              },
+              {
+                "label": "messages.yml and sounds.yml",
+                "slug": "plugins/oberonffa/configuration/messages"
+              },
+              {
+                "label": "database.yml and data.yml",
+                "slug": "plugins/oberonffa/configuration/database"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands",
+                "slug": "plugins/oberonffa/reference/commands"
+              },
+              {
+                "label": "Permissions",
+                "slug": "plugins/oberonffa/reference/permissions"
+              },
+              {
+                "label": "Placeholders",
+                "slug": "plugins/oberonffa/reference/placeholders"
+              },
+              {
+                "label": "DialogMaster leaderboards",
+                "slug": "plugins/oberonffa/reference/dialogmaster"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "label": "🎒 OberonKits",
         "collapsed": true,
         "items": [
