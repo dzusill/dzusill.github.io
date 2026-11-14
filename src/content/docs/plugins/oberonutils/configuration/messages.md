@@ -152,7 +152,7 @@ MiniMessage throughout.
 
 ```yaml
 warp:
-  teleported: "<#A7A7A7>You teleported to <#C21807><warp>"
+  teleported: "<#A7A7A7>You teleported to <#C21807>%warp%"
 ```
 
 For a gradient, one tag rather than a hex code per character:
@@ -170,14 +170,14 @@ Useful tags: `<red>`, `<gray>`, `<#RRGGBB>`, `<gradient:#A:#B>`, `<b>`, `<i>`, `
 | Token | Expands to |
 |---|---|
 | `<prefix>` | The prefix above |
-| `<player>` | The command sender |
-| `<target>` | The other player |
-| `<time>` | A duration or countdown value |
-| `<warp>` | The warp's display name |
-| `<spawn>` | The spawn display name |
-| `<ping>` | Latency in ms |
-| `<dots>` | A run of dots that grows as a countdown runs down |
-| `<usage>` | The command's usage line |
+| `%player%` | The command sender |
+| `%target%` | The other player |
+| `%time%` | A duration or countdown value |
+| `%warp%` | The warp's display name |
+| `%spawn%` | The spawn display name |
+| `%ping%` | Latency in ms |
+| `%dots%` | A run of dots that grows as a countdown runs down |
+| `%usage%` | The command's usage line |
 
 Not every token is available in every message — one that has no value is left as-is rather than
 blanked, which makes a typo obvious in game.

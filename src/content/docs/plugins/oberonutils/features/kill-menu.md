@@ -41,11 +41,11 @@ Both accept any damage cause name, if your death-message plugin words something 
     rows: 3
     cancel:  {slot: 11, material: RED_STAINED_GLASS_PANE,  name: "<gradient:#FF5555:#E64D4D>Cancel</gradient>",  lore: []}
     confirm: {slot: 15, material: LIME_STAINED_GLASS_PANE, name: "<gradient:#55FF55:#4DE64D>Confirm</gradient>", lore: []}
-    target:  {slot: 13, name: "<#C21807><target>", lore: []}
+    target:  {slot: 13, name: "<#C21807>%target%", lore: []}
     filler: AIR
 ```
 
-The target slot shows that player's head. `<target>` works in its name and lore.
+The target slot shows that player's head. `%target%` works in its name and lore.
 
 `filler` fills every other slot — `AIR` leaves them empty. A slot number outside the menu falls back
 to the default and says so in console rather than silently vanishing.

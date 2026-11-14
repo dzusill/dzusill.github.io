@@ -37,6 +37,7 @@ are standing and looking.
 | `ignore-bypass-regions` | `false` | `true` means standing in a bypass region does **not** skip the countdown for this warp |
 | `requires.koth-active` | `false` | Refuse unless AxKoth reports a running KOTH |
 | `countdown-message` | — | Replaces the normal countdown line |
+| `countdown-sound` | `teleport.countdown`'s sound | Played on every countdown tick, `{name, volume, pitch}`; `name: ""` is silent |
 | `on-arrive.effects` | — | Potion effects applied on arrival |
 | `on-arrive.sounds` | — | Sounds, each with an optional delay |
 | `on-arrive.commands` | — | Console commands, `<player>` substituted |
@@ -52,7 +53,7 @@ are standing and looking.
     ignore-bypass-regions: true
     requires:
       koth-active: true
-    countdown-message: "<#FF0000>ᴇɴᴛᴇʀɪɴɢ ᴀ ᴘᴠᴘ ᴢᴏɴᴇ<dots>"
+    countdown-message: "<#FF0000>ᴇɴᴛᴇʀɪɴɢ ᴀ ᴘᴠᴘ ᴢᴏɴᴇ%dots%"
     on-arrive:
       effects:
         - {type: SLOW_FALLING, amplifier: 1, duration: 4s, particles: false}
@@ -66,8 +67,17 @@ these options are available on *any* warp, not only this one.
 `ignore-bypass-regions: true` is the rule that stops someone standing in the spawn region from
 dropping into a PvP arena with no countdown at all.
 
-`<dots>` in `countdown-message` expands to a run of dots that grows as the countdown runs down.
-`<time>` gives the seconds remaining.
+`%dots%` in `countdown-message` expands to a run of dots that grows as the countdown runs down —
+`.` on the first second, `.....` on the fifth. `%time%` gives the seconds remaining and `%warp%` the
+warp's display name. `<dots>`, `<time>` and `<warp>` are accepted here too, but everywhere else
+placeholders must be written `%name%` — MiniMessage owns the angle-bracket form.
+
+A custom countdown ticks with the same sound as the normal one (`teleport.countdown` in
+`messages.yml`, the enderman teleport by default). Give the warp its own with `countdown-sound`:
+
+```yaml
+    countdown-sound: {name: block.note_block.hat, volume: 1.0, pitch: 1.2}
+```
 
 ## Naming
 

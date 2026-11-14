@@ -9,7 +9,7 @@ description: "All of these are soft dependencies — WarpGUI loads without them 
 |---|---|---|
 | Server software | Paper **1.21 – 26.3** | Spigot works; Paper recommended. One jar covers the whole range. |
 | Java | **21**, or **25** on Paper 26.1+ | Set by the server version, not by the plugin. |
-| [DzusillCore](https://github.com/dzusill/DzusillCore) | 1.14.5 or newer | **Hard dependency** — WarpGUI won't enable without it. Update the core jar alongside the plugin; on Paper 26.x 1.14.5 is the minimum, older cores break player-head icons there. |
+| [DzusillCore](https://github.com/dzusill/DzusillCore/releases) | 1.14.6 or newer | **Hard dependency** — WarpGUI won't enable without it. Update the core jar alongside the plugin; on Paper 26.x 1.14.6 is the minimum, older cores break player-head icons and some sounds there. |
 
 ## Optional integrations
 

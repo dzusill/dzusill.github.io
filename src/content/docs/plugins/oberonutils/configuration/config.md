@@ -207,7 +207,7 @@ kill:
     rows: 3
     cancel:  {slot: 11, material: RED_STAINED_GLASS_PANE,  name: "<gradient:#FF5555:#E64D4D>Cancel</gradient>",  lore: []}
     confirm: {slot: 15, material: LIME_STAINED_GLASS_PANE, name: "<gradient:#55FF55:#4DE64D>Confirm</gradient>", lore: []}
-    target:  {slot: 13, name: "<#C21807><target>", lore: []}
+    target:  {slot: 13, name: "<#C21807>%target%", lore: []}
     filler: AIR
 ```
 

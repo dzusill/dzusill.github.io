@@ -90,7 +90,7 @@ extras:
   chat-announcement: false
   bossbar-countdown: 0s
   bossbar:
-    text: "<gradient:#C21807:#F11800><b>Key All</b></gradient> <gray>in <white><time>"
+    text: "<gradient:#C21807:#F11800><b>Key All</b></gradient> <gray>in <white>%time%"
     colour: RED
     style: PROGRESS
   log-drops: false

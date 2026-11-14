@@ -38,7 +38,7 @@ Each channel has its own `enabled` switch — chat can be on while the boss bar 
 - `min-amount` — purchases below this are still recorded toward every statistic and goal, just not announced. `0` announces everything.
 - `anonymous-name` — shown instead of the donor's name when [purchase consent](/plugins/oberondonations/features/purchase-tracking/#donor-consent) is declined.
 - `package-separator` — joins multiple package names in one checkout's `{product}` / `{packages}` placeholder.
-- `chat-line-max-chars` — wraps a chat line at this many **visible** characters, ignoring MiniMessage tags, so a checkout with several long package names does not run off the screen. `0` disables wrapping.
+- `chat-line-max-chars` — wraps a chat line at this many **visible** characters, ignoring MiniMessage tags, so a checkout with several long package names does not run off the screen. `0` disables wrapping. A style that is open where a line is cut (a gradient, bold, a colour) starts again on the next line, and every `<newline>` in a chat line starts a new chat line with the same styling (since 1.0.1).
 
 ## Placeholders
 
