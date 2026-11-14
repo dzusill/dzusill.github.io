@@ -28,6 +28,7 @@ Main command: `/oberontools`, aliases `/otools` and `/ot`.
 | `oberontools.use` | `true` | The default `use-permission` on every shipped tool |
 | `oberontools.craft` | `true` | The default `craft-permission` on every shipped tool |
 | `oberontools.admin` | `op` | Every subcommand |
+| `oberontools.combat.bypass` | `false` | Keep tool abilities working while combat-tagged. Only consulted when `combat.block-tools` is on. See [Combat](/plugins/oberontools/features/combat/) |
 | `oberontools.radius.<tool-id>.<n>` | `false` | Raise that tool's radius to `n` |
 | `oberontools.radius.*.<n>` | `false` | Raise every radius tool to `n`, the wand included |
 

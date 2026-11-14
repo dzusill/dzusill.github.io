@@ -131,7 +131,7 @@ One case stays quiet instead of showing the refusal: when the place **grew a blo
 
 - **Protection plugins.** Each extra block fires a synthetic `BlockPlaceEvent` as the player, with the block behind it as the clicked block and a one-item copy of the placed item. WorldGuard, GriefPrevention, Towny and logging plugins decide per block, and CoreProtect logs the block as placed by the player. With `processing.fire-protection-events: false` the events are skipped and **every extra block is allowed** — see [The Job Queue](/plugins/oberontools/features/job-queue/#turning-it-off).
 - **Access.** `use-permission`, the world whitelist and blacklist, and the stamped deadline are checked as for every tool. An expired `REMOVE` wand is deleted from the off hand.
-- **Combat.** While `combat.block-tools` withholds abilities, the player simply places their one block with no square. See the `combat` section of `config.yml`.
+- **Combat.** While `combat.block-tools` withholds abilities, the player simply places their one block with no square. See [Combat](/plugins/oberontools/features/combat/).
 - **Crate or give only.** The shipped wand has `recipe.enabled: false`, `expires-after: 7d` and `expired-policy: REMOVE`, like the other Andromeda tools. `max-uses: -1`: one use is spent per accepted square, none for a refused one.
 - **Anti-duplication.** The wand is frozen while its square is placing, so it cannot be swapped out of the off hand mid-job. See [Anti-Duplication](/plugins/oberontools/features/anti-duplication/).
 - **Queue.** A square drains through the shared [job queue](/plugins/oberontools/features/job-queue/) at the server's tick budget. A click that lands while the player's previous square is still draining places its own block and nothing more.

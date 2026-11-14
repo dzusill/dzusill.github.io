@@ -934,6 +934,10 @@
                 "slug": "plugins/oberontools/features/anti-duplication"
               },
               {
+                "label": "Combat",
+                "slug": "plugins/oberontools/features/combat"
+              },
+              {
                 "label": "Locator Bar",
                 "slug": "plugins/oberontools/features/locator-bar"
               },

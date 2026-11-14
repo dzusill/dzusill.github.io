@@ -20,6 +20,31 @@ debug: false
 | `config-version` | `2` | Schema stamp, bumped by the plugin itself; leave it alone. A file below `2` is migrated on start: the untouched shipped lore lines `- "<#7e7e7e>Mines a 3x3 Area"` and `- "<gray>a <white>3x3x3</white> cube around it.</gray>"` are rewritten in place to use `%size%`, and the console logs `Updated config.yml to config-version 2`. Each rule matches one shipped line exactly, so lore you reworded is left untouched. A file with no `config-version` counts as `1`. The migration runs before the merge, edits only those lines and keeps comments, ordering and line endings. |
 | `debug` | `false` | Parsed and stored, but **nothing in this build reads it**. Setting it to `true` changes no output. |
 
+## Combat
+
+```yaml
+combat:
+  block-tools: false
+  notify: true
+  message-cooldown: 3s
+  sound: block.note_block.bass
+  volume: 0.7
+  pitch: 0.8
+  tag-cache-ttl: 60s
+```
+
+| Key | Default | |
+|---|---|---|
+| `block-tools` | `false` | Withhold every tool's *ability* while its holder is combat-tagged. The break or place itself is never cancelled, so the tool degrades to the vanilla item it looks like — except the bucket, which has no vanilla behaviour to fall back on and does nothing at all. `false` skips the combat lookup entirely, so a server without a combat plugin pays one boolean check per click. An absent `combat` section means the same as `false`. |
+| `notify` | `true` | Whether the player is told why the ability did nothing. `false` is completely silent — no line and no sound. The line is `tool.in-combat` in `messages.yml` and it follows that tool's `messages.error` channel; put just this one line on the action bar for a single tool with `overrides: { in-combat: ACTION_BAR }`. |
+| `message-cooldown` | `3s` | Gap between two refusals shown to one player. A player mid-fight clicks a great deal and one line per click is unreadable. `0`, `none` or `off` tells them every time. Range 0–10m. |
+| `sound` | `block.note_block.bass` | Played with the message, on the same cooldown — one switch, not two, so a server cannot end up silent in chat but audible on every swing. Empty for silence. Any namespaced sound key; it is lower-cased and passed to the client, not validated against a registry. |
+| `volume` | `0.7` | Must be 0 or positive. |
+| `pitch` | `0.8` | Range 0.5–2.0. |
+| `tag-cache-ttl` | `60s` | Only for PvPManager, and only as a last resort: how long a tag observed from PvPManager's own events stays trusted when neither its API nor its PlaceholderAPI expansion answers. OberonCombat never uses it. `0`, `none` or `off` disables it. Range 0–1h. Keep it comfortably above PvPManager's own tag duration. Taking effect without a restart is deliberate — it is passed in per check, not captured at startup, so `/oberontools reload` changes it immediately. |
+
+Staff keep their abilities with `oberontools.combat.bypass`. See [Combat](/plugins/oberontools/features/combat/).
+
 ## Processing
 
 ```yaml
