@@ -10,6 +10,8 @@ description: "OberonTools uses no database, no economy and no PlaceholderAPI. It
 | OberonCore (DzusillCore) | **1.12.0+** | The framework OberonTools is built on — a separate jar in `plugins/`, declared as a hard `depend` |
 | WorldEdit / WorldGuard | any | Optional `softdepend`. Nothing is called directly; they see the same `BlockBreakEvent` every other listener does |
 | Vulcan | any | Optional `softdepend`. When present, its FastPlace, AirPlace and Scaffold flags are suppressed only while a [builder's wand](/plugins/oberontools/features/build-wand/#vulcan) job runs |
+| OberonCombat | any | Optional `softdepend`, and the preferred source of the combat tag used by `combat.block-tools`. Its `CombatService` is read through the Bukkit services manager; nothing of it is compiled against |
+| PvPManager | any | Optional `softdepend`, the fallback combat-tag source when OberonCombat is absent. With neither installed, every player counts as out of combat and `combat.block-tools` never applies |
 | Folia | — | **Not supported.** `folia-supported: false` |
 
 OberonTools uses no database, no economy and no PlaceholderAPI. It writes nothing outside its own config folder.

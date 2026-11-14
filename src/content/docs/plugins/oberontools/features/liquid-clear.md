@@ -11,6 +11,7 @@ description: "behavior: LIQUIDCLEAR builds a sponge in bucket form. Right-click 
       max-radius: 3
       max-blocks: 0
       clear-waterlogged-blocks: true
+      prevent-reflow: true
       materials: [WATER, LAVA]
       sound: item.bucket.empty
       volume: 0.9
@@ -23,6 +24,7 @@ description: "behavior: LIQUIDCLEAR builds a sponge in bucket form. Right-click 
 | `max-radius` | same as `radius` | Ceiling a permission may raise `radius` to. Must be ≥ `radius` and ≤ 8. |
 | `max-blocks` | `0` | Hard cap per use. `0` derives it from the effective radius. Range 0, or 1–4913. |
 | `clear-waterlogged-blocks` | `true` | Also un-waterlog stairs, slabs, fences and the like inside the cube. |
+| `prevent-reflow` | `true` | Clear each block without a neighbour update, so the liquid around the cube is never told to flow back in. See [Why the ocean does not flow back](#why-the-ocean-does-not-flow-back). |
 | `materials` | *required* | Liquid materials to remove. Must not be empty. |
 | `sound` | `item.bucket.empty` | Played to the user on activation. Empty plays nothing. |
 | `volume` | `0.9` | Must not be negative. |
@@ -55,7 +57,7 @@ Every offset inside the cube is generated, sorted by squared distance from the c
 
 Each queued block is handled one at a time, one per slot of the tick budget:
 
-- A block whose type is in `materials` is set to air with no physics update, so a large drain does not trigger a cascade of neighbour updates as it goes.
+- A block whose type is in `materials` is set to air. With `prevent-reflow: true` that happens with no neighbour update, so a large drain does not trigger a cascade of fluid updates as it goes.
 - A waterlogged block has its `waterlogged` flag cleared instead of being destroyed. Stairs stay stairs.
 - A block that changed since planning — somebody else broke it, or lava flowed in — is simply skipped.
 
@@ -68,6 +70,20 @@ Cleared 84 liquid blocks.
 ```
 
 That number is the count of blocks that really changed, not the number planned — blocks a protection plugin refused are not counted.
+
+## Why the ocean does not flow back
+
+A neighbour update is what tells an adjacent fluid to flow. That one detail decides whether the tool works in open water at all.
+
+Clear a cube in the middle of an ocean *with* the update and every source block around it is invited in. The hole is full again within a second or two, the drain looks like it did nothing, and the server has paid for the whole fluid cascade that refilled it. On a busy server that is felt as lag.
+
+With `prevent-reflow: true` — the shipped default — the surrounding liquid is never asked to move, so it does not. What is left is a real hole in the water that stays a hole, for the cost of the blocks the player actually aimed at and nothing more. This is the same approach WorldEdit's `//drain` takes.
+
+The one trade-off: a **partly** cleared stream or waterfall keeps its flowing water frozen at whatever level it had, because nothing updated it. It settles again as soon as anything nearby does — a block placed or broken next to it. Source blocks (a lake, an ocean, a pool) are unaffected by this, because they are already at rest.
+
+Set `prevent-reflow: false` for the vanilla behaviour instead: liquid settles and drains normally around the cleared area, and refills it.
+
+> **Draining and refilling are not the same job.** The tool removes liquid. It does not place a barrier, so a hole in an ocean is held open only by the absence of updates — a player who builds, breaks or otherwise disturbs a block at its edge can still start the water moving again. Fill the hole in if it needs to stay dry permanently.
 
 ## It can never become a real bucket
 

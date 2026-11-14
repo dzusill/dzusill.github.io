@@ -43,6 +43,23 @@ processing:
 
 See [The Job Queue](/plugins/oberontools/features/job-queue/) and [Expiry](/plugins/oberontools/features/expiry/#keeping-the-countdown-ticking).
 
+## Locator Bar
+
+```yaml
+locator-bar:
+  always-transmit: true
+  transmit-range: 60000000
+  sweep-interval-ticks: 20
+```
+
+| Key | Default | |
+|---|---|---|
+| `always-transmit` | `false` shipped `true` | Keep every player on the locator bar at all times, crouching included. An absent section means off, so a config from an older version never changes what players can see until you add it. |
+| `transmit-range` | `60000000` | The floor for `minecraft:waypoint_transmit_range`, in blocks. The server clamps it to the attribute's own maximum, so the shipped value simply means every player in the dimension. Must be 0 or positive. |
+| `sweep-interval-ticks` | `20` | How often every online player is re-checked. Must be ≥ 1. |
+
+See [Locator Bar](/plugins/oberontools/features/locator-bar/).
+
 ## Tools
 
 ```yaml
@@ -195,6 +212,7 @@ Required when `behavior: LIQUID_CLEAR`.
       max-radius: 3
       max-blocks: 0
       clear-waterlogged-blocks: true
+      prevent-reflow: true
       materials: [WATER, LAVA]
       sound: item.bucket.empty
       volume: 0.9
@@ -207,6 +225,7 @@ Required when `behavior: LIQUID_CLEAR`.
 | `max-radius` | same as `radius` | Permission ceiling. Must be ≥ `radius`, ≤ 8. |
 | `max-blocks` | `0` | `0` derives 27/125/343 from the effective radius. Otherwise 1–4913. |
 | `clear-waterlogged-blocks` | `true` | Also un-waterlog blocks inside the cube. |
+| `prevent-reflow` | `true` | Clear without a neighbour update, so an ocean never flows back into the cube and a drain in open water costs no fluid cascade. `false` is vanilla settling, and the refill with it. Because `tools` is never merged, a config from an older version does not gain this key — the `true` default applies anyway. |
 | `materials` | *required* | Must not be empty. |
 | `sound` | `item.bucket.empty` | A **resource key**, lower-cased on load. Empty plays nothing. |
 | `volume` | `0.9` | Must not be negative. |

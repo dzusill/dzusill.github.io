@@ -934,6 +934,10 @@
                 "slug": "plugins/oberontools/features/anti-duplication"
               },
               {
+                "label": "Locator Bar",
+                "slug": "plugins/oberontools/features/locator-bar"
+              },
+              {
                 "label": "The Job Queue",
                 "slug": "plugins/oberontools/features/job-queue"
               }
