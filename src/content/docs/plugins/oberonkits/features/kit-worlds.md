@@ -77,3 +77,31 @@ profile **[disabled]**.
 `kit-items.prevent-drop: true` stops players dropping items in the world (Q, or dragging items out of the
 inventory). `oberonkits.drop.bypass` is exempt. While the kit menu is open the player cannot be hurt
 (`choose.invulnerable-while-choosing`).
+
+## Protection after a kit
+
+`after-give.protection` (5 s by default) keeps a player who just got a kit from taking damage, so nobody can
+mace them while they still fall with slow falling or sort their inventory. An actionbar counts down
+(`kit-protection`, then `kit-protection-ended`). It can't be used for free hits: hitting anything, shooting
+(ender pearls excepted), placing an end crystal, TNT, a TNT minecart or a respawn anchor, emptying lava or
+lighting a fire ends it at once, and that hit lands. Damage the player causes to themselves (their own crystal)
+is not blocked. Kits picked or changed with `/kits` give no protection, only kits from entering, respawning,
+joining or the menu. `0s` turns it off.
+
+## Teleporting out of a kit world
+
+`teleport-warmup` in `config.yml` makes `/spawn`, `/warp`, `/home`, `/tpa`, `/tpaccept`, `/back` and `/rtp`
+wait 30 s in a kit world, so a fight can't be escaped by teleporting. Moving to another block or any hit (even
+one a shield blocks) cancels it. Aliases and `plugin:command` forms count too. When the time is up the command
+runs as if typed again, so a combat-tag plugin can still refuse it. Staff with `oberonkits.warmup.bypass` (op
+by default) teleport at once.
+
+```yaml
+teleport-warmup:
+  time: 30s        # 0s = off
+  commands: [spawn, warp, warps, home, homes, tpa, tpaccept, tpyes, back, rtp]
+  bypass-permission: oberonkits.warmup.bypass
+```
+
+Not delayed: ender pearls and chorus fruit, teleports by other plugins (a GUI warp menu), and `/server` or
+`/hub` handled by a proxy (they never reach the server). Riding a horse or a boat does not cancel the wait.

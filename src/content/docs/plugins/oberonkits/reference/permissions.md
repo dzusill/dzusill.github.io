@@ -9,6 +9,7 @@ description: "No node lets the GUI change console commands; see Admin GUI."
 | `oberonkits.layout` | everyone | [Arrange kits](/plugins/oberonkits/features/kit-layouts/) (`/kits layout`, shift-click, the preview button) |
 | `oberonkits.admin` | op | `/okits` and all its subcommands, and the whole admin GUI |
 | `oberonkits.bypass` | nobody | Never reset or given a kit (staff walking through the arena) |
+| `oberonkits.warmup.bypass` | op | Teleport commands run at once in a kit world (no `teleport-warmup`) |
 | `oberonkits.drop.bypass` | op | May drop items where `kit-items.prevent-drop` is on |
 
 ## Admin GUI

@@ -51,6 +51,8 @@ kit-received:
 | `regen-done` | Regen finished |
 | `not-in-kit-world` | `/kits` outside a kit world |
 | `drop-blocked` | Dropping an item where `prevent-drop` is on |
+| `kit-protection` / `kit-protection-ended` | Countdown of the [protection after a kit](/plugins/oberonkits/features/kit-worlds/#protection-after-a-kit) (`%seconds%`); its actionbar is shown every second |
+| `teleport-warmup.started` / `cancelled` | A teleport command waiting in a kit world (`%seconds%`; the actionbar is the countdown) |
 | `layout.saved` / `invalid` / `holding-item` / `kit-changed` / `disabled` / `not-arrangeable` | The [kit arranger](/plugins/oberonkits/features/kit-layouts/): saved, a stack was split, an item is still on the cursor, the kit changed while open, arranging is off or not allowed, the kit cannot be arranged |
 | `admin.*` | Replies to `/okits` and its help lines |
 | `admin.gui.saved` / `unchanged` / `rejected` / `note` | The result of an admin GUI change (`%what%`, `%reason%`, `%note%`) |

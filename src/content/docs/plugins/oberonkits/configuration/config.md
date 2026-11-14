@@ -54,6 +54,29 @@ See [Inventory guard](/plugins/oberonkits/features/kit-worlds/#inventory-guard).
 |---|---|---|
 | `enabled` | `true` | Players may [arrange each kit](/plugins/oberonkits/features/kit-layouts/); kits are given in their order |
 
+## error-feedback
+
+Error messages (no Stardust, no permission, cooldown, no dropping...) also play a sound and can show on the
+actionbar, without editing each message.
+
+| Key | Default | Meaning |
+|---|---|---|
+| `enabled` | `true` | Off = errors are plain messages again |
+| `sound` | `entity.villager.no` | `{ name, volume, pitch }`; `name: ""` = no sound |
+| `chat` | `true` | Error in chat |
+| `actionbar` | `true` | Error on the actionbar too |
+| `messages` | the error keys | `messages.yml` keys this applies to. A message switched off (`""`) stays off; a block message keeps its own `sound` and `actionbar` |
+
+## teleport-warmup
+
+| Key | Default | Meaning |
+|---|---|---|
+| `time` | `30s` | How long teleport commands wait in a kit world. `0s` = off |
+| `commands` | `[spawn, warp, warps, home, homes, tpa, tpaccept, tpyes, back, rtp]` | Command names without `/`; aliases and `plugin:name` count |
+| `bypass-permission` | `oberonkits.warmup.bypass` | Teleports at once |
+
+See [Teleporting out of a kit world](/plugins/oberonkits/features/kit-worlds/#teleporting-out-of-a-kit-world).
+
 ## ignore
 
 Players OberonKits never resets or gives a kit to.

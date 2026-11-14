@@ -70,6 +70,7 @@ unchanged).
 | `console-commands` | Run as console. `%player%`, `%kit%`, `%profile%`, `%world%` |
 | `player-commands` | Run as the player |
 | `message` | `messages.yml` key, `""` = none |
+| `protection` | `5s`: after the kit, the player takes no damage (falls, maces, arrows) and sees a countdown. Hitting another player ends it at once and that hit lands. `0s` = off. See [Protection after a kit](/plugins/oberonkits/features/kit-worlds/#protection-after-a-kit) |
 
 ## choose
 

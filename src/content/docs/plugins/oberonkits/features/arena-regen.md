@@ -43,6 +43,14 @@ regen:
 | `move-to` | `""` | `world,x,y,z` or `world,x,y,z,yaw,pitch`, best outside the rebuilt area |
 | `back-after` | `5s` | How long after the commands moved players are brought back. `0s` = they stay where they were moved |
 | `skip-if-empty` | `false` | Skip the regen while nobody is in the world (the timer still restarts) |
+| `freeze` | `true` | Players in the arena can't move, hit or be hit from the start of the regen until it is done (`back-after`). They can still look around, and get no extra message |
+| `beat-sound` | basedrum | `{ name, volume, pitch }` played every second while the arena is rebuilt; the `regen-started` actionbar is shown again with each beat. `name: ""` = none |
+| `done-sound` | level-up | Played once when it is done, with `regen-done` |
+
+"Done" is `back-after` after the commands (5 s by default). The duels plugin does not say when its rebuild
+finishes, so set `back-after` to about how long the rebuild takes. With `back-after: 0s` the freeze and the
+beat end at once. A second regen of the same arena (a quick `/okits regen` twice) is skipped until the first
+is done. A regen command that fails is logged and the regen still ends normally.
 
 ## How it behaves
 
