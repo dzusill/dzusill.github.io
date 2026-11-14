@@ -23,7 +23,7 @@ Placeholders in kit lore: `%kit%`, `%kit_display%`, `%uses%`, `%price%`, `%uses_
 | `locked-kits.show` | `false` hides kits without permission; otherwise they show as `locked-kits.material` |
 | `buttons.random` | Random kit button (`enabled`, `slot`, `material`, `name`, `lore`) |
 | `buttons.close` | Close button, off by default |
-| `click.left`, `click.right` | `equip`, `preview` or `none` |
+| `click.left`, `click.right`, `click.shift` | `equip`, `preview`, `layout` ([arrange the kit](/plugins/oberonkits/features/kit-layouts/)) or `none`. Shift-click (left or right) defaults to `layout` |
 
 ## preview
 
@@ -35,6 +35,24 @@ Rows 1–3 show the main inventory, row 4 the hotbar, row 5 armor and offhand, r
 | `filler` | Empty slots |
 | `buttons.back` | Back to the kit menu |
 | `buttons.equip` | Equip this kit |
+| `buttons.layout` | Opens the kit arranger; hidden when `kit-layouts.enabled` is `false` |
+
+## layout — the kit arranger
+
+Same rows as the preview; rows 1–4 can be rearranged. See [Arranging kits](/plugins/oberonkits/features/kit-layouts/).
+
+| Key | Meaning |
+|---|---|
+| `title` | `%kit_display%` works |
+| `filler` | Empty slots in rows 5–6 |
+| `buttons.back` | Leaves without saving (back to the preview, or closes) |
+| `buttons.reset` | Puts the kit's own order back in the arranger |
+| `buttons.save` | Saves the order |
+| `buttons.help` | An info item |
+
+Servers updated from an older version keep their lore lines; add
+`"<yellow>Shift-click</yellow> <gray>to arrange your hotbar"` to the `select.kit-button.lore-*` lists to show
+the hint.
 
 ## confirm — buying a Stardust kit
 

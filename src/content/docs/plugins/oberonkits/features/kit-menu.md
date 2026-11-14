@@ -12,18 +12,22 @@ default), and any time with `/kits`.
 |---|---|
 | Left-click a kit | Equips it (or opens the purchase screen for a Stardust kit with no uses) |
 | Right-click a kit | Opens the preview |
+| Shift-click a kit | Opens the [kit arranger](/plugins/oberonkits/features/kit-layouts/) to put its items where the player wants them |
 | Random button | Gives one of the free kits at random |
 | `/kits <kit>` | Picks a kit by name without the menu |
 
-What a left and a right click do is set in `menus.yml` (`click.left`, `click.right`: `equip`, `preview` or
-`none`).
+What each click does is set in `menus.yml` (`click.left`, `click.right`, `click.shift`: `equip`, `preview`,
+`layout` or `none`).
 
 The kit used last is remembered per profile and glows in the menu.
 
 ## Preview
 
 The preview shows the kit laid out like a player inventory: rows 1–3 the main inventory, row 4 the hotbar,
-row 5 armor and offhand, and **Back** / **Equip** buttons at the bottom.
+row 5 armor and offhand, and **Back** / **Equip** / **Arrange this kit** buttons at the bottom.
+
+A kit timer keeps running in the arranger. Arranging is easiest before entering the kit world, with
+`/kits layout <kit>`.
 
 ## Time limit
 

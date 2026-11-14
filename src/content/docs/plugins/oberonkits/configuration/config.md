@@ -48,6 +48,12 @@ See [Inventory guard](/plugins/oberonkits/features/kit-worlds/#inventory-guard).
 |---|---|---|
 | `protected-worlds` | `[]` | Worlds (patterns allowed) the [admin GUI](/plugins/oberonkits/features/admin-gui/) may never make kit worlds. The main world, its nether and its end are always protected |
 
+## kit-layouts
+
+| Key | Default | Meaning |
+|---|---|---|
+| `enabled` | `true` | Players may [arrange each kit](/plugins/oberonkits/features/kit-layouts/); kits are given in their order |
+
 ## ignore
 
 Players OberonKits never resets or gives a kit to.

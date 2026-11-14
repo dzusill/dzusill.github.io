@@ -12,6 +12,7 @@ runtime through OberonCore, so `plugin.yml` has no `commands:` block.
 |---|---|---|
 | `/kits` | Opens the kit menu (only in a kit world) | `oberonkits.use` |
 | `/kits <kit>` | Picks a kit by name; a Stardust kit with no uses opens its preview | `oberonkits.use` |
+| `/kits layout <kit>` | [Arrange](/plugins/oberonkits/features/kit-layouts/) the kit's hotbar and inventory; works in any world | `oberonkits.layout` |
 
 `/ffakits` is an alias. `/kits` takes the name from Essentials (`take-over: true`).
 

@@ -1491,6 +1491,10 @@
                 "slug": "plugins/oberonkits/features/stardust-kits"
               },
               {
+                "label": "Arranging kits",
+                "slug": "plugins/oberonkits/features/kit-layouts"
+              },
+              {
                 "label": "Deaths and killer XP",
                 "slug": "plugins/oberonkits/features/deaths"
               },
