@@ -1503,6 +1503,10 @@
                 "slug": "plugins/oberonkits/features/kit-layouts"
               },
               {
+                "label": "Bedrock players",
+                "slug": "plugins/oberonkits/features/bedrock"
+              },
+              {
                 "label": "Deaths and killer XP",
                 "slug": "plugins/oberonkits/features/deaths"
               },

@@ -47,6 +47,11 @@ outside a duel from building and fighting while `protect-arena-bounds: true` in 
 sure the arena's bounds do not cover the area players fight in. Also check the WorldGuard `pvp`,
 `block-place` and `block-break` flags and Multiverse's `pvp` for the world.
 
+**Bedrock players can't open their inventory after getting a kit.**
+Geyser is waiting for a chest menu the client never showed. Since 1.4.1 Bedrock players get a form instead;
+check that Floodgate is installed on this server (console: `Floodgate found`) and `bedrock.forms: true`.
+A player already stuck rejoins. See [Bedrock players](/plugins/oberonkits/features/bedrock/).
+
 **The arena regen does nothing.**
 Check `regen.enabled: true`, that `commands` is not empty, and run `/okits regen <profile>`. The console logs
 every regen and each command's own output. Test the command by hand from the console first.

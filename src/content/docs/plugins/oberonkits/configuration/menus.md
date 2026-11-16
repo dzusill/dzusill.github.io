@@ -54,6 +54,18 @@ Servers updated from an older version keep their lore lines; add
 `"<yellow>Shift-click</yellow> <gray>to arrange your hotbar"` to the `select.kit-button.lore-*` lists to show
 the hint.
 
+## bedrock-form — the kit menu for Bedrock players
+
+A native form instead of the chest (`bedrock.forms` in config.yml, see [Bedrock players](/plugins/oberonkits/features/bedrock/)).
+MiniMessage works; `\n` starts a new line in a button.
+
+| Key | Meaning |
+|---|---|
+| `title`, `content` | The form's title and the text above the buttons |
+| `kit-free`, `kit-paid-owned`, `kit-paid-buy`, `kit-locked` | One button per kit, by state (`%kit_display%`, `%price%`, `%uses%`, `%uses_per_buy%`) |
+| `random` | The Random kit button (shown when `select.buttons.random` is enabled) |
+| `confirm.title`, `confirm.content`, `confirm.yes`, `confirm.no` | The buy question for a Stardust kit without uses |
+
 ## confirm — buying a Stardust kit
 
 | Key | Meaning |

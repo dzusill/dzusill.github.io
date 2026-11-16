@@ -67,6 +67,15 @@ actionbar, without editing each message.
 | `actionbar` | `true` | Error on the actionbar too |
 | `messages` | the error keys | `messages.yml` keys this applies to. A message switched off (`""`) stays off; a block message keeps its own `sound` and `actionbar` |
 
+## bedrock
+
+| Key | Default | Meaning |
+|---|---|---|
+| `forms` | `true` | Bedrock players (Floodgate) pick kits in a native form instead of the chest menu |
+| `menu-delay-ticks` | `40` | With `forms: false`: how long the chest menu waits for a Bedrock client to load |
+
+See [Bedrock players](/plugins/oberonkits/features/bedrock/).
+
 ## teleport-warmup
 
 | Key | Default | Meaning |
