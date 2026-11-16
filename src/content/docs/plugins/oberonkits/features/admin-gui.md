@@ -12,7 +12,7 @@ admin's name.
 | Menu | Settings | Node |
 |---|---|---|
 | Profile | enabled, mode, coming back (`on-return`), worlds, the three triggers | `oberonkits.gui.edit.profiles` |
-| Kits | add a kit from Essentials, remove one, name in the menu, icon, slot, random weight, kit permission, Stardust price, currency, lives per purchase | `oberonkits.gui.edit.kits` |
+| Kits | add a kit from Essentials, remove one, name in the menu, icon, slot, random weight, kit permission, Stardust price, currency, lives per purchase, items drop on death | `oberonkits.gui.edit.kits` |
 | Kit items | overwrite a kit's items with your own inventory, or make a new Essentials kit from it | `oberonkits.gui.edit.contents` |
 | Rules | time to pick, timeout and close actions, changing kit, cooldown, no damage while choosing, remember / skip, random picks, item dropping, death drops, killer XP | `oberonkits.gui.edit.rules` |
 | Arena regen | on/off, interval, warnings, stay or move, move-to (your position), bring back after, skip when empty, run now | `oberonkits.gui.edit.regen` |

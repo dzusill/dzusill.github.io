@@ -59,3 +59,8 @@ GUI may use the same short form (`3k`, `1.5m`).
 
 A kit without `currency` uses `default-currency`. A kit naming a currency that is not listed is skipped,
 and the console says so.
+
+## Keeping Stardust gear out of the arena
+
+`drop-items: false` on a Stardust kit means a player holding it drops nothing on death, while the free kits
+still drop. See [Deaths: per kit](/plugins/oberonkits/features/deaths/#per-kit).

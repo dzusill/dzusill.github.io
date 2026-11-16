@@ -25,6 +25,28 @@ death:
   player gets a fresh kit on respawn).
 - `drop-xp: false` — the victim drops no XP orbs.
 
+### Per kit
+
+A kit can override `drop-items` for the players holding it, for example basic kits drop and Stardust kits
+don't:
+
+```yaml
+death:
+  drop-items: true
+kits:
+  - { kit: ffa1 }                                         # drops (like the profile)
+  - { kit: ffa6, price: 500, uses: 3, drop-items: false } # nothing drops
+```
+
+- The kit the player was last given in this profile decides, for their whole inventory: loot a Stardust
+  player picked up is lost with them too.
+- A kit left without `drop-items` follows the profile's `death.drop-items`.
+- When OberonKits doesn't know the kit (given before 1.5.0, or by another plugin) or the kit was removed
+  from the profile, the profile decides.
+- XP stays per profile (`drop-xp`).
+
+In game: `/okits gui` → profile → Kits → the kit → **Items drop on death** (like the profile / drop / no drop).
+
 ## Killer XP
 
 The killer receives XP, which Mending uses to repair gear.

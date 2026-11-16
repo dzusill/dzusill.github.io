@@ -33,6 +33,7 @@ kits:
     currency: stardust            # from config.yml economy.currencies
     uses: 1                       # lives per purchase
     console-commands: []          # run after this kit is given (%player%, %kit%)
+    drop-items: false             # items drop when a player holding it dies; leave out = death.drop-items
 ```
 
 A kit that does not exist in Essentials, a kit listed twice, or a paid kit with a currency that is not set
