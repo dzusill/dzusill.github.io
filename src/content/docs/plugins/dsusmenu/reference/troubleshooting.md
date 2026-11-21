@@ -5,6 +5,7 @@ description: "The list is empty."
 
 **The list is empty.**
 - Check the console for `Listening to Vulcan flags.` Without Vulcan, only client detections and `/sus debug` flags exist.
+- Vulcan flags players but `/sus` stays empty: the console says `Vulcan's API is off`. Set `settings.enable-api: true` in `plugins/Vulcan/config.yml` and restart the server.
 - Make sure the window covers the flags; use the clock button.
 - The default status filter hides dismissed players.
 

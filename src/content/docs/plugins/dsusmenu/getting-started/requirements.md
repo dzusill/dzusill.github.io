@@ -8,7 +8,7 @@ description: "dSusMenu keeps its data in an embedded H2 database in plugins/dSus
 | **Server** | Paper 1.21.x or 26.x (one jar for both). Folia is not supported. |
 | **Java** | 21 or newer |
 | **Required** | [DzusillCore](/plugins/dzusillcore/) **1.14.4+**. Use one core jar per server; dPhalanx 1.3.0 is built for the same core. |
-| **Detections** | **Vulcan** (2.9.7.x, through its public API). Without Vulcan, the list only shows client detections and test flags. |
+| **Detections** | **Vulcan** (2.9.7.x, through its public API). Its API must be on: `settings.enable-api: true` in `plugins/Vulcan/config.yml`, then restart. With it off, Vulcan sends dSusMenu nothing and the console warns on startup. Without Vulcan, the list only shows client detections and test flags. |
 
 ## Optional
 
