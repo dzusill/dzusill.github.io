@@ -14,11 +14,15 @@ runtime through OberonCore, so `plugin.yml` has no `commands:` block.
 | `/kits <kit>` | Picks a kit by name; a Stardust kit with no uses opens its preview | `oberonkits.use` |
 | `/kits layout <kit>` | [Arrange](/plugins/oberonkits/features/kit-layouts/) the kit's hotbar and inventory; works in any world | `oberonkits.layout` |
 
-`/ffakits` is an alias. `/kits` takes the name from Essentials (`take-over: true`).
+These are the default names: `/kits` with the alias `/ffakits`. Both come from
+[`commands.select`](/plugins/oberonkits/configuration/config/#commands); a name left out there is not claimed, so another
+plugin can use `/kits` ([how](/plugins/oberonkits/configuration/config/#keeping-kits-for-another-plugin)). With
+`take-over: true` (default) OberonKits takes a listed name from Essentials. Tab completion and permissions work
+the same under every name. Renaming needs a server restart.
 
 ## Admin
 
-`/oberonkits` is an alias of `/okits`. Everything below needs `oberonkits.admin`, except `/okits gui`.
+`/oberonkits` is an alias of `/okits` (both set in `commands.admin`). Everything below needs `oberonkits.admin`, except `/okits gui`.
 
 | Command | Does |
 |---|---|

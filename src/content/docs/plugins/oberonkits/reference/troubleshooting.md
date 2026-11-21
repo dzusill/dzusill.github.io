@@ -22,6 +22,11 @@ true` prints the reason.
 **`/kits` opens the Essentials list.**
 `commands.select.take-over` is `false`, or the server was not restarted after changing it.
 
+**Another plugin's `/kits` does not work.**
+OberonKits claims every name in `commands.select` (`name` and `aliases`). Set `name: ffakits` and
+`aliases: []` (or any names without `kits`) and restart. See
+[Keeping /kits for another plugin](/plugins/oberonkits/configuration/config/#keeping-kits-for-another-plugin).
+
 **Kits fail with "Newer version! Server downgrades are not supported".**
 The kits in `kits.yml` were saved on a newer Minecraft version than the server runs. Re-save them on this
 server with Essentials (`/createkit`).

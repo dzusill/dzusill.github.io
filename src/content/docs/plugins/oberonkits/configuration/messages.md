@@ -23,6 +23,11 @@ kit-received:
 `%player%`, `%kit%`, `%kit_display%`, `%profile%`, `%world%`, `%uses%`, `%price%`, `%cooldown%`, `%amount%`,
 `%victim%`, `%time%`, `%seconds%`. With PlaceholderAPI installed, any PAPI placeholder works too.
 
+`%kits_command%` works in every message: the name the kit menu command answers to (`commands.select.name` in
+`config.yml`, `kits` by default). Write `/%kits_command%` instead of `/kits` so a renamed command stays right.
+The shipped `choose-timeout-none` uses it; a messages.yml that still has the old literal `/kits` text of that
+message is shown with the configured name.
+
 ## Keys
 
 | Key | Sent when |
@@ -55,6 +60,7 @@ kit-received:
 | `teleport-warmup.started` / `cancelled` | A teleport command waiting in a kit world (`%seconds%`; the actionbar is the countdown) |
 | `layout.saved` / `invalid` / `holding-item` / `kit-changed` / `disabled` / `not-arrangeable` | The [kit arranger](/plugins/oberonkits/features/kit-layouts/): saved, a stack was split, an item is still on the cursor, the kit changed while open, arranging is off or not allowed, the kit cannot be arranged |
 | `admin.*` | Replies to `/okits` and its help lines |
+| `admin.reload-restart` | `/okits reload` found changed command names in `config.yml` (they apply after a restart) |
 | `admin.gui.saved` / `unchanged` / `rejected` / `note` | The result of an admin GUI change (`%what%`, `%reason%`, `%note%`) |
 | `admin.gui.no-permission` | A locked GUI button was clicked (`%permission%`) |
 | `admin.gui.prompt` / `prompt-cancelled` | The question asked in chat (`%what%`, `%current%`, `%hint%`) |

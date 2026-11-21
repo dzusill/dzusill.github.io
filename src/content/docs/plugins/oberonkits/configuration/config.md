@@ -15,16 +15,45 @@ bypass permission...). Turn it on when a player says they got no kit.
 
 ```yaml
 commands:
-  select:
+  select:                # the kit menu command
     name: kits
     aliases: [ffakits]
-    take-over: true      # Essentials also has /kits; true = OberonKits owns the name
+    take-over: true
   admin:
     name: okits
     aliases: [oberonkits]
 ```
 
-Commands are registered through OberonCore at start-up; renaming needs a restart.
+Each command answers to its `name` and every entry in `aliases`, and to nothing else. A name that is not listed
+is never claimed, so another plugin (or Essentials) keeps it.
+
+| Key | Default | Meaning |
+|---|---|---|
+| `select.name` | `kits` | Main name of the kit menu command. `""` = the first alias is the main name |
+| `select.aliases` | `[ffakits]` | Other names for it. `[]` = none |
+| `select.take-over` | `true` | For a listed name another plugin also has (Essentials has `/kits`): `true` = OberonKits owns it, `false` = the other plugin keeps it |
+| `admin.name` | `okits` | Main name of the admin command |
+| `admin.aliases` | `[oberonkits]` | Other names for it. With no name and no alias it falls back to `okits` |
+
+Names are matched without case and a leading `/`; a name with a space or `:` is ignored. With no name and no
+alias for `select`, players have no kit menu command (kit worlds still open the menu on their own).
+
+### Keeping /kits for another plugin
+
+To use `/kits` for something else and open the kit menu with `/ffakits` only:
+
+```yaml
+commands:
+  select:
+    name: ffakits
+    aliases: []
+```
+
+Change `name` rather than deleting it: a missing key is added back with its default (`kits`) on the next start.
+The namespaced form `/oberonkits:ffakits` keeps working too.
+
+Commands are registered through OberonCore at start-up, so a change needs a **server restart**. `/okits reload`
+notices the change, logs it and says a restart is needed; until then the old names stay.
 
 ## essentials
 
