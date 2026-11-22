@@ -5651,6 +5651,124 @@
         ]
       },
       {
+        "label": "🧟 dMobStats",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "📘 Introduction",
+            "slug": "plugins/dmobstats"
+          },
+          {
+            "label": "🚀 Getting Started",
+            "items": [
+              {
+                "label": "Requirements",
+                "slug": "plugins/dmobstats/getting-started/requirements"
+              },
+              {
+                "label": "Installation",
+                "slug": "plugins/dmobstats/getting-started/installation"
+              },
+              {
+                "label": "Quick Start",
+                "slug": "plugins/dmobstats/getting-started/quick-start"
+              }
+            ]
+          },
+          {
+            "label": "✨ Features",
+            "items": [
+              {
+                "label": "New Spawns Only",
+                "slug": "plugins/dmobstats/features/new-spawns-only"
+              },
+              {
+                "label": "Mob Files",
+                "slug": "plugins/dmobstats/features/mob-files"
+              },
+              {
+                "label": "Properties",
+                "slug": "plugins/dmobstats/features/properties"
+              },
+              {
+                "label": "Damage Multipliers",
+                "slug": "plugins/dmobstats/features/damage"
+              },
+              {
+                "label": "Equipment & Effects",
+                "slug": "plugins/dmobstats/features/equipment-and-effects"
+              },
+              {
+                "label": "Drops & XP",
+                "slug": "plugins/dmobstats/features/drops-and-xp"
+              },
+              {
+                "label": "Spawn Rules",
+                "slug": "plugins/dmobstats/features/spawn-rules"
+              },
+              {
+                "label": "World & Biome Overrides",
+                "slug": "plugins/dmobstats/features/overrides"
+              },
+              {
+                "label": "Admin GUI",
+                "slug": "plugins/dmobstats/features/admin-gui"
+              },
+              {
+                "label": "Inspect & Test Spawns",
+                "slug": "plugins/dmobstats/features/inspect-and-test-spawns"
+              },
+              {
+                "label": "Presets",
+                "slug": "plugins/dmobstats/features/presets"
+              },
+              {
+                "label": "Validate & Debug",
+                "slug": "plugins/dmobstats/features/validate-and-debug"
+              }
+            ]
+          },
+          {
+            "label": "⚙️ Configuration",
+            "items": [
+              {
+                "label": "config.yml",
+                "slug": "plugins/dmobstats/configuration/config"
+              },
+              {
+                "label": "gui.yml & messages.yml",
+                "slug": "plugins/dmobstats/configuration/gui-and-messages"
+              },
+              {
+                "label": "Backups & Change Log",
+                "slug": "plugins/dmobstats/configuration/backups-and-logs"
+              },
+              {
+                "label": "Reloading",
+                "slug": "plugins/dmobstats/configuration/reloading"
+              }
+            ]
+          },
+          {
+            "label": "📖 Reference",
+            "items": [
+              {
+                "label": "Commands & Permissions",
+                "slug": "plugins/dmobstats/commands-and-permissions"
+              },
+              {
+                "label": "FAQ & Troubleshooting",
+                "slug": "plugins/dmobstats/faq"
+              },
+              {
+                "label": "Credits",
+                "slug": "plugins/dmobstats/credits"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "label": "📊 dStattrack",
         "collapsed": true,
         "items": [

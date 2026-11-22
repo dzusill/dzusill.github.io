@@ -33,6 +33,7 @@ const PLUGINS = [
   { slug: 'dkilltracker',  name: 'dKillTracker',  src: '../dKillTracker/docs' },
   { slug: 'dfate',         name: 'dFate',         src: '../dFate/docs' },
   { slug: 'toolsnotifier', name: 'ToolsNotifier', src: '../ToolNotifier/docs' },
+  { slug: 'dmobstats',     name: 'dMobStats',     src: '../dMobStats/docs' },
   // The dzusill-branded successors to the Oberon originals. Both are listed: the Oberon pages stay
   // for the servers still running them, and these document the rebuilt plugins, which have since
   // diverged (dLive gained saved links and the skin face; dAnnounce, its own preset library).
@@ -127,7 +128,7 @@ const CATEGORIES = [
   { label: '🧭 Teleportation', plugins: ['warpgui', 'dhomegui'] },
   { label: '💬 Chat & Social', plugins: ['dnicks', 'dmentions', 'dlive', 'dannounce'] },
   { label: '🔗 Web & Integrations', plugins: ['dweblink', 'dphalanx'] },
-  { label: '🧰 Tools & Utilities', plugins: ['dtickets', 'dsusmenu', 'dstattrack', 'toolsnotifier'] },
+  { label: '🧰 Tools & Utilities', plugins: ['dtickets', 'dsusmenu', 'dmobstats', 'dstattrack', 'toolsnotifier'] },
 ];
 const MISC_LABEL = '📦 Miscellaneous';
 
@@ -142,7 +143,7 @@ const PLUGIN_EMOJI = {
   oberonshop: '🏪', oberonenvoys: '🪂', oberonafk: '⌛', oberoncombat: '🥊', oberonender: '📦', oberonkits: '🎒',
   dlive: '📡', dannounce: '📣', dsell: '🏷️', dshop: '🏪', dloyalityrewards: '🎁',
   dsupplydrops: '🪂', ddonations: '💵', dtickets: '🎫', dsusmenu: '🕵️', oberonsentry: '🕵️',
-  oberonantixray: '⛏️',
+  oberonantixray: '⛏️', dmobstats: '🧟',
 };
 const SECTION_EMOJI = {
   'getting started': '🚀', 'features': '✨', 'configuration': '⚙️', 'reference': '📖',
