@@ -9,6 +9,8 @@ Properties live in the `attributes` and `special` sections of a mob file. Only w
 
 Attributes are written as the mob's **base value**, so they live in the mob's own saved data and keep working across restarts. Health is set to the rolled max health on spawn.
 
+The configured range is the **final value**. Vanilla adds random bonuses to some mobs when they spawn — a "leader" zombie gets up to ×4 max health, and every mob gets a random follow-range bonus. For every attribute a mob file sets, dMobStats removes those spawn bonuses, so a zombie set to `max_health: 60` has exactly 60 HP. Other modifiers stay: the baby speed bonus, potion effects, and armor or other gear.
+
 | Key | Hard limits | GUI step (click / shift) | GUI confirm above |
 |---|---|---|---|
 | `max_health` | 1 - 1024 | 1 / 10 | |
