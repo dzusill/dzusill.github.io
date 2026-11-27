@@ -49,7 +49,7 @@ worth-lore:
 |---|---|---|
 | `enabled` | `true` | Master switch. Off = the listener is never registered |
 | `shulker-totals` | `true` | Show a shulker box's contents total on the box |
-| `player-inventory` | `true` | Also decorate the player's own inventory while a container is open |
+| `player-inventory` | `true` | Also decorate the player's own inventory while a container is open — in packet mode even under a menu or excluded GUI, whose own slots stay bare |
 | `allow-toggle` | `true` | Let players use `/toggleworth` |
 | `refresh-ticks` | `20` | How often to re-check online inventories. `0` = events only |
 | `inventories` | (a long list) | Which inventories get lore — an `InventoryType` name, or any part of a title |

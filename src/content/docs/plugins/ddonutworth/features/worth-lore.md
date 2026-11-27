@@ -39,7 +39,9 @@ its raw form — and small-capital and lookalike letters fold to ordinary ones. 
 matches a GUI titled `ʙᴏᴜɴᴛɪᴇꜱ`, whichever of the several lookalike letters that
 server happened to use.
 
-`player-inventory: true` also decorates the player's own inventory while a container is open.
+`player-inventory: true` also decorates the player's own inventory while a container is open. In packet
+mode that holds for **any** open window: inside another plugin's menu, an excluded GUI or the prices menu,
+the menu's own slots stay bare but the player's inventory rows below it keep their worth lines.
 
 ## Keeping it out of other plugins' GUIs
 

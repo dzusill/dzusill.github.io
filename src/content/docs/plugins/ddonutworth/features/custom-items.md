@@ -77,6 +77,26 @@ custom-items:
 
 Reload, hold one of its items, and `/setworth 500`. The key will read `myplugin:whatever_the_id_is`.
 
+### Example: DonutSpawners spawners
+
+DonutSpawners stamps each spawner item with its type under `donutspawners:spawner-key`. Pricing spawners
+by that tag means every zombie spawner sells as a zombie spawner, even after you change the spawner's name
+or lore in DonutSpawners' config — a `custom:` copy only matches the exact name and lore it was saved with.
+
+```yaml
+custom-items:
+  donutspawners:
+    enabled: true
+    namespace: donutspawners
+    id-key: spawner-key
+```
+
+```yaml
+items:
+  "donutspawners:zombie": 45000.0
+  "donutspawners:spider": 6750.0
+```
+
 ## Items no plugin claims
 
 A one-off item with hand-written lore, or NBT from something not configured, still gets a price — it is
