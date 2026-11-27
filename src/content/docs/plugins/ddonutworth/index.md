@@ -65,4 +65,5 @@ See [Requirements](/plugins/ddonutworth/getting-started/requirements/).
 - [Price Sources](/plugins/ddonutworth/features/price-sources/) · [Readable Item Keys](/plugins/ddonutworth/features/item-keys/)
 - [prices.yml reference](/plugins/ddonutworth/configuration/prices/) · [config.yml reference](/plugins/ddonutworth/configuration/config/)
 - [Commands & Permissions](/plugins/ddonutworth/commands-and-permissions/)
+- [Developer API](/plugins/ddonutworth/developer-api/): other plugins can sell through dDonutWorth and pay what `/sell` pays (1.0.2+)
 - [FAQ & Troubleshooting](/plugins/ddonutworth/faq/)

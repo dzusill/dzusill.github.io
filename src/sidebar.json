@@ -2972,6 +2972,10 @@
                 "slug": "plugins/ddonutworth/placeholders"
               },
               {
+                "label": "Developer API",
+                "slug": "plugins/ddonutworth/developer-api"
+              },
+              {
                 "label": "FAQ & Troubleshooting",
                 "slug": "plugins/ddonutworth/faq"
               },
